@@ -1,0 +1,86 @@
+Kim's Video — 开屏提示界面 改动方案
+======================================
+
+一、目标
+-------
+为网站增加一个首次访问时显示的开屏提示界面，介绍主要功能和用法。
+用户点击"开始"后进入首页，之后刷新/重启不再出现。
+同时在首页添加一个"?"按钮，可随时再次查看该说明。
+
+二、改动方案（推荐方案：首次访问开屏 + 信息按钮）
+---------------------------------------------------
+用 localStorage 标记是否首次访问，控制开屏显示。
+同时复用同一个组件作为"信息弹窗"，首页点击"?"按钮触发。
+
+三、改动文件清单
+-----------------
+新增文件：
+  1. src/components/SplashPage.jsx    — 开屏/信息弹窗组件
+
+修改文件：
+  2. src/App.jsx                       — 添加开屏渲染 + 信息弹窗状态
+  3. src/components/InputPage.jsx      — 添加"?"信息按钮
+
+四、各文件改动详情
+-------------------
+
+### 1. src/components/SplashPage.jsx (新增)
+一个组件两种模式，通过 isModal prop 区分：
+
+  - 模式 A（开屏）isModal=false
+    * 全屏覆盖（替换整个 App 的 header/main/footer）
+    * 深色背景 + 复古像素风，与应用视觉风格一致
+    * Logo + "KIM'S VIDEO" 标题
+    * 功能介绍区域（分点说明 4 大功能）
+    * 底部"开始探索"按钮
+    * 点击后调用 onStart() → 父组件设置 localStorage + 隐藏开屏
+
+  - 模式 B（信息弹窗）isModal=true
+    * 半透明黑色遮罩层 + 居中弹窗卡片
+    * 右上角关闭按钮 (X)
+    * 展示同样内容
+    * 点击遮罩或关闭按钮调用 onClose() → 父组件关闭弹窗
+
+### 2. src/App.jsx (修改)
+
+  新增状态：
+    - showIntro: boolean  — 是否显示开屏
+      * 初始值：localStorage 无标记 && URL 无 ?from= 参数 → true，否则 false
+      * 首次打开时 true，点击开始后 false，之后刷新永远 false
+    - showInfoModal: boolean — 是否显示信息弹窗
+
+  新增逻辑：
+    - handleIntroStart(): localStorage.setItem('kims_video_intro_seen', '1') + setShowIntro(false)
+    - 将 onShowInfo={() => setShowInfoModal(true)} 传递给 InputPage
+
+  新增渲染：
+    - 在顶层 div 内，showIntro 为 true 时渲染 <SplashPage onStart={handleIntroStart} />
+    - showIntro 为 false 时渲染正常 header + main + footer
+    - showInfoModal 为 true 时渲染 <SplashPage isModal onClose={() => setShowInfoModal(false)} />
+
+  注意事项：
+    - resetApp（reboot）不改动 localStorage，开屏只在新用户第一次访问时出现
+    - URL 带 ?from= 参数时直接跳过开屏（共享链接直达结果）
+    - 不和现有的 step 状态机冲突，开屏在本体之外独立控制
+
+### 3. src/components/InputPage.jsx (修改)
+
+  新增：
+    - 接收 onShowInfo prop
+    - 在页面右上角添加一个圆形"?"按钮
+    - 像素风风格，hover 变色
+
+五、不涉及改动的文件
+---------------------
+  - useMovieEngine.js          — 业务逻辑不需要动
+  - ResultsPage.jsx / QAPage.jsx / MovieDetail.jsx / ... — 所有其他组件不动
+  - api.js / prompts.js / ...  — 服务层不需要动
+  - package.json               — 不需要新增依赖
+  - deploy.yml                 — 部署流程不变
+
+六、稳定性考虑
+---------------
+  - localStorage 是基础 Web API，所有浏览器支持，私密模式下亦可正常工作
+  - 新增组件完全独立，不侵入现有状态机
+  - 信息弹窗通过 Portal 或固定定位渲染，不影响页面布局
+  - ?from= 参数判断确保分享链接直达，不干扰现有路由逻辑

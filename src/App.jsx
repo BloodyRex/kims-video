@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Icons } from "./components/Icons";
 import Loading from "./components/Loading";
 import InputPage from "./components/InputPage";
@@ -6,6 +6,7 @@ import QAPage from "./components/QAPage";
 import ResultsPage from "./components/ResultsPage";
 import MovieDetail from "./components/MovieDetail";
 import SaveContent from "./components/SaveContent";
+import SplashPage from "./components/SplashPage";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "./services/api";
 import { loadResultsFromCache } from "./utils/cache";
@@ -15,6 +16,18 @@ import { useMovieEngine } from "./logic/useMovieEngine";
 
 function App() {
   const saveContainerRef = useRef(null);
+
+  const [showIntro, setShowIntro] = useState(() => {
+    const hasFromParam = new URLSearchParams(window.location.search).has("from");
+    if (hasFromParam) return false;
+    return !localStorage.getItem("kims_video_intro_seen");
+  });
+  const [showInfoModal, setShowInfoModal] = useState(false);
+
+  const handleIntroStart = () => {
+    localStorage.setItem("kims_video_intro_seen", "1");
+    setShowIntro(false);
+  };
 
   const {
     step, setStep,
@@ -230,6 +243,10 @@ function App() {
 
   return (
     <div className="min-h-screen text-black selection:bg-[#ffff00] selection:text-black overflow-x-hidden pb-20">
+      {showIntro ? (
+        <SplashPage onStart={handleIntroStart} />
+      ) : (
+        <>
       <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
         <div className="flex items-center justify-center">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
@@ -261,6 +278,7 @@ function App() {
             onGenerateQuestions={handleGenerateQuestions}
             onSelectMovie={selectMovie}
             currentYear={currentYear}
+            onShowInfo={() => setShowInfoModal(true)}
           />
         )}
         {step === "loading_questions" && <Loading loadingMessage={loadingMessage} step={step} />}
@@ -302,11 +320,17 @@ function App() {
           </a> | BLOODYREX (C) 2026
         </p>
       </footer>
+      </>
+      )}
 
       {showSaveLayout && (
         <div ref={saveContainerRef} style={{ position: "fixed", top: "-9999px", left: 0, width: "800px", zIndex: 9999 }}>
           <SaveContent recommendations={recommendations} primaryMovie={primaryMovie} secondaryMovie={secondaryMovie} />
         </div>
+      )}
+
+      {showInfoModal && (
+        <SplashPage isModal onClose={() => setShowInfoModal(false)} />
       )}
     </div>
   );
