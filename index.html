@@ -23,16 +23,35 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Kim's Video",
-    "description": "AI-powered movie recommendation engine. Enter your favorite films and discover popular hits, hidden gems, and controversially-rated movies.",
-    "applicationCategory": "Multimedia",
+    "description": "AI 驱动的个性化影视推荐引擎。输入1-2部你喜欢的电影或剧集，通过渐进式问答分析你的审美口味，从 DeepSeek + TMDB 数据中推荐精选热门、独家冷门与争议之选。",
+    "applicationCategory": "MultimediaApplication",
     "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript",
     "author": { "@type": "Person", "name": "Bloodyrex" },
-    "url": "https://bloodyrex.xyz"
+    "url": "https://bloodyrex.xyz",
+    "image": "https://github.com/user-attachments/assets/a0fcfbc1-ef17-48be-9e04-4c2f971eb61a",
+    "keywords": ["电影推荐", "AI推荐", "影视推荐", "冷门电影", "movie recommender", "AI movie picker"],
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "输入1-2部参考作品，AI分析共同特征与差异",
+      "6-8个渐进式分层问题精准定位偏好",
+      "5部推荐：2部热门 + 2部冷门 + 1部争议之选",
+      "一键保存推荐结果为PNG图片",
+      "通过链接分享推荐结果"
+    ]
   }
   </script>
 </head>
 <body class="bg-[#111] graffiti-bg">
-  <div id="root"></div>
+  <div id="root">
+    <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#111;color:#888;font-family:-apple-system,'Microsoft YaHei','PingFang SC',sans-serif;font-size:14px;text-align:center;padding:20px;line-height:1.8">
+      <p>
+        Kim's Video — AI 影视推荐引擎<br>
+        输入你喜欢的电影或剧集，发现你的下一部最爱。<br>
+        <span style="color:#444;font-size:12px">正在加载...</span>
+      </p>
+    </div>
+  </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

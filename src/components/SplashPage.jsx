@@ -175,7 +175,7 @@ const FeatureCard = ({ icon, title, desc, color, isModal }) => (
       {icon}
     </div>
     <div className="flex-1 min-w-0">
-      <h3
+      <h2
         className="font-black mb-1.5"
         style={{
           fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -184,7 +184,7 @@ const FeatureCard = ({ icon, title, desc, color, isModal }) => (
         }}
       >
         {title}
-      </h3>
+      </h2>
       <p
         className="text-gray-700 leading-snug"
         style={{
