@@ -8,10 +8,7 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
       style={
         isModal
           ? { boxShadow: "12px 12px 0 0 #ffff00" }
-          : {
-              backgroundImage:
-                "radial-gradient(circle at 20% 20%, rgba(255, 0, 255, 0.3) 0%, transparent 50%),radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.3) 0%, transparent 50%),radial-gradient(circle at 50% 80%, rgba(255, 255, 0, 0.2) 0%, transparent 50%)",
-            }
+          : {}
       }
     >
       {/* Close button (modal only) */}
@@ -87,7 +84,7 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
           />
           <FeatureCard
             icon={<Icons.Target />}
-            title="AI 精准推荐"
+            title="精准智能推荐"
             desc="DeepSeek 驱动：2 部精选热门 + 2 部独家冷门 + 1 部争议之选。"
             color="#ffff00"
             isModal={isModal}
@@ -126,6 +123,17 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
             开始探索
             <Icons.ChevronRight className="group-hover:translate-x-2 transition-transform" />
           </button>
+        )}
+
+        {/* Footer (splash only) */}
+        {!isModal && (
+          <div className="w-full mt-10 pt-4 border-t-4 border-[#ffff00] text-center">
+            <p className="text-gray-500 text-xs" style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace", letterSpacing: "0.15em" }}>
+              <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer" className="hover:text-[#00ffff] transition-colors">
+                Data and poster from TMDB
+              </a> | BLOODYREX (C) 2026
+            </p>
+          </div>
         )}
       </div>
     </div>
@@ -178,11 +186,10 @@ const FeatureCard = ({ icon, title, desc, color, isModal }) => (
       <h2
         className="font-black mb-1.5"
         style={{
-          fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
-          fontSize: isModal ? "13px" : "clamp(15px, 2.4vw, 20px)",
-          lineHeight: 1.4,
-          letterSpacing: "0.12em",
-          textShadow: "2px 2px 0 rgba(0,0,0,0.12)",
+          fontFamily: "-apple-system, 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif",
+          fontSize: isModal ? "15px" : "clamp(18px, 2.8vw, 24px)",
+          lineHeight: 1.3,
+          letterSpacing: "0.06em",
         }}
       >
         {title}
