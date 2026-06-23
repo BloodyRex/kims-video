@@ -155,11 +155,7 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
 
   return (
     <div
-      className="min-h-screen bg-[#111] flex items-center justify-center"
-      style={{
-        backgroundImage:
-          "radial-gradient(circle at 25% 25%, rgba(255, 0, 255, 0.15) 0%, transparent 50%),radial-gradient(circle at 75% 25%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),radial-gradient(circle at 50% 75%, rgba(255, 255, 0, 0.12) 0%, transparent 50%)",
-      }}
+      className="min-h-screen graffiti-bg flex items-center justify-center"
     >
       {content}
     </div>
