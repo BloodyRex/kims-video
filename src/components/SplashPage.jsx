@@ -101,6 +101,13 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
           />
         </div>
 
+        {/* Contact */}
+        <div className="text-center mb-6">
+          <p className="text-gray-500 text-xs" style={{ fontFamily: "-apple-system, 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif" }}>
+            Contact: <span className="text-[#00ffff]">rexhr@yahoo.com</span>
+          </p>
+        </div>
+
         {/* Action button */}
         {isModal ? (
           <div className="text-center">
@@ -169,10 +176,11 @@ const FeatureCard = ({ icon, title, desc, color, isModal }) => (
     </div>
     <div className="flex-1 min-w-0">
       <h3
-        className="font-black mb-1"
+        className="font-black mb-1.5"
         style={{
           fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
-          fontSize: isModal ? "9px" : "clamp(9px, 1.4vw, 11px)",
+          fontSize: isModal ? "13px" : "clamp(15px, 2.4vw, 20px)",
+          lineHeight: 1.4,
         }}
       >
         {title}

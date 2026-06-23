@@ -27,8 +27,8 @@ const InputPage = ({
 
       <button
         onClick={onShowInfo}
-        className="absolute top-4 right-4 w-10 h-10 bg-black border-2 border-[#ffff00] text-[#ffff00] flex items-center justify-center hover:bg-[#ffff00] hover:text-black transition-colors z-20 pixel-font text-lg"
-        style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace" }}
+        className="absolute top-2 right-2 sm:top-3 sm:right-3 w-7 h-7 sm:w-9 sm:h-9 bg-black border-2 border-[#ffff00] text-[#ffff00] flex items-center justify-center hover:bg-[#ffff00] hover:text-black transition-colors z-20 rounded-full pixel-font"
+        style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace", fontSize: "clamp(10px, 2.5vw, 14px)" }}
         title="了解 Kim's Video"
       >
         ?
