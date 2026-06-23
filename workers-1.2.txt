@@ -1,0 +1,415 @@
+// -----------------------------
+// TMDB 增强查询：海报 + 字段补全（电影/剧集双搜，一次搞定 poster/originalTitle/year，
+// 按需附带 credits 查导演，不再需要前端单独调用）
+// -----------------------------
+async function fetchTMDBEnrichment(title, year, token) {
+  // 先试 movie，匹配失败（无 poster 无 id）则 fallback 到 tv
+  let result = await searchTMDB(title, year, 'movie', token);
+  if (result.poster || result.tmdbId) return result;
+  return searchTMDB(title, year, 'tv', token);
+}
+
+async function searchTMDB(title, year, type, token) {
+  const mediaType  = type === 'movie' ? '电影' : '剧集';
+  const dateField  = type === 'movie' ? 'release_date' : 'first_air_date';
+  const nameField  = type === 'movie' ? 'title' : 'name';
+  const origField  = type === 'movie' ? 'original_title' : 'original_name';
+
+  // 清洗标题：AI 常给中文名加《》书名号，TMDB 不认识
+  const cleanTitle = title.replace(/[《》「」『』【】]/g, '').trim();
+
+  const params = new URLSearchParams({
+    query: cleanTitle,
+    include_adult: "false",
+    language: "zh-CN"
+  });
+  // 不传 year 参数（TMDB 精确过滤，年份差 1 年就搜不到），
+  // 交由下方客户端宽容匹配处理
+
+  const result = { poster: null, tmdbId: null, originalTitle: '', director: '', year: year || '', type: mediaType };
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/${type}?${params.toString()}`,
+      { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
+    );
+    if (!response.ok) return result;
+
+    const data = await response.json();
+    const results = data?.results || [];
+    if (!results.length) return result;
+
+    let match = null;
+    let matchConfidence = 'low';
+
+    if (year) {
+      const yearMatch = results.find(m => {
+        const y = m[dateField] ? Number(m[dateField].slice(0, 4)) : null;
+        return y && Math.abs(y - year) <= 1;
+      });
+      if (yearMatch) {
+        match = yearMatch;
+        matchConfidence = 'high';
+      } else {
+        const nameMatch = results.find(m =>
+          (m[nameField] || '').toLowerCase().includes(title.toLowerCase().slice(0, 6))
+        );
+        if (nameMatch) match = nameMatch;
+      }
+    }
+    match = match || results[0];
+
+    if (match?.poster_path) result.poster = `https://image.tmdb.org/t/p/w342${match.poster_path}`;
+    result.tmdbId = match.id || null;
+    result.title = match[nameField] || '';
+
+    // 优先获取英文/国际版海报
+    if (result.tmdbId) {
+      const enPoster = await fetchEnglishPoster(result.tmdbId, type, token);
+      if (enPoster) result.poster = enPoster;
+    }
+
+    // 低置信度匹配（名称回退 / 默认第一条）：只拿 poster/tmdbId，不覆盖元数据
+    if (matchConfidence === 'low') return result;
+
+    result.originalTitle = match[origField] || '';
+    if (match[dateField]) result.year = match[dateField].slice(0, 4);
+
+    // 查 credits 拿导演（已缓存）
+    if (result.tmdbId) {
+      const credits = await withCache(`${result.tmdbId}-${type}-credits`, async () => {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/${type}/${result.tmdbId}/credits?language=zh-CN`,
+          { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
+        );
+        if (!res.ok) return null;
+        return res.json();
+      });
+      if (credits) {
+        const director = credits.crew?.find(c => c.job === 'Director')?.name || '';
+        if (director) result.director = director;
+      }
+    }
+  } catch (e) {}
+
+  return result;
+}
+
+// 获取英文/国际版海报（覆盖中文区域海报）
+async function fetchEnglishPoster(tmdbId, type, token) {
+  const data = await withCache(`${tmdbId}-${type}-poster`, async () => {
+    const res = await fetch(
+      `https://api.themoviedb.org/3/${type}/${tmdbId}/images?include_image_language=en,null`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    if (!res.ok) return null;
+    return res.json();
+  });
+  if (!data) return null;
+  const posters = data?.posters || [];
+  const enPoster = posters.find(p => p.iso_639_1 === 'en') || posters[0];
+  return enPoster ? `https://image.tmdb.org/t/p/w342${enPoster.file_path}` : null;
+}
+
+// Cloudflare Cache API：缓存 TMDB 静态数据
+async function withCache(cacheKey, fetcher, ttl = 86400) {
+  const cache = caches.default;
+  const req = new Request(`https://tmdb-cache/${cacheKey}`);
+  const hit = await cache.match(req);
+  if (hit) { console.log('[CACHE HIT]', cacheKey); return hit.json(); }
+
+  console.log('[CACHE MISS]', cacheKey);
+  const data = await fetcher();
+  if (!data) return null;
+
+  const resp = new Response(JSON.stringify(data), {
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': `public, max-age=${ttl}` }
+  });
+  cache.put(req, resp.clone());
+  return data;
+}
+
+// -----------------------------
+// TMDB 电影详情查询（通过 tmdbId 精准补全字段）
+// -----------------------------
+async function fetchTMDBDetails(tmdbId, token) {
+  // 先尝试电影
+  let data = await fetchTMDBByType(tmdbId, 'movie', token);
+  if (data) return data;
+  // 电影失败则尝试剧集
+  data = await fetchTMDBByType(tmdbId, 'tv', token);
+  return data || {};
+}
+
+async function fetchTMDBByType(tmdbId, type, token) {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    };
+
+    const details = await withCache(`${tmdbId}-${type}-details`, async () => {
+      const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?language=zh-CN`, { headers });
+      if (!res.ok) return null;
+      return res.json();
+    });
+    if (!details) return null;
+
+    const credits = await withCache(`${tmdbId}-${type}-credits`, async () => {
+      const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/credits?language=zh-CN`, { headers });
+      return res.ok ? await res.json() : { crew: [] };
+    }) || { crew: [] };
+
+    const director = credits.crew?.find(c => c.job === 'Director')?.name || '';
+    const year = details.release_date
+      ? details.release_date.slice(0, 4)
+      : details.first_air_date
+        ? details.first_air_date.slice(0, 4)
+        : '';
+    const typeLabel = type === 'movie' ? '电影' : '剧集';
+
+    const cast = credits.cast?.slice(0, 5).map(c => c.name) || [];
+
+    let poster = details.poster_path ? `https://image.tmdb.org/t/p/w342${details.poster_path}` : null;
+    // 英文海报优先（与结果页 TMDB 增强逻辑一致）
+    if (poster) {
+      const enPoster = await fetchEnglishPoster(tmdbId, type, token);
+      if (enPoster) poster = enPoster;
+    }
+
+    return {
+      director,
+      year,
+      originalTitle: details.original_title || details.original_name || '',
+      type: typeLabel,
+      title: details.title || details.name || '',
+      poster,
+      overview: details.overview || '',
+      genres: (details.genres || []).map(g => g.name),
+      vote_average: details.vote_average || null,
+      runtime: details.runtime || null,
+      cast
+    };
+  } catch (e) {
+    return null;
+  }
+}
+
+// -----------------------------
+// Worker 主逻辑
+// -----------------------------
+export default {
+  async fetch(request, env) {
+    const ALLOWED_ORIGINS = [
+      "https://bloodyrex.xyz",
+      "https://www.bloodyrex.xyz",
+      "https://bloodyrex.github.io"
+    ];
+
+    const origin = request.headers.get("Origin");
+
+    const corsHeaders = {
+      "Access-Control-Allow-Origin":
+        ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0],
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Max-Age": "86400"
+    };
+
+    if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+      return new Response(JSON.stringify({ error: "Forbidden Origin" }), {
+        status: 403,
+        headers: {
+          ...corsHeaders,
+          "Content-Type": "application/json"
+        }
+      });
+    }
+
+    if (request.method === "OPTIONS") {
+      return new Response(null, { headers: corsHeaders });
+    }
+
+    if (request.method === "GET") {
+      const url = new URL(request.url);
+
+      // ═══════════════════════════════════════════
+      // 海报 CORS 代理：TMDB 图片转发，增加 CORS 头
+      // 解决 html2canvas 跨域截图失败问题
+      // ═══════════════════════════════════════════
+      if (url.pathname === "/poster-proxy") {
+        const imageUrl = url.searchParams.get("url");
+        if (!imageUrl) {
+          return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } });
+        }
+        // 安全限制：只代理 image.tmdb.org 的图片
+        if (!imageUrl.startsWith("https://image.tmdb.org/")) {
+          return new Response("Forbidden", { status: 403, headers: { "Access-Control-Allow-Origin": "*" } });
+        }
+        try {
+          const imageResponse = await fetch(imageUrl);
+          const newHeaders = new Headers(imageResponse.headers);
+          newHeaders.set("Access-Control-Allow-Origin", "*");
+          newHeaders.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+          newHeaders.set("Cache-Control", "public, max-age=86400");
+          return new Response(imageResponse.body, {
+            status: imageResponse.status,
+            headers: newHeaders
+          });
+        } catch (e) {
+          return new Response("Proxy error", { status: 502, headers: { "Access-Control-Allow-Origin": "*" } });
+        }
+      }
+
+      return Response.json(
+        { status: "ok", worker: "running" },
+        { headers: corsHeaders }
+      );
+    }
+
+    try {
+      const data = await request.json();
+
+      // ═══════════════════════════════════════════
+      // TMDB 详情查询路由（前端 repairRecommendationFields 使用）
+      // ═══════════════════════════════════════════
+      if (data.tmdbId && !data.prompt) {
+        const details = await fetchTMDBDetails(data.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN);
+        return Response.json(
+          { content: details || {} },
+          { headers: corsHeaders }
+        );
+      }
+
+      // ═══════════════════════════════════════════
+      // TMDB 标题搜索路由（前端 selectMovie 后获取官方 TMDB ID）
+      // ═══════════════════════════════════════════
+      if (data.searchTitle) {
+        const result = await fetchTMDBEnrichment(data.searchTitle, data.searchYear || '', env.TMDB_API_READ_ACCESS_TOKEN);
+        return Response.json(
+          { content: result || { tmdbId: null } },
+          { headers: corsHeaders }
+        );
+      }
+
+      const messages = [];
+
+      if (data.systemInstruction) {
+        messages.push({
+          role: "system",
+          content: data.systemInstruction
+        });
+      }
+
+      let userPrompt = data.prompt;
+
+      if (data.responseSchema) {
+        userPrompt += `
+IMPORTANT:
+Return ONLY valid JSON.
+No markdown.
+No code block.
+No explanation.
+`;
+      }
+
+      messages.push({ role: "user", content: userPrompt });
+
+      const response = await fetch(
+        "https://api.deepseek.com/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            model: "deepseek-chat",
+            messages,
+            temperature: 0.7
+          })
+        }
+      );
+
+      const result = await response.json();
+      const raw = result?.choices?.[0]?.message?.content || "";
+
+      function safeParse(content) {
+        if (typeof content !== "string") return content;
+
+        try {
+          return JSON.parse(
+            content.replace(/```json/g, "").replace(/```/g, "").trim()
+          );
+        } catch (e) {
+          return { raw, error: "parse_failed" };
+        }
+      }
+
+      const parsed = safeParse(raw);
+
+      // -----------------------------
+      // ⭐ 核心修复：统一所有输入为数组
+      // -----------------------------
+      let list = [];
+
+      if (Array.isArray(parsed?.recommendations)) {
+        list = parsed.recommendations;
+      } else if (parsed?.recommendations) {
+        list = [parsed.recommendations];
+      } else if (parsed?.title) {
+        list = [parsed];
+      }
+
+      if (!list.length) {
+        return Response.json(
+          { content: parsed },
+          { headers: corsHeaders }
+        );
+      }
+
+      // -----------------------------
+      // TMDB 增强：海报 + 字段补全（一次完成，前端不再单独调用）
+      // -----------------------------
+      const enriched = await Promise.all(
+        list.map(async (rec) => {
+          // 只有 DeepSeek 没返回导演时才需要从 TMDB credits 拿
+          const shouldFetchDirector = !rec.director;
+          const data = await fetchTMDBEnrichment(
+            rec.title,
+            rec.year,
+            env.TMDB_API_READ_ACCESS_TOKEN
+          );
+
+          return {
+            ...rec,
+            title: data.title || rec.title,
+            poster: data.poster,
+            tmdbId: data.tmdbId || rec.tmdbId,
+            originalTitle: data.originalTitle || rec.originalTitle || '',
+            year: data.year || rec.year || '',
+            director: shouldFetchDirector && data.director ? data.director : (rec.director || ''),
+            type: data.type || rec.type || ''
+          };
+        })
+      );
+
+      // -----------------------------
+      // 统一输出结构（前端永远一致）
+      // -----------------------------
+      return Response.json(
+        {
+          content: {
+            recommendations: enriched
+          }
+        },
+        { headers: corsHeaders }
+      );
+    } catch (err) {
+      return Response.json(
+        { error: err.message },
+        { status: 500, headers: corsHeaders }
+      );
+    }
+  }
+};

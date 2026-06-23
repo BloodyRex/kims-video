@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+.pixel-font {
+  font-family: 'Press Start 2P', 'Courier New', Courier, system-ui, sans-serif;
+}
+
+body {
+  font-family: -apple-system, 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', system-ui, sans-serif;
+}
+
+.graffiti-bg {
+  background-color: #111;
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(255, 0, 255, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(0, 255, 255, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(255, 255, 0, 0.3) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+  background-blend-mode: screen, screen, screen, normal;
+}
+
+.retro-container {
+  overflow: visible !important;
+}
