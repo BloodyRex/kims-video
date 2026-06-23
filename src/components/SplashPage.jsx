@@ -181,6 +181,8 @@ const FeatureCard = ({ icon, title, desc, color, isModal }) => (
           fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
           fontSize: isModal ? "13px" : "clamp(15px, 2.4vw, 20px)",
           lineHeight: 1.4,
+          letterSpacing: "0.12em",
+          textShadow: "2px 2px 0 rgba(0,0,0,0.12)",
         }}
       >
         {title}

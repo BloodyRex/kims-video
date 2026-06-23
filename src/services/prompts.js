@@ -181,62 +181,33 @@ export const recommendationSchema = {
   required: ["recommendations"],
 };
 
-export const buildRecommendationPrompt = (primaryMovie, secondaryMovie, answersText) => `用户最初提供的参考影视作品：
-主要参考: 《${primaryMovie.title}》 (${primaryMovie.year}年)
-${secondaryMovie?.title ? `次要参考: 《${secondaryMovie.title}》 (${secondaryMovie.year}年)` : ""}
+export const buildRecommendationPrompt = (primaryMovie, secondaryMovie, answersText) => `用户参考作品：
+主要参考：《${primaryMovie.title}》 (${primaryMovie.year}年)
+${secondaryMovie?.title ? `次要参考：《${secondaryMovie.title}》 (${secondaryMovie.year}年)` : ""}
 
-以下是用户在参考作品中的偏好筛选结果：
-
+用户偏好问答结果：
 ${answersText}
 
-请先推断：
+综合以上信息，为该用户推荐恰好 5 部影视作品。直接输出推荐结果，每部附带匹配的影视标签。
 
-用户真正喜欢这些作品的哪些特征。
+分流规则：
+- 第 1-2 部：高评分、高知名度的大众热门
+- 第 3-4 部：同样满足偏好，但必须是冷门/小众/独立/邪典
+- 第 5 部：同样满足偏好，但评价存在争议（口碑两极分化）
+- 禁止推荐《${primaryMovie.title}》${secondaryMovie?.title ? `和《${secondaryMovie.title}》` : ""}
 
-形成一组影视标签。
-
-例如：
-
-强人物驱动
-宏大世界观
-宿命感
-慢节奏
-氛围优先
-黑色电影气质
-开放式结局
-哲学思辨
-
-然后根据这些标签推荐作品。
-
-推荐逻辑：
-
-第一步：总结用户核心偏好
-第二步：提取影视标签
-第三步：匹配作品
-第四步：输出推荐
-
-不要机械参考用户回答。要推断用户真正喜欢的影视特征。
-
-请综合以上所有信息，为该用户精准推荐恰好 5 部影视作品。
-
-【分流规则】
-- 前2部（推荐项1、2）：综合评价最满足用户要求，豆瓣评分高、知名度大、大众评价极佳的热门佳作
-- 第3、4部（推荐项3、4）：同样满足用户偏好，但必须是冷门影片（小众文艺片、独立制片、邪典Cult片等）
-- 第5部（推荐项5）：同样满足用户偏好，但必须是评价存在争议的影片（口碑两极分化、影评人与观众评分差异大的作品）
-- 绝对不要推荐用户输入的《${primaryMovie.title}》${secondaryMovie?.title ? `和《${secondaryMovie.title}》` : ""}
-
-请严格按以下 JSON 格式输出：
+JSON 格式：
 {
   "recommendations": [
     {
-      "title": "电影中文名",
-      "originalTitle": "原名或拼音",
-      "year": "首映年份",
-      "director": "导演姓名",
+      "title": "",
+      "originalTitle": "",
+      "year": "",
+      "director": "",
       "type": "电影 或 剧集",
-      "reason": "详细的推荐理由",
-      "matchedTags": ["宏大世界观", "宿命感", "哲学思辨"],
-      "doubanKeyword": "用于豆瓣搜索的关键词"
+      "reason": "",
+      "matchedTags": [],
+      "doubanKeyword": ""
     }
   ]
 }`;
