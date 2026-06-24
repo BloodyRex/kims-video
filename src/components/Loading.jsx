@@ -31,7 +31,7 @@ const Loading = ({ step }) => {
           <Icons.Film />
         </div>
       </div>
-      <h3 className="text-base sm:text-lg font-black text-black bg-[#ffff00] px-4 py-2 border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] uppercase tracking-wider pixel-font text-center max-w-xl leading-relaxed">
+      <h3 className={`font-black text-black bg-[#ffff00] px-4 py-2 border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] uppercase tracking-wider pixel-font text-center max-w-xl leading-relaxed ${locale === "en" ? "text-xs sm:text-sm" : "text-base sm:text-lg"}`}>
         {displayText}
       </h3>
       <p className="text-white bg-black px-3 py-1 border-2 border-[#ff00ff] pixel-font text-sm animate-pulse">

@@ -76,7 +76,7 @@ const InputPage = ({
         >
           KIM'S <span className="text-[#ff00ff]">ARCHIVE</span>
         </h2>
-        <p className="text-gray-800 font-bold bg-[#ffff00] inline-block px-2 border-2 border-black">
+        <p className="text-gray-800 font-bold bg-[#ffff00] inline-block px-2 border-2 border-black mt-0.5">
           {quoteText}
         </p>
       </div>
