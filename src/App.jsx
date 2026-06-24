@@ -282,13 +282,6 @@ function AppContent() {
       ) : (
         <>
       <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
-        <button
-          onClick={toggleLocale}
-          className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-black border-2 border-[#ff00ff] text-[#ff00ff] flex items-center justify-center hover:bg-[#ff00ff] hover:text-black transition-colors z-20 rounded-full pixel-font"
-          style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace", fontSize: "clamp(8px, 2vw, 11px)" }}
-        >
-          {locale === "zh" ? "En" : "中"}
-        </button>
         <div className="flex items-center justify-center">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
             <span className="text-black transform rotate-90"><Icons.Play /></span>
@@ -320,6 +313,8 @@ function AppContent() {
             onSelectMovie={selectMovie}
             currentYear={currentYear}
             onShowInfo={() => setShowInfoModal(true)}
+            toggleLocale={toggleLocale}
+            locale={locale}
           />
         )}
         {step === "loading_questions" && <Loading loadingMessage={loadingMessage} step={step} />}

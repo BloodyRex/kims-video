@@ -20,6 +20,8 @@ const InputPage = ({
   onSelectMovie,
   currentYear,
   onShowInfo,
+  toggleLocale,
+  locale,
 }) => {
   const { t } = useLocale();
   return (
@@ -27,6 +29,13 @@ const InputPage = ({
       <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#ff00ff] rounded-full mix-blend-multiply filter blur-2xl opacity-50 pointer-events-none"></div>
       <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#00ffff] rounded-full mix-blend-multiply filter blur-2xl opacity-50 pointer-events-none"></div>
 
+      <button
+        onClick={toggleLocale}
+        className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-xs sm:text-sm z-20"
+        style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace" }}
+      >
+        {locale === "zh" ? "En" : "中"}
+      </button>
       <button
         onClick={onShowInfo}
         className="absolute top-2 right-2 sm:top-3 sm:right-3 w-7 h-7 sm:w-9 sm:h-9 bg-black border-2 border-[#ffff00] text-[#ffff00] flex items-center justify-center hover:bg-[#ffff00] hover:text-black transition-colors z-20 rounded-full pixel-font"
@@ -218,7 +227,7 @@ const InputPage = ({
 
         <button
           onClick={onGenerateQuestions}
-          className="w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black text-xl uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font"
+          className={`w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font ${locale === "en" ? "text-2xl" : "text-xl"}`}
         >
           {t('input.submit')}
           <Icons.ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" />
