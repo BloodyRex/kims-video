@@ -29,11 +29,15 @@ function buildEntries() {
   return entries;
 }
 
+function xmlEscape(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+}
+
 function renderXml(entries) {
   const urls = entries
     .map(
       (e) => `  <url>
-    <loc>${e.loc}</loc>
+    <loc>${xmlEscape(e.loc)}</loc>
     <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority}</priority>
   </url>`
