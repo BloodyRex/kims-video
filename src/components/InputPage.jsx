@@ -37,10 +37,10 @@ const InputPage = ({
     const next = () => {
       idxRef.current = (idxRef.current + 1) % quotes.length;
       setQuoteText(quotes[idxRef.current]);
-      const delay = 3000 + Math.random() * 3000;
+      const delay = 5000 + Math.random() * 5000;
       timer = setTimeout(next, delay);
     };
-    timer = setTimeout(next, 3000 + Math.random() * 3000);
+    timer = setTimeout(next, 5000 + Math.random() * 5000);
 
     return () => clearTimeout(timer);
   }, [quotes]);

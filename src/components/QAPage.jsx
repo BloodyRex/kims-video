@@ -91,7 +91,7 @@ const QAPage = ({ questions, currentQIndex, onAnswer }) => {
 
         {/* 问题文本 */}
         <div className="bg-black text-white p-6 border-4 border-[#ffff00] mb-8 relative z-10 transform rotate-1">
-          <h3 className="text-xl md:text-2xl font-bold leading-relaxed">
+          <h3 className={`font-bold leading-relaxed ${locale === "en" ? "text-sm md:text-base" : "text-xl md:text-2xl"}`}>
             {currentQ.text}
           </h3>
         </div>
@@ -107,7 +107,7 @@ const QAPage = ({ questions, currentQIndex, onAnswer }) => {
                 className={`flex-1 flex flex-col items-center justify-center px-2 py-6 border-4 border-black text-black font-black ${opt.bg} ${opt.hover} shadow-[5px_5px_0_0_#000] hover:translate-y-1 hover:shadow-[2px_2px_0_0_#000] active:translate-y-2 active:shadow-none transition-all`}
               >
                 <span className="text-3xl mb-2">{opt.icon}</span>
-                <span className="text-base uppercase">{opt.label}</span>
+                <span className={locale === "en" ? "text-xs" : "text-base uppercase"}>{opt.label}</span>
               </button>
             ))}
           </div>
@@ -118,7 +118,7 @@ const QAPage = ({ questions, currentQIndex, onAnswer }) => {
               <button
                 key={idx}
                 onClick={() => onAnswer(opt.label)}
-                className={`w-full text-left px-6 py-4 border-4 border-black text-black font-black text-base ${opt.bg} ${opt.hover} uppercase shadow-[6px_6px_0_0_#000] hover:translate-y-1 hover:shadow-[2px_2px_0_0_#000] active:translate-y-2 active:shadow-none transition-all flex items-center justify-between group`}
+                className={`w-full text-left px-6 py-4 border-4 border-black text-black font-black ${opt.bg} ${opt.hover} ${locale === "en" ? "text-xs" : "text-base uppercase"} shadow-[6px_6px_0_0_#000] hover:translate-y-1 hover:shadow-[2px_2px_0_0_#000] active:translate-y-2 active:shadow-none transition-all flex items-center justify-between group`}
               >
                 <span>{opt.label}</span>
                 <span className="w-5 h-5 border-2 border-black bg-white group-hover:bg-black transition-colors flex-shrink-0"></span>

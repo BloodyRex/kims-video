@@ -14,10 +14,10 @@ const Loading = ({ step }) => {
     let timer;
     const next = () => {
       setDisplayText(quotes[Math.floor(Math.random() * quotes.length)]);
-      const delay = 800 + Math.random() * 700;
+      const delay = 2500 + Math.random() * 1000;
       timer = setTimeout(next, delay);
     };
-    timer = setTimeout(next, 800 + Math.random() * 700);
+    timer = setTimeout(next, 2500 + Math.random() * 1000);
 
     return () => clearTimeout(timer);
   }, [quotes]);
