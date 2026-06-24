@@ -1,5 +1,6 @@
 import React from "react";
 import { Icons } from "./Icons";
+import { useLocale } from "../i18n";
 
 const ResultsPage = ({
   recommendations,
@@ -13,10 +14,12 @@ const ResultsPage = ({
   onViewDetail,
   onReset,
 }) => {
+  const { t } = useLocale();
+
   if (!recommendations || recommendations.length === 0) {
     return (
       <div className="max-w-5xl mx-auto text-center py-20 text-white text-xl font-bold">
-        未匹配到结果
+        {t('results.no_results')}
       </div>
     );
   }
@@ -32,11 +35,12 @@ const ResultsPage = ({
             TARGETS ACQUIRED
           </h2>
           <p className="text-black font-bold bg-[#00ffff] inline-block px-2 border-2 border-black">
-            《{primaryMovie.title}》
-            {secondaryMovie.title
-              ? ` x 《${secondaryMovie.title}》`
-              : ""}{" "}
-            基因碰撞匹配
+            {t('results.genome_match', {
+              primary: primaryMovie.title,
+              secondary: secondaryMovie.title
+                ? ` x 《${secondaryMovie.title}》`
+                : ""
+            })}
           </p>
         </div>
         <div className="flex items-center gap-2 mt-4 md:mt-0 flex-shrink-0">
@@ -123,15 +127,15 @@ const ResultsPage = ({
 
                   <span className="bg-[#ffff00] text-black px-2 py-0.5 text-xs font-bold border-2 border-black">
                     {isControversial
-                      ? "⚡ 争议之选"
+                      ? t('results.badge_controversial')
                       : isNiche
-                      ? "🕵️ 独家冷门"
-                      : "🔥 精选热门"}
+                      ? t('results.badge_niche')
+                      : t('results.badge_hot')}
                   </span>
 
                   {rec.director && (
                     <span className="bg-white text-black px-2 py-0.5 text-xs font-bold border-2 border-black uppercase">
-                      导演: {rec.director}
+                      {t('results.director', { director: rec.director })}
                     </span>
                   )}
                   <span className="bg-[#ff00ff] text-white px-2 py-1 ml-auto md:ml-0 font-black pixel-font border-2 border-white">
@@ -144,7 +148,7 @@ const ResultsPage = ({
                     <span className="mr-1 text-black">
                       <Icons.Star />
                     </span>{" "}
-                    匹配诊断报告
+                    {t('results.diagnosis')}
                   </div>
                   <p className="text-black font-bold leading-relaxed mt-4">
                     {rec.reason}
@@ -163,7 +167,7 @@ const ResultsPage = ({
                     <span className="mr-1">
                       <Icons.Search />
                     </span>
-                    完整资料
+                    {t('results.full_info')}
                   </button>
 
                   <button
@@ -174,12 +178,12 @@ const ResultsPage = ({
                     {isReplacing ? (
                       <>
                         <Icons.Loader2 className="w-4 h-4 mr-2" />
-                        寻找中...
+                        {t('results.searching_dots')}
                       </>
                     ) : (
                       <>
                         <Icons.RefreshCw className="w-4 h-4 mr-2" />
-                        换一换
+                        {t('results.replace_btn')}
                       </>
                     )}
                   </button>

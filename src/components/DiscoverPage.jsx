@@ -1,6 +1,7 @@
 import React from "react";
 import discoverData from "../data/discover.json";
 import { Icons } from "./Icons";
+import { useLocale } from "../i18n";
 
 const GENRE_COLORS = {
   "科幻": "#ff00ff",
@@ -14,6 +15,7 @@ const GENRE_COLORS = {
 };
 
 const DiscoverPage = () => {
+  const { t } = useLocale();
   return (
     <div className="min-h-screen graffiti-bg text-black pb-20">
       {/* Header */}
@@ -32,10 +34,10 @@ const DiscoverPage = () => {
       {/* Intro */}
       <section className="max-w-4xl mx-auto px-4 pt-12 pb-4 text-center">
         <h2 className="text-2xl sm:text-3xl font-black text-white mb-4 drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
-          DISCOVER
+          {t('discover.title')}
         </h2>
         <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-          每一部你热爱的电影，都通往另一场未知的冒险。浏览这些精选推荐对，点击即可查看完整影片资料与 AI 品味分析。
+          {t('discover.desc')}
         </p>
       </section>
 
@@ -68,12 +70,12 @@ const DiscoverPage = () => {
                     >
                       {/* Source → Recommend header */}
                       <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-3">
-                        <span className="text-sm font-bold text-gray-500">如果你喜欢</span>
+                        <span className="text-sm font-bold text-gray-500">{t('discover.if_like')}</span>
                         <span className="font-black text-lg" style={{ color }}>
                           《{pair.source.title}》
                         </span>
                         <span className="text-gray-400 text-sm">({pair.source.year})</span>
-                        <span className="text-gray-500 mx-1 text-lg">→</span>
+                        <span className="text-gray-500 mx-1 text-lg">{t('discover.arrow')}</span>
                         <span className="font-black text-lg text-black">
                           《{pair.recommend.title}》
                         </span>
@@ -95,7 +97,7 @@ const DiscoverPage = () => {
                           boxShadow: "4px 4px 0 0 #000",
                         }}
                       >
-                        查看详情
+                        {t('discover.view_detail')}
                         <Icons.ChevronRight className="w-3 h-3" />
                       </a>
                     </article>

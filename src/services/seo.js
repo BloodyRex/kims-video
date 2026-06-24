@@ -1,14 +1,23 @@
-export const updateSeo = (sourceMovies, movieData) => {
+export const updateSeo = (sourceMovies, movieData, locale = "zh") => {
   if (!sourceMovies?.length || !movieData) return;
 
-  const sourceText =
-    sourceMovies.length === 1
+  const isEn = locale === "en";
+  const sourceText = isEn
+    ? sourceMovies.length === 1
+      ? `"${sourceMovies[0].title}"`
+      : sourceMovies.map((m) => `"${m.title}"`).join(" and ")
+    : sourceMovies.length === 1
       ? `《${sourceMovies[0].title}》`
       : sourceMovies.map((m) => `《${m.title}》`).join(" 和 ");
 
-  document.title = `喜欢${sourceText}？《${movieData.title}》可能是你的下一部电影｜Kim's Video`;
+  document.title = isEn
+    ? `Liked ${sourceText}? "${movieData.title}" might be your next movie | Kim's Video`
+    : `喜欢${sourceText}？《${movieData.title}》可能是你的下一部电影｜Kim's Video`;
 
-  const prefix = `如果你喜欢${sourceText}，AI 推荐你观看《${movieData.title}》。`;
+  const prefix = isEn
+    ? `If you liked ${sourceText}, AI recommends "${movieData.title}". `
+    : `如果你喜欢${sourceText}，AI 推荐你观看《${movieData.title}》。`;
+
   const maxLength = 140;
   const remain = maxLength - prefix.length;
   let overview = movieData.overview || "";
@@ -34,13 +43,14 @@ export const updateSeo = (sourceMovies, movieData) => {
   linkEl.href = window.location.href;
 };
 
-export const resetSeo = () => {
+export const resetSeo = (locale = "zh") => {
   removeStructuredData();
-  document.title =
-    "Kim's Video — AI Movie Recommender / 智能影视推荐";
+  document.title = "Kim's Video — AI Movie Recommender";
 
-  const desc =
-    "输入你喜欢的电影，AI 帮你发现冷门佳作、口碑争议片。基于 DeepSeek 与 TMDB 的智能影视推荐引擎。";
+  const desc = locale === "en"
+    ? "Enter your favorite movies, AI discovers hidden gems and cult classics. Powered by DeepSeek & TMDB."
+    : "输入你喜欢的电影，AI 帮你发现冷门佳作、口碑争议片。基于 DeepSeek 与 TMDB 的智能影视推荐引擎。";
+
   let descEl = document.querySelector('meta[name="description"]');
   if (!descEl) {
     descEl = document.createElement("meta");
@@ -93,16 +103,21 @@ export const removeStructuredData = () => {
 export const updateStructuredData = (
   sourceMovies,
   detailData,
-  matchedTags = []
+  matchedTags = [],
+  locale = "zh"
 ) => {
   if (!sourceMovies?.length || !detailData) return;
 
+  const isEn = locale === "en";
   const href = window.location.href;
   const movieId = href + "#movie";
   const webpageId = href + "#webpage";
 
-  const sourceText =
-    sourceMovies.length === 1
+  const sourceText = isEn
+    ? sourceMovies.length === 1
+      ? `"${sourceMovies[0].title}"`
+      : sourceMovies.map((m) => `"${m.title}"`).join(" and ")
+    : sourceMovies.length === 1
       ? `《${sourceMovies[0].title}》`
       : sourceMovies.map((m) => `《${m.title}》`).join(" 和 ");
 
@@ -115,6 +130,18 @@ export const updateStructuredData = (
       worstRating: 0,
     };
   }
+
+  const pageName = isEn
+    ? `Liked ${sourceText}? "${detailData.title}" might be your next movie`
+    : `喜欢${sourceText}？《${detailData.title}》可能是你的下一部电影`;
+
+  const pageDesc = isEn
+    ? matchedTags.length > 0
+      ? `If you liked ${sourceText}, AI recommends "${detailData.title}" based on tags: ${matchedTags.join(", ")}.`
+      : `If you liked ${sourceText}, AI recommends "${detailData.title}".`
+    : matchedTags.length > 0
+      ? `如果你喜欢${sourceText}，AI 基于"${matchedTags.join("、")}"等关键词推荐《${detailData.title}》。`
+      : `如果你喜欢${sourceText}，AI 推荐你观看《${detailData.title}》。`;
 
   const schema = {
     "@context": "https://schema.org",
@@ -143,11 +170,8 @@ export const updateStructuredData = (
         "@type": "WebPage",
         "@id": webpageId,
         url: href,
-        name: `喜欢${sourceText}？《${detailData.title}》可能是你的下一部电影`,
-        description:
-          matchedTags.length > 0
-            ? `如果你喜欢${sourceText}，AI 基于"${matchedTags.join("、")}"等关键词推荐《${detailData.title}》。`
-            : `如果你喜欢${sourceText}，AI 推荐你观看《${detailData.title}》。`,
+        name: pageName,
+        description: pageDesc,
         about: { "@id": movieId },
         isPartOf: {
           "@type": "WebSite",

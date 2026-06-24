@@ -1,24 +1,19 @@
 import React from "react";
+import { useLocale } from "../i18n";
 
 const QAPage = ({ questions, currentQIndex, onAnswer }) => {
+  const { locale } = useLocale();
   const currentQ = questions[currentQIndex];
   const progress = (currentQIndex / questions.length) * 100;
   const isSimple = !currentQ.type || currentQ.type === "simple";
 
-  const buildOptions = () => {
-    const defaults = isSimple
-      ? ["是", "无所谓", "否"]
-      : ["完全认同", "比较认同", "中立/无感", "不太认同", "完全不认同"];
-    const opts =
-      currentQ.options && currentQ.options.length > 0
-        ? [...currentQ.options]
-        : defaults;
-    return opts.some((o) => o === "无所谓") ? opts : [...opts, "无所谓"];
-  };
-
-  const displayLabels = buildOptions();
-
-  while (displayLabels.length < 3) displayLabels.push("无所谓");
+  const displayLabels = currentQ.options?.length > 0
+    ? [...currentQ.options]
+    : isSimple
+      ? locale === "en" ? ["Yes", "Doesn't matter", "No"] : ["是", "无所谓", "否"]
+      : locale === "en"
+        ? ["Strongly agree", "Somewhat agree", "Neutral", "Somewhat disagree", "Strongly disagree"]
+        : ["完全认同", "比较认同", "中立/无感", "不太认同", "完全不认同"];
 
   const simpleOpts = [
     {
@@ -89,7 +84,9 @@ const QAPage = ({ questions, currentQIndex, onAnswer }) => {
               : "bg-[#ff00ff] text-white"
           }`}
         >
-          {isSimple ? "快速扫描" : "深度探测"}
+          {isSimple
+            ? (locale === "en" ? "QUICK SCAN" : "快速扫描")
+            : (locale === "en" ? "DEEP DIVE" : "深度探测")}
         </div>
 
         {/* 问题文本 */}

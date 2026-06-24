@@ -1,8 +1,10 @@
 import React from "react";
 import { Icons } from "./Icons";
 import { posterProxy } from "../utils/url";
+import { useLocale } from "../i18n";
 
 const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
+  const { t } = useLocale();
   const posterWidth = 100;
   const posterHeight = 150;
 
@@ -61,7 +63,10 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
               letterSpacing: "0.12em",
             }}
           >
-            {`AI驱动，基于影视喜好，《  ${primaryMovie.title}》${secondaryMovie.title ? `和《${secondaryMovie.title}》` : ""}基因突变匹配结果`}
+            {t('save.subtitle', {
+              primary: primaryMovie.title,
+              secondary: secondaryMovie.title ? `和《${secondaryMovie.title}》` : ""
+            })}
           </span>
         </p>
       </div>
@@ -72,10 +77,10 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
           const isNiche = idx >= 2 && idx <= 3;
           const isControversial = idx === 4;
           const badge = isControversial
-            ? { text: "⚡ 争议之选", bg: "#ff4444" }
+            ? { text: t('save.controversial'), bg: "#ff4444" }
             : isNiche
-            ? { text: "🕵️ 独家冷门", bg: "#00dd00" }
-            : { text: "🔥 精选热门", bg: "#ffff00" };
+            ? { text: t('save.niche'), bg: "#00dd00" }
+            : { text: t('save.hot'), bg: "#ffff00" };
 
           return (
             <div
@@ -144,7 +149,7 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
                       color: "#888",
                     }}
                   >
-                    NO POSTER
+                    {t('detail.no_poster')}
                   </div>
                 )}
               </div>
@@ -201,7 +206,7 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
                   )}
                   {rec.director && (
                     <div className="text-xs text-gray-500 font-bold mt-0.5">
-                      导演: {rec.director}
+                      {t('results.director', { director: rec.director })}
                     </div>
                   )}
                 </div>
@@ -254,7 +259,7 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
             letterSpacing: "0.15em",
           }}
         >
-          bloodyrex.xyz | Kim's Video — AI Movie Recommender
+          {t('save.footer')}
         </span>
       </div>
     </div>

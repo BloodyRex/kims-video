@@ -2,15 +2,16 @@
 // TMDB 增强查询：海报 + 字段补全（电影/剧集双搜，一次搞定 poster/originalTitle/year，
 // 按需附带 credits 查导演，不再需要前端单独调用）
 // -----------------------------
-async function fetchTMDBEnrichment(title, year, token) {
-  // 先试 movie，匹配失败（无 poster 无 id）则 fallback 到 tv
-  let result = await searchTMDB(title, year, 'movie', token);
+async function fetchTMDBEnrichment(title, year, token, language) {
+  language = language || "zh-CN";
+  let result = await searchTMDB(title, year, 'movie', token, language);
   if (result.poster || result.tmdbId) return result;
-  return searchTMDB(title, year, 'tv', token);
+  return searchTMDB(title, year, 'tv', token, language);
 }
 
-async function searchTMDB(title, year, type, token) {
-  const mediaType  = type === 'movie' ? '电影' : '剧集';
+async function searchTMDB(title, year, type, token, language) {
+  language = language || "zh-CN";
+  const mediaType  = type === 'movie' ? (language.startsWith('zh') ? '电影' : 'Movie') : (language.startsWith('zh') ? '剧集' : 'TV Series');
   const dateField  = type === 'movie' ? 'release_date' : 'first_air_date';
   const nameField  = type === 'movie' ? 'title' : 'name';
   const origField  = type === 'movie' ? 'original_title' : 'original_name';
@@ -21,7 +22,7 @@ async function searchTMDB(title, year, type, token) {
   const params = new URLSearchParams({
     query: cleanTitle,
     include_adult: "false",
-    language: "zh-CN"
+    language: language
   });
   // 不传 year 参数（TMDB 精确过滤，年份差 1 年就搜不到），
   // 交由下方客户端宽容匹配处理
@@ -77,9 +78,9 @@ async function searchTMDB(title, year, type, token) {
 
     // 查 credits 拿导演（已缓存）
     if (result.tmdbId) {
-      const credits = await withCache(`${result.tmdbId}-${type}-credits`, async () => {
+      const credits = await withCache(`${result.tmdbId}-${type}-credits-${language}`, async () => {
         const res = await fetch(
-          `https://api.themoviedb.org/3/${type}/${result.tmdbId}/credits?language=zh-CN`,
+          `https://api.themoviedb.org/3/${type}/${result.tmdbId}/credits?language=${language}`,
           { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
         );
         if (!res.ok) return null;
@@ -132,31 +133,33 @@ async function withCache(cacheKey, fetcher, ttl = 86400) {
 // -----------------------------
 // TMDB 电影详情查询（通过 tmdbId 精准补全字段）
 // -----------------------------
-async function fetchTMDBDetails(tmdbId, token) {
+async function fetchTMDBDetails(tmdbId, token, language) {
+  language = language || "zh-CN";
   // 先尝试电影
-  let data = await fetchTMDBByType(tmdbId, 'movie', token);
+  let data = await fetchTMDBByType(tmdbId, 'movie', token, language);
   if (data) return data;
   // 电影失败则尝试剧集
-  data = await fetchTMDBByType(tmdbId, 'tv', token);
+  data = await fetchTMDBByType(tmdbId, 'tv', token, language);
   return data || {};
 }
 
-async function fetchTMDBByType(tmdbId, type, token) {
+async function fetchTMDBByType(tmdbId, type, token, language) {
+  language = language || "zh-CN";
   try {
     const headers = {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"
     };
 
-    const details = await withCache(`${tmdbId}-${type}-details`, async () => {
-      const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?language=zh-CN`, { headers });
+    const details = await withCache(`${tmdbId}-${type}-${language}-details`, async () => {
+      const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?language=${language}`, { headers });
       if (!res.ok) return null;
       return res.json();
     });
     if (!details) return null;
 
-    const credits = await withCache(`${tmdbId}-${type}-credits`, async () => {
-      const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/credits?language=zh-CN`, { headers });
+    const credits = await withCache(`${tmdbId}-${type}-${language}-credits`, async () => {
+      const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/credits?language=${language}`, { headers });
       return res.ok ? await res.json() : { crew: [] };
     }) || { crew: [] };
 
@@ -166,7 +169,7 @@ async function fetchTMDBByType(tmdbId, type, token) {
       : details.first_air_date
         ? details.first_air_date.slice(0, 4)
         : '';
-    const typeLabel = type === 'movie' ? '电影' : '剧集';
+    const typeLabel = type === 'movie' ? (language.startsWith('zh') ? '电影' : 'Movie') : (language.startsWith('zh') ? '剧集' : 'TV Series');
 
     const cast = credits.cast?.slice(0, 5).map(c => c.name) || [];
 
@@ -203,7 +206,10 @@ export default {
     const ALLOWED_ORIGINS = [
       "https://bloodyrex.xyz",
       "https://www.bloodyrex.xyz",
-      "https://bloodyrex.github.io"
+      "https://bloodyrex.github.io",
+      "http://localhost:4173",
+      "http://localhost:5173",
+      "http://localhost:5174"
     ];
 
     const origin = request.headers.get("Origin");
@@ -274,7 +280,7 @@ export default {
       // TMDB 详情查询路由（前端 repairRecommendationFields 使用）
       // ═══════════════════════════════════════════
       if (data.tmdbId && !data.prompt) {
-        const details = await fetchTMDBDetails(data.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN);
+        const details = await fetchTMDBDetails(data.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN, data.language);
         return Response.json(
           { content: details || {} },
           { headers: corsHeaders }
@@ -285,7 +291,7 @@ export default {
       // TMDB 标题搜索路由（前端 selectMovie 后获取官方 TMDB ID）
       // ═══════════════════════════════════════════
       if (data.searchTitle) {
-        const result = await fetchTMDBEnrichment(data.searchTitle, data.searchYear || '', env.TMDB_API_READ_ACCESS_TOKEN);
+        const result = await fetchTMDBEnrichment(data.searchTitle, data.searchYear || '', env.TMDB_API_READ_ACCESS_TOKEN, data.language);
         return Response.json(
           { content: result || { tmdbId: null } },
           { headers: corsHeaders }
@@ -371,25 +377,27 @@ No explanation.
       // -----------------------------
       // TMDB 增强：海报 + 字段补全（一次完成，前端不再单独调用）
       // -----------------------------
+      const requestLanguage = data.language || "zh-CN";
       const enriched = await Promise.all(
         list.map(async (rec) => {
           // 只有 DeepSeek 没返回导演时才需要从 TMDB credits 拿
           const shouldFetchDirector = !rec.director;
-          const data = await fetchTMDBEnrichment(
+          const tmdbData = await fetchTMDBEnrichment(
             rec.title,
             rec.year,
-            env.TMDB_API_READ_ACCESS_TOKEN
+            env.TMDB_API_READ_ACCESS_TOKEN,
+            requestLanguage
           );
 
           return {
             ...rec,
-            title: data.title || rec.title,
-            poster: data.poster,
-            tmdbId: data.tmdbId || rec.tmdbId,
-            originalTitle: data.originalTitle || rec.originalTitle || '',
-            year: data.year || rec.year || '',
-            director: shouldFetchDirector && data.director ? data.director : (rec.director || ''),
-            type: data.type || rec.type || ''
+            title: tmdbData.title || rec.title,
+            poster: tmdbData.poster,
+            tmdbId: tmdbData.tmdbId || rec.tmdbId,
+            originalTitle: tmdbData.originalTitle || rec.originalTitle || '',
+            year: tmdbData.year || rec.year || '',
+            director: shouldFetchDirector && tmdbData.director ? tmdbData.director : (rec.director || ''),
+            type: tmdbData.type || rec.type || ''
           };
         })
       );

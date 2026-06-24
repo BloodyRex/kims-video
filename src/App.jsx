@@ -14,8 +14,17 @@ import { loadResultsFromCache } from "./utils/cache";
 import { updateUrl } from "./utils/url";
 import { updateSeo, updateStructuredData, resetSeo, injectStructuredData } from "./services/seo";
 import { useMovieEngine } from "./logic/useMovieEngine";
+import { LocaleProvider, useLocale } from "./i18n";
 
 function App() {
+  return (
+    <LocaleProvider>
+      <AppContent />
+    </LocaleProvider>
+  );
+}
+
+function AppContent() {
   const saveContainerRef = useRef(null);
 
   const [showIntro, setShowIntro] = useState(() => {
@@ -24,6 +33,8 @@ function App() {
     return !localStorage.getItem("kims_video_intro_seen");
   });
   const [showInfoModal, setShowInfoModal] = useState(false);
+
+  const { t, locale, toggleLocale } = useLocale();
 
   const handleIntroStart = () => {
     localStorage.setItem("kims_video_intro_seen", "1");
@@ -145,7 +156,7 @@ function App() {
         const cached = loadResultsFromCache(sourceId);
         if (cached) {
           setPrimaryMovie(cached.primaryMovie);
-          resetSeo();
+          resetSeo(locale);
           setStep("results");
           injectStructuredData(cached.primaryMovie);
         }
@@ -155,12 +166,17 @@ function App() {
         setDetailMovieId(null);
         setDetailData(null);
         setPrimaryMovie({ title: "", year: "" });
-        resetSeo();
+        resetSeo(locale);
       }
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
+
+  // ── 初始化 SEO（根据当前语言）──────────────
+  useEffect(() => {
+    resetSeo(locale);
+  }, [locale]);
 
   // ── 截图捕获 effect ──────────────────────────
   useEffect(() => {
@@ -224,7 +240,7 @@ function App() {
     setDetailLoading(true);
     let cancelled = false;
     (async () => {
-      const data = await fetchMovieByTmdbId(detailMovieId);
+      const data = await fetchMovieByTmdbId(detailMovieId, locale);
       if (cancelled) return;
       setDetailData(data || null);
       setDetailLoading(false);
@@ -249,10 +265,10 @@ function App() {
       ];
       const currentRec = (recommendations || []).find((r) => String(r.tmdbId) === String(detailMovieId));
       const matchedTags = currentRec?.matchedTags || [];
-      updateSeo(sourceMovies, { ...detailData, tmdbId: detailMovieId });
-      updateStructuredData(sourceMovies, { ...detailData, tmdbId: detailMovieId }, matchedTags);
+      updateSeo(sourceMovies, { ...detailData, tmdbId: detailMovieId }, locale);
+      updateStructuredData(sourceMovies, { ...detailData, tmdbId: detailMovieId }, matchedTags, locale);
     }
-  }, [step, detailData, primaryMovie?.title, primaryMovie?.year, primaryMovie?.tmdbId, secondaryMovie?.tmdbId, sourceTmdbId, detailMovieId, recommendations]);
+  }, [step, detailData, primaryMovie?.title, primaryMovie?.year, primaryMovie?.tmdbId, secondaryMovie?.tmdbId, sourceTmdbId, detailMovieId, recommendations, locale]);
 
   // ── Discover 页面（独立路由，SEO 友好）─────
   if (window.location.pathname === "/discover") {
@@ -266,6 +282,13 @@ function App() {
       ) : (
         <>
       <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
+        <button
+          onClick={toggleLocale}
+          className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-xs sm:text-sm z-20"
+          style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace" }}
+        >
+          {locale === "zh" ? "En" : "中"}
+        </button>
         <div className="flex items-center justify-center">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
             <span className="text-black transform rotate-90"><Icons.Play /></span>

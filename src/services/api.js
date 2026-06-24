@@ -4,7 +4,8 @@ import { parseJSON } from "../utils/parseJSON";
 export const generateAIContent = async (
   prompt,
   systemInstruction,
-  responseSchema = null
+  responseSchema = null,
+  locale = "zh"
 ) => {
   const response = await fetch(API_BASE_URL, {
     method: "POST",
@@ -13,6 +14,7 @@ export const generateAIContent = async (
       prompt,
       systemInstruction,
       responseSchema,
+      language: locale === "en" ? "en-US" : "zh-CN",
     }),
   });
 
@@ -29,12 +31,15 @@ export const generateAIContent = async (
   return result.content;
 };
 
-export const fetchMovieByTmdbId = async (tmdbId) => {
+export const fetchMovieByTmdbId = async (tmdbId, locale = "zh") => {
   try {
     const response = await fetch(API_BASE_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ tmdbId: Number(tmdbId) }),
+      body: JSON.stringify({
+        tmdbId: Number(tmdbId),
+        language: locale === "en" ? "en-US" : "zh-CN",
+      }),
     });
     if (!response.ok) return null;
     const data = await response.json();
@@ -44,12 +49,16 @@ export const fetchMovieByTmdbId = async (tmdbId) => {
   }
 };
 
-export const verifyMovieTmdbId = async (title, year) => {
+export const verifyMovieTmdbId = async (title, year, locale = "zh") => {
   try {
     const response = await fetch(API_BASE_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ searchTitle: title, searchYear: year || "" }),
+      body: JSON.stringify({
+        searchTitle: title,
+        searchYear: year || "",
+        language: locale === "en" ? "en-US" : "zh-CN",
+      }),
     });
     if (!response.ok) return null;
     const data = await response.json();
@@ -59,7 +68,7 @@ export const verifyMovieTmdbId = async (title, year) => {
   }
 };
 
-export const repairRecommendationFields = async (rec, generateAIContent) => {
+export const repairRecommendationFields = async (rec, generateAIContent, locale = "zh") => {
   const missingFields = [];
 
   if (!rec.director) missingFields.push("director");
@@ -69,8 +78,26 @@ export const repairRecommendationFields = async (rec, generateAIContent) => {
 
   if (missingFields.length === 0) return rec;
 
-  const prompt = `
-请补全以下影视信息（必须基于真实常识，不允许编造明显错误）：
+  const prompt = locale === "en"
+    ? `Please fill in the following movie/TV information (must be based on real knowledge, do not fabricate):
+
+Film: ${rec.title}
+${rec.reason ? "Description: " + rec.reason : ""}
+${rec.year ? "Year: " + rec.year : ""}
+${rec.type ? "Known type: " + rec.type : ""}
+
+Missing fields: ${missingFields.join(",")}
+
+Use the "Description" above to accurately identify which work this is, do not guess based on title only.
+
+Output strict JSON only:
+{
+  "director": "",
+  "year": "",
+  "originalTitle": "",
+  "type": ""
+}`
+    : `请补全以下影视信息（必须基于真实常识，不允许编造明显错误）：
 
 影片：${rec.title}
 ${rec.reason ? "背景描述：" + rec.reason : ""}
@@ -87,21 +114,21 @@ ${rec.type ? "已知类型：" + rec.type : ""}
   "year": "",
   "originalTitle": "",
   "type": ""
-}
-`;
+}`;
 
   const responseText = await generateAIContent(
     prompt,
-    "你是影视信息校对系统，只输出JSON。",
+    locale === "en" ? "You are a film information verification system. Output JSON only." : "你是影视信息校对系统，只输出JSON。",
     {
       type: "object",
       properties: {
         director: { type: "string" },
         year: { type: "string" },
         originalTitle: { type: "string" },
-        type: { type: "string", description: "电影 或 剧集" },
+        type: { type: "string", description: locale === "en" ? "Movie or TV Series" : "电影 或 剧集" },
       },
-    }
+    },
+    locale
   );
 
   const fixed = parseJSON(responseText);

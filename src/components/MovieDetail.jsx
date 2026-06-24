@@ -1,6 +1,7 @@
 import React from "react";
 import { Icons } from "./Icons";
 import Loading from "./Loading";
+import { useLocale } from "../i18n";
 
 const MovieDetail = ({
   detailData,
@@ -13,6 +14,7 @@ const MovieDetail = ({
   onShare,
   onReset,
 }) => {
+  const { t } = useLocale();
   if (detailLoading && !detailData) {
     return <Loading loadingMessage="" step="" />;
   }
@@ -20,7 +22,7 @@ const MovieDetail = ({
   if (!detailData) {
     return (
       <div className="max-w-5xl mx-auto text-center py-20 text-white text-xl font-bold">
-        无法加载电影资料
+        {t('detail.load_error')}
       </div>
     );
   }
@@ -32,7 +34,7 @@ const MovieDetail = ({
   );
   const matchedTags = currentRec?.matchedTags;
   const sourceDisplay = primaryMovie.title
-    ? `这部推荐源自你对《${primaryMovie.title}》${primaryMovie.year ? `(${primaryMovie.year})` : ""} 的偏好`
+    ? t('detail.source_prefix', { title: primaryMovie.title, year: primaryMovie.year || "" })
     : "";
 
   return (
@@ -60,7 +62,7 @@ const MovieDetail = ({
             </div>
           ) : (
             <div className="border-4 border-black bg-gray-800 text-white flex items-center justify-center h-64 text-xs pixel-font shadow-[4px_4px_0_0_#000]">
-              NO POSTER
+              {t('detail.no_poster')}
             </div>
           )}
         </div>
@@ -96,12 +98,12 @@ const MovieDetail = ({
             )}
             {detailData.runtime && (
               <span className="bg-black text-white px-2 py-1 font-black text-xs border-2 border-[#00ffff] pixel-font">
-                ⏱ {detailData.runtime} 分钟
+                {t('detail.runtime', { minutes: detailData.runtime })}
               </span>
             )}
             {detailData.director && (
               <span className="bg-white text-black px-2 py-1 font-black text-xs border-2 border-black uppercase">
-                导演: {detailData.director}
+                {t('detail.director', { director: detailData.director })}
               </span>
             )}
           </div>
@@ -110,7 +112,7 @@ const MovieDetail = ({
           {matchedTags && matchedTags.length > 0 && (
             <div className="bg-black border-2 border-[#ff00ff] p-3 mb-4 shadow-[4px_4px_0_0_#ff00ff]">
               <span className="text-[#ffff00] pixel-font text-xs font-black tracking-wider block mb-1">
-                ◆ TASTE MATCH
+                {t('detail.taste_match')}
               </span>
               <div className="flex flex-wrap items-center gap-1">
                 {matchedTags.slice(0, 4).map((tag, i) => (
@@ -155,7 +157,7 @@ const MovieDetail = ({
             rel="noopener noreferrer"
             className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font"
           >
-            在 TMDB 查看完整资料 ↗
+            {t('detail.view_tmdb')}
           </a>
         </div>
       </div>
@@ -166,19 +168,19 @@ const MovieDetail = ({
           onClick={onBackToResults}
           className="flex items-center text-white bg-black border-4 border-[#00ffff] px-6 py-3 uppercase font-bold hover:bg-[#00ffff] hover:text-black transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
         >
-          ← 返回结果页
+          {t('detail.back')}
         </button>
         <button
           onClick={onShare}
           className="flex items-center text-white bg-[#ff00ff] border-4 border-black px-6 py-3 uppercase font-bold hover:bg-[#ff40ff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
         >
-          分享此页
+          {t('detail.share')}
         </button>
         <button
           onClick={onReset}
           className="flex items-center text-white bg-black border-4 border-[#ff00ff] px-6 py-3 uppercase font-bold hover:bg-[#ff00ff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
         >
-          <Icons.RefreshCw className="mr-2" /> REBOOT
+          <Icons.RefreshCw className="mr-2" /> {t('detail.reboot')}
         </button>
       </div>
     </div>

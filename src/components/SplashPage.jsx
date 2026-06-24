@@ -1,7 +1,9 @@
 import React from "react";
 import { Icons } from "./Icons";
+import { useLocale } from "../i18n";
 
 const SplashPage = ({ onStart, isModal, onClose }) => {
+  const { t } = useLocale();
   const content = (
     <div
       className={`${isModal ? "bg-[#111] border-4 border-[#ff00ff] max-w-2xl w-full mx-4 max-h-[85vh] overflow-y-auto" : "min-h-screen"} relative`}
@@ -62,37 +64,36 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
             fontFamily: "-apple-system, 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif",
           }}
         >
-          输入你喜欢的影视作品，AI 通过渐进式问答精准分析你的审美口味，
-          为你推荐量身定制的电影与剧集。
+          {t('splash.desc')}
         </p>
 
         {/* Feature list */}
         <div className="max-w-lg mx-auto w-full space-y-4 mb-8">
           <FeatureCard
             icon={<Icons.Star />}
-            title="双作品输入"
-            desc="可输入 1-2 部参考作品，AI 分析共同特征与差异，精准定位你的品味坐标。"
+            title={t('splash.feature1.title')}
+            desc={t('splash.feature1.desc')}
             color="#ff00ff"
             isModal={isModal}
           />
           <FeatureCard
             icon={<Icons.MessageCircle />}
-            title="渐进式问答"
-            desc="基于参考作品动态生成 6-8 个分层问题，快速收敛到你的偏好区间。"
+            title={t('splash.feature2.title')}
+            desc={t('splash.feature2.desc')}
             color="#00ffff"
             isModal={isModal}
           />
           <FeatureCard
             icon={<Icons.Target />}
-            title="精准智能推荐"
-            desc="DeepSeek 驱动：2 部精选热门 + 2 部独家冷门 + 1 部争议之选。"
+            title={t('splash.feature3.title')}
+            desc={t('splash.feature3.desc')}
             color="#ffff00"
             isModal={isModal}
           />
           <FeatureCard
             icon={<Icons.Share2 />}
-            title="分享与保存"
-            desc="推荐结果可通过链接分享，一键保存为高清 PNG 图片。"
+            title={t('splash.feature4.title')}
+            desc={t('splash.feature4.desc')}
             color="#ff00ff"
             isModal={isModal}
           />
@@ -101,7 +102,7 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
         {/* Contact */}
         <div className="text-center mb-6">
           <p className="text-gray-500 text-xs" style={{ fontFamily: "-apple-system, 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif" }}>
-            Contact: <span className="text-[#00ffff]">rexhr@yahoo.com</span>
+            {t('splash.contact')} <span className="text-[#00ffff]">rexhr@yahoo.com</span>
           </p>
         </div>
 
@@ -112,7 +113,7 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
               onClick={onClose}
               className="px-8 py-3 bg-[#00ffff] hover:bg-[#40ffff] text-black border-4 border-black font-black text-sm uppercase tracking-widest shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all pixel-font"
             >
-              知道了
+              {t('splash.got_it')}
             </button>
           </div>
         ) : (
@@ -120,7 +121,7 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
             onClick={onStart}
             className="px-12 py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black text-xl uppercase tracking-widest shadow-[10px_10px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[6px_6px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all pixel-font flex items-center gap-3 mx-auto group"
           >
-            开始探索
+            {t('splash.start')}
             <Icons.ChevronRight className="group-hover:translate-x-2 transition-transform" />
           </button>
         )}

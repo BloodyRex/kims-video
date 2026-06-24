@@ -16,6 +16,7 @@ import {
   buildReplacePrompt,
   replaceSchema,
 } from "../services/prompts";
+import { useLocale } from "../i18n";
 
 export function useMovieEngine() {
   const [step, setStep] = useState("input");
@@ -50,6 +51,7 @@ export function useMovieEngine() {
   const [detailLoading, setDetailLoading] = useState(false);
 
   const currentYear = new Date().getFullYear();
+  const { t, locale } = useLocale();
 
   const normalizeQuestion = useCallback((q) => ({
     ...q,
@@ -74,9 +76,12 @@ export function useMovieEngine() {
 
     try {
       const responseText = await generateAIContent(
-        buildSearchPrompt(query),
-        "你是一个影视数据库查询API，根据关键词联想匹配的真实影视作品名称，以JSON数组返回。",
-        searchSchema
+        buildSearchPrompt(query, locale),
+        locale === "en"
+          ? "You are a movie database search API. Return real movie/TV titles matching the keywords as a JSON array."
+          : "你是一个影视数据库查询API，根据关键词联想匹配的真实影视作品名称，以JSON数组返回。",
+        searchSchema(locale),
+        locale
       );
 
       if (id !== searchIdRef.current) return;
@@ -101,7 +106,7 @@ export function useMovieEngine() {
       setSecondaryMovie({ title: movie.title, year: movie.year, tmdbId: movie.tmdbId || null });
       setShowSecondaryDropdown(false);
     }
-    verifyMovieTmdbId(movie.title, movie.year).then((result) => {
+    verifyMovieTmdbId(movie.title, movie.year, locale).then((result) => {
       if (result?.tmdbId) {
         if (type === "primary") {
           setPrimaryMovie((prev) => ({ ...prev, tmdbId: result.tmdbId }));
@@ -114,23 +119,24 @@ export function useMovieEngine() {
 
   const handleGenerateQuestions = async () => {
     if (!primaryMovie.title || !primaryMovie.year) {
-      setError("主参考影视作品的名称和首映年份为必填项！");
+      setError(t("error.required"));
       return;
     }
     if (primaryMovie.year < 1895 || primaryMovie.year > currentYear) {
-      setError("请输入有效的年份。");
+      setError(t("error.year"));
       return;
     }
 
     setError("");
     setStep("loading_questions");
-    setLoadingMessage('"电影不死，它们只是在等待被寻找。"');
+    setLoadingMessage(t("loading.quote"));
 
     try {
       const responseText = await generateAIContent(
-        buildQuestionPrompt(primaryMovie, secondaryMovie),
-        "你是一个专业的影视剧集推荐专家。",
-        questionSchema
+        buildQuestionPrompt(primaryMovie, secondaryMovie, locale),
+        locale === "en" ? "You are a professional film and TV recommendation expert. All output must be in English only." : "你是一个专业的影视剧集推荐专家。",
+        questionSchema(locale),
+        locale
       );
       const parsedData = parseJSON(responseText);
       if (Array.isArray(parsedData)) {
@@ -141,10 +147,10 @@ export function useMovieEngine() {
         setQuestions(parsedData.questions.slice(0, count).map(normalizeQuestion));
         setStep("qa");
       } else {
-        throw new Error("生成的问题数量不足或格式错误");
+        throw new Error(locale === "en" ? "Insufficient questions generated or format error" : "生成的问题数量不足或格式错误");
       }
     } catch (err) {
-      setError("生成问答失败，请重试。" + err.message);
+      setError(t("error.qa_failed") + " " + err.message);
       setStep("input");
     }
   };
@@ -166,10 +172,12 @@ export function useMovieEngine() {
 
   const generateRecommendations = async (finalAnswers) => {
     setStep("loading_results");
-    setLoadingMessage("正在检索稀有胶片库...");
+    setLoadingMessage(t("loading.vault"));
 
+    const featLabel = locale === "en" ? "Feature dimension" : "特征维度";
+    const choiceLabel = locale === "en" ? "User choice" : "用户选择";
     const answersText = finalAnswers.map((a) =>
-      `\n特征维度: ${a.feature}\n\n用户选择:\n${a.answer}\n`
+      `\n${featLabel}: ${a.feature}\n\n${choiceLabel}:\n${a.answer}\n`
     ).join("\n");
 
     try {
@@ -177,15 +185,16 @@ export function useMovieEngine() {
         if (attempt > 0) await new Promise((r) => setTimeout(r, 1500));
         try {
           const responseText = await generateAIContent(
-            buildRecommendationPrompt(primaryMovie, secondaryMovie, answersText),
-            "你是一个极具洞察力的专业影视推荐达人。",
-            recommendationSchema
+            buildRecommendationPrompt(primaryMovie, secondaryMovie, answersText, locale),
+            locale === "en" ? "You are an insightful film recommendation expert." : "你是一个极具洞察力的专业影视推荐达人。",
+            recommendationSchema(locale),
+            locale
           );
           const parsedData = parseJSON(responseText);
           const list = parsedData?.recommendations || [];
-          if (!Array.isArray(list) || list.length === 0) throw new Error("未能生成有效的推荐列表");
+          if (!Array.isArray(list) || list.length === 0) throw new Error(locale === "en" ? "Failed to generate valid recommendations" : "未能生成有效的推荐列表");
 
-          let recs = await Promise.all(list.map((r) => repairRecommendationFields(r, generateAIContent)));
+          let recs = await Promise.all(list.map((r) => repairRecommendationFields(r, generateAIContent, locale)));
 
           const userMovieTitles = [primaryMovie.title, secondaryMovie.title].filter(Boolean);
           const userTmdbIds = [primaryMovie.tmdbId, secondaryMovie.tmdbId].filter(Boolean);
@@ -209,16 +218,18 @@ export function useMovieEngine() {
               const excludeStr = everShown.map((t) => `《${t}》`).join("、");
               try {
                 const fillResult = await generateAIContent(
-                  buildFillPrompt(excludeStr, i),
-                  "你是一个严格的影视数据库查询API。只输出JSON，不解释。不编造。",
-                  fillSchema
+                  buildFillPrompt(excludeStr, i, locale),
+                  locale === "en" ? "You are a strict movie database API. Output JSON only. No explanation. No fabrication." : "你是一个严格的影视数据库查询API。只输出JSON，不解释。不编造。",
+                  fillSchema(locale),
+                  locale
                 );
                 const fillData = parseJSON(fillResult);
                 const fillMovie = fillData?.recommendations?.[0];
                 if (fillMovie && fillMovie.title) {
                   const repaired = await repairRecommendationFields(
                     { ...fillMovie, poster: fillMovie.poster || null, tmdbId: fillMovie.tmdbId || null },
-                    generateAIContent
+                    generateAIContent,
+                    locale
                   );
                   finalRecs.push(repaired);
                   everShown.push(fillMovie.title);
@@ -257,7 +268,7 @@ export function useMovieEngine() {
         }
       }
     } catch (err) {
-      setError("生成推荐失败，请重试。" + err.message);
+      setError(t("error.rec_failed") + " " + err.message);
       setStep("qa");
       setCurrentQIndex(questions.length - 1);
       setUserAnswers(userAnswers.slice(0, -1));
@@ -278,8 +289,10 @@ export function useMovieEngine() {
       ...(secondaryMovie?.tmdbId ? [`tmdb:${secondaryMovie.tmdbId}`] : []),
     ]);
 
+    const featLabel2 = locale === "en" ? "Feature dimension" : "特征维度";
+    const choiceLabel2 = locale === "en" ? "User choice" : "用户选择";
     const answersText = userAnswers.map((a) =>
-      `\n特征维度: ${a.feature}\n\n用户选择:\n${a.answer}\n`
+      `\n${featLabel2}: ${a.feature}\n\n${choiceLabel2}:\n${a.answer}\n`
     ).join("\n");
 
     let safeRec = null;
@@ -288,9 +301,10 @@ export function useMovieEngine() {
         try {
           const excludeList = [...excludeSet].map((t) => `《${t}》`).join("、");
           const result = await generateAIContent(
-            buildReplacePrompt(primaryMovie, secondaryMovie, answersText, excludeList, isNiche, isControversial),
-            "你是一个严格的影视数据库查询API。只输出JSON，不解释。不编造。",
-            replaceSchema
+            buildReplacePrompt(primaryMovie, secondaryMovie, answersText, excludeList, isNiche, isControversial, locale),
+            locale === "en" ? "You are a strict movie database API. Output JSON only. No explanation. No fabrication." : "你是一个严格的影视数据库查询API。只输出JSON，不解释。不编造。",
+            replaceSchema(locale),
+            locale
           );
           const parsedData = parseJSON(result);
           const rawRec = parsedData?.recommendations?.[0];
@@ -342,7 +356,7 @@ export function useMovieEngine() {
   };
 
   const resetApp = () => {
-    resetSeo();
+    resetSeo(locale);
     setStep("input");
     setPrimaryMovie({ title: "", year: "" });
     setSecondaryMovie({ title: "", year: "" });
@@ -380,7 +394,10 @@ export function useMovieEngine() {
     const currentUrl = window.location.href;
     const shareData = {
       title: "Kim's Video",
-      text: `AI为我推荐了电影！基于《${primaryMovie.title}》${secondaryMovie.title ? `和《${secondaryMovie.title}》` : ""}，来看看你的品味基因检测报告 →`,
+      text: t("share.text", {
+        primary: primaryMovie.title,
+        secondary: secondaryMovie.title ? `《${secondaryMovie.title}》` : "",
+      }),
       url: currentUrl,
     };
     if (navigator.share) {
@@ -388,15 +405,15 @@ export function useMovieEngine() {
     } else {
       try {
         await navigator.clipboard.writeText(currentUrl);
-        alert("链接已复制到剪贴板，分享给朋友吧！");
+        alert(t("share.copied"));
       } catch (_) {
-        prompt("复制以下链接分享：", "https://bloodyrex.xyz");
+        prompt(t("share.prompt"), "https://bloodyrex.xyz");
       }
     }
   };
 
   const handleBackToResults = () => {
-    resetSeo();
+    resetSeo(locale);
     const curParams = new URLSearchParams(window.location.search);
     const fromParam = curParams.get("from");
     const resultSourceIds = (fromParam?.split(",").filter(Boolean).map(Number) || []);
@@ -420,9 +437,9 @@ export function useMovieEngine() {
         url: window.location.href,
         movie_id: detailMovieId,
       });
-      alert("链接已复制到剪贴板，分享给朋友吧！");
+      alert(t("share.copied"));
     } catch (_) {
-      prompt("复制以下链接分享：", window.location.href);
+      prompt(t("share.prompt"), window.location.href);
     }
   };
 

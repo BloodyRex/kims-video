@@ -1,7 +1,9 @@
 import React from "react";
 import { Icons } from "./Icons";
+import { useLocale } from "../i18n";
 
 const Loading = ({ loadingMessage, step }) => {
+  const { t } = useLocale();
   return (
     <div className="flex flex-col items-center justify-center py-20 space-y-6">
       <div className="relative w-24 h-24 flex items-center justify-center">
@@ -19,7 +21,7 @@ const Loading = ({ loadingMessage, step }) => {
       </p>
       {step === "loading_results" && (
         <p className="text-gray-500 pixel-font text-[10px] mt-2">
-          一般需要 3-8s
+          {t('loading.eta')}
         </p>
       )}
     </div>
