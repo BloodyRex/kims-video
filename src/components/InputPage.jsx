@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 
@@ -23,7 +23,28 @@ const InputPage = ({
   toggleLocale,
   locale,
 }) => {
-  const { t } = useLocale();
+  const { t, tArray } = useLocale();
+  const quotes = tArray('input.quotes');
+  const [quoteText, setQuoteText] = useState('');
+  const idxRef = useRef(0);
+
+  useEffect(() => {
+    if (!quotes.length) return;
+    idxRef.current = Math.floor(Math.random() * quotes.length);
+    setQuoteText(quotes[idxRef.current]);
+
+    let timer;
+    const next = () => {
+      idxRef.current = (idxRef.current + 1) % quotes.length;
+      setQuoteText(quotes[idxRef.current]);
+      const delay = 3000 + Math.random() * 3000;
+      timer = setTimeout(next, delay);
+    };
+    timer = setTimeout(next, 3000 + Math.random() * 3000);
+
+    return () => clearTimeout(timer);
+  }, [quotes]);
+
   return (
     <div className="max-w-2xl mx-auto bg-white border-8 border-black p-8 shadow-[16px_16px_0_0_rgba(0,0,0,1)] relative retro-container">
       <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#ff00ff] rounded-full mix-blend-multiply filter blur-2xl opacity-50 pointer-events-none"></div>
@@ -56,7 +77,7 @@ const InputPage = ({
           KIM'S <span className="text-[#ff00ff]">ARCHIVE</span>
         </h2>
         <p className="text-gray-800 font-bold bg-[#ffff00] inline-block px-2 border-2 border-black">
-          {t('input.quote')}
+          {quoteText}
         </p>
       </div>
 
@@ -227,7 +248,7 @@ const InputPage = ({
 
         <button
           onClick={onGenerateQuestions}
-          className={`w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font ${locale === "en" ? "text-lg" : "text-xl"}`}
+          className={`w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font ${locale === "en" ? "text-base" : "text-xl"}`}
         >
           {t('input.submit')}
           <Icons.ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" />

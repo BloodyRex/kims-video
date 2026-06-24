@@ -55,7 +55,7 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
             letterSpacing: "0.15em",
           }}
         >
-          &quot;Art is above the law.&quot;
+          {t('tagline')}
         </p>
 
         <p

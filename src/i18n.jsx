@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, useCallback } from "react";
 const messages = {
   zh: {
     // ---- SplashPage ----
+    "tagline": "电影在呼唤我",
     "splash.desc": "输入你喜欢的影视作品，AI 通过渐进式问答精准分析你的审美口味，为你推荐量身定制的电影与剧集。",
     "splash.feature1.title": "双作品输入",
     "splash.feature1.desc": "可输入 1-2 部参考作品，AI 分析共同特征与差异，精准定位你的品味坐标。",
@@ -30,7 +31,13 @@ const messages = {
     "input.no_results": "未能匹配到结果，请尝试精确输入。",
     "input.submit": "开始剖析基因",
     "input.suggestion_format": "（{year}，{director}）",
-    "input.quote": "如果我们想看一部电影，我们就必须去寻找它。",
+    "input.quotes": [
+      "金的音像店就是我们的电影学院",
+      "实体媒介仍然至上",
+      "影迷的圣殿",
+      "55000部电影，一个执念",
+      "每一盘录像带都有故事",
+    ],
 
     // ---- ResultsPage ----
     "results.genome_match": "《{primary}》{secondary} 基因碰撞匹配",
@@ -58,9 +65,15 @@ const messages = {
     "detail.director": "导演: {director}",
 
     // ---- Loading ----
-    "loading.generating": "正在检索稀有胶片库...",
+    "loading.quotes": [
+      "租一部电影",
+      "记录一切",
+      "录像带在对我说话",
+      "去试试，看会发生什么",
+      "有些收藏不会消失",
+      "电影在呼唤",
+    ],
     "loading.eta": "一般需要 3-8s",
-    "loading.quote": "电影不死，它们只是在等待被寻找。",
 
     // ---- Share / Alert ----
     "share.text": "AI为我推荐了电影！基于《{primary}》{secondary}，来看看你的品味基因检测报告 →",
@@ -91,6 +104,7 @@ const messages = {
   },
   en: {
     // ---- SplashPage ----
+    "tagline": "The movies were calling to me.",
     "splash.desc": "Tell us what you love. AI-powered progressive Q&A pinpoints your taste and recommends films & shows tailored to you.",
     "splash.feature1.title": "Dual Input",
     "splash.feature1.desc": "Enter 1-2 reference works. AI analyzes commonalities and differences to pinpoint your taste coordinates.",
@@ -118,7 +132,13 @@ const messages = {
     "input.no_results": "No matches found. Try a more precise title.",
     "input.submit": "ANALYZE DNA",
     "input.suggestion_format": "（{year}，{director}）",
-    "input.quote": "If we want to watch a movie, we have to go looking for it.",
+    "input.quotes": [
+      "Kim's Video was our film school.",
+      "Physical media reigns supreme.",
+      "A temple for movie lovers.",
+      "55,000 movies. One obsession.",
+      "Every tape tells a story.",
+    ],
 
     // ---- ResultsPage ----
     "results.genome_match": "《{primary}》{secondary} Genome Match",
@@ -146,9 +166,15 @@ const messages = {
     "detail.director": "Dir: {director}",
 
     // ---- Loading ----
-    "loading.generating": "Searching the rare film vault...",
+    "loading.quotes": [
+      "Rent a movie.",
+      "Film everything.",
+      "The videos spoke to me.",
+      "Go for it. See what happens.",
+      "Some collections refuse to disappear.",
+      "The movies were calling.",
+    ],
     "loading.eta": "Usually takes 3-8s",
-    "loading.quote": "Movies never die, they just wait to be found.",
 
     // ---- Share / Alert ----
     "share.text": "AI picked movies for me! Based on 《{primary}》{secondary}, check out my taste DNA report →",
@@ -190,6 +216,11 @@ function t(locale, key, params) {
   return interpolate(msg, params);
 }
 
+function getArray(locale, key) {
+  const arr = messages[locale]?.[key] ?? messages.en?.[key] ?? [];
+  return Array.isArray(arr) ? arr : [];
+}
+
 const LocaleContext = createContext(null);
 
 function LocaleProvider({ children }) {
@@ -218,9 +249,14 @@ function LocaleProvider({ children }) {
     [locale]
   );
 
+  const tArray = useCallback(
+    (key) => getArray(locale, key),
+    [locale]
+  );
+
   return (
     <LocaleContext.Provider
-      value={{ locale, setLocale, toggleLocale, t: translate }}
+      value={{ locale, setLocale, toggleLocale, t: translate, tArray }}
     >
       {children}
     </LocaleContext.Provider>

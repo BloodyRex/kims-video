@@ -35,7 +35,6 @@ export function useMovieEngine() {
   const [userAnswers, setUserAnswers] = useState([]);
 
   const [recommendations, setRecommendations] = useState([]);
-  const [loadingMessage, setLoadingMessage] = useState("");
   const [error, setError] = useState("");
 
   const [replacingIndexes, setReplacingIndexes] = useState({});
@@ -129,7 +128,6 @@ export function useMovieEngine() {
 
     setError("");
     setStep("loading_questions");
-    setLoadingMessage(t("loading.quote"));
 
     try {
       const responseText = await generateAIContent(
@@ -172,7 +170,6 @@ export function useMovieEngine() {
 
   const generateRecommendations = async (finalAnswers) => {
     setStep("loading_results");
-    setLoadingMessage(t("loading.vault"));
 
     const featLabel = locale === "en" ? "Feature dimension" : "特征维度";
     const choiceLabel = locale === "en" ? "User choice" : "用户选择";
@@ -457,7 +454,6 @@ export function useMovieEngine() {
     currentQIndex, setCurrentQIndex,
     userAnswers, setUserAnswers,
     recommendations, setRecommendations,
-    loadingMessage, setLoadingMessage,
     error, setError,
     replacingIndexes,
     isCapturing,

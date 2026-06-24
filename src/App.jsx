@@ -51,7 +51,6 @@ function AppContent() {
     showSecondaryDropdown, setShowSecondaryDropdown,
     questions, currentQIndex,
     recommendations,
-    loadingMessage,
     error, setError,
     replacingIndexes, isCapturing,
     showSaveLayout, setShowSaveLayout,
@@ -290,7 +289,7 @@ function AppContent() {
             KIM'S <span className="text-[#00ffff]">VIDEO</span>
           </h1>
         </div>
-        <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">&quot;Art is above the law.&quot;</p>
+        <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 
       <main className="relative z-10 container mx-auto px-4 md:py-8">
@@ -317,9 +316,9 @@ function AppContent() {
             locale={locale}
           />
         )}
-        {step === "loading_questions" && <Loading loadingMessage={loadingMessage} step={step} />}
+        {step === "loading_questions" && <Loading step={step} />}
         {step === "qa" && <QAPage questions={questions} currentQIndex={currentQIndex} onAnswer={handleAnswer} />}
-        {step === "loading_results" && <Loading loadingMessage={loadingMessage} step={step} />}
+        {step === "loading_results" && <Loading step={step} />}
         {step === "results" && (
           <ResultsPage
             recommendations={recommendations}
