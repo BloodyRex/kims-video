@@ -76,7 +76,7 @@ const InputPage = ({
             <span className="mr-2 text-[#ff00ff]">
               <Icons.Star />
             </span>{" "}
-            <span className={locale === "en" ? "text-xl" : "text-lg"}>{t('input.primary_label')}</span> <span className="text-red-500 ml-1">*</span>
+            {t('input.primary_label')} <span className="text-red-500 ml-1">*</span>
           </label>
           <div className="flex flex-col sm:flex-row gap-4 relative">
             <div className="flex-1 relative">
@@ -156,7 +156,7 @@ const InputPage = ({
             <span className="mr-2 text-[#00ffff]">
               <Icons.Film />
             </span>{" "}
-            <span className={locale === "en" ? "text-lg" : ""}>{t('input.secondary_label')}</span>
+            {t('input.secondary_label')}
           </label>
           <div className="flex flex-col sm:flex-row gap-4 relative">
             <div className="flex-1 relative">

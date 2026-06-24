@@ -5,13 +5,15 @@
 }
 
 /* 英文模式下 8-bit 字体缩小（排除顶部 h1 标题）适配手机端 */
-/* :where() 零特异性，避免覆盖显式 text-* 字号 */
-:where(.locale-en) :where(.pixel-font):where(:not(h1.pixel-font)) {
-  font-size: 0.65rem;
-}
-@media (max-width: 640px) {
+/* 放入 @layer utilities 让 Tailwind text-* 类通过特异性正常覆盖 */
+@layer utilities {
   :where(.locale-en) :where(.pixel-font):where(:not(h1.pixel-font)) {
-    font-size: 0.55rem;
+    font-size: 0.65rem;
+  }
+  @media (max-width: 640px) {
+    :where(.locale-en) :where(.pixel-font):where(:not(h1.pixel-font)) {
+      font-size: 0.55rem;
+    }
   }
 }
 
