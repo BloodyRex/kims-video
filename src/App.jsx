@@ -276,7 +276,7 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen text-black selection:bg-[#ffff00] selection:text-black overflow-x-hidden pb-20">
+    <div className={`min-h-screen text-black selection:bg-[#ffff00] selection:text-black overflow-x-hidden pb-20 locale-${locale}`}>
       {showIntro ? (
         <SplashPage onStart={handleIntroStart} />
       ) : (
@@ -284,8 +284,8 @@ function AppContent() {
       <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
         <button
           onClick={toggleLocale}
-          className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-xs sm:text-sm z-20"
-          style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace" }}
+          className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-black border-2 border-[#ff00ff] text-[#ff00ff] flex items-center justify-center hover:bg-[#ff00ff] hover:text-black transition-colors z-20 rounded-full pixel-font"
+          style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace", fontSize: "clamp(8px, 2vw, 11px)" }}
         >
           {locale === "zh" ? "En" : "中"}
         </button>

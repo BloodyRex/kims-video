@@ -4,6 +4,16 @@
   font-family: 'Press Start 2P', 'Courier New', Courier, system-ui, sans-serif;
 }
 
+/* 英文模式下 8-bit 字体缩小，适配手机端 */
+.locale-en .pixel-font {
+  font-size: 0.65rem;
+}
+@media (max-width: 640px) {
+  .locale-en .pixel-font {
+    font-size: 0.55rem;
+  }
+}
+
 body {
   font-family: -apple-system, 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', system-ui, sans-serif;
 }
