@@ -72,7 +72,7 @@ const InputPage = ({
       <div className="space-y-6 relative z-10">
         {/* 主参考作品 */}
         <div className="bg-[#f0f0f0] p-5 border-4 border-black shadow-[6px_6px_0_0_#ff00ff]">
-          <label className="block text-black font-black mb-3 flex items-center uppercase pixel-font text-lg">
+          <label className={`block text-black font-black mb-3 flex items-center uppercase pixel-font ${locale === "en" ? "text-base" : "text-lg"}`}>
             <span className="mr-2 text-[#ff00ff]">
               <Icons.Star />
             </span>{" "}
@@ -152,7 +152,7 @@ const InputPage = ({
 
         {/* 附加参考作品 */}
         <div className="bg-[#f0f0f0] p-5 border-4 border-black border-dashed shadow-[6px_6px_0_0_#00ffff]">
-          <label className="block text-gray-600 font-black mb-3 flex items-center uppercase pixel-font">
+          <label className={`block text-gray-600 font-black mb-3 flex items-center uppercase pixel-font ${locale === "en" ? "text-sm" : ""}`}>
             <span className="mr-2 text-[#00ffff]">
               <Icons.Film />
             </span>{" "}
@@ -227,7 +227,7 @@ const InputPage = ({
 
         <button
           onClick={onGenerateQuestions}
-          className={`w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font ${locale === "en" ? "text-3xl" : "text-xl"}`}
+          className={`w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font ${locale === "en" ? "text-lg" : "text-xl"}`}
         >
           {t('input.submit')}
           <Icons.ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" />
