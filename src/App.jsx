@@ -88,6 +88,7 @@ function App() {
     const params = new URLSearchParams(window.location.search);
     const sourceRaw = params.get("from");
     const detailId = params.get("r");
+    const sourceTitle = params.get("s");
     const detailSourceTmdbIds = sourceRaw?.split(",").filter(Boolean).map(Number) || [];
     const sourceId = detailSourceTmdbIds[0];
 
@@ -100,6 +101,8 @@ function App() {
         const cached = loadResultsFromCache(sourceId);
         if (cached) {
           setPrimaryMovie(cached.primaryMovie);
+        } else if (sourceTitle) {
+          setPrimaryMovie({ title: sourceTitle, year: "" });
         }
       }
       setStep("detail");

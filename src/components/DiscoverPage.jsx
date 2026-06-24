@@ -59,7 +59,7 @@ const DiscoverPage = () => {
 
               <div className="space-y-4">
                 {genre.pairs.map((pair, idx) => {
-                  const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}`;
+                  const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}`;
                   return (
                     <article
                       key={idx}
