@@ -31,7 +31,7 @@ const InputPage = ({
 
       <button
         onClick={toggleLocale}
-        className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-xs sm:text-sm z-20"
+        className={`absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black sm:text-sm z-20 ${locale === "zh" ? "text-[9px]" : "text-xs"}`}
         style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace" }}
       >
         {locale === "zh" ? "En" : "中"}
@@ -76,7 +76,7 @@ const InputPage = ({
             <span className="mr-2 text-[#ff00ff]">
               <Icons.Star />
             </span>{" "}
-            {t('input.primary_label')} <span className="text-red-500 ml-1">*</span>
+            <span className={locale === "en" ? "text-xl" : "text-lg"}>{t('input.primary_label')}</span> <span className="text-red-500 ml-1">*</span>
           </label>
           <div className="flex flex-col sm:flex-row gap-4 relative">
             <div className="flex-1 relative">
@@ -156,7 +156,7 @@ const InputPage = ({
             <span className="mr-2 text-[#00ffff]">
               <Icons.Film />
             </span>{" "}
-            {t('input.secondary_label')}
+            <span className={locale === "en" ? "text-lg" : ""}>{t('input.secondary_label')}</span>
           </label>
           <div className="flex flex-col sm:flex-row gap-4 relative">
             <div className="flex-1 relative">
@@ -227,7 +227,7 @@ const InputPage = ({
 
         <button
           onClick={onGenerateQuestions}
-          className={`w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font ${locale === "en" ? "text-2xl" : "text-xl"}`}
+          className={`w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font ${locale === "en" ? "text-3xl" : "text-xl"}`}
         >
           {t('input.submit')}
           <Icons.ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" />
