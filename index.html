@@ -9,6 +9,16 @@
     gtag('js', new Date());
     gtag('config', 'G-P7PY236BK9');
   </script>
+  <!-- SPA routing fix: restore path from 404 redirect -->
+  <script>
+    (function() {
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect);
+      }
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kim's Video — AI Movie Recommender / 智能影视推荐</title>
