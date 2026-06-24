@@ -43,12 +43,13 @@ const messages = {
     "results.badge_hot": "🔥 精选热门",
     "results.badge_niche": "🕵️ 独家冷门",
     "results.badge_controversial": "⚡ 争议之选",
+    "results.reboot": "重新输入",
 
     // ---- MovieDetail ----
     "detail.source_prefix": "这部推荐源自你对《{title}》({year}) 的偏好",
     "detail.back": "← 返回结果页",
     "detail.share": "分享此页",
-    "detail.reboot": "REBOOT",
+    "detail.reboot": "重新输入",
     "detail.taste_match": "◆ 品味匹配",
     "detail.view_tmdb": "在 TMDB 查看完整资料 ↗",
     "detail.no_poster": "无海报",
@@ -130,6 +131,7 @@ const messages = {
     "results.badge_hot": "🔥 Popular Pick",
     "results.badge_niche": "🕵️ Hidden Gem",
     "results.badge_controversial": "⚡ Wild Card",
+    "results.reboot": "REBOOT",
 
     // ---- MovieDetail ----
     "detail.source_prefix": "Recommended based on your love for 《{title}》({year})",

@@ -218,7 +218,7 @@ const ResultsPage = ({
           onClick={onReset}
           className="flex items-center text-white bg-black border-4 border-[#ff00ff] px-8 py-3 uppercase font-bold hover:bg-[#ff00ff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
         >
-          <Icons.RefreshCw className="mr-2" /> REBOOT
+          <Icons.RefreshCw className="mr-2" /> {t('results.reboot')}
         </button>
       </div>
     </div>

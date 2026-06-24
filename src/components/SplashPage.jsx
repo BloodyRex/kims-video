@@ -163,7 +163,9 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
   );
 };
 
-const FeatureCard = ({ icon, title, desc, color, isModal }) => (
+const FeatureCard = ({ icon, title, desc, color, isModal }) => {
+  const { locale } = useLocale();
+  return (
   <div
     className="bg-white border-3 border-black flex items-start p-4"
     style={{
@@ -183,10 +185,10 @@ const FeatureCard = ({ icon, title, desc, color, isModal }) => (
       <h2
         className="font-black mb-1.5"
         style={{
-          fontFamily: "-apple-system, 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif",
-          fontSize: isModal ? "15px" : "clamp(18px, 2.8vw, 24px)",
-          lineHeight: 1.3,
-          letterSpacing: "0.06em",
+          fontFamily: locale === "en" ? "'Press Start 2P', 'Courier New', Courier, monospace" : "-apple-system, 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif",
+          fontSize: isModal ? (locale === "en" ? "11px" : "15px") : (locale === "en" ? "clamp(11px, 1.8vw, 14px)" : "clamp(18px, 2.8vw, 24px)"),
+          lineHeight: locale === "en" ? 1.6 : 1.3,
+          letterSpacing: locale === "en" ? "0.05em" : "0.06em",
         }}
       >
         {title}
@@ -202,6 +204,7 @@ const FeatureCard = ({ icon, title, desc, color, isModal }) => (
       </p>
     </div>
   </div>
-);
+  );
+};
 
 export default SplashPage;
