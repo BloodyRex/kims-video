@@ -7,6 +7,7 @@ import ResultsPage from "./components/ResultsPage";
 import MovieDetail from "./components/MovieDetail";
 import SaveContent from "./components/SaveContent";
 import SplashPage from "./components/SplashPage";
+import DiscoverPage from "./components/DiscoverPage";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "./services/api";
 import { loadResultsFromCache } from "./utils/cache";
@@ -240,6 +241,11 @@ function App() {
       updateStructuredData(sourceMovies, { ...detailData, tmdbId: detailMovieId }, matchedTags);
     }
   }, [step, detailData, primaryMovie?.title, primaryMovie?.year, primaryMovie?.tmdbId, secondaryMovie?.tmdbId, sourceTmdbId, detailMovieId, recommendations]);
+
+  // ── Discover 页面（独立路由，SEO 友好）─────
+  if (window.location.pathname === "/discover") {
+    return <DiscoverPage />;
+  }
 
   return (
     <div className="min-h-screen text-black selection:bg-[#ffff00] selection:text-black overflow-x-hidden pb-20">
