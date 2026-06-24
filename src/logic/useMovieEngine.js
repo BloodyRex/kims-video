@@ -232,6 +232,12 @@ export function useMovieEngine() {
           setEverShownTitles(everShown);
           setStep("results");
 
+          gtag?.("event", "generate_recommendation", {
+            source_title: primaryMovie.title,
+            source_year: primaryMovie.year,
+            rec_count: finalRecs.length,
+          });
+
           if (finalRecs.length > 0) {
             const sourceId = primaryMovie?.tmdbId
               ? Number(primaryMovie.tmdbId)
@@ -410,6 +416,10 @@ export function useMovieEngine() {
   const handleDetailShare = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
+      gtag?.("event", "share_movie", {
+        url: window.location.href,
+        movie_id: detailMovieId,
+      });
       alert("链接已复制到剪贴板，分享给朋友吧！");
     } catch (_) {
       prompt("复制以下链接分享：", window.location.href);

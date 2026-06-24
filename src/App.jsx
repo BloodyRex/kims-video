@@ -202,6 +202,9 @@ function App() {
         link.href = url;
         link.click();
         URL.revokeObjectURL(url);
+        gtag?.("event", "save_poster", {
+          source_title: primaryMovie.title,
+        });
       } catch (err) {
         console.error("Save image failed", err);
         setError("保存图片失败: " + err.message);
@@ -222,6 +225,12 @@ function App() {
       if (cancelled) return;
       setDetailData(data || null);
       setDetailLoading(false);
+      if (data?.title) {
+        gtag?.("event", "view_movie_detail", {
+          movie_title: data.title,
+          movie_id: detailMovieId,
+        });
+      }
     })();
     return () => { cancelled = true; };
   }, [step, detailMovieId, setDetailLoading, setDetailData]);
