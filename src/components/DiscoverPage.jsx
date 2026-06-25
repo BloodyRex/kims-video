@@ -82,6 +82,9 @@ const DiscoverPage = () => {
       ? `https://image.tmdb.org/t/p/${size}${posterMap[tmdbId]}`
       : null;
 
+  const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
+  const getBracketed = (movie) => locale === "zh" ? `《${movie.title}》` : getTitle(movie);
+
   return (
     <div className="min-h-screen graffiti-bg text-black pb-32">
       {/* Header */}
@@ -168,26 +171,26 @@ const DiscoverPage = () => {
                         {posterUrl(pair.source.tmdbId) && (
                           <img
                             src={posterUrl(pair.source.tmdbId)}
-                            alt={pair.source.title}
+                            alt={getTitle(pair.source)}
                             className="w-10 sm:w-12 border-2 border-black self-center"
                             loading="lazy"
                           />
                         )}
                         <span className="font-black text-lg" style={{ color }}>
-                          {locale === "zh" ? `《${pair.source.title}》` : pair.source.title}
+                          {getBracketed(pair.source)}
                         </span>
                         <span className="text-gray-400 text-sm">({pair.source.year})</span>
                         <span className="text-gray-500 mx-1 text-lg">{t('discover.arrow')}</span>
                         {posterUrl(pair.recommend.tmdbId) && (
                           <img
                             src={posterUrl(pair.recommend.tmdbId)}
-                            alt={pair.recommend.title}
+                            alt={getTitle(pair.recommend)}
                             className="w-10 sm:w-12 border-2 border-black self-center"
                             loading="lazy"
                           />
                         )}
                         <span className="font-black text-lg text-black">
-                          {locale === "zh" ? `《${pair.recommend.title}》` : pair.recommend.title}
+                          {getBracketed(pair.recommend)}
                         </span>
                         <span className="text-gray-400 text-sm">({pair.recommend.year})</span>
                       </div>
@@ -202,7 +205,7 @@ const DiscoverPage = () => {
                         <p className="text-gray-500 text-xs leading-relaxed">
                           {locale === "zh"
                             ? `如果你喜欢《${pair.source.title}》（${pair.source.year}），在${genreLabel}类型中你可能也会对《${pair.recommend.title}》（${pair.recommend.year}）感兴趣。这组推荐延续了${themeLabel}等主题体验。`
-                            : `If you enjoyed ${pair.source.title} (${pair.source.year}), you may also be interested in ${pair.recommend.title} (${pair.recommend.year}) in the ${genreLabel} genre. This recommendation extends themes of ${themeLabel}.`
+                            : `If you enjoyed ${getTitle(pair.source)} (${pair.source.year}), you may also be interested in ${getTitle(pair.recommend)} (${pair.recommend.year}) in the ${genreLabel} genre. This recommendation extends themes of ${themeLabel}.`
                           }
                         </p>
                       </div>
