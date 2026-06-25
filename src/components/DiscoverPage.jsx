@@ -67,7 +67,7 @@ const DiscoverPage = () => {
             if (typeof info === "string") {
               try { info = JSON.parse(info); } catch { info = null; }
             }
-            if (info?.poster_path) map[id] = info.poster_path;
+            if (info?.poster) map[id] = info.poster;
           }
         })
       );
@@ -77,10 +77,7 @@ const DiscoverPage = () => {
     return () => { cancelled = true; };
   }, []);
 
-  const posterUrl = (tmdbId, size = "w92") =>
-    posterMap[tmdbId]
-      ? `https://image.tmdb.org/t/p/${size}${posterMap[tmdbId]}`
-      : null;
+  const posterUrl = (tmdbId) => posterMap[tmdbId] || null;
 
   const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
   const getBracketed = (movie) => locale === "zh" ? `《${movie.title}》` : getTitle(movie);
@@ -156,7 +153,7 @@ const DiscoverPage = () => {
 
               <div className="space-y-4">
                 {genre.pairs.map((pair, idx) => {
-                  const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}`;
+                  const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
                   const genreLabel = locale === "en" ? genre.nameEn : genre.name;
                   const themeLabel = locale === "en" ? theme.en : theme.zh;
                   return (

@@ -290,6 +290,14 @@ function AppContent() {
           </h1>
         </div>
         <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
+        {new URLSearchParams(window.location.search).get("discover") === "1" && (
+          <a
+            href="/discover"
+            className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2 py-1 bg-[#00ffff] border-2 border-black text-black text-[10px] font-black pixel-font hover:bg-black hover:text-[#00ffff] transition-colors z-20"
+          >
+            ← DISCOVER
+          </a>
+        )}
       </header>
 
       <main className="relative z-10 container mx-auto px-4 md:py-8">
