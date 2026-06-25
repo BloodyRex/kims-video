@@ -3,7 +3,7 @@ import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 
 const Loading = ({ step }) => {
-  const { t, tArray } = useLocale();
+  const { t, tArray, locale } = useLocale();
   const quotes = tArray('loading.quotes');
   const [displayText, setDisplayText] = useState('');
 
