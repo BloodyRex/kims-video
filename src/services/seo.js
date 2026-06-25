@@ -1,3 +1,38 @@
+// ── hreflang helper ──────────────────────────────────
+function manageHreflang(pageUrl) {
+  const SITE = "https://bloodyrex.xyz";
+  const base = new URL(pageUrl, SITE);
+  const needsLang = !base.searchParams.has("lang");
+  
+  // Remove existing hreflang tags
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
+
+  // Build zh URL
+  const zhUrl = new URL(pageUrl, SITE);
+  if (needsLang) zhUrl.searchParams.set("lang", "zh");
+
+  // Build en URL
+  const enUrl = new URL(pageUrl, SITE);
+  if (needsLang) enUrl.searchParams.set("lang", "en");
+
+  function addHreflang(hreflang, href) {
+    const link = document.createElement("link");
+    link.rel = "alternate";
+    link.hreflang = hreflang;
+    link.href = href;
+    document.head.appendChild(link);
+  }
+
+  addHreflang("zh", zhUrl.href);
+  addHreflang("en", enUrl.href);
+  // x-default points to current page without lang param
+  const defaultUrl = new URL(pageUrl, SITE);
+  defaultUrl.searchParams.delete("lang");
+  addHreflang("x-default", defaultUrl.href);
+}
+
+// ── SEO update / reset ──────────────────────────────
+
 export const updateSeo = (sourceMovies, movieData, locale = "zh") => {
   if (!sourceMovies?.length || !movieData) return;
 
@@ -41,6 +76,8 @@ export const updateSeo = (sourceMovies, movieData, locale = "zh") => {
     document.head.appendChild(linkEl);
   }
   linkEl.href = window.location.href;
+
+  manageHreflang(window.location.href);
 };
 
 export const resetSeo = (locale = "zh") => {
@@ -66,7 +103,11 @@ export const resetSeo = (locale = "zh") => {
     document.head.appendChild(linkEl);
   }
   linkEl.href = "https://bloodyrex.xyz/";
+
+  manageHreflang("https://bloodyrex.xyz/");
 };
+
+// ── Structured data ─────────────────────────────────
 
 const generateStructuredData = (movie) => {
   if (!movie) return null;
@@ -143,7 +184,7 @@ export const updateStructuredData = (
       ? `如果你喜欢${sourceText}，AI 基于"${matchedTags.join("、")}"等关键词推荐《${detailData.title}》。`
       : `如果你喜欢${sourceText}，AI 推荐你观看《${detailData.title}》。`;
 
-  // Build BreadcrumbList for structured data
+  // BreadcrumbList
   const primarySource = sourceMovies[0];
   const breadcrumbItems = [
     {

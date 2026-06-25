@@ -29,36 +29,39 @@
   <meta property="og:description" content="Tell us what you love, discover your next favorite film." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bloodyrex.xyz" />
+
+  <!-- hreflang: bilingual site signals -->
+  <link rel="alternate" hreflang="zh" href="https://bloodyrex.xyz/?lang=zh" />
+  <link rel="alternate" hreflang="en" href="https://bloodyrex.xyz/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://bloodyrex.xyz/" />
+
   <!-- Inline @font-face for Press Start 2P (same-origin, readable by dom-to-image-more) -->
   <style>
     @font-face{font-family:'Press Start 2P';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nYivN04w.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:'Press Start 2P';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nRivN04w.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:'Press Start 2P';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nWivN04w.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}@font-face{font-family:'Press Start 2P';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nbivN04w.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Press Start 2P';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   </style>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet" />
-  <!-- JSON-LD -->
+
+  <!-- JSON-LD: WebSite + SearchAction (enables Sitelinks Searchbox) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "WebSite",
     "name": "Kim's Video",
-    "description": "AI 驱动的个性化影视推荐引擎。输入1-2部你喜欢的电影或剧集，通过渐进式问答分析你的审美口味，从 DeepSeek + TMDB 数据中推荐精选热门、独家冷门与争议之选。",
-    "applicationCategory": "MultimediaApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "Requires JavaScript",
-    "author": { "@type": "Person", "name": "Bloodyrex" },
     "url": "https://bloodyrex.xyz",
-    "image": "https://github.com/user-attachments/assets/a0fcfbc1-ef17-48be-9e04-4c2f971eb61a",
-    "keywords": ["电影推荐", "AI推荐", "影视推荐", "冷门电影", "movie recommender", "AI movie picker"],
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "featureList": [
-      "输入1-2部参考作品，AI分析共同特征与差异",
-      "6-8个渐进式分层问题精准定位偏好",
-      "5部推荐：2部热门 + 2部冷门 + 1部争议之选",
-      "一键保存推荐结果为PNG图片",
-      "通过链接分享推荐结果"
-    ]
+    "description": "AI-powered movie recommendation engine. Enter films you love, discover hidden gems and cult classics via DeepSeek + TMDB.",
+    "inLanguage": ["zh", "en"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://bloodyrex.xyz/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
   }
   </script>
+
   <!-- Discover page JSON-LD -->
   <script type="application/ld+json">
   {

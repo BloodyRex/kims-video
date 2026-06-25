@@ -9,14 +9,34 @@ const SITE = "https://bloodyrex.xyz";
 const discoverRaw = readFileSync(join(ROOT, "src", "data", "discover.json"), "utf-8");
 const discover = JSON.parse(discoverRaw);
 
-/** Build an array of { loc, changefreq, priority, lastmod } entries */
+const GENRE_SLUGS = {
+  "科幻": "sci-fi", "悬疑": "mystery", "恐怖": "horror",
+  "动画": "animation", "战争": "war", "犯罪": "crime",
+  "剧情": "drama", "奇幻": "fantasy",
+};
+
 function buildEntries() {
   const today = new Date().toISOString().slice(0, 10);
 
   const entries = [
-    { loc: `${SITE}/`, changefreq: "weekly", priority: "1.0", lastmod: today },
+    { loc: `${SITE}/`, changefreq: "daily", priority: "1.0", lastmod: today },
     { loc: `${SITE}/discover`, changefreq: "daily", priority: "0.9", lastmod: today },
   ];
+
+  // Genre pages
+  const seenSlugs = new Set();
+  for (const genre of discover.genres) {
+    const slug = GENRE_SLUGS[genre.name] || genre.name;
+    if (!seenSlugs.has(slug)) {
+      seenSlugs.add(slug);
+      entries.push({
+        loc: `${SITE}/genre/${slug}`,
+        changefreq: "weekly",
+        priority: "0.8",
+        lastmod: today,
+      });
+    }
+  }
 
   const seenSources = new Set();
 
@@ -26,15 +46,15 @@ function buildEntries() {
       const from = pair.source.tmdbId;
       const r = pair.recommend.tmdbId;
 
-      // Query-param URLs (legacy, for existing indexed pages)
+      // Legacy query-param URLs
       entries.push({
         loc: `${SITE}/?from=${from}&r=${r}`,
         changefreq: "weekly",
-        priority: "0.7",
+        priority: "0.6",
         lastmod: today,
       });
 
-      // Path-based static pre-rendered detail pages (crawler-friendly)
+      // Path-based static pre-rendered detail pages
       entries.push({
         loc: `${SITE}/d/${from}-${r}`,
         changefreq: "weekly",
@@ -44,7 +64,7 @@ function buildEntries() {
     }
   }
 
-  // Add individual source-movie result pages for each unique source
+  // Individual source-movie result pages
   for (const tmdbId of seenSources) {
     entries.push({
       loc: `${SITE}/?from=${tmdbId}`,

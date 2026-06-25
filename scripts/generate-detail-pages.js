@@ -7,12 +7,10 @@ const root = resolve(__dirname, '..');
 const dist = resolve(root, 'dist');
 const SITE = 'https://bloodyrex.xyz';
 
-// Read discover data
 const discover = JSON.parse(
   readFileSync(resolve(root, 'src', 'data', 'discover.json'), 'utf-8')
 );
 
-// Extract asset paths from built index.html
 const indexHtml = readFileSync(resolve(dist, 'index.html'), 'utf-8');
 const scriptSrc = indexHtml.match(/<script type="module".+?src="([^"]+)"/)?.[1] || '/assets/index.js';
 const cssHref = indexHtml.match(/<link rel="stylesheet".+?href="([^"]+)">/)?.[1] || '/assets/index.css';
@@ -30,6 +28,7 @@ function buildDetailPage(pair, genreName) {
   const { source, recommend, reason, reasonEn } = pair;
   const from = source.tmdbId;
   const r = recommend.tmdbId;
+  const pagePath = `/d/${from}-${r}`;
 
   const pageTitle = `喜欢《${source.title}》？《${recommend.title}》可能是你的下一部电影 | Kim's Video`;
   const desc = `如果你喜欢《${source.title}》（${source.year}），AI 根据品味匹配推荐《${recommend.title}》（${recommend.year}）。${reason}`;
@@ -39,7 +38,7 @@ function buildDetailPage(pair, genreName) {
     '@graph': [
       {
         '@type': 'Movie',
-        '@id': `${SITE}/d/${from}-${r}#movie`,
+        '@id': `${SITE}${pagePath}#movie`,
         name: recommend.title,
         alternateName: recommend.titleEn,
         datePublished: recommend.year,
@@ -47,11 +46,11 @@ function buildDetailPage(pair, genreName) {
       },
       {
         '@type': 'WebPage',
-        '@id': `${SITE}/d/${from}-${r}#webpage`,
-        url: `${SITE}/d/${from}-${r}`,
+        '@id': `${SITE}${pagePath}#webpage`,
+        url: `${SITE}${pagePath}`,
         name: pageTitle,
         description: desc,
-        about: { '@id': `${SITE}/d/${from}-${r}#movie` },
+        about: { '@id': `${SITE}${pagePath}#movie` },
         isPartOf: {
           '@type': 'WebSite',
           name: "Kim's Video",
@@ -61,7 +60,7 @@ function buildDetailPage(pair, genreName) {
           '@type': 'BreadcrumbList',
           itemListElement: [
             { '@type': 'ListItem', position: 1, name: "Kim's Video", item: SITE + '/' },
-            { '@type': 'ListItem', position: 2, name: source.title, item: `${SITE}/d/${from}` },
+            { '@type': 'ListItem', position: 2, name: source.title, item: `${SITE}/?from=${from}` },
             { '@type': 'ListItem', position: 3, name: recommend.title },
           ],
         },
@@ -77,12 +76,12 @@ function buildDetailPage(pair, genreName) {
 `  <title>${escapeHtml(pageTitle)}</title>\n` +
 `  <meta name="description" content="${escapeHtml(desc)}" />\n` +
 `  <meta name="keywords" content="电影推荐,AI推荐,${escapeHtml(source.title)},${escapeHtml(recommend.title)},${escapeHtml(genreName)},影视推荐,Kim's Video" />\n` +
-`  <link rel="canonical" href="${SITE}/d/${from}-${r}" />\n` +
+`  <link rel="canonical" href="${SITE}${pagePath}" />\n` +
 '\n' +
 '  <!-- Open Graph -->\n' +
 `  <meta property="og:title" content="${escapeHtml(pageTitle)}" />\n` +
 `  <meta property="og:description" content="${escapeHtml(desc)}" />\n` +
-`  <meta property="og:url" content="${SITE}/d/${from}-${r}" />\n` +
+`  <meta property="og:url" content="${SITE}${pagePath}" />\n` +
 '  <meta property="og:type" content="website" />\n' +
 '  <meta property="og:site_name" content="Kim\'s Video" />\n' +
 '\n' +
@@ -90,6 +89,11 @@ function buildDetailPage(pair, genreName) {
 '  <meta name="twitter:card" content="summary" />\n' +
 `  <meta name="twitter:title" content="${escapeHtml(pageTitle)}" />\n` +
 `  <meta name="twitter:description" content="${escapeHtml(desc)}" />\n` +
+'\n' +
+'  <!-- hreflang -->\n' +
+`  <link rel="alternate" hreflang="zh" href="${SITE}${pagePath}?lang=zh" />\n` +
+`  <link rel="alternate" hreflang="en" href="${SITE}${pagePath}?lang=en" />\n` +
+`  <link rel="alternate" hreflang="x-default" href="${SITE}${pagePath}" />\n` +
 '\n' +
 '  <!-- JSON-LD Structured Data -->\n' +
 `  <script type="application/ld+json">${JSON.stringify(jsonLd, null, 2)}</script>\n` +
@@ -122,7 +126,6 @@ function buildDetailPage(pair, genreName) {
 '</head>\n' +
 '<body>\n' +
 '  <div id="root">\n' +
-'    <!-- Static SEO content visible to crawlers -->\n' +
 '    <div class="container" style="padding-bottom:80px;">\n' +
 '      <header>\n' +
 '        <h1 style="font-size:28px;font-weight:900;margin:0;">KIM\'S <span style="color:#00ffff;">VIDEO</span></h1>\n' +
@@ -154,7 +157,6 @@ function buildDetailPage(pair, genreName) {
 '    </div>\n' +
 '  </div>\n' +
 '\n' +
-'  <!-- SPA routing bridge: rewrite URL before React boots -->\n' +
 '  <script>\n' +
 '    (function() {\n' +
 `      var target = '/?from=${from}&r=${r}';\n` +
@@ -164,13 +166,11 @@ function buildDetailPage(pair, genreName) {
 '    })();\n' +
 '  </script>\n' +
 '\n' +
-'  <!-- React SPA entry -->\n' +
 `  <script type="module" crossorigin src="${scriptSrc}"></script>\n` +
 '</body>\n' +
 '</html>';
 }
 
-// Generate pages
 const outBase = resolve(dist, 'd');
 if (!existsSync(outBase)) mkdirSync(outBase, { recursive: true });
 
