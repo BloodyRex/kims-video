@@ -101,6 +101,17 @@ const messages = {
     "discover.view_detail": "查看详情",
     "discover.if_like": "如果你喜欢",
     "discover.arrow": "→",
+
+    // ---- SEO ----
+    "seo.hub.title": "AI 电影推荐发现页",
+    "seo.hub.intro": "本页面基于用户输入的电影，使用 AI 进行情绪、主题与风格匹配，生成相似电影推荐组合。",
+    "seo.hub.genres": "覆盖类型包括：科幻、剧情、悬疑、动画、犯罪与独立电影等。",
+    "seo.hub.desc": "每一组推荐都是基于情绪相似性 + 主题延展 + 风格对照生成的结果。",
+    "seo.footer.title": "关于本页的推荐逻辑",
+    "seo.footer.p1": "本系统通过分析电影的类型标签、剧情结构与观众情绪反馈，构建跨影片的相似性网络。",
+    "seo.footer.p2": "推荐结果并不依赖单一评分，而是综合叙事结构与观影体验进行匹配。",
+    "seo.link.home": "返回首页",
+    "seo.link.discover": "重新发现推荐",
   },
   en: {
     // ---- SplashPage ----
@@ -202,6 +213,17 @@ const messages = {
     "discover.view_detail": "DETAILS",
     "discover.if_like": "If you like",
     "discover.arrow": "→",
+
+    // ---- SEO ----
+    "seo.hub.title": "AI Movie Recommendation Discovery Hub",
+    "seo.hub.intro": "This page uses AI to match movies by mood, theme, and style, generating curated recommendation pairs based on your preferences.",
+    "seo.hub.genres": "Covered genres include: Sci-Fi, Drama, Mystery, Animation, Crime, Independent Films and more.",
+    "seo.hub.desc": "Each recommendation is the result of emotional similarity analysis, thematic extension, and stylistic comparison.",
+    "seo.footer.title": "About the Recommendation Logic",
+    "seo.footer.p1": "This system analyzes film genre tags, narrative structure, and audience emotional feedback to build a cross-film similarity network.",
+    "seo.footer.p2": "Recommendations are not based on a single rating, but combine narrative structure and viewing experience for matching.",
+    "seo.link.home": "Back to Home",
+    "seo.link.discover": "Discover More",
   },
 };
 
