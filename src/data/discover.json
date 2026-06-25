@@ -2,131 +2,157 @@
   "genres": [
     {
       "name": "科幻",
+      "nameEn": "Sci-Fi",
       "pairs": [
         {
           "source": { "title": "星际穿越", "year": "2014", "tmdbId": 157336 },
           "recommend": { "title": "降临", "year": "2016", "tmdbId": 329865 },
-          "reason": "如果你被《星际穿越》中时间悖论与情感内核的交织所震撼，《降临》用同样的硬科幻外壳包裹着关于语言、宿命与存在主义的深邃思辨。维伦纽瓦以沉静的镜头语言讲述了一个与时间对话的故事，结局的情感冲击力不输前者。"
+          "reason": "如果你被《星际穿越》中时间悖论与情感内核的交织所震撼，《降临》用同样的硬科幻外壳包裹着关于语言、宿命与存在主义的深邃思辨。维伦纽瓦以沉静的镜头语言讲述了一个与时间对话的故事，结局的情感冲击力不输前者。",
+          "reasonEn": "Captivated by Interstellar's dance between time paradox and human emotion? Arrival uses the same hard sci-fi shell to explore language, fate, and existentialism. Villeneuve's deliberate, contemplative style tells a story in conversation with time itself — the emotional payoff hits just as hard."
         },
         {
           "source": { "title": "盗梦空间", "year": "2010", "tmdbId": 27205 },
           "recommend": { "title": "源代码", "year": "2011", "tmdbId": 45612 },
-          "reason": "《盗梦空间》让你在层层梦境中迷失方向，而《源代码》用更紧凑的篇幅构建了另一场关于意识与真实的心灵迷局。十分钟的循环反复重置，每一次都离真相更近一步——如果你喜欢烧脑设定与情感内核并重的叙事，这部科幻悬疑片会让你欲罢不能。"
+          "reason": "《盗梦空间》让你在层层梦境中迷失方向，而《源代码》用更紧凑的篇幅构建了另一场关于意识与真实的心灵迷局。十分钟的循环反复重置，每一次都离真相更近一步——如果你喜欢烧脑设定与情感内核并重的叙事，这部科幻悬疑片会让你欲罢不能。",
+          "reasonEn": "Inception had you untangling layered dreamscapes. Source Code condenses a similar consciousness-bending puzzle into a tauter frame — ten-minute loops that reset again and again, each iteration closer to the truth. If you crave mind-bending premises with heart, this one delivers."
         },
         {
           "source": { "title": "银翼杀手2049", "year": "2017", "tmdbId": 335984 },
           "recommend": { "title": "湮灭", "year": "2018", "tmdbId": 300668 },
-          "reason": "《银翼杀手2049》的压抑美学与存在主义追问，在《湮灭》中得到了更极致的自然主义转化。通过神秘的「闪晃」区域探讨自我毁灭与重生，视觉奇观背后是对人类意识本质的恐怖拷问。如果你着迷于前者那种沉重而诗意的科幻气质，这部小众佳作会让你回味无穷。"
+          "reason": "《银翼杀手2049》的压抑美学与存在主义追问，在《湮灭》中得到了更极致的自然主义转化。通过神秘的「闪晃」区域探讨自我毁灭与重生，视觉奇观背后是对人类意识本质的恐怖拷问。如果你着迷于前者那种沉重而诗意的科幻气质，这部小众佳作会让你回味无穷。",
+          "reasonEn": "Blade Runner 2049's oppressive beauty and existential dread find a radically organic echo in Annihilation. Through the mysterious 'Shimmer,' it examines self-destruction and rebirth — visual wonders masking a terrifying inquiry into the very nature of consciousness. A perfect follow-up for fans of poetic sci-fi."
         },
         {
           "source": { "title": "火星救援", "year": "2015", "tmdbId": 286217 },
           "recommend": { "title": "月球", "year": "2009", "tmdbId": 17431 },
-          "reason": "《火星救援》中主角在绝境中依靠科学与幽默生存下去，而《月球》用更沉静克制的方式讲述了一个人在月球基地上与孤独对抗的故事。两部作品都聚焦于宇航员面对极端环境时的冷静与坚韧，但后者多了一层关于身份与记忆的哲学追问。"
+          "reason": "《火星救援》中主角在绝境中依靠科学与幽默生存下去，而《月球》用更沉静克制的方式讲述了一个人在月球基地上与孤独对抗的故事。两部作品都聚焦于宇航员面对极端环境时的冷静与坚韧，但后者多了一层关于身份与记忆的哲学追问。",
+          "reasonEn": "The Martian's hero survives on ingenuity and wisecracks. Moon tells a quieter, more meditative story of isolation on a lunar base — both celebrate resilience in extreme isolation, but Moon adds haunting questions about identity, memory, and what makes us human."
         },
         {
           "source": { "title": "沙丘", "year": "2021", "tmdbId": 438631 },
           "recommend": { "title": "阿凡达", "year": "2009", "tmdbId": 19995 },
-          "reason": "《沙丘》与《阿凡达》共享史诗级的外星世界构建与殖民反抗主题。卡梅隆用十年磨一剑的技术革命将潘多拉星球的生态奇观呈现在大银幕上，与《沙丘》中厄拉科斯的沙漠史诗形成跨越时空的对话——两部作品都在各自时代重新定义了科幻电影的视觉边界。"
+          "reason": "《沙丘》与《阿凡达》共享史诗级的外星世界构建与殖民反抗主题。卡梅隆用十年磨一剑的技术革命将潘多拉星球的生态奇观呈现在大银幕上，与《沙丘》中厄拉科斯的沙漠史诗形成跨越时空的对话——两部作品都在各自时代重新定义了科幻电影的视觉边界。",
+          "reasonEn": "Dune and Avatar share epic alien world-building and colonial resistance at their core. Cameron's decade-in-the-making technical revolution brings Pandora's ecosystem to life, in dialogue with Arrakis' desert expanse — both films redefined what sci-fi cinema could achieve in their respective eras."
         }
       ]
     },
     {
       "name": "悬疑",
+      "nameEn": "Mystery",
       "pairs": [
         {
           "source": { "title": "禁闭岛", "year": "2010", "tmdbId": 11324 },
           "recommend": { "title": "记忆碎片", "year": "2000", "tmdbId": 77 },
-          "reason": "《禁闭岛》让你从头到尾质疑什么是真实，而《记忆碎片》将这种对记忆的怀疑推向了更极致的结构实验。诺兰用倒叙手法让你亲历失忆者的认知困境，每一段记忆都是一块拼图，而最终的真相会让你脊背发凉。"
+          "reason": "《禁闭岛》让你从头到尾质疑什么是真实，而《记忆碎片》将这种对记忆的怀疑推向了更极致的结构实验。诺兰用倒叙手法让你亲历失忆者的认知困境，每一段记忆都是一块拼图，而最终的真相会让你脊背发凉。",
+          "reasonEn": "Shutter Island has you questioning reality from the first frame. Memento pushes that same doubt about memory into an even more radical structural experiment — Nolan's reverse chronology forces you to experience the protagonist's fractured consciousness firsthand, each fragment clicking into place toward a chilling truth."
         },
         {
           "source": { "title": "致命魔术", "year": "2006", "tmdbId": 1124 },
           "recommend": { "title": "完美陌生人", "year": "2016", "tmdbId": 381341 },
-          "reason": "《致命魔术》告诉我们每一个魔术背后都有残酷的代价，而《完美陌生人》用一场朋友聚餐中的手机游戏揭开了人际关系中最隐秘的角落。前者是悬疑魔术师，后者是人性解剖刀——如果你享受真相层层剥开那一刻的震撼力，这部意大利电影会让你欲罢不能。"
+          "reason": "《致命魔术》告诉我们每一个魔术背后都有残酷的代价，而《完美陌生人》用一场朋友聚餐中的手机游戏揭开了人际关系中最隐秘的角落。前者是悬疑魔术师，后者是人性解剖刀——如果你享受真相层层剥开那一刻的震撼力，这部意大利电影会让你欲罢不能。",
+          "reasonEn": "The Prestige reveals that every great trick demands a terrible price. Perfect Strangers uses a dinner party and a phone game to expose the hidden corners of human relationships — one is a magician's duel, the other a scalpel dissection of intimacy. Both deliver the addictive thrill of revelation."
         },
         {
           "source": { "title": "穆赫兰道", "year": "2001", "tmdbId": 1018 },
           "recommend": { "title": "睁开你的双眼", "year": "1997", "tmdbId": 1902 },
-          "reason": "大卫·林奇的《穆赫兰道》是好莱坞梦魇的终极影像化，而《睁开你的双眼》用相似的笔触模糊了梦境与现实的边界。它是《香草天空》的原版，但更晦涩、更实验、更大胆。如果你沉迷于林奇式的叙事诡计，这部西班牙心理惊悚片会让你反复解读。"
+          "reason": "大卫·林奇的《穆赫兰道》是好莱坞梦魇的终极影像化，而《睁开你的双眼》用相似的笔触模糊了梦境与现实的边界。它是《香草天空》的原版，但更晦涩、更实验、更大胆。如果你沉迷于林奇式的叙事诡计，这部西班牙心理惊悚片会让你反复解读。",
+          "reasonEn": "David Lynch's Mulholland Drive is Hollywood's nightmare rendered in celluloid. Open Your Eyes blurs dream and reality with the same intoxicating ambiguity — it's the original of Vanilla Sky, but darker, stranger, and far more daring. If Lynch's narrative labyrinths captivated you, this Spanish psychothriller will haunt your rewatches."
         }
       ]
     },
     {
       "name": "恐怖",
+      "nameEn": "Horror",
       "pairs": [
         {
           "source": { "title": "遗传厄运", "year": "2018", "tmdbId": 493922 },
           "recommend": { "title": "圣鹿之死", "year": "2017", "tmdbId": 399057 },
-          "reason": "《遗传厄运》的家庭创伤与超自然恐怖让人不寒而栗，而《圣鹿之死》用希腊悲剧的结构包裹了一个现代心理惊悚故事。导演欧格斯·兰斯莫斯以标志性的怪异镜头语言营造出持续累积的不安感，比任何jump scare都更令人窒息。"
+          "reason": "《遗传厄运》的家庭创伤与超自然恐怖让人不寒而栗，而《圣鹿之死》用希腊悲剧的结构包裹了一个现代心理惊悚故事。导演欧格斯·兰斯莫斯以标志性的怪异镜头语言营造出持续累积的不安感，比任何jump scare都更令人窒息。",
+          "reasonEn": "Hereditary's unraveling family trauma and supernatural dread get a clinical counterpart in The Killing of a Sacred Deer. Lanthimos wraps a modern psychological thriller in the structure of Greek tragedy — his signature uncanny framing builds unease that lingers long after any single scare."
         },
         {
           "source": { "title": "灯塔", "year": "2019", "tmdbId": 503919 },
           "recommend": { "title": "女巫", "year": "2016", "tmdbId": 310131 },
-          "reason": "《灯塔》与《女巫》出自同一位导演罗伯特·艾格斯之手，共享对历史质感和心理恐怖的极致追求。前者在孤岛上见证人逐渐疯魔，后者在新英格兰荒野中目睹信仰被蚕食——两部作品都是慢热但后劲极大的当代恐怖经典，适合喜欢氛围大于惊吓的观众。"
+          "reason": "《灯塔》与《女巫》出自同一位导演罗伯特·艾格斯之手，共享对历史质感和心理恐怖的极致追求。前者在孤岛上见证人逐渐疯魔，后者在新英格兰荒野中目睹信仰被蚕食——两部作品都是慢热但后劲极大的当代恐怖经典，适合喜欢氛围大于惊吓的观众。",
+          "reasonEn": "The Lighthouse and The Witch come from the same director, Robert Eggers, and share his obsession with period authenticity and psychological horror. One tracks a man's descent into madness on a remote island; the other watches faith corrode in the New England wilderness. Both are slow-burn modern classics for those who prize atmosphere over cheap scares."
         }
       ]
     },
     {
       "name": "动画",
+      "nameEn": "Animation",
       "pairs": [
         {
           "source": { "title": "千与千寻", "year": "2001", "tmdbId": 129 },
           "recommend": { "title": "红海龟", "year": "2016", "tmdbId": 337703 },
-          "reason": "如果你为宫崎骏笔下那个亦幻亦真的世界所迷醉，高畑勋（吉卜力工作室）的《红海龟》用极简的叙事和无声的海洋寓言带给你同样深沉的心灵触动。全片无对白，仅凭画面与音乐讲述一个人与自然相遇的史诗，留白中蕴藏着巨大的情感力量。"
+          "reason": "如果你为宫崎骏笔下那个亦幻亦真的世界所迷醉，高畑勋（吉卜力工作室）的《红海龟》用极简的叙事和无声的海洋寓言带给你同样深沉的心灵触动。全片无对白，仅凭画面与音乐讲述一个人与自然相遇的史诗，留白中蕴藏着巨大的情感力量。",
+          "reasonEn": "Mesmerized by Miyazaki's dreamlike spirit world? The Red Turtle (Studio Ghibli) achieves the same profound emotional resonance through radical minimalism — a wordless ocean fable with no dialogue, just image and music telling an epic of solitude, nature, and connection."
         },
         {
           "source": { "title": "机器人总动员", "year": "2008", "tmdbId": 10681 },
           "recommend": { "title": "未来学大会", "year": "2013", "tmdbId": 152795 },
-          "reason": "《机器人总动员》用瓦力的眼睛审视消费主义与人类未来，而《未来学大会》将这种批判推向了更激进的哲学维度。真人与动画交织，探讨意识上传、记忆数字化与身份边界的终极命题，是一部为所有热爱科幻的动画迷准备的脑内风暴。"
+          "reason": "《机器人总动员》用瓦力的眼睛审视消费主义与人类未来，而《未来学大会》将这种批判推向了更激进的哲学维度。真人与动画交织，探讨意识上传、记忆数字化与身份边界的终极命题，是一部为所有热爱科幻的动画迷准备的脑内风暴。",
+          "reasonEn": "Wall-E viewed consumerism and humanity's future through the eyes of a little robot. The Congress pushes that critique into dizzying philosophical territory — blending live-action and animation to explore consciousness upload, digital identity, and the vanishing line between performer and performance."
         }
       ]
     },
     {
       "name": "战争",
+      "nameEn": "War",
       "pairs": [
         {
           "source": { "title": "1917", "year": "2019", "tmdbId": 530915 },
           "recommend": { "title": "西线无战事", "year": "2022", "tmdbId": 49046 },
-          "reason": "《1917》以一镜到底的沉浸式体验让你跟随主角穿行于一战的战壕与废墟，而《西线无战事》用最沉重克制的笔触揭示了战争的无意义与对人的异化。前者是技术奇迹与感官震撼，后者是灵魂叩问与历史反思——两部作品共同构成对一战最完整的影像回应。"
+          "reason": "《1917》以一镜到底的沉浸式体验让你跟随主角穿行于一战的战壕与废墟，而《西线无战事》用最沉重克制的笔触揭示了战争的无意义与对人的异化。前者是技术奇迹与感官震撼，后者是灵魂叩问与历史反思——两部作品共同构成对一战最完整的影像回应。",
+          "reasonEn": "1917's real-time, one-shot approach plunges you into WWI's trenches without respite. All Quiet on the Western Front (2022) offers the necessary counterweight — a grim, unblinking account of war's futility and dehumanization. One is a technical marvel of immersion, the other a soul-searing historical reckoning."
         },
         {
           "source": { "title": "拯救大兵瑞恩", "year": "1998", "tmdbId": 857 },
           "recommend": { "title": "细细的红线", "year": "1998", "tmdbId": 8741 },
-          "reason": "斯皮尔伯格的《拯救大兵瑞恩》用诺曼底登陆的经典开场重新定义了战争片的视听语言，而泰伦斯·马利克的《细细的红线》用诗意的镜头追问战争的意义与自然的永恒。两部作品同年上映，同以二战为背景，却走向了完全相反的美学方向——前者是写实主义的巅峰，后者是印象派的杰作。"
+          "reason": "斯皮尔伯格的《拯救大兵瑞恩》用诺曼底登陆的经典开场重新定义了战争片的视听语言，而泰伦斯·马利克的《细细的红线》用诗意的镜头追问战争的意义与自然的永恒。两部作品同年上映，同以二战为背景，却走向了完全相反的美学方向——前者是写实主义的巅峰，后者是印象派的杰作。",
+          "reasonEn": "Saving Private Ryan's Normandy landing redefined cinematic realism. The Thin Red Line asks entirely different questions — poetic, philosophical — about war's meaning and nature's indifference. Both released in 1998, both set in WWII, yet they occupy opposite poles of cinema: realism's summit and impressionism's masterpiece."
         }
       ]
     },
     {
       "name": "犯罪",
+      "nameEn": "Crime",
       "pairs": [
         {
           "source": { "title": "教父", "year": "1972", "tmdbId": 238 },
           "recommend": { "title": "美国往事", "year": "1984", "tmdbId": 311 },
-          "reason": "《教父》与《美国往事》是黑帮电影的两座不可逾越的高峰。后者用更漫长的时间跨度、更伤感的叙事笔触，书写了犹太移民在美国半个世纪的浮沉史诗。如果你着迷于科莱昂家族的权力传承与家族羁绊，面条和麦克斯跨越数十年的恩怨纠葛会让你在片尾长叹不已。"
+          "reason": "《教父》与《美国往事》是黑帮电影的两座不可逾越的高峰。后者用更漫长的时间跨度、更伤感的叙事笔触，书写了犹太移民在美国半个世纪的浮沉史诗。如果你着迷于科莱昂家族的权力传承与家族羁绊，面条和麦克斯跨越数十年的恩怨纠葛会让你在片尾长叹不已。",
+          "reasonEn": "The Godfather and Once Upon a Time in America are the twin summits of gangster cinema. The latter unfolds over decades with a more melancholic gaze, chronicling Jewish immigrants' rise and fall across the American century. If the Corleones' bond of blood and power drew you in, Noodles and Max's decades-spanning saga will leave you shattered."
         },
         {
           "source": { "title": "无间道", "year": "2002", "tmdbId": 10775 },
           "recommend": { "title": "杀人回忆", "year": "2003", "tmdbId": 11423 },
-          "reason": "《无间道》与《杀人回忆》是亚洲犯罪片的两座里程碑。后者以韩国华城连环杀人案为背景，奉俊昊用冰冷的镜头语言和荒诞的时代氛围讲述了一个「追凶者最终被案件吞噬」的故事。如果你喜欢《无间道》中宿命般的悲剧气质，这部杰作会让你的无力感在片尾字幕升起时达到顶峰。"
+          "reason": "《无间道》与《杀人回忆》是亚洲犯罪片的两座里程碑。后者以韩国华城连环杀人案为背景，奉俊昊用冰冷的镜头语言和荒诞的时代氛围讲述了一个「追凶者最终被案件吞噬」的故事。如果你喜欢《无间道》中宿命般的悲剧气质，这部杰作会让你的无力感在片尾字幕升起时达到顶峰。",
+          "reasonEn": "Infernal Affairs and Memories of Murder are two pillars of Asian crime cinema. The latter is Bong Joon-ho's chilling portrait of Korea's Hwaseong serial murders — a story of hunters consumed by their obsession. If Infernal Affairs' tragic fate resonated with you, this masterpiece's final image will burn itself into your memory."
         }
       ]
     },
     {
       "name": "剧情",
+      "nameEn": "Drama",
       "pairs": [
         {
           "source": { "title": "楚门的世界", "year": "1998", "tmdbId": 37165 },
           "recommend": { "title": "机械姬", "year": "2015", "tmdbId": 264660 },
-          "reason": "《楚门的世界》对真实性的追问在《机械姬》中得到了AI视角的全新演绎：前者发现自己的人生是一场直播秀，后者在封闭空间中进行着关于意识的终极图灵测试。两部电影都让你走出影院后重新审视——什么是真实？谁在观察你？而自由又意味着什么？"
+          "reason": "《楚门的世界》对真实性的追问在《机械姬》中得到了AI视角的全新演绎：前者发现自己的人生是一场直播秀，后者在封闭空间中进行着关于意识的终极图灵测试。两部电影都让你走出影院后重新审视——什么是真实？谁在观察你？而自由又意味着什么？",
+          "reasonEn": "The Truman Show's question — what is real? — gets an AI-era reimagining in Ex Machina. One man learns his entire life is a broadcast; another walks into a secluded estate for the ultimate Turing test. Both leave the same disquieting aftertaste: who is watching, and what does freedom actually mean?"
         }
       ]
     },
     {
       "name": "奇幻",
+      "nameEn": "Fantasy",
       "pairs": [
         {
           "source": { "title": "指环王1：护戒使者", "year": "2001", "tmdbId": 120 },
           "recommend": { "title": "绿衣骑士", "year": "2021", "tmdbId": 559907 },
-          "reason": "如果你沉醉于中土世界的宏大冒险，《绿骑士》用完全不同的美学带你进入亚瑟王传说中的奇幻疆域——极简、诡异、充满象征意味。它没有《护戒使者》的壮阔战役，却用每一次静谧的镜头和每一帧精妙的构图传递出同等的史诗感与宿命感。"
+          "reason": "如果你沉醉于中土世界的宏大冒险，《绿骑士》用完全不同的美学带你进入亚瑟王传说中的奇幻疆域——极简、诡异、充满象征意味。它没有《护戒使者》的壮阔战役，却用每一次静谧的镜头和每一帧精妙的构图传递出同等的史诗感与宿命感。",
+          "reasonEn": "Swept away by Middle-earth's epic adventure? The Green Knight offers a radically different entry into legend — minimalist, eerie, drenched in symbolism. It trades Fellowship's grand battles for quiet, composition-heavy frames that carry the same weight of destiny and duty, but through stillness rather than spectacle."
         }
       ]
     }

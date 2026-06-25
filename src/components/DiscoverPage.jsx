@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import discoverData from "../data/discover.json";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
+import { fetchMovieByTmdbId } from "../services/api";
 
 const GENRE_COLORS = {
   "科幻": "#ff00ff",
@@ -15,7 +16,44 @@ const GENRE_COLORS = {
 };
 
 const DiscoverPage = () => {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const [posterMap, setPosterMap] = useState({});
+
+  useEffect(() => {
+    const allIds = new Set();
+    discoverData.genres.forEach((g) =>
+      g.pairs.forEach((p) => {
+        allIds.add(p.source.tmdbId);
+        allIds.add(p.recommend.tmdbId);
+      })
+    );
+
+    let cancelled = false;
+    const fetchPosters = async () => {
+      const map = {};
+      await Promise.allSettled(
+        [...allIds].map(async (id) => {
+          const data = await fetchMovieByTmdbId(id, locale);
+          if (data) {
+            let info = data;
+            if (typeof info === "string") {
+              try { info = JSON.parse(info); } catch { info = null; }
+            }
+            if (info?.poster_path) map[id] = info.poster_path;
+          }
+        })
+      );
+      if (!cancelled) setPosterMap(map);
+    };
+    fetchPosters();
+    return () => { cancelled = true; };
+  }, []);
+
+  const posterUrl = (tmdbId, size = "w92") =>
+    posterMap[tmdbId]
+      ? `https://image.tmdb.org/t/p/${size}${posterMap[tmdbId]}`
+      : null;
+
   return (
     <div className="min-h-screen graffiti-bg text-black pb-20">
       {/* Header */}
@@ -28,7 +66,7 @@ const DiscoverPage = () => {
             KIM'S <span className="text-[#00ffff]">VIDEO</span>
           </h1>
         </a>
-        <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">&quot;Art is above the law.&quot;</p>
+        <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">&quot;{t('tagline')}&quot;</p>
       </header>
 
       {/* Intro */}
@@ -56,7 +94,7 @@ const DiscoverPage = () => {
                   textShadow: "2px 2px 0 rgba(0,0,0,0.3)",
                 }}
               >
-                {genre.name}
+                {locale === "en" ? genre.nameEn : genre.name}
               </h2>
 
               <div className="space-y-4">
@@ -68,23 +106,39 @@ const DiscoverPage = () => {
                       className="bg-white border-4 border-black p-5"
                       style={{ boxShadow: `8px 8px 0 0 ${color}` }}
                     >
-                      {/* Source → Recommend header */}
-                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-3">
+                      {/* Source → Recommend header with posters */}
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-3">
                         <span className="text-sm font-bold text-gray-500">{t('discover.if_like')}</span>
+                        {posterUrl(pair.source.tmdbId) && (
+                          <img
+                            src={posterUrl(pair.source.tmdbId)}
+                            alt={pair.source.title}
+                            className="w-10 sm:w-12 border-2 border-black self-center"
+                            loading="lazy"
+                          />
+                        )}
                         <span className="font-black text-lg" style={{ color }}>
-                          《{pair.source.title}》
+                          {locale === "zh" ? `《${pair.source.title}》` : pair.source.title}
                         </span>
                         <span className="text-gray-400 text-sm">({pair.source.year})</span>
                         <span className="text-gray-500 mx-1 text-lg">{t('discover.arrow')}</span>
+                        {posterUrl(pair.recommend.tmdbId) && (
+                          <img
+                            src={posterUrl(pair.recommend.tmdbId)}
+                            alt={pair.recommend.title}
+                            className="w-10 sm:w-12 border-2 border-black self-center"
+                            loading="lazy"
+                          />
+                        )}
                         <span className="font-black text-lg text-black">
-                          《{pair.recommend.title}》
+                          {locale === "zh" ? `《${pair.recommend.title}》` : pair.recommend.title}
                         </span>
                         <span className="text-gray-400 text-sm">({pair.recommend.year})</span>
                       </div>
 
                       {/* Reason */}
                       <p className="text-gray-700 text-sm leading-relaxed mb-3">
-                        {pair.reason}
+                        {locale === "en" ? pair.reasonEn : pair.reason}
                       </p>
 
                       {/* Link */}
