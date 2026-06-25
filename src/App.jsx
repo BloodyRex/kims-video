@@ -271,10 +271,10 @@ function AppContent() {
 
   // ── Discover 页面（独立路由，SEO 友好）─────
   const [showDiscover] = useState(() => {
-    if (window.location.pathname === "/discover") return true;
+    if (window.location.pathname.startsWith("/discover")) return true;
     try {
       const redirect = sessionStorage.getItem("redirect");
-      if (redirect === "/discover" || redirect === "/discover/") {
+      if (redirect && redirect.startsWith("/discover")) {
         sessionStorage.removeItem("redirect");
         return true;
       }
