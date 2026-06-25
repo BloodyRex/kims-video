@@ -249,12 +249,6 @@ const DiscoverPage = () => {
             >
               {t('seo.link.home')}
             </a>
-            <a
-              href="/discover"
-              className="text-[#ff00ff] text-xs pixel-font hover:underline uppercase tracking-wider"
-            >
-              {t('seo.link.discover')}
-            </a>
           </div>
         </div>
       </section>

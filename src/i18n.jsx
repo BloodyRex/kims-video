@@ -111,7 +111,6 @@ const messages = {
     "seo.footer.p1": "本系统通过分析电影的类型标签、剧情结构与观众情绪反馈，构建跨影片的相似性网络。",
     "seo.footer.p2": "推荐结果并不依赖单一评分，而是综合叙事结构与观影体验进行匹配。",
     "seo.link.home": "返回首页",
-    "seo.link.discover": "重新发现推荐",
   },
   en: {
     // ---- SplashPage ----
@@ -223,7 +222,6 @@ const messages = {
     "seo.footer.p1": "This system analyzes film genre tags, narrative structure, and audience emotional feedback to build a cross-film similarity network.",
     "seo.footer.p2": "Recommendations are not based on a single rating, but combine narrative structure and viewing experience for matching.",
     "seo.link.home": "Back to Home",
-    "seo.link.discover": "Discover More",
   },
 };
 

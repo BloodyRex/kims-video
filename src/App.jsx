@@ -270,7 +270,19 @@ function AppContent() {
   }, [step, detailData, primaryMovie?.title, primaryMovie?.year, primaryMovie?.tmdbId, secondaryMovie?.tmdbId, sourceTmdbId, detailMovieId, recommendations, locale]);
 
   // ── Discover 页面（独立路由，SEO 友好）─────
-  if (window.location.pathname === "/discover") {
+  const [showDiscover] = useState(() => {
+    if (window.location.pathname === "/discover") return true;
+    try {
+      const redirect = sessionStorage.getItem("redirect");
+      if (redirect === "/discover" || redirect === "/discover/") {
+        sessionStorage.removeItem("redirect");
+        return true;
+      }
+    } catch {}
+    return false;
+  });
+
+  if (showDiscover) {
     return <DiscoverPage />;
   }
 
