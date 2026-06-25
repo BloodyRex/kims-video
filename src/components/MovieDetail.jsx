@@ -2,6 +2,7 @@ import React from "react";
 import { Icons } from "./Icons";
 import Loading from "./Loading";
 import { useLocale } from "../i18n";
+import { posterAlt } from "../utils/posterAlt";
 
 const MovieDetail = ({
   detailData,
@@ -14,7 +15,7 @@ const MovieDetail = ({
   onShare,
   onReset,
 }) => {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   if (detailLoading && !detailData) {
     return <Loading loadingMessage="" step="" />;
   }
@@ -56,7 +57,7 @@ const MovieDetail = ({
             <div className="border-4 border-black overflow-hidden shadow-[4px_4px_0_0_#000]">
               <img
                 src={detailData.poster}
-                alt={detailData.title}
+                alt={posterAlt(detailData.title, detailData.year, detailData.originalTitle, locale)}
                 className="w-full h-auto object-cover"
               />
             </div>

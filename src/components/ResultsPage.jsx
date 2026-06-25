@@ -1,6 +1,7 @@
 import React from "react";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
+import { posterAlt } from "../utils/posterAlt";
 
 const ResultsPage = ({
   recommendations,
@@ -14,7 +15,7 @@ const ResultsPage = ({
   onViewDetail,
   onReset,
 }) => {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
 
   if (!recommendations || recommendations.length === 0) {
     return (
@@ -197,8 +198,7 @@ const ResultsPage = ({
                   <div className="relative border-4 border-black overflow-hidden shadow-[4px_4px_0_0_#000]">
                     <img
                       src={rec.poster}
-                      alt={`${rec.title} 海报`}
-                      className="w-full h-auto object-cover"
+                      alt={posterAlt(rec.title, rec.year, rec.originalTitle, locale)}
                     />
                   </div>
                 ) : (

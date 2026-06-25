@@ -2,9 +2,10 @@ import React from "react";
 import { Icons } from "./Icons";
 import { posterProxy } from "../utils/url";
 import { useLocale } from "../i18n";
+import { posterAlt } from "../utils/posterAlt";
 
 const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const posterWidth = 100;
   const posterHeight = 150;
 
@@ -127,7 +128,7 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
                   <div style={{ height: `${posterHeight}px`, overflow: "hidden" }}>
                     <img
                       src={posterProxy(rec.poster)}
-                      alt={rec.title}
+                      alt={posterAlt(rec.title, rec.year, rec.originalTitle, locale)}
                       crossOrigin="anonymous"
                       style={{
                         width: "100%",

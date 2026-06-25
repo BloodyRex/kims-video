@@ -8,11 +8,11 @@ export const updateSeo = (sourceMovies, movieData, locale = "zh") => {
       : sourceMovies.map((m) => `"${m.title}"`).join(" and ")
     : sourceMovies.length === 1
       ? `《${sourceMovies[0].title}》`
-      : sourceMovies.map((m) => `《${m.title}》`).join(" 和 ");
+      : sourceMovies.map((m) => `《${m.title}》`).join(" 和");
 
   document.title = isEn
     ? `Liked ${sourceText}? "${movieData.title}" might be your next movie | Kim's Video`
-    : `喜欢${sourceText}？《${movieData.title}》可能是你的下一部电影｜Kim's Video`;
+    : `喜欢${sourceText}？《${movieData.title}》可能是你的下一部电影 | Kim's Video`;
 
   const prefix = isEn
     ? `If you liked ${sourceText}, AI recommends "${movieData.title}". `
@@ -119,7 +119,7 @@ export const updateStructuredData = (
       : sourceMovies.map((m) => `"${m.title}"`).join(" and ")
     : sourceMovies.length === 1
       ? `《${sourceMovies[0].title}》`
-      : sourceMovies.map((m) => `《${m.title}》`).join(" 和 ");
+      : sourceMovies.map((m) => `《${m.title}》`).join(" 和");
 
   let aggregateRating = null;
   if (detailData.vote_average) {
@@ -142,6 +142,39 @@ export const updateStructuredData = (
     : matchedTags.length > 0
       ? `如果你喜欢${sourceText}，AI 基于"${matchedTags.join("、")}"等关键词推荐《${detailData.title}》。`
       : `如果你喜欢${sourceText}，AI 推荐你观看《${detailData.title}》。`;
+
+  // Build BreadcrumbList for structured data
+  const primarySource = sourceMovies[0];
+  const breadcrumbItems = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Kim's Video",
+      item: "https://bloodyrex.xyz/",
+    },
+  ];
+
+  if (primarySource?.tmdbId) {
+    breadcrumbItems.push({
+      "@type": "ListItem",
+      position: 2,
+      name: isEn
+        ? `AI Picks for "${primarySource.title}"`
+        : `《${primarySource.title}》的 AI 推荐`,
+      item: `https://bloodyrex.xyz/?from=${primarySource.tmdbId}`,
+    });
+    breadcrumbItems.push({
+      "@type": "ListItem",
+      position: 3,
+      name: detailData.title,
+    });
+  } else {
+    breadcrumbItems.push({
+      "@type": "ListItem",
+      position: 2,
+      name: detailData.title,
+    });
+  }
 
   const schema = {
     "@context": "https://schema.org",
@@ -178,6 +211,10 @@ export const updateStructuredData = (
           name: "Kim's Video",
           url: "https://bloodyrex.xyz/",
         },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbItems,
       },
     ],
   };

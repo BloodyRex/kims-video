@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import discoverData from "../data/discover.json";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
+import { posterAlt } from "../utils/posterAlt";
 import { fetchMovieByTmdbId } from "../services/api";
 
 const LANG_BUTTON_STYLE = {
@@ -168,7 +169,7 @@ const DiscoverPage = () => {
                         {posterUrl(pair.source.tmdbId) && (
                           <img
                             src={posterUrl(pair.source.tmdbId)}
-                            alt={getTitle(pair.source)}
+                            alt={posterAlt(pair.source.title, pair.source.year, pair.source.titleEn, locale)}
                             className="w-10 sm:w-12 border-2 border-black self-center"
                             loading="lazy"
                           />
@@ -181,7 +182,7 @@ const DiscoverPage = () => {
                         {posterUrl(pair.recommend.tmdbId) && (
                           <img
                             src={posterUrl(pair.recommend.tmdbId)}
-                            alt={getTitle(pair.recommend)}
+                            alt={posterAlt(pair.recommend.title, pair.recommend.year, pair.recommend.titleEn, locale)}
                             className="w-10 sm:w-12 border-2 border-black self-center"
                             loading="lazy"
                           />
