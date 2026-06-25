@@ -4,6 +4,10 @@ import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { fetchMovieByTmdbId } from "../services/api";
 
+const LANG_BUTTON_STYLE = {
+  fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
+};
+
 const GENRE_COLORS = {
   "科幻": "#ff00ff",
   "悬疑": "#00ffff",
@@ -27,7 +31,7 @@ const GENRE_THEMES = {
 };
 
 const DiscoverPage = () => {
-  const { t, locale } = useLocale();
+  const { t, locale, toggleLocale } = useLocale();
   const [posterMap, setPosterMap] = useState({});
 
   useEffect(() => {
@@ -82,6 +86,13 @@ const DiscoverPage = () => {
     <div className="min-h-screen graffiti-bg text-black pb-32">
       {/* Header */}
       <header className="relative z-10 flex flex-col items-center py-4 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
+        <button
+          onClick={toggleLocale}
+          className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black sm:text-sm z-20"
+          style={LANG_BUTTON_STYLE}
+        >
+          {locale === "zh" ? "En" : "中"}
+        </button>
         <a href="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
             <span className="text-black transform rotate-90"><Icons.Play /></span>
