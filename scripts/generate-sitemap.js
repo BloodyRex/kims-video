@@ -1,4 +1,4 @@
-﻿import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -15,7 +15,7 @@ function buildEntries() {
 
   const entries = [
     { loc: `${SITE}/`, changefreq: "weekly", priority: "1.0", lastmod: today },
-    { loc: `${SITE}/discover`, changefreq: "weekly", priority: "0.9", lastmod: today },
+    { loc: `${SITE}/discover`, changefreq: "daily", priority: "0.9", lastmod: today },
   ];
 
   const seenSources = new Set();
@@ -23,10 +23,22 @@ function buildEntries() {
   for (const genre of discover.genres) {
     for (const pair of genre.pairs) {
       seenSources.add(pair.source.tmdbId);
+      const from = pair.source.tmdbId;
+      const r = pair.recommend.tmdbId;
+
+      // Query-param URLs (legacy, for existing indexed pages)
       entries.push({
-        loc: `${SITE}/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}`,
+        loc: `${SITE}/?from=${from}&r=${r}`,
         changefreq: "weekly",
         priority: "0.7",
+        lastmod: today,
+      });
+
+      // Path-based static pre-rendered detail pages (crawler-friendly)
+      entries.push({
+        loc: `${SITE}/d/${from}-${r}`,
+        changefreq: "weekly",
+        priority: "0.8",
         lastmod: today,
       });
     }
