@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useCallback } from "react";
 const messages = {
   zh: {
     // ---- SplashPage ----
-    "tagline": "电影在呼唤我",
+    "tagline": "The movies were calling",
     "splash.desc": "输入你喜欢的影视作品，AI 通过渐进式问答精准分析你的审美口味，为你推荐量身定制的电影与剧集。",
     "splash.feature1.title": "双作品输入",
     "splash.feature1.desc": "可输入 1-2 部参考作品，AI 分析共同特征与差异，精准定位你的品味坐标。",
@@ -104,7 +104,7 @@ const messages = {
   },
   en: {
     // ---- SplashPage ----
-    "tagline": "The movies were calling to me.",
+    "tagline": "The movies were calling",
     "splash.desc": "Tell us what you love. AI-powered progressive Q&A pinpoints your taste and recommends films & shows tailored to you.",
     "splash.feature1.title": "Dual Input",
     "splash.feature1.desc": "Enter 1-2 reference works. AI analyzes commonalities and differences to pinpoint your taste coordinates.",
@@ -133,11 +133,11 @@ const messages = {
     "input.submit": "ANALYZE DNA",
     "input.suggestion_format": "（{year}，{director}）",
     "input.quotes": [
-      "Kim's Video was our film school.",
-      "Physical media reigns supreme.",
-      "A temple for movie lovers.",
-      "55,000 movies. One obsession.",
-      "Every tape tells a story.",
+      "Kim's Video was our film school",
+      "Physical media reigns supreme",
+      "A temple for movie lovers",
+      "55,000 movies. One obsession",
+      "Every tape tells a story",
     ],
 
     // ---- ResultsPage ----
@@ -167,12 +167,12 @@ const messages = {
 
     // ---- Loading ----
     "loading.quotes": [
-      "Rent a movie.",
-      "Film everything.",
-      "The videos spoke to me.",
-      "Go for it. See what happens.",
-      "Some collections refuse to disappear.",
-      "The movies were calling.",
+      "Rent a movie",
+      "Film everything",
+      "The videos spoke to me",
+      "Go for it. See what happens",
+      "Some collections refuse to disappear",
+      "The movies were calling",
     ],
     "loading.eta": "Usually takes 3-8s",
 
