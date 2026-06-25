@@ -78,7 +78,7 @@ const QAPage = ({ questions, currentQIndex, onAnswer }) => {
 
         {/* 标签 */}
         <div
-          className={`absolute top-4 right-4 text-xs font-black border-2 border-black px-2 py-1 pixel-font ${
+          className={`absolute top-4 right-4 text-xs font-black border-2 border-black px-2 py-1 pixel-font z-20 ${
             isSimple
               ? "bg-[#00ffff] text-black"
               : "bg-[#ff00ff] text-white"
