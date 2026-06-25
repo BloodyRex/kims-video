@@ -410,8 +410,12 @@ export function useMovieEngine() {
   };
 
   const handleBackToResults = () => {
-    resetSeo(locale);
     const curParams = new URLSearchParams(window.location.search);
+    if (curParams.get("discover") === "1") {
+      window.location.href = "/discover";
+      return;
+    }
+    resetSeo(locale);
     const fromParam = curParams.get("from");
     const resultSourceIds = (fromParam?.split(",").filter(Boolean).map(Number) || []);
 
