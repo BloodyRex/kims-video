@@ -47,7 +47,33 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
-// Build genre nav list for the top of the page
+// Build editorPicks carousel HTML
+let editorPicksHtml = '';
+if (discover.editorPicks) {
+  for (const pair of discover.editorPicks) {
+    const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
+    editorPicksHtml += `
+            <div style="flex-shrink:0;width:260px;background:#fff;border:4px solid #000;overflow:hidden;box-shadow:6px 6px 0 0 rgba(0,0,0,1);scroll-snap-align:start;">
+              <div style="display:flex;gap:8px;padding:12px;align-items:center;">
+                <span style="font-size:12px;font-weight:900;">${escapeHtml(pair.source.title)} (${escapeHtml(pair.source.year)})</span>
+                <span style="font-size:18px;font-weight:900;color:#ff00ff;">→</span>
+                <span style="font-size:12px;font-weight:900;">${escapeHtml(pair.recommend.title)} (${escapeHtml(pair.recommend.year)})</span>
+              </div>
+              <div style="padding:0 12px 12px;">
+                <p style="font-size:10px;color:#666;">${escapeHtml(pair.reason)}</p>
+              </div>
+            </div>`;
+  }
+  // CTA card
+  editorPicksHtml += `
+            <a href="/" style="flex-shrink:0;width:180px;background:#ffff00;border:4px solid #000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;text-decoration:none;color:#000;box-shadow:6px 6px 0 0 rgba(0,0,0,1);scroll-snap-align:start;">
+              <span style="font-size:24px;">🎬</span>
+              <span style="font-size:12px;font-weight:900;text-transform:uppercase;margin-top:8px;">开始你自己的</span>
+              <span style="font-size:10px;color:#666;margin-top:4px;">→ 获取 AI 推荐</span>
+            </a>`;
+}
+
+// Build genre nav
 let genreNavHtml = '';
 for (const genre of discover.genres) {
   const slug = GENRE_SLUGS[genre.name] || genre.name;
@@ -55,21 +81,19 @@ for (const genre of discover.genres) {
 }
 genreNavHtml = genreNavHtml.replace(/·$/, '');
 
-// Build FAQ items for JSON-LD
+// FAQ items
 let faqItemsJson = [];
 let genreSectionsHtml = '';
 
 for (const genre of discover.genres) {
   const color = GENRE_COLORS[genre.name] || '#ff00ff';
   const slug = GENRE_SLUGS[genre.name] || genre.name;
-  const theme = GENRE_THEMES[genre.name] || { zh: "主题与情感体验", en: "themes and emotional experience" };
 
   let pairsHtml = '';
   for (const pair of genre.pairs) {
     const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
     const sourceResultUrl = `/?from=${pair.source.tmdbId}`;
 
-    // FAQ item for JSON-LD
     faqItemsJson.push({
       "@type": "Question",
       name: `如果你喜欢《${pair.source.title}》（${pair.source.year}），有什么类似的电影推荐？`,
@@ -130,12 +154,10 @@ const html = `<!DOCTYPE html>
   <meta property="og:url" content="${SITE}/discover" />
   <meta property="og:type" content="website" />
 
-  <!-- hreflang -->
   <link rel="alternate" hreflang="zh" href="${SITE}/discover?lang=zh" />
   <link rel="alternate" hreflang="en" href="${SITE}/discover?lang=en" />
   <link rel="alternate" hreflang="x-default" href="${SITE}/discover" />
 
-  <!-- FAQ Structured Data -->
   <script type="application/ld+json">${JSON.stringify(faqSchema, null, 2)}</script>
 
   <style>
@@ -157,6 +179,14 @@ const html = `<!DOCTYPE html>
         <h1 style="font-size:28px;font-weight:900;margin:0 0 8px;">KIM'S VIDEO — DISCOVER</h1>
         <p style="color:#888;font-size:14px;">每一部你热爱的电影，都通往另一场未知的冒险。</p>
       </header>
+
+      <!-- Editor's Picks -->
+      <section style="margin-bottom:40px;">
+        <h3 style="font-size:14px;font-weight:900;color:#ffff00;text-transform:uppercase;margin-bottom:12px;">★ 编辑精选</h3>
+        <div style="display:flex;gap:16px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory;">
+          ${editorPicksHtml}
+        </div>
+      </section>
 
       <!-- Genre navigation -->
       <nav style="text-align:center;padding:16px;margin-bottom:32px;background:rgba(255,255,255,0.05);border:2px solid #ffff00;">
@@ -192,4 +222,4 @@ const html = `<!DOCTYPE html>
 const outDir = resolve(dist, 'discover');
 if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 writeFileSync(resolve(outDir, 'index.html'), html);
-console.log(`[generate-discover-page.js] ✓ dist/discover/index.html generated (FAQ + hreflang)`);
+console.log('[generate-discover-page.js] generated (editorPicks + FAQ + hreflang)');

@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { posterAlt } from "../utils/posterAlt";
+import { publishToDiscover } from "../services/discoverApi";
+import { fetchMovieByTmdbId } from "../services/api";
+
+const CATEGORIES = ["科幻", "悬疑", "恐怖", "动画", "战争", "犯罪", "剧情", "奇幻"];
+
+function mapGenreFromNames(genreNames) {
+  if (!genreNames?.length) return "剧情";
+  for (const name of genreNames) {
+    if (CATEGORIES.includes(name)) return name;
+  }
+  for (const name of genreNames) {
+    if (name === "惊悚") return "悬疑";
+    if (name === "爱情" || name === "历史" || name === "音乐" || name === "家庭") return "剧情";
+    if (name === "冒险") return "奇幻";
+  }
+  return "剧情";
+}
 
 const ResultsPage = ({
   recommendations,
@@ -16,6 +33,62 @@ const ResultsPage = ({
   onReset,
 }) => {
   const { t, locale } = useLocale();
+  const [showPublishModal, setShowPublishModal] = useState(false);
+  const [contributorName, setContributorName] = useState("");
+  const [publishing, setPublishing] = useState(false);
+  const [publishDone, setPublishDone] = useState(false);
+  const [publishError, setPublishError] = useState("");
+
+  const handlePublish = async () => {
+    setPublishing(true);
+    setPublishError("");
+    try {
+      // Determine genre from primary movie's TMDB data
+      let genre = "剧情";
+      if (primaryMovie.tmdbId) {
+        try {
+          const details = await fetchMovieByTmdbId(primaryMovie.tmdbId, locale);
+          if (details?.genres) {
+            genre = mapGenreFromNames(details.genres);
+          }
+        } catch (e) { /* use default */ }
+      }
+
+      const sourceMovies = [
+        { title: primaryMovie.title, titleEn: "", year: primaryMovie.year, tmdbId: primaryMovie.tmdbId },
+      ];
+      if (secondaryMovie?.title) {
+        sourceMovies.push({
+          title: secondaryMovie.title,
+          titleEn: "",
+          year: secondaryMovie.year,
+          tmdbId: secondaryMovie.tmdbId,
+        });
+      }
+
+      await publishToDiscover({
+        sourceMovies,
+        recommendations: recommendations.map(r => ({
+          tmdbId: r.tmdbId,
+          title: r.title,
+          titleEn: r.originalTitle || "",
+          year: r.year,
+          director: r.director,
+          type: r.type,
+          reason: r.reason,
+          matchedTags: r.matchedTags,
+        })),
+        genre,
+        contributorName: contributorName.trim() || "",
+      });
+
+      setPublishDone(true);
+    } catch (e) {
+      setPublishError(e.message || "Failed");
+    } finally {
+      setPublishing(false);
+    }
+  };
 
   if (!recommendations || recommendations.length === 0) {
     return (
@@ -44,7 +117,7 @@ const ResultsPage = ({
             })}
           </p>
         </div>
-        <div className="flex items-center gap-2 mt-4 md:mt-0 flex-shrink-0">
+        <div className="flex items-center gap-2 mt-4 md:mt-0 flex-shrink-0 flex-wrap">
           <button
             onClick={onSaveImage}
             disabled={isCapturing}
@@ -53,18 +126,7 @@ const ResultsPage = ({
             {isCapturing ? (
               <Icons.Loader2 className="w-4 h-4 mr-1" />
             ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-1"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
@@ -76,18 +138,7 @@ const ResultsPage = ({
             onClick={onShare}
             className="flex items-center text-white bg-[#00ffff] border-4 border-black px-4 py-2 uppercase font-bold hover:bg-[#40ffff] transition-colors pixel-font text-xs shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mr-1"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
               <circle cx="18" cy="5" r="3" />
               <circle cx="6" cy="12" r="3" />
               <circle cx="18" cy="19" r="3" />
@@ -96,8 +147,77 @@ const ResultsPage = ({
             </svg>
             SHARE
           </button>
+          <button
+            onClick={() => { setShowPublishModal(true); setPublishDone(false); setPublishError(""); }}
+            className="flex items-center text-black bg-[#ffff00] border-4 border-black px-4 py-2 uppercase font-bold hover:bg-[#ffff40] transition-colors pixel-font text-xs shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+            {locale === "en" ? "PUBLISH" : "发布到发现页"}
+          </button>
         </div>
       </div>
+
+      {/* Publish modal */}
+      {showPublishModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" onClick={() => setShowPublishModal(false)}>
+          <div className="bg-white border-8 border-black shadow-[16px_16px_0_0_rgba(0,0,0,1)] p-6 max-w-md w-full" onClick={e => e.stopPropagation()}>
+            {publishDone ? (
+              <div className="text-center py-4">
+                <div className="text-4xl mb-3">🎉</div>
+                <h3 className="text-xl font-black pixel-font mb-2">{locale === "en" ? "Published!" : "发布成功！"}</h3>
+                <p className="text-sm text-gray-600 mb-4">{locale === "en" ? "Your picks are now on the Discover page." : "你的推荐已展示在发现页面。"}</p>
+                <a
+                  href="/discover"
+                  className="inline-block bg-[#ffff00] border-4 border-black px-6 py-2 font-black text-sm pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-0.5 transition-all"
+                >
+                  {locale === "en" ? "VIEW DISCOVER →" : "查看发现页 →"}
+                </a>
+              </div>
+            ) : (
+              <>
+                <h3 className="text-lg font-black pixel-font uppercase mb-4">{locale === "en" ? "Share to Discover" : "分享到发现页面"}</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  {locale === "en"
+                    ? "Show your recommendations on the public Discover page so others can find great movies too."
+                    : "将你的推荐结果展示在公开的发现页面，让更多影迷看到。"}
+                </p>
+                <label className="block text-sm font-bold mb-2">
+                  {locale === "en" ? "Your name (optional)" : "推荐人名称（选填）"}
+                </label>
+                <input
+                  type="text"
+                  maxLength={30}
+                  placeholder={locale === "en" ? "Anonymous" : "匿名用户"}
+                  value={contributorName}
+                  onChange={e => setContributorName(e.target.value)}
+                  className="w-full border-4 border-black px-3 py-2 text-sm font-bold mb-4 focus:outline-none focus:bg-[#ffff00]"
+                />
+                {publishError && (
+                  <p className="text-red-600 text-xs font-bold mb-3">{publishError}</p>
+                )}
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => setShowPublishModal(false)}
+                    className="flex-1 border-4 border-black px-4 py-2 text-sm font-bold hover:bg-gray-100 transition-colors"
+                  >
+                    {locale === "en" ? "Cancel" : "取消"}
+                  </button>
+                  <button
+                    onClick={handlePublish}
+                    disabled={publishing}
+                    className="flex-1 bg-[#ffff00] border-4 border-black px-4 py-2 text-sm font-black pixel-font uppercase hover:bg-[#ffff40] transition-colors disabled:opacity-50 shadow-[4px_4px_0_0_#000]"
+                  >
+                    {publishing ? "..." : (locale === "en" ? "PUBLISH" : "发布")}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       <div id="results-content" className="grid grid-cols-1 gap-8">
         {recommendations.map((rec, idx) => {
@@ -112,7 +232,6 @@ const ResultsPage = ({
                 isReplacing ? "scale-95 opacity-50" : ""
               }`}
             >
-              {/* 大号背景编号 */}
               <div className="absolute -right-4 -top-10 text-[180px] font-black text-[#ff00ff] opacity-20 select-none z-0 pixel-font">
                 0{idx + 1}
               </div>
@@ -156,7 +275,6 @@ const ResultsPage = ({
                   </p>
                 </div>
 
-                {/* 操作按钮组 */}
                 <div className="flex flex-row gap-2 mt-4">
                   <button
                     onClick={() => onViewDetail(rec.tmdbId)}
@@ -191,14 +309,13 @@ const ResultsPage = ({
                 </div>
               </div>
 
-              {/* 海报区 */}
               <div className="flex-col justify-start items-stretch z-10 w-full md:w-36 md:flex-shrink-0 flex mt-4 md:mt-0">
-                {/* TMDB 电影海报 */}
                 {rec.poster ? (
                   <div className="relative border-4 border-black overflow-hidden shadow-[4px_4px_0_0_#000]">
                     <img
                       src={rec.poster}
                       alt={posterAlt(rec.title, rec.year, rec.originalTitle, locale)}
+                      className="w-full h-auto object-cover"
                     />
                   </div>
                 ) : (
@@ -212,7 +329,6 @@ const ResultsPage = ({
         })}
       </div>
 
-      {/* 底部 REBOOT */}
       <div className="flex justify-center pt-4">
         <button
           onClick={onReset}
