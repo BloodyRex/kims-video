@@ -74,7 +74,7 @@ function AppContent() {
     setIsCapturing,
   } = useMovieEngine();
 
-  // ── 搜索 debounce ────────────────────────────
+  // search debounce
   useEffect(() => {
     const timer = setTimeout(() => {
       if (primaryMovie.title && showPrimaryDropdown) {
@@ -93,7 +93,7 @@ function AppContent() {
     return () => clearTimeout(timer);
   }, [secondaryMovie.title, showSecondaryDropdown]);
 
-  // ── URL 参数路由 ────────────────────────────
+  // URL param routing
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const sourceRaw = params.get("from");
@@ -130,7 +130,7 @@ function AppContent() {
     }
   }, []);
 
-  // ── 浏览器前进/后退 ──────────────────────────
+  // Browser back/forward
   useEffect(() => {
     const onPopState = () => {
       const params = new URLSearchParams(window.location.search);
@@ -172,12 +172,12 @@ function AppContent() {
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
-  // ── 初始化 SEO（根据当前语言）──────────────
+  // Init SEO
   useEffect(() => {
     resetSeo(locale);
   }, [locale]);
 
-  // ── 截图捕获 effect ──────────────────────────
+  // Screenshot capture effect
   useEffect(() => {
     if (!showSaveLayout || !saveContainerRef.current) return;
 
@@ -233,7 +233,7 @@ function AppContent() {
     })();
   }, [showSaveLayout, primaryMovie.title, setShowSaveLayout, setIsCapturing, setError]);
 
-  // ── 子页面数据加载 ──────────────────────────
+  // Sub-page data load
   useEffect(() => {
     if (step !== "detail" || !detailMovieId) return;
     setDetailLoading(true);
@@ -253,7 +253,7 @@ function AppContent() {
     return () => { cancelled = true; };
   }, [step, detailMovieId, setDetailLoading, setDetailData]);
 
-  // ── 子页面 SEO 更新 ─────────────────────────
+  // Sub-page SEO update
   useEffect(() => {
     if (step === "detail" && detailData && primaryMovie?.title && sourceTmdbId && detailMovieId) {
       const sourceMovies = [
@@ -269,7 +269,7 @@ function AppContent() {
     }
   }, [step, detailData, primaryMovie?.title, primaryMovie?.year, primaryMovie?.tmdbId, secondaryMovie?.tmdbId, sourceTmdbId, detailMovieId, recommendations, locale]);
 
-  // ── Discover 页面（独立路由，SEO 友好）─────
+  // Discover page
   const [showDiscover] = useState(() => {
     if (window.location.pathname.startsWith("/discover")) return true;
     try {
@@ -302,39 +302,46 @@ function AppContent() {
           </h1>
         </div>
         <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
-        {new URLSearchParams(window.location.search).get("discover") === "1" && (
-          <a
-            href="/discover"
-            className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2 py-1 bg-[#00ffff] border-2 border-black text-black text-[10px] font-black pixel-font hover:bg-black hover:text-[#00ffff] transition-colors z-20"
-          >
-            ← DISCOVER
-          </a>
-        )}
       </header>
 
       <main className="relative z-10 container mx-auto px-4 md:py-8">
         {step === "input" && (
-          <InputPage
-            primaryMovie={primaryMovie}
-            setPrimaryMovie={setPrimaryMovie}
-            secondaryMovie={secondaryMovie}
-            setSecondaryMovie={setSecondaryMovie}
-            primarySuggestions={primarySuggestions}
-            secondarySuggestions={secondarySuggestions}
-            isSearchingPrimary={isSearchingPrimary}
-            isSearchingSecondary={isSearchingSecondary}
-            showPrimaryDropdown={showPrimaryDropdown}
-            setShowPrimaryDropdown={setShowPrimaryDropdown}
-            showSecondaryDropdown={showSecondaryDropdown}
-            setShowSecondaryDropdown={setShowSecondaryDropdown}
-            error={error}
-            onGenerateQuestions={handleGenerateQuestions}
-            onSelectMovie={selectMovie}
-            currentYear={currentYear}
-            onShowInfo={() => setShowInfoModal(true)}
-            toggleLocale={toggleLocale}
-            locale={locale}
-          />
+          <>
+            <InputPage
+              primaryMovie={primaryMovie}
+              setPrimaryMovie={setPrimaryMovie}
+              secondaryMovie={secondaryMovie}
+              setSecondaryMovie={setSecondaryMovie}
+              primarySuggestions={primarySuggestions}
+              secondarySuggestions={secondarySuggestions}
+              isSearchingPrimary={isSearchingPrimary}
+              isSearchingSecondary={isSearchingSecondary}
+              showPrimaryDropdown={showPrimaryDropdown}
+              setShowPrimaryDropdown={setShowPrimaryDropdown}
+              showSecondaryDropdown={showSecondaryDropdown}
+              setShowSecondaryDropdown={setShowSecondaryDropdown}
+              error={error}
+              onGenerateQuestions={handleGenerateQuestions}
+              onSelectMovie={selectMovie}
+              currentYear={currentYear}
+              onShowInfo={() => setShowInfoModal(true)}
+              toggleLocale={toggleLocale}
+              locale={locale}
+            />
+            {/* Discover teaser banner */}
+            <div className="max-w-2xl mx-auto mt-6 mb-4">
+              <a
+                href="/discover"
+                className="block bg-[#ffff00] border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group"
+              >
+                <span className="text-black font-black pixel-font uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                  <span className="text-base">{'\u{1F3AC}'}</span>
+                  {t('input.browse_discover')}
+                  <Icons.ChevronRight className="group-hover:translate-x-1 transition-transform ml-1" />
+                </span>
+              </a>
+            </div>
+          </>
         )}
         {step === "loading_questions" && <Loading step={step} />}
         {step === "qa" && <QAPage questions={questions} currentQIndex={currentQIndex} onAnswer={handleAnswer} />}
@@ -372,7 +379,11 @@ function AppContent() {
         <p>
           <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer" className="hover:text-[#00ffff] transition-colors">
             Data and poster from TMDB
-          </a> | BLOODYREX (C) 2026
+          </a>
+          <span className="text-gray-600 mx-2">|</span>
+          <a href="/discover" className="hover:text-[#ffff00] transition-colors">Discover</a>
+          <span className="text-gray-600 mx-2">|</span>
+          BLOODYREX (C) 2026
         </p>
       </footer>
       </>

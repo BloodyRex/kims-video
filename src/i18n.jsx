@@ -30,6 +30,7 @@ const messages = {
     "input.searching": "正在从豆瓣影库调卷...",
     "input.no_results": "未能匹配到结果，请尝试精确输入。",
     "input.submit": "开始剖析基因",
+    "input.browse_discover": "浏览精选推荐合辑",
     "input.suggestion_format": "（{year}，{director}）",
     "input.quotes": [
       "金的音像店就是我们的电影学院",
@@ -141,6 +142,7 @@ const messages = {
     "input.searching": "Searching the movie vault...",
     "input.no_results": "No matches found. Try a more precise title.",
     "input.submit": "ANALYZE DNA",
+    "input.browse_discover": "Browse curated picks",
     "input.suggestion_format": "（{year}，{director}）",
     "input.quotes": [
       "Kim's Video was our film school",
