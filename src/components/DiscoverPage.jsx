@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import discoverData from "../data/discover.json";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
-import { posterAlt } from "../utils/posterAlt";
 import { fetchMovieByTmdbId } from "../services/api";
 import { fetchDiscoverResults, likeDiscoverResult } from "../services/discoverApi";
 
@@ -14,6 +13,12 @@ const GENRE_COLORS = {
   "科幻": "#ff00ff", "悬疑": "#00ffff", "恐怖": "#ff00ff",
   "动画": "#ffff00", "战争": "#ff00ff", "犯罪": "#00ffff",
   "剧情": "#ffff00", "奇幻": "#ff00ff",
+};
+
+const GENRE_SLUGS = {
+  "科幻": "sci-fi", "悬疑": "mystery", "恐怖": "horror",
+  "动画": "animation", "战争": "war", "犯罪": "crime",
+  "剧情": "drama", "奇幻": "fantasy",
 };
 
 function usePosters(tmdbIds) {
@@ -135,19 +140,20 @@ const DiscoverPage = () => {
   const [posterMap, setPosterMap] = useState({});
   const [userResults, setUserResults] = useState([]);
   const [loadingResults, setLoadingResults] = useState(true);
-  const [activeTab, setActiveTab] = useState("editor");  // "editor" | "community"
+  const [activeTab, setActiveTab] = useState("editor");
   const scrollRef = useRef(null);
 
-  // Build set of editor pick (source,recommend) tmdbId pairs to avoid duplicates in genre sections
+  const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
+  const getBracketed = (movie) => locale === "zh" ? `《${movie.title}》` : getTitle(movie);
+  const genreSlug = (name) => GENRE_SLUGS[name] || name;
+
+  // Build dedup set of editor picks
   const editorPickIds = new Set();
   (discoverData.editorPicks || []).forEach(p => {
     editorPickIds.add(`${p.source.tmdbId}-${p.recommend.tmdbId}`);
   });
 
-  const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
-  const getBracketed = (movie) => locale === "zh" ? `《${movie.title}》` : getTitle(movie);
-
-  // Fetch posters for all editor content
+  // Fetch posters
   useEffect(() => {
     const allIds = new Set();
     (discoverData.editorPicks || []).forEach(p => {
@@ -170,7 +176,7 @@ const DiscoverPage = () => {
     return () => { cancelled = true; };
   }, []);
 
-  // Fetch user discover results
+  // Fetch user results
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -186,22 +192,18 @@ const DiscoverPage = () => {
     return () => { cancelled = true; };
   }, []);
 
-  // Posters for user result thumbnails
   const userRecTmdbIds = [];
   userResults.forEach(r => r.recommendations?.forEach(rec => {
     if (rec.tmdbId) userRecTmdbIds.push(rec.tmdbId);
   }));
   const userPosterMap = usePosters(userRecTmdbIds);
 
-  // Group user results by genre
   const userByGenre = {};
   for (const r of userResults) {
     const g = r.genre || "剧情";
     if (!userByGenre[g]) userByGenre[g] = [];
     userByGenre[g].push(r);
   }
-
-  // Count total user results
   const totalUserCount = userResults.length;
 
   useEffect(() => {
@@ -218,7 +220,6 @@ const DiscoverPage = () => {
 
   return (
     <div className="min-h-screen graffiti-bg text-black pb-32">
-      {/* Header */}
       <header className="relative z-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
         <div className="flex flex-col items-center py-4">
           <button
@@ -282,9 +283,7 @@ const DiscoverPage = () => {
           <button
             onClick={() => setActiveTab("editor")}
             className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${
-              activeTab === "editor"
-                ? "bg-[#ff00ff] text-white"
-                : "bg-white text-black hover:bg-gray-100"
+              activeTab === "editor" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"
             }`}
           >
             {locale === "en" ? "★ Category" : "★ 分类推荐"}
@@ -292,9 +291,7 @@ const DiscoverPage = () => {
           <button
             onClick={() => setActiveTab("community")}
             className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${
-              activeTab === "community"
-                ? "bg-[#ffff00] text-black"
-                : "bg-white text-black hover:bg-gray-100"
+              activeTab === "community" ? "bg-[#ffff00] text-black" : "bg-white text-black hover:bg-gray-100"
             }`}
           >
             {locale === "en" ? "Community" : "社区发现"}
@@ -308,9 +305,13 @@ const DiscoverPage = () => {
       {/* ── Genre sections ── */}
       <div className="max-w-4xl mx-auto px-4">
         {activeTab === "editor" ? (
-          /* === Editor Pairs === */
           discoverData.genres.map((genre) => {
             const color = GENRE_COLORS[genre.name] || "#ff00ff";
+            const filteredPairs = genre.pairs.filter(
+              p => !editorPickIds.has(`${p.source.tmdbId}-${p.recommend.tmdbId}`)
+            );
+            if (filteredPairs.length === 0) return null;
+
             return (
               <section key={genre.name} className="mb-12">
                 <h2
@@ -320,17 +321,18 @@ const DiscoverPage = () => {
                   {locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}
                 </h2>
                 <div className="space-y-4">
-                  {genre.pairs.filter(p => !editorPickIds.has(`${p.source.tmdbId}-${p.recommend.tmdbId}`)).map((pair, idx) => {
+                  {filteredPairs.map((pair, idx) => {
                     const srcPoster = posterMap[pair.source.tmdbId];
                     const recPoster = posterMap[pair.recommend.tmdbId];
                     const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
+                    const genreUrl = `/genre/${genreSlug(genre.name)}`;
+
                     return (
                       <article
                         key={idx}
                         className="bg-white border-4 border-black p-5"
                         style={{ boxShadow: `8px 8px 0 0 ${color}` }}
                       >
-                        {/* Title row with posters */}
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-3">
                           {srcPoster && (
                             <img src={srcPoster} alt={getTitle(pair.source)} className="w-12 h-[68px] object-cover border-2 border-black flex-shrink-0" loading="lazy" />
@@ -361,10 +363,10 @@ const DiscoverPage = () => {
                             {t('discover.view_detail')} →
                           </a>
                           <a
-                            href={`/?from=${pair.source.tmdbId}`}
+                            href={genreUrl}
                             className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black bg-[#ffff00] uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all"
                           >
-                            {locale === "en" ? `More from ${pair.source.titleEn || pair.source.title}` : `更多「${pair.source.title}」→`}
+                            {locale === "en" ? `Explore ${genre.name} →` : `更多${genre.name}推荐 →`}
                           </a>
                         </div>
                       </article>
@@ -375,7 +377,6 @@ const DiscoverPage = () => {
             );
           })
         ) : (
-          /* === Community Tab === */
           <>
             {loadingResults && (
               <p className="text-center text-gray-500 text-xs py-8">{locale === "en" ? "Loading community..." : "加载用户发现..."}</p>
@@ -384,7 +385,7 @@ const DiscoverPage = () => {
               <div className="text-center py-12">
                 <p className="text-4xl mb-3">🎬</p>
                 <p className="text-gray-400 text-sm font-bold mb-2">{locale === "en" ? "No community picks yet" : "暂无用户发现"}</p>
-                <p className="text-gray-500 text-xs mb-4">{locale === "en" ? "Be the first to share your AI recommendations!" : "成为第一个分享 AI 推荐结果的人！"}</p>
+                <p className="text-gray-500 text-xs mb-4">{locale === "en" ? "Be the first to share!" : "成为第一个分享 AI 推荐结果的人！"}</p>
                 <a href="/" className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all">
                   {locale === "en" ? "Get Your Picks →" : "获取你的推荐 →"}
                 </a>
