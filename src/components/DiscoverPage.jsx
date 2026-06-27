@@ -40,101 +40,60 @@ function usePosters(tmdbIds) {
   return map;
 }
 
-// ── Editor's Picks Card ──
 function EditorPickCard({ pair, color, posterMap, locale, getTitle }) {
   const srcPoster = posterMap[pair.source.tmdbId];
   const recPoster = posterMap[pair.recommend.tmdbId];
   const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
-  const posterW = "w-[50px] sm:w-[56px]";
-  const posterH = "h-[72px] sm:h-[82px]";
-  const srcTitle = getTitle(pair.source);
-  const recTitle = getTitle(pair.recommend);
+  const pw = "w-[50px] sm:w-[56px]";
+  const ph = "h-[72px] sm:h-[82px]";
   return (
-    <a
-      href={linkUrl}
-      className="flex-shrink-0 min-w-[180px] sm:min-w-[200px] bg-white border-4 border-black flex flex-col items-center gap-2 p-3 hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,1)]"
-      style={{ borderBottomColor: color }}
-    >
+    <a href={linkUrl} className="flex-shrink-0 min-w-[180px] sm:min-w-[200px] bg-white border-4 border-black flex flex-col items-center gap-2 p-3 hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ borderBottomColor: color }}>
       <span className="text-[10px] font-bold text-gray-400 uppercase">{locale === "en" ? "If you like" : "如果你喜欢"}</span>
-      {srcPoster ? (
-        <img src={srcPoster} alt={srcTitle} className={`${posterW} ${posterH} object-cover border-2 border-black`} loading="lazy" />
-      ) : (
-        <div className={`${posterW} ${posterH} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>
-      )}
-      <span className="text-xs font-black text-center leading-tight">{srcTitle}</span>
+      {srcPoster ? <img src={srcPoster} alt={getTitle(pair.source)} className={`${pw} ${ph} object-cover border-2 border-black`} loading="lazy" /> : <div className={`${pw} ${ph} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>}
+      <span className="text-xs font-black text-center leading-tight">{getTitle(pair.source)}</span>
       <span className="text-lg font-black" style={{ color }}>↓</span>
-      {recPoster ? (
-        <img src={recPoster} alt={recTitle} className={`${posterW} ${posterH} object-cover border-2 border-black`} loading="lazy" />
-      ) : (
-        <div className={`${posterW} ${posterH} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>
-      )}
-      <span className="text-xs font-black text-center leading-tight">{recTitle}</span>
+      {recPoster ? <img src={recPoster} alt={getTitle(pair.recommend)} className={`${pw} ${ph} object-cover border-2 border-black`} loading="lazy" /> : <div className={`${pw} ${ph} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>}
+      <span className="text-xs font-black text-center leading-tight">{getTitle(pair.recommend)}</span>
       <p className="text-[10px] text-gray-500 text-center leading-relaxed line-clamp-2 px-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-      <span className="inline-block px-3 py-1 text-[10px] font-black text-black border-2 border-black uppercase" style={{ backgroundColor: color }}>
-        {locale === "en" ? "Details →" : "查看详情 →"}
-      </span>
+      <span className="inline-block px-3 py-1 text-[10px] font-black text-black border-2 border-black uppercase" style={{ backgroundColor: color }}>{locale === "en" ? "Details →" : "查看详情 →"}</span>
     </a>
   );
 }
 
-// ── User Result Card ──
 function UserResultCard({ result, posterMap, locale }) {
   const src = result.sourceMovies?.[0] || {};
   const likes = result.likes || 0;
   const [liked, setLiked] = useState(false);
   const [likesLocal, setLikesLocal] = useState(likes);
-
-  const handleLike = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (liked) return;
-    setLiked(true);
-    setLikesLocal(l => l + 1);
-    try { await likeDiscoverResult(result.id); } catch { /* silent */ }
-  };
-
+  const handleLike = async (e) => { e.preventDefault(); e.stopPropagation(); if (liked) return; setLiked(true); setLikesLocal(l => l + 1); try { await likeDiscoverResult(result.id); } catch {} };
   return (
-    <div className="bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] transition-all">
+    <div className="bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
-        <span className="font-black pixel-font uppercase truncate">
-          {src.title || ""}{src.year ? ` (${src.year})` : ""}
-        </span>
-        <span className="text-gray-400 font-bold truncate">
-          {result.contributorName || (locale === "en" ? "Anonymous" : "匿名用户")}
-        </span>
+        <span className="font-black pixel-font uppercase truncate">{src.title || ""}{src.year ? ` (${src.year})` : ""}</span>
+        <span className="text-gray-400 font-bold truncate">{result.contributorName || (locale === "en" ? "Anonymous" : "匿名用户")}</span>
       </div>
       <div className="flex p-2 gap-2 overflow-x-auto">
         {result.recommendations.map((rec, i) => {
           const poster = posterMap[rec.tmdbId];
           const detailUrl = `/?from=${src.tmdbId || ""}&r=${rec.tmdbId}&discover=1`;
           const badge = i < 2 ? (locale === "en" ? "HOT" : "热门") : i < 4 ? (locale === "en" ? "NICHE" : "冷门") : (locale === "en" ? "WILD" : "争议");
-          const badgeColor = i < 2 ? "bg-[#ff00ff]" : i < 4 ? "bg-[#00ffff]" : "bg-[#ffff00]";
+          const bc = i < 2 ? "bg-[#ff00ff]" : i < 4 ? "bg-[#00ffff]" : "bg-[#ffff00]";
           return (
-            <a key={i} href={detailUrl} className="flex-shrink-0 w-16 group relative">
-              {poster ? (
-                <img src={poster} alt={rec.title} className="w-16 h-24 object-cover border-2 border-black group-hover:border-[#ff00ff] transition-colors" loading="lazy" />
-              ) : (
-                <div className="w-16 h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold">?</div>
-              )}
-              <span className={`block text-[8px] font-black text-center mt-0.5 px-0.5 ${badgeColor} text-black`}>{badge}</span>
+            <a key={i} href={detailUrl} className="flex-shrink-0 w-16 group">
+              {poster ? <img src={poster} alt={rec.title} className="w-16 h-24 object-cover border-2 border-black group-hover:border-[#ff00ff] transition-colors" loading="lazy" /> : <div className="w-16 h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold">?</div>}
+              <span className={`block text-[8px] font-black text-center mt-0.5 px-0.5 ${bc} text-black`}>{badge}</span>
             </a>
           );
         })}
       </div>
       <div className="px-3 pb-2 flex items-center justify-between text-[10px] text-gray-500">
         <span>{new Date(result.createdAt).toLocaleDateString(locale === "zh" ? "zh-CN" : "en-US", { month: "short", day: "numeric" })}</span>
-        <button
-          onClick={handleLike}
-          className={`flex items-center gap-1 font-bold px-1.5 py-0.5 border border-gray-300 hover:bg-gray-100 transition-colors ${liked ? "text-[#ff00ff] border-[#ff00ff]" : ""}`}
-        >
-          <span>{liked ? "♥" : "♡"}</span> {likesLocal}
-        </button>
+        <button onClick={handleLike} className={`flex items-center gap-1 font-bold px-1.5 py-0.5 border border-gray-300 hover:bg-gray-100 transition-colors ${liked ? "text-[#ff00ff] border-[#ff00ff]" : ""}`}><span>{liked ? "♥" : "♡"}</span> {likesLocal}</button>
       </div>
     </div>
   );
 }
 
-// ── Main DiscoverPage ──
 const DiscoverPage = () => {
   const { t, locale, toggleLocale } = useLocale();
   const [posterMap, setPosterMap] = useState({});
@@ -147,129 +106,70 @@ const DiscoverPage = () => {
   const getBracketed = (movie) => locale === "zh" ? `《${movie.title}》` : getTitle(movie);
   const genreSlug = (name) => GENRE_SLUGS[name] || name;
 
-  // Build dedup set of editor picks
   const editorPickIds = new Set();
-  (discoverData.editorPicks || []).forEach(p => {
-    editorPickIds.add(`${p.source.tmdbId}-${p.recommend.tmdbId}`);
-  });
+  (discoverData.editorPicks || []).forEach(p => editorPickIds.add(`${p.source.tmdbId}-${p.recommend.tmdbId}`));
 
-  // Fetch posters
   useEffect(() => {
     const allIds = new Set();
-    (discoverData.editorPicks || []).forEach(p => {
-      allIds.add(p.source.tmdbId);
-      allIds.add(p.recommend.tmdbId);
-    });
-    discoverData.genres.forEach(g => g.pairs.forEach(p => {
-      allIds.add(p.source.tmdbId);
-      allIds.add(p.recommend.tmdbId);
-    }));
+    (discoverData.editorPicks || []).forEach(p => { allIds.add(p.source.tmdbId); allIds.add(p.recommend.tmdbId); });
+    discoverData.genres.forEach(g => g.pairs.forEach(p => { allIds.add(p.source.tmdbId); allIds.add(p.recommend.tmdbId); }));
     let cancelled = false;
     (async () => {
       const map = {};
-      await Promise.allSettled([...allIds].map(async id => {
-        const data = await fetchMovieByTmdbId(id, "zh");
-        if (data?.poster && !cancelled) map[id] = data.poster;
-      }));
+      await Promise.allSettled([...allIds].map(async id => { const data = await fetchMovieByTmdbId(id, "zh"); if (data?.poster && !cancelled) map[id] = data.poster; }));
       if (!cancelled) setPosterMap(map);
     })();
     return () => { cancelled = true; };
   }, []);
 
-  // Fetch user results
   useEffect(() => {
     let cancelled = false;
     (async () => {
       setLoadingResults(true);
-      try {
-        const data = await fetchDiscoverResults({ sort: "popular", limit: 30 });
-        if (!cancelled) setUserResults(data.results || []);
-      } catch (e) {
-        if (!cancelled) setUserResults([]);
-      }
+      try { const data = await fetchDiscoverResults({ sort: "popular", limit: 30 }); if (!cancelled) setUserResults(data.results || []); } catch { if (!cancelled) setUserResults([]); }
       if (!cancelled) setLoadingResults(false);
     })();
     return () => { cancelled = true; };
   }, []);
 
   const userRecTmdbIds = [];
-  userResults.forEach(r => r.recommendations?.forEach(rec => {
-    if (rec.tmdbId) userRecTmdbIds.push(rec.tmdbId);
-  }));
+  userResults.forEach(r => r.recommendations?.forEach(rec => { if (rec.tmdbId) userRecTmdbIds.push(rec.tmdbId); }));
   const userPosterMap = usePosters(userRecTmdbIds);
 
   const userByGenre = {};
-  for (const r of userResults) {
-    const g = r.genre || "剧情";
-    if (!userByGenre[g]) userByGenre[g] = [];
-    userByGenre[g].push(r);
-  }
+  for (const r of userResults) { const g = r.genre || "剧情"; if (!userByGenre[g]) userByGenre[g] = []; userByGenre[g].push(r); }
   const totalUserCount = userResults.length;
 
   useEffect(() => {
-    document.title = locale === "zh"
-      ? "AI 电影推荐发现页 | Discover 相似电影合集 | Kim's Video"
-      : "AI Movie Discovery Hub | Curated Film Recommendations | Kim's Video";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.content = locale === "zh"
-        ? "探索基于 AI 的电影推荐组合，发现与你喜欢电影相似的科幻、剧情与悬疑作品。"
-        : "Explore AI-powered movie recommendation pairs. Discover sci-fi, drama, and mystery films similar to your favorites.";
-    }
+    document.title = locale === "zh" ? "AI 电影推荐发现页 | Discover 相似电影合集 | Kim's Video" : "AI Movie Discovery Hub | Curated Film Recommendations | Kim's Video";
   }, [locale]);
 
   return (
     <div className="min-h-screen graffiti-bg text-black pb-32">
       <header className="relative z-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
         <div className="flex flex-col items-center py-4">
-          <button
-            onClick={toggleLocale}
-            className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black sm:text-sm z-20"
-            style={LANG_BUTTON_STYLE}
-          >
-            {locale === "zh" ? "En" : "中"}
-          </button>
+          <button onClick={toggleLocale} className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black sm:text-sm z-20" style={LANG_BUTTON_STYLE}>{locale === "zh" ? "En" : "中"}</button>
           <a href="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
-            <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
-              <span className="text-black transform rotate-90"><Icons.Play /></span>
-            </div>
-            <div className="text-xl sm:text-3xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap">
-              KIM'S <span className="text-[#00ffff]">VIDEO</span>
-            </div>
+            <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6"><span className="text-black transform rotate-90"><Icons.Play /></span></div>
+            <div className="text-xl sm:text-3xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap">KIM'S <span className="text-[#00ffff]">VIDEO</span></div>
           </a>
           <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
         </div>
       </header>
 
       <section className="max-w-4xl mx-auto px-4 pt-10 pb-4 text-center">
-        <h2 className="text-2xl sm:text-3xl font-black text-white mb-3 drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
-          {t('discover.title')}
-        </h2>
-        <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed">
-          {t('discover.desc')}
-        </p>
+        <h2 className="text-2xl sm:text-3xl font-black text-white mb-3 drop-shadow-[3px_3px_0_#ff00ff] pixel-font">{t('discover.title')}</h2>
+        <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed">{t('discover.desc')}</p>
       </section>
 
       {/* ── Editor's Picks Carousel ── */}
       <section className="max-w-4xl mx-auto px-2 sm:px-4 mb-6">
-        <h3 className="px-2 sm:px-0 text-base sm:text-lg font-black pixel-font text-[#ffff00] uppercase tracking-widest mb-3 bg-black inline-block px-4 py-1.5 border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff]">
-          {locale === "en" ? "★ Editor's Picks" : "★ 编辑精选"}
-        </h3>
-        <div
-          ref={scrollRef}
-          className="flex gap-3 overflow-x-auto pb-3 px-2 sm:px-0"
-          style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
-        >
+        <h3 className="px-2 sm:px-0 text-base sm:text-lg font-black pixel-font text-[#ffff00] uppercase tracking-widest mb-3 bg-black inline-block px-4 py-1.5 border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff]">{locale === "en" ? "★ Editor's Picks" : "★ 编辑精选"}</h3>
+        <div ref={scrollRef} className="flex gap-3 overflow-x-auto pb-3 px-2 sm:px-0" style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
           {(discoverData.editorPicks || []).map((pair, i) => (
-            <div key={i} style={{ scrollSnapAlign: "start" }}>
-              <EditorPickCard pair={pair} color={GENRE_COLORS["科幻"] || "#ff00ff"} posterMap={posterMap} locale={locale} getTitle={getTitle} />
-            </div>
+            <div key={i} style={{ scrollSnapAlign: "start" }}><EditorPickCard pair={pair} color={GENRE_COLORS["科幻"] || "#ff00ff"} posterMap={posterMap} locale={locale} getTitle={getTitle} /></div>
           ))}
-          <a
-            href="/"
-            className="flex-shrink-0 min-w-[140px] sm:min-w-[160px] bg-[#ffff00] border-4 border-black flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-[#ffff40] transition-colors shadow-[6px_6px_0_0_rgba(0,0,0,1)]"
-            style={{ scrollSnapAlign: "start" }}
-          >
+          <a href="/" className="flex-shrink-0 min-w-[140px] sm:min-w-[160px] bg-[#ffff00] border-4 border-black flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-[#ffff40] transition-colors shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
             <span className="text-2xl">🎬</span>
             <span className="text-sm font-black pixel-font uppercase">{locale === "en" ? "Start" : "开始"}</span>
             <span className="text-xs text-gray-600">{locale === "en" ? "→ Get Picks" : "→ 获取推荐"}</span>
@@ -280,94 +180,56 @@ const DiscoverPage = () => {
       {/* ── Tab switcher ── */}
       <div className="max-w-4xl mx-auto px-4 mb-6">
         <div className="flex gap-3">
-          <button
-            onClick={() => setActiveTab("editor")}
-            className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${
-              activeTab === "editor" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"
-            }`}
-          >
-            {locale === "en" ? "★ Category" : "★ 分类推荐"}
-          </button>
-          <button
-            onClick={() => setActiveTab("community")}
-            className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${
-              activeTab === "community" ? "bg-[#ffff00] text-black" : "bg-white text-black hover:bg-gray-100"
-            }`}
-          >
-            {locale === "en" ? "Community" : "社区发现"}
-            {totalUserCount > 0 && (
-              <span className="ml-1.5 bg-black text-white text-[10px] px-1.5 py-0.5">{totalUserCount}</span>
-            )}
-          </button>
+          <button onClick={() => setActiveTab("editor")} className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${activeTab === "editor" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"}`}>{locale === "en" ? "★ Category" : "★ 分类推荐"}</button>
+          <button onClick={() => setActiveTab("community")} className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${activeTab === "community" ? "bg-[#ffff00] text-black" : "bg-white text-black hover:bg-gray-100"}`}>{locale === "en" ? "Community" : "社区发现"}{totalUserCount > 0 && <span className="ml-1.5 bg-black text-white text-[10px] px-1.5 py-0.5">{totalUserCount}</span>}</button>
         </div>
       </div>
 
-      {/* ── Genre sections ── */}
+      {/* ── Content area ── */}
       <div className="max-w-4xl mx-auto px-4">
         {activeTab === "editor" ? (
           discoverData.genres.map((genre) => {
             const color = GENRE_COLORS[genre.name] || "#ff00ff";
-            const filteredPairs = genre.pairs.filter(
-              p => !editorPickIds.has(`${p.source.tmdbId}-${p.recommend.tmdbId}`)
-            );
-            if (filteredPairs.length === 0) return null;
+            const filtered = genre.pairs.filter(p => !editorPickIds.has(`${p.source.tmdbId}-${p.recommend.tmdbId}`));
+            if (filtered.length === 0) return null;
 
             return (
               <section key={genre.name} className="mb-12">
-                <h2
-                  className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black"
-                  style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}
-                >
-                  {locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}
-                </h2>
+                <h2 className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black" style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}>{locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}</h2>
                 <div className="space-y-4">
-                  {filteredPairs.map((pair, idx) => {
-                    const srcPoster = posterMap[pair.source.tmdbId];
+                  {filtered.map((pair, idx) => {
                     const recPoster = posterMap[pair.recommend.tmdbId];
                     const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
                     const genreUrl = `/genre/${genreSlug(genre.name)}`;
 
                     return (
-                      <article
-                        key={idx}
-                        className="bg-white border-4 border-black p-5"
-                        style={{ boxShadow: `8px 8px 0 0 ${color}` }}
-                      >
-                        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-3">
-                          {srcPoster && (
-                            <img src={srcPoster} alt={getTitle(pair.source)} className="w-12 h-[68px] object-cover border-2 border-black flex-shrink-0" loading="lazy" />
-                          )}
-                          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                            <span className="text-sm font-bold text-gray-500">{t('discover.if_like')}</span>
-                            <span className="font-black text-lg" style={{ color }}>
-                              {getBracketed(pair.source)}
-                            </span>
-                            <span className="text-gray-400 text-sm">({pair.source.year})</span>
-                          </div>
-                          <span className="text-gray-500 mx-1 text-lg">{t('discover.arrow')}</span>
-                          {recPoster && (
-                            <img src={recPoster} alt={getTitle(pair.recommend)} className="w-12 h-[68px] object-cover border-2 border-black flex-shrink-0" loading="lazy" />
-                          )}
-                          <span className="font-black text-lg text-black">
-                            {getBracketed(pair.recommend)}
-                          </span>
-                          <span className="text-gray-400 text-sm">({pair.recommend.year})</span>
+                      <article key={idx} className="bg-white border-4 border-black overflow-hidden" style={{ boxShadow: `8px 8px 0 0 ${color}` }}>
+                        {/* Source header bar */}
+                        <div className="bg-black text-white px-4 py-2 flex items-center gap-2 text-xs">
+                          <span className="font-black pixel-font text-xs text-gray-400 uppercase">{t('discover.if_like')}</span>
+                          <span className="font-black text-sm" style={{ color }}>{getBracketed(pair.source)}</span>
+                          <span className="text-gray-400">({pair.source.year})</span>
+                          <span className="text-gray-500 mx-1">{t('discover.arrow')}</span>
                         </div>
-                        <p className="text-sm text-gray-600 mb-3">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-                        <div className="flex gap-2 flex-wrap">
-                          <a
-                            href={detailUrl}
-                            className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all"
-                            style={{ backgroundColor: color }}
-                          >
-                            {t('discover.view_detail')} →
-                          </a>
-                          <a
-                            href={genreUrl}
-                            className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black bg-[#ffff00] uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all"
-                          >
-                            {locale === "en" ? `Explore ${genre.name} →` : `更多${genre.name}推荐 →`}
-                          </a>
+
+                        {/* Body: poster left, info right */}
+                        <div className="flex flex-col sm:flex-row gap-4 p-4">
+                          {recPoster ? (
+                            <img src={recPoster} alt={getTitle(pair.recommend)} className="w-28 h-40 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+                          ) : (
+                            <div className="w-28 h-40 bg-gray-800 border-2 border-black flex items-center justify-center text-xs text-gray-500 font-bold flex-shrink-0">?</div>
+                          )}
+                          <div className="flex-1 min-w-0 flex flex-col">
+                            <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-2">
+                              <h3 className="text-lg sm:text-xl font-black">{getBracketed(pair.recommend)}</h3>
+                              <span className="text-gray-400 text-sm">({pair.recommend.year})</span>
+                            </div>
+                            <p className="text-sm text-gray-600 leading-relaxed mb-3 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
+                            <div className="flex gap-2 flex-wrap mt-auto">
+                              <a href={detailUrl} className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all" style={{ backgroundColor: color }}>{t('discover.view_detail')} →</a>
+                              <a href={genreUrl} className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black bg-[#ffff00] uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all">{locale === "en" ? `Explore ${genre.name} →` : `更多${genre.name}推荐 →`}</a>
+                            </div>
+                          </div>
                         </div>
                       </article>
                     );
@@ -378,38 +240,23 @@ const DiscoverPage = () => {
           })
         ) : (
           <>
-            {loadingResults && (
-              <p className="text-center text-gray-500 text-xs py-8">{locale === "en" ? "Loading community..." : "加载用户发现..."}</p>
-            )}
+            {loadingResults && <p className="text-center text-gray-500 text-xs py-8">{locale === "en" ? "Loading community..." : "加载用户发现..."}</p>}
             {!loadingResults && totalUserCount === 0 && (
               <div className="text-center py-12">
                 <p className="text-4xl mb-3">🎬</p>
                 <p className="text-gray-400 text-sm font-bold mb-2">{locale === "en" ? "No community picks yet" : "暂无用户发现"}</p>
                 <p className="text-gray-500 text-xs mb-4">{locale === "en" ? "Be the first to share!" : "成为第一个分享 AI 推荐结果的人！"}</p>
-                <a href="/" className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all">
-                  {locale === "en" ? "Get Your Picks →" : "获取你的推荐 →"}
-                </a>
+                <a href="/" className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all">{locale === "en" ? "Get Your Picks →" : "获取你的推荐 →"}</a>
               </div>
             )}
             {!loadingResults && totalUserCount > 0 && discoverData.genres.map((genre) => {
               const color = GENRE_COLORS[genre.name] || "#ff00ff";
-              const genreUserResults = userByGenre[genre.name] || [];
-              if (genreUserResults.length === 0) return null;
-
+              const items = userByGenre[genre.name] || [];
+              if (items.length === 0) return null;
               return (
                 <section key={genre.name} className="mb-12">
-                  <h2
-                    className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black"
-                    style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}
-                  >
-                    {locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}
-                    <span className="ml-2 text-sm opacity-75">({genreUserResults.length})</span>
-                  </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {genreUserResults.map((result) => (
-                      <UserResultCard key={result.id} result={result} posterMap={userPosterMap} locale={locale} />
-                    ))}
-                  </div>
+                  <h2 className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black" style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}>{locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}<span className="ml-2 text-sm opacity-75">({items.length})</span></h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{items.map(r => <UserResultCard key={r.id} result={r} posterMap={userPosterMap} locale={locale} />)}</div>
                 </section>
               );
             })}
@@ -418,12 +265,7 @@ const DiscoverPage = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 pt-8 pb-16 text-center">
-        <a
-          href="/"
-          className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all"
-        >
-          {locale === "en" ? "← Get Your Own AI Picks" : "← 获取属于你的 AI 推荐"}
-        </a>
+        <a href="/" className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all">{locale === "en" ? "← Get Your Own AI Picks" : "← 获取属于你的 AI 推荐"}</a>
       </div>
     </div>
   );
