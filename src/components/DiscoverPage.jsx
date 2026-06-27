@@ -60,12 +60,12 @@ function EditorPickCard({ pair, color, posterMap, locale, getTitle }) {
   );
 }
 
-function UserResultCard({ result, posterMap, locale }) {
+function UserResultCard({ result, posterMap, locale, onLikeUpdated }) {
   const src = result.sourceMovies?.[0] || {};
   const likes = result.likes || 0;
   const [liked, setLiked] = useState(false);
   const [likesLocal, setLikesLocal] = useState(likes);
-  const handleLike = async (e) => { e.preventDefault(); e.stopPropagation(); if (liked) return; setLiked(true); setLikesLocal(l => l + 1); try { await likeDiscoverResult(result.id); } catch {} };
+  const handleLike = async (e) => { e.preventDefault(); e.stopPropagation(); if (liked) return; setLiked(true); setLikesLocal(l => l + 1); try { const r = await likeDiscoverResult(result.id); if (onLikeUpdated) onLikeUpdated(result.id, r.likes); } catch {} };
   return (
     <div className="bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
@@ -115,13 +115,23 @@ const DiscoverPage = () => {
     discoverData.genres.forEach(g => g.pairs.forEach(p => { allIds.add(p.source.tmdbId); allIds.add(p.recommend.tmdbId); }));
     let cancelled = false;
     (async () => {
+      // Check localStorage cache first (24h TTL)
+      try {
+      const cached = localStorage.getItem("kims_discover_posters");
+      const ts = localStorage.getItem("kims_discover_posters_ts");
+        if (cached && ts && (Date.now() - parseInt(ts)) < 86400000) {
+          const parsed = JSON.parse(cached);
+          if (!cancelled) setPosterMap(parsed);
+          return;
+        }
+      } catch {}
       const map = {};
       await Promise.allSettled([...allIds].map(async id => { const data = await fetchMovieByTmdbId(id, "zh"); if (data?.poster && !cancelled) map[id] = data.poster; }));
       if (!cancelled) {
         setPosterMap(map);
         try {
-          sessionStorage.setItem("kims_discover_posters", JSON.stringify(map));
-          sessionStorage.setItem("kims_discover_posters_ts", String(Date.now()));
+          localStorage.setItem("kims_discover_posters", JSON.stringify(map));
+          localStorage.setItem("kims_discover_posters_ts", String(Date.now()));
         } catch {}
       }
     })();
@@ -144,6 +154,11 @@ const DiscoverPage = () => {
 
   const userByGenre = {};
   for (const r of userResults) { const g = r.genre || "剧情"; if (!userByGenre[g]) userByGenre[g] = []; userByGenre[g].push(r); }
+
+  const handleLikeUpdate = (id, newLikes) => {
+    setUserResults(prev => prev.map(r => r.id === id ? { ...r, likes: newLikes } : r));
+  };
+
   const totalUserCount = userResults.length;
 
   useEffect(() => {
@@ -262,7 +277,7 @@ const DiscoverPage = () => {
               return (
                 <section key={genre.name} className="mb-12">
                   <h2 className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black" style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}>{locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}<span className="ml-2 text-sm opacity-75">({items.length})</span></h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{items.map(r => <UserResultCard key={r.id} result={r} posterMap={userPosterMap} locale={locale} />)}</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{items.map(r => <UserResultCard key={r.id} result={r} posterMap={userPosterMap} locale={locale} onLikeUpdated={handleLikeUpdate} />)}</div>
                 </section>
               );
             })}
