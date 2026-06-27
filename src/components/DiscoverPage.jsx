@@ -63,7 +63,7 @@ function EditorPickCard({ pair, color, posterMap, locale, getTitle }) {
 function UserResultCard({ result, posterMap, locale, onLikeUpdated }) {
   const src = result.sourceMovies?.[0] || {};
   const likes = result.likes || 0;
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(storedLiked.includes(result.id));
   const storedLiked = (() => { try { return JSON.parse(localStorage.getItem("kims_liked") || "[]"); } catch { return []; } })();
   const [likesLocal, setLikesLocal] = useState(likes + (storedLiked.includes(result.id) ? 1 : 0));
   const handleLike = async (e) => { e.preventDefault(); e.stopPropagation(); if (liked) return; setLiked(true); setLikesLocal(l => l + 1); try { const r = await likeDiscoverResult(result.id); if (onLikeUpdated) onLikeUpdated(result.id, r.likes); try { const likedArr = JSON.parse(localStorage.getItem("kims_liked") || "[]"); if (!likedArr.includes(result.id)) { likedArr.push(result.id); localStorage.setItem("kims_liked", JSON.stringify(likedArr)); } } catch {} } catch (e) { console.error("Like failed:", e); } };
