@@ -3,29 +3,11 @@
 // Routes: poster-proxy, TMDB details, DeepSeek AI, Discover API
 // ═══════════════════════════════════════════════════════════
 
-// ── Genre classifier: TMDB genre → Chinese category ──
+// ── Genre classifier ──
 const GENRE_MAP = {
-  // 科幻
-  878: "科幻",   // Science Fiction
-  // 悬疑
-  9648: "悬疑",  // Mystery
-  53: "悬疑",    // Thriller → 悬疑
-  // 恐怖
-  27: "恐怖",   // Horror
-  // 动画
-  16: "动画",   // Animation
-  // 战争
-  10752: "战争", // War
-  // 犯罪
-  80: "犯罪",   // Crime
-  // 剧情
-  18: "剧情",   // Drama
-  10749: "剧情", // Romance → 剧情
-  36: "剧情",   // History → 剧情
-  10402: "剧情", // Music → 剧情
-  // 奇幻
-  14: "奇幻",   // Fantasy
-  12: "奇幻",   // Adventure → 奇幻
+  878: "科幻", 9648: "悬疑", 53: "悬疑", 27: "恐怖", 16: "动画",
+  10752: "战争", 80: "犯罪", 18: "剧情", 10749: "剧情", 36: "剧情",
+  10402: "剧情", 14: "奇幻", 12: "奇幻",
 };
 
 function classifyGenre(tmdbGenres) {
@@ -37,7 +19,7 @@ function classifyGenre(tmdbGenres) {
   return "剧情";
 }
 
-// ── TMDB helpers (same as before) ──
+// ── TMDB helpers ──
 
 async function fetchTMDBEnrichment(title, year, token, language) {
   language = language || "zh-CN";
@@ -48,7 +30,6 @@ async function fetchTMDBEnrichment(title, year, token, language) {
 
 async function searchTMDB(title, year, type, token, language) {
   language = language || "zh-CN";
-  const mediaType = type === 'movie' ? (language.startsWith('zh') ? '电影' : 'Movie') : (language.startsWith('zh') ? '剧集' : 'TV Series');
   const dateField = type === 'movie' ? 'release_date' : 'first_air_date';
   const nameField = type === 'movie' ? 'title' : 'name';
   const origField = type === 'movie' ? 'original_title' : 'original_name';
@@ -61,7 +42,7 @@ async function searchTMDB(title, year, type, token, language) {
     language: language
   });
 
-  const result = { poster: null, tmdbId: null, originalTitle: '', director: '', year: year || '', type: mediaType, genres: [] };
+  const result = { poster: null, tmdbId: null, originalTitle: '', director: '', year: year || '', type: '', genres: [] };
 
   try {
     const response = await fetch(
@@ -82,10 +63,8 @@ async function searchTMDB(title, year, type, token, language) {
         const y = m[dateField] ? Number(m[dateField].slice(0, 4)) : null;
         return y && Math.abs(y - year) <= 1;
       });
-      if (yearMatch) {
-        match = yearMatch;
-        matchConfidence = 'high';
-      } else {
+      if (yearMatch) { match = yearMatch; matchConfidence = 'high'; }
+      else {
         const nameMatch = results.find(m =>
           (m[nameField] || '').toLowerCase().includes(title.toLowerCase().slice(0, 6))
         );
@@ -225,35 +204,29 @@ async function fetchTMDBByType(tmdbId, type, token, language) {
 // ── Discover API: KV-backed CRUD ──
 
 function genId() { return crypto.randomUUID(); }
-
 function nowISO() { return new Date().toISOString(); }
 
 async function handleDiscoverList(env, url) {
   const genre = url.searchParams.get("genre") || "";
-  const sort = url.searchParams.get("sort") || "newest";  // newest | popular
+  const sort = url.searchParams.get("sort") || "newest";
   const limit = Math.min(parseInt(url.searchParams.get("limit") || "20"), 50);
   const cursor = url.searchParams.get("cursor") || "";
+
+  if (!env.DISCOVER_KV) return { results: [], hasMore: false, error: "KV not configured" };
 
   const listOpts = { limit: limit + 1 };
   if (cursor) listOpts.cursor = cursor;
 
   const { keys, cursor: nextCursor, list_complete } = await env.DISCOVER_KV.list({ prefix: "result:", ...listOpts });
 
-  // Fetch all results
   const results = [];
   for (const key of keys) {
     try {
       const raw = await env.DISCOVER_KV.get(key.name, "json");
-      if (raw) {
-        if (!genre || raw.genre === genre) {
-          results.push(raw);
-        }
-      }
+      if (raw && (!genre || raw.genre === genre)) results.push(raw);
     } catch (e) {}
   }
-  // Can't go over limit after genre filter — we accept being slightly over for simplicity
 
-  // Sort
   if (sort === "popular") {
     results.sort((a, b) => (b.likes || 0) - (a.likes || 0));
   } else {
@@ -273,10 +246,10 @@ async function handleDiscoverCreate(env, body) {
   if (!sourceMovies?.length || !recommendations?.length || !genre) {
     return { error: "Missing required fields: sourceMovies, recommendations, genre" };
   }
-
-  // Validate input sizes
   if (!Array.isArray(sourceMovies) || sourceMovies.length > 2) return { error: "sourceMovies: 1-2 entries" };
   if (!Array.isArray(recommendations) || recommendations.length > 5) return { error: "recommendations: max 5" };
+
+  if (!env.DISCOVER_KV) return { error: "KV storage not configured" };
 
   const id = genId();
   const doc = {
@@ -284,20 +257,12 @@ async function handleDiscoverCreate(env, body) {
     createdAt: nowISO(),
     contributorName: (contributorName || "").trim().slice(0, 30) || "匿名用户",
     sourceMovies: sourceMovies.map(m => ({
-      title: m.title || "",
-      titleEn: m.titleEn || "",
-      year: m.year || "",
-      tmdbId: m.tmdbId || null,
+      title: m.title || "", titleEn: m.titleEn || "", year: m.year || "", tmdbId: m.tmdbId || null,
     })),
     recommendations: recommendations.map(r => ({
-      tmdbId: r.tmdbId || null,
-      title: r.title || "",
-      titleEn: r.titleEn || "",
-      year: r.year || "",
-      director: r.director || "",
-      type: r.type || "",
-      reason: r.reason || "",
-      matchedTags: r.matchedTags || [],
+      tmdbId: r.tmdbId || null, title: r.title || "", titleEn: r.titleEn || "",
+      year: r.year || "", director: r.director || "", type: r.type || "",
+      reason: r.reason || "", matchedTags: r.matchedTags || [],
     })),
     genre,
     likes: 0,
@@ -307,7 +272,8 @@ async function handleDiscoverCreate(env, body) {
   return doc;
 }
 
-async function handleDiscoverLike(env, id, request) {
+async function handleDiscoverLike(env, id) {
+  if (!env.DISCOVER_KV) return { error: "KV not configured" };
   const key = `result:${id}`;
   const raw = await env.DISCOVER_KV.get(key, "json");
   if (!raw) return { error: "not_found" };
@@ -354,7 +320,6 @@ export default {
 
     // ── GET routes ──
     if (request.method === "GET") {
-      // Poster proxy
       if (path === "/poster-proxy") {
         const imageUrl = url.searchParams.get("url");
         if (!imageUrl) return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } });
@@ -376,10 +341,13 @@ export default {
         }
       }
 
-      // Discover list
       if (path === "/discover/results") {
-        const data = await handleDiscoverList(env, url);
-        return Response.json(data, { headers: corsHeaders });
+        try {
+          const data = await handleDiscoverList(env, url);
+          return Response.json(data, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message, results: [] }, { headers: corsHeaders });
+        }
       }
 
       return Response.json({ status: "ok" }, { headers: corsHeaders });
@@ -394,39 +362,45 @@ export default {
 
       // Discover: create result
       if (path === "/discover/results") {
-        const data = await handleDiscoverCreate(env, body);
-        return Response.json(data, { headers: corsHeaders });
+        try {
+          const data = await handleDiscoverCreate(env, body);
+          return Response.json(data, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
+        }
       }
 
-      // Discover: like a result
+      // Discover: like
       const likeMatch = path.match(/^\/discover\/results\/(.+)\/like$/);
       if (likeMatch) {
-        const data = await handleDiscoverLike(env, likeMatch[1], request);
-        return Response.json(data, { headers: corsHeaders });
+        try {
+          const data = await handleDiscoverLike(env, likeMatch[1]);
+          return Response.json(data, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
+        }
       }
 
-      // TMDB details lookup
-      if (body.tmdbId && !body.prompt) {
-        const details = await fetchTMDBDetails(body.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN, body.language);
-        return Response.json({ content: details || {} }, { headers: corsHeaders });
-      }
+      try {
+        // TMDB details lookup
+        if (body.tmdbId && !body.prompt) {
+          const details = await fetchTMDBDetails(body.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN, body.language);
+          return Response.json({ content: details || {} }, { headers: corsHeaders });
+        }
 
-      // TMDB search
-      if (body.searchTitle) {
-        const result = await fetchTMDBEnrichment(body.searchTitle, body.searchYear || '', env.TMDB_API_READ_ACCESS_TOKEN, body.language);
-        return Response.json({ content: result || { tmdbId: null } }, { headers: corsHeaders });
-      }
+        // TMDB search
+        if (body.searchTitle) {
+          const result = await fetchTMDBEnrichment(body.searchTitle, body.searchYear || '', env.TMDB_API_READ_ACCESS_TOKEN, body.language);
+          return Response.json({ content: result || { tmdbId: null } }, { headers: corsHeaders });
+        }
 
-      // DeepSeek AI (legacy prompt-based)
-      const messages = [];
+        // DeepSeek AI
+        const messages = [];
+        if (body.systemInstruction) messages.push({ role: "system", content: body.systemInstruction });
 
-      if (body.systemInstruction) {
-        messages.push({ role: "system", content: body.systemInstruction });
-      }
-
-      let userPrompt = body.prompt;
-      if (body.responseSchema) {
-        userPrompt += `
+        let userPrompt = body.prompt;
+        if (body.responseSchema) {
+          userPrompt += `
 
 IMPORTANT:
 Return ONLY valid JSON.
@@ -434,65 +408,59 @@ No markdown.
 No code block.
 No explanation.
 `;
+        }
+
+        messages.push({ role: "user", content: userPrompt });
+
+        const response = await fetch("https://api.deepseek.com/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ model: "deepseek-chat", messages, temperature: 0.7 })
+        });
+
+        const result = await response.json();
+        const raw = result?.choices?.[0]?.message?.content || "";
+
+        function safeParse(content) {
+          if (typeof content !== "string") return content;
+          try { return JSON.parse(content.replace(/```json/g, "").replace(/```/g, "").trim()); }
+          catch (e) { return { raw, error: "parse_failed" }; }
+        }
+
+        const parsed = safeParse(raw);
+
+        let list = [];
+        if (Array.isArray(parsed?.recommendations)) { list = parsed.recommendations; }
+        else if (parsed?.recommendations) { list = [parsed.recommendations]; }
+        else if (parsed?.title) { list = [parsed]; }
+
+        if (!list.length) return Response.json({ content: parsed }, { headers: corsHeaders });
+
+        const requestLanguage = body.language || "zh-CN";
+        const enriched = await Promise.all(
+          list.map(async (rec) => {
+            const shouldFetchDirector = !rec.director;
+            const tmdbData = await fetchTMDBEnrichment(rec.title, rec.year, env.TMDB_API_READ_ACCESS_TOKEN, requestLanguage);
+            return {
+              ...rec,
+              title: tmdbData.title || rec.title,
+              poster: tmdbData.poster,
+              tmdbId: tmdbData.tmdbId || rec.tmdbId,
+              originalTitle: tmdbData.originalTitle || rec.originalTitle || '',
+              year: tmdbData.year || rec.year || '',
+              director: shouldFetchDirector && tmdbData.director ? tmdbData.director : (rec.director || ''),
+              type: tmdbData.type || rec.type || ''
+            };
+          })
+        );
+
+        return Response.json({ content: { recommendations: enriched } }, { headers: corsHeaders });
+      } catch (err) {
+        return Response.json({ error: err.message }, { status: 500, headers: corsHeaders });
       }
-
-      messages.push({ role: "user", content: userPrompt });
-
-      const response = await fetch("https://api.deepseek.com/chat/completions", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          model: "deepseek-chat",
-          messages,
-          temperature: 0.7
-        })
-      });
-
-      const result = await response.json();
-      const raw = result?.choices?.[0]?.message?.content || "";
-
-      function safeParse(content) {
-        if (typeof content !== "string") return content;
-        try { return JSON.parse(content.replace(/```json/g, "").replace(/```/g, "").trim()); }
-        catch (e) { return { raw, error: "parse_failed" }; }
-      }
-
-      const parsed = safeParse(raw);
-
-      let list = [];
-      if (Array.isArray(parsed?.recommendations)) { list = parsed.recommendations; }
-      else if (parsed?.recommendations) { list = [parsed.recommendations]; }
-      else if (parsed?.title) { list = [parsed]; }
-
-      if (!list.length) {
-        return Response.json({ content: parsed }, { headers: corsHeaders });
-      }
-
-      const requestLanguage = body.language || "zh-CN";
-      const enriched = await Promise.all(
-        list.map(async (rec) => {
-          const shouldFetchDirector = !rec.director;
-          const tmdbData = await fetchTMDBEnrichment(
-            rec.title, rec.year, env.TMDB_API_READ_ACCESS_TOKEN, requestLanguage
-          );
-
-          return {
-            ...rec,
-            title: tmdbData.title || rec.title,
-            poster: tmdbData.poster,
-            tmdbId: tmdbData.tmdbId || rec.tmdbId,
-            originalTitle: tmdbData.originalTitle || rec.originalTitle || '',
-            year: tmdbData.year || rec.year || '',
-            director: shouldFetchDirector && tmdbData.director ? tmdbData.director : (rec.director || ''),
-            type: tmdbData.type || rec.type || ''
-          };
-        })
-      );
-
-      return Response.json({ content: { recommendations: enriched } }, { headers: corsHeaders });
     }
 
     return Response.json({ error: "Method not allowed" }, { status: 405, headers: corsHeaders });
