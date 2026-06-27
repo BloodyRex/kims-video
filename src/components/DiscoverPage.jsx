@@ -51,28 +51,38 @@ function EditorPickCard({ pair, color, posterMap, locale }) {
   const srcPoster = posterMap[pair.source.tmdbId];
   const recPoster = posterMap[pair.recommend.tmdbId];
   const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
+  const posterW = "w-[50px] sm:w-[56px]";
+  const posterH = "h-[72px] sm:h-[82px]";
   return (
     <a
       href={linkUrl}
-      className="flex-shrink-0 w-64 bg-white border-4 border-black overflow-hidden hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,1)]"
+      className="flex-shrink-0 min-w-[180px] sm:min-w-[200px] bg-white border-4 border-black flex flex-col items-center gap-2 p-3 hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,1)]"
       style={{ borderBottomColor: color }}
     >
-      <div className="flex gap-2 p-3 items-center">
-        {srcPoster && <img src={srcPoster} alt={pair.source.title} className="w-10 h-14 object-cover border-2 border-black" loading="lazy" />}
-        <span className="text-xs font-black leading-tight">{pair.source.title}<br/><span className="text-gray-400 font-normal">{pair.source.year}</span></span>
-        <span className="text-lg font-black" style={{ color }}>→</span>
-        {recPoster && <img src={recPoster} alt={pair.recommend.title} className="w-10 h-14 object-cover border-2 border-black" loading="lazy" />}
-        <span className="text-xs font-black leading-tight">{pair.recommend.title}<br/><span className="text-gray-400 font-normal">{pair.recommend.year}</span></span>
-      </div>
-      <div className="px-3 pb-3">
-        <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-      </div>
+      <span className="text-[10px] font-bold text-gray-400 uppercase">{locale === "en" ? "If you like" : "如果你喜欢"}</span>
+      {srcPoster ? (
+        <img src={srcPoster} alt={pair.source.title} className={`${posterW} ${posterH} object-cover border-2 border-black`} loading="lazy" />
+      ) : (
+        <div className={`${posterW} ${posterH} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>
+      )}
+      <span className="text-xs font-black text-center leading-tight">{pair.source.title}</span>
+      <span className="text-lg font-black" style={{ color }}>↓</span>
+      {recPoster ? (
+        <img src={recPoster} alt={pair.recommend.title} className={`${posterW} ${posterH} object-cover border-2 border-black`} loading="lazy" />
+      ) : (
+        <div className={`${posterW} ${posterH} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>
+      )}
+      <span className="text-xs font-black text-center leading-tight">{pair.recommend.title}</span>
+      <p className="text-[10px] text-gray-500 text-center leading-relaxed line-clamp-2 px-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
+      <span className="inline-block px-3 py-1 text-[10px] font-black text-black border-2 border-black uppercase" style={{ backgroundColor: color }}>
+        {locale === "en" ? "Details →" : "查看详情 →"}
+      </span>
     </a>
   );
 }
 
 // ── User Result Card ──
-function UserResultCard({ result, posterMap, locale, onLike }) {
+function UserResultCard({ result, posterMap, locale }) {
   const src = result.sourceMovies?.[0] || {};
   const likes = result.likes || 0;
   const [liked, setLiked] = useState(false);
@@ -89,18 +99,14 @@ function UserResultCard({ result, posterMap, locale, onLike }) {
 
   return (
     <div className="bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] transition-all">
-      {/* Header */}
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
-        <span className="font-black pixel-font uppercase">
-          {locale === "en" ? "FROM " : ""}{src.title || ""}{src.year ? ` (${src.year})` : ""} {locale === "zh" ? "来自" : ""}
+        <span className="font-black pixel-font uppercase truncate">
+          {src.title || ""}{src.year ? ` (${src.year})` : ""}
         </span>
-        <span className="text-gray-400 font-bold">
+        <span className="text-gray-400 font-bold truncate">
           {result.contributorName || (locale === "en" ? "Anonymous" : "匿名用户")}
-          {locale === "en" ? " discovered" : " 的发现"}
         </span>
       </div>
-
-      {/* Recommendation posters row */}
       <div className="flex p-2 gap-2 overflow-x-auto">
         {result.recommendations.map((rec, i) => {
           const poster = posterMap[rec.tmdbId];
@@ -112,22 +118,20 @@ function UserResultCard({ result, posterMap, locale, onLike }) {
               {poster ? (
                 <img src={poster} alt={rec.title} className="w-16 h-24 object-cover border-2 border-black group-hover:border-[#ff00ff] transition-colors" loading="lazy" />
               ) : (
-                <div className="w-16 h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold">NO POSTER</div>
+                <div className="w-16 h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold">?</div>
               )}
               <span className={`block text-[8px] font-black text-center mt-0.5 px-0.5 ${badgeColor} text-black`}>{badge}</span>
             </a>
           );
         })}
       </div>
-
-      {/* Footer: time, likes */}
       <div className="px-3 pb-2 flex items-center justify-between text-[10px] text-gray-500">
         <span>{new Date(result.createdAt).toLocaleDateString(locale === "zh" ? "zh-CN" : "en-US", { month: "short", day: "numeric" })}</span>
         <button
           onClick={handleLike}
           className={`flex items-center gap-1 font-bold px-1.5 py-0.5 border border-gray-300 hover:bg-gray-100 transition-colors ${liked ? "text-[#ff00ff] border-[#ff00ff]" : ""}`}
         >
-          <span>{liked ? "❤️" : "♡"}</span> {likesLocal}
+          <span>{liked ? "♥" : "♡"}</span> {likesLocal}
         </button>
       </div>
     </div>
@@ -140,10 +144,8 @@ const DiscoverPage = () => {
   const [posterMap, setPosterMap] = useState({});
   const [userResults, setUserResults] = useState([]);
   const [loadingResults, setLoadingResults] = useState(true);
-  const [activeTab, setActiveTab] = useState("all");  // all | user
   const scrollRef = useRef(null);
 
-  // Fetch TMDB posters for editor picks
   useEffect(() => {
     const allIds = new Set();
     (discoverData.editorPicks || []).forEach(p => {
@@ -166,7 +168,6 @@ const DiscoverPage = () => {
     return () => { cancelled = true; };
   }, [locale]);
 
-  // Fetch user discover results
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -182,14 +183,12 @@ const DiscoverPage = () => {
     return () => { cancelled = true; };
   }, []);
 
-  // Poster map for user result recommendations
   const userRecTmdbIds = [];
   userResults.forEach(r => r.recommendations?.forEach(rec => {
     if (rec.tmdbId) userRecTmdbIds.push(rec.tmdbId);
   }));
   const userPosterMap = usePosters(userRecTmdbIds);
 
-  // Group user results by genre
   const userByGenre = {};
   for (const r of userResults) {
     const g = r.genre || "剧情";
@@ -246,31 +245,28 @@ const DiscoverPage = () => {
       </section>
 
       {/* ── Editor's Picks Carousel ── */}
-      <section className="max-w-4xl mx-auto px-4 mb-8">
-        <h3 className="text-sm font-black pixel-font text-[#ffff00] uppercase tracking-widest mb-3">
+      <section className="max-w-4xl mx-auto px-2 sm:px-4 mb-10">
+        <h3 className="px-2 sm:px-0 text-sm font-black pixel-font text-[#ffff00] uppercase tracking-widest mb-3">
           {locale === "en" ? "★ Editor's Picks" : "★ 编辑精选"}
         </h3>
         <div
           ref={scrollRef}
-          className="flex gap-4 overflow-x-auto pb-2 scrollbar-thin"
-          style={{ scrollSnapType: "x mandatory" }}
+          className="flex gap-3 overflow-x-auto pb-3 px-2 sm:px-0"
+          style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
         >
           {(discoverData.editorPicks || []).map((pair, i) => (
             <div key={i} style={{ scrollSnapAlign: "start" }}>
               <EditorPickCard pair={pair} color={GENRE_COLORS["科幻"] || "#ff00ff"} posterMap={posterMap} locale={locale} />
             </div>
           ))}
-          {/* Link to start your own */}
           <a
             href="/"
-            className="flex-shrink-0 w-48 bg-[#ffff00] border-4 border-black flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-[#ffff40] transition-colors shadow-[6px_6px_0_0_rgba(0,0,0,1)]"
+            className="flex-shrink-0 min-w-[140px] sm:min-w-[160px] bg-[#ffff00] border-4 border-black flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-[#ffff40] transition-colors shadow-[6px_6px_0_0_rgba(0,0,0,1)]"
             style={{ scrollSnapAlign: "start" }}
           >
             <span className="text-2xl">🎬</span>
-            <span className="text-sm font-black pixel-font uppercase">
-              {locale === "en" ? "Start Your Own" : "开始你自己的"}
-            </span>
-            <span className="text-xs text-gray-600">{locale === "en" ? "→ Get AI Picks" : "→ 获取 AI 推荐"}</span>
+            <span className="text-sm font-black pixel-font uppercase">{locale === "en" ? "Start" : "开始"}</span>
+            <span className="text-xs text-gray-600">{locale === "en" ? "→ Get Picks" : "→ 获取推荐"}</span>
           </a>
         </div>
       </section>
@@ -291,7 +287,6 @@ const DiscoverPage = () => {
                 {locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}
               </h2>
 
-              {/* Editor pairs for this genre */}
               <div className="space-y-4">
                 {genre.pairs.map((pair, idx) => {
                   const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
@@ -326,27 +321,21 @@ const DiscoverPage = () => {
                           href={`/?from=${pair.source.tmdbId}`}
                           className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black bg-[#ffff00] uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all"
                         >
-                          {locale === "en" ? `More like ${pair.source.titleEn}` : `更多「${pair.source.title}」推荐 →`}
+                          {locale === "en" ? `More from ${pair.source.titleEn || pair.source.title}` : `更多「${pair.source.title}」→`}
                         </a>
                       </div>
                     </article>
                   );
                 })}
 
-                {/* User results for this genre */}
                 {hasUserContent && (
                   <div className="mt-6">
                     <h4 className="text-sm font-black text-gray-400 pixel-font uppercase mb-3">
-                      {locale === "en" ? `★ Community Picks (${genreUserResults.length})` : `★ 用户发现 (${genreUserResults.length})`}
+                      {locale === "en" ? `★ Community (${genreUserResults.length})` : `★ 用户发现 (${genreUserResults.length})`}
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {genreUserResults.map((result) => (
-                        <UserResultCard
-                          key={result.id}
-                          result={result}
-                          posterMap={userPosterMap}
-                          locale={locale}
-                        />
+                        <UserResultCard key={result.id} result={result} posterMap={userPosterMap} locale={locale} />
                       ))}
                     </div>
                   </div>
@@ -357,11 +346,10 @@ const DiscoverPage = () => {
         })}
 
         {loadingResults && (
-          <p className="text-center text-gray-500 text-xs py-8">{locale === "en" ? "Loading community picks..." : "加载用户发现..."}</p>
+          <p className="text-center text-gray-500 text-xs py-8">{locale === "en" ? "Loading community..." : "加载用户发现..."}</p>
         )}
       </div>
 
-      {/* Bottom CTA */}
       <div className="max-w-4xl mx-auto px-4 pt-8 pb-16 text-center">
         <a
           href="/"
