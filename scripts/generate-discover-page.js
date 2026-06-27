@@ -83,6 +83,14 @@ genreNavHtml = genreNavHtml.replace(/·$/, '');
 
 // FAQ items
 let faqItemsJson = [];
+// Build set of editor pick pairs to avoid duplicates
+const editorPickIds = new Set();
+if (discover.editorPicks) {
+  discover.editorPicks.forEach(p => editorPickIds.add(
+`${p.source.tmdbId}-${p.recommend.tmdbId}`
+));
+}
+
 let genreSectionsHtml = '';
 
 for (const genre of discover.genres) {
@@ -91,6 +99,7 @@ for (const genre of discover.genres) {
 
   let pairsHtml = '';
   for (const pair of genre.pairs) {
+    if (editorPickIds.has(`${pair.source.tmdbId}-${pair.recommend.tmdbId}`)) continue;
     const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
     const sourceResultUrl = `/?from=${pair.source.tmdbId}`;
 

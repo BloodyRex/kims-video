@@ -138,6 +138,12 @@ const DiscoverPage = () => {
   const [activeTab, setActiveTab] = useState("editor");  // "editor" | "community"
   const scrollRef = useRef(null);
 
+  // Build set of editor pick (source,recommend) tmdbId pairs to avoid duplicates in genre sections
+  const editorPickIds = new Set();
+  (discoverData.editorPicks || []).forEach(p => {
+    editorPickIds.add(`${p.source.tmdbId}-${p.recommend.tmdbId}`);
+  });
+
   const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
   const getBracketed = (movie) => locale === "zh" ? `《${movie.title}》` : getTitle(movie);
 
@@ -281,7 +287,7 @@ const DiscoverPage = () => {
                 : "bg-white text-black hover:bg-gray-100"
             }`}
           >
-            {locale === "en" ? "★ Editor Picks" : "★ 编辑精选"}
+            {locale === "en" ? "★ Category" : "★ 分类推荐"}
           </button>
           <button
             onClick={() => setActiveTab("community")}
@@ -314,7 +320,7 @@ const DiscoverPage = () => {
                   {locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}
                 </h2>
                 <div className="space-y-4">
-                  {genre.pairs.map((pair, idx) => {
+                  {genre.pairs.filter(p => !editorPickIds.has(`${p.source.tmdbId}-${p.recommend.tmdbId}`)).map((pair, idx) => {
                     const srcPoster = posterMap[pair.source.tmdbId];
                     const recPoster = posterMap[pair.recommend.tmdbId];
                     const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
