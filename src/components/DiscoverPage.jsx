@@ -16,17 +16,6 @@ const GENRE_COLORS = {
   "剧情": "#ffff00", "奇幻": "#ff00ff",
 };
 
-const GENRE_THEMES = {
-  "科幻": { zh: "时空、科技与人性探索", en: "time, technology, and human exploration" },
-  "悬疑": { zh: "悬疑、记忆与身份认同", en: "suspense, memory, and identity" },
-  "恐怖": { zh: "心理恐怖与氛围营造", en: "psychological dread and atmosphere" },
-  "动画": { zh: "想象力与情感表达", en: "imagination and emotional expression" },
-  "战争": { zh: "人性考验与历史反思", en: "human endurance and historical reflection" },
-  "犯罪": { zh: "道德边界与命运纠缠", en: "moral boundaries and fate" },
-  "剧情": { zh: "人性深度与社会洞察", en: "human depth and social insight" },
-  "奇幻": { zh: "神话叙事与史诗冒险", en: "mythic storytelling and epic adventure" },
-};
-
 function usePosters(tmdbIds) {
   const [map, setMap] = useState({});
   useEffect(() => {
@@ -47,12 +36,14 @@ function usePosters(tmdbIds) {
 }
 
 // ── Editor's Picks Card ──
-function EditorPickCard({ pair, color, posterMap, locale }) {
+function EditorPickCard({ pair, color, posterMap, locale, getTitle }) {
   const srcPoster = posterMap[pair.source.tmdbId];
   const recPoster = posterMap[pair.recommend.tmdbId];
   const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
   const posterW = "w-[50px] sm:w-[56px]";
   const posterH = "h-[72px] sm:h-[82px]";
+  const srcTitle = getTitle(pair.source);
+  const recTitle = getTitle(pair.recommend);
   return (
     <a
       href={linkUrl}
@@ -61,18 +52,18 @@ function EditorPickCard({ pair, color, posterMap, locale }) {
     >
       <span className="text-[10px] font-bold text-gray-400 uppercase">{locale === "en" ? "If you like" : "如果你喜欢"}</span>
       {srcPoster ? (
-        <img src={srcPoster} alt={pair.source.title} className={`${posterW} ${posterH} object-cover border-2 border-black`} loading="lazy" />
+        <img src={srcPoster} alt={srcTitle} className={`${posterW} ${posterH} object-cover border-2 border-black`} loading="lazy" />
       ) : (
         <div className={`${posterW} ${posterH} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>
       )}
-      <span className="text-xs font-black text-center leading-tight">{pair.source.title}</span>
+      <span className="text-xs font-black text-center leading-tight">{srcTitle}</span>
       <span className="text-lg font-black" style={{ color }}>↓</span>
       {recPoster ? (
-        <img src={recPoster} alt={pair.recommend.title} className={`${posterW} ${posterH} object-cover border-2 border-black`} loading="lazy" />
+        <img src={recPoster} alt={recTitle} className={`${posterW} ${posterH} object-cover border-2 border-black`} loading="lazy" />
       ) : (
         <div className={`${posterW} ${posterH} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>
       )}
-      <span className="text-xs font-black text-center leading-tight">{pair.recommend.title}</span>
+      <span className="text-xs font-black text-center leading-tight">{recTitle}</span>
       <p className="text-[10px] text-gray-500 text-center leading-relaxed line-clamp-2 px-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
       <span className="inline-block px-3 py-1 text-[10px] font-black text-black border-2 border-black uppercase" style={{ backgroundColor: color }}>
         {locale === "en" ? "Details →" : "查看详情 →"}
@@ -110,7 +101,7 @@ function UserResultCard({ result, posterMap, locale }) {
       <div className="flex p-2 gap-2 overflow-x-auto">
         {result.recommendations.map((rec, i) => {
           const poster = posterMap[rec.tmdbId];
-          const detailUrl = `/?from=${src.tmdbId || ""}&r=${rec.tmdbId}`;
+          const detailUrl = `/?from=${src.tmdbId || ""}&r=${rec.tmdbId}&discover=1`;
           const badge = i < 2 ? (locale === "en" ? "HOT" : "热门") : i < 4 ? (locale === "en" ? "NICHE" : "冷门") : (locale === "en" ? "WILD" : "争议");
           const badgeColor = i < 2 ? "bg-[#ff00ff]" : i < 4 ? "bg-[#00ffff]" : "bg-[#ffff00]";
           return (
@@ -144,8 +135,13 @@ const DiscoverPage = () => {
   const [posterMap, setPosterMap] = useState({});
   const [userResults, setUserResults] = useState([]);
   const [loadingResults, setLoadingResults] = useState(true);
+  const [activeTab, setActiveTab] = useState("editor");  // "editor" | "community"
   const scrollRef = useRef(null);
 
+  const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
+  const getBracketed = (movie) => locale === "zh" ? `《${movie.title}》` : getTitle(movie);
+
+  // Fetch posters for all editor content
   useEffect(() => {
     const allIds = new Set();
     (discoverData.editorPicks || []).forEach(p => {
@@ -160,14 +156,15 @@ const DiscoverPage = () => {
     (async () => {
       const map = {};
       await Promise.allSettled([...allIds].map(async id => {
-        const data = await fetchMovieByTmdbId(id, locale);
+        const data = await fetchMovieByTmdbId(id, "zh");
         if (data?.poster && !cancelled) map[id] = data.poster;
       }));
       if (!cancelled) setPosterMap(map);
     })();
     return () => { cancelled = true; };
-  }, [locale]);
+  }, []);
 
+  // Fetch user discover results
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -183,18 +180,23 @@ const DiscoverPage = () => {
     return () => { cancelled = true; };
   }, []);
 
+  // Posters for user result thumbnails
   const userRecTmdbIds = [];
   userResults.forEach(r => r.recommendations?.forEach(rec => {
     if (rec.tmdbId) userRecTmdbIds.push(rec.tmdbId);
   }));
   const userPosterMap = usePosters(userRecTmdbIds);
 
+  // Group user results by genre
   const userByGenre = {};
   for (const r of userResults) {
     const g = r.genre || "剧情";
     if (!userByGenre[g]) userByGenre[g] = [];
     userByGenre[g].push(r);
   }
+
+  // Count total user results
+  const totalUserCount = userResults.length;
 
   useEffect(() => {
     document.title = locale === "zh"
@@ -207,9 +209,6 @@ const DiscoverPage = () => {
         : "Explore AI-powered movie recommendation pairs. Discover sci-fi, drama, and mystery films similar to your favorites.";
     }
   }, [locale]);
-
-  const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
-  const getBracketed = (movie) => locale === "zh" ? `《${movie.title}》` : getTitle(movie);
 
   return (
     <div className="min-h-screen graffiti-bg text-black pb-32">
@@ -245,8 +244,8 @@ const DiscoverPage = () => {
       </section>
 
       {/* ── Editor's Picks Carousel ── */}
-      <section className="max-w-4xl mx-auto px-2 sm:px-4 mb-10">
-        <h3 className="px-2 sm:px-0 text-sm font-black pixel-font text-[#ffff00] uppercase tracking-widest mb-3">
+      <section className="max-w-4xl mx-auto px-2 sm:px-4 mb-6">
+        <h3 className="px-2 sm:px-0 text-base sm:text-lg font-black pixel-font text-[#ffff00] uppercase tracking-widest mb-3 bg-black inline-block px-4 py-1.5 border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff]">
           {locale === "en" ? "★ Editor's Picks" : "★ 编辑精选"}
         </h3>
         <div
@@ -256,7 +255,7 @@ const DiscoverPage = () => {
         >
           {(discoverData.editorPicks || []).map((pair, i) => (
             <div key={i} style={{ scrollSnapAlign: "start" }}>
-              <EditorPickCard pair={pair} color={GENRE_COLORS["科幻"] || "#ff00ff"} posterMap={posterMap} locale={locale} />
+              <EditorPickCard pair={pair} color={GENRE_COLORS["科幻"] || "#ff00ff"} posterMap={posterMap} locale={locale} getTitle={getTitle} />
             </div>
           ))}
           <a
@@ -271,82 +270,143 @@ const DiscoverPage = () => {
         </div>
       </section>
 
+      {/* ── Tab switcher ── */}
+      <div className="max-w-4xl mx-auto px-4 mb-6">
+        <div className="flex gap-3">
+          <button
+            onClick={() => setActiveTab("editor")}
+            className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${
+              activeTab === "editor"
+                ? "bg-[#ff00ff] text-white"
+                : "bg-white text-black hover:bg-gray-100"
+            }`}
+          >
+            {locale === "en" ? "★ Editor Picks" : "★ 编辑精选"}
+          </button>
+          <button
+            onClick={() => setActiveTab("community")}
+            className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${
+              activeTab === "community"
+                ? "bg-[#ffff00] text-black"
+                : "bg-white text-black hover:bg-gray-100"
+            }`}
+          >
+            {locale === "en" ? "Community" : "社区发现"}
+            {totalUserCount > 0 && (
+              <span className="ml-1.5 bg-black text-white text-[10px] px-1.5 py-0.5">{totalUserCount}</span>
+            )}
+          </button>
+        </div>
+      </div>
+
       {/* ── Genre sections ── */}
       <div className="max-w-4xl mx-auto px-4">
-        {discoverData.genres.map((genre) => {
-          const color = GENRE_COLORS[genre.name] || "#ff00ff";
-          const genreUserResults = userByGenre[genre.name] || [];
-          const hasUserContent = genreUserResults.length > 0;
-
-          return (
-            <section key={genre.name} className="mb-12">
-              <h2
-                className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black"
-                style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}
-              >
-                {locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}
-              </h2>
-
-              <div className="space-y-4">
-                {genre.pairs.map((pair, idx) => {
-                  const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
-                  return (
-                    <article
-                      key={idx}
-                      className="bg-white border-4 border-black p-5"
-                      style={{ boxShadow: `8px 8px 0 0 ${color}` }}
-                    >
-                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-3">
-                        <span className="text-sm font-bold text-gray-500">{t('discover.if_like')}</span>
-                        <span className="font-black text-lg" style={{ color }}>
-                          {getBracketed(pair.source)}
-                        </span>
-                        <span className="text-gray-400 text-sm">({pair.source.year})</span>
-                        <span className="text-gray-500 mx-1 text-lg">{t('discover.arrow')}</span>
-                        <span className="font-black text-lg text-black">
-                          {getBracketed(pair.recommend)}
-                        </span>
-                        <span className="text-gray-400 text-sm">({pair.recommend.year})</span>
-                      </div>
-                      <p className="text-sm text-gray-600 mb-3">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-                      <div className="flex gap-2 flex-wrap">
-                        <a
-                          href={detailUrl}
-                          className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all"
-                          style={{ backgroundColor: color }}
-                        >
-                          {t('discover.view_detail')} →
-                        </a>
-                        <a
-                          href={`/?from=${pair.source.tmdbId}`}
-                          className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black bg-[#ffff00] uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all"
-                        >
-                          {locale === "en" ? `More from ${pair.source.titleEn || pair.source.title}` : `更多「${pair.source.title}」→`}
-                        </a>
-                      </div>
-                    </article>
-                  );
-                })}
-
-                {hasUserContent && (
-                  <div className="mt-6">
-                    <h4 className="text-sm font-black text-gray-400 pixel-font uppercase mb-3">
-                      {locale === "en" ? `★ Community (${genreUserResults.length})` : `★ 用户发现 (${genreUserResults.length})`}
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {genreUserResults.map((result) => (
-                        <UserResultCard key={result.id} result={result} posterMap={userPosterMap} locale={locale} />
-                      ))}
-                    </div>
-                  </div>
-                )}
+        {activeTab === "editor" ? (
+          /* === Editor Pairs === */
+          discoverData.genres.map((genre) => {
+            const color = GENRE_COLORS[genre.name] || "#ff00ff";
+            return (
+              <section key={genre.name} className="mb-12">
+                <h2
+                  className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black"
+                  style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}
+                >
+                  {locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}
+                </h2>
+                <div className="space-y-4">
+                  {genre.pairs.map((pair, idx) => {
+                    const srcPoster = posterMap[pair.source.tmdbId];
+                    const recPoster = posterMap[pair.recommend.tmdbId];
+                    const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
+                    return (
+                      <article
+                        key={idx}
+                        className="bg-white border-4 border-black p-5"
+                        style={{ boxShadow: `8px 8px 0 0 ${color}` }}
+                      >
+                        {/* Title row with posters */}
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-3">
+                          {srcPoster && (
+                            <img src={srcPoster} alt={getTitle(pair.source)} className="w-12 h-[68px] object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+                          )}
+                          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                            <span className="text-sm font-bold text-gray-500">{t('discover.if_like')}</span>
+                            <span className="font-black text-lg" style={{ color }}>
+                              {getBracketed(pair.source)}
+                            </span>
+                            <span className="text-gray-400 text-sm">({pair.source.year})</span>
+                          </div>
+                          <span className="text-gray-500 mx-1 text-lg">{t('discover.arrow')}</span>
+                          {recPoster && (
+                            <img src={recPoster} alt={getTitle(pair.recommend)} className="w-12 h-[68px] object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+                          )}
+                          <span className="font-black text-lg text-black">
+                            {getBracketed(pair.recommend)}
+                          </span>
+                          <span className="text-gray-400 text-sm">({pair.recommend.year})</span>
+                        </div>
+                        <p className="text-sm text-gray-600 mb-3">{locale === "en" ? pair.reasonEn : pair.reason}</p>
+                        <div className="flex gap-2 flex-wrap">
+                          <a
+                            href={detailUrl}
+                            className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all"
+                            style={{ backgroundColor: color }}
+                          >
+                            {t('discover.view_detail')} →
+                          </a>
+                          <a
+                            href={`/?from=${pair.source.tmdbId}`}
+                            className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black bg-[#ffff00] uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all"
+                          >
+                            {locale === "en" ? `More from ${pair.source.titleEn || pair.source.title}` : `更多「${pair.source.title}」→`}
+                          </a>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })
+        ) : (
+          /* === Community Tab === */
+          <>
+            {loadingResults && (
+              <p className="text-center text-gray-500 text-xs py-8">{locale === "en" ? "Loading community..." : "加载用户发现..."}</p>
+            )}
+            {!loadingResults && totalUserCount === 0 && (
+              <div className="text-center py-12">
+                <p className="text-4xl mb-3">🎬</p>
+                <p className="text-gray-400 text-sm font-bold mb-2">{locale === "en" ? "No community picks yet" : "暂无用户发现"}</p>
+                <p className="text-gray-500 text-xs mb-4">{locale === "en" ? "Be the first to share your AI recommendations!" : "成为第一个分享 AI 推荐结果的人！"}</p>
+                <a href="/" className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all">
+                  {locale === "en" ? "Get Your Picks →" : "获取你的推荐 →"}
+                </a>
               </div>
-            </section>
-          );
-        })}
+            )}
+            {!loadingResults && totalUserCount > 0 && discoverData.genres.map((genre) => {
+              const color = GENRE_COLORS[genre.name] || "#ff00ff";
+              const genreUserResults = userByGenre[genre.name] || [];
+              if (genreUserResults.length === 0) return null;
 
-        {loadingResults && (
-          <p className="text-center text-gray-500 text-xs py-8">{locale === "en" ? "Loading community..." : "加载用户发现..."}</p>
+              return (
+                <section key={genre.name} className="mb-12">
+                  <h2
+                    className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black"
+                    style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}
+                  >
+                    {locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}
+                    <span className="ml-2 text-sm opacity-75">({genreUserResults.length})</span>
+                  </h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {genreUserResults.map((result) => (
+                      <UserResultCard key={result.id} result={result} posterMap={userPosterMap} locale={locale} />
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
+          </>
         )}
       </div>
 
