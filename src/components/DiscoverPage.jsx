@@ -64,8 +64,9 @@ function UserResultCard({ result, posterMap, locale, onLikeUpdated }) {
   const src = result.sourceMovies?.[0] || {};
   const likes = result.likes || 0;
   const [liked, setLiked] = useState(false);
-  const [likesLocal, setLikesLocal] = useState(likes);
-  const handleLike = async (e) => { e.preventDefault(); e.stopPropagation(); if (liked) return; setLiked(true); setLikesLocal(l => l + 1); try { const r = await likeDiscoverResult(result.id); if (onLikeUpdated) onLikeUpdated(result.id, r.likes); } catch {} };
+  const storedLiked = (() => { try { return JSON.parse(localStorage.getItem("kims_liked") || "[]"); } catch { return []; } })();
+  const [likesLocal, setLikesLocal] = useState(likes + (storedLiked.includes(result.id) ? 1 : 0));
+  const handleLike = async (e) => { e.preventDefault(); e.stopPropagation(); if (liked) return; setLiked(true); setLikesLocal(l => l + 1); try { const r = await likeDiscoverResult(result.id); if (onLikeUpdated) onLikeUpdated(result.id, r.likes); try { const likedArr = JSON.parse(localStorage.getItem("kims_liked") || "[]"); if (!likedArr.includes(result.id)) { likedArr.push(result.id); localStorage.setItem("kims_liked", JSON.stringify(likedArr)); } } catch {} } catch (e) { console.error("Like failed:", e); } };
   return (
     <div className="bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
@@ -221,7 +222,6 @@ const DiscoverPage = () => {
                   {filtered.map((pair, idx) => {
                     const recPoster = posterMap[pair.recommend.tmdbId];
                     const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
-                    const genreUrl = `/genre/${genreSlug(genre.name)}`;
 
                     return (
                       <article key={idx} className="bg-white border-4 border-black overflow-hidden" style={{ boxShadow: `8px 8px 0 0 ${color}` }}>
@@ -248,7 +248,6 @@ const DiscoverPage = () => {
                             <p className="text-sm text-gray-600 leading-relaxed mb-3 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
                             <div className="flex gap-2 flex-wrap mt-auto">
                               <a href={detailUrl} className="inline-block px-4 py-2 text-xs font-black text-white bg-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-gray-800 hover:translate-y-0.5 transition-all">{t('discover.view_detail')}</a>
-                              <a href={genreUrl} className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black bg-[#ffff00] uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all">{locale === "en" ? `Explore ${genre.name}` : `更多${genre.name}推荐`}</a>
                             </div>
                           </div>
                         </div>
