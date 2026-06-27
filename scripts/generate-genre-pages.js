@@ -98,8 +98,8 @@ for (const genre of discover.genres) {
             <p style="color:#444;font-size:14px;line-height:1.7;margin-bottom:8px;">${escapeHtml(pair.reason)}</p>
             <p style="color:#888;font-size:13px;margin-bottom:12px;"><em>${escapeHtml(pair.reasonEn)}</em></p>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <a href="${detailUrl}" style="display:inline-block;background:${color};color:#000;padding:8px 16px;font-size:12px;font-weight:900;text-decoration:none;border:2px solid #000;box-shadow:4px 4px 0 0 #000;text-transform:uppercase;">查看详情 →</a>
-              <a href="${sourceUrl}" style="display:inline-block;background:#ffff00;color:#000;padding:8px 16px;font-size:12px;font-weight:900;text-decoration:none;border:2px solid #000;box-shadow:4px 4px 0 0 #000;">探索更多「${escapeHtml(pair.source.title)}」推荐 →</a>
+              <a href="${detailUrl}" style="display:inline-block;background:${color};color:#000;padding:8px 16px;font-size:12px;font-weight:900;text-decoration:none;border:2px solid #000;box-shadow:4px 4px 0 0 #000;text-transform:uppercase;">查看详情</a>
+              <a href="${sourceUrl}" style="display:inline-block;background:#ffff00;color:#000;padding:8px 16px;font-size:12px;font-weight:900;text-decoration:none;border:2px solid #000;box-shadow:4px 4px 0 0 #000;">更多「${escapeHtml(pair.source.title)}」推荐 →</a>
             </div>
           </article>`;
   }

@@ -55,7 +55,7 @@ function EditorPickCard({ pair, color, posterMap, locale, getTitle }) {
       {recPoster ? <img src={recPoster} alt={getTitle(pair.recommend)} className={`${pw} ${ph} object-cover border-2 border-black`} loading="lazy" /> : <div className={`${pw} ${ph} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>}
       <span className="text-xs font-black text-center leading-tight">{getTitle(pair.recommend)}</span>
       <p className="text-[10px] text-gray-500 text-center leading-relaxed line-clamp-2 px-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-      <span className="inline-block px-3 py-1 text-[10px] font-black text-black border-2 border-black uppercase" style={{ backgroundColor: color }}>{locale === "en" ? "Details →" : "查看详情 →"}</span>
+      <span className="inline-block px-3 py-1 text-[10px] font-black text-black border-2 border-black uppercase" style={{ backgroundColor: color }}>{locale === "en" ? "Details" : "查看详情"}</span>
     </a>
   );
 }
@@ -226,8 +226,8 @@ const DiscoverPage = () => {
                             </div>
                             <p className="text-sm text-gray-600 leading-relaxed mb-3 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
                             <div className="flex gap-2 flex-wrap mt-auto">
-                              <a href={detailUrl} className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all" style={{ backgroundColor: color }}>{t('discover.view_detail')} →</a>
-                              <a href={genreUrl} className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black bg-[#ffff00] uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all">{locale === "en" ? `Explore ${genre.name} →` : `更多${genre.name}推荐 →`}</a>
+                              <a href={detailUrl} className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all" style={{ backgroundColor: color }}>{t('discover.view_detail')}</a>
+                              <a href={genreUrl} className="inline-block px-4 py-2 text-xs font-black text-black border-2 border-black bg-[#ffff00] uppercase shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 transition-all">{locale === "en" ? `Explore ${genre.name}` : `更多${genre.name}推荐`}</a>
                             </div>
                           </div>
                         </div>
