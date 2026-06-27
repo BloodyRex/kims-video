@@ -271,10 +271,10 @@ function AppContent() {
 
   // Discover page
   const [showDiscover] = useState(() => {
-    if (window.location.pathname.startsWith("/discover")) return true;
+    if (window.location.pathname.startsWith("/discover") || window.location.pathname.startsWith("/genre")) return true;
     try {
       const redirect = sessionStorage.getItem("redirect");
-      if (redirect && redirect.startsWith("/discover")) {
+      if (redirect && (redirect.startsWith("/discover") || redirect.startsWith("/genre"))) {
         sessionStorage.removeItem("redirect");
         return true;
       }
