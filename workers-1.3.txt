@@ -355,6 +355,15 @@ export default {
 
     // ── POST routes ──
     if (request.method === "POST") {
+      const likeMatch = path.match(/^\/discover\/results\/(.+)\/like$/);
+      if (likeMatch) {
+        try {
+          const data = await handleDiscoverLike(env, likeMatch[1]);
+          return Response.json(data, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
+        }
+      }
       let body;
       try { body = await request.json(); } catch (e) {
         return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders });
@@ -371,15 +380,7 @@ export default {
       }
 
       // Discover: like
-      const likeMatch = path.match(/^\/discover\/results\/(.+)\/like$/);
-      if (likeMatch) {
-        try {
-          const data = await handleDiscoverLike(env, likeMatch[1]);
-          return Response.json(data, { headers: corsHeaders });
-        } catch (e) {
-          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
-        }
-      }
+      
 
       try {
         // TMDB details lookup
