@@ -24,7 +24,7 @@ export const searchSchema = (locale) => ({
           : "TMDB ID（知道的才填，不知道不填）",
       },
     },
-    required: ["title", "year", "director"],
+    required: ["title", "year"],
   },
 });
 

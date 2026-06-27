@@ -137,7 +137,7 @@ const InputPage = ({
                       >
                         <span className="text-lg truncate">{s.title}</span>
                         <span className="text-sm opacity-90 whitespace-nowrap mt-1 sm:mt-0">
-                          {t('input.suggestion_format', { year: s.year, director: s.director })}
+                          {[s.year, s.director].filter(Boolean).join(", ")}
                         </span>
                       </div>
                     ))
@@ -217,7 +217,7 @@ const InputPage = ({
                       >
                         <span className="text-lg truncate">{s.title}</span>
                         <span className="text-sm opacity-90 whitespace-nowrap mt-1 sm:mt-0">
-                          {t('input.suggestion_format', { year: s.year, director: s.director })}
+                          {[s.year, s.director].filter(Boolean).join(", ")}
                         </span>
                       </div>
                     ))
