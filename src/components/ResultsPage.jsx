@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { posterAlt } from "../utils/posterAlt";
 import { publishToDiscover, uploadDiscoverThumbnail } from "../services/discoverApi";
 import { fetchMovieByTmdbId } from "../services/api";
+import SaveContent from "./SaveContent";
 import domtoimage from "dom-to-image-more";
 
 const CATEGORIES = ["科幻", "悬疑", "恐怖", "动画", "战争", "犯罪", "剧情", "奇幻"];
@@ -39,6 +40,8 @@ const ResultsPage = ({
   const [publishing, setPublishing] = useState(false);
   const [publishDone, setPublishDone] = useState(false);
   const [publishError, setPublishError] = useState("");
+  const [showPosterGen, setShowPosterGen] = useState(false);
+  const publishPosterRef = useRef(null);
 
   const handlePublish = async () => {
     setPublishing(true);
@@ -86,36 +89,47 @@ const ResultsPage = ({
         contributorName: contributorName.trim() || "",
       });
 
-      // 3. Generate poster from a cloned offscreen copy of results
+      // 3. Generate poster using SaveContent (verified flow, same as SAVE button)
       try {
-        const resultsEl = document.getElementById("results-content");
-        if (!resultsEl) throw new Error("results-content not found");
+        setShowPosterGen(true);
+        await new Promise(r => setTimeout(r, 100));
+        await new Promise(r => {
+          const check = () => {
+            if (publishPosterRef.current) r();
+            else setTimeout(check, 50);
+          };
+          check();
+        });
+        await new Promise(r => setTimeout(r, 200));
 
-        // Clone into a fixed-width offscreen container with explicit background
-        const wrapper = document.createElement("div");
-        wrapper.style.cssText = "position:fixed;left:-9999px;top:0;width:800px;background:#111;padding:20px;z-index:9999;";
-        const clone = resultsEl.cloneNode(true);
-        wrapper.appendChild(clone);
-        document.body.appendChild(wrapper);
-
-        // Wait for images in the clone
-        const imgs = wrapper.querySelectorAll("img");
+        const el = publishPosterRef.current;
+        const imgs = el.querySelectorAll("img");
         await Promise.all(
           Array.from(imgs).map(img =>
             img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })
           )
         );
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(r => setTimeout(r, 150));
 
-        // Use toPng directly on the wrapper
-        const pngDataUrl = await domtoimage.toPng(wrapper, {
+        const svgDataUrl = await domtoimage.toSvg(el, {
           width: 800,
-          height: wrapper.scrollHeight,
-          bgcolor: "#111111",
+          height: el.scrollHeight,
+          style: { "background-color": "#111111" },
         });
 
-        document.body.removeChild(wrapper);
+        const imgEl = new Image();
+        imgEl.src = svgDataUrl;
+        await imgEl.decode();
 
+        const scale = 2;
+        const canvas = document.createElement("canvas");
+        canvas.width = imgEl.naturalWidth * scale;
+        canvas.height = imgEl.naturalHeight * scale;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(imgEl, 0, 0, canvas.width, canvas.height);
+        const pngDataUrl = canvas.toDataURL("image/png");
+
+        setShowPosterGen(false);
         // 4. Upload thumbnail
         if (published.id) {
           await uploadDiscoverThumbnail({ id: published.id, image: pngDataUrl });
@@ -383,5 +397,12 @@ const ResultsPage = ({
     </div>
   );
 };
+
+      {/* Hidden SaveContent for poster generation */}
+      {showPosterGen && (
+        <div ref={publishPosterRef} style={{ position: "fixed", top: "-9999px", left: 0, width: "800px", zIndex: 9999 }}>
+          <SaveContent recommendations={recommendations} primaryMovie={primaryMovie} secondaryMovie={secondaryMovie} />
+        </div>
+      )}
 
 export default ResultsPage;
