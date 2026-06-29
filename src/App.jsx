@@ -286,11 +286,11 @@ function AppContent() {
     return false;
   });
 
-  if (showDiscover) {
   if (showAdmin) {
     return <AdminPage />;
   }
 
+  if (showDiscover) {
     return <DiscoverPage />;
   }
 
