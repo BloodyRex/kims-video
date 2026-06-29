@@ -86,39 +86,35 @@ const ResultsPage = ({
         contributorName: contributorName.trim() || "",
       });
 
-      // 3. Generate poster from the existing rendered results
+      // 3. Generate poster from a cloned offscreen copy of results
       try {
         const resultsEl = document.getElementById("results-content");
         if (!resultsEl) throw new Error("results-content not found");
 
-        // Wait for all poster images to be fully loaded
-        const imgs = resultsEl.querySelectorAll("img");
+        // Clone into a fixed-width offscreen container with explicit background
+        const wrapper = document.createElement("div");
+        wrapper.style.cssText = "position:fixed;left:-9999px;top:0;width:800px;background:#111;padding:20px;z-index:9999;";
+        const clone = resultsEl.cloneNode(true);
+        wrapper.appendChild(clone);
+        document.body.appendChild(wrapper);
+
+        // Wait for images in the clone
+        const imgs = wrapper.querySelectorAll("img");
         await Promise.all(
           Array.from(imgs).map(img =>
             img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })
           )
         );
-        await new Promise(r => setTimeout(r, 200));
+        await new Promise(r => setTimeout(r, 300));
 
-        // Capture as SVG first (handles CSS backgrounds better), then convert to PNG
-        const svgDataUrl = await domtoimage.toSvg(resultsEl, {
+        // Use toPng directly on the wrapper
+        const pngDataUrl = await domtoimage.toPng(wrapper, {
           width: 800,
-          height: resultsEl.scrollHeight,
-          style: { backgroundColor: "#111111" },
+          height: wrapper.scrollHeight,
+          bgcolor: "#111111",
         });
 
-        const img = new Image();
-        img.src = svgDataUrl;
-        await img.decode();
-
-        const scale = 2;
-        const canvas = document.createElement("canvas");
-        canvas.width = img.naturalWidth * scale;
-        canvas.height = img.naturalHeight * scale;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-        const pngDataUrl = canvas.toDataURL("image/png");
+        document.body.removeChild(wrapper);
 
         // 4. Upload thumbnail
         if (published.id) {
