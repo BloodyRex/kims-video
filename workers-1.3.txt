@@ -288,7 +288,6 @@ async function handleDiscoverUpload(env, body) {
   if (!id || !image) return { error: "Missing id or image" };
   if (!env.DISCOVER_R2) return { error: "R2 not configured" };
 
-  // image is a base64 PNG string (data:image/png;base64,...)
   const base64 = image.replace(/^data:image\/\w+;base64,/, '');
   const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
 
@@ -297,7 +296,16 @@ async function handleDiscoverUpload(env, body) {
     httpMetadata: { contentType: 'image/png', cacheControl: 'public, max-age=86400' }
   });
 
-  return { url: `https://api.bloodyrex.xyz/discover/thumbnail/${id}` };
+  const thumbnailUrl = `https://api.bloodyrex.xyz/discover/thumbnail/${id}`;
+
+  // Update KV doc with thumbnail URL
+  const raw = await env.DISCOVER_KV.get(`result:${id}`, "json");
+  if (raw) {
+    raw.thumbnail = thumbnailUrl;
+    await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(raw));
+  }
+
+  return { url: thumbnailUrl };
 }
 
 // ── Worker main ──
