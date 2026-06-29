@@ -40,35 +40,82 @@ function usePosters(tmdbIds) {
   return map;
 }
 
-function EditorPickCard({ pair, color, posterMap, locale, getTitle }) {
+// ── Editor's Picks Card (community style, horizontal scroll) ──
+function EditorPickCard({ pair, posterMap, locale, getTitle, onOpenPoster }) {
   const srcPoster = posterMap[pair.source.tmdbId];
   const recPoster = posterMap[pair.recommend.tmdbId];
   const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
-  const pw = "w-[50px] sm:w-[56px]";
-  const ph = "h-[72px] sm:h-[82px]";
+  const srcTitle = getTitle(pair.source);
+  const recTitle = getTitle(pair.recommend);
+
   return (
-    <a href={linkUrl} className="flex-shrink-0 min-w-[180px] sm:min-w-[200px] bg-white border-4 border-black flex flex-col items-center gap-2 p-3 hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ borderBottomColor: color }}>
-      <span className="text-[10px] font-bold text-gray-400 uppercase">{locale === "en" ? "If you like" : "如果你喜欢"}</span>
-      {srcPoster ? <img src={srcPoster} alt={getTitle(pair.source)} className={`${pw} ${ph} object-cover border-2 border-black`} loading="lazy" /> : <div className={`${pw} ${ph} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>}
-      <span className="text-xs font-black text-center leading-tight">{getTitle(pair.source)}</span>
-      <span className="text-lg font-black" style={{ color }}>↓</span>
-      {recPoster ? <img src={recPoster} alt={getTitle(pair.recommend)} className={`${pw} ${ph} object-cover border-2 border-black`} loading="lazy" /> : <div className={`${pw} ${ph} bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold`}>?</div>}
-      <span className="text-xs font-black text-center leading-tight">{getTitle(pair.recommend)}</span>
-      <p className="text-[10px] text-gray-500 text-center leading-relaxed line-clamp-2 px-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-      <span className="inline-block px-3 py-1 text-[10px] font-black text-white bg-black border-2 border-black uppercase">{locale === "en" ? "Details" : "查看详情"}</span>
-    </a>
+    <div className="flex-shrink-0 w-[260px] sm:w-[300px] bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
+      {/* Source header bar */}
+      <div className="bg-black text-white px-3 py-2 flex items-center gap-2 text-xs">
+        <span className="font-black pixel-font text-xs text-gray-400 uppercase">{locale === "en" ? "If you like" : "如果你喜欢"}</span>
+        <span className="font-black text-sm truncate">{srcTitle}</span>
+        <span className="text-gray-400 flex-shrink-0">({pair.source.year})</span>
+        <span className="text-gray-500 mx-1">→</span>
+      </div>
+
+      {/* Body */}
+      <div className="flex gap-3 p-3">
+        {recPoster ? (
+          <img src={recPoster} alt={recTitle} className="w-16 h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+        ) : (
+          <div className="w-16 h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-xs text-gray-500 font-bold flex-shrink-0">?</div>
+        )}
+        <div className="flex-1 min-w-0 flex flex-col">
+          <h3 className="text-sm font-black mb-1 leading-tight">{recTitle}</h3>
+          <span className="text-[10px] text-gray-400 mb-1">({pair.recommend.year})</span>
+          <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
+          <a
+            href={linkUrl}
+            className="inline-block self-start mt-2 px-2.5 py-1 text-[10px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors"
+          >
+            {locale === "en" ? "Details" : "查看详情"}
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
 
-function UserResultCard({ result, posterMap, locale, onLikeUpdated }) {
+// ── User Result Card ──
+function UserResultCard({ result, posterMap, locale, onLike, onOpenPoster }) {
   const src = result.sourceMovies?.[0] || {};
   const likes = result.likes || 0;
   const storedLiked = (() => { try { return JSON.parse(localStorage.getItem("kims_liked") || "[]"); } catch { return []; } })();
   const [liked, setLiked] = useState(storedLiked.includes(result.id));
   const [likesLocal, setLikesLocal] = useState(likes + (storedLiked.includes(result.id) ? 1 : 0));
-  const handleLike = async (e) => { e.preventDefault(); e.stopPropagation(); if (liked) return; setLiked(true); setLikesLocal(l => l + 1); try { const r = await likeDiscoverResult(result.id); if (onLikeUpdated) onLikeUpdated(result.id, r.likes); try { const likedArr = JSON.parse(localStorage.getItem("kims_liked") || "[]"); if (!likedArr.includes(result.id)) { likedArr.push(result.id); localStorage.setItem("kims_liked", JSON.stringify(likedArr)); } } catch {} } catch (e) { console.error("Like failed:", e); } };
+
+  const handleLike = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (liked) return;
+    setLiked(true);
+    setLikesLocal(l => l + 1);
+    try {
+      const r = await likeDiscoverResult(result.id);
+      if (onLike) onLike(result.id, r.likes);
+      try {
+        const likedArr = JSON.parse(localStorage.getItem("kims_liked") || "[]");
+        if (!likedArr.includes(result.id)) { likedArr.push(result.id); localStorage.setItem("kims_liked", JSON.stringify(likedArr)); }
+      } catch {}
+    } catch (e) { console.error("Like failed:", e); }
+  };
+
+  const handleCardClick = () => {
+    if (result.thumbnail) {
+      onOpenPoster(result.thumbnail);
+    }
+  };
+
   return (
-    <div className="bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
+    <div
+      className={`bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] transition-all ${result.thumbnail ? "hover:-translate-y-1 cursor-pointer" : ""}`}
+      onClick={handleCardClick}
+    >
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
         <span className="font-black pixel-font uppercase truncate">{src.title || ""}{src.year ? ` (${src.year})` : ""}</span>
         <span className="text-gray-400 font-bold truncate">{result.contributorName || (locale === "en" ? "Anonymous" : "匿名用户")}</span>
@@ -80,7 +127,7 @@ function UserResultCard({ result, posterMap, locale, onLikeUpdated }) {
           const badge = i < 2 ? (locale === "en" ? "HOT" : "热门") : i < 4 ? (locale === "en" ? "NICHE" : "冷门") : (locale === "en" ? "WILD" : "争议");
           const bc = i < 2 ? "bg-[#ff00ff]" : i < 4 ? "bg-[#00ffff]" : "bg-[#ffff00]";
           return (
-            <a key={i} href={detailUrl} className="flex-shrink-0 w-16 group">
+            <a key={i} href={detailUrl} onClick={e => e.stopPropagation()} className="flex-shrink-0 w-16 group">
               {poster ? <img src={poster} alt={rec.title} className="w-16 h-24 object-cover border-2 border-black group-hover:border-[#ff00ff] transition-colors" loading="lazy" /> : <div className="w-16 h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold">?</div>}
               <span className={`block text-[8px] font-black text-center mt-0.5 px-0.5 ${bc} text-black`}>{badge}</span>
             </a>
@@ -95,12 +142,34 @@ function UserResultCard({ result, posterMap, locale, onLikeUpdated }) {
   );
 }
 
+// ── Poster Modal ──
+function PosterModal({ thumbnail, onClose }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={onClose}>
+      <div className="relative max-w-[90vw] max-h-[90vh]" onClick={e => e.stopPropagation()}>
+        <button
+          onClick={onClose}
+          className="absolute -top-3 -right-3 w-8 h-8 bg-[#ff00ff] border-2 border-black text-white font-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors z-10"
+        >×</button>
+        <img
+          src={thumbnail}
+          alt="Full recommendation poster"
+          className="max-w-full max-h-[85vh] border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)]"
+        />
+        <p className="text-center text-white text-xs mt-2 font-bold">{thumbnail.includes("bloodyrex") ? "" : "Click outside to close"}</p>
+      </div>
+    </div>
+  );
+}
+
+// ── Main DiscoverPage ──
 const DiscoverPage = () => {
   const { t, locale, toggleLocale } = useLocale();
   const [posterMap, setPosterMap] = useState({});
   const [userResults, setUserResults] = useState([]);
   const [loadingResults, setLoadingResults] = useState(true);
   const [activeTab, setActiveTab] = useState("editor");
+  const [modalThumbnail, setModalThumbnail] = useState(null);
   const scrollRef = useRef(null);
 
   const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
@@ -118,8 +187,8 @@ const DiscoverPage = () => {
     (async () => {
       // Check localStorage cache first (24h TTL)
       try {
-      const cached = localStorage.getItem("kims_discover_posters");
-      const ts = localStorage.getItem("kims_discover_posters_ts");
+        const cached = localStorage.getItem("kims_discover_posters");
+        const ts = localStorage.getItem("kims_discover_posters_ts");
         if (cached && ts && (Date.now() - parseInt(ts)) < 86400000) {
           const parsed = JSON.parse(cached);
           if (!cancelled) setPosterMap(parsed);
@@ -130,10 +199,7 @@ const DiscoverPage = () => {
       await Promise.allSettled([...allIds].map(async id => { const data = await fetchMovieByTmdbId(id, "zh"); if (data?.poster && !cancelled) map[id] = data.poster; }));
       if (!cancelled) {
         setPosterMap(map);
-        try {
-          localStorage.setItem("kims_discover_posters", JSON.stringify(map));
-          localStorage.setItem("kims_discover_posters_ts", String(Date.now()));
-        } catch {}
+        try { localStorage.setItem("kims_discover_posters", JSON.stringify(map)); localStorage.setItem("kims_discover_posters_ts", String(Date.now())); } catch {}
       }
     })();
     return () => { cancelled = true; };
@@ -155,12 +221,11 @@ const DiscoverPage = () => {
 
   const userByGenre = {};
   for (const r of userResults) { const g = r.genre || "剧情"; if (!userByGenre[g]) userByGenre[g] = []; userByGenre[g].push(r); }
+  const totalUserCount = userResults.length;
 
   const handleLikeUpdate = (id, newLikes) => {
     setUserResults(prev => prev.map(r => r.id === id ? { ...r, likes: newLikes } : r));
   };
-
-  const totalUserCount = userResults.length;
 
   useEffect(() => {
     document.title = locale === "zh" ? "AI 电影推荐发现页 | Discover 相似电影合集 | Kim's Video" : "AI Movie Discovery Hub | Curated Film Recommendations | Kim's Video";
@@ -189,7 +254,7 @@ const DiscoverPage = () => {
         <h3 className="px-2 sm:px-0 text-base sm:text-lg font-black pixel-font text-[#ffff00] uppercase tracking-widest mb-3 bg-black inline-block px-4 py-1.5 border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff]">{locale === "en" ? "★ Editor's Picks" : "★ 编辑精选"}</h3>
         <div ref={scrollRef} className="flex gap-3 overflow-x-auto pb-3 px-2 sm:px-0" style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
           {(discoverData.editorPicks || []).map((pair, i) => (
-            <div key={i} style={{ scrollSnapAlign: "start" }}><EditorPickCard pair={pair} color={GENRE_COLORS["科幻"] || "#ff00ff"} posterMap={posterMap} locale={locale} getTitle={getTitle} /></div>
+            <EditorPickCard key={i} pair={pair} posterMap={posterMap} locale={locale} getTitle={getTitle} />
           ))}
           <a href="/" className="flex-shrink-0 min-w-[140px] sm:min-w-[160px] bg-[#ffff00] border-4 border-black flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-[#ffff40] transition-colors shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
             <span className="text-2xl">🎬</span>
@@ -225,15 +290,12 @@ const DiscoverPage = () => {
 
                     return (
                       <article key={idx} className="bg-white border-4 border-black overflow-hidden" style={{ boxShadow: `8px 8px 0 0 ${color}` }}>
-                        {/* Source header bar */}
                         <div className="bg-black text-white px-4 py-2 flex items-center gap-2 text-xs">
                           <span className="font-black pixel-font text-xs text-gray-400 uppercase">{t('discover.if_like')}</span>
                           <span className="font-black text-sm" style={{ color }}>{getBracketed(pair.source)}</span>
                           <span className="text-gray-400">({pair.source.year})</span>
-
+                          <span className="text-gray-500 mx-1">{t('discover.arrow')}</span>
                         </div>
-
-                        {/* Body: poster left, info right */}
                         <div className="flex flex-col sm:flex-row gap-4 p-4">
                           {recPoster ? (
                             <img src={recPoster} alt={getTitle(pair.recommend)} className="w-28 h-40 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
@@ -276,7 +338,7 @@ const DiscoverPage = () => {
               return (
                 <section key={genre.name} className="mb-12">
                   <h2 className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black" style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}>{locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}<span className="ml-2 text-sm opacity-75">({items.length})</span></h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{items.map(r => <UserResultCard key={r.id} result={r} posterMap={userPosterMap} locale={locale} onLikeUpdated={handleLikeUpdate} />)}</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{items.map(r => <UserResultCard key={r.id} result={r} posterMap={userPosterMap} locale={locale} onLike={handleLikeUpdate} onOpenPoster={(url) => setModalThumbnail(url)} />)}</div>
                 </section>
               );
             })}
@@ -287,6 +349,9 @@ const DiscoverPage = () => {
       <div className="max-w-4xl mx-auto px-4 pt-8 pb-16 text-center">
         <a href="/" className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all">{locale === "en" ? "← Get Your Own AI Picks" : "← 获取属于你的 AI 推荐"}</a>
       </div>
+
+      {/* ── Poster Modal ── */}
+      {modalThumbnail && <PosterModal thumbnail={modalThumbnail} onClose={() => setModalThumbnail(null)} />}
     </div>
   );
 };

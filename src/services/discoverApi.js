@@ -1,17 +1,22 @@
 const apiBaseUrl = "https://api.bloodyrex.xyz";
 
-export async function publishToDiscover({
-  sourceMovies,
-  recommendations,
-  genre,
-  contributorName,
-}) {
+export async function publishToDiscover(data) {
   const response = await fetch(`${apiBaseUrl}/discover/results`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ sourceMovies, recommendations, genre, contributorName }),
+    body: JSON.stringify(data),
   });
   if (!response.ok) throw new Error(`API Error ${response.status}`);
+  return response.json();
+}
+
+export async function uploadDiscoverThumbnail({ id, image }) {
+  const response = await fetch(`${apiBaseUrl}/discover/results/${encodeURIComponent(id)}/upload`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ image }),
+  });
+  if (!response.ok) throw new Error(`Upload Error ${response.status}`);
   return response.json();
 }
 

@@ -265,6 +265,7 @@ async function handleDiscoverCreate(env, body) {
       reason: r.reason || "", matchedTags: r.matchedTags || [],
     })),
     genre,
+    thumbnail: body.thumbnail || "",
     likes: 0,
   };
 
@@ -280,6 +281,23 @@ async function handleDiscoverLike(env, id) {
   raw.likes = (raw.likes || 0) + 1;
   await env.DISCOVER_KV.put(key, JSON.stringify(raw));
   return { id, likes: raw.likes };
+}
+// ── R2 thumbnail upload ──
+async function handleDiscoverUpload(env, body) {
+  const { id, image } = body;
+  if (!id || !image) return { error: "Missing id or image" };
+  if (!env.DISCOVER_R2) return { error: "R2 not configured" };
+
+  // image is a base64 PNG string (data:image/png;base64,...)
+  const base64 = image.replace(/^data:image\/\w+;base64,/, '');
+  const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+
+  const key = `thumbnails/${id}.png`;
+  await env.DISCOVER_R2.put(key, bytes, {
+    httpMetadata: { contentType: 'image/png', cacheControl: 'public, max-age=86400' }
+  });
+
+  return { url: `https://api.bloodyrex.xyz/discover/thumbnail/${id}` };
 }
 
 // ── Worker main ──
@@ -320,6 +338,22 @@ export default {
 
     // ── GET routes ──
     if (request.method === "GET") {
+      // Serve discover thumbnails from R2
+      const thumbnailMatch = path.match(/^\/discover\/thumbnail\/(.+)$/);
+      if (thumbnailMatch && env.DISCOVER_R2) {
+        try {
+          const obj = await env.DISCOVER_R2.get(`thumbnails/${thumbnailMatch[1]}.png`);
+          if (!obj) return new Response("Not found", { status: 404, headers: corsHeaders });
+          const headers = new Headers();
+          obj.writeHttpMetadata(headers);
+          headers.set("Access-Control-Allow-Origin", corsHeaders["Access-Control-Allow-Origin"]);
+          headers.set("Cache-Control", "public, max-age=86400");
+          return new Response(obj.body, { headers });
+        } catch (e) {
+          return new Response("Error", { status: 500, headers: corsHeaders });
+        }
+      }
+
       if (path === "/poster-proxy") {
         const imageUrl = url.searchParams.get("url");
         if (!imageUrl) return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } });
@@ -355,6 +389,18 @@ export default {
 
     // ── POST routes ──
     if (request.method === "POST") {
+      // Discover: upload thumbnail (no body parse, handled separately)
+      const uploadMatch = path.match(/^\/discover\/results\/(.+)\/upload$/);
+      if (uploadMatch) {
+        try {
+          const uploadBody = await request.json();
+          const data = await handleDiscoverUpload(env, { id: uploadMatch[1], image: uploadBody.image });
+          return Response.json(data, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
+        }
+      }
+
       const likeMatch = path.match(/^\/discover\/results\/(.+)\/like$/);
       if (likeMatch) {
         try {

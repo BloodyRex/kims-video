@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { posterAlt } from "../utils/posterAlt";
-import { publishToDiscover } from "../services/discoverApi";
+import { publishToDiscover, uploadDiscoverThumbnail } from "../services/discoverApi";
 import { fetchMovieByTmdbId } from "../services/api";
+import SaveContent from "./SaveContent";
+import domtoimage from "dom-to-image-more";
 
 const CATEGORIES = ["科幻", "悬疑", "恐怖", "动画", "战争", "犯罪", "剧情", "奇幻"];
 
@@ -38,12 +40,13 @@ const ResultsPage = ({
   const [publishing, setPublishing] = useState(false);
   const [publishDone, setPublishDone] = useState(false);
   const [publishError, setPublishError] = useState("");
+  const saveRef = useRef(null);
 
   const handlePublish = async () => {
     setPublishing(true);
     setPublishError("");
     try {
-      // Determine genre from primary movie's TMDB data
+      // 1. Determine genre from primary movie's TMDB data
       let genre = "剧情";
       if (primaryMovie.tmdbId) {
         try {
@@ -66,21 +69,83 @@ const ResultsPage = ({
         });
       }
 
-      await publishToDiscover({
+      // 2. Publish first to get the result ID, then upload thumbnail
+      const recData = recommendations.map(r => ({
+        tmdbId: r.tmdbId,
+        title: r.title,
+        titleEn: r.originalTitle || "",
+        year: r.year,
+        director: r.director,
+        type: r.type,
+        reason: r.reason,
+        matchedTags: r.matchedTags,
+      }));
+
+      const published = await publishToDiscover({
         sourceMovies,
-        recommendations: recommendations.map(r => ({
-          tmdbId: r.tmdbId,
-          title: r.title,
-          titleEn: r.originalTitle || "",
-          year: r.year,
-          director: r.director,
-          type: r.type,
-          reason: r.reason,
-          matchedTags: r.matchedTags,
-        })),
+        recommendations: recData,
         genre,
         contributorName: contributorName.trim() || "",
       });
+
+      // 3. Generate poster image
+      try {
+        const container = document.createElement("div");
+        container.style.cssText = "position:fixed;left:-9999px;top:0;width:800px;z-index:9999;background:#111;";
+        container.innerHTML = "";
+        document.body.appendChild(container);
+
+        // Render SaveContent into the container via React
+        const root = document.createElement("div");
+        container.appendChild(root);
+
+        // Use dom-to-image directly on a pre-rendered save layout
+        // We need to render SaveContent as a React element inline
+        const { createRoot } = await import("https://esm.sh/react-dom@18/client");
+        const reactRoot = createRoot(root);
+        await new Promise(resolve => {
+          reactRoot.render(
+            React.createElement(SaveContent, {
+              recommendations,
+              primaryMovie,
+              secondaryMovie,
+            })
+          );
+          // Wait for images
+          setTimeout(resolve, 600);
+        });
+
+        const svgDataUrl = await domtoimage.toSvg(root, {
+          width: 800,
+          height: root.scrollHeight || 900,
+          style: { backgroundColor: "#111" },
+        });
+
+        const img = new Image();
+        img.src = svgDataUrl;
+        await img.decode();
+
+        const scale = 2;
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth * scale;
+        canvas.height = img.naturalHeight * scale;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        const pngDataUrl = canvas.toDataURL("image/png");
+
+        // Cleanup
+        reactRoot.unmount();
+        document.body.removeChild(container);
+
+        // 4. Upload thumbnail
+        if (published.id) {
+          await uploadDiscoverThumbnail({ id: published.id, image: pngDataUrl });
+        }
+      } catch (thumbErr) {
+        console.error("Thumbnail upload failed", thumbErr);
+        // Continue — publishing succeeded even if thumbnail fails
+      }
 
       setPublishDone(true);
     } catch (e) {
