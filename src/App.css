@@ -4,33 +4,12 @@
   font-family: 'Press Start 2P', 'Courier New', Courier, system-ui, sans-serif;
 }
 
-/* 英文模式下 8-bit 字体缩小（排除顶部 h1 标题）适配手机端 */
-/* 放入 @layer utilities 让 Tailwind text-* 类通过特异性正常覆盖 */
-@layer utilities {
-  :where(.locale-en) :where(.pixel-font):where(:not(h1.pixel-font)) {
-    font-size: 0.65rem;
-  }
-  @media (max-width: 640px) {
-    :where(.locale-en) :where(.pixel-font):where(:not(h1.pixel-font)) {
-      font-size: 0.55rem;
-    }
-  }
+@keyframes flow-colors {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
-
-body {
-  font-family: -apple-system, 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', system-ui, sans-serif;
-}
-
-.graffiti-bg {
-  background-color: #111;
-  background-image:
-    radial-gradient(circle at 15% 50%, rgba(255, 0, 255, 0.4) 0%, transparent 40%),
-    radial-gradient(circle at 85% 30%, rgba(0, 255, 255, 0.4) 0%, transparent 40%),
-    radial-gradient(circle at 50% 80%, rgba(255, 255, 0, 0.3) 0%, transparent 50%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
-  background-blend-mode: screen, screen, screen, normal;
-}
-
-.retro-container {
-  overflow: visible !important;
+.flow-gradient {
+  background-size: 200% 200%;
+  animation: flow-colors 3s ease infinite;
 }

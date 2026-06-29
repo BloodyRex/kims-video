@@ -340,12 +340,12 @@ function AppContent() {
             <div className="max-w-2xl mx-auto mt-6 mb-4">
               <a
                 href="/discover"
-                className="block bg-[#ffff00] border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group"
+                className={`block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group ${locale === "en" ? "bg-[#ffff00]" : "bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"}`}
               >
-                <span className="text-black font-black pixel-font uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black ${locale === "en" ? "text-xs" : "text-sm"}`}>
                   <span className="text-base">{'\u{1F3AC}'}</span>
                   {t('input.browse_discover')}
-                  <Icons.ChevronRight className="group-hover:translate-x-1 transition-transform ml-1" />
+                  {locale === "zh" && <Icons.ChevronRight className="group-hover:translate-x-1 transition-transform ml-1" />}
                 </span>
               </a>
             </div>

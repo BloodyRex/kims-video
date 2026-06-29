@@ -248,7 +248,7 @@ const InputPage = ({
 
         <button
           onClick={onGenerateQuestions}
-          className={`w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font ${locale === "en" ? "text-base" : "text-xl"}`}
+          className={`w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font ${locale === "en" ? "text-sm" : "text-xl"}`}
         >
           {t('input.submit')}
           <Icons.ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" />
