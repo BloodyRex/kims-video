@@ -8,6 +8,7 @@ import MovieDetail from "./components/MovieDetail";
 import SaveContent from "./components/SaveContent";
 import SplashPage from "./components/SplashPage";
 import DiscoverPage from "./components/DiscoverPage";
+import AdminPage from "./components/AdminPage";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "./services/api";
 import { loadResultsFromCache } from "./utils/cache";
@@ -270,6 +271,9 @@ function AppContent() {
   }, [step, detailData, primaryMovie?.title, primaryMovie?.year, primaryMovie?.tmdbId, secondaryMovie?.tmdbId, sourceTmdbId, detailMovieId, recommendations, locale]);
 
   // Discover page
+  // Admin page route
+  const [showAdmin] = useState(() => window.location.pathname.startsWith("/admin"));
+
   const [showDiscover] = useState(() => {
     if (window.location.pathname.startsWith("/discover") || window.location.pathname.startsWith("/genre")) return true;
     try {
@@ -283,6 +287,10 @@ function AppContent() {
   });
 
   if (showDiscover) {
+  if (showAdmin) {
+    return <AdminPage />;
+  }
+
     return <DiscoverPage />;
   }
 

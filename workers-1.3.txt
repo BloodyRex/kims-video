@@ -310,6 +310,61 @@ async function handleDiscoverUpload(env, body) {
 
 // ── Worker main ──
 
+// ── Admin helpers ──
+
+function createAdminToken(password) {
+  const expiry = Date.now() + 7200000; // 2 hours
+  return btoa(password + ":" + expiry);
+}
+
+function verifyAdminToken(token, password) {
+  try {
+    const decoded = atob(token);
+    const sep = decoded.lastIndexOf(":");
+    if (sep < 0) return false;
+    const pw = decoded.slice(0, sep);
+    const exp = parseInt(decoded.slice(sep + 1));
+    if (pw !== password) return false;
+    if (!exp || Date.now() > exp) return false;
+    return true;
+  } catch { return false; }
+}
+
+async function handleAdminLogin(env, body) {
+  if (!env.ADMIN_PASSWORD) return { error: "Admin not configured" };
+  if (body.password !== env.ADMIN_PASSWORD) return { error: "Invalid password" };
+  return { token: createAdminToken(env.ADMIN_PASSWORD) };
+}
+
+async function handleAdminResults(env) {
+  if (!env.DISCOVER_KV) return { results: [] };
+  const { keys } = await env.DISCOVER_KV.list({ prefix: "result:", limit: 100 });
+  const results = [];
+  for (const key of keys) {
+    try {
+      const raw = await env.DISCOVER_KV.get(key.name, "json");
+      if (raw) results.push(raw);
+    } catch {}
+  }
+  results.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  return { results };
+}
+
+async function handleAdminDelete(env, id) {
+  if (!env.DISCOVER_KV) return { error: "KV not configured" };
+  await env.DISCOVER_KV.delete(`result:${id}`);
+  return { deleted: id };
+}
+
+async function handleAdminPatch(env, id, body) {
+  if (!env.DISCOVER_KV) return { error: "KV not configured" };
+  const raw = await env.DISCOVER_KV.get(`result:${id}`, "json");
+  if (!raw) return { error: "not_found" };
+  if (body.genre) raw.genre = body.genre;
+  await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(raw));
+  return raw;
+}
+
 export default {
   async fetch(request, env) {
     const ALLOWED_ORIGINS = [
@@ -383,6 +438,35 @@ export default {
         }
       }
 
+            // Admin: delete result
+      const adminDeleteMatch = path.match(/^\/admin\/results\/(.+)$/);
+      if (adminDeleteMatch && request.method === "DELETE") {
+        const auth = request.headers.get("Authorization");
+        if (!auth || !verifyAdminToken(auth.replace("Bearer ", ""), env.ADMIN_PASSWORD)) {
+          return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
+        }
+        try {
+          const data = await handleAdminDelete(env, adminDeleteMatch[1]);
+          return Response.json(data, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
+        }
+      }
+
+      // Admin: patch result (change genre)
+      const adminPatchMatch = path.match(/^\/admin\/results\/(.+)$/);
+      if (adminPatchMatch && request.method === "PATCH") {
+        const auth = request.headers.get("Authorization");
+        if (!auth || !verifyAdminToken(auth.replace("Bearer ", ""), env.ADMIN_PASSWORD)) {
+          return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
+        }
+        try {
+          const data = await handleAdminPatch(env, adminPatchMatch[1], body);
+          return Response.json(data, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
+        }
+      }
       if (path === "/discover/results") {
         try {
           const data = await handleDiscoverList(env, url);
@@ -392,6 +476,19 @@ export default {
         }
       }
 
+            // Admin: list results
+      if (path === "/admin/results") {
+        const auth = request.headers.get("Authorization");
+        if (!auth || !verifyAdminToken(auth.replace("Bearer ", ""), env.ADMIN_PASSWORD)) {
+          return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
+        }
+        try {
+          const data = await handleAdminResults(env);
+          return Response.json(data, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
+        }
+      }
       return Response.json({ status: "ok" }, { headers: corsHeaders });
     }
 
@@ -409,6 +506,13 @@ export default {
         }
       }
 
+            // Admin: login
+      if (path === "/admin/login") {
+        let adminBody;
+        try { adminBody = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
+        const loginResult = await handleAdminLogin(env, adminBody);
+        return Response.json(loginResult, { headers: corsHeaders });
+      }
       const likeMatch = path.match(/^\/discover\/results\/(.+)\/like$/);
       if (likeMatch) {
         try {
@@ -424,6 +528,35 @@ export default {
       }
 
       // Discover: create result
+            // Admin: delete result
+      const adminDeleteMatch = path.match(/^\/admin\/results\/(.+)$/);
+      if (adminDeleteMatch && request.method === "DELETE") {
+        const auth = request.headers.get("Authorization");
+        if (!auth || !verifyAdminToken(auth.replace("Bearer ", ""), env.ADMIN_PASSWORD)) {
+          return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
+        }
+        try {
+          const data = await handleAdminDelete(env, adminDeleteMatch[1]);
+          return Response.json(data, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
+        }
+      }
+
+      // Admin: patch result (change genre)
+      const adminPatchMatch = path.match(/^\/admin\/results\/(.+)$/);
+      if (adminPatchMatch && request.method === "PATCH") {
+        const auth = request.headers.get("Authorization");
+        if (!auth || !verifyAdminToken(auth.replace("Bearer ", ""), env.ADMIN_PASSWORD)) {
+          return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
+        }
+        try {
+          const data = await handleAdminPatch(env, adminPatchMatch[1], body);
+          return Response.json(data, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
+        }
+      }
       if (path === "/discover/results") {
         try {
           const data = await handleDiscoverCreate(env, body);
