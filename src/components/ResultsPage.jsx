@@ -394,15 +394,14 @@ const ResultsPage = ({
           <Icons.RefreshCw className="mr-2" /> {t('results.reboot')}
         </button>
       </div>
-    </div>
-  );
-};
-
       {/* Hidden SaveContent for poster generation */}
       {showPosterGen && (
         <div ref={publishPosterRef} style={{ position: "fixed", top: "-9999px", left: 0, width: "800px", zIndex: 9999 }}>
           <SaveContent recommendations={recommendations} primaryMovie={primaryMovie} secondaryMovie={secondaryMovie} />
         </div>
       )}
+    </div>
+  );
+};
 
 export default ResultsPage;
