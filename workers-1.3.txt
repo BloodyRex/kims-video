@@ -1,654 +1,138 @@
 // ═══════════════════════════════════════════════════════════
 // Kim's Video — Cloudflare Worker
-// Routes: poster-proxy, TMDB details, DeepSeek AI, Discover API
+// Routes: poster-proxy, TMDB details, DeepSeek AI, Discover API, Admin API
 // ═══════════════════════════════════════════════════════════
 
 // ── Genre classifier ──
-const GENRE_MAP = {
-  878: "科幻", 9648: "悬疑", 53: "悬疑", 27: "恐怖", 16: "动画",
-  10752: "战争", 80: "犯罪", 18: "剧情", 10749: "剧情", 36: "剧情",
-  10402: "剧情", 14: "奇幻", 12: "奇幻",
-};
-
-function classifyGenre(tmdbGenres) {
-  if (!Array.isArray(tmdbGenres)) return "剧情";
-  for (const g of tmdbGenres) {
-    const cat = GENRE_MAP[g.id];
-    if (cat) return cat;
-  }
-  return "剧情";
-}
+const GENRE_MAP = { 878: "科幻", 9648: "悬疑", 53: "悬疑", 27: "恐怖", 16: "动画", 10752: "战争", 80: "犯罪", 18: "剧情", 10749: "剧情", 36: "剧情", 10402: "剧情", 14: "奇幻", 12: "奇幻" };
+function classifyGenre(tmdbGenres) { if (!Array.isArray(tmdbGenres)) return "剧情"; for (const g of tmdbGenres) { const cat = GENRE_MAP[g.id]; if (cat) return cat; } return "剧情"; }
 
 // ── TMDB helpers ──
-
-async function fetchTMDBEnrichment(title, year, token, language) {
-  language = language || "zh-CN";
-  let result = await searchTMDB(title, year, 'movie', token, language);
-  if (result.poster || result.tmdbId) return result;
-  return searchTMDB(title, year, 'tv', token, language);
-}
+async function fetchTMDBEnrichment(title, year, token, language) { language = language || "zh-CN"; let r = await searchTMDB(title, year, "movie", token, language); if (r.poster || r.tmdbId) return r; return searchTMDB(title, year, "tv", token, language); }
 
 async function searchTMDB(title, year, type, token, language) {
-  language = language || "zh-CN";
-  const dateField = type === 'movie' ? 'release_date' : 'first_air_date';
-  const nameField = type === 'movie' ? 'title' : 'name';
-  const origField = type === 'movie' ? 'original_title' : 'original_name';
-
-  const cleanTitle = title.replace(/[《》「」『』【】]/g, '').trim();
-
-  const params = new URLSearchParams({
-    query: cleanTitle,
-    include_adult: "false",
-    language: language
-  });
-
-  const result = { poster: null, tmdbId: null, originalTitle: '', director: '', year: year || '', type: '', genres: [] };
-
+  language = language || "zh-CN"; const dateF = type === "movie" ? "release_date" : "first_air_date"; const nameF = type === "movie" ? "title" : "name"; const origF = type === "movie" ? "original_title" : "original_name";
+  const clean = title.replace(/[《》「」『』【】]/g, "").trim();
+  const params = new URLSearchParams({ query: clean, include_adult: "false", language });
+  const result = { poster: null, tmdbId: null, originalTitle: "", director: "", year: year || "", type: "", genres: [] };
   try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/${type}?${params.toString()}`,
-      { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
-    );
-    if (!response.ok) return result;
-
-    const data = await response.json();
-    const results = data?.results || [];
-    if (!results.length) return result;
-
-    let match = null;
-    let matchConfidence = 'low';
-
-    if (year) {
-      const yearMatch = results.find(m => {
-        const y = m[dateField] ? Number(m[dateField].slice(0, 4)) : null;
-        return y && Math.abs(y - year) <= 1;
-      });
-      if (yearMatch) { match = yearMatch; matchConfidence = 'high'; }
-      else {
-        const nameMatch = results.find(m =>
-          (m[nameField] || '').toLowerCase().includes(title.toLowerCase().slice(0, 6))
-        );
-        if (nameMatch) match = nameMatch;
-      }
-    }
-    match = match || results[0];
-
+    const res = await fetch(`https://api.themoviedb.org/3/search/${type}?${params}`, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } });
+    if (!res.ok) return result; const d = await res.json(); const items = d?.results || []; if (!items.length) return result;
+    let match = null, conf = "low";
+    if (year) { const ym = items.find(m => { const y = m[dateF] ? Number(m[dateF].slice(0,4)) : null; return y && Math.abs(y - year) <= 1; }); if (ym) { match = ym; conf = "high"; } else { const nm = items.find(m => (m[nameF]||"").toLowerCase().includes(title.toLowerCase().slice(0,6))); if (nm) match = nm; } }
+    match = match || items[0];
     if (match?.poster_path) result.poster = `https://image.tmdb.org/t/p/w342${match.poster_path}`;
-    result.tmdbId = match.id || null;
-    result.title = match[nameField] || '';
-    result.genres = match.genre_ids || [];
-
-    if (result.tmdbId) {
-      const enPoster = await fetchEnglishPoster(result.tmdbId, type, token);
-      if (enPoster) result.poster = enPoster;
-    }
-
-    if (matchConfidence === 'low') return result;
-
-    result.originalTitle = match[origField] || '';
-    if (match[dateField]) result.year = match[dateField].slice(0, 4);
-
-    if (result.tmdbId) {
-      const credits = await withCache(`${result.tmdbId}-${type}-credits-${language}`, async () => {
-        const res = await fetch(
-          `https://api.themoviedb.org/3/${type}/${result.tmdbId}/credits?language=${language}`,
-          { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
-        );
-        if (!res.ok) return null;
-        return res.json();
-      });
-      if (credits) {
-        const director = credits.crew?.find(c => c.job === 'Director')?.name || '';
-        if (director) result.director = director;
-      }
-    }
+    result.tmdbId = match.id || null; result.title = match[nameF] || ""; result.genres = match.genre_ids || [];
+    if (result.tmdbId) { const ep = await fetchEnglishPoster(result.tmdbId, type, token); if (ep) result.poster = ep; }
+    if (conf === "low") return result;
+    result.originalTitle = match[origF] || ""; if (match[dateF]) result.year = match[dateF].slice(0,4);
+    if (result.tmdbId) { const cr = await withCache(`${result.tmdbId}-${type}-credits-${language}`, async () => { const c = await fetch(`https://api.themoviedb.org/3/${type}/${result.tmdbId}/credits?language=${language}`, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }); return c.ok ? c.json() : null; }); if (cr) { const d = cr.crew?.find(c => c.job === "Director")?.name || ""; if (d) result.director = d; } }
   } catch (e) {}
-
   return result;
 }
 
-async function fetchEnglishPoster(tmdbId, type, token) {
-  const data = await withCache(`${tmdbId}-${type}-poster`, async () => {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/${type}/${tmdbId}/images?include_image_language=en,null`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    if (!res.ok) return null;
-    return res.json();
-  });
-  if (!data) return null;
-  const posters = data?.posters || [];
-  const enPoster = posters.find(p => p.iso_639_1 === 'en') || posters[0];
-  return enPoster ? `https://image.tmdb.org/t/p/w342${enPoster.file_path}` : null;
-}
+async function fetchEnglishPoster(tmdbId, type, token) { const d = await withCache(`${tmdbId}-${type}-poster`, async () => { const r = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/images?include_image_language=en,null`, { headers: { Authorization: `Bearer ${token}` } }); return r.ok ? r.json() : null; }); if (!d) return null; const p = d?.posters || []; const ep = p.find(x => x.iso_639_1 === "en") || p[0]; return ep ? `https://image.tmdb.org/t/p/w342${ep.file_path}` : null; }
 
-async function withCache(cacheKey, fetcher, ttl = 86400) {
-  const cache = caches.default;
-  const req = new Request(`https://tmdb-cache/${cacheKey}`);
-  const hit = await cache.match(req);
-  if (hit) { console.log('[CACHE HIT]', cacheKey); return hit.json(); }
+async function withCache(key, fetcher, ttl = 86400) { const c = caches.default; const r = new Request(`https://tmdb-cache/${key}`); const h = await c.match(r); if (h) { console.log("[CACHE HIT]", key); return h.json(); } console.log("[CACHE MISS]", key); const d = await fetcher(); if (!d) return null; const resp = new Response(JSON.stringify(d), { headers: { "Content-Type": "application/json", "Cache-Control": `public, max-age=${ttl}` } }); c.put(r, resp.clone()); return d; }
 
-  console.log('[CACHE MISS]', cacheKey);
-  const data = await fetcher();
-  if (!data) return null;
+async function fetchTMDBDetails(tmdbId, token, language) { language = language || "zh-CN"; let d = await fetchTMDBByType(tmdbId, "movie", token, language); if (d) return d; d = await fetchTMDBByType(tmdbId, "tv", token, language); return d || {}; }
 
-  const resp = new Response(JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'Cache-Control': `public, max-age=${ttl}` }
-  });
-  cache.put(req, resp.clone());
-  return data;
-}
+async function fetchTMDBByType(tmdbId, type, token, language) { language = language || "zh-CN"; try { const h = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }; const det = await withCache(`${tmdbId}-${type}-${language}-details`, async () => { const r = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?language=${language}`, { headers: h }); return r.ok ? r.json() : null; }); if (!det) return null; const cr = await withCache(`${tmdbId}-${type}-${language}-credits`, async () => { const r = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/credits?language=${language}`, { headers: h }); return r.ok ? r.json() : { crew: [] }; }) || { crew: [] }; const director = cr.crew?.find(c => c.job === "Director")?.name || ""; const yr = det.release_date ? det.release_date.slice(0,4) : det.first_air_date ? det.first_air_date.slice(0,4) : ""; const tLabel = type === "movie" ? (language.startsWith("zh") ? "电影" : "Movie") : (language.startsWith("zh") ? "剧集" : "TV Series"); const cast = cr.cast?.slice(0,5).map(c => c.name) || []; let poster = det.poster_path ? `https://image.tmdb.org/t/p/w342${det.poster_path}` : null; if (poster) { const ep = await fetchEnglishPoster(tmdbId, type, token); if (ep) poster = ep; } return { director, year: yr, originalTitle: det.original_title || det.original_name || "", type: tLabel, title: det.title || det.name || "", poster, overview: det.overview || "", genres: (det.genres || []).map(g => g.name), vote_average: det.vote_average || null, runtime: det.runtime || null, cast }; } catch (e) { return null; } }
 
-async function fetchTMDBDetails(tmdbId, token, language) {
-  language = language || "zh-CN";
-  let data = await fetchTMDBByType(tmdbId, 'movie', token, language);
-  if (data) return data;
-  data = await fetchTMDBByType(tmdbId, 'tv', token, language);
-  return data || {};
-}
+// ── Discover API ──
+function genId() { return crypto.randomUUID(); } function nowISO() { return new Date().toISOString(); }
 
-async function fetchTMDBByType(tmdbId, type, token, language) {
-  language = language || "zh-CN";
-  try {
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json"
-    };
+async function handleDiscoverList(env, url) { const genre = url.searchParams.get("genre") || ""; const sort = url.searchParams.get("sort") || "newest"; const limit = Math.min(parseInt(url.searchParams.get("limit") || "20"), 50); if (!env.DISCOVER_KV) return { results: [], hasMore: false }; const opts = { limit: limit + 1 }; const { keys, cursor: nc, list_complete } = await env.DISCOVER_KV.list({ prefix: "result:", ...opts }); const results = []; for (const k of keys) { try { const raw = await env.DISCOVER_KV.get(k.name, "json"); if (raw && (!genre || raw.genre === genre)) results.push(raw); } catch (e) {} } results.sort(sort === "popular" ? (a,b) => (b.likes||0) - (a.likes||0) : (a,b) => b.createdAt.localeCompare(a.createdAt)); return { results: results.slice(0, limit), hasMore: results.length > limit, cursor: list_complete ? null : nc }; }
 
-    const details = await withCache(`${tmdbId}-${type}-${language}-details`, async () => {
-      const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?language=${language}`, { headers });
-      if (!res.ok) return null;
-      return res.json();
-    });
-    if (!details) return null;
+async function handleDiscoverCreate(env, body) { const { sourceMovies, recommendations, genre, contributorName } = body; if (!sourceMovies?.length || !recommendations?.length || !genre) return { error: "Missing fields" }; if (!Array.isArray(sourceMovies) || sourceMovies.length > 2) return { error: "sourceMovies: 1-2" }; if (!Array.isArray(recommendations) || recommendations.length > 5) return { error: "recommendations: max 5" }; if (!env.DISCOVER_KV) return { error: "KV not configured" }; const id = genId(); const doc = { id, createdAt: nowISO(), contributorName: (contributorName || "").trim().slice(0, 30) || "匿名用户", sourceMovies: sourceMovies.map(m => ({ title: m.title || "", titleEn: m.titleEn || "", year: m.year || "", tmdbId: m.tmdbId || null })), recommendations: recommendations.map(r => ({ tmdbId: r.tmdbId || null, title: r.title || "", titleEn: r.titleEn || "", year: r.year || "", director: r.director || "", type: r.type || "", reason: r.reason || "", matchedTags: r.matchedTags || [] })), genre, thumbnail: body.thumbnail || "", likes: 0 }; await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(doc)); return doc; }
 
-    const credits = await withCache(`${tmdbId}-${type}-${language}-credits`, async () => {
-      const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/credits?language=${language}`, { headers });
-      return res.ok ? await res.json() : { crew: [] };
-    }) || { crew: [] };
+async function handleDiscoverLike(env, id) { if (!env.DISCOVER_KV) return { error: "KV not configured" }; const raw = await env.DISCOVER_KV.get(`result:${id}`, "json"); if (!raw) return { error: "not_found" }; raw.likes = (raw.likes || 0) + 1; await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(raw)); return { id, likes: raw.likes }; }
 
-    const director = credits.crew?.find(c => c.job === 'Director')?.name || '';
-    const year = details.release_date
-      ? details.release_date.slice(0, 4)
-      : details.first_air_date
-        ? details.first_air_date.slice(0, 4)
-        : '';
-    const typeLabel = type === 'movie' ? (language.startsWith('zh') ? '电影' : 'Movie') : (language.startsWith('zh') ? '剧集' : 'TV Series');
+async function handleDiscoverUpload(env, body) { const { id, image } = body; if (!id || !image) return { error: "Missing id or image" }; if (!env.DISCOVER_R2) return { error: "R2 not configured" }; const base64 = image.replace(/^data:image\/\w+;base64,/, ""); const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0)); const key = `thumbnails/${id}.png`; await env.DISCOVER_R2.put(key, bytes, { httpMetadata: { contentType: "image/png", cacheControl: "public, max-age=86400" } }); const thumbnailUrl = `https://api.bloodyrex.xyz/discover/thumbnail/${id}`; const raw = await env.DISCOVER_KV.get(`result:${id}`, "json"); if (raw) { raw.thumbnail = thumbnailUrl; await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(raw)); } return { url: thumbnailUrl }; }
 
-    const cast = credits.cast?.slice(0, 5).map(c => c.name) || [];
+// ── Admin API ──
+function createAdminToken(password) { return btoa(password + ":" + (Date.now() + 7200000)); }
+function verifyAdminToken(token, password) { try { const d = atob(token); const s = d.lastIndexOf(":"); if (s < 0) return false; return d.slice(0,s) === password && Date.now() < parseInt(d.slice(s+1)); } catch { return false; } }
 
-    let poster = details.poster_path ? `https://image.tmdb.org/t/p/w342${details.poster_path}` : null;
-    if (poster) {
-      const enPoster = await fetchEnglishPoster(tmdbId, type, token);
-      if (enPoster) poster = enPoster;
-    }
+async function handleAdminResults(env) { if (!env.DISCOVER_KV) return { results: [] }; const { keys } = await env.DISCOVER_KV.list({ prefix: "result:", limit: 100 }); const results = []; for (const k of keys) { try { const raw = await env.DISCOVER_KV.get(k.name, "json"); if (raw) results.push(raw); } catch {} } results.sort((a,b) => b.createdAt.localeCompare(a.createdAt)); return { results }; }
+async function handleAdminDelete(env, id) { if (!env.DISCOVER_KV) return { error: "KV not configured" }; await env.DISCOVER_KV.delete(`result:${id}`); return { deleted: id }; }
+async function handleAdminPatch(env, id, body) { if (!env.DISCOVER_KV) return { error: "KV not configured" }; const raw = await env.DISCOVER_KV.get(`result:${id}`, "json"); if (!raw) return { error: "not_found" }; if (body.genre) raw.genre = body.genre; await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(raw)); return raw; }
 
-    return {
-      director,
-      year,
-      originalTitle: details.original_title || details.original_name || '',
-      type: typeLabel,
-      title: details.title || details.name || '',
-      poster,
-      overview: details.overview || '',
-      genres: (details.genres || []).map(g => g.name),
-      vote_average: details.vote_average || null,
-      runtime: details.runtime || null,
-      cast
-    };
-  } catch (e) {
-    return null;
-  }
-}
-
-// ── Discover API: KV-backed CRUD ──
-
-function genId() { return crypto.randomUUID(); }
-function nowISO() { return new Date().toISOString(); }
-
-async function handleDiscoverList(env, url) {
-  const genre = url.searchParams.get("genre") || "";
-  const sort = url.searchParams.get("sort") || "newest";
-  const limit = Math.min(parseInt(url.searchParams.get("limit") || "20"), 50);
-  const cursor = url.searchParams.get("cursor") || "";
-
-  if (!env.DISCOVER_KV) return { results: [], hasMore: false, error: "KV not configured" };
-
-  const listOpts = { limit: limit + 1 };
-  if (cursor) listOpts.cursor = cursor;
-
-  const { keys, cursor: nextCursor, list_complete } = await env.DISCOVER_KV.list({ prefix: "result:", ...listOpts });
-
-  const results = [];
-  for (const key of keys) {
-    try {
-      const raw = await env.DISCOVER_KV.get(key.name, "json");
-      if (raw && (!genre || raw.genre === genre)) results.push(raw);
-    } catch (e) {}
-  }
-
-  if (sort === "popular") {
-    results.sort((a, b) => (b.likes || 0) - (a.likes || 0));
-  } else {
-    results.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-  }
-
-  const slice = results.slice(0, limit);
-  return {
-    results: slice,
-    hasMore: results.length > limit,
-    cursor: list_complete ? null : nextCursor,
-  };
-}
-
-async function handleDiscoverCreate(env, body) {
-  const { sourceMovies, recommendations, genre, contributorName } = body;
-  if (!sourceMovies?.length || !recommendations?.length || !genre) {
-    return { error: "Missing required fields: sourceMovies, recommendations, genre" };
-  }
-  if (!Array.isArray(sourceMovies) || sourceMovies.length > 2) return { error: "sourceMovies: 1-2 entries" };
-  if (!Array.isArray(recommendations) || recommendations.length > 5) return { error: "recommendations: max 5" };
-
-  if (!env.DISCOVER_KV) return { error: "KV storage not configured" };
-
-  const id = genId();
-  const doc = {
-    id,
-    createdAt: nowISO(),
-    contributorName: (contributorName || "").trim().slice(0, 30) || "匿名用户",
-    sourceMovies: sourceMovies.map(m => ({
-      title: m.title || "", titleEn: m.titleEn || "", year: m.year || "", tmdbId: m.tmdbId || null,
-    })),
-    recommendations: recommendations.map(r => ({
-      tmdbId: r.tmdbId || null, title: r.title || "", titleEn: r.titleEn || "",
-      year: r.year || "", director: r.director || "", type: r.type || "",
-      reason: r.reason || "", matchedTags: r.matchedTags || [],
-    })),
-    genre,
-    thumbnail: body.thumbnail || "",
-    likes: 0,
-  };
-
-  await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(doc));
-  return doc;
-}
-
-async function handleDiscoverLike(env, id) {
-  if (!env.DISCOVER_KV) return { error: "KV not configured" };
-  const key = `result:${id}`;
-  const raw = await env.DISCOVER_KV.get(key, "json");
-  if (!raw) return { error: "not_found" };
-  raw.likes = (raw.likes || 0) + 1;
-  await env.DISCOVER_KV.put(key, JSON.stringify(raw));
-  return { id, likes: raw.likes };
-}
-// ── R2 thumbnail upload ──
-async function handleDiscoverUpload(env, body) {
-  const { id, image } = body;
-  if (!id || !image) return { error: "Missing id or image" };
-  if (!env.DISCOVER_R2) return { error: "R2 not configured" };
-
-  const base64 = image.replace(/^data:image\/\w+;base64,/, '');
-  const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
-
-  const key = `thumbnails/${id}.png`;
-  await env.DISCOVER_R2.put(key, bytes, {
-    httpMetadata: { contentType: 'image/png', cacheControl: 'public, max-age=86400' }
-  });
-
-  const thumbnailUrl = `https://api.bloodyrex.xyz/discover/thumbnail/${id}`;
-
-  // Update KV doc with thumbnail URL
-  const raw = await env.DISCOVER_KV.get(`result:${id}`, "json");
-  if (raw) {
-    raw.thumbnail = thumbnailUrl;
-    await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(raw));
-  }
-
-  return { url: thumbnailUrl };
-}
-
-// ── Worker main ──
-
-// ── Admin helpers ──
-
-function createAdminToken(password) {
-  const expiry = Date.now() + 7200000; // 2 hours
-  return btoa(password + ":" + expiry);
-}
-
-function verifyAdminToken(token, password) {
-  try {
-    const decoded = atob(token);
-    const sep = decoded.lastIndexOf(":");
-    if (sep < 0) return false;
-    const pw = decoded.slice(0, sep);
-    const exp = parseInt(decoded.slice(sep + 1));
-    if (pw !== password) return false;
-    if (!exp || Date.now() > exp) return false;
-    return true;
-  } catch { return false; }
-}
-
-async function handleAdminLogin(env, body) {
-  if (!env.ADMIN_PASSWORD) return { error: "Admin not configured" };
-  if (body.password !== env.ADMIN_PASSWORD) return { error: "Invalid password" };
-  return { token: createAdminToken(env.ADMIN_PASSWORD) };
-}
-
-async function handleAdminResults(env) {
-  if (!env.DISCOVER_KV) return { results: [] };
-  const { keys } = await env.DISCOVER_KV.list({ prefix: "result:", limit: 100 });
-  const results = [];
-  for (const key of keys) {
-    try {
-      const raw = await env.DISCOVER_KV.get(key.name, "json");
-      if (raw) results.push(raw);
-    } catch {}
-  }
-  results.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-  return { results };
-}
-
-async function handleAdminDelete(env, id) {
-  if (!env.DISCOVER_KV) return { error: "KV not configured" };
-  await env.DISCOVER_KV.delete(`result:${id}`);
-  return { deleted: id };
-}
-
-async function handleAdminPatch(env, id, body) {
-  if (!env.DISCOVER_KV) return { error: "KV not configured" };
-  const raw = await env.DISCOVER_KV.get(`result:${id}`, "json");
-  if (!raw) return { error: "not_found" };
-  if (body.genre) raw.genre = body.genre;
-  await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(raw));
-  return raw;
-}
-
+// ── Main ──
 export default {
   async fetch(request, env) {
-    const ALLOWED_ORIGINS = [
-      "https://bloodyrex.xyz",
-      "https://www.bloodyrex.xyz",
-      "https://bloodyrex.github.io",
-      "http://localhost:4173",
-      "http://localhost:5173",
-      "http://localhost:5174"
-    ];
-
+    const ALLOWED_ORIGINS = ["https://bloodyrex.xyz", "https://www.bloodyrex.xyz", "https://bloodyrex.github.io", "http://localhost:4173", "http://localhost:5173", "http://localhost:5174"];
     const origin = request.headers.get("Origin");
-
-    const corsHeaders = {
-      "Access-Control-Allow-Origin": ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0],
-      "Access-Control-Allow-Headers": "Content-Type, Authorization",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-      "Access-Control-Max-Age": "86400"
-    };
-
-    if (origin && !ALLOWED_ORIGINS.includes(origin)) {
-      return new Response(JSON.stringify({ error: "Forbidden Origin" }), {
-        status: 403,
-        headers: { ...corsHeaders, "Content-Type": "application/json" }
-      });
-    }
-
-    if (request.method === "OPTIONS") {
-      return new Response(null, { headers: corsHeaders });
-    }
+    const corsHeaders = { "Access-Control-Allow-Origin": ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0], "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS", "Access-Control-Max-Age": "86400" };
+    if (origin && !ALLOWED_ORIGINS.includes(origin)) return new Response(JSON.stringify({ error: "Forbidden Origin" }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
     const url = new URL(request.url);
     const path = url.pathname;
+    const method = request.method;
+    const auth = request.headers.get("Authorization");
+    const token = auth ? auth.replace("Bearer ", "") : "";
+
+    // ── Admin auth check helper ──
+    const requireAdmin = () => { if (!token || !verifyAdminToken(token, env.ADMIN_PASSWORD)) return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders }); return null; };
 
     // ── GET routes ──
-    if (request.method === "GET") {
-      // Serve discover thumbnails from R2
-      const thumbnailMatch = path.match(/^\/discover\/thumbnail\/(.+)$/);
-      if (thumbnailMatch && env.DISCOVER_R2) {
-        try {
-          const obj = await env.DISCOVER_R2.get(`thumbnails/${thumbnailMatch[1]}.png`);
-          if (!obj) return new Response("Not found", { status: 404, headers: corsHeaders });
-          const headers = new Headers();
-          obj.writeHttpMetadata(headers);
-          headers.set("Access-Control-Allow-Origin", corsHeaders["Access-Control-Allow-Origin"]);
-          headers.set("Cache-Control", "public, max-age=86400");
-          return new Response(obj.body, { headers });
-        } catch (e) {
-          return new Response("Error", { status: 500, headers: corsHeaders });
-        }
-      }
+    if (method === "GET") {
+      // Thumbnail serve
+      const tm = path.match(/^\/discover\/thumbnail\/(.+)$/);
+      if (tm && env.DISCOVER_R2) { try { const obj = await env.DISCOVER_R2.get(`thumbnails/${tm[1]}.png`); if (!obj) return new Response("Not found", { status: 404, headers: corsHeaders }); const h = new Headers(); obj.writeHttpMetadata(h); h.set("Access-Control-Allow-Origin", corsHeaders["Access-Control-Allow-Origin"]); h.set("Cache-Control", "public, max-age=86400"); return new Response(obj.body, { headers: h }); } catch (e) { return new Response("Error", { status: 500, headers: corsHeaders }); } }
 
-      if (path === "/poster-proxy") {
-        const imageUrl = url.searchParams.get("url");
-        if (!imageUrl) return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } });
-        if (!imageUrl.startsWith("https://image.tmdb.org/")) {
-          return new Response("Forbidden", { status: 403, headers: { "Access-Control-Allow-Origin": "*" } });
-        }
-        try {
-          const imageResponse = await fetch(imageUrl);
-          const newHeaders = new Headers(imageResponse.headers);
-          newHeaders.set("Access-Control-Allow-Origin", "*");
-          newHeaders.set("Access-Control-Allow-Methods", "GET, OPTIONS");
-          newHeaders.set("Cache-Control", "public, max-age=86400");
-          return new Response(imageResponse.body, {
-            status: imageResponse.status,
-            headers: newHeaders
-          });
-        } catch (e) {
-          return new Response("Proxy error", { status: 502, headers: { "Access-Control-Allow-Origin": "*" } });
-        }
-      }
+      // Poster proxy
+      if (path === "/poster-proxy") { const iu = url.searchParams.get("url"); if (!iu) return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } }); if (!iu.startsWith("https://image.tmdb.org/")) return new Response("Forbidden", { status: 403, headers: { "Access-Control-Allow-Origin": "*" } }); try { const ir = await fetch(iu); const nh = new Headers(ir.headers); nh.set("Access-Control-Allow-Origin", "*"); nh.set("Cache-Control", "public, max-age=86400"); return new Response(ir.body, { status: ir.status, headers: nh }); } catch (e) { return new Response("Proxy error", { status: 502, headers: { "Access-Control-Allow-Origin": "*" } }); } }
 
-            // Admin: delete result
-      const adminDeleteMatch = path.match(/^\/admin\/results\/(.+)$/);
-      if (adminDeleteMatch && request.method === "DELETE") {
-        const auth = request.headers.get("Authorization");
-        if (!auth || !verifyAdminToken(auth.replace("Bearer ", ""), env.ADMIN_PASSWORD)) {
-          return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
-        }
-        try {
-          const data = await handleAdminDelete(env, adminDeleteMatch[1]);
-          return Response.json(data, { headers: corsHeaders });
-        } catch (e) {
-          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
-        }
-      }
+      // Admin: list results
+      if (path === "/admin/results") { const err = requireAdmin(); if (err) return err; try { return Response.json(await handleAdminResults(env), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
 
-      // Admin: patch result (change genre)
-      const adminPatchMatch = path.match(/^\/admin\/results\/(.+)$/);
-      if (adminPatchMatch && request.method === "PATCH") {
-        const auth = request.headers.get("Authorization");
-        if (!auth || !verifyAdminToken(auth.replace("Bearer ", ""), env.ADMIN_PASSWORD)) {
-          return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
-        }
-        try {
-          const data = await handleAdminPatch(env, adminPatchMatch[1], body);
-          return Response.json(data, { headers: corsHeaders });
-        } catch (e) {
-          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
-        }
-      }
-      if (path === "/discover/results") {
-        try {
-          const data = await handleDiscoverList(env, url);
-          return Response.json(data, { headers: corsHeaders });
-        } catch (e) {
-          return Response.json({ error: e.message, results: [] }, { headers: corsHeaders });
-        }
-      }
+      // Discover list
+      if (path === "/discover/results") { try { return Response.json(await handleDiscoverList(env, url), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message, results: [] }, { headers: corsHeaders }); } }
 
-            // Admin: list results
-      if (path === "/admin/results") {
-        const auth = request.headers.get("Authorization");
-        if (!auth || !verifyAdminToken(auth.replace("Bearer ", ""), env.ADMIN_PASSWORD)) {
-          return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
-        }
-        try {
-          const data = await handleAdminResults(env);
-          return Response.json(data, { headers: corsHeaders });
-        } catch (e) {
-          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
-        }
-      }
       return Response.json({ status: "ok" }, { headers: corsHeaders });
     }
 
     // ── POST routes ──
-    if (request.method === "POST") {
-      // Discover: upload thumbnail (no body parse, handled separately)
-      const uploadMatch = path.match(/^\/discover\/results\/(.+)\/upload$/);
-      if (uploadMatch) {
-        try {
-          const uploadBody = await request.json();
-          const data = await handleDiscoverUpload(env, { id: uploadMatch[1], image: uploadBody.image });
-          return Response.json(data, { headers: corsHeaders });
-        } catch (e) {
-          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
-        }
-      }
+    if (method === "POST") {
+      // Admin: login
+      if (path === "/admin/login") { let b; try { b = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); } if (!env.ADMIN_PASSWORD) return Response.json({ error: "Admin not configured" }, { headers: corsHeaders }); if (b.password !== env.ADMIN_PASSWORD) return Response.json({ error: "Invalid password" }, { headers: corsHeaders }); return Response.json({ token: createAdminToken(env.ADMIN_PASSWORD) }, { headers: corsHeaders }); }
 
-            // Admin: login
-      if (path === "/admin/login") {
-        let adminBody;
-        try { adminBody = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
-        const loginResult = await handleAdminLogin(env, adminBody);
-        return Response.json(loginResult, { headers: corsHeaders });
-      }
-      const likeMatch = path.match(/^\/discover\/results\/(.+)\/like$/);
-      if (likeMatch) {
-        try {
-          const data = await handleDiscoverLike(env, likeMatch[1]);
-          return Response.json(data, { headers: corsHeaders });
-        } catch (e) {
-          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
-        }
-      }
+      // Discover upload
+      const um = path.match(/^\/discover\/results\/(.+)\/upload$/);
+      if (um) { try { const ub = await request.json(); return Response.json(await handleDiscoverUpload(env, { id: um[1], image: ub.image }), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
+
+      // Discover like
+      const lm = path.match(/^\/discover\/results\/(.+)\/like$/);
+      if (lm) { try { return Response.json(await handleDiscoverLike(env, lm[1]), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
+
       let body;
-      try { body = await request.json(); } catch (e) {
-        return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders });
-      }
+      try { body = await request.json(); } catch (e) { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
 
-      // Discover: create result
-            // Admin: delete result
-      const adminDeleteMatch = path.match(/^\/admin\/results\/(.+)$/);
-      if (adminDeleteMatch && request.method === "DELETE") {
-        const auth = request.headers.get("Authorization");
-        if (!auth || !verifyAdminToken(auth.replace("Bearer ", ""), env.ADMIN_PASSWORD)) {
-          return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
-        }
-        try {
-          const data = await handleAdminDelete(env, adminDeleteMatch[1]);
-          return Response.json(data, { headers: corsHeaders });
-        } catch (e) {
-          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
-        }
-      }
+      // Discover create
+      if (path === "/discover/results") { try { return Response.json(await handleDiscoverCreate(env, body), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
 
-      // Admin: patch result (change genre)
-      const adminPatchMatch = path.match(/^\/admin\/results\/(.+)$/);
-      if (adminPatchMatch && request.method === "PATCH") {
-        const auth = request.headers.get("Authorization");
-        if (!auth || !verifyAdminToken(auth.replace("Bearer ", ""), env.ADMIN_PASSWORD)) {
-          return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
-        }
-        try {
-          const data = await handleAdminPatch(env, adminPatchMatch[1], body);
-          return Response.json(data, { headers: corsHeaders });
-        } catch (e) {
-          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
-        }
-      }
-      if (path === "/discover/results") {
-        try {
-          const data = await handleDiscoverCreate(env, body);
-          return Response.json(data, { headers: corsHeaders });
-        } catch (e) {
-          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
-        }
-      }
-
-      // Discover: like
-      
-
+      // TMDB / DeepSeek
       try {
-        // TMDB details lookup
-        if (body.tmdbId && !body.prompt) {
-          const details = await fetchTMDBDetails(body.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN, body.language);
-          return Response.json({ content: details || {} }, { headers: corsHeaders });
-        }
-
-        // TMDB search
-        if (body.searchTitle) {
-          const result = await fetchTMDBEnrichment(body.searchTitle, body.searchYear || '', env.TMDB_API_READ_ACCESS_TOKEN, body.language);
-          return Response.json({ content: result || { tmdbId: null } }, { headers: corsHeaders });
-        }
-
-        // DeepSeek AI
-        const messages = [];
-        if (body.systemInstruction) messages.push({ role: "system", content: body.systemInstruction });
-
-        let userPrompt = body.prompt;
-        if (body.responseSchema) {
-          userPrompt += `
-
-IMPORTANT:
-Return ONLY valid JSON.
-No markdown.
-No code block.
-No explanation.
-`;
-        }
-
-        messages.push({ role: "user", content: userPrompt });
-
-        const response = await fetch("https://api.deepseek.com/chat/completions", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ model: "deepseek-chat", messages, temperature: 0.7 })
-        });
-
-        const result = await response.json();
-        const raw = result?.choices?.[0]?.message?.content || "";
-
-        function safeParse(content) {
-          if (typeof content !== "string") return content;
-          try { return JSON.parse(content.replace(/```json/g, "").replace(/```/g, "").trim()); }
-          catch (e) { return { raw, error: "parse_failed" }; }
-        }
-
-        const parsed = safeParse(raw);
-
-        let list = [];
-        if (Array.isArray(parsed?.recommendations)) { list = parsed.recommendations; }
-        else if (parsed?.recommendations) { list = [parsed.recommendations]; }
-        else if (parsed?.title) { list = [parsed]; }
-
+        if (body.tmdbId && !body.prompt) { const d = await fetchTMDBDetails(body.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN, body.language); return Response.json({ content: d || {} }, { headers: corsHeaders }); }
+        if (body.searchTitle) { const r = await fetchTMDBEnrichment(body.searchTitle, body.searchYear || "", env.TMDB_API_READ_ACCESS_TOKEN, body.language); return Response.json({ content: r || { tmdbId: null } }, { headers: corsHeaders }); }
+        const msgs = []; if (body.systemInstruction) msgs.push({ role: "system", content: body.systemInstruction }); let up = body.prompt; if (body.responseSchema) up += "\n\nIMPORTANT:\nReturn ONLY valid JSON.\nNo markdown.\nNo code block.\nNo explanation.\n"; msgs.push({ role: "user", content: up });
+        const res = await fetch("https://api.deepseek.com/chat/completions", { method: "POST", headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" }, body: JSON.stringify({ model: "deepseek-chat", messages: msgs, temperature: 0.7 }) });
+        const result = await res.json(); const raw = result?.choices?.[0]?.message?.content || "";
+        const sp = (c) => { if (typeof c !== "string") return c; try { return JSON.parse(c.replace(/```json/g,"").replace(/```/g,"").trim()); } catch { return { raw, error: "parse_failed" }; } };
+        const parsed = sp(raw); let list = []; if (Array.isArray(parsed?.recommendations)) list = parsed.recommendations; else if (parsed?.recommendations) list = [parsed.recommendations]; else if (parsed?.title) list = [parsed];
         if (!list.length) return Response.json({ content: parsed }, { headers: corsHeaders });
-
-        const requestLanguage = body.language || "zh-CN";
-        const enriched = await Promise.all(
-          list.map(async (rec) => {
-            const shouldFetchDirector = !rec.director;
-            const tmdbData = await fetchTMDBEnrichment(rec.title, rec.year, env.TMDB_API_READ_ACCESS_TOKEN, requestLanguage);
-            return {
-              ...rec,
-              title: tmdbData.title || rec.title,
-              poster: tmdbData.poster,
-              tmdbId: tmdbData.tmdbId || rec.tmdbId,
-              originalTitle: tmdbData.originalTitle || rec.originalTitle || '',
-              year: tmdbData.year || rec.year || '',
-              director: shouldFetchDirector && tmdbData.director ? tmdbData.director : (rec.director || ''),
-              type: tmdbData.type || rec.type || ''
-            };
-          })
-        );
-
+        const rl = body.language || "zh-CN"; const enriched = await Promise.all(list.map(async rec => { const sdf = !rec.director; const td = await fetchTMDBEnrichment(rec.title, rec.year, env.TMDB_API_READ_ACCESS_TOKEN, rl); return { ...rec, title: td.title || rec.title, poster: td.poster, tmdbId: td.tmdbId || rec.tmdbId, originalTitle: td.originalTitle || rec.originalTitle || "", year: td.year || rec.year || "", director: sdf && td.director ? td.director : (rec.director || ""), type: td.type || rec.type || "" }; }));
         return Response.json({ content: { recommendations: enriched } }, { headers: corsHeaders });
-      } catch (err) {
-        return Response.json({ error: err.message }, { status: 500, headers: corsHeaders });
-      }
+      } catch (err) { return Response.json({ error: err.message }, { status: 500, headers: corsHeaders }); }
+    }
+
+    // ── DELETE / PATCH routes (admin only) ──
+    const adm = path.match(/^\/admin\/results\/(.+)$/);
+    if (adm) {
+      if (method === "DELETE") { const er = requireAdmin(); if (er) return er; try { return Response.json(await handleAdminDelete(env, adm[1]), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
+      if (method === "PATCH") { const er = requireAdmin(); if (er) return er; let b; try { b = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); } try { return Response.json(await handleAdminPatch(env, adm[1], b), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
     }
 
     return Response.json({ error: "Method not allowed" }, { status: 405, headers: corsHeaders });
