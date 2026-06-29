@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { posterAlt } from "../utils/posterAlt";
 import { publishToDiscover, uploadDiscoverThumbnail } from "../services/discoverApi";
 import { fetchMovieByTmdbId } from "../services/api";
-import SaveContent from "./SaveContent";
 import domtoimage from "dom-to-image-more";
 
 const CATEGORIES = ["科幻", "悬疑", "恐怖", "动画", "战争", "犯罪", "剧情", "奇幻"];
@@ -40,7 +39,6 @@ const ResultsPage = ({
   const [publishing, setPublishing] = useState(false);
   const [publishDone, setPublishDone] = useState(false);
   const [publishError, setPublishError] = useState("");
-  const saveRef = useRef(null);
 
   const handlePublish = async () => {
     setPublishing(true);
@@ -88,37 +86,25 @@ const ResultsPage = ({
         contributorName: contributorName.trim() || "",
       });
 
-      // 3. Generate poster image
+      // 3. Generate poster from the existing rendered results
       try {
-        const container = document.createElement("div");
-        container.style.cssText = "position:fixed;left:-9999px;top:0;width:800px;z-index:9999;background:#111;";
-        container.innerHTML = "";
-        document.body.appendChild(container);
+        const resultsEl = document.getElementById("results-content");
+        if (!resultsEl) throw new Error("results-content not found");
 
-        // Render SaveContent into the container via React
-        const root = document.createElement("div");
-        container.appendChild(root);
+        // Wait for all poster images to be fully loaded
+        const imgs = resultsEl.querySelectorAll("img");
+        await Promise.all(
+          Array.from(imgs).map(img =>
+            img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })
+          )
+        );
+        await new Promise(r => setTimeout(r, 200));
 
-        // Use dom-to-image directly on a pre-rendered save layout
-        // We need to render SaveContent as a React element inline
-        const { createRoot } = await import("https://esm.sh/react-dom@18/client");
-        const reactRoot = createRoot(root);
-        await new Promise(resolve => {
-          reactRoot.render(
-            React.createElement(SaveContent, {
-              recommendations,
-              primaryMovie,
-              secondaryMovie,
-            })
-          );
-          // Wait for images
-          setTimeout(resolve, 600);
-        });
-
-        const svgDataUrl = await domtoimage.toSvg(root, {
+        // Capture as SVG first (handles CSS backgrounds better), then convert to PNG
+        const svgDataUrl = await domtoimage.toSvg(resultsEl, {
           width: 800,
-          height: root.scrollHeight || 900,
-          style: { backgroundColor: "#111" },
+          height: resultsEl.scrollHeight,
+          style: { backgroundColor: "#111111" },
         });
 
         const img = new Image();
@@ -133,10 +119,6 @@ const ResultsPage = ({
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
         const pngDataUrl = canvas.toDataURL("image/png");
-
-        // Cleanup
-        reactRoot.unmount();
-        document.body.removeChild(container);
 
         // 4. Upload thumbnail
         if (published.id) {
