@@ -55,7 +55,7 @@ function EditorPickCard({ pair, posterMap, locale, getTitle, onOpenPoster }) {
         <span className="font-black pixel-font text-xs text-gray-400 uppercase">{locale === "en" ? "If you like" : "如果你喜欢"}</span>
         <span className="font-black text-sm truncate">{srcTitle}</span>
         <span className="text-gray-400 flex-shrink-0">({pair.source.year})</span>
-        <span className="text-gray-500 mx-1">→</span>
+        <span className="text-gray-500 mx-1"></span>
       </div>
 
       {/* Body */}
@@ -259,7 +259,7 @@ const DiscoverPage = () => {
           <a href="/" className="flex-shrink-0 min-w-[140px] sm:min-w-[160px] bg-[#ffff00] border-4 border-black flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-[#ffff40] transition-colors shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
             <span className="text-2xl">🎬</span>
             <span className="text-sm font-black pixel-font uppercase">{locale === "en" ? "Start" : "开始"}</span>
-            <span className="text-xs text-gray-600">{locale === "en" ? "→ Get Picks" : "→ 获取推荐"}</span>
+            <span className="text-xs text-gray-600">{locale === "en" ? " Get Picks" : " 获取推荐"}</span>
           </a>
         </div>
       </section>
@@ -328,7 +328,7 @@ const DiscoverPage = () => {
                 <p className="text-4xl mb-3">🎬</p>
                 <p className="text-gray-400 text-sm font-bold mb-2">{locale === "en" ? "No community picks yet" : "暂无用户发现"}</p>
                 <p className="text-gray-500 text-xs mb-4">{locale === "en" ? "Be the first to share!" : "成为第一个分享 AI 推荐结果的人！"}</p>
-                <a href="/" className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all">{locale === "en" ? "Get Your Picks →" : "获取你的推荐 →"}</a>
+                <a href="/" className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all">{locale === "en" ? "Get Your Picks " : "获取你的推荐 "}</a>
               </div>
             )}
             {!loadingResults && totalUserCount > 0 && discoverData.genres.map((genre) => {

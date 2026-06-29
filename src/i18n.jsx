@@ -101,7 +101,7 @@ const messages = {
     "discover.desc": "每一部你热爱的电影，都通往另一场未知的冒险。浏览这些精选推荐对，点击即可查看完整影片资料。",
     "discover.view_detail": "查看详情",
     "discover.if_like": "如果你喜欢",
-    "discover.arrow": "→",
+    "discover.arrow": "",
 
     // ---- SEO ----
     "seo.hub.title": "AI 电影推荐发现页",
@@ -213,7 +213,7 @@ const messages = {
     "discover.desc": "Every film you love leads to another adventure. Browse curated pairings and click to explore full details.",
     "discover.view_detail": "DETAILS",
     "discover.if_like": "If you like",
-    "discover.arrow": "→",
+    "discover.arrow": "",
 
     // ---- SEO ----
     "seo.hub.title": "AI Movie Recommendation Discovery Hub",

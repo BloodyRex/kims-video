@@ -392,6 +392,8 @@ function AppContent() {
           <a href="/discover" className="hover:text-[#ffff00] transition-colors">Discover</a>
           <span className="text-gray-600 mx-2">|</span>
           <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">BLOODYREX</a>
+          <span className="text-gray-800 mx-1">·</span>
+          <a href="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</a>
         </p>
       </footer>
       </>

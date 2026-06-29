@@ -56,7 +56,7 @@ if (discover.editorPicks) {
             <div style="flex-shrink:0;width:260px;background:#fff;border:4px solid #000;overflow:hidden;box-shadow:6px 6px 0 0 rgba(0,0,0,1);scroll-snap-align:start;">
               <div style="display:flex;gap:8px;padding:12px;align-items:center;">
                 <span style="font-size:12px;font-weight:900;">${escapeHtml(pair.source.title)} (${escapeHtml(pair.source.year)})</span>
-                <span style="font-size:18px;font-weight:900;color:#ff00ff;">→</span>
+                <span style="font-size:18px;font-weight:900;color:#ff00ff;"></span>
                 <span style="font-size:12px;font-weight:900;">${escapeHtml(pair.recommend.title)} (${escapeHtml(pair.recommend.year)})</span>
               </div>
               <div style="padding:0 12px 12px;">
@@ -69,7 +69,7 @@ if (discover.editorPicks) {
             <a href="/" style="flex-shrink:0;width:180px;background:#ffff00;border:4px solid #000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;text-decoration:none;color:#000;box-shadow:6px 6px 0 0 rgba(0,0,0,1);scroll-snap-align:start;">
               <span style="font-size:24px;">🎬</span>
               <span style="font-size:12px;font-weight:900;text-transform:uppercase;margin-top:8px;">开始你自己的</span>
-              <span style="font-size:10px;color:#666;margin-top:4px;">→ 获取 AI 推荐</span>
+              <span style="font-size:10px;color:#666;margin-top:4px;"> 获取 AI 推荐</span>
             </a>`;
 }
 
@@ -123,13 +123,13 @@ for (const genre of discover.genres) {
     pairsHtml += `
           <article style="background:#fff;border:4px solid #000;padding:20px;box-shadow:8px 8px 0 0 ${color};margin-bottom:16px;">
             <div style="font-size:16px;font-weight:900;margin-bottom:8px;">
-              如果你喜欢《${escapeHtml(pair.source.title)}》（${escapeHtml(pair.source.year)}）→ 《${escapeHtml(pair.recommend.title)}》（${escapeHtml(pair.recommend.year)}）
+              如果你喜欢《${escapeHtml(pair.source.title)}》（${escapeHtml(pair.source.year)}） 《${escapeHtml(pair.recommend.title)}》（${escapeHtml(pair.recommend.year)}）
             </div>
             <p style="color:#444;font-size:14px;line-height:1.7;margin-bottom:12px;">${escapeHtml(pair.reason)}</p>
             <p style="color:#888;font-size:13px;line-height:1.6;margin-bottom:12px;"><em>${escapeHtml(pair.reasonEn)}</em></p>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <a href="${detailUrl}" style="display:inline-block;background:${color};color:#000;padding:8px 16px;font-size:12px;font-weight:900;text-decoration:none;border:2px solid #000;box-shadow:4px 4px 0 0 #000;text-transform:uppercase;">查看详情 →</a>
-              <a href="${sourceResultUrl}" style="display:inline-block;background:#ffff00;color:#000;padding:8px 16px;font-size:12px;font-weight:900;text-decoration:none;border:2px solid #000;box-shadow:4px 4px 0 0 #000;">更多「${escapeHtml(pair.source.title)}」推荐 →</a>
+              <a href="${detailUrl}" style="display:inline-block;background:${color};color:#000;padding:8px 16px;font-size:12px;font-weight:900;text-decoration:none;border:2px solid #000;box-shadow:4px 4px 0 0 #000;text-transform:uppercase;">查看详情 </a>
+              <a href="${sourceResultUrl}" style="display:inline-block;background:#ffff00;color:#000;padding:8px 16px;font-size:12px;font-weight:900;text-decoration:none;border:2px solid #000;box-shadow:4px 4px 0 0 #000;">更多「${escapeHtml(pair.source.title)}」推荐 </a>
             </div>
           </article>`;
   }

@@ -143,7 +143,7 @@ function buildDetailPage(pair, genreName) {
 '        <p style="font-size:13px;color:#888;margin-top:8px;">\n' +
 `          <em>${escapeHtml(reasonEn)}</em>\n` +
 '        </p>\n' +
-`        <a href="/?from=${from}&r=${r}" class="cta">查看 AI 完整推荐 →</a>\n` +
+`        <a href="/?from=${from}&r=${r}" class="cta">查看 AI 完整推荐 </a>\n` +
 '      </div>\n' +
 '\n' +
 '      <p style="text-align:center;margin-top:24px;">\n' +
