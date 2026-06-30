@@ -23,11 +23,11 @@
     }
   }
 
-  .discover-page.locale-en h2.pixel-font {
+  .discover-page.locale-en h2.pixel-font:not(.discover-title) {
     font-size: 1rem !important;
   }
   @media (min-width: 640px) {
-    .discover-page.locale-en h2.pixel-font {
+    .discover-page.locale-en h2.pixel-font:not(.discover-title) {
       font-size: 1.125rem !important;
     }
   }
