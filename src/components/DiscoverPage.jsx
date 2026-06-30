@@ -199,7 +199,14 @@ const DiscoverPage = () => {
         }
       } catch {}
       const map = {};
-      await Promise.allSettled([...allIds].map(async id => { const data = await fetchMovieByTmdbId(id, "zh"); if (data?.poster && !cancelled) map[id] = data.poster; }));
+      const ids = [...allIds];
+      for (let i = 0; i < ids.length; i += 5) {
+        const batch = ids.slice(i, i + 5);
+        await Promise.allSettled(batch.map(async id => {
+          const data = await fetchMovieByTmdbId(id, "zh");
+          if (data?.poster && !cancelled) map[id] = data.poster;
+        }));
+      }
       if (!cancelled) {
         setPosterMap(map);
         try { localStorage.setItem("kims_discover_posters", JSON.stringify(map)); localStorage.setItem("kims_discover_posters_ts", String(Date.now())); } catch {}
