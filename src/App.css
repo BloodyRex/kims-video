@@ -14,12 +14,12 @@
     }
   }
 
-  .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)) {
-    font-size: 0.5rem !important;
+  .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)) {
+    font-size: 0.55rem !important;
   }
   @media (max-width: 640px) {
     .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)) {
-      font-size: 0.4rem !important;
+      font-size: 0.45rem !important;
     }
   }
 }
@@ -38,22 +38,10 @@ body {
   background-blend-mode: screen, screen, screen, normal;
 }
 
-/* Discover page English pixel fonts: 2 sizes smaller */
-.discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)) {
-  font-size: 0.5rem;
-}
-@media (max-width: 640px) {
-  .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)) {
-    font-size: 0.4rem;
-  }
-}
-
-
 .retro-container {
   overflow: visible !important;
 }
 
-/* Flowing gradient animation for discover banner */
 @keyframes flow-colors {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -64,7 +52,6 @@ body {
   animation: flow-colors 3s ease infinite;
 }
 
-/* 8-bit grain overlay for the flowing gradient */
 .flow-gradient::after {
   content: '';
   position: absolute;
