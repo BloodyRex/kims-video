@@ -236,18 +236,23 @@ const DiscoverPage = () => {
 
   return (
     <div className="min-h-screen graffiti-bg text-black pb-32">
-      <header className="relative z-10 flex flex-col items-center py-4 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
-          <button onClick={toggleLocale} className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black sm:text-sm z-20" style={LANG_BUTTON_STYLE}>{locale === "zh" ? "En" : "中"}</button>
-          <a href="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
-            <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6"><span className="text-black transform rotate-90"><Icons.Play /></span></div>
-            <div className="text-xl sm:text-3xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap">KIM'S <span className="text-[#00ffff]">VIDEO</span></div>
-          </a>
-          <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
-
+      <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
+        <div className="flex items-center justify-center">
+          <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
+            <span className="text-black transform rotate-90"><Icons.Play /></span>
+          </div>
+          <h1 className="text-xl sm:text-3xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap">
+            KIM'S <span className="text-[#00ffff]">VIDEO</span>
+          </h1>
+        </div>
+        <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 
-      <section className="max-w-4xl mx-auto px-4 pt-10 pb-4 text-center">
-        <h2 className="text-2xl sm:text-3xl font-black text-white mb-3 drop-shadow-[3px_3px_0_#ff00ff] pixel-font">{t('discover.title')}</h2>
+      <section className="max-w-4xl mx-auto px-4 pt-10 pb-4">
+        <div className="flex items-center justify-center gap-3">
+          <button onClick={toggleLocale} className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs flex-shrink-0" style={LANG_BUTTON_STYLE}>{locale === "zh" ? "En" : "中"}</button>
+          <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">{t('discover.title')}</h2>
+        </div>
         <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed">{t('discover.desc')}</p>
       </section>
 
