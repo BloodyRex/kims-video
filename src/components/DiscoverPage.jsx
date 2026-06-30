@@ -169,6 +169,8 @@ const DiscoverPage = () => {
   const [userResults, setUserResults] = useState([]);
   const [loadingResults, setLoadingResults] = useState(true);
   const [activeTab, setActiveTab] = useState("editor");
+
+  const totalPairs = discoverData.genres.reduce((s, g) => s + g.pairs.filter(p => !editorPickIds.has(p.source.tmdbId + "-" + p.recommend.tmdbId)).length, 0);
   const [modalThumbnail, setModalThumbnail] = useState(null);
   const scrollRef = useRef(null);
 
@@ -233,15 +235,14 @@ const DiscoverPage = () => {
 
   return (
     <div className="min-h-screen graffiti-bg text-black pb-32">
-      <header className="relative z-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
-        <div className="flex flex-col items-center py-4">
+      <header className="relative z-10 flex flex-col items-center py-4 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
           <button onClick={toggleLocale} className="absolute top-2 left-2 sm:top-3 sm:left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black sm:text-sm z-20" style={LANG_BUTTON_STYLE}>{locale === "zh" ? "En" : "中"}</button>
           <a href="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
             <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6"><span className="text-black transform rotate-90"><Icons.Play /></span></div>
             <div className="text-xl sm:text-3xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap">KIM'S <span className="text-[#00ffff]">VIDEO</span></div>
           </a>
           <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
-        </div>
+
       </header>
 
       <section className="max-w-4xl mx-auto px-4 pt-10 pb-4 text-center">
@@ -267,7 +268,7 @@ const DiscoverPage = () => {
       {/* ── Tab switcher ── */}
       <div className="max-w-4xl mx-auto px-4 mb-6">
         <div className="flex gap-3">
-          <button onClick={() => setActiveTab("editor")} className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${activeTab === "editor" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"}`}>{locale === "en" ? "★ Category" : "★ 分类推荐"}</button>
+          <button onClick={() => setActiveTab("editor")} className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${activeTab === "editor" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"}`}>{locale === "en" ? "★ Category" : "★ 分类推荐"}{totalPairs > 0 && <span className="ml-1.5 bg-black text-white text-[10px] px-1.5 py-0.5">{totalPairs}</span>}</button>
           <button onClick={() => setActiveTab("community")} className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${activeTab === "community" ? "bg-[#ffff00] text-black" : "bg-white text-black hover:bg-gray-100"}`}>{locale === "en" ? "Community" : "社区发现"}{totalUserCount > 0 && <span className="ml-1.5 bg-black text-white text-[10px] px-1.5 py-0.5">{totalUserCount}</span>}</button>
         </div>
       </div>
