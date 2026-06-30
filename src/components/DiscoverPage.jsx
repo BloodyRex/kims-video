@@ -235,7 +235,7 @@ const DiscoverPage = () => {
   }, [locale]);
 
   return (
-    <div className="min-h-screen graffiti-bg text-black pb-32 discover-page">
+    <div className={`min-h-screen graffiti-bg text-black pb-32 discover-page locale-${locale}`}>
       <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
         <a href="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">

@@ -185,7 +185,7 @@ const html = `<!DOCTYPE html>
   <link rel="stylesheet" crossorigin href="${cssHref}">
 </head>
 <body>
-  <div id="root" class="discover-page">
+  <div id="root" class="discover-page locale-zh">
     <div class="container" style="padding-bottom:80px;">
       <header style="text-align:center;padding:40px 0 20px;border-bottom:4px solid #ff00ff;margin-bottom:40px;">
         <h1 style="font-size:28px;font-weight:900;margin:0 0 8px;">KIM'S VIDEO — DISCOVER</h1>
