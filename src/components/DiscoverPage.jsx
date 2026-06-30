@@ -170,7 +170,6 @@ const DiscoverPage = () => {
   const [loadingResults, setLoadingResults] = useState(true);
   const [activeTab, setActiveTab] = useState("editor");
 
-  const totalPairs = discoverData.genres.reduce((s, g) => s + g.pairs.filter(p => !editorPickIds.has(p.source.tmdbId + "-" + p.recommend.tmdbId)).length, 0);
   const [modalThumbnail, setModalThumbnail] = useState(null);
   const scrollRef = useRef(null);
 
@@ -180,6 +179,8 @@ const DiscoverPage = () => {
 
   const editorPickIds = new Set();
   (discoverData.editorPicks || []).forEach(p => editorPickIds.add(`${p.source.tmdbId}-${p.recommend.tmdbId}`));
+
+  const totalPairs = discoverData.genres.reduce((s, g) => s + g.pairs.filter(p => !editorPickIds.has(p.source.tmdbId + "-" + p.recommend.tmdbId)).length, 0);
 
   useEffect(() => {
     const allIds = new Set();
