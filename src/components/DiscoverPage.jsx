@@ -250,7 +250,7 @@ const DiscoverPage = () => {
 
       <section className="max-w-4xl mx-auto px-2 sm:px-4 pt-10 pb-4 text-center relative">
         <button onClick={toggleLocale} className="absolute left-2 sm:left-4 top-10 w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs flex-shrink-0 z-10" style={LANG_BUTTON_STYLE}>{locale === "zh" ? "En" : "中"}</button>
-        <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">{t('discover.title')}</h2>
+        <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">{t('discover.title')}</h2>
         <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed">{t('discover.desc')}</p>
       </section>
 
