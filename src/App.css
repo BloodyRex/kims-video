@@ -5,30 +5,30 @@
 }
 
 @layer utilities {
-  :where(.locale-en) :where(.pixel-font):where(:not(h1.pixel-font)) {
+  :where(.locale-en) :where(.pixel-font):where(:not(h1.pixel-font)):where(:not([class*='tracking-wider'])) {
     font-size: 0.65rem;
   }
   @media (max-width: 640px) {
-    :where(.locale-en) :where(.pixel-font):where(:not(h1.pixel-font)) {
+    :where(.locale-en) :where(.pixel-font):where(:not(h1.pixel-font)):where(:not([class*='tracking-wider'])) {
       font-size: 0.55rem;
     }
   }
 
-  .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)) {
+  .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)):where(:not([class*='tracking-wider'])) {
     font-size: 0.55rem !important;
   }
   @media (max-width: 640px) {
-    .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)) {
+    .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)):where(:not([class*='tracking-wider'])) {
       font-size: 0.45rem !important;
     }
   }
 
   .discover-page.locale-en h2.pixel-font:not(.discover-title) {
-    font-size: 1rem !important;
+    font-size: 0.875rem !important;
   }
   @media (min-width: 640px) {
     .discover-page.locale-en h2.pixel-font:not(.discover-title) {
-      font-size: 1.125rem !important;
+      font-size: 1rem !important;
     }
   }
 }
