@@ -13,6 +13,15 @@
       font-size: 0.55rem;
     }
   }
+
+  .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)) {
+    font-size: 0.5rem !important;
+  }
+  @media (max-width: 640px) {
+    .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)) {
+      font-size: 0.4rem !important;
+    }
+  }
 }
 
 body {
