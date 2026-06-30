@@ -237,14 +237,14 @@ const DiscoverPage = () => {
   return (
     <div className="min-h-screen graffiti-bg text-black pb-32 discover-page">
       <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
-        <div className="flex items-center justify-center">
+        <a href="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
             <span className="text-black transform rotate-90"><Icons.Play /></span>
           </div>
           <h1 className="text-lg sm:text-2xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap" style={{fontFamily:"'Press Start 2P','Courier New',Courier,monospace"}}>
             KIM'S <span className="text-[#00ffff]">VIDEO</span>
           </h1>
-        </div>
+        </a>
         <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 

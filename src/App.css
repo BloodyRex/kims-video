@@ -14,7 +14,7 @@
     }
   }
 
-  .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)) {
+  .discover-page.locale-en .pixel-font:where(:not(h1.pixel-font)) {
     font-size: 0.5rem !important;
   }
   @media (max-width: 640px) {
