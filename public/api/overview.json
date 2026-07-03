@@ -1,93 +1,16 @@
 {
   "updated": "2026-07-03",
   "stats": {
-    "moviesReleased": 5,
+    "moviesReleased": 3,
     "tvPremieres": 0,
     "albumsReleased": 30,
     "trending": 20
   },
   "editorsPicks": [],
-  "hiddenGems": [],
   "comingSoon": [
     {
-      "tmdbId": 1339713,
-      "title": "Obsession",
-      "titleEn": "Obsession",
-      "year": "2026",
-      "releaseDate": "2026-05-13",
-      "poster": "https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg",
-      "rating": 8.2,
-      "genre": [
-        "Horror",
-        "Thriller"
-      ],
-      "summary": "After breaking the mysterious \"One Wish Willow\" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinis"
-    },
-    {
-      "tmdbId": 1084244,
-      "title": "Toy Story 5",
-      "titleEn": "Toy Story 5",
-      "year": "2026",
-      "releaseDate": "2026-06-17",
-      "poster": "https://image.tmdb.org/t/p/w500/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",
-      "rating": 7.443,
-      "genre": [
-        "Animation",
-        "Family",
-        "Comedy",
-        "Adventure"
-      ],
-      "summary": "When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang's jobs become exponentially harder when they have to go head to head with the all-new"
-    },
-    {
-      "tmdbId": 1083381,
-      "title": "Backrooms",
-      "titleEn": "Backrooms",
-      "year": "2026",
-      "releaseDate": "2026-05-27",
-      "poster": "https://image.tmdb.org/t/p/w500/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg",
-      "rating": 6.9,
-      "genre": [
-        "Horror",
-        "Mystery",
-        "Sci-Fi"
-      ],
-      "summary": "A strange doorway appears in the basement of a furniture showroom."
-    },
-    {
-      "tmdbId": 1127384,
-      "title": "Deep Water",
-      "titleEn": "Deep Water",
-      "year": "2026",
-      "releaseDate": "2026-04-30",
-      "poster": "https://image.tmdb.org/t/p/w500/kjcuS7xaRyqRjVaVcH4t0qHshuX.jpg",
-      "rating": 6,
-      "genre": [
-        "Horror",
-        "Thriller"
-      ],
-      "summary": "A group of international passengers on a flight from Los Angeles to Shanghai is forced to make an emergency landing in shark-infested waters. The terrified group is forced to work together and overcom"
-    },
-    {
-      "tmdbId": 1315772,
-      "title": "Minions & Monsters",
-      "titleEn": "Minions & Monsters",
-      "year": "2026",
-      "releaseDate": "2026-06-24",
-      "poster": "https://image.tmdb.org/t/p/w500/nz7i42yhLIJ4ve9JKgM6NthoLHO.jpg",
-      "rating": 6.721,
-      "genre": [
-        "Adventure",
-        "Animation",
-        "Comedy",
-        "Family",
-        "Fantasy"
-      ],
-      "summary": "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to t"
-    },
-    {
       "tmdbId": 980431,
-      "title": "Avatar Aang: The Last Airbender",
+      "title": "安昂传奇：最后的气宗",
       "titleEn": "Avatar Aang: The Last Airbender",
       "year": "2026",
       "releaseDate": "2026-07-25",
@@ -99,68 +22,150 @@
         "Adventure",
         "Fantasy"
       ],
-      "summary": "Avatar Aang, the world's last Airbender, learns of an ancient power that could save his culture from extinction. With the help of his friends, he embarks on a global quest to find it before it falls i"
+      "summary": "派拉蒙和尼克宣布“降世神通”系列开发三部新的电影，仍是动画形式。第一部由《降世神通：最后的气宗》导演Lauren Montgomery执导，《最后的气宗》主创Bryan Konietzko和Michael DiMartino担任制片人。",
+      "daysUntil": 22
+    },
+    {
+      "tmdbId": 969681,
+      "title": "蜘蛛侠：崭新之日",
+      "titleEn": "Spider-Man: Brand New Day",
+      "year": "2026",
+      "releaseDate": "2026-07-29",
+      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
+      "rating": 0,
+      "genre": [
+        "Sci-Fi",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "重建普通生活后，彼得一边在大学完成学业、一边从事兼职以维持生计，同时仍肩负着守护纽约街头的蜘蛛侠责任。然而，当一个神秘力量从内部腐蚀这座城市的安全与秩序，彼得被迫再次披上战衣。他必须在强大的敌人与昔日纽带之间找到平衡，并重新定义英雄的意义。",
+      "daysUntil": 26
+    },
+    {
+      "tmdbId": 1368337,
+      "title": "奥德赛",
+      "titleEn": "The Odyssey",
+      "year": "2026",
+      "releaseDate": "2026-07-15",
+      "poster": "https://image.tmdb.org/t/p/w500/3O6ufZBBjLB29NpJOe8awMzQ4XN.jpg",
+      "rating": 0,
+      "genre": [
+        "Adventure",
+        "Action",
+        "Fantasy"
+      ],
+      "summary": "特洛伊战争结束后，伊萨卡国王奥德修斯踏上了返回家乡的艰险旅程。",
+      "daysUntil": 12
+    },
+    {
+      "tmdbId": 1108427,
+      "title": "海洋奇缘：启航",
+      "titleEn": "Moana",
+      "year": "2026",
+      "releaseDate": "2026-07-08",
+      "poster": "https://image.tmdb.org/t/p/w500/9BnjnrfoZbeNjwXICd8Sax8zKeH.jpg",
+      "rating": 8.5,
+      "genre": [
+        "Family",
+        "Fantasy",
+        "Comedy",
+        "Adventure"
+      ],
+      "summary": "海的召唤，从未停止。熟悉的旋律响起，属于“莫阿娜”的冒险，再次扬帆启航。",
+      "daysUntil": 5
+    },
+    {
+      "tmdbId": 1212763,
+      "title": "鬼玩人6：燃烧",
+      "titleEn": "Evil Dead Burn",
+      "year": "2026",
+      "releaseDate": "2026-07-08",
+      "poster": "https://image.tmdb.org/t/p/w500/jn69Rtd1eXH9poYI6FAeHYylWAO.jpg",
+      "rating": 8,
+      "genre": [
+        "Horror",
+        "Thriller"
+      ],
+      "summary": "",
+      "daysUntil": 5
     }
   ],
   "trending": [
     {
       "tmdbId": 1339713,
-      "title": "Obsession",
+      "title": "痴迷",
       "titleEn": "Obsession",
       "year": "2026",
       "releaseDate": "2026-05-13",
-      "poster": "https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg",
+      "poster": "https://image.tmdb.org/t/p/w500/y9cuIc3fM6G3aIXySmDqsgRGUE1.jpg",
       "rating": 8.2,
       "genre": [
         "Horror",
         "Thriller"
       ],
-      "summary": "After breaking the mysterious \"One Wish Willow\" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinis",
+      "summary": "在折断神秘的“心愿柳”以赢得暗恋对象的心之后，一个对爱情充满幻想的人如愿以偿地得到了自己想要的一切，但很快他发现，有些欲望需要付出黑暗而可怕的代价。",
       "rank": 1,
       "trend": "new"
     },
     {
       "tmdbId": 1202033,
-      "title": "Enola Holmes 3",
+      "title": "福尔摩斯小姐3",
       "titleEn": "Enola Holmes 3",
       "year": "2026",
       "releaseDate": "2026-06-30",
-      "poster": "https://image.tmdb.org/t/p/w500/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
-      "rating": 7.193,
+      "poster": "https://image.tmdb.org/t/p/w500/fqwwPwdpKpgTWXmo16wjleJDalX.jpg",
+      "rating": 7.2,
       "genre": [
         "Adventure",
         "Crime",
         "Mystery",
         "Action"
       ],
-      "summary": "Adventure follows detective Enola Holmes to Malta, where her plans to tie the knot unravel when Sherlock's disappearance plunges her into a perilous case.",
+      "summary": "侦探伊诺拉·福尔摩斯前往马耳他探险，并打算在那里结婚，但夏洛克的失踪令其卷入一桩危险的案件。",
       "rank": 2,
       "trend": "new"
     },
     {
       "tmdbId": 1314481,
-      "title": "The Devil Wears Prada 2",
+      "title": "穿普拉达的女王2",
       "titleEn": "The Devil Wears Prada 2",
       "year": "2026",
       "releaseDate": "2026-04-29",
-      "poster": "https://image.tmdb.org/t/p/w500/fCAURTUx3YfsJ8k9I0UamjSILiR.jpg",
-      "rating": 6.884,
+      "poster": "https://image.tmdb.org/t/p/w500/zGQyw7v2dvb2FNDdVUJFcaPrD5y.jpg",
+      "rating": 6.9,
       "genre": [
         "Comedy",
         "Drama"
       ],
-      "summary": "Andy Sachs returns to Runway as Miranda Priestly navigates a new media landscape and Runway's position within. The duo reconnect with former assistant Emily Charlton, now the head of a luxury brand th",
+      "summary": "　　随着传统出版业的式微，时尚女王米兰达在职业生涯中迎来新挑战。她不得不与手握广告预算的曾经的助理，如今已是奢侈品牌集团高管的艾米莉正面交锋。两人在行业变局中展开了一场关乎权力与生存的较量。",
       "rank": 3,
       "trend": "new"
     },
     {
+      "tmdbId": 1081003,
+      "title": "超级少女",
+      "titleEn": "Supergirl",
+      "year": "2026",
+      "releaseDate": "2026-06-24",
+      "poster": "https://image.tmdb.org/t/p/w500/mTfjvvBUaDmexYEPwVqBFsYYh8.jpg",
+      "rating": 6.2,
+      "genre": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "summary": "当一位冷酷无情、突如其来的劲敌突袭家园，“超级少女”卡拉·佐-艾尔不得不与一位意想不到的同伴结盟，横跨星际，踏上一段交织复仇与正义的壮阔征途。",
+      "rank": 4,
+      "trend": "new"
+    },
+    {
       "tmdbId": 1315772,
-      "title": "Minions & Monsters",
+      "title": "小黄人与大怪兽",
       "titleEn": "Minions & Monsters",
       "year": "2026",
       "releaseDate": "2026-06-24",
-      "poster": "https://image.tmdb.org/t/p/w500/nz7i42yhLIJ4ve9JKgM6NthoLHO.jpg",
-      "rating": 6.7,
+      "poster": "https://image.tmdb.org/t/p/w500/y4JWxHZ1dMisqbHhX7ytOAK3wwv.jpg",
+      "rating": 6.714,
       "genre": [
         "Adventure",
         "Animation",
@@ -168,27 +173,10 @@
         "Family",
         "Fantasy"
       ],
-      "summary": "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to t",
-      "rank": 4,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1081003,
-      "title": "Supergirl",
-      "titleEn": "Supergirl",
-      "year": "2026",
-      "releaseDate": "2026-06-24",
-      "poster": "https://image.tmdb.org/t/p/w500/niSvU02l2BONH9ivubV6K1a5QiK.jpg",
-      "rating": 6.249,
-      "genre": [
-        "Action",
-        "Adventure",
-        "Sci-Fi"
-      ],
-      "summary": "When an unexpected and ruthless adversary strikes too close to home, Kara Zor-El, aka Supergirl, reluctantly joins forces with an unlikely companion on an epic, interstellar journey of vengeance and j",
+      "summary": "为了拍摄心中理想的怪兽电影，这群萌趣活宝四处物色演员，竟然真的集齐了各式怪兽，上演疯狂大乱斗！",
       "rank": 5,
       "trend": "new"
     }
   ],
-  "brief": "2026-07-03 global entertainment roundup."
+  "brief": "Today: 0 movie(s) released, 0 TV premiere(s), 30 new album(s)."
 }

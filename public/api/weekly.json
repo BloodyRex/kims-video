@@ -1,20 +1,38 @@
 {
   "updated": "2026-07-03",
-  "currentWeek": "Week 27",
-  "reports": [
+  "week": "Week 27",
+  "date": "2026-06-26 - 2026-07-03",
+  "stats": {
+    "moviesReleased": 3,
+    "tvPremieres": 0,
+    "albumsReleased": 30
+  },
+  "trendingHighlights": [
     {
-      "week": "Week 27",
-      "weekLabel": "Week 27",
-      "date": "2026-06-26 - 2026-07-03",
-      "title": "Weekly Entertainment Roundup",
-      "titleEn": "Weekly Entertainment Roundup",
-      "highlights": [
-        {
-          "text": "Global entertainment data compiled from TMDB, MusicBrainz, and DeepSeek AI.",
-          "en": "Global entertainment data compiled from TMDB, MusicBrainz, and DeepSeek AI."
-        }
-      ],
-      "count": 0
+      "rank": 1,
+      "title": "痴迷",
+      "mediaType": "movie"
+    },
+    {
+      "rank": 2,
+      "title": "福尔摩斯小姐3",
+      "mediaType": "movie"
+    },
+    {
+      "rank": 3,
+      "title": "穿普拉达的女王2",
+      "mediaType": "movie"
+    },
+    {
+      "rank": 4,
+      "title": "超级少女",
+      "mediaType": "movie"
+    },
+    {
+      "rank": 5,
+      "title": "小黄人与大怪兽",
+      "mediaType": "movie"
     }
-  ]
+  ],
+  "oneMinuteSummary": "本周娱乐界新作寥寥，电影仅三部，剧集挂零，但专辑市场火爆达30张。焦点作品包括悬疑新片《痴迷》、续集《福尔摩斯小姐3》与《穿普拉达的女王2》，超级英雄题材《超级少女》及动画《小黄人与大怪兽》亦引热议。音乐方面，众多新专集中发行，为乐迷提供丰富选择。"
 }
