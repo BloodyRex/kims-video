@@ -130,9 +130,7 @@ const SplashPage = ({ onStart, isModal, onClose }) => {
         {!isModal && (
           <div className="w-full mt-10 pt-4 border-t-4 border-[#ffff00] text-center">
             <p className="text-gray-500 text-xs" style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace", letterSpacing: "0.15em" }}>
-              <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer" className="hover:text-[#00ffff] transition-colors">
-                Data and poster from TMDB
-              </a> | BLOODYREX (C) 2026
+              BLOODYREX (C) 2026
             </p>
           </div>
         )}

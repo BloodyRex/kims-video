@@ -88,6 +88,7 @@ function intelNormalizeMovie(m, type) {
     rating: m.vote_average || 0,
     genre: intelMapGenres(m.genre_ids),
     summary: (m.overview || "").slice(0, 200),
+    summaryEn: (m._overviewEn || m.overview || "").slice(0, 200),
   };
   // TV extras
   if (type === "tv") {
@@ -100,16 +101,35 @@ function intelNormalizeMovie(m, type) {
 
 async function intelFetchTMDB(token, path, params, lang) {
   params = params || {};
-  const url = new URL(`https://api.themoviedb.org/3${path}`);
-  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
-  url.searchParams.set("language", lang || "zh-CN");
-  const cacheKey = "intel-" + btoa(url.toString()).slice(0, 40);
+  lang = lang || "zh-CN";
+  const buildUrl = (language) => {
+    const url = new URL(`https://api.themoviedb.org/3${path}`);
+    Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
+    url.searchParams.set("language", language);
+    return url;
+  };
+  const zhUrl = buildUrl(lang);
+  const cacheKey = "intel2-" + btoa(zhUrl.toString()).slice(0, 40);
   const data = await withCache(cacheKey, async () => {
-    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } });
-    if (!res.ok) throw new Error(`TMDB ${path}: ${res.status}`);
-    return res.json();
+    const [zhRes, enRes] = await Promise.all([
+      fetch(zhUrl, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }),
+      fetch(buildUrl("en-US"), { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }),
+    ]);
+    if (!zhRes.ok) throw new Error(`TMDB ${path}: ${zhRes.status}`);
+    const zhData = await zhRes.json();
+    const zhResults = zhData.results || [];
+    if (enRes.ok) {
+      const enData = await enRes.json();
+      const enMap = new Map((enData.results || []).map(r => [r.id, r]));
+      return zhResults.map(item => {
+        const en = enMap.get(item.id);
+        if (en) item._overviewEn = en.overview || "";
+        return item;
+      });
+    }
+    return zhResults;
   }, 3600);
-  return data?.results || [];
+  return data;
 }
 
 // ── MusicBrainz ──
@@ -214,7 +234,7 @@ async function handleIntelOverview(env) {
   ]);
 
   const todayM = nowPlaying.filter(m => m.release_date === today).map(m => intelNormalizeMovie(m));
-  const weekM = nowPlaying.filter(m => m.release_date >= weekAgo && m.release_date !== today).slice(0, 20).map(m => intelNormalizeMovie(m));
+  const weekM = nowPlaying.filter(m => m.release_date >= weekAgo && m.release_date < today).slice(0, 20).map(m => intelNormalizeMovie(m));
 
   const tvAiring = await intelFetchTMDB(token, "/tv/airing_today");
   const todayTV = tvAiring.filter(s => s.first_air_date === today).map(s => intelNormalizeMovie(s, "tv"));
@@ -250,21 +270,20 @@ async function handleIntelMovies(env) {
   const today = new Date().toISOString().split("T")[0];
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
 
-  const [nowPlaying, upcoming, popular] = await Promise.all([
+  const [nowPlayingRaw, upcomingRaw] = await Promise.all([
     intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
     intelFetchTMDB(token, "/movie/upcoming"),
-    intelFetchTMDB(token, "/movie/popular"),
   ]);
 
-  const todayM = nowPlaying.filter(m => m.release_date === today).map(m => intelNormalizeMovie(m));
-  const weekM = nowPlaying.filter(m => m.release_date >= weekAgo && m.release_date !== today).slice(0, 20).map(m => intelNormalizeMovie(m));
+  const todayM = nowPlayingRaw.filter(m => m.release_date === today).map(m => intelNormalizeMovie(m));
+  const weekM = nowPlayingRaw.filter(m => m.release_date >= weekAgo && m.release_date < today).slice(0, 20).map(m => intelNormalizeMovie(m));
 
   return {
     updated: today,
     releasedToday: await intelEnrichWithAI(todayM, "movie", env),
     releasedThisWeek: weekM,
-    upcoming: upcoming.slice(0, 20).map(m => intelNormalizeMovie(m)),
-    nowPlaying: popular.slice(0, 20).map(m => intelNormalizeMovie(m)),
+    upcoming: upcomingRaw.slice(0, 20).map(m => intelNormalizeMovie(m)),
+    nowPlaying: nowPlayingRaw.slice(0, 20).map(m => intelNormalizeMovie(m)),
   };
 }
 
@@ -282,7 +301,7 @@ async function handleIntelTV(env) {
   return {
     updated: today,
     premieresToday: airing.filter(s => s.first_air_date === today).map(s => intelNormalizeMovie(s, "tv")),
-    premieresThisWeek: airing.filter(s => s.first_air_date >= weekAgo && s.first_air_date !== today).slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
+    premieresThisWeek: airing.filter(s => s.first_air_date >= weekAgo && s.first_air_date < today).slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
     upcoming: onAir.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
     ongoing: popular.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
   };

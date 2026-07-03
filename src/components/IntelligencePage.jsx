@@ -602,8 +602,6 @@ function IntelligencePage() {
       {/* Footer */}
       <footer className="fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white text-xs pixel-font uppercase tracking-widest">
         <p>
-          <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer" className="hover:text-[#00ffff] transition-colors">Data from TMDB</a>
-          <span className="text-gray-600 mx-2">|</span>
           <Link to="/discover" className="hover:text-[#ffff00] transition-colors">Discover</Link>
           <span className="text-gray-600 mx-2">|</span>
           <Link to="/" className="hover:text-[#00ffff] transition-colors">Home</Link>
