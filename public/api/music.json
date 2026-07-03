@@ -10,14 +10,16 @@
       "cover": "",
       "genre": "Album",
       "tags": [
-        "pop",
-        "hip-hop",
-        "experimental",
-        "queer icon"
+        "Pop",
+        "Experimental",
+        "Hip-Hop",
+        "Queer"
       ],
       "aiScore": 9,
-      "highlight": "未完成的流行宣言，Lil Nas X 的狂想与冒险",
-      "highlightEn": "An unfinished pop manifesto of Lil Nas X's wild ambition",
+      "highlight": "未完成的流行实验，叛逆与脆弱并存",
+      "highlightEn": "Unfinished pop experiments, rebellion meets vulnerability",
+      "summary": "Lil Nas X 以未完成专辑《DREAMBOY》回归，延续其标志性的流行与嘻哈融合风格，歌词大胆直白，充满自我探索与情感冲突。",
+      "summaryEn": "Lil Nas X returns with the unfinished album 'DREAMBOY,' blending pop and hip-hop with bold lyrics of self-exploration and emotional conflict.",
       "category": "global"
     },
     {
@@ -29,34 +31,17 @@
       "cover": "",
       "genre": "Album",
       "tags": [
-        "hip-hop",
-        "conceptual",
-        "lyrical",
-        "rap"
+        "Hip-Hop",
+        "Conscious Rap",
+        "Experimental",
+        "Storytelling"
       ],
       "aiScore": 9.5,
-      "highlight": "Kendrick Lamar 的深沉叙事，再次定义嘻哈高度",
-      "highlightEn": "Kendrick Lamar's profound storytelling redefines hip-hop's peak",
+      "highlight": "Kendrick Lamar 的暗黑叙事回归",
+      "highlightEn": "Kendrick Lamar’s dark narrative returns",
+      "summary": "《KL7》延续 Kendrick 对种族、身份与社会的深度剖析，制作上融合实验性节拍与交响元素，是年度最受期待的嘻哈专辑之一。",
+      "summaryEn": "'KL7' continues Kendrick’s deep dive into race, identity, and society, with experimental beats and orchestral elements, making it one of the year’s most anticipated hip-hop albums.",
       "category": "global"
-    },
-    {
-      "mbid": "46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
-      "title": "RAVEPOP",
-      "artist": "r u s s e l b u c k",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "",
-      "genre": "Album",
-      "tags": [
-        "electronic",
-        "rave",
-        "dance",
-        "experimental"
-      ],
-      "aiScore": 7.5,
-      "highlight": "电子与怀旧碰撞，适合舞池的狂欢节拍",
-      "highlightEn": "Electronic nostalgia collides, perfect for the dancefloor",
-      "category": "niche"
     },
     {
       "mbid": "c073640e-6385-4815-b43c-b99f75a8df5c",
@@ -67,14 +52,16 @@
       "cover": "",
       "genre": "Album",
       "tags": [
-        "folk",
-        "live",
-        "classic rock",
-        "acoustic"
+        "Folk",
+        "Live",
+        "Classic Rock",
+        "Singer-Songwriter"
       ],
-      "aiScore": 8,
-      "highlight": "Don McLean 1975 年现场，民谣传奇的经典重现",
-      "highlightEn": "Don McLean live in '75, a folk legend's timeless performance",
+      "aiScore": 8.5,
+      "highlight": "Don McLean 1975 年现场录音重现",
+      "highlightEn": "Don McLean’s 1975 live recording resurfaces",
+      "summary": "《Living Free (Live Manchester '75)》捕捉了 Don McLean 巅峰时期的现场魅力，经典曲目与即兴演绎交织，适合民谣与老摇滚爱好者。",
+      "summaryEn": "'Living Free (Live Manchester '75)' captures Don McLean at his peak, blending classic hits with improvisation, perfect for folk and classic rock fans.",
       "category": "global"
     },
     {
@@ -86,15 +73,17 @@
       "cover": "",
       "genre": "Album",
       "tags": [
-        "rock",
-        "hard rock",
+        "Rock",
+        "Dance-Rock",
         "80s",
-        "supergroup"
+        "Supergroup"
       ],
-      "aiScore": 8.5,
-      "highlight": "同名专辑再版，80 年代摇滚的硬核能量",
-      "highlightEn": "Self-titled reissue, pure '80s rock energy",
-      "category": "global"
+      "aiScore": 8,
+      "highlight": "80年代超级乐队同名专辑再版",
+      "highlightEn": "80s supergroup’s self-titled album reissued",
+      "summary": "The Power Station 的同名专辑是80年代舞曲摇滚的经典，融合放克与硬摇滚，此次再版让新老乐迷重温Robert Palmer等人的辉煌。",
+      "summaryEn": "The Power Station's self-titled album is a dance-rock classic from the 80s, blending funk and hard rock; this reissue lets fans revisit the glory of Robert Palmer and co.",
+      "category": "niche"
     },
     {
       "mbid": "aca4150c-ffa4-4ead-9251-0774aa5db5db",
@@ -105,53 +94,80 @@
       "cover": "",
       "genre": "Album",
       "tags": [
-        "rock",
-        "jam band",
-        "live",
-        "alternative"
+        "Jam Band",
+        "Live",
+        "Rock",
+        "Improvisation"
       ],
-      "aiScore": 8,
-      "highlight": "Dave Matthews Band 2026 巡演实录，现场魔力尽收",
-      "highlightEn": "Live magic captured from Dave Matthews Band's 2026 tour",
+      "aiScore": 8.5,
+      "highlight": "Dave Matthews Band 2025 现场录音",
+      "highlightEn": "Dave Matthews Band 2025 live recording",
+      "summary": "《Warehouse 2026》收录了Dave Matthews Band在里士满的完整现场，即兴演奏与乐队默契令人沉醉，是乐迷收藏必备。",
+      "summaryEn": "'Warehouse 2026' captures a full DMB show in Richmond, with improvisation and band chemistry that make it a must-have for fans.",
       "category": "global"
     },
     {
-      "mbid": "af4ece5b-3174-426d-ad92-45090ab35b5e",
-      "title": "Eingenordet",
-      "artist": "Versengold",
+      "mbid": "abc9680b-ea2f-43d2-b625-fcc3322c1c9b",
+      "title": "Euphoria",
+      "artist": "Schiller",
       "releaseDate": "2026",
       "year": "2026",
       "cover": "",
       "genre": "Album",
       "tags": [
-        "folk metal",
-        "German",
-        "epic",
-        "medieval"
+        "Electronic",
+        "Ambient",
+        "Trance",
+        "New Age"
+      ],
+      "aiScore": 8,
+      "highlight": "Schiller 的电子梦幻之旅",
+      "highlightEn": "Schiller’s electronic dreamscape",
+      "summary": "德国电子大师 Schiller 新作《Euphoria》延续其标志性的氛围与旋律，空灵人声与渐进节拍交织，适合沉浸式聆听。",
+      "summaryEn": "German electronic maestro Schiller's 'Euphoria' continues his signature blend of atmosphere and melody, with ethereal vocals and progressive beats for immersive listening.",
+      "category": "global"
+    },
+    {
+      "mbid": "b577931e-be63-4e84-a7b2-e4c0764e9920",
+      "title": "Melodrama",
+      "artist": "LINA",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "",
+      "genre": "Album",
+      "tags": [
+        "Pop",
+        "Dance-Pop",
+        "Electronic",
+        "Female Vocal"
       ],
       "aiScore": 7.5,
-      "highlight": "德国民谣金属的北欧狂想，适合史诗氛围爱好者",
-      "highlightEn": "German folk metal with Nordic fantasy, for epic mood seekers",
+      "highlight": "LINA 的流行情感风暴",
+      "highlightEn": "LINA’s pop emotional storm",
+      "summary": "德国流行歌手 LINA 的《Melodrama》以强劲的电子流行节奏和直白歌词，探讨爱情与失落，制作精良且充满能量。",
+      "summaryEn": "German pop singer LINA's 'Melodrama' delivers powerful electro-pop beats and candid lyrics about love and loss, with polished production and high energy.",
       "category": "niche"
     },
     {
-      "mbid": "a79d1519-985e-4ae4-a585-f234d2d7e739",
-      "title": "Venice",
-      "artist": "Orchestra of the Royal Opera House, Covent Garden, Sir Georg Solti",
+      "mbid": "def0724a-e3ba-4348-b30e-06caa81b08f4",
+      "title": "One Moment in Time: Live in the USA",
+      "artist": "Robin Trower",
       "releaseDate": "2026",
       "year": "2026",
       "cover": "",
       "genre": "Album",
       "tags": [
-        "classical",
-        "orchestral",
-        "romantic",
-        "conductor"
+        "Blues Rock",
+        "Live",
+        "Guitar",
+        "70s"
       ],
-      "aiScore": 8,
-      "highlight": "",
-      "highlightEn": "Venetian soundscapes, a classical gem conducted by Solti",
-      "category": "global"
+      "aiScore": 7.5,
+      "highlight": "Robin Trower 美国现场精选",
+      "highlightEn": "Robin Trower’s US live highlights",
+      "summary": "《One Moment in Time: Live in the USA》收录了 Robin Trower 在美巡演中的高光时刻，吉他独奏与蓝调摇滚氛围浓郁。",
+      "summaryEn": "'One Moment in Time: Live in the USA' captures Robin Trower’s US tour highlights, with blistering guitar solos and a rich blues-rock atmosphere.",
+      "category": "niche"
     }
   ],
   "releasedThisWeek": [
