@@ -418,7 +418,6 @@ function SearchView({ locale }) {
       movies: filtered.filter(i => i._type === "movie"),
       tv: filtered.filter(i => i._type === "tv"),
       albums: filtered.filter(i => i._type === "album"),
-      music: filtered.filter(i => i._type === "album"),
     });
     setSearching(false);
   }, [query, allItems]);

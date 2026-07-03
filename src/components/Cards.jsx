@@ -201,7 +201,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
   return (
     <CardShell>
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
-        <span className="font-black pixel-font text-black uppercase text-[9px]">
+        <span className="font-black pixel-font text-[#ffff00] uppercase text-[9px]">
           {locale === "en" ? "ALBUM" : "专辑"}
         </span>
         <span className="text-gray-400 text-[9px]">{album.releaseDate || album.year || ""}</span>

@@ -240,7 +240,7 @@ async function handleIntelOverview(env) {
       return { ...intelNormalizeMovie(m), daysUntil: isNaN(days) ? null : days };
     }),
     trending: trending.slice(0, 5).map((m, i) => ({ ...intelNormalizeMovie(m), rank: i + 1, trend: "new" })),
-    brief: `${today} global entertainment roundup.`,
+    brief: `Today: ${todayM.length} movie(s) released, ${todayTV.length} TV premiere(s), ${todayMB.length} new album(s).`,
   };
 }
 
@@ -260,7 +260,7 @@ async function handleIntelMovies(env) {
 
   return {
     updated: today,
-    releasedToday: await intelEnrichWithAI(todayM.filter(m => m.releaseDate === today), "movie", env),
+    releasedToday: await intelEnrichWithAI(todayM, "movie", env),
     releasedThisWeek: weekM,
     upcoming: upcoming.slice(0, 20).map(m => intelNormalizeMovie(m)),
     nowPlaying: popular.slice(0, 20).map(m => intelNormalizeMovie(m)),
