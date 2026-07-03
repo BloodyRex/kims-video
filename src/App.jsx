@@ -392,7 +392,6 @@ function AppContent() {
           <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">Intel</Link>
           <span className="text-gray-600 mx-2">|</span>
           <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">Contact</a>
-          <span className="text-gray-600 mx-2">|</span>
           <span className="text-gray-800 mx-1">·</span>
           <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
         </p>

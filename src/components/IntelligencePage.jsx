@@ -84,24 +84,6 @@ function OverviewView({ locale }) {
           <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
         </section>
       )}
-      {hiddenGems.length > 0 && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "◆ 隐藏宝藏" : "◆ Hidden Gems"} count={hiddenGems.length} color="#00ffff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{hiddenGems.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
-        </section>
-      )}
-      {(data?.comingSoon || []).length > 0 && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "▶ 即将上映" : "▶ Coming Soon"} count={data.comingSoon.length} color="#ffff00" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.comingSoon.map((p, i) => <CountdownCard key={i} item={p} locale={locale} />)}</CardGrid>
-        </section>
-      )}
-      {(data?.trending || []).length > 0 && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "↑ 热榜趋势" : "↑ Trending"} count={data.trending.length} color="#ff00ff" />
-          <CardList>{data.trending.map((p, i) => <RankingCard key={i} item={p} rank={p.rank || i + 1} locale={locale} />)}</CardList>
-        </section>
-      )}
 
       {/* Daily Digest */}
       {digestData?.headline && (
@@ -121,6 +103,25 @@ function OverviewView({ locale }) {
               {locale === "zh" ? "数据更新于 " : "Data updated "}{digestData.date || data?.updated || ""}
             </p>
           </div>
+        </section>
+      )}
+
+      {hiddenGems.length > 0 && (
+        <section>
+          <SectionHeader label={locale === "zh" ? "◆ 隐藏宝藏" : "◆ Hidden Gems"} count={hiddenGems.length} color="#00ffff" />
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{hiddenGems.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
+        </section>
+      )}
+      {(data?.comingSoon || []).length > 0 && (
+        <section>
+          <SectionHeader label={locale === "zh" ? "▶ 即将上映" : "▶ Coming Soon"} count={data.comingSoon.length} color="#ffff00" />
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.comingSoon.map((p, i) => <CountdownCard key={i} item={p} locale={locale} />)}</CardGrid>
+        </section>
+      )}
+      {(data?.trending || []).length > 0 && (
+        <section>
+          <SectionHeader label={locale === "zh" ? "↑ 热榜趋势" : "↑ Trending"} count={data.trending.length} color="#ff00ff" />
+          <CardList>{data.trending.map((p, i) => <RankingCard key={i} item={p} rank={p.rank || i + 1} locale={locale} />)}</CardList>
         </section>
       )}
     </div>
@@ -529,7 +530,6 @@ function IntelligencePage() {
   const navigate = useNavigate();
   const match = location.pathname.match(/^\/intelligence(?:\/(\w+))?/);
   const activeNav = match?.[1] || "overview";
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [detailItem, setDetailItem] = useState(null);
   const [detailType, setDetailType] = useState("movie");
 
@@ -567,21 +567,18 @@ function IntelligencePage() {
           <button onClick={toggleLocale} className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs flex-shrink-0" style={LANG_BUTTON_STYLE}>
             {locale === "zh" ? "En" : "中"}
           </button>
-          <button onClick={() => setMobileNavOpen(!mobileNavOpen)} className="sm:hidden w-8 h-8 bg-black border-2 border-[#ffff00] text-[#ffff00] flex items-center justify-center font-black text-sm">
-            {mobileNavOpen ? "X" : "☰"}
-          </button>
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row gap-0">
-        {/* Sidebar */}
-        <aside className={`sm:w-48 sm:min-h-[calc(100vh-200px)] sm:block sm:border-r-4 sm:border-[#ff00ff] sm:bg-black/60 ${mobileNavOpen ? "block" : "hidden"}`}>
+        {/* Sidebar - always visible, scrollable on mobile */}
+        <aside className="sm:w-48 sm:min-h-[calc(100vh-200px)] sm:block sm:border-r-4 sm:border-[#ff00ff] sm:bg-black/60">
           <nav className="flex sm:flex-col overflow-x-auto sm:overflow-x-visible p-2 sm:p-0 gap-1">
             {NAV_ITEMS.map((item) => {
               const Icon = IconComp(item.icon);
               const active = activeNav === item.id;
               return (
-                <button key={item.id} onClick={() => { navigate(item.id === "overview" ? "/intelligence" : `/intelligence/${item.id}`); setMobileNavOpen(false); }}
+                <button key={item.id} onClick={() => { navigate(item.id === "overview" ? "/intelligence" : `/intelligence/${item.id}`); }}
                   className={`flex items-center gap-2 px-3 py-2.5 sm:py-3 w-full text-left transition-colors border-l-4 ${active ? "bg-gray-900 border-[#ffff00] text-white" : "border-transparent text-gray-400 hover:bg-gray-900/50 hover:text-white"}`}>
                   <span className={`w-5 h-5 flex-shrink-0 ${active ? "text-white" : "text-gray-600"}`}><Icon className="w-5 h-5" /></span>
                   <span className="text-[10px] sm:text-xs font-black pixel-font whitespace-nowrap">{locale === "zh" ? item.zh : item.en}</span>
@@ -613,7 +610,6 @@ function IntelligencePage() {
           <Link to="/" className="hover:text-[#00ffff] transition-colors">Home</Link>
           <span className="text-gray-600 mx-2">|</span>
           <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">Contact</a>
-          <span className="text-gray-600 mx-2">|</span>
           <span className="text-gray-800 mx-1">·</span>
           <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
         </p>

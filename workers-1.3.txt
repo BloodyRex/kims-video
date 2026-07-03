@@ -407,11 +407,11 @@ async function handleIntelWeekly(env) {
     const albumCount = todayMB.length;
     stats = { moviesReleased: movieCount, tvPremieres: tvCount, albumsReleased: albumCount };
 
-    trendingHighlights = weekTrending.slice(0, 5).map((m, i) => ({
-      rank: i + 1,
-      title: m.title || m.name || "",
-      mediaType: m.media_type === "tv" ? "tv" : "movie",
-    }));
+    trendingHighlights = weekTrending.slice(0, 5).map((m, i) => {
+      const type = m.media_type === "tv" ? "tv" : "movie";
+      const norm = intelNormalizeMovie(m, type);
+      return { rank: i + 1, ...norm, mediaType: type };
+    });
   } catch (e) {
     console.warn("Weekly stats failed:", e.message);
   }
