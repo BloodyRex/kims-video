@@ -168,6 +168,7 @@ function TVView({ locale }) {
           <button key={t.id} onClick={() => setTab(t.id)}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${tab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
+            {data?.[t.key]?.length > 0 && <span className="ml-1 opacity-60">({data[t.key].length})</span>}
           </button>
         ))}
       </div>

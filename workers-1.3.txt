@@ -235,7 +235,10 @@ async function handleIntelOverview(env) {
     },
     editorsPicks: enrichedToday,
     hiddenGems: [],
-    comingSoon: upcoming.slice(0, 6).map(m => intelNormalizeMovie(m)),
+    comingSoon: upcoming.slice(0, 6).map(m => {
+      const days = Math.ceil((new Date(m.release_date) - new Date()) / 86400000);
+      return { ...intelNormalizeMovie(m), daysUntil: isNaN(days) ? null : days };
+    }),
     trending: trending.slice(0, 5).map((m, i) => ({ ...intelNormalizeMovie(m), rank: i + 1, trend: "new" })),
     brief: `${today} global entertainment roundup.`,
   };
@@ -257,7 +260,7 @@ async function handleIntelMovies(env) {
 
   return {
     updated: today,
-    releasedToday: await intelEnrichWithAI(todayM, "movie", env),
+    releasedToday: await intelEnrichWithAI(todayM.filter(m => m.releaseDate === today), "movie", env),
     releasedThisWeek: weekM,
     upcoming: upcoming.slice(0, 20).map(m => intelNormalizeMovie(m)),
     nowPlaying: popular.slice(0, 20).map(m => intelNormalizeMovie(m)),
@@ -331,10 +334,13 @@ async function handleIntelComing(env) {
   const today = new Date().toISOString().split("T")[0];
   const upcoming = await intelFetchTMDB(token, "/movie/upcoming");
 
-  const all = upcoming.map(m => {
-    const days = Math.max(0, Math.ceil((new Date(m.release_date) - new Date()) / 86400000));
-    return { ...intelNormalizeMovie(m), daysUntil: days };
-  });
+  const now = new Date();
+  const all = upcoming
+    .filter(m => m.release_date && new Date(m.release_date) >= now)
+    .map(m => {
+      const days = Math.ceil((new Date(m.release_date) - now) / 86400000);
+      return { ...intelNormalizeMovie(m), daysUntil: days };
+    });
 
   return {
     updated: today,
