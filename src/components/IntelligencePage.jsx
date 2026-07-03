@@ -382,7 +382,7 @@ function WeeklyView({ locale }) {
         <section>
           <SectionHeader label={locale === "zh" ? "☕ 一分钟摘要" : "☕ One Minute Summary"} color="#ffff00" />
           <div className="bg-black border-4 border-[#ff00ff] p-5 shadow-[6px_6px_0_0_rgba(0,255,255,0.3)]">
-            <p className="text-sm text-gray-200 leading-relaxed">{weeklyData.oneMinuteSummary}</p>
+            <p className="text-sm text-gray-200 leading-relaxed">{locale === "en" ? (weeklyData.oneMinuteSummaryEn || weeklyData.oneMinuteSummary) : weeklyData.oneMinuteSummary}</p>
             <p className="text-[10px] text-gray-500 mt-3 pixel-font">
               {locale === "zh" ? "更新于 " : "Updated "}{weeklyData.updated || ""}
             </p>

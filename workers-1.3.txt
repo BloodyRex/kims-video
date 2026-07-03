@@ -81,7 +81,7 @@ function intelNormalizeMovie(m, type) {
   const item = {
     tmdbId: m.id,
     title: m.title || m.name || "",
-    titleEn: m.original_title || m.original_name || m.title || "",
+    titleEn: m._titleEn || m.original_title || m.original_name || m.title || "",
     year: (m[df] || "").slice(0, 4),
     releaseDate: m[df] || "",
     poster: m.poster_path ? `https://image.tmdb.org/t/p/w500${m.poster_path}` : "",
@@ -123,7 +123,10 @@ async function intelFetchTMDB(token, path, params, lang) {
       const enMap = new Map((enData.results || []).map(r => [r.id, r]));
       return zhResults.map(item => {
         const en = enMap.get(item.id);
-        if (en) item._overviewEn = en.overview || "";
+        if (en) {
+          item._overviewEn = en.overview || "";
+          item._titleEn = en.title || en.name || "";
+        }
         return item;
       });
     }
@@ -178,7 +181,7 @@ async function intelEnrichWithAI(items, type, env) {
     if (type === "album") {
       // Album pipeline: filter 5-10 worthy albums + one-liner + tags + global/niche
       maxTokens = 3000;
-      prompt = `You are a music editor for an entertainment intelligence platform. Today's new album releases:\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, artist: i.artist, genre: i.genre, country: i.country })))}\n\nYour task:\n1. Select ONLY the 5-10 most noteworthy albums worth featuring on a homepage.\n2. For each selected one, provide: a) "highlight" — one punchy recommendation line in Chinese (like "适合深夜聆听的电子氛围专辑"), b) "highlightEn" — same in English, c) "aiScore" (0-10), d) "tags" (3-5 style/genre tags), e) "category" — either "global" (mainstream/international attention) or "niche" (indie/underground/cult favorite).\n3. Return a JSON object: { "items": [ { "index": 0, "highlight": "...", "highlightEn": "...", "aiScore": 8.5, "tags": [...], "category": "global" }, ... ] }\nOnly include the selected albums. Do NOT return all albums.`;
+      prompt = `You are a music editor for an entertainment intelligence platform. Today's new album releases:\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, artist: i.artist, genre: i.genre, country: i.country })))}\n\nYour task:\n1. Select ONLY the 5-10 most noteworthy albums worth featuring on a homepage.\n2. For each selected one, provide: a) "highlight" — one punchy recommendation line in Chinese (like "适合深夜聆听的电子氛围专辑"), b) "highlightEn" — same in English, c) "aiScore" (0-10), d) "tags" (3-5 style/genre tags), e) "category" — either "global" (mainstream/international attention) or "niche" (indie/underground/cult favorite), f) "summary" — a short description in Chinese (1-2 sentences about the album's style, mood, and notable aspects), g) "summaryEn" — same in English.\n3. Return a JSON object: { "items": [ { "index": 0, "highlight": "...", "highlightEn": "...", "aiScore": 8.5, "tags": [...], "category": "global", "summary": "...", "summaryEn": "..." }, ... ] }\nOnly include the selected albums. Do NOT return all albums.`;
     } else {
       maxTokens = 4000;
       prompt = `You are an entertainment editor. For each ${type} below, provide: 1) aiScore (0-10), 2) reason (2-3 sentences why it's worth watching, in Chinese), 3) reasonEn (same in English), 4) audience (target audience in Chinese), 5) audienceEn (target audience in English), 6) tags (3-5 short tags). Return JSON object with key "items" containing an array (same count, same order).\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, genre: i.genre, summary: i.summary })))}`;
@@ -205,6 +208,8 @@ async function intelEnrichWithAI(items, type, env) {
           tags: ai.tags || [],
           highlight: ai.highlight || "",
           highlightEn: ai.highlightEn || "",
+          summary: ai.summary || "",
+          summaryEn: ai.summaryEn || "",
           category: ai.category || "niche",
         };
       });
@@ -212,7 +217,7 @@ async function intelEnrichWithAI(items, type, env) {
 
     return items.map((item, idx) => {
       const ai = enriched.find(e => e.index === idx) || {};
-      return { ...item, aiScore: ai.aiScore, tags: ai.tags || item.tags || [], reason: ai.reason || "", reasonEn: ai.reasonEn || "", audience: ai.audience || "", audienceEn: ai.audienceEn || "", summary: ai.summary || item.summary || "", summaryEn: ai.summaryEn || "" };
+      return { ...item, aiScore: ai.aiScore, tags: ai.tags || item.tags || [], reason: ai.reason || "", reasonEn: ai.reasonEn || "", audience: ai.audience || "", audienceEn: ai.audienceEn || "", summary: ai.summary || item.summary || "", summaryEn: ai.summaryEn || item.summaryEn || "" };
     });
   } catch (e) {
     console.warn("DeepSeek enrichment skipped:", e.message);
@@ -238,7 +243,7 @@ async function handleIntelOverview(env) {
 
   const tvAiring = await intelFetchTMDB(token, "/tv/airing_today");
   const todayTV = tvAiring.filter(s => s.first_air_date === today).map(s => intelNormalizeMovie(s, "tv"));
-  const weekTV = tvAiring.filter(s => s.first_air_date >= weekAgo && s.first_air_date !== today).slice(0, 10).map(s => intelNormalizeMovie(s, "tv"));
+  const weekTV = tvAiring.filter(s => s.first_air_date >= weekAgo && s.first_air_date < today).slice(0, 10).map(s => intelNormalizeMovie(s, "tv"));
 
   // Music count (fast: just query today)
   const todayMB = await intelFetchMusicBrainz(today);
@@ -255,9 +260,9 @@ async function handleIntelOverview(env) {
     },
     editorsPicks: enrichedToday,
     comingSoon: upcoming
-      .filter(m => m.release_date && new Date(m.release_date) >= new Date())
+      .filter(m => m.release_date && m.release_date >= today)
       .slice(0, 6).map(m => {
-        const days = Math.ceil((new Date(m.release_date) - new Date()) / 86400000);
+        const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
         return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
       }),
     trending: trending.slice(0, 5).map((m, i) => ({ ...intelNormalizeMovie(m), rank: i + 1, trend: "new" })),
@@ -361,11 +366,10 @@ async function handleIntelComing(env) {
   const today = new Date().toISOString().split("T")[0];
   const upcoming = await intelFetchTMDB(token, "/movie/upcoming");
 
-  const now = new Date();
   const all = upcoming
-    .filter(m => m.release_date && new Date(m.release_date) >= now)
+    .filter(m => m.release_date && m.release_date >= today)
     .map(m => {
-      const days = Math.ceil((new Date(m.release_date) - now) / 86400000);
+      const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
       return { ...intelNormalizeMovie(m), daysUntil: days };
     });
 
@@ -387,6 +391,7 @@ async function handleIntelWeekly(env) {
   let stats = { moviesReleased: 0, tvPremieres: 0, albumsReleased: 0 };
   let trendingHighlights = [];
   let oneMinuteSummary = "";
+  let oneMinuteSummaryEn = "";
 
   try {
     const [nowPlaying, tvAiring, todayMB, weekTrending] = await Promise.all([
@@ -412,7 +417,7 @@ async function handleIntelWeekly(env) {
   // One Minute Summary via DeepSeek
   if (env.DEEPSEEK_API_KEY) {
     try {
-      const prompt = `Today is ${today}, Week ${weekNum}. Write a one-minute entertainment summary (max 100 words, in Chinese) summarizing this week:\nStats: ${stats.moviesReleased} movies, ${stats.tvPremieres} TV shows, ${stats.albumsReleased} albums.\nTop: ${trendingHighlights.map(t => t.title).join(", ")}.\nReturn JSON: { "summary": "..." }`;
+      const prompt = `Today is ${today}, Week ${weekNum}. Write a one-minute entertainment summary (max 100 words) summarizing this week in both Chinese and English:\nStats: ${stats.moviesReleased} movies, ${stats.tvPremieres} TV shows, ${stats.albumsReleased} albums.\nTop: ${trendingHighlights.map(t => t.title).join(", ")}.\nReturn JSON: { "summary": "...(in Chinese)", "summaryEn": "...(same in English)" }`;
       const res = await fetch("https://api.deepseek.com/chat/completions", {
         method: "POST", headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
         body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 500 }),
@@ -422,6 +427,7 @@ async function handleIntelWeekly(env) {
         const raw = data?.choices?.[0]?.message?.content || "";
         const parsed = JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim());
         oneMinuteSummary = parsed.summary || "";
+        oneMinuteSummaryEn = parsed.summaryEn || "";
       }
     } catch (e) { console.warn("Weekly summary failed:", e.message); }
   }
@@ -433,6 +439,7 @@ async function handleIntelWeekly(env) {
     stats,
     trendingHighlights,
     oneMinuteSummary,
+    oneMinuteSummaryEn,
   };
 }
 
@@ -532,7 +539,7 @@ async function handleIntelDigest(env) {
     ]);
     const todayMovies = nowPlaying.filter(m => m.release_date === today).length;
     const weekMovies = nowPlaying.filter(m => m.release_date >= weekAgo).length;
-    const weekUpcoming = upcoming.filter(m => m.release_date && new Date(m.release_date) >= new Date()).slice(0, 5).map(m => m.title || m.name);
+    const weekUpcoming = upcoming.filter(m => m.release_date && m.release_date >= today).slice(0, 5).map(m => m.title || m.name);
 
     const prompt = `Today is ${today}. Summarize today's entertainment news in a digest.
 
