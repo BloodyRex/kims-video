@@ -21,7 +21,7 @@ function StarRating({ score, max = 10 }) {
   return (
     <span className="inline-flex items-center gap-0.5">
       {[1, 2, 3, 4, 5].map((i) => (
-        <span key={i} className={`text-[10px] ${i <= stars ? "text-[#ffff00]" : "text-gray-400"}`}>
+        <span key={i} className={`text-[10px] ${i <= stars ? "text-[#ff8800]" : "text-gray-400"}`}>
           ★
         </span>
       ))}
@@ -32,7 +32,7 @@ function StarRating({ score, max = 10 }) {
 
 function AIScoreBadge({ score, confidence }) {
   if (!score && score !== 0) return null;
-  const color = score >= 8 ? "#00ff88" : score >= 6 ? "#ffff00" : score >= 4 ? "#ff8800" : "#ff0044";
+  const color = score >= 8 ? "#00ff88" : score >= 6 ? "#ff8800" : score >= 4 ? "#ff8800" : "#ff0044";
   return (
     <span className="inline-flex items-center gap-1 text-[9px] font-black pixel-font" style={{ color }}>
       <Icons.Target className="w-3 h-3" />
@@ -201,7 +201,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
   return (
     <CardShell>
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
-        <span className="font-black pixel-font text-[#ffff00] uppercase text-[9px]">
+        <span className="font-black pixel-font text-black uppercase text-[9px]">
           {locale === "en" ? "ALBUM" : "专辑"}
         </span>
         <span className="text-gray-400 text-[9px]">{album.releaseDate || album.year || ""}</span>
@@ -240,7 +240,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
             </p>
           )}
           <AIScoreBadge score={album.aiScore} confidence={album.confidence} />
-          <Tags tags={album.tags} color="#ffff00" />
+          <Tags tags={album.tags} color="#333" />
         </div>
       </div>
     </CardShell>
@@ -251,13 +251,14 @@ export function AlbumCard({ album, locale, onViewDetail }) {
 
 export function CountdownCard({ item, locale, onViewDetail }) {
   const title = getTitle(item, locale);
-  const days = item.daysUntil;
-  const countdownLabel = days === 0
+  const days = (typeof item.daysUntil === "number" && !isNaN(item.daysUntil)) ? item.daysUntil : null;
+  const countdownLabel = days === null
+    ? (item.releaseDate || "")
+    : days === 0
     ? (locale === "en" ? "TODAY" : "今天")
     : days === 1
     ? (locale === "en" ? "TOMORROW" : "明天")
     : locale === "en" ? `${days} DAYS` : `${days} 天后`;
-
   return (
     <CardShell className="relative overflow-hidden">
       <div className="absolute top-0 right-0 bg-[#ff00ff] text-black px-3 py-1 border-l-4 border-b-4 border-black z-10">
@@ -306,7 +307,7 @@ export function CountdownCard({ item, locale, onViewDetail }) {
 
 export function RankingCard({ item, rank, locale, onViewDetail }) {
   const title = getTitle(item, locale);
-  const rankColors = ["#ffff00", "#c0c0c0", "#cd7f32"];
+  const rankColors = ["#e8a000", "#c0c0c0", "#cd7f32"];
   const rankColor = rank <= 3 ? rankColors[rank - 1] : "#888";
 
   return (
@@ -349,7 +350,7 @@ export function WeeklyCard({ report, locale, onViewDetail }) {
   return (
     <CardShell>
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
-        <span className="font-black pixel-font text-[#ffff00] uppercase text-[9px]">
+        <span className="font-black pixel-font text-black uppercase text-[9px]">
           {report.weekLabel || report.week || (locale === "en" ? "WEEKLY" : "每周报告")}
         </span>
         <span className="text-gray-400 text-[9px]">{report.date || ""}</span>

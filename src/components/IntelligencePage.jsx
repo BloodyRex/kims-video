@@ -64,7 +64,7 @@ function OverviewView({ locale }) {
         <p className="text-sm text-gray-400 mb-1">
           {locale === "zh" ? "每日自动汇总全球最新影视音乐发行信息" : "Daily auto-aggregated global entertainment releases"}
         </p>
-        <p className="text-xs text-[#ffff00] pixel-font">{locale === "zh" ? "更新于：今日" : "Updated: Today"}</p>
+        <p className="text-xs text-gray-400 pixel-font">{locale === "zh" ? "更新于：今日" : "Updated: Today"}</p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {statCards.map((s, i) => (
@@ -306,7 +306,7 @@ function WeeklyView({ locale }) {
               <div className="absolute -left-[calc(2rem+10px)] top-0 w-5 h-5 bg-[#ffff00] border-2 border-black rounded-full" />
               <div className="bg-white border-4 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] overflow-hidden">
                 <div className="bg-black text-white px-4 py-2 flex items-center justify-between">
-                  <span className="font-black pixel-font text-[#ffff00] text-[10px] uppercase">{r.weekLabel || r.week}</span>
+                  <span className="font-black pixel-font text-black text-[10px] uppercase">{r.weekLabel || r.week}</span>
                   <span className="text-gray-400 text-[9px]">{r.date || ""}</span>
                 </div>
                 <div className="p-4">
@@ -521,7 +521,7 @@ function IntelligencePage() {
               return (
                 <button key={item.id} onClick={() => { setActiveNav(item.id); setMobileNavOpen(false); }}
                   className={`flex items-center gap-2 px-3 py-2.5 sm:py-3 w-full text-left transition-colors border-l-4 ${active ? "bg-gray-900 border-[#ffff00] text-white" : "border-transparent text-gray-400 hover:bg-gray-900/50 hover:text-white"}`}>
-                  <span className={`w-5 h-5 flex-shrink-0 ${active ? "text-[#ffff00]" : "text-gray-600"}`}><Icon className="w-5 h-5" /></span>
+                  <span className={`w-5 h-5 flex-shrink-0 ${active ? "text-white" : "text-gray-600"}`}><Icon className="w-5 h-5" /></span>
                   <span className="text-[10px] sm:text-xs font-black pixel-font whitespace-nowrap">{locale === "zh" ? item.zh : item.en}</span>
                 </button>
               );

@@ -31,44 +31,6 @@
       font-size: 1rem !important;
     }
   }
-   @media (max-width: 640px) {
-    .intelligence-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)):where(:not([class*='tracking-wider'])) {
-      font-size: 0.35rem !important;
-    }
-  }
-
-  .intelligence-page.locale-en h2.pixel-font:not(.intel-title) {
-    font-size: 0.65rem !important;
-  }
-  @media (min-width: 640px) {
-    .intelligence-page.locale-en h2.pixel-font:not(.intel-title) {
-      font-size: 0.75rem !important;
-    }
-  }
-
-
-  .intelligence-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)):where(:not([class*='tracking-wider'])) {
-    font-size: 0.42rem !important;
-  }
-  @media (max-width: 640px) {
-    .intelligence-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)):where(:not([class*='tracking-wider'])) {
-      font-size: 0.35rem !important;
-    }
-  }
-
-  .intelligence-page.locale-en h2.pixel-font:not(.intel-title) {
-    font-size: 0.65rem !important;
-  }
-  @media (min-width: 640px) {
-    .intelligence-page.locale-en h2.pixel-font:not(.intel-title) {
-      font-size: 0.75rem !important;
-    }
-  }
-}
-@media (min-width: 640px) {
-  .intelligence-page.locale-en .intel-title {
-    font-size: 0.85rem !important;
-  }
 }
 
 body {
@@ -108,22 +70,4 @@ body {
   mix-blend-mode: overlay;
   pointer-events: none;
   z-index: 0;
-
-  .intelligence-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)):where(:not([class*='tracking-wider'])) {
-    font-size: 0.42rem !important;
-  }
-  @media (max-width: 640px) {
-    .intelligence-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)):where(:not([class*='tracking-wider'])) {
-      font-size: 0.35rem !important;
-    }
-  }
-
-  .intelligence-page.locale-en h2.pixel-font:not(.intel-title) {
-    font-size: 0.65rem !important;
-  }
-  @media (min-width: 640px) {
-    .intelligence-page.locale-en h2.pixel-font:not(.intel-title) {
-      font-size: 0.75rem !important;
-    }
-  }
 }
