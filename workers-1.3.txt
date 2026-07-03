@@ -287,7 +287,7 @@ async function handleIntelMovies(env) {
     updated: today,
     releasedToday: await intelEnrichWithAI(todayM, "movie", env),
     releasedThisWeek: weekM,
-    upcoming: upcomingRaw.slice(0, 20).map(m => intelNormalizeMovie(m)),
+    upcoming: upcomingRaw.filter(m => m.release_date && m.release_date >= today).slice(0, 20).map(m => intelNormalizeMovie(m)),
     nowPlaying: nowPlayingRaw.slice(0, 20).map(m => intelNormalizeMovie(m)),
   };
 }
@@ -296,6 +296,7 @@ async function handleIntelTV(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+  const sixtyDaysAgo = new Date(Date.now() - 60 * 86400000).toISOString().split("T")[0];
 
   const [airing, onAir, popular] = await Promise.all([
     intelFetchTMDB(token, "/tv/airing_today"),
@@ -307,7 +308,7 @@ async function handleIntelTV(env) {
     updated: today,
     premieresToday: airing.filter(s => s.first_air_date === today).map(s => intelNormalizeMovie(s, "tv")),
     premieresThisWeek: airing.filter(s => s.first_air_date >= weekAgo && s.first_air_date < today).slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
-    upcoming: onAir.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
+    upcoming: onAir.filter(s => s.first_air_date && s.first_air_date >= sixtyDaysAgo).slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
     ongoing: popular.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
   };
 }
@@ -488,9 +489,11 @@ async function handleIntelEditor(env) {
       const src = sources[p.sourceIndex] || {};
       return {
         title: p.title || src.title || "",
+        titleEn: src.titleEn || "",
         poster: src.poster || src.cover || "",
         genre: Array.isArray(src.genre) ? src.genre : (p.tags || []),
         summary: src.summary || "",
+        summaryEn: src.summaryEn || "",
         rating: src.rating || 0,
         aiScore: p.aiScore || 0,
         confidence: p.confidence || 0.7,
@@ -551,7 +554,9 @@ Upcoming: ${weekUpcoming.join(", ") || "none notable"}.
 Return JSON only:
 {
   "headline": "One punchy headline in Chinese (max 30 chars)",
+  "headlineEn": "Same headline in English",
   "summary": "One paragraph summary in Chinese (max 150 chars)",
+  "summaryEn": "Same summary in English",
   "topTrends": [{ "rank": 1, "title": "...", "category": "movie" }],
   "industryHighlights": [{ "text": "short highlight in Chinese", "en": "same in English" }]
 }
@@ -617,8 +622,11 @@ Movies:\n${JSON.stringify(candidates.map((m, i) => ({ index: i, title: m.title, 
       const src = candidates[g.index] || {};
       return {
         title: src.title || "",
+        titleEn: src.titleEn || "",
         poster: src.poster || "",
         genre: src.genre || [],
+        summary: src.summary || "",
+        summaryEn: src.summaryEn || "",
         rating: src.rating || 0,
         year: src.year || "",
         releaseDate: src.releaseDate || "",

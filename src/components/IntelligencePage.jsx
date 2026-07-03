@@ -108,8 +108,8 @@ function OverviewView({ locale }) {
         <section>
           <SectionHeader label={locale === "zh" ? "☎ 每日摘要" : "☎ Daily Digest"} color="#ff00ff" />
           <div className="bg-black border-4 border-[#ffff00] p-5 shadow-[6px_6px_0_0_rgba(0,255,255,0.3)]">
-            <h3 className="text-base font-black text-[#ffff00] mb-2">{digestData.headline}</h3>
-            <p className="text-sm text-gray-200 leading-relaxed">{digestData.summary}</p>
+            <h3 className="text-base font-black text-[#ffff00] mb-2">{locale === "en" ? (digestData.headlineEn || digestData.headline) : digestData.headline}</h3>
+            <p className="text-sm text-gray-200 leading-relaxed">{locale === "en" ? (digestData.summaryEn || digestData.summary) : digestData.summary}</p>
             {digestData.topTrends?.length > 0 && (
               <div className="mt-3 flex flex-wrap gap-2">
                 {digestData.topTrends.map((t, i) => (
