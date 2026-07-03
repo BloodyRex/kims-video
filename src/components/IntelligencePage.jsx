@@ -442,7 +442,7 @@ function SearchView({ locale }) {
     // Flatten movies
     if (movies) { add(movies.releasedToday, "movie"); add(movies.releasedThisWeek, "movie"); add(movies.upcoming, "movie"); add(movies.nowPlaying, "movie"); }
     if (tv) { add(tv.premieresToday, "tv"); add(tv.premieresThisWeek, "tv"); add(tv.upcoming, "tv"); add(tv.ongoing, "tv"); }
-    if (music) { add(music.releasedToday, "album"); add(music.releasedThisWeek, "album"); add(music.upcoming, "album"); }
+    if (music) { add(music.releasedToday, "album"); add(music.releasedThisWeek, "album"); }
     // Deduplicate by title
     const seen = new Set();
     return items.filter(item => {
