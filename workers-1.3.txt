@@ -136,6 +136,16 @@ async function intelFetchTMDB(token, path, params, lang) {
 }
 
 // ── MusicBrainz ──
+async function intelFetchAlbumCover(mbid) {
+  const cacheKey = `cover-${mbid}`;
+  return withCache(cacheKey, async () => {
+    const url = `https://coverartarchive.org/release/${mbid}/front-250.jpg`;
+    const res = await fetch(url);
+    if (res.ok) return url;
+    return "";
+  }, 604800);
+}
+
 async function intelFetchMusicBrainz(dateStr) {
   const cacheKey = `intel-mb-${dateStr}`;
   return withCache(cacheKey, async () => {
@@ -145,7 +155,7 @@ async function intelFetchMusicBrainz(dateStr) {
     });
     if (!res.ok) throw new Error(`MusicBrainz: ${res.status}`);
     const data = await res.json();
-    return (data?.releases || []).map(r => ({
+    const releases = (data?.releases || []).map(r => ({
       mbid: r.id,
       title: r.title || "",
       artist: (r["artist-credit"] || []).map(ac => ac.name || ac.artist?.name || "").join(", "),
@@ -157,6 +167,16 @@ async function intelFetchMusicBrainz(dateStr) {
       genre: (r["release-group"]?.["primary-type"] || ""),
       tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
     }));
+    // Fetch cover art in batches of 5
+    for (let i = 0; i < releases.length; i += 5) {
+      await Promise.allSettled(releases.slice(i, i + 5).map(async (rel) => {
+        try {
+          const coverUrl = await intelFetchAlbumCover(rel.mbid);
+          if (coverUrl) rel.cover = coverUrl;
+        } catch {}
+      }));
+    }
+    return releases;
   }, 7200);
 }
 
