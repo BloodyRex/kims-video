@@ -56,7 +56,7 @@ function OverviewView({ locale }) {
   const statCards = [
     { zh: "电影上映", en: "Movies Released", num: stats.moviesReleased ?? "--", color: "#ff00ff" },
     { zh: "剧集首播", en: "TV Premieres", num: stats.tvPremieres ?? "--", color: "#00ffff" },
-    { zh: "专辑发行", en: "Albums Released", num: stats.albumsReleased ?? "--", color: "#ffff00" },
+    { zh: "专辑发行", en: "Albums Released", num: stats.albumsReleased ?? "--", color: "#000000" },
     { zh: "热榜变动", en: "Trending", num: stats.trending ?? "--", color: "#ff00ff" },
   ];
   return (
@@ -323,7 +323,7 @@ function WeeklyView({ locale }) {
   const statCards = [
     { zh: "电影上映", en: "Movies Released", num: stats.moviesReleased ?? "--", color: "#ff00ff" },
     { zh: "剧集首播", en: "TV Premieres", num: stats.tvPremieres ?? "--", color: "#00ffff" },
-    { zh: "专辑发行", en: "Albums Released", num: stats.albumsReleased ?? "--", color: "#ffff00" },
+    { zh: "专辑发行", en: "Albums Released", num: stats.albumsReleased ?? "--", color: "#000000" },
   ];
 
   return (
@@ -555,8 +555,7 @@ function IntelligencePage() {
       </header>
 
       {/* Top bar */}
-      <div className="max-w-6xl mx-auto px-4 pt-3 pb-1 flex items-center justify-between">
-        <Link to="/discover" className="px-3 py-1.5 text-[10px] font-black text-white bg-transparent border-2 border-[#ffff00] pixel-font uppercase hover:bg-[#ffff00] hover:text-black transition-colors">Discover</Link>
+      <div className="max-w-6xl mx-auto px-4 pt-3 pb-1 flex items-center justify-end">
         <div className="flex items-center gap-2">
           <button onClick={toggleLocale} className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs flex-shrink-0" style={LANG_BUTTON_STYLE}>
             {locale === "zh" ? "En" : "中"}
@@ -606,7 +605,6 @@ function IntelligencePage() {
           <span className="text-gray-600 mx-2">|</span>
           <Link to="/" className="hover:text-[#00ffff] transition-colors">Home</Link>
           <span className="text-gray-600 mx-2">|</span>
-          <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">BLOODYREX</a>
           <span className="text-gray-800 mx-1">·</span>
           <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
         </p>

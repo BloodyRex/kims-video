@@ -11,6 +11,20 @@ function posterUrl(path) {
 }
 // ── Shared helpers ──
 
+const GENRE_ZH = {
+  "Action": "动作", "Adventure": "冒险", "Animation": "动画", "Comedy": "喜剧",
+  "Crime": "犯罪", "Documentary": "纪录", "Drama": "剧情", "Family": "家庭",
+  "Fantasy": "奇幻", "History": "历史", "Horror": "恐怖", "Music": "音乐",
+  "Mystery": "悬疑", "Romance": "爱情", "Sci-Fi": "科幻", "TV Movie": "电视电影",
+  "Thriller": "惊悚", "War": "战争", "Western": "西部",
+  "Album": "专辑", "Single": "单曲", "EP": "EP", "Soundtrack": "原声",
+  "Live": "现场", "Compilation": "合辑", "Remix": "混音",
+};
+
+function label(locale, zh, en) {
+  return locale === "zh" ? zh : en;
+}
+
 function getTitle(item, locale) {
   return locale === "en" ? (item.titleEn || item.title) : item.title;
 }
@@ -42,13 +56,13 @@ function AIScoreBadge({ score, confidence }) {
   );
 }
 
-function Tags({ tags, color = "#ff00ff" }) {
+function Tags({ tags, color = "#ff00ff", locale = "zh" }) {
   if (!tags || !tags.length) return null;
   return (
     <div className="flex flex-wrap gap-1">
       {tags.map((t, i) => (
         <span key={i} className="text-[8px] px-1.5 py-0.5 border font-black" style={{ color, borderColor: color }}>
-          {t}
+          {locale === "zh" ? (GENRE_ZH[t] || t) : t}
         </span>
       ))}
     </div>
@@ -98,7 +112,7 @@ export function MovieCard({ movie, locale, onViewDetail }) {
           {genres.length > 0 && (
             <div className="flex flex-wrap gap-1 mb-1">
               {genres.map((g, i) => (
-                <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{g}</span>
+                <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
               ))}
             </div>
           )}
@@ -112,7 +126,7 @@ export function MovieCard({ movie, locale, onViewDetail }) {
               {locale === "en" ? (movie.reasonEn || movie.reason) : movie.reason}
             </p>
           )}
-          <Tags tags={movie.tags} />
+          <Tags tags={movie.tags} locale={locale} />
           {movie.audience && (
             <p className="text-[8px] text-gray-400 mt-auto pt-1">
               {locale === "en" ? "For: " : "适合: "}
@@ -165,7 +179,7 @@ export function TVCard({ show, locale, onViewDetail }) {
           {genres.length > 0 && (
             <div className="flex flex-wrap gap-1 mb-1">
               {genres.map((g, i) => (
-                <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{g}</span>
+                <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
               ))}
             </div>
           )}
@@ -179,7 +193,7 @@ export function TVCard({ show, locale, onViewDetail }) {
               {locale === "en" ? (show.summaryEn || show.summary) : show.summary}
             </p>
           )}
-          <Tags tags={show.tags} color="#00ffff" />
+          <Tags tags={show.tags} color="#00ffff" locale={locale} />
           {show.audience && (
             <p className="text-[8px] text-gray-400 mt-auto pt-1">
               {locale === "en" ? "For: " : "适合: "}
@@ -220,7 +234,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
           <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{title}</h3>
           <p className="text-xs text-gray-600 font-bold mb-1 truncate">{artist}</p>
           {album.genre && (
-            <span className="text-[8px] px-1 bg-black text-white font-bold self-start mb-1">{album.genre}</span>
+            <span className="text-[8px] px-1 bg-black text-white font-bold self-start mb-1">{locale === "zh" ? (GENRE_ZH[album.genre] || album.genre) : album.genre}</span>
           )}
           {album.category && (
             <span className={`text-[8px] px-1.5 py-0.5 self-start mb-1 font-black ${album.category === "global" ? "bg-[#ff00ff] text-white" : "bg-gray-300 text-gray-700"}`}>
@@ -240,7 +254,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
             </p>
           )}
           <AIScoreBadge score={album.aiScore} confidence={album.confidence} />
-          <Tags tags={album.tags} color="#333" />
+          <Tags tags={album.tags} color="#333" locale={locale} />
         </div>
       </div>
     </CardShell>
@@ -296,7 +310,7 @@ export function CountdownCard({ item, locale, onViewDetail }) {
               {locale === "en" ? (item.summaryEn || item.summary) : item.summary}
             </p>
           )}
-          <Tags tags={item.tags} />
+          <Tags tags={item.tags} locale={locale} />
         </div>
       </div>
     </CardShell>
@@ -445,7 +459,7 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
               {locale === "en" ? (pick.summaryEn || pick.summary) : pick.summary}
             </p>
           )}
-          <Tags tags={pick.tags} color={catColor} />
+          <Tags tags={pick.tags} color={catColor} locale={locale} />
         </div>
       </div>
     </CardShell>
