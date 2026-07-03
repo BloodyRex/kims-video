@@ -36,7 +36,7 @@ async function main() {
     { endpoint: "/intelligence/trending", file: "trending.json" },
     { endpoint: "/intelligence/coming", file: "coming.json" },
     { endpoint: "/intelligence/weekly", file: "weekly.json" },
-    { endpoint: "/intelligence/editor", file: "editor.json" },
+
   ];
 
   for (const task of tasks) {

@@ -397,11 +397,11 @@ export default {
 
 
       // ── Intelligence API ──
-      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|trending|coming|weekly|editor)$/);
+      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|trending|coming|weekly)$/);
       if (intelMatch) {
         const intelHandlers = {
           overview: handleIntelOverview, movies: handleIntelMovies, tv: handleIntelTV,
-          music: handleIntelMusic, trending: handleIntelTrending, coming: handleIntelComing, weekly: handleIntelWeekly, editor: handleIntelEditor,
+          music: handleIntelMusic, trending: handleIntelTrending, coming: handleIntelComing, weekly: handleIntelWeekly,
         };
         try {
           const intelData = await intelHandlers[intelMatch[1]](env);
