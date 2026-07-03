@@ -1,6 +1,14 @@
 import React from "react";
 import { Icons } from "./Icons";
 
+// ── Image proxy helper ──
+function posterUrl(path) {
+  if (!path) return "";
+  if (path.startsWith("https://image.tmdb.org/")) {
+    return "https://api.bloodyrex.xyz/poster-proxy?url=" + encodeURIComponent(path);
+  }
+  return path;
+}
 // ── Shared helpers ──
 
 function getTitle(item, locale) {
@@ -74,7 +82,7 @@ export function MovieCard({ movie, locale, onViewDetail }) {
 
       <div className="flex gap-3 p-3">
         {movie.poster ? (
-          <img src={movie.poster} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(movie.poster)} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
           <div className="w-20 h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Film />
@@ -141,7 +149,7 @@ export function TVCard({ show, locale, onViewDetail }) {
 
       <div className="flex gap-3 p-3">
         {show.poster ? (
-          <img src={show.poster} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(show.poster)} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
           <div className="w-20 h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Tv />
@@ -201,7 +209,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
 
       <div className="flex gap-3 p-3">
         {album.cover ? (
-          <img src={album.cover} alt={title} className="w-20 h-20 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(album.cover)} alt={title} className="w-20 h-20 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
           <div className="w-20 h-20 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Music />
@@ -265,7 +273,7 @@ export function CountdownCard({ item, locale, onViewDetail }) {
 
       <div className="flex gap-3 p-3">
         {item.poster ? (
-          <img src={item.poster} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(item.poster)} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
           <div className="w-20 h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Calendar />
@@ -311,9 +319,9 @@ export function RankingCard({ item, rank, locale, onViewDetail }) {
 
       <div className="flex-1 flex gap-3 p-3">
         {item.poster ? (
-          <img src={item.poster} alt={title} className="w-12 h-18 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(item.poster)} alt={title} className="w-12 h-18 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : item.cover ? (
-          <img src={item.cover} alt={title} className="w-12 h-12 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(item.cover)} alt={title} className="w-12 h-12 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
           <div className="w-12 h-18 bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold flex-shrink-0">—</div>
         )}
@@ -410,9 +418,9 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
 
       <div className="flex gap-3 p-3">
         {pick.poster ? (
-          <img src={pick.poster} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(pick.poster)} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : pick.cover ? (
-          <img src={pick.cover} alt={title} className="w-20 h-20 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(pick.cover)} alt={title} className="w-20 h-20 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
           <div className="w-20 h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Target />
