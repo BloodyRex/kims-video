@@ -109,7 +109,7 @@ async function intelFetchTMDB(token, path, params, lang) {
     return url;
   };
   const zhUrl = buildUrl(lang);
-  const cacheKey = "intel2-" + btoa(zhUrl.toString()).slice(0, 40);
+  const cacheKey = "intel2-" + btoa(zhUrl.toString()).replace(/[=+/]/g, "");
   const data = await withCache(cacheKey, async () => {
     const [zhRes, enRes] = await Promise.all([
       fetch(zhUrl, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }),
