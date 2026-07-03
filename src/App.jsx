@@ -8,6 +8,7 @@ import MovieDetail from "./components/MovieDetail";
 import SaveContent from "./components/SaveContent";
 import SplashPage from "./components/SplashPage";
 import DiscoverPage from "./components/DiscoverPage";
+import IntelligencePage from "./components/IntelligencePage";
 import AdminPage from "./components/AdminPage";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "./services/api";
@@ -286,12 +287,28 @@ function AppContent() {
     return false;
   });
 
+  const [showIntelligence] = useState(() => {
+    if (window.location.pathname.startsWith("/intelligence")) return true;
+    try {
+      const redirect = sessionStorage.getItem("redirect");
+      if (redirect && redirect.startsWith("/intelligence")) {
+        sessionStorage.removeItem("redirect");
+        return true;
+      }
+    } catch {}
+    return false;
+  });
+
   if (showAdmin) {
     return <AdminPage />;
   }
 
   if (showDiscover) {
     return <DiscoverPage />;
+  }
+
+  if (showIntelligence) {
+    return <IntelligencePage />;
   }
 
   return (
@@ -336,16 +353,24 @@ function AppContent() {
               toggleLocale={toggleLocale}
               locale={locale}
             />
-            {/* Discover teaser banner */}
-            <div className="max-w-2xl mx-auto mt-6 mb-4">
+            {/* Entry buttons */}
+            <div className="max-w-2xl mx-auto mt-6 mb-4 flex flex-col sm:flex-row gap-3">
               <a
                 href="/discover"
-                className={`block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden ${locale === "en" ? "bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient" : "bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"}`}
+                className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
               >
                 <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
-                  <span className="text-base">{'\u{1F3AC}'}</span>
-                  {t('input.browse_discover')}
-                  {locale === "zh" && <Icons.ChevronRight className="group-hover:translate-x-1 transition-transform ml-1" />}
+                  <span className="text-base">🎬</span>
+                  {locale === "zh" ? "精选推荐合辑" : "CURATED PICKS"}
+                </span>
+              </a>
+              <a
+                href="/intelligence"
+                className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
+              >
+                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
+                  <span className="text-base">📊</span>
+                  {locale === "zh" ? "娱乐情报" : "INTELLIGENCE"}
                 </span>
               </a>
             </div>
@@ -390,6 +415,8 @@ function AppContent() {
           </a>
           <span className="text-gray-600 mx-2">|</span>
           <a href="/discover" className="hover:text-[#ffff00] transition-colors">Discover</a>
+          <span className="text-gray-600 mx-2">|</span>
+          <a href="/intelligence" className="hover:text-[#00ffff] transition-colors">Intelligence</a>
           <span className="text-gray-600 mx-2">|</span>
           <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">BLOODYREX</a>
           <span className="text-gray-800 mx-1">·</span>
