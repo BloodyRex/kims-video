@@ -1,6 +1,9 @@
 name: Intelligence Daily Pipeline
 
 on:
+  push:
+    paths:
+      - ".github/workflows/intelligence-daily.yml"
   schedule:
     - cron: "0 2 * * *"
   workflow_dispatch:
