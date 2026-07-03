@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
-import { MovieCard, TVCard, AlbumCard, CountdownCard, RankingCard, SpotlightCard, SectionHeader, CardGrid, CardList } from "./Cards";
+import { MovieCard, TVCard, AlbumCard, CountdownCard, RankingCard, SpotlightCard, SectionHeader, CardGrid, CardList, IntelDetailModal } from "./Cards";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -113,7 +113,7 @@ function OverviewView({ locale }) {
             {digestData.topTrends?.length > 0 && (
               <div className="mt-3 flex flex-wrap gap-2">
                 {digestData.topTrends.map((t, i) => (
-                  <span key={i} className="text-[10px] px-2 py-0.5 bg-[#ff00ff] text-black font-black">#{t.title}</span>
+                  <span key={i} className="text-[10px] px-2 py-0.5 bg-[#ff00ff] text-black font-black">#{locale === "en" ? (t.titleEn || t.title) : t.title}</span>
                 ))}
               </div>
             )}
@@ -128,7 +128,7 @@ function OverviewView({ locale }) {
 }
 
 // ── Movies ──
-function MoviesView({ locale }) {
+function MoviesView({ locale, onViewDetail }) {
   const { data, loading } = useJsonData("/api/movies.json");
   const [tab, setTab] = useState("today");
   if (loading) return <LoadingSpinner locale={locale} />;
@@ -154,14 +154,14 @@ function MoviesView({ locale }) {
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
-        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((m, i) => <MovieCard key={i} movie={m} locale={locale} />)}</CardGrid>
+        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((m, i) => <MovieCard key={i} movie={m} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
       )}
     </div>
   );
 }
 
 // ── TV ──
-function TVView({ locale }) {
+function TVView({ locale, onViewDetail }) {
   const { data, loading } = useJsonData("/api/tv.json");
   const [tab, setTab] = useState("today");
   if (loading) return <LoadingSpinner locale={locale} />;
@@ -187,7 +187,7 @@ function TVView({ locale }) {
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
-        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((s, i) => <TVCard key={i} show={s} locale={locale} />)}</CardGrid>
+        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((s, i) => <TVCard key={i} show={s} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
       )}
     </div>
   );
@@ -428,7 +428,7 @@ function SpotlightView({ locale }) {
 }
 
 // ── Search ──
-function SearchView({ locale }) {
+function SearchView({ locale, onViewDetail }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState({ movies: [], tv: [], music: [], albums: [] });
   const [searching, setSearching] = useState(false);
@@ -498,13 +498,13 @@ function SearchView({ locale }) {
       {results.movies.length > 0 && (
         <section>
           <SectionHeader label={locale === "zh" ? "电影" : "Movies"} count={results.movies.length} color="#ff00ff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{results.movies.slice(0, 12).map((m, i) => <MovieCard key={i} movie={m} locale={locale} />)}</CardGrid>
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{results.movies.slice(0, 12).map((m, i) => <MovieCard key={i} movie={m} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "movie")} />)}</CardGrid>
         </section>
       )}
       {results.tv.length > 0 && (
         <section>
           <SectionHeader label={locale === "zh" ? "剧集" : "TV"} count={results.tv.length} color="#00ffff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{results.tv.slice(0, 12).map((s, i) => <TVCard key={i} show={s} locale={locale} />)}</CardGrid>
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{results.tv.slice(0, 12).map((s, i) => <TVCard key={i} show={s} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "tv")} />)}</CardGrid>
         </section>
       )}
       {results.albums.length > 0 && (
@@ -530,6 +530,13 @@ function IntelligencePage() {
   const match = location.pathname.match(/^\/intelligence(?:\/(\w+))?/);
   const activeNav = match?.[1] || "overview";
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [detailItem, setDetailItem] = useState(null);
+  const [detailType, setDetailType] = useState("movie");
+
+  const handleViewDetail = (item, type) => {
+    setDetailItem(item);
+    setDetailType(type || "movie");
+  };
 
   useEffect(() => {
     document.title = locale === "zh"
@@ -587,14 +594,14 @@ function IntelligencePage() {
         {/* Main content */}
         <main className="flex-1 p-4 sm:p-6 min-w-0">
           {activeNav === "overview" && <OverviewView locale={locale} />}
-          {activeNav === "movies" && <MoviesView locale={locale} />}
-          {activeNav === "tv" && <TVView locale={locale} />}
+          {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
+          {activeNav === "tv" && <TVView locale={locale} onViewDetail={(item) => handleViewDetail(item, "tv")} />}
           {activeNav === "music" && <MusicView locale={locale} />}
           {activeNav === "coming" && <ComingView locale={locale} />}
           {activeNav === "trending" && <TrendingView locale={locale} />}
           {activeNav === "weekly" && <WeeklyView locale={locale} />}
           {activeNav === "spotlight" && <SpotlightView locale={locale} />}
-          {activeNav === "search" && <SearchView locale={locale} />}
+          {activeNav === "search" && <SearchView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
         </main>
       </div>
 
@@ -605,10 +612,16 @@ function IntelligencePage() {
           <span className="text-gray-600 mx-2">|</span>
           <Link to="/" className="hover:text-[#00ffff] transition-colors">Home</Link>
           <span className="text-gray-600 mx-2">|</span>
+          <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">Contact</a>
+          <span className="text-gray-600 mx-2">|</span>
           <span className="text-gray-800 mx-1">·</span>
           <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
         </p>
       </footer>
+      {/* Detail Modal */}
+      {detailItem && (
+        <IntelDetailModal item={detailItem} type={detailType} locale={locale} onClose={() => setDetailItem(null)} />
+      )}
     </div>
   );
 }

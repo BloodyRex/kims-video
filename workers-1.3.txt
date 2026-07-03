@@ -181,10 +181,10 @@ async function intelEnrichWithAI(items, type, env) {
     if (type === "album") {
       // Album pipeline: filter 5-10 worthy albums + one-liner + tags + global/niche
       maxTokens = 3000;
-      prompt = `You are a music editor for an entertainment intelligence platform. Today's new album releases:\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, artist: i.artist, genre: i.genre, country: i.country })))}\n\nYour task:\n1. Select ONLY the 5-10 most noteworthy albums worth featuring on a homepage.\n2. For each selected one, provide: a) "highlight" — one punchy recommendation line in Chinese (like "适合深夜聆听的电子氛围专辑"), b) "highlightEn" — same in English, c) "aiScore" (0-10), d) "tags" (3-5 style/genre tags, in Chinese), e) "category" — either "global" (mainstream/international attention) or "niche" (indie/underground/cult favorite), f) "summary" — a short description in Chinese (1-2 sentences about the album's style, mood, and notable aspects), g) "summaryEn" — same in English.\n3. Return a JSON object: { "items": [ { "index": 0, "highlight": "...", "highlightEn": "...", "aiScore": 8.5, "tags": [...], "category": "global", "summary": "...", "summaryEn": "..." }, ... ] }\nOnly include the selected albums. Do NOT return all albums.`;
+      prompt = `You are a music editor for an entertainment intelligence platform. Today's new album releases:\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, artist: i.artist, genre: i.genre, country: i.country })))}\n\nYour task:\n1. Select ONLY the 5-10 most noteworthy albums worth featuring on a homepage.\n2. For each selected one, provide: a) "highlight" — one punchy recommendation line in Chinese (like "适合深夜聆听的电子氛围专辑"), b) "highlightEn" — same in English, c) "aiScore" (0-10), d) "tags" (3-5 style/genre tags, in Chinese), e) "tagsEn" (same tags in English), f) "category" — either "global" (mainstream/international attention) or "niche" (indie/underground/cult favorite), g) "summary" — a short description in Chinese (1-2 sentences about the album's style, mood, and notable aspects), h) "summaryEn" — same in English.\n3. Return a JSON object: { "items": [ { "index": 0, "highlight": "...", "highlightEn": "...", "aiScore": 8.5, "tags": [...], "tagsEn": [...], "category": "global", "summary": "...", "summaryEn": "..." }, ... ] }\nOnly include the selected albums. Do NOT return all albums.`;
     } else {
       maxTokens = 4000;
-      prompt = `You are an entertainment editor. For each ${type} below, provide: 1) aiScore (0-10), 2) reason (2-3 sentences why it's worth watching, in Chinese), 3) reasonEn (same in English), 4) audience (target audience in Chinese), 5) audienceEn (target audience in English), 6) tags (3-5 short tags, in Chinese). Return JSON object with key "items" containing an array (same count, same order).\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, genre: i.genre, summary: i.summary })))}`;
+      prompt = `You are an entertainment editor. For each ${type} below, provide: 1) aiScore (0-10), 2) reason (2-3 sentences why it's worth watching, in Chinese), 3) reasonEn (same in English), 4) audience (target audience in Chinese), 5) audienceEn (target audience in English), 6) tags (3-5 short tags, in Chinese), 7) tagsEn (same tags in English). Return JSON object with key "items" containing an array (same count, same order).\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, genre: i.genre, summary: i.summary })))}`;
     }
 
     const res = await fetch("https://api.deepseek.com/chat/completions", {
@@ -206,6 +206,7 @@ async function intelEnrichWithAI(items, type, env) {
           ...item,
           aiScore: ai.aiScore,
           tags: ai.tags || [],
+          tagsEn: ai.tagsEn || [],
           highlight: ai.highlight || "",
           highlightEn: ai.highlightEn || "",
           summary: ai.summary || "",
@@ -217,7 +218,7 @@ async function intelEnrichWithAI(items, type, env) {
 
     return items.map((item, idx) => {
       const ai = enriched.find(e => e.index === idx) || {};
-      return { ...item, aiScore: ai.aiScore, tags: ai.tags || item.tags || [], reason: ai.reason || "", reasonEn: ai.reasonEn || "", audience: ai.audience || "", audienceEn: ai.audienceEn || "", summary: ai.summary || item.summary || "", summaryEn: ai.summaryEn || item.summaryEn || "" };
+      return { ...item, aiScore: ai.aiScore, tags: ai.tags || item.tags || [], tagsEn: ai.tagsEn || [], reason: ai.reason || "", reasonEn: ai.reasonEn || "", audience: ai.audience || "", audienceEn: ai.audienceEn || "", summary: ai.summary || item.summary || "", summaryEn: ai.summaryEn || item.summaryEn || "" };
     });
   } catch (e) {
     console.warn("DeepSeek enrichment skipped:", e.message);
@@ -469,7 +470,7 @@ async function handleIntelEditor(env) {
     const movieList = todayMovies.map((m, i) => ({ index: i, title: m.title, genre: m.genre, summary: m.summary }));
     const albumList = todayAlbums.map((a, i) => ({ index: i + 100, title: a.title, artist: a.artist, genre: a.genre }));
 
-        const prompt = "You are an entertainment editor. Today's new movies:\n" + JSON.stringify(movieList) + "\n\nNew albums:\n" + JSON.stringify(albumList) + "\n\nSelect 1-2 items per category. Return ONLY valid JSON:\n{\n  \"editorsPick\": [{ \"sourceIndex\": 0, \"title\": \"\", \"whyWatch\": \"one-line\", \"whyWatchEn\": \"one-line in English\", \"audience\": \"\", \"audienceEn\": \"\", \"aiScore\": 8.5, \"confidence\": 0.85, \"tags\": [] }],\n  \"hiddenGem\": [...],\n  \"mostAnticipated\": [...],\n  \"familyChoice\": [...],\n  \"sciFi\": [...],\n  \"horror\": [...],\n  \"documentary\": [...]\n}";
+        const prompt = "You are an entertainment editor. Today's new movies:\n" + JSON.stringify(movieList) + "\n\nNew albums:\n" + JSON.stringify(albumList) + "\n\nSelect 1-2 items per category. Return ONLY valid JSON:\n{\n  \"editorsPick\": [{ \"sourceIndex\": 0, \"title\": \"\", \"whyWatch\": \"one-line\", \"whyWatchEn\": \"one-line in English\", \"audience\": \"\", \"audienceEn\": \"\", \"aiScore\": 8.5, \"confidence\": 0.85, \"tags\": [], \"tagsEn\": [] }],\n  \"hiddenGem\": [...],\n  \"mostAnticipated\": [...],\n  \"familyChoice\": [...],\n  \"sciFi\": [...],\n  \"horror\": [...],\n  \"documentary\": [...]\n}";
     const res = await fetch("https://api.deepseek.com/chat/completions", {
       method: "POST",
       headers: { Authorization: "Bearer " + env.DEEPSEEK_API_KEY, "Content-Type": "application/json" },
@@ -502,6 +503,7 @@ async function handleIntelEditor(env) {
         audience: p.audience || "",
         audienceEn: p.audienceEn || "",
         tags: p.tags || [],
+        tagsEn: p.tagsEn || [],
       };
     });
 
@@ -557,7 +559,7 @@ Return JSON only:
   "headlineEn": "Same headline in English",
   "summary": "One paragraph summary in Chinese (max 150 chars)",
   "summaryEn": "Same summary in English",
-  "topTrends": [{ "rank": 1, "title": "...", "category": "movie" }],
+  "topTrends": [{ "rank": 1, "title": "...(in Chinese)", "titleEn": "...(same in English)", "category": "movie" }],
   "industryHighlights": [{ "text": "short highlight in Chinese", "en": "same in English" }]
 }
 
@@ -603,9 +605,9 @@ async function handleIntelHiddenGems(env) {
   try {
     const prompt = `You are a film curator selecting Hidden Gems. From these recently released movies, select 4-6 that deserve more attention. Prioritize quality and uniqueness.
 
-For each selected gem provide: "why" (one-line Chinese recommendation), "whyEn" (English), "aiScore" (0-10), "tags" (3-5, in Chinese), "audience" (Chinese), "audienceEn" (English).
+For each selected gem provide: "why" (one-line Chinese recommendation), "whyEn" (English), "aiScore" (0-10), "tags" (3-5, in Chinese), "tagsEn" (same tags in English), "audience" (Chinese), "audienceEn" (English).
 
-Return JSON: { "gems": [{ "index": 0, "why": "...", "whyEn": "...", "aiScore": 8.5, "tags": [...], "audience": "...", "audienceEn": "..." }] }
+Return JSON: { "gems": [{ "index": 0, "why": "...", "whyEn": "...", "aiScore": 8.5, "tags": [...], "tagsEn": [...], "audience": "...", "audienceEn": "..." }] }
 
 Movies:\n${JSON.stringify(candidates.map((m, i) => ({ index: i, title: m.title, genre: m.genre, summary: m.summary, rating: m.rating })))}`;
 
@@ -634,6 +636,7 @@ Movies:\n${JSON.stringify(candidates.map((m, i) => ({ index: i, title: m.title, 
         whyWatchEn: g.whyEn || "",
         aiScore: g.aiScore || 0,
         tags: g.tags || [],
+        tagsEn: g.tagsEn || [],
         audience: g.audience || "",
         audienceEn: g.audienceEn || "",
       };
