@@ -1,56 +1,363 @@
 {
   "updated": "2026-07-03",
   "today": {
-    "movies": [
-      {
-        "title": "Inside Out 2",
-        "titleEn": "Inside Out 2",
-        "year": 2024,
-        "poster": "",
-        "rating": 7.8,
-        "aiScore": 7.9,
-        "confidence": 0.82,
-        "rank": 1,
-        "trend": "up",
-        "genre": [
-          "Animation"
-        ]
-      },
-      {
-        "title": "Bad Boys: Ride or Die",
-        "titleEn": "Bad Boys: Ride or Die",
-        "year": 2024,
-        "poster": "",
-        "rating": 7,
-        "aiScore": 6.5,
-        "confidence": 0.7,
-        "rank": 2,
-        "trend": "new",
-        "genre": [
-          "Action"
-        ]
-      },
-      {
-        "title": "Kingdom of the Planet of the Apes",
-        "titleEn": "Kingdom of the Planet of the Apes",
-        "year": 2024,
-        "poster": "",
-        "rating": 7.2,
-        "aiScore": 7.5,
-        "confidence": 0.76,
-        "rank": 3,
-        "trend": "down",
-        "genre": [
-          "Sci-Fi"
-        ]
-      }
-    ],
+    "movies": [],
     "tv": [],
     "music": []
   },
   "week": {
-    "movies": [],
-    "tv": [],
+    "movies": [
+      {
+        "tmdbId": 1339713,
+        "title": "Obsession",
+        "titleEn": "Obsession",
+        "year": "2026",
+        "releaseDate": "2026-05-13",
+        "poster": "https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg",
+        "rating": 8.2,
+        "genre": [
+          "Horror",
+          "Thriller"
+        ],
+        "summary": "After breaking the mysterious \"One Wish Willow\" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinis",
+        "rank": 1,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1202033,
+        "title": "Enola Holmes 3",
+        "titleEn": "Enola Holmes 3",
+        "year": "2026",
+        "releaseDate": "2026-06-30",
+        "poster": "https://image.tmdb.org/t/p/w500/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
+        "rating": 7.193,
+        "genre": [
+          "Adventure",
+          "Crime",
+          "Mystery",
+          "Action"
+        ],
+        "summary": "Adventure follows detective Enola Holmes to Malta, where her plans to tie the knot unravel when Sherlock's disappearance plunges her into a perilous case.",
+        "rank": 2,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1314481,
+        "title": "The Devil Wears Prada 2",
+        "titleEn": "The Devil Wears Prada 2",
+        "year": "2026",
+        "releaseDate": "2026-04-29",
+        "poster": "https://image.tmdb.org/t/p/w500/fCAURTUx3YfsJ8k9I0UamjSILiR.jpg",
+        "rating": 6.884,
+        "genre": [
+          "Comedy",
+          "Drama"
+        ],
+        "summary": "Andy Sachs returns to Runway as Miranda Priestly navigates a new media landscape and Runway's position within. The duo reconnect with former assistant Emily Charlton, now the head of a luxury brand th",
+        "rank": 3,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1315772,
+        "title": "Minions & Monsters",
+        "titleEn": "Minions & Monsters",
+        "year": "2026",
+        "releaseDate": "2026-06-24",
+        "poster": "https://image.tmdb.org/t/p/w500/nz7i42yhLIJ4ve9JKgM6NthoLHO.jpg",
+        "rating": 6.7,
+        "genre": [
+          "Adventure",
+          "Animation",
+          "Comedy",
+          "Family",
+          "Fantasy"
+        ],
+        "summary": "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to t",
+        "rank": 4,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1081003,
+        "title": "Supergirl",
+        "titleEn": "Supergirl",
+        "year": "2026",
+        "releaseDate": "2026-06-24",
+        "poster": "https://image.tmdb.org/t/p/w500/niSvU02l2BONH9ivubV6K1a5QiK.jpg",
+        "rating": 6.249,
+        "genre": [
+          "Action",
+          "Adventure",
+          "Sci-Fi"
+        ],
+        "summary": "When an unexpected and ruthless adversary strikes too close to home, Kara Zor-El, aka Supergirl, reluctantly joins forces with an unlikely companion on an epic, interstellar journey of vengeance and j",
+        "rank": 5,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1084244,
+        "title": "Toy Story 5",
+        "titleEn": "Toy Story 5",
+        "year": "2026",
+        "releaseDate": "2026-06-17",
+        "poster": "https://image.tmdb.org/t/p/w500/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",
+        "rating": 7.444,
+        "genre": [
+          "Animation",
+          "Family",
+          "Comedy",
+          "Adventure"
+        ],
+        "summary": "When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang's jobs become exponentially harder when they have to go head to head with the all-new",
+        "rank": 6,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1301421,
+        "title": "The Sheep Detectives",
+        "titleEn": "The Sheep Detectives",
+        "year": "2026",
+        "releaseDate": "2026-04-30",
+        "poster": "https://image.tmdb.org/t/p/w500/iKy5460GdsoknM8ppmGlJbKxAKa.jpg",
+        "rating": 7.75,
+        "genre": [
+          "Adventure",
+          "Mystery",
+          "Comedy",
+          "Family"
+        ],
+        "summary": "George Hardy is a shepherd who reads detective novels to his beloved sheep every night, assuming they can't possibly understand. But when a mysterious incident disrupts life on the farm, the sheep rea",
+        "rank": 7,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1083381,
+        "title": "Backrooms",
+        "titleEn": "Backrooms",
+        "year": "2026",
+        "releaseDate": "2026-05-27",
+        "poster": "https://image.tmdb.org/t/p/w500/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg",
+        "rating": 6.9,
+        "genre": [
+          "Horror",
+          "Mystery",
+          "Sci-Fi"
+        ],
+        "summary": "A strange doorway appears in the basement of a furniture showroom.",
+        "rank": 8,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1108427,
+        "title": "Moana",
+        "titleEn": "Moana",
+        "year": "2026",
+        "releaseDate": "2026-07-08",
+        "poster": "https://image.tmdb.org/t/p/w500/zKVgiv5qHCvCLT4A2ymJi5QeXDH.jpg",
+        "rating": 8.5,
+        "genre": [
+          "Family",
+          "Fantasy",
+          "Comedy",
+          "Adventure"
+        ],
+        "summary": "Moana answers the Ocean's call and, for the first time, voyages beyond the reef of her island of Motunui with the infamous demigod Maui on an unforgettable journey to restore prosperity to her people.",
+        "rank": 9,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1413976,
+        "title": "Citizen Vigilante",
+        "titleEn": "Citizen Vigilante",
+        "year": "2026",
+        "releaseDate": "2026-06-19",
+        "poster": "https://image.tmdb.org/t/p/w500/6LmJD3Wohe0g4U62wgi7RyJqfE4.jpg",
+        "rating": 6.597,
+        "genre": [
+          "Thriller",
+          "Action",
+          "Crime"
+        ],
+        "summary": "A man takes justice into his own hands, hunting down criminals. His vigilante crusade makes him a social media star but puts him at odds with the local police chief.",
+        "rank": 10,
+        "trend": "new"
+      }
+    ],
+    "tv": [
+      {
+        "tmdbId": 1339713,
+        "title": "Obsession",
+        "titleEn": "Obsession",
+        "year": "",
+        "releaseDate": "",
+        "poster": "https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg",
+        "rating": 8.2,
+        "genre": [
+          "Horror",
+          "Thriller"
+        ],
+        "summary": "After breaking the mysterious \"One Wish Willow\" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinis",
+        "rank": 1,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1202033,
+        "title": "Enola Holmes 3",
+        "titleEn": "Enola Holmes 3",
+        "year": "",
+        "releaseDate": "",
+        "poster": "https://image.tmdb.org/t/p/w500/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
+        "rating": 7.193,
+        "genre": [
+          "Adventure",
+          "Crime",
+          "Mystery",
+          "Action"
+        ],
+        "summary": "Adventure follows detective Enola Holmes to Malta, where her plans to tie the knot unravel when Sherlock's disappearance plunges her into a perilous case.",
+        "rank": 2,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1314481,
+        "title": "The Devil Wears Prada 2",
+        "titleEn": "The Devil Wears Prada 2",
+        "year": "",
+        "releaseDate": "",
+        "poster": "https://image.tmdb.org/t/p/w500/fCAURTUx3YfsJ8k9I0UamjSILiR.jpg",
+        "rating": 6.884,
+        "genre": [
+          "Comedy",
+          "Drama"
+        ],
+        "summary": "Andy Sachs returns to Runway as Miranda Priestly navigates a new media landscape and Runway's position within. The duo reconnect with former assistant Emily Charlton, now the head of a luxury brand th",
+        "rank": 3,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1315772,
+        "title": "Minions & Monsters",
+        "titleEn": "Minions & Monsters",
+        "year": "",
+        "releaseDate": "",
+        "poster": "https://image.tmdb.org/t/p/w500/nz7i42yhLIJ4ve9JKgM6NthoLHO.jpg",
+        "rating": 6.7,
+        "genre": [
+          "Adventure",
+          "Animation",
+          "Comedy",
+          "Family",
+          "Fantasy"
+        ],
+        "summary": "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to t",
+        "rank": 4,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1081003,
+        "title": "Supergirl",
+        "titleEn": "Supergirl",
+        "year": "",
+        "releaseDate": "",
+        "poster": "https://image.tmdb.org/t/p/w500/niSvU02l2BONH9ivubV6K1a5QiK.jpg",
+        "rating": 6.249,
+        "genre": [
+          "Action",
+          "Adventure",
+          "Sci-Fi"
+        ],
+        "summary": "When an unexpected and ruthless adversary strikes too close to home, Kara Zor-El, aka Supergirl, reluctantly joins forces with an unlikely companion on an epic, interstellar journey of vengeance and j",
+        "rank": 5,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1084244,
+        "title": "Toy Story 5",
+        "titleEn": "Toy Story 5",
+        "year": "",
+        "releaseDate": "",
+        "poster": "https://image.tmdb.org/t/p/w500/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",
+        "rating": 7.444,
+        "genre": [
+          "Animation",
+          "Family",
+          "Comedy",
+          "Adventure"
+        ],
+        "summary": "When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang's jobs become exponentially harder when they have to go head to head with the all-new",
+        "rank": 6,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1301421,
+        "title": "The Sheep Detectives",
+        "titleEn": "The Sheep Detectives",
+        "year": "",
+        "releaseDate": "",
+        "poster": "https://image.tmdb.org/t/p/w500/iKy5460GdsoknM8ppmGlJbKxAKa.jpg",
+        "rating": 7.75,
+        "genre": [
+          "Adventure",
+          "Mystery",
+          "Comedy",
+          "Family"
+        ],
+        "summary": "George Hardy is a shepherd who reads detective novels to his beloved sheep every night, assuming they can't possibly understand. But when a mysterious incident disrupts life on the farm, the sheep rea",
+        "rank": 7,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1083381,
+        "title": "Backrooms",
+        "titleEn": "Backrooms",
+        "year": "",
+        "releaseDate": "",
+        "poster": "https://image.tmdb.org/t/p/w500/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg",
+        "rating": 6.9,
+        "genre": [
+          "Horror",
+          "Mystery",
+          "Sci-Fi"
+        ],
+        "summary": "A strange doorway appears in the basement of a furniture showroom.",
+        "rank": 8,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1108427,
+        "title": "Moana",
+        "titleEn": "Moana",
+        "year": "",
+        "releaseDate": "",
+        "poster": "https://image.tmdb.org/t/p/w500/zKVgiv5qHCvCLT4A2ymJi5QeXDH.jpg",
+        "rating": 8.5,
+        "genre": [
+          "Family",
+          "Fantasy",
+          "Comedy",
+          "Adventure"
+        ],
+        "summary": "Moana answers the Ocean's call and, for the first time, voyages beyond the reef of her island of Motunui with the infamous demigod Maui on an unforgettable journey to restore prosperity to her people.",
+        "rank": 9,
+        "trend": "new"
+      },
+      {
+        "tmdbId": 1413976,
+        "title": "Citizen Vigilante",
+        "titleEn": "Citizen Vigilante",
+        "year": "",
+        "releaseDate": "",
+        "poster": "https://image.tmdb.org/t/p/w500/6LmJD3Wohe0g4U62wgi7RyJqfE4.jpg",
+        "rating": 6.597,
+        "genre": [
+          "Thriller",
+          "Action",
+          "Crime"
+        ],
+        "summary": "A man takes justice into his own hands, hunting down criminals. His vigilante crusade makes him a social media star but puts him at odds with the local police chief.",
+        "rank": 10,
+        "trend": "new"
+      }
+    ],
     "music": []
   },
   "month": {

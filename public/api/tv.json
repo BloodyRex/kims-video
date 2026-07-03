@@ -1,32 +1,605 @@
 {
   "updated": "2026-07-03",
-  "premieresToday": [
+  "premieresToday": [],
+  "premieresThisWeek": [],
+  "upcoming": [
     {
-      "title": "虚构剧集 X",
-      "titleEn": "Fictional Series X",
-      "year": 2026,
-      "poster": "https://image.tmdb.org/t/p/w342/8Gxv8gSH5AOkcQGRsDvmPdAI.jpg",
-      "rating": 8,
-      "aiScore": 8.1,
-      "confidence": 0.8,
+      "tmdbId": 1339713,
+      "title": "Obsession",
+      "titleEn": "Obsession",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg",
+      "rating": 8.2,
       "genre": [
+        "Horror",
+        "Thriller"
+      ],
+      "summary": "After breaking the mysterious \"One Wish Willow\" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinis"
+    },
+    {
+      "tmdbId": 1202033,
+      "title": "Enola Holmes 3",
+      "titleEn": "Enola Holmes 3",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
+      "rating": 7.193,
+      "genre": [
+        "Adventure",
+        "Crime",
+        "Mystery",
+        "Action"
+      ],
+      "summary": "Adventure follows detective Enola Holmes to Malta, where her plans to tie the knot unravel when Sherlock's disappearance plunges her into a perilous case."
+    },
+    {
+      "tmdbId": 1314481,
+      "title": "The Devil Wears Prada 2",
+      "titleEn": "The Devil Wears Prada 2",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/fCAURTUx3YfsJ8k9I0UamjSILiR.jpg",
+      "rating": 6.884,
+      "genre": [
+        "Comedy",
+        "Drama"
+      ],
+      "summary": "Andy Sachs returns to Runway as Miranda Priestly navigates a new media landscape and Runway's position within. The duo reconnect with former assistant Emily Charlton, now the head of a luxury brand th"
+    },
+    {
+      "tmdbId": 1315772,
+      "title": "Minions & Monsters",
+      "titleEn": "Minions & Monsters",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/nz7i42yhLIJ4ve9JKgM6NthoLHO.jpg",
+      "rating": 6.7,
+      "genre": [
+        "Adventure",
+        "Animation",
+        "Comedy",
+        "Family",
+        "Fantasy"
+      ],
+      "summary": "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to t"
+    },
+    {
+      "tmdbId": 1081003,
+      "title": "Supergirl",
+      "titleEn": "Supergirl",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/niSvU02l2BONH9ivubV6K1a5QiK.jpg",
+      "rating": 6.249,
+      "genre": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "summary": "When an unexpected and ruthless adversary strikes too close to home, Kara Zor-El, aka Supergirl, reluctantly joins forces with an unlikely companion on an epic, interstellar journey of vengeance and j"
+    },
+    {
+      "tmdbId": 1084244,
+      "title": "Toy Story 5",
+      "titleEn": "Toy Story 5",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",
+      "rating": 7.444,
+      "genre": [
+        "Animation",
+        "Family",
+        "Comedy",
+        "Adventure"
+      ],
+      "summary": "When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang's jobs become exponentially harder when they have to go head to head with the all-new"
+    },
+    {
+      "tmdbId": 1301421,
+      "title": "The Sheep Detectives",
+      "titleEn": "The Sheep Detectives",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/iKy5460GdsoknM8ppmGlJbKxAKa.jpg",
+      "rating": 7.75,
+      "genre": [
+        "Adventure",
+        "Mystery",
+        "Comedy",
+        "Family"
+      ],
+      "summary": "George Hardy is a shepherd who reads detective novels to his beloved sheep every night, assuming they can't possibly understand. But when a mysterious incident disrupts life on the farm, the sheep rea"
+    },
+    {
+      "tmdbId": 1083381,
+      "title": "Backrooms",
+      "titleEn": "Backrooms",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg",
+      "rating": 6.9,
+      "genre": [
+        "Horror",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "summary": "A strange doorway appears in the basement of a furniture showroom."
+    },
+    {
+      "tmdbId": 1108427,
+      "title": "Moana",
+      "titleEn": "Moana",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/zKVgiv5qHCvCLT4A2ymJi5QeXDH.jpg",
+      "rating": 8.5,
+      "genre": [
+        "Family",
+        "Fantasy",
+        "Comedy",
+        "Adventure"
+      ],
+      "summary": "Moana answers the Ocean's call and, for the first time, voyages beyond the reef of her island of Motunui with the infamous demigod Maui on an unforgettable journey to restore prosperity to her people."
+    },
+    {
+      "tmdbId": 1413976,
+      "title": "Citizen Vigilante",
+      "titleEn": "Citizen Vigilante",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/6LmJD3Wohe0g4U62wgi7RyJqfE4.jpg",
+      "rating": 6.597,
+      "genre": [
+        "Thriller",
+        "Action",
+        "Crime"
+      ],
+      "summary": "A man takes justice into his own hands, hunting down criminals. His vigilante crusade makes him a social media star but puts him at odds with the local police chief."
+    },
+    {
+      "tmdbId": 969681,
+      "title": "Spider-Man: Brand New Day",
+      "titleEn": "Spider-Man: Brand New Day",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/yyB2VJEW3an2xCdcYCPQhn9QERR.jpg",
+      "rating": 0,
+      "genre": [
+        "Sci-Fi",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to "
+    },
+    {
+      "tmdbId": 1368337,
+      "title": "The Odyssey",
+      "titleEn": "The Odyssey",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg",
+      "rating": 0,
+      "genre": [
+        "Adventure",
+        "Action",
+        "Fantasy"
+      ],
+      "summary": "Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, "
+    },
+    {
+      "tmdbId": 1397385,
+      "title": "Little Brother",
+      "titleEn": "Little Brother",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/hIJpXb7Xaje2mebN9ylsS7blQzP.jpg",
+      "rating": 6.278,
+      "genre": [
+        "Comedy"
+      ],
+      "summary": "A tightly wound realtor's picture-perfect life gets an extreme makeover when his lovably chaotic \"little brother\" suddenly reappears."
+    },
+    {
+      "tmdbId": 1284465,
+      "title": "The Death of Robin Hood",
+      "titleEn": "The Death of Robin Hood",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/13MmRwmG5NmaMfU8qNrtgGXisiD.jpg",
+      "rating": 6.7,
+      "genre": [
+        "Adventure",
+        "Drama",
+        "Thriller",
+        "Action"
+      ],
+      "summary": "Grappling with his past after a life of crime and murder, Robin Hood finds himself gravely injured after a battle he thought would be his last. In the hands of a mysterious woman, he is offered a chan"
+    },
+    {
+      "tmdbId": 687163,
+      "title": "Project Hail Mary",
+      "titleEn": "Project Hail Mary",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/yihdXomYb5kTeSivtFndMy5iDmf.jpg",
+      "rating": 8.7,
+      "genre": [
+        "Sci-Fi",
+        "Adventure"
+      ],
+      "summary": "Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the rid"
+    },
+    {
+      "tmdbId": 936075,
+      "title": "Michael",
+      "titleEn": "Michael",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/zm0KAbOjlt9eR5y7vDiL2dEOwMl.jpg",
+      "rating": 8.699,
+      "genre": [
+        "Music",
+        "Drama"
+      ],
+      "summary": "The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyond the music. His journey from the discovery of his extraordinary talent as the lead of the"
+    },
+    {
+      "tmdbId": 1273221,
+      "title": "Scary Movie",
+      "titleEn": "Scary Movie",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/1KlYdWoOrbL5ux357rW9LC155qw.jpg",
+      "rating": 5.4,
+      "genre": [
+        "Comedy"
+      ],
+      "summary": "Twenty-six years after outrunning a suspiciously familiar masked killer, the Core Four are back in the killer's crosshairs and no horror movie IP is safe."
+    },
+    {
+      "tmdbId": 1340206,
+      "title": "Tuner",
+      "titleEn": "Tuner",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/5OvA3i9wZs5jHu0DCrfmXlzAM67.jpg",
+      "rating": 7.148,
+      "genre": [
+        "Crime",
         "Drama",
         "Thriller"
       ],
-      "releaseDate": "2026-07-03",
-      "season": 1,
-      "episode": 1,
-      "summary": "扣人心弦的新剧首播",
-      "summaryEn": "Gripping new series premiere",
-      "tags": [
-        "New Series",
-        "Binge-worthy"
+      "summary": "A gifted piano tuner's meticulous skills for tuning pianos lead him to discover an unexpected aptitude for cracking safes, turning his life upside down."
+    },
+    {
+      "tmdbId": 454639,
+      "title": "Masters of the Universe",
+      "titleEn": "Masters of the Universe",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/3YMd9Ogae4rDKLWuAZFuse9xhc5.jpg",
+      "rating": 7.031,
+      "genre": [
+        "Action",
+        "Fantasy",
+        "Sci-Fi"
       ],
-      "audience": "剧情迷",
-      "audienceEn": "Drama fans"
+      "summary": "After being separated for 15 years, the Sword of Power leads Prince Adam back to Eternia, where he discovers his home shattered under the fiendish rule of Skeletor. To save his family and his world, A"
+    },
+    {
+      "tmdbId": 1275779,
+      "title": "Disclosure Day",
+      "titleEn": "Disclosure Day",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/AnJ8IQJI23hNpYXVNaythu061Ru.jpg",
+      "rating": 6.675,
+      "genre": [
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "summary": "A cybersecurity expert becomes a whistleblower after uncovering secrets about aliens, putting him on the run from a corporation. Meanwhile, a meteorologist experiencing strange phenomena joins forces "
     }
   ],
-  "premieresThisWeek": [],
-  "upcoming": [],
-  "ongoing": []
+  "ongoing": [
+    {
+      "tmdbId": 1339713,
+      "title": "Obsession",
+      "titleEn": "Obsession",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg",
+      "rating": 8.2,
+      "genre": [
+        "Horror",
+        "Thriller"
+      ],
+      "summary": "After breaking the mysterious \"One Wish Willow\" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinis"
+    },
+    {
+      "tmdbId": 1202033,
+      "title": "Enola Holmes 3",
+      "titleEn": "Enola Holmes 3",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
+      "rating": 7.193,
+      "genre": [
+        "Adventure",
+        "Crime",
+        "Mystery",
+        "Action"
+      ],
+      "summary": "Adventure follows detective Enola Holmes to Malta, where her plans to tie the knot unravel when Sherlock's disappearance plunges her into a perilous case."
+    },
+    {
+      "tmdbId": 1314481,
+      "title": "The Devil Wears Prada 2",
+      "titleEn": "The Devil Wears Prada 2",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/fCAURTUx3YfsJ8k9I0UamjSILiR.jpg",
+      "rating": 6.884,
+      "genre": [
+        "Comedy",
+        "Drama"
+      ],
+      "summary": "Andy Sachs returns to Runway as Miranda Priestly navigates a new media landscape and Runway's position within. The duo reconnect with former assistant Emily Charlton, now the head of a luxury brand th"
+    },
+    {
+      "tmdbId": 1315772,
+      "title": "Minions & Monsters",
+      "titleEn": "Minions & Monsters",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/nz7i42yhLIJ4ve9JKgM6NthoLHO.jpg",
+      "rating": 6.7,
+      "genre": [
+        "Adventure",
+        "Animation",
+        "Comedy",
+        "Family",
+        "Fantasy"
+      ],
+      "summary": "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to t"
+    },
+    {
+      "tmdbId": 1081003,
+      "title": "Supergirl",
+      "titleEn": "Supergirl",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/niSvU02l2BONH9ivubV6K1a5QiK.jpg",
+      "rating": 6.249,
+      "genre": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "summary": "When an unexpected and ruthless adversary strikes too close to home, Kara Zor-El, aka Supergirl, reluctantly joins forces with an unlikely companion on an epic, interstellar journey of vengeance and j"
+    },
+    {
+      "tmdbId": 1084244,
+      "title": "Toy Story 5",
+      "titleEn": "Toy Story 5",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",
+      "rating": 7.444,
+      "genre": [
+        "Animation",
+        "Family",
+        "Comedy",
+        "Adventure"
+      ],
+      "summary": "When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang's jobs become exponentially harder when they have to go head to head with the all-new"
+    },
+    {
+      "tmdbId": 1301421,
+      "title": "The Sheep Detectives",
+      "titleEn": "The Sheep Detectives",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/iKy5460GdsoknM8ppmGlJbKxAKa.jpg",
+      "rating": 7.75,
+      "genre": [
+        "Adventure",
+        "Mystery",
+        "Comedy",
+        "Family"
+      ],
+      "summary": "George Hardy is a shepherd who reads detective novels to his beloved sheep every night, assuming they can't possibly understand. But when a mysterious incident disrupts life on the farm, the sheep rea"
+    },
+    {
+      "tmdbId": 1083381,
+      "title": "Backrooms",
+      "titleEn": "Backrooms",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg",
+      "rating": 6.9,
+      "genre": [
+        "Horror",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "summary": "A strange doorway appears in the basement of a furniture showroom."
+    },
+    {
+      "tmdbId": 1108427,
+      "title": "Moana",
+      "titleEn": "Moana",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/zKVgiv5qHCvCLT4A2ymJi5QeXDH.jpg",
+      "rating": 8.5,
+      "genre": [
+        "Family",
+        "Fantasy",
+        "Comedy",
+        "Adventure"
+      ],
+      "summary": "Moana answers the Ocean's call and, for the first time, voyages beyond the reef of her island of Motunui with the infamous demigod Maui on an unforgettable journey to restore prosperity to her people."
+    },
+    {
+      "tmdbId": 1413976,
+      "title": "Citizen Vigilante",
+      "titleEn": "Citizen Vigilante",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/6LmJD3Wohe0g4U62wgi7RyJqfE4.jpg",
+      "rating": 6.597,
+      "genre": [
+        "Thriller",
+        "Action",
+        "Crime"
+      ],
+      "summary": "A man takes justice into his own hands, hunting down criminals. His vigilante crusade makes him a social media star but puts him at odds with the local police chief."
+    },
+    {
+      "tmdbId": 969681,
+      "title": "Spider-Man: Brand New Day",
+      "titleEn": "Spider-Man: Brand New Day",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/yyB2VJEW3an2xCdcYCPQhn9QERR.jpg",
+      "rating": 0,
+      "genre": [
+        "Sci-Fi",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to "
+    },
+    {
+      "tmdbId": 1368337,
+      "title": "The Odyssey",
+      "titleEn": "The Odyssey",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg",
+      "rating": 0,
+      "genre": [
+        "Adventure",
+        "Action",
+        "Fantasy"
+      ],
+      "summary": "Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, "
+    },
+    {
+      "tmdbId": 1397385,
+      "title": "Little Brother",
+      "titleEn": "Little Brother",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/hIJpXb7Xaje2mebN9ylsS7blQzP.jpg",
+      "rating": 6.278,
+      "genre": [
+        "Comedy"
+      ],
+      "summary": "A tightly wound realtor's picture-perfect life gets an extreme makeover when his lovably chaotic \"little brother\" suddenly reappears."
+    },
+    {
+      "tmdbId": 1284465,
+      "title": "The Death of Robin Hood",
+      "titleEn": "The Death of Robin Hood",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/13MmRwmG5NmaMfU8qNrtgGXisiD.jpg",
+      "rating": 6.7,
+      "genre": [
+        "Adventure",
+        "Drama",
+        "Thriller",
+        "Action"
+      ],
+      "summary": "Grappling with his past after a life of crime and murder, Robin Hood finds himself gravely injured after a battle he thought would be his last. In the hands of a mysterious woman, he is offered a chan"
+    },
+    {
+      "tmdbId": 687163,
+      "title": "Project Hail Mary",
+      "titleEn": "Project Hail Mary",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/yihdXomYb5kTeSivtFndMy5iDmf.jpg",
+      "rating": 8.7,
+      "genre": [
+        "Sci-Fi",
+        "Adventure"
+      ],
+      "summary": "Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the rid"
+    },
+    {
+      "tmdbId": 936075,
+      "title": "Michael",
+      "titleEn": "Michael",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/zm0KAbOjlt9eR5y7vDiL2dEOwMl.jpg",
+      "rating": 8.699,
+      "genre": [
+        "Music",
+        "Drama"
+      ],
+      "summary": "The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyond the music. His journey from the discovery of his extraordinary talent as the lead of the"
+    },
+    {
+      "tmdbId": 1273221,
+      "title": "Scary Movie",
+      "titleEn": "Scary Movie",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/1KlYdWoOrbL5ux357rW9LC155qw.jpg",
+      "rating": 5.4,
+      "genre": [
+        "Comedy"
+      ],
+      "summary": "Twenty-six years after outrunning a suspiciously familiar masked killer, the Core Four are back in the killer's crosshairs and no horror movie IP is safe."
+    },
+    {
+      "tmdbId": 1340206,
+      "title": "Tuner",
+      "titleEn": "Tuner",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/5OvA3i9wZs5jHu0DCrfmXlzAM67.jpg",
+      "rating": 7.148,
+      "genre": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "summary": "A gifted piano tuner's meticulous skills for tuning pianos lead him to discover an unexpected aptitude for cracking safes, turning his life upside down."
+    },
+    {
+      "tmdbId": 454639,
+      "title": "Masters of the Universe",
+      "titleEn": "Masters of the Universe",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/3YMd9Ogae4rDKLWuAZFuse9xhc5.jpg",
+      "rating": 7.031,
+      "genre": [
+        "Action",
+        "Fantasy",
+        "Sci-Fi"
+      ],
+      "summary": "After being separated for 15 years, the Sword of Power leads Prince Adam back to Eternia, where he discovers his home shattered under the fiendish rule of Skeletor. To save his family and his world, A"
+    },
+    {
+      "tmdbId": 1275779,
+      "title": "Disclosure Day",
+      "titleEn": "Disclosure Day",
+      "year": "",
+      "releaseDate": "",
+      "poster": "https://image.tmdb.org/t/p/w500/AnJ8IQJI23hNpYXVNaythu061Ru.jpg",
+      "rating": 6.675,
+      "genre": [
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "summary": "A cybersecurity expert becomes a whistleblower after uncovering secrets about aliens, putting him on the run from a corporation. Meanwhile, a meteorologist experiencing strange phenomena joins forces "
+    }
+  ]
 }
