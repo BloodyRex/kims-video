@@ -234,11 +234,12 @@ async function handleIntelOverview(env) {
       trending: trending.length,
     },
     editorsPicks: enrichedToday,
-    hiddenGems: [],
-    comingSoon: upcoming.slice(0, 6).map(m => {
-      const days = Math.ceil((new Date(m.release_date) - new Date()) / 86400000);
-      return { ...intelNormalizeMovie(m), daysUntil: isNaN(days) ? null : days };
-    }),
+    comingSoon: upcoming
+      .filter(m => m.release_date && new Date(m.release_date) >= new Date())
+      .slice(0, 6).map(m => {
+        const days = Math.ceil((new Date(m.release_date) - new Date()) / 86400000);
+        return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
+      }),
     trending: trending.slice(0, 5).map((m, i) => ({ ...intelNormalizeMovie(m), rank: i + 1, trend: "new" })),
     brief: `Today: ${todayM.length} movie(s) released, ${todayTV.length} TV premiere(s), ${todayMB.length} new album(s).`,
   };

@@ -197,13 +197,15 @@ function TVView({ locale }) {
 function MusicView({ locale }) {
   const { data, loading } = useJsonData("/api/music.json");
   const [tab, setTab] = useState("latest");
-  if (loading) return <LoadingSpinner locale={locale} />;
+  // useMemo must be called before any early return (Rules of Hooks)
   const allReleases = useMemo(() => {
+    if (!data) return [];
     const today = data?.releasedToday || [];
     const week = data?.releasedThisWeek || [];
     const merged = [...today, ...week.filter(a => !today.some(t => t.mbid === a.mbid))];
     return merged.sort((a, b) => (b.releaseDate || "").localeCompare(a.releaseDate || ""));
   }, [data]);
+  if (loading) return <LoadingSpinner locale={locale} />;
   const tabs = [
     { id: "latest", zh: "最新发行", en: "Latest Releases", dynamic: true },
     { id: "today", zh: "今日发行", en: "Today", key: "releasedToday" },
@@ -279,7 +281,7 @@ function TrendingView({ locale }) {
   const current = data?.[periodTab]?.[typeTab] || [];
   return (
     <div className="space-y-6">
-      <SectionHeader label={locale === "zh" ? "热榜趋势" : "Trending Rankings"} color="#00ffff" />
+      <SectionHeader label={locale === "zh" ? "热榜趋势" : "Trending Rankings"} count={current.length} color="#00ffff" />
       <div className="flex gap-2 flex-wrap">
         {periods.map(p => (
           <button key={p.id} onClick={() => setPeriodTab(p.id)}
