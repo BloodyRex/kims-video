@@ -16,13 +16,30 @@ import { loadResultsFromCache } from "./utils/cache";
 import { updateUrl } from "./utils/url";
 import { updateSeo, updateStructuredData, resetSeo, injectStructuredData } from "./services/seo";
 import { useMovieEngine } from "./logic/useMovieEngine";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { LocaleProvider, useLocale } from "./i18n";
 
 function App() {
   return (
-    <LocaleProvider>
-      <AppContent />
-    </LocaleProvider>
+    <BrowserRouter>
+      <LocaleProvider>
+        <Routes>
+          <Route path="/" element={<AppContent />} />
+          <Route path="/discover" element={<DiscoverPage />} />
+          <Route path="/discover/genre/:slug" element={<DiscoverPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/intelligence" element={<IntelligencePage />} />
+          <Route path="/intelligence/movies" element={<IntelligencePage />} />
+          <Route path="/intelligence/tv" element={<IntelligencePage />} />
+          <Route path="/intelligence/music" element={<IntelligencePage />} />
+          <Route path="/intelligence/coming" element={<IntelligencePage />} />
+          <Route path="/intelligence/trending" element={<IntelligencePage />} />
+          <Route path="/intelligence/weekly" element={<IntelligencePage />} />
+          <Route path="/intelligence/spotlight" element={<IntelligencePage />} />
+          <Route path="/intelligence/search" element={<IntelligencePage />} />
+        </Routes>
+      </LocaleProvider>
+    </BrowserRouter>
   );
 }
 
@@ -271,46 +288,6 @@ function AppContent() {
     }
   }, [step, detailData, primaryMovie?.title, primaryMovie?.year, primaryMovie?.tmdbId, secondaryMovie?.tmdbId, sourceTmdbId, detailMovieId, recommendations, locale]);
 
-  // Discover page
-  // Admin page route
-  const [showAdmin] = useState(() => window.location.pathname.startsWith("/admin"));
-
-  const [showDiscover] = useState(() => {
-    if (window.location.pathname.startsWith("/discover") || window.location.pathname.startsWith("/genre")) return true;
-    try {
-      const redirect = sessionStorage.getItem("redirect");
-      if (redirect && (redirect.startsWith("/discover") || redirect.startsWith("/genre"))) {
-        sessionStorage.removeItem("redirect");
-        return true;
-      }
-    } catch {}
-    return false;
-  });
-
-  const [showIntelligence] = useState(() => {
-    if (window.location.pathname.startsWith("/intelligence")) return true;
-    try {
-      const redirect = sessionStorage.getItem("redirect");
-      if (redirect && redirect.startsWith("/intelligence")) {
-        sessionStorage.removeItem("redirect");
-        return true;
-      }
-    } catch {}
-    return false;
-  });
-
-  if (showAdmin) {
-    return <AdminPage />;
-  }
-
-  if (showDiscover) {
-    return <DiscoverPage />;
-  }
-
-  if (showIntelligence) {
-    return <IntelligencePage />;
-  }
-
   return (
     <div className={`min-h-screen text-black selection:bg-[#ffff00] selection:text-black overflow-x-hidden pb-20 locale-${locale}`}>
       {showIntro ? (
@@ -355,24 +332,24 @@ function AppContent() {
             />
             {/* Entry buttons */}
             <div className="max-w-2xl mx-auto mt-6 mb-4 flex flex-col sm:flex-row gap-3">
-              <a
-                href="/discover"
+              <Link
+                to="/discover"
                 className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
               >
                 <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
                   <span className="text-base">🎬</span>
                   {locale === "zh" ? "精选推荐合辑" : "CURATED PICKS"}
                 </span>
-              </a>
-              <a
-                href="/intelligence"
+              </Link>
+              <Link
+                to="/intelligence"
                 className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
               >
                 <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
                   <span className="text-base">📊</span>
                   {locale === "zh" ? "娱乐情报" : "INTELLIGENCE"}
                 </span>
-              </a>
+              </Link>
             </div>
           </>
         )}
@@ -414,13 +391,13 @@ function AppContent() {
             Data from TMDB
           </a>
           <span className="text-gray-600 mx-2">|</span>
-          <a href="/discover" className="hover:text-[#ffff00] transition-colors">Discover</a>
+          <Link to="/discover" className="hover:text-[#ffff00] transition-colors">Discover</Link>
           <span className="text-gray-600 mx-2">|</span>
-          <a href="/intelligence" className="hover:text-[#00ffff] transition-colors">Intelligence</a>
+          <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">Intelligence</Link>
           <span className="text-gray-600 mx-2">|</span>
           <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">BLOODYREX</a>
           <span className="text-gray-800 mx-1">·</span>
-          <a href="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</a>
+          <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
         </p>
       </footer>
       </>

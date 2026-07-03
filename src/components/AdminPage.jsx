@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { adminLogin, adminFetchResults, adminDeleteResult, adminPatchResult } from "../services/adminApi";
@@ -104,7 +105,7 @@ const AdminPage = () => {
               {loading ? "..." : (locale === "en" ? "Login" : "登录")}
             </button>
           </form>
-          <a href="/" className="block text-center mt-4 text-xs text-gray-500 hover:text-black transition-colors">← Back to site</a>
+          <Link to="/" className="block text-center mt-4 text-xs text-gray-500 hover:text-black transition-colors">← Back to site</Link>
         </div>
       </div>
     );
@@ -123,7 +124,7 @@ const AdminPage = () => {
           </div>
           <div className="flex items-center gap-3">
             <button onClick={toggleLocale} className="w-7 h-7 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center font-black text-xs" style={LANG_BUTTON_STYLE}>{locale === "zh" ? "En" : "中"}</button>
-            <a href="/" className="text-xs text-gray-400 hover:text-[#ffff00] transition-colors">← Site</a>
+            <Link to="/" className="text-xs text-gray-400 hover:text-[#ffff00] transition-colors">← Site</Link>
             <button onClick={fetchCards} className="text-xs bg-[#00ffff] text-black border-2 border-black px-2 py-1 font-bold hover:bg-[#40ffff] transition-colors">Refresh</button>
             <button onClick={handleLogout} className="text-xs bg-red-500 text-white border-2 border-black px-2 py-1 font-bold hover:bg-red-600 transition-colors">{locale === "en" ? "Logout" : "退出"}</button>
           </div>

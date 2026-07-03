@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
-import { MovieCard, TVCard, AlbumCard, CountdownCard, RankingCard, WeeklyCard, SpotlightCard, SectionHeader, CardGrid, CardList } from "./Cards";
+import { MovieCard, TVCard, AlbumCard, CountdownCard, RankingCard, SpotlightCard, SectionHeader, CardGrid, CardList } from "./Cards";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -47,8 +48,11 @@ function LoadingSpinner({ locale }) {
 // ── Overview ──
 function OverviewView({ locale }) {
   const { data, loading } = useJsonData("/api/overview.json");
+  const { data: hiddenGemsData } = useJsonData("/api/hidden-gems.json");
+  const { data: digestData } = useJsonData("/api/digest.json");
   if (loading) return <LoadingSpinner locale={locale} />;
   const stats = data?.stats || {};
+  const hiddenGems = hiddenGemsData?.gems || [];
   const statCards = [
     { zh: "电影上映", en: "Movies Released", num: stats.moviesReleased ?? "--", color: "#ff00ff" },
     { zh: "剧集首播", en: "TV Premieres", num: stats.tvPremieres ?? "--", color: "#00ffff" },
@@ -80,10 +84,10 @@ function OverviewView({ locale }) {
           <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
         </section>
       )}
-      {(data?.hiddenGems || []).length > 0 && (
+      {hiddenGems.length > 0 && (
         <section>
-          <SectionHeader label={locale === "zh" ? "◆ 隐藏宝藏" : "◆ Hidden Gems"} count={data.hiddenGems.length} color="#00ffff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.hiddenGems.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
+          <SectionHeader label={locale === "zh" ? "◆ 隐藏宝藏" : "◆ Hidden Gems"} count={hiddenGems.length} color="#00ffff" />
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{hiddenGems.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
         </section>
       )}
       {(data?.comingSoon || []).length > 0 && (
@@ -99,14 +103,22 @@ function OverviewView({ locale }) {
         </section>
       )}
 
-      {/* One Minute Brief */}
-      {data?.brief && (
+      {/* Daily Digest */}
+      {digestData?.headline && (
         <section>
-          <SectionHeader label={locale === "zh" ? "☎ One Minute Brief" : "☎ One Minute Brief"} color="#ff00ff" />
+          <SectionHeader label={locale === "zh" ? "☎ 每日摘要" : "☎ Daily Digest"} color="#ff00ff" />
           <div className="bg-black border-4 border-[#ffff00] p-5 shadow-[6px_6px_0_0_rgba(0,255,255,0.3)]">
-            <p className="text-sm text-gray-200 leading-relaxed">{data.brief}</p>
+            <h3 className="text-base font-black text-[#ffff00] mb-2">{digestData.headline}</h3>
+            <p className="text-sm text-gray-200 leading-relaxed">{digestData.summary}</p>
+            {digestData.topTrends?.length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {digestData.topTrends.map((t, i) => (
+                  <span key={i} className="text-[10px] px-2 py-0.5 bg-[#ff00ff] text-black font-black">#{t.title}</span>
+                ))}
+              </div>
+            )}
             <p className="text-[10px] text-gray-500 mt-2 pixel-font">
-              {locale === "zh" ? "数据更新于 " : "Data updated "}{data.updated || ""}
+              {locale === "zh" ? "数据更新于 " : "Data updated "}{digestData.date || data?.updated || ""}
             </p>
           </div>
         </section>
@@ -184,14 +196,20 @@ function TVView({ locale }) {
 // ── Music ──
 function MusicView({ locale }) {
   const { data, loading } = useJsonData("/api/music.json");
-  const [tab, setTab] = useState("today");
+  const [tab, setTab] = useState("latest");
   if (loading) return <LoadingSpinner locale={locale} />;
+  const allReleases = useMemo(() => {
+    const today = data?.releasedToday || [];
+    const week = data?.releasedThisWeek || [];
+    const merged = [...today, ...week.filter(a => !today.some(t => t.mbid === a.mbid))];
+    return merged.sort((a, b) => (b.releaseDate || "").localeCompare(a.releaseDate || ""));
+  }, [data]);
   const tabs = [
+    { id: "latest", zh: "最新发行", en: "Latest Releases", dynamic: true },
     { id: "today", zh: "今日发行", en: "Today", key: "releasedToday" },
     { id: "week", zh: "本周发行", en: "This Week", key: "releasedThisWeek" },
-    { id: "upcoming", zh: "即将发行", en: "Upcoming", key: "upcoming" },
   ];
-  const current = data?.[tabs.find(t => t.id === tab)?.key] || [];
+  const current = tab === "latest" ? allReleases : (data?.[tabs.find(t => t.id === tab)?.key] || []);
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "音乐情报" : "Music Intelligence"} color="#ffff00" />
@@ -252,7 +270,6 @@ function TrendingView({ locale }) {
   const periods = [
     { id: "today", zh: "今日", en: "Today" },
     { id: "week", zh: "本周", en: "Week" },
-    { id: "month", zh: "本月", en: "Month" },
   ];
   const types = [
     { id: "movies", zh: "电影", en: "Movies" },
@@ -288,53 +305,87 @@ function TrendingView({ locale }) {
   );
 }
 
-// ── Weekly Reports ──
+// ── Weekly Snapshot Dashboard ──
 function WeeklyView({ locale }) {
-  const { data, loading } = useJsonData("/api/weekly.json");
-  const [expanded, setExpanded] = useState(null);
+  const { data: weeklyData, loading } = useJsonData("/api/weekly.json");
+  const { data: editorData } = useJsonData("/api/editor.json");
+  const { data: hiddenGemsData } = useJsonData("/api/hidden-gems.json");
   if (loading) return <LoadingSpinner locale={locale} />;
-  const reports = data?.reports || [];
+  if (!weeklyData) return <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>;
+
+  const stats = weeklyData.stats || {};
+  const trendingHighlights = weeklyData.trendingHighlights || [];
+  const editorsPicks = editorData?.picks?.editorsPick || [];
+  const hiddenGems = hiddenGemsData?.gems || [];
+
+  const statCards = [
+    { zh: "电影上映", en: "Movies Released", num: stats.moviesReleased ?? "--", color: "#ff00ff" },
+    { zh: "剧集首播", en: "TV Premieres", num: stats.tvPremieres ?? "--", color: "#00ffff" },
+    { zh: "专辑发行", en: "Albums Released", num: stats.albumsReleased ?? "--", color: "#ffff00" },
+  ];
+
   return (
-    <div className="space-y-6">
-      <SectionHeader label={locale === "zh" ? "每周报告" : "Weekly Reports"} count={data?.currentWeek} color="#ffff00" />
-      {reports.length === 0 ? (
-        <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
-      ) : (
-        <div className="relative pl-8 border-l-4 border-[#ffff00] space-y-8">
-          {reports.map((r, i) => (
-            <div key={i} className="relative">
-              {/* Timeline node */}
-              <div className="absolute -left-[calc(2rem+10px)] top-0 w-5 h-5 bg-[#ffff00] border-2 border-black rounded-full" />
-              <div className="bg-white border-4 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] overflow-hidden">
-                <div className="bg-black text-white px-4 py-2 flex items-center justify-between">
-                  <span className="font-black pixel-font text-black text-[10px] uppercase">{r.weekLabel || r.week}</span>
-                  <span className="text-gray-400 text-[9px]">{r.date || ""}</span>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-base font-black mb-2">{locale === "zh" ? (r.titleEn || r.title) : r.title}</h3>
-                  {expanded === i ? (
-                    <>
-                      {r.highlights && r.highlights.length > 0 && (
-                        <ul className="list-disc list-inside text-xs text-gray-600 mb-3 space-y-1">
-                          {r.highlights.map((h, j) => (
-                            <li key={j}>{typeof h === "string" ? h : (locale === "en" ? (h.en || h.text) : (h.text || h.en))}</li>
-                          ))}
-                        </ul>
-                      )}
-                      <button onClick={() => setExpanded(null)} className="px-3 py-1 text-[9px] font-black text-white bg-black border-2 border-black pixel-font uppercase hover:bg-gray-800">
-                        {locale === "zh" ? "收起" : "COLLAPSE"}
-                      </button>
-                    </>
-                  ) : (
-                    <button onClick={() => setExpanded(i)} className="px-3 py-1 text-[9px] font-black text-white bg-black border-2 border-black pixel-font uppercase hover:bg-gray-800">
-                      {locale === "zh" ? "阅读详情" : "READ MORE"}
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="space-y-8">
+      {/* Week Header */}
+      <div className="bg-black border-4 border-[#ffff00] p-6 sm:p-8 shadow-[8px_8px_0_0_rgba(0,255,255,0.5)]">
+        <h2 className="text-lg sm:text-2xl font-black text-white pixel-font mb-2">
+          {locale === "zh" ? "每周快照" : "Weekly Snapshot"}
+        </h2>
+        <p className="text-sm text-[#ffff00] font-black">
+          {weeklyData.week}
+        </p>
+        <p className="text-xs text-gray-400 mt-1">
+          {weeklyData.date}
+        </p>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {statCards.map((s, i) => (
+          <div key={i} className="bg-white border-4 border-black p-4 text-center shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+            <div className="text-2xl sm:text-3xl font-black pixel-font" style={{ color: s.color }}>{s.num}</div>
+            <div className="text-[10px] sm:text-xs text-gray-500 mt-1">{locale === "zh" ? s.zh : s.en}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Editor's Picks */}
+      {editorsPicks.length > 0 && (
+        <section>
+          <SectionHeader label={locale === "zh" ? "★ 编辑精选" : "★ Editor's Picks"} count={editorsPicks.length} color="#ff00ff" />
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
+        </section>
+      )}
+
+      {/* Hidden Gems */}
+      {hiddenGems.length > 0 && (
+        <section>
+          <SectionHeader label={locale === "zh" ? "◆ 隐藏宝藏" : "◆ Hidden Gems"} count={hiddenGems.length} color="#00ffff" />
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{hiddenGems.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
+        </section>
+      )}
+
+      {/* Trending Highlights */}
+      {trendingHighlights.length > 0 && (
+        <section>
+          <SectionHeader label={locale === "zh" ? "↑ 本周趋势" : "↑ Trending Highlights"} count={trendingHighlights.length} color="#ff00ff" />
+          <CardList>{trendingHighlights.map((item, i) => (
+            <RankingCard key={i} item={item} rank={item.rank || i + 1} locale={locale} />
+          ))}</CardList>
+        </section>
+      )}
+
+      {/* One Minute Summary */}
+      {weeklyData.oneMinuteSummary && (
+        <section>
+          <SectionHeader label={locale === "zh" ? "☕ 一分钟摘要" : "☕ One Minute Summary"} color="#ffff00" />
+          <div className="bg-black border-4 border-[#ff00ff] p-5 shadow-[6px_6px_0_0_rgba(0,255,255,0.3)]">
+            <p className="text-sm text-gray-200 leading-relaxed">{weeklyData.oneMinuteSummary}</p>
+            <p className="text-[10px] text-gray-500 mt-3 pixel-font">
+              {locale === "zh" ? "更新于 " : "Updated "}{weeklyData.updated || ""}
+            </p>
+          </div>
+        </section>
       )}
     </div>
   );
@@ -472,7 +523,10 @@ function SearchView({ locale }) {
 // ── Main IntelligencePage ──
 function IntelligencePage() {
   const { t, locale, toggleLocale } = useLocale();
-  const [activeNav, setActiveNav] = useState("overview");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const match = location.pathname.match(/^\/intelligence(?:\/(\w+))?/);
+  const activeNav = match?.[1] || "overview";
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
@@ -487,20 +541,20 @@ function IntelligencePage() {
     <div className={`min-h-screen graffiti-bg text-black pb-32 intelligence-page locale-${locale}`}>
       {/* Header */}
       <header className="relative z-10 flex flex-col items-center py-4 mb-0 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
-        <a href="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
+        <Link to="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
             <span className="text-black transform rotate-90"><Icons.Play /></span>
           </div>
           <h1 className="text-lg sm:text-2xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap" style={{fontFamily:"'Press Start 2P','Courier New',Courier,monospace"}}>
             KIM'S <span className="text-[#00ffff]">VIDEO</span>
           </h1>
-        </a>
+        </Link>
         <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 
       {/* Top bar */}
       <div className="max-w-6xl mx-auto px-4 pt-3 pb-1 flex items-center justify-between">
-        <a href="/discover" className="px-3 py-1.5 text-[10px] font-black text-white bg-transparent border-2 border-[#ffff00] pixel-font uppercase hover:bg-[#ffff00] hover:text-black transition-colors">Discover</a>
+        <Link to="/discover" className="px-3 py-1.5 text-[10px] font-black text-white bg-transparent border-2 border-[#ffff00] pixel-font uppercase hover:bg-[#ffff00] hover:text-black transition-colors">Discover</Link>
         <div className="flex items-center gap-2">
           <button onClick={toggleLocale} className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs flex-shrink-0" style={LANG_BUTTON_STYLE}>
             {locale === "zh" ? "En" : "中"}
@@ -519,7 +573,7 @@ function IntelligencePage() {
               const Icon = IconComp(item.icon);
               const active = activeNav === item.id;
               return (
-                <button key={item.id} onClick={() => { setActiveNav(item.id); setMobileNavOpen(false); }}
+                <button key={item.id} onClick={() => { navigate(item.id === "overview" ? "/intelligence" : `/intelligence/${item.id}`); setMobileNavOpen(false); }}
                   className={`flex items-center gap-2 px-3 py-2.5 sm:py-3 w-full text-left transition-colors border-l-4 ${active ? "bg-gray-900 border-[#ffff00] text-white" : "border-transparent text-gray-400 hover:bg-gray-900/50 hover:text-white"}`}>
                   <span className={`w-5 h-5 flex-shrink-0 ${active ? "text-white" : "text-gray-600"}`}><Icon className="w-5 h-5" /></span>
                   <span className="text-[10px] sm:text-xs font-black pixel-font whitespace-nowrap">{locale === "zh" ? item.zh : item.en}</span>
@@ -548,13 +602,13 @@ function IntelligencePage() {
         <p>
           <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer" className="hover:text-[#00ffff] transition-colors">Data from TMDB</a>
           <span className="text-gray-600 mx-2">|</span>
-          <a href="/discover" className="hover:text-[#ffff00] transition-colors">Discover</a>
+          <Link to="/discover" className="hover:text-[#ffff00] transition-colors">Discover</Link>
           <span className="text-gray-600 mx-2">|</span>
-          <a href="/" className="hover:text-[#00ffff] transition-colors">Home</a>
+          <Link to="/" className="hover:text-[#00ffff] transition-colors">Home</Link>
           <span className="text-gray-600 mx-2">|</span>
           <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">BLOODYREX</a>
           <span className="text-gray-800 mx-1">·</span>
-          <a href="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</a>
+          <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
         </p>
       </footer>
     </div>

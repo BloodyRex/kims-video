@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import discoverData from "../data/discover.json";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
@@ -69,12 +70,12 @@ function EditorPickCard({ pair, posterMap, locale, getTitle, onOpenPoster }) {
           <h3 className="text-sm font-black mb-1 leading-tight">{recTitle}</h3>
           <span className="text-[10px] text-gray-400 mb-1">({pair.recommend.year})</span>
           <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-          <a
-            href={linkUrl}
+          <Link
+            to={linkUrl}
             className="inline-block self-start mt-2 px-2.5 py-1 text-[10px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors"
           >
             {locale === "en" ? "Details" : "查看详情"}
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -127,10 +128,10 @@ function UserResultCard({ result, posterMap, locale, onLike, onOpenPoster }) {
           const badge = i < 2 ? (locale === "en" ? "HOT" : "热门") : i < 4 ? (locale === "en" ? "NICHE" : "冷门") : (locale === "en" ? "WILD" : "争议");
           const bc = i < 2 ? "bg-[#ff00ff]" : i < 4 ? "bg-[#00ffff]" : "bg-[#ffff00]";
           return (
-            <a key={i} href={detailUrl} onClick={e => e.stopPropagation()} className="flex-shrink-0 w-16 group">
+            <Link key={i} to={detailUrl} onClick={e => e.stopPropagation()} className="flex-shrink-0 w-16 group">
               {poster ? <img src={poster} alt={rec.title} className="w-16 h-24 object-cover border-2 border-black group-hover:border-[#ff00ff] transition-colors" loading="lazy" /> : <div className="w-16 h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold">?</div>}
               <span className={`block text-[8px] font-black text-center mt-0.5 px-0.5 ${bc} text-black`}>{badge}</span>
-            </a>
+            </Link>
           );
         })}
       </div>
@@ -244,14 +245,14 @@ const DiscoverPage = () => {
   return (
     <div className={`min-h-screen graffiti-bg text-black pb-32 discover-page locale-${locale}`}>
       <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
-        <a href="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
+        <Link to="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
             <span className="text-black transform rotate-90"><Icons.Play /></span>
           </div>
           <h1 className="text-lg sm:text-2xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap" style={{fontFamily:"'Press Start 2P','Courier New',Courier,monospace"}}>
             KIM'S <span className="text-[#00ffff]">VIDEO</span>
           </h1>
-        </a>
+        </Link>
         <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 
@@ -268,11 +269,11 @@ const DiscoverPage = () => {
           {(discoverData.editorPicks || []).map((pair, i) => (
             <EditorPickCard key={i} pair={pair} posterMap={posterMap} locale={locale} getTitle={getTitle} />
           ))}
-          <a href="/" className="flex-shrink-0 min-w-[140px] sm:min-w-[160px] bg-[#ffff00] border-4 border-black flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-[#ffff40] transition-colors shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
+          <Link to="/" className="flex-shrink-0 min-w-[140px] sm:min-w-[160px] bg-[#ffff00] border-4 border-black flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-[#ffff40] transition-colors shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
             <span className="text-2xl">🎬</span>
             <span className="text-sm font-black pixel-font uppercase">{locale === "en" ? "Start" : "开始"}</span>
             <span className="text-xs text-gray-600">{locale === "en" ? " Get Picks" : " 获取推荐"}</span>
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -321,7 +322,7 @@ const DiscoverPage = () => {
                             </div>
                             <p className="text-sm text-gray-600 leading-relaxed mb-3 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
                             <div className="flex gap-2 flex-wrap mt-auto">
-                              <a href={detailUrl} className="inline-block px-4 py-2 text-xs font-black text-white bg-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-gray-800 hover:translate-y-0.5 transition-all">{t('discover.view_detail')}</a>
+                              <Link to={detailUrl} className="inline-block px-4 py-2 text-xs font-black text-white bg-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-gray-800 hover:translate-y-0.5 transition-all">{t('discover.view_detail')}</Link>
                             </div>
                           </div>
                         </div>
@@ -340,7 +341,7 @@ const DiscoverPage = () => {
                 <p className="text-4xl mb-3">🎬</p>
                 <p className="text-gray-400 text-sm font-bold mb-2">{locale === "en" ? "No community picks yet" : "暂无用户发现"}</p>
                 <p className="text-gray-500 text-xs mb-4">{locale === "en" ? "Be the first to share!" : "成为第一个分享 AI 推荐结果的人！"}</p>
-                <a href="/" className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all">{locale === "en" ? "Get Your Picks " : "获取你的推荐 "}</a>
+                <Link to="/" className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all">{locale === "en" ? "Get Your Picks " : "获取你的推荐 "}</Link>
               </div>
             )}
             {!loadingResults && totalUserCount > 0 && discoverData.genres.map((genre) => {
@@ -359,7 +360,7 @@ const DiscoverPage = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 pt-8 pb-16 text-center">
-        <a href="/" className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all">{locale === "en" ? "← Get Your Own AI Picks" : "← 获取属于你的 AI 推荐"}</a>
+        <Link to="/" className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all">{locale === "en" ? "← Get Your Own AI Picks" : "← 获取属于你的 AI 推荐"}</Link>
       </div>
 
       {/* ── Poster Modal ── */}

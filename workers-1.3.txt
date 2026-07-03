@@ -304,7 +304,6 @@ async function handleIntelMusic(env) {
     updated: today,
     releasedToday: await intelEnrichWithAI(todayAlbums, "album", env),
     releasedThisWeek: weekAlbums,
-    upcoming: [],
   };
 }
 
@@ -312,20 +311,28 @@ async function handleIntelTrending(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
 
-  const [trendingMovies, trendingTV] = await Promise.all([
-    intelFetchTMDB(token, "/trending/movie/week"),
-    intelFetchTMDB(token, "/trending/tv/week"),
+  const [dayTrending, weekTrending] = await Promise.all([
+    intelFetchTMDB(token, "/trending/all/day"),
+    intelFetchTMDB(token, "/trending/all/week"),
   ]);
+
+  const normalizeItem = (item, rank) => {
+    const type = item.media_type === "tv" ? "tv" : "movie";
+    return { ...intelNormalizeMovie(item, type), rank, trend: "new" };
+  };
 
   return {
     updated: today,
-    today: { movies: [], tv: [], music: [] },
-    week: {
-      movies: trendingMovies.slice(0, 10).map((m, i) => ({ ...intelNormalizeMovie(m), rank: i + 1, trend: "new" })),
-      tv: trendingTV.slice(0, 10).map((s, i) => ({ ...intelNormalizeMovie(s, "tv"), rank: i + 1, trend: "new" })),
+    today: {
+      movies: dayTrending.filter(i => i.media_type !== "tv").slice(0, 10).map((m, i) => normalizeItem(m, i + 1)),
+      tv: dayTrending.filter(i => i.media_type === "tv").slice(0, 10).map((s, i) => normalizeItem(s, i + 1)),
       music: [],
     },
-    month: { movies: [], tv: [], music: [] },
+    week: {
+      movies: weekTrending.filter(i => i.media_type !== "tv").slice(0, 10).map((m, i) => normalizeItem(m, i + 1)),
+      tv: weekTrending.filter(i => i.media_type === "tv").slice(0, 10).map((s, i) => normalizeItem(s, i + 1)),
+      music: [],
+    },
   };
 }
 
@@ -357,36 +364,55 @@ async function handleIntelWeekly(env) {
   const weekStart = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
 
-  let movieCount = 0, tvCount = 0, albumCount = 0;
+  let stats = { moviesReleased: 0, tvPremieres: 0, albumsReleased: 0 };
+  let trendingHighlights = [];
+  let oneMinuteSummary = "";
+
   try {
-    const [nowPlaying, tvAiring, todayMB] = await Promise.all([
+    const [nowPlaying, tvAiring, todayMB, weekTrending] = await Promise.all([
       intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
       intelFetchTMDB(token, "/tv/airing_today"),
       intelFetchMusicBrainz(today).catch(() => []),
+      intelFetchTMDB(token, "/trending/all/week"),
     ]);
-    movieCount = nowPlaying.filter(m => m.release_date >= weekAgo).length;
-    tvCount = tvAiring.filter(s => s.first_air_date >= weekAgo).length;
-    albumCount = todayMB.length;
+    const movieCount = nowPlaying.filter(m => m.release_date >= weekAgo).length;
+    const tvCount = tvAiring.filter(s => s.first_air_date >= weekAgo).length;
+    const albumCount = todayMB.length;
+    stats = { moviesReleased: movieCount, tvPremieres: tvCount, albumsReleased: albumCount };
+
+    trendingHighlights = weekTrending.slice(0, 5).map((m, i) => ({
+      rank: i + 1,
+      title: m.title || m.name || "",
+      mediaType: m.media_type === "tv" ? "tv" : "movie",
+    }));
   } catch (e) {
     console.warn("Weekly stats failed:", e.message);
   }
 
+  // One Minute Summary via DeepSeek
+  if (env.DEEPSEEK_API_KEY) {
+    try {
+      const prompt = `Today is ${today}, Week ${weekNum}. Write a one-minute entertainment summary (max 100 words, in Chinese) summarizing this week:\nStats: ${stats.moviesReleased} movies, ${stats.tvPremieres} TV shows, ${stats.albumsReleased} albums.\nTop: ${trendingHighlights.map(t => t.title).join(", ")}.\nReturn JSON: { "summary": "..." }`;
+      const res = await fetch("https://api.deepseek.com/chat/completions", {
+        method: "POST", headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 500 }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const raw = data?.choices?.[0]?.message?.content || "";
+        const parsed = JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim());
+        oneMinuteSummary = parsed.summary || "";
+      }
+    } catch (e) { console.warn("Weekly summary failed:", e.message); }
+  }
+
   return {
     updated: today,
-    currentWeek: `Week ${weekNum}`,
-    reports: [{
-      week: `Week ${weekNum}`,
-      weekLabel: `Week ${weekNum}`,
-      date: `${weekStart} - ${today}`,
-      title: `本周新增 ${movieCount} 部电影 + ${tvCount} 部剧集 + ${albumCount} 张专辑`,
-      titleEn: `This week: ${movieCount} movies + ${tvCount} TV shows + ${albumCount} albums`,
-      highlights: [
-        { text: `本周新上映 ${movieCount} 部电影`, en: `${movieCount} new movies this week` },
-        { text: `本周首播 ${tvCount} 部剧集`, en: `${tvCount} new TV premieres this week` },
-        { text: `本周发行 ${albumCount} 张专辑`, en: `${albumCount} new albums this week` },
-      ],
-      count: movieCount + tvCount + albumCount,
-    }],
+    week: `Week ${weekNum}`,
+    date: `${weekStart} - ${today}`,
+    stats,
+    trendingHighlights,
+    oneMinuteSummary,
   };
 }
 
@@ -467,6 +493,123 @@ async function handleIntelEditor(env) {
   }
 }
 
+// ── Daily Digest ──
+async function handleIntelDigest(env) {
+  const token = env.TMDB_API_READ_ACCESS_TOKEN;
+  const today = new Date().toISOString().split("T")[0];
+  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+
+  if (!env.DEEPSEEK_API_KEY) {
+    return { date: today, headline: "", summary: "", topTrends: [], industryHighlights: [] };
+  }
+
+  try {
+    const [nowPlaying, upcoming, dayTrending, weekTrending] = await Promise.all([
+      intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
+      intelFetchTMDB(token, "/movie/upcoming"),
+      intelFetchTMDB(token, "/trending/all/day"),
+      intelFetchTMDB(token, "/trending/all/week"),
+    ]);
+    const todayMovies = nowPlaying.filter(m => m.release_date === today).length;
+    const weekMovies = nowPlaying.filter(m => m.release_date >= weekAgo).length;
+    const weekUpcoming = upcoming.filter(m => m.release_date && new Date(m.release_date) >= new Date()).slice(0, 5).map(m => m.title || m.name);
+
+    const prompt = `Today is ${today}. Summarize today's entertainment news in a digest.
+
+Stats: ${todayMovies} movies released today, ${weekMovies} new movies this week.
+Top trending today: ${dayTrending.slice(0, 5).map(m => m.title || m.name).join(", ")}.
+Top trending this week: ${weekTrending.slice(0, 8).map(m => m.title || m.name).join(", ")}.
+Upcoming: ${weekUpcoming.join(", ") || "none notable"}.
+
+Return JSON only:
+{
+  "headline": "One punchy headline in Chinese (max 30 chars)",
+  "summary": "One paragraph summary in Chinese (max 150 chars)",
+  "topTrends": [{ "rank": 1, "title": "...", "category": "movie" }],
+  "industryHighlights": [{ "text": "short highlight in Chinese", "en": "same in English" }]
+}
+
+Top 3-5 trends. 3-5 highlights.`;
+
+    const res = await fetch("https://api.deepseek.com/chat/completions", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 1500 }),
+    });
+    if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
+    const data = await res.json();
+    const raw = data?.choices?.[0]?.message?.content || "";
+    const parsed = JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim());
+    return { date: today, ...parsed };
+  } catch (e) {
+    console.warn("Digest failed:", e.message);
+    return { date: today, headline: "", summary: "", topTrends: [], industryHighlights: [] };
+  }
+}
+
+// ── Hidden Gems ──
+async function handleIntelHiddenGems(env) {
+  const token = env.TMDB_API_READ_ACCESS_TOKEN;
+  const today = new Date().toISOString().split("T")[0];
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 86400000).toISOString().split("T")[0];
+
+  const nowPlaying = await intelFetchTMDB(token, "/movie/now_playing", { region: "US" });
+
+  // Filter: last 30 days, rating >= 7.0, votes >= 100, sort by popularity ascending
+  const candidates = nowPlaying
+    .filter(m => m.release_date && m.release_date >= thirtyDaysAgo && m.release_date <= today)
+    .filter(m => (m.vote_average || 0) >= 7.0)
+    .filter(m => (m.vote_count || 0) >= 100)
+    .sort((a, b) => (a.popularity || 999) - (b.popularity || 999))
+    .slice(0, 15)
+    .map(m => intelNormalizeMovie(m));
+
+  if (!candidates.length || !env.DEEPSEEK_API_KEY) {
+    return { updated: today, gems: [] };
+  }
+
+  try {
+    const prompt = `You are a film curator selecting Hidden Gems. From these recently released movies, select 4-6 that deserve more attention. Prioritize quality and uniqueness.
+
+For each selected gem provide: "why" (one-line Chinese recommendation), "whyEn" (English), "aiScore" (0-10), "tags" (3-5), "audience" (Chinese), "audienceEn" (English).
+
+Return JSON: { "gems": [{ "index": 0, "why": "...", "whyEn": "...", "aiScore": 8.5, "tags": [...], "audience": "...", "audienceEn": "..." }] }
+
+Movies:\n${JSON.stringify(candidates.map((m, i) => ({ index: i, title: m.title, genre: m.genre, summary: m.summary, rating: m.rating })))}`;
+
+    const res = await fetch("https://api.deepseek.com/chat/completions", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 2000 }),
+    });
+    if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
+    const data = await res.json();
+    const raw = data?.choices?.[0]?.message?.content || "";
+    const parsed = JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim());
+    const gems = (parsed?.gems || []).map(g => {
+      const src = candidates[g.index] || {};
+      return {
+        title: src.title || "",
+        poster: src.poster || "",
+        genre: src.genre || [],
+        rating: src.rating || 0,
+        year: src.year || "",
+        releaseDate: src.releaseDate || "",
+        whyWatch: g.why || "",
+        whyWatchEn: g.whyEn || "",
+        aiScore: g.aiScore || 0,
+        tags: g.tags || [],
+        audience: g.audience || "",
+        audienceEn: g.audienceEn || "",
+      };
+    });
+    return { updated: today, gems };
+  } catch (e) {
+    console.warn("Hidden gems failed:", e.message);
+    return { updated: today, gems: [] };
+  }
+}
+
 // ── Main ──
 export default {
   async fetch(request, env) {
@@ -502,11 +645,13 @@ export default {
 
 
       // ── Intelligence API ──
-      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|trending|coming|weekly|editor)$/);
+      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|trending|coming|weekly|editor|hidden-gems|digest)$/);
       if (intelMatch) {
         const intelHandlers = {
           overview: handleIntelOverview, movies: handleIntelMovies, tv: handleIntelTV,
-          music: handleIntelMusic, trending: handleIntelTrending, coming: handleIntelComing, weekly: handleIntelWeekly, editor: handleIntelEditor,
+          music: handleIntelMusic, trending: handleIntelTrending, coming: handleIntelComing,
+          weekly: handleIntelWeekly, editor: handleIntelEditor, "hidden-gems": handleIntelHiddenGems,
+          digest: handleIntelDigest,
         };
         try {
           const intelData = await intelHandlers[intelMatch[1]](env);
