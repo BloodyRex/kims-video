@@ -65,11 +65,6 @@
     }
   }
 }
-
-
-.intelligence-page.locale-en .intel-title {
-  font-size: 0.7rem !important;
-}
 @media (min-width: 640px) {
   .intelligence-page.locale-en .intel-title {
     font-size: 0.85rem !important;

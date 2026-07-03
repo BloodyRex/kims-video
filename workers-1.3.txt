@@ -382,7 +382,8 @@ async function handleIntelWeekly(env) {
       count: movieCount + tvCount + albumCount,
     }],
   };
-}// ── Main ──
+}
+// ── Main ──
 export default {
   async fetch(request, env) {
     const ALLOWED_ORIGINS = ["https://bloodyrex.xyz", "https://www.bloodyrex.xyz", "https://bloodyrex.github.io", "http://localhost:4173", "http://localhost:5173", "http://localhost:5174"];
