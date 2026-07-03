@@ -223,7 +223,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
             <span className="text-[8px] px-1 bg-black text-white font-bold self-start mb-1">{album.genre}</span>
           )}
           {album.category && (
-            <span className={`text-[8px] px-1.5 py-0.5 self-start mb-1 font-black ${album.category === "global" ? "bg-[#ffff00] text-black" : "bg-gray-200 text-gray-600"}`}>
+            <span className={`text-[8px] px-1.5 py-0.5 self-start mb-1 font-black ${album.category === "global" ? "bg-[#ff00ff] text-white" : "bg-gray-300 text-gray-700"}`}>
               {album.category === "global"
                 ? (locale === "zh" ? "✨ 全球关注" : "✨ GLOBAL")
                 : (locale === "zh" ? "💎 小众佳作" : "💎 NICHE")}

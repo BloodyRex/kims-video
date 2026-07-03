@@ -98,11 +98,11 @@ function intelNormalizeMovie(m, type) {
   return item;
 }
 
-async function intelFetchTMDB(token, path, params) {
+async function intelFetchTMDB(token, path, params, lang) {
   params = params || {};
   const url = new URL(`https://api.themoviedb.org/3${path}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
-  url.searchParams.set("language", "en-US");
+  url.searchParams.set("language", lang || "zh-CN");
   const cacheKey = "intel-" + btoa(url.toString()).slice(0, 40);
   const data = await withCache(cacheKey, async () => {
     const res = await fetch(url, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } });
@@ -128,7 +128,7 @@ async function intelFetchMusicBrainz(dateStr) {
       artist: (r["artist-credit"] || []).map(ac => ac.name || ac.artist?.name || "").join(", "),
       releaseDate: r.date || dateStr,
       year: (r.date || "").slice(0, 4),
-      cover: r.id ? `https://coverartarchive.org/release/${r.id}/front-250` : "",
+      cover: "",
       status: r.status || "",
       country: r.country || "",
       genre: (r["release-group"]?.["primary-type"] || ""),
@@ -345,9 +345,25 @@ async function handleIntelComing(env) {
 }
 
 async function handleIntelWeekly(env) {
+  const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
   const weekNum = Math.ceil((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 86400000 / 7);
   const weekStart = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+
+  let movieCount = 0, tvCount = 0, albumCount = 0;
+  try {
+    const [nowPlaying, tvAiring, todayMB] = await Promise.all([
+      intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
+      intelFetchTMDB(token, "/tv/airing_today"),
+      intelFetchMusicBrainz(today).catch(() => []),
+    ]);
+    movieCount = nowPlaying.filter(m => m.release_date >= weekAgo).length;
+    tvCount = tvAiring.filter(s => s.first_air_date >= weekAgo).length;
+    albumCount = todayMB.length;
+  } catch (e) {
+    console.warn("Weekly stats failed:", e.message);
+  }
 
   return {
     updated: today,
@@ -356,10 +372,14 @@ async function handleIntelWeekly(env) {
       week: `Week ${weekNum}`,
       weekLabel: `Week ${weekNum}`,
       date: `${weekStart} - ${today}`,
-      title: "Weekly Entertainment Roundup",
-      titleEn: "Weekly Entertainment Roundup",
-      highlights: [{ text: "Global entertainment data compiled from TMDB, MusicBrainz, and DeepSeek AI.", en: "Global entertainment data compiled from TMDB, MusicBrainz, and DeepSeek AI." }],
-      count: 0,
+      title: `本周新增 ${movieCount} 部电影 + ${tvCount} 部剧集 + ${albumCount} 张专辑`,
+      titleEn: `This week: ${movieCount} movies + ${tvCount} TV shows + ${albumCount} albums`,
+      highlights: [
+        { text: `本周新上映 ${movieCount} 部电影`, en: `${movieCount} new movies this week` },
+        { text: `本周首播 ${tvCount} 部剧集`, en: `${tvCount} new TV premieres this week` },
+        { text: `本周发行 ${albumCount} 张专辑`, en: `${albumCount} new albums this week` },
+      ],
+      count: movieCount + tvCount + albumCount,
     }],
   };
 }// ── Main ──
