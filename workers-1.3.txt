@@ -389,6 +389,84 @@ async function handleIntelWeekly(env) {
     }],
   };
 }
+
+// ── AI Spotlight / Editor's Picks ──
+async function handleIntelEditor(env) {
+  const token = env.TMDB_API_READ_ACCESS_TOKEN;
+  const today = new Date().toISOString().split("T")[0];
+
+  if (!env.DEEPSEEK_API_KEY) {
+    return { updated: today, picks: { editorsPick: [], hiddenGem: [], mostAnticipated: [], familyChoice: [], sciFi: [], horror: [], documentary: [] } };
+  }
+
+  try {
+    const [nowPlaying, todayMB] = await Promise.all([
+      intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
+      intelFetchMusicBrainz(today).catch(() => []),
+    ]);
+
+    const todayMovies = nowPlaying.filter(m => m.release_date === today).slice(0, 15).map(m => intelNormalizeMovie(m));
+    const todayAlbums = todayMB.slice(0, 5).map(intelNormalizeAlbum);
+
+    if (!todayMovies.length && !todayAlbums.length) {
+      return { updated: today, picks: { editorsPick: [], hiddenGem: [], mostAnticipated: [], familyChoice: [], sciFi: [], horror: [], documentary: [] } };
+    }
+
+    const movieList = todayMovies.map((m, i) => ({ index: i, title: m.title, genre: m.genre, summary: m.summary }));
+    const albumList = todayAlbums.map((a, i) => ({ index: i + 100, title: a.title, artist: a.artist, genre: a.genre }));
+
+        const prompt = "You are an entertainment editor. Today's new movies:\n" + JSON.stringify(movieList) + "\n\nNew albums:\n" + JSON.stringify(albumList) + "\n\nSelect 1-2 items per category. Return ONLY valid JSON:\n{\n  \"editorsPick\": [{ \"sourceIndex\": 0, \"title\": \"\", \"whyWatch\": \"one-line\", \"whyWatchEn\": \"one-line in English\", \"audience\": \"\", \"audienceEn\": \"\", \"aiScore\": 8.5, \"confidence\": 0.85, \"tags\": [] }],\n  \"hiddenGem\": [...],\n  \"mostAnticipated\": [...],\n  \"familyChoice\": [...],\n  \"sciFi\": [...],\n  \"horror\": [...],\n  \"documentary\": [...]\n}";
+    const res = await fetch("https://api.deepseek.com/chat/completions", {
+      method: "POST",
+      headers: { Authorization: "Bearer " + env.DEEPSEEK_API_KEY, "Content-Type": "application/json" },
+      body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.8, max_tokens: 3000 }),
+    });
+
+    if (!res.ok) throw new Error("DeepSeek: " + res.status);
+    const data = await res.json();
+    const raw = data?.choices?.[0]?.message?.content || "";
+    const parsed = JSON.parse(raw.replace(/`{3}json/g, "").replace(/`{3}/g, "").trim());
+
+    const sources = [];
+    todayMovies.forEach((m, i) => sources[i] = m);
+    todayAlbums.forEach((a, i) => sources[100 + i] = a);
+
+    const resolve = (items) => (items || []).map(p => {
+      const src = sources[p.sourceIndex] || {};
+      return {
+        title: p.title || src.title || "",
+        poster: src.poster || src.cover || "",
+        genre: Array.isArray(src.genre) ? src.genre : (p.tags || []),
+        summary: src.summary || "",
+        rating: src.rating || 0,
+        aiScore: p.aiScore || 0,
+        confidence: p.confidence || 0.7,
+        whyWatch: p.whyWatch || "",
+        whyWatchEn: p.whyWatchEn || "",
+        audience: p.audience || "",
+        audienceEn: p.audienceEn || "",
+        tags: p.tags || [],
+      };
+    });
+
+    return {
+      updated: today,
+      picks: {
+        editorsPick: resolve(parsed.editorsPick),
+        hiddenGem: resolve(parsed.hiddenGem),
+        mostAnticipated: resolve(parsed.mostAnticipated),
+        familyChoice: resolve(parsed.familyChoice),
+        sciFi: resolve(parsed.sciFi),
+        horror: resolve(parsed.horror),
+        documentary: resolve(parsed.documentary),
+      },
+    };
+  } catch (e) {
+    console.warn("Editor gen failed:", e.message);
+    return { updated: today, picks: { editorsPick: [], hiddenGem: [], mostAnticipated: [], familyChoice: [], sciFi: [], horror: [], documentary: [] } };
+  }
+}
+
 // ── Main ──
 export default {
   async fetch(request, env) {
@@ -424,11 +502,11 @@ export default {
 
 
       // ── Intelligence API ──
-      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|trending|coming|weekly)$/);
+      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|trending|coming|weekly|editor)$/);
       if (intelMatch) {
         const intelHandlers = {
           overview: handleIntelOverview, movies: handleIntelMovies, tv: handleIntelTV,
-          music: handleIntelMusic, trending: handleIntelTrending, coming: handleIntelComing, weekly: handleIntelWeekly,
+          music: handleIntelMusic, trending: handleIntelTrending, coming: handleIntelComing, weekly: handleIntelWeekly, editor: handleIntelEditor,
         };
         try {
           const intelData = await intelHandlers[intelMatch[1]](env);
