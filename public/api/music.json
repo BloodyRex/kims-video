@@ -12,21 +12,49 @@
       "genre": "流行",
       "tags": [
         "流行",
-        "梦幻流行",
+        "嘻哈",
         "实验",
-        "另类"
+        "自传"
       ],
       "aiScore": 9,
       "tagsEn": [
         "Pop",
-        "Dream Pop",
+        "Hip-Hop",
         "Experimental",
-        "Alternative"
+        "Autobiographical"
       ],
-      "highlight": "Lil Nas X未完成的梦幻流行之作，充满大胆创意与情感张力。",
-      "highlightEn": "Lil Nas X's unfinished dream-pop opus, brimming with bold creativity and emotional tension.",
-      "summary": "Lil Nas X的未完成专辑，融合流行与梦幻元素，展现其不拘一格的音乐视野。",
-      "summaryEn": "An unfinished album by Lil Nas X, blending pop and dreamy elements, showcasing his eclectic musical vision.",
+      "highlight": "Lil Nas X 未完成的自传体流行巨作",
+      "highlightEn": "Lil Nas X's unfinished autobiographical pop masterpiece",
+      "summary": "Lil Nas X 在《DREAMBOY》中融合流行与嘻哈，以未完成的形式呈现个人成长与艺术探索，充满情感张力。",
+      "summaryEn": "In 'DREAMBOY', Lil Nas X blends pop and hip-hop, presenting personal growth and artistic exploration in an unfinished form, full of emotional tension.",
+      "category": "global"
+    },
+    {
+      "mbid": "27e1f99d-1be6-4edd-b92b-273d04559d53",
+      "title": "KL7",
+      "artist": "Kendrick Lamar",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/27e1f99d-1be6-4edd-b92b-273d04559d53/front-250.jpg",
+      "country": "XW",
+      "genre": "嘻哈",
+      "tags": [
+        "嘻哈",
+        "说唱",
+        "政治",
+        "叙事"
+      ],
+      "aiScore": 9.5,
+      "tagsEn": [
+        "Hip-Hop",
+        "Rap",
+        "Political",
+        "Narrative"
+      ],
+      "highlight": "Kendrick Lamar 的深度社会寓言",
+      "highlightEn": "Kendrick Lamar's profound social allegory",
+      "summary": "《KL7》延续 Kendrick Lamar 对社会议题的犀利剖析，节奏复杂，歌词充满隐喻，是当代嘻哈的里程碑。",
+      "summaryEn": "'KL7' continues Kendrick Lamar's sharp analysis of social issues, with complex rhythms and metaphorical lyrics, a milestone in contemporary hip-hop.",
       "category": "global"
     },
     {
@@ -41,21 +69,19 @@
       "tags": [
         "电子",
         "氛围",
-        "新世纪",
-        "交响"
+        "新世纪"
       ],
-      "aiScore": 8.5,
+      "aiScore": 8,
       "tagsEn": [
         "Electronic",
         "Ambient",
-        "New Age",
-        "Symphonic"
+        "New Age"
       ],
-      "highlight": "Schiller的电子交响诗篇，营造宏大的听觉宇宙。",
-      "highlightEn": "Schiller's electronic symphonic poem, creating a vast auditory universe.",
-      "summary": "德国电子音乐家Schiller的新专辑，以华丽编曲和深邃氛围构建沉浸式体验。",
-      "summaryEn": "New album by German electronic musician Schiller, offering an immersive experience with lush arrangements and deep atmospheres.",
-      "category": "global"
+      "highlight": "Schiller 的电子氛围之旅",
+      "highlightEn": "Schiller's electronic ambient journey",
+      "summary": "《Euphoria》是 Schiller 标志性的电子氛围专辑，空灵旋律与节奏交织，营造沉浸式听觉体验。",
+      "summaryEn": "'Euphoria' is Schiller's signature electronic ambient album, intertwining ethereal melodies and rhythms for an immersive listening experience.",
+      "category": "niche"
     },
     {
       "mbid": "34d3d1fe-7944-461f-a0c9-7d2104441109",
@@ -65,24 +91,80 @@
       "year": "2026",
       "cover": "",
       "country": "FR",
-      "genre": "电子",
+      "genre": "合成器流行",
       "tags": [
+        "合成器流行",
         "电子",
-        "法国",
         "梦幻",
-        "合成器"
+        "法国"
+      ],
+      "aiScore": 7.5,
+      "tagsEn": [
+        "Synth-pop",
+        "Electronic",
+        "Dreamy",
+        "French"
+      ],
+      "highlight": "Pierre Schott 的梦幻合成器流行",
+      "highlightEn": "Pierre Schott's dreamy synth-pop",
+      "summary": "法国音乐人 Pierre Schott 的《Electric Fantasy》融合复古合成器与流行旋律，充满浪漫与未来感。",
+      "summaryEn": "French artist Pierre Schott's 'Electric Fantasy' blends retro synths with pop melodies, full of romance and futuristic vibes.",
+      "category": "niche"
+    },
+    {
+      "mbid": "809b9fbd-9dca-4327-bc33-a00df0850431",
+      "title": "Galaxia Tropical",
+      "artist": "Ranil Y Su Conjunto Tropical",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/809b9fbd-9dca-4327-bc33-a00df0850431/front-250.jpg",
+      "country": "DE",
+      "genre": "热带",
+      "tags": [
+        "热带",
+        "拉丁",
+        "世界音乐",
+        "德国"
+      ],
+      "aiScore": 7,
+      "tagsEn": [
+        "Tropical",
+        "Latin",
+        "World Music",
+        "German"
+      ],
+      "highlight": "Ranil 的德式热带律动",
+      "highlightEn": "Ranil's German tropical grooves",
+      "summary": "《Galaxia Tropical》将拉丁节奏与德国制作结合，热情洋溢，适合舞池与夏日。",
+      "summaryEn": "'Galaxia Tropical' combines Latin rhythms with German production, exuberant and perfect for dance floors and summer.",
+      "category": "niche"
+    },
+    {
+      "mbid": "af4ece5b-3174-426d-ad92-45090ab35b5e",
+      "title": "Eingenordet",
+      "artist": "Versengold",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/af4ece5b-3174-426d-ad92-45090ab35b5e/front-250.jpg",
+      "country": "DE",
+      "genre": "民谣金属",
+      "tags": [
+        "民谣金属",
+        "德国",
+        "中世纪",
+        "力量"
       ],
       "aiScore": 8,
       "tagsEn": [
-        "Electronic",
-        "French",
-        "Dreamy",
-        "Synth"
+        "Folk Metal",
+        "German",
+        "Medieval",
+        "Power"
       ],
-      "highlight": "Pierre Schott的电子幻想曲，法式浪漫与科技感的碰撞。",
-      "highlightEn": "Pierre Schott's electronic fantasy, a collision of French romance and techno feel.",
-      "summary": "法国制作人Pierre Schott的专辑，融合梦幻旋律与电子节拍，充满浪漫气息。",
-      "summaryEn": "Album by French producer Pierre Schott, blending dreamy melodies with electronic beats, full of romance.",
+      "highlight": "Versengold 的德式民谣金属",
+      "highlightEn": "Versengold's German folk metal",
+      "summary": "《Eingenordet》是 Versengold 融合民谣与金属的力作，史诗旋律与强劲节奏交织，充满北欧神话色彩。",
+      "summaryEn": "'Eingenordet' is Versengold's fusion of folk and metal, with epic melodies and powerful rhythms, steeped in Norse mythology.",
       "category": "niche"
     },
     {
@@ -96,106 +178,50 @@
       "genre": "民谣",
       "tags": [
         "民谣",
+        "摇滚",
         "现场",
-        "经典",
-        "怀旧"
+        "经典"
       ],
       "aiScore": 8.5,
       "tagsEn": [
         "Folk",
-        "Live",
-        "Classic",
-        "Nostalgic"
-      ],
-      "highlight": "Don McLean 1975年曼彻斯特现场，经典民谣的珍贵录音。",
-      "highlightEn": "Don McLean's 1975 Manchester live recording, a precious piece of classic folk.",
-      "summary": "Don McLean 1975年曼彻斯特现场专辑，收录《American Pie》等经典曲目，温暖怀旧。",
-      "summaryEn": "Live album from Don McLean's 1975 Manchester concert, featuring classics like 'American Pie', warm and nostalgic.",
-      "category": "global"
-    },
-    {
-      "mbid": "af4ece5b-3174-426d-ad92-45090ab35b5e",
-      "title": "Eingenordet",
-      "artist": "Versengold",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "https://coverartarchive.org/release/af4ece5b-3174-426d-ad92-45090ab35b5e/front-250.jpg",
-      "country": "DE",
-      "genre": "民谣金属",
-      "tags": [
-        "民谣金属",
-        "中世纪",
-        "德国",
-        "摇滚"
-      ],
-      "aiScore": 8,
-      "tagsEn": [
-        "Folk Metal",
-        "Medieval",
-        "German",
-        "Rock"
-      ],
-      "highlight": "Versengold的德国中世纪民谣金属，狂欢与史诗并存。",
-      "highlightEn": "Versengold's German medieval folk metal, where revelry meets epicness.",
-      "summary": "德国乐队Versengold的新专辑，融合中世纪民谣与重金属，节奏强劲，氛围热烈。",
-      "summaryEn": "New album by German band Versengold, blending medieval folk with heavy metal, energetic and intense.",
-      "category": "niche"
-    },
-    {
-      "mbid": "8deaeb34-e6b2-4159-b1de-5896d3e8545a",
-      "title": "The Power Station",
-      "artist": "The Power Station",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "",
-      "country": "XW",
-      "genre": "摇滚",
-      "tags": [
-        "摇滚",
-        "AOR",
-        "80年代",
-        "经典"
-      ],
-      "aiScore": 8,
-      "tagsEn": [
         "Rock",
-        "AOR",
-        "80s",
+        "Live",
         "Classic"
       ],
-      "highlight": "The Power Station同名专辑再版，80年代AOR经典重现。",
-      "highlightEn": "Reissue of The Power Station's self-titled album, a classic 80s AOR revival.",
-      "summary": "超级乐团The Power Station同名专辑，融合放克、摇滚与流行，是80年代标志性声音。",
-      "summaryEn": "Supergroup The Power Station's self-titled album, blending funk, rock, and pop, an iconic 80s sound.",
+      "highlight": "Don McLean 的现场经典重现",
+      "highlightEn": "Don McLean's live classic revisited",
+      "summary": "《Living Free (Live Manchester '75)》收录 Don McLean 1975年曼彻斯特现场，演绎经典歌曲，温暖怀旧。",
+      "summaryEn": "'Living Free (Live Manchester '75)' captures Don McLean's 1975 Manchester concert, performing classic songs with warmth and nostalgia.",
       "category": "global"
     },
     {
-      "mbid": "809b9fbd-9dca-4327-bc33-a00df0850431",
-      "title": "Galaxia Tropical",
-      "artist": "Ranil Y Su Conjunto Tropical",
+      "mbid": "b577931e-be63-4e84-a7b2-e4c0764e9920",
+      "title": "Melodrama",
+      "artist": "LINA",
       "releaseDate": "2026",
       "year": "2026",
-      "cover": "https://coverartarchive.org/release/809b9fbd-9dca-4327-bc33-a00df0850431/front-250.jpg",
-      "country": "DE",
-      "genre": "拉丁",
+      "cover": "https://coverartarchive.org/release/b577931e-be63-4e84-a7b2-e4c0764e9920/front-250.jpg",
+      "country": "XW",
+      "genre": "流行",
       "tags": [
-        "拉丁",
-        "热带",
-        "舞曲",
-        "世界音乐"
+        "流行",
+        "情感",
+        "戏剧",
+        "欧洲"
       ],
       "aiScore": 7.5,
       "tagsEn": [
-        "Latin",
-        "Tropical",
-        "Dance",
-        "World Music"
+        "Pop",
+        "Emotional",
+        "Dramatic",
+        "European"
       ],
-      "highlight": "Ranil Y Su Conjunto Tropical的拉丁热带风情，舞动你的灵魂。",
-      "highlightEn": "Ranil Y Su Conjunto Tropical's Latin tropical vibes to make your soul dance.",
-      "summary": "秘鲁乐队Ranil Y Su Conjunto Tropical的专辑，充满活力的热带节奏与拉丁风情。",
-      "summaryEn": "Album by Peruvian band Ranil Y Su Conjunto Tropical, full of vibrant tropical rhythms and Latin flair.",
-      "category": "niche"
+      "highlight": "LINA 的流行情感戏剧",
+      "highlightEn": "LINA's pop emotional drama",
+      "summary": "《Melodrama》是 LINA 的流行专辑，以戏剧化编曲和真挚歌词探索爱情与自我，感染力强。",
+      "summaryEn": "'Melodrama' is LINA's pop album exploring love and self with dramatic arrangements and heartfelt lyrics, highly infectious.",
+      "category": "global"
     },
     {
       "mbid": "def0724a-e3ba-4348-b30e-06caa81b08f4",
@@ -210,103 +236,75 @@
         "布鲁斯摇滚",
         "现场",
         "吉他",
-        "即兴"
+        "经典"
       ],
       "aiScore": 8,
       "tagsEn": [
         "Blues Rock",
         "Live",
         "Guitar",
-        "Improvisation"
+        "Classic"
       ],
-      "highlight": "Robin Trower美国现场，布鲁斯摇滚的即兴盛宴。",
-      "highlightEn": "Robin Trower's US live album, a blues-rock improvisation feast.",
-      "summary": "Robin Trower的现场专辑，展现其精湛吉他技艺与布鲁斯摇滚的深厚功底。",
-      "summaryEn": "Live album by Robin Trower, showcasing his masterful guitar skills and deep blues-rock roots.",
+      "highlight": "Robin Trower 的布鲁斯摇滚现场",
+      "highlightEn": "Robin Trower's blues rock live",
+      "summary": "《One Moment in Time: Live in the USA》收录 Robin Trower 美国现场，吉他技艺精湛，布鲁斯韵味浓厚。",
+      "summaryEn": "'One Moment in Time: Live in the USA' captures Robin Trower's US concert, showcasing masterful guitar work and deep blues flavor.",
       "category": "niche"
     },
     {
-      "mbid": "8e86979f-a43f-4adf-bde7-333c190ebbd0",
-      "title": "Metal - The Exclusive EP",
-      "artist": "Heavysaurus",
+      "mbid": "8deaeb34-e6b2-4159-b1de-5896d3e8545a",
+      "title": "The Power Station",
+      "artist": "The Power Station",
       "releaseDate": "2026",
       "year": "2026",
-      "cover": "https://coverartarchive.org/release/8e86979f-a43f-4adf-bde7-333c190ebbd0/front-250.jpg",
-      "country": "DE",
-      "genre": "儿童音乐",
-      "tags": [
-        "儿童音乐",
-        "重金属",
-        "芬兰",
-        "幽默"
-      ],
-      "aiScore": 7,
-      "tagsEn": [
-        "Children's Music",
-        "Heavy Metal",
-        "Finnish",
-        "Humorous"
-      ],
-      "highlight": "Heavysaurus的儿童金属EP，恐龙与重金属的奇妙组合。",
-      "highlightEn": "Heavysaurus's kids metal EP, a fantastic combo of dinosaurs and heavy metal.",
-      "summary": "芬兰乐队Heavysaurus的EP，以恐龙为主题，用重金属为孩子们带来欢乐。",
-      "summaryEn": "EP by Finnish band Heavysaurus, dinosaur-themed, bringing joy to kids with heavy metal.",
-      "category": "niche"
-    },
-    {
-      "mbid": "aca4150c-ffa4-4ead-9251-0774aa5db5db",
-      "title": "Warehouse 2026: 7.16.2025 Allianz Amphitheater At Riverfront, Richmond, VA",
-      "artist": "Dave Matthews Band",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "https://coverartarchive.org/release/aca4150c-ffa4-4ead-9251-0774aa5db5db/front-250.jpg",
-      "country": "US",
+      "cover": "",
+      "country": "XW",
       "genre": "摇滚",
       "tags": [
         "摇滚",
-        "现场",
-        "即兴",
-        "美国"
+        "放克",
+        "超级乐队",
+        "80年代"
       ],
-      "aiScore": 8.5,
+      "aiScore": 8,
       "tagsEn": [
         "Rock",
-        "Live",
-        "Improvisation",
-        "American"
+        "Funk",
+        "Supergroup",
+        "80s"
       ],
-      "highlight": "Dave Matthews Band现场专辑，捕捉2025年夏夜的音乐魔力。",
-      "highlightEn": "Dave Matthews Band live album, capturing the musical magic of a summer night in 2025.",
-      "summary": "Dave Matthews Band 2025年现场录音，充满即兴与互动，体现乐队现场魅力。",
-      "summaryEn": "Live recording from Dave Matthews Band in 2025, full of improvisation and interaction, showcasing their live appeal.",
+      "highlight": "The Power Station 的超级乐队回归",
+      "highlightEn": "The Power Station's supergroup return",
+      "summary": "《The Power Station》同名专辑由 Robert Palmer 等成员打造，融合摇滚与放克，经典再现。",
+      "summaryEn": "The Power Station's self-titled album, featuring Robert Palmer and others, blends rock and funk, a classic revival.",
       "category": "global"
     },
     {
-      "mbid": "1bd2c700-5533-4dbd-8b3d-2050c6c7e1c4",
-      "title": "Pause for a moment",
-      "artist": "Dela Hüttner’s SwingThing",
+      "mbid": "5e78e3b8-3b93-4a35-b78f-392bcd508107",
+      "title": "Plays World Hits",
+      "artist": "Michiel van der Kuy",
       "releaseDate": "2026",
       "year": "2026",
-      "cover": "https://coverartarchive.org/release/1bd2c700-5533-4dbd-8b3d-2050c6c7e1c4/front-250.jpg",
-      "country": "CH",
-      "genre": "爵士",
+      "cover": "https://coverartarchive.org/release/5e78e3b8-3b93-4a35-b78f-392bcd508107/front-250.jpg",
+      "country": "US",
+      "genre": "合成器",
       "tags": [
-        "爵士",
-        "摇摆",
-        "瑞士",
-        "复古"
+        "合成器",
+        "电子",
+        "翻奏",
+        "世界"
       ],
-      "aiScore": 7.5,
+      "aiScore": 7,
       "tagsEn": [
-        "Jazz",
-        "Swing",
-        "Swiss",
-        "Retro"
+        "Synth",
+        "Electronic",
+        "Cover",
+        "World"
       ],
-      "highlight": "Dela Hüttner’s SwingThing的爵士摇摆，优雅复古的听觉享受。",
-      "highlightEn": "Dela Hüttner’s SwingThing's jazz swing, an elegant retro auditory pleasure.",
-      "summary": "瑞士爵士乐队Dela Hüttner’s SwingThing的专辑，充满复古摇摆与优雅旋律。",
-      "summaryEn": "Album by Swiss jazz band Dela Hüttner’s SwingThing, full of retro swing and elegant melodies.",
+      "highlight": "Michiel van der Kuy 的合成器世界名曲",
+      "highlightEn": "Michiel van der Kuy's synth world hits",
+      "summary": "《Plays World Hits》是 Michiel van der Kuy 用合成器重新演绎世界名曲，复古电子风味独特。",
+      "summaryEn": "'Plays World Hits' features Michiel van der Kuy reinterpreting world hits with synthesizers, offering a unique retro electronic flavor.",
       "category": "niche"
     }
   ],
@@ -318,22 +316,47 @@
       "releaseDate": "2026",
       "year": "2026",
       "cover": "https://coverartarchive.org/release/a5d5879b-e067-402c-b7da-a4b4468625dc/front-250.jpg",
-      "genre": "梦幻流行",
+      "genre": "流行",
       "tags": [
-        "梦幻流行",
         "流行",
-        "实验"
+        "实验",
+        "嘻哈"
+      ],
+      "aiScore": 9,
+      "tagsEn": [
+        "pop",
+        "experimental",
+        "hip-hop"
+      ],
+      "highlight": "流行巨星Lil Nas X未完成专辑，充满实验性与情感张力",
+      "highlightEn": "Pop superstar Lil Nas X's unfinished album, brimming with experimentation and emotional intensity",
+      "summary": "Lil Nas X的未完成专辑，融合流行、嘻哈与实验元素，展现其大胆艺术探索。",
+      "summaryEn": "Lil Nas X's unfinished album blends pop, hip-hop, and experimental elements, showcasing his bold artistic exploration.",
+      "category": "global"
+    },
+    {
+      "mbid": "8deaeb34-e6b2-4159-b1de-5896d3e8545a",
+      "title": "The Power Station",
+      "artist": "The Power Station",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "",
+      "genre": "摇滚",
+      "tags": [
+        "摇滚",
+        "经典",
+        "超级组合"
       ],
       "aiScore": 8.5,
       "tagsEn": [
-        "dream-pop",
-        "pop",
-        "experimental"
+        "rock",
+        "classic",
+        "supergroup"
       ],
-      "highlight": "未完成的梦幻流行，Lil Nas X的私密日记",
-      "highlightEn": "Unfinished dream-pop, Lil Nas X's intimate diary",
-      "summary": "Lil Nas X的未完成专辑，融合梦幻流行与实验元素，展现其私密情感与艺术探索。",
-      "summaryEn": "Lil Nas X's unfinished album blends dream-pop with experimental elements, revealing intimate emotions and artistic exploration.",
+      "highlight": "经典摇滚乐队同名专辑，80年代超级组合重现",
+      "highlightEn": "Classic rock band's self-titled album, a supergroup from the 80s returns",
+      "summary": "The Power Station同名专辑，由Chic成员与Robert Palmer等组成，融合放克与硬摇滚。",
+      "summaryEn": "The Power Station's self-titled album, featuring members of Chic and Robert Palmer, blends funk with hard rock.",
       "category": "global"
     },
     {
@@ -347,19 +370,94 @@
       "tags": [
         "电子",
         "氛围",
-        "迷幻"
+        "德国"
       ],
       "aiScore": 8,
       "tagsEn": [
         "electronic",
         "ambient",
-        "psychedelic"
+        "German"
       ],
-      "highlight": "德国电子音乐大师的迷幻氛围之旅",
-      "highlightEn": "German electronic maestro's psychedelic ambient journey",
-      "summary": "Schiller的新专辑延续其标志性的氛围电子风格，营造迷幻而深邃的听觉空间。",
-      "summaryEn": "Schiller's new album continues his signature ambient electronic style, creating a psychedelic and profound soundscape.",
+      "highlight": "德国电子音乐大师Schiller新作，营造迷幻氛围",
+      "highlightEn": "German electronic maestro Schiller's new work, creating a psychedelic atmosphere",
+      "summary": "Schiller的《Euphoria》延续其标志性的氛围电子风格，适合沉浸式聆听。",
+      "summaryEn": "Schiller's 'Euphoria' continues his signature ambient electronic style, perfect for immersive listening.",
       "category": "global"
+    },
+    {
+      "mbid": "9cf8201a-e9ef-4bfd-8d69-cfef4b977b31",
+      "title": "IGUATU CITY, Pt. 2",
+      "artist": "GUSTAVOEGATOTV",
+      "releaseDate": "2026-08-01",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/9cf8201a-e9ef-4bfd-8d69-cfef4b977b31/front-250.jpg",
+      "genre": "巴西",
+      "tags": [
+        "巴西",
+        "地下",
+        "实验"
+      ],
+      "aiScore": 7.5,
+      "tagsEn": [
+        "Brazilian",
+        "underground",
+        "experimental"
+      ],
+      "highlight": "巴西地下音乐人GUSTAVOEGATOTV的单曲，展现本土节奏",
+      "highlightEn": "Brazilian underground artist GUSTAVOEGATOTV's single, showcasing local rhythms",
+      "summary": "来自巴西的GUSTAVOEGATOTV带来单曲，融合当地音乐元素与实验制作。",
+      "summaryEn": "GUSTAVOEGATOTV from Brazil delivers a single blending local musical elements with experimental production.",
+      "category": "niche"
+    },
+    {
+      "mbid": "4ae43dd1-48f1-4b69-a194-67c4cd65e675",
+      "title": "Utan Ok Innan",
+      "artist": "Vígundr",
+      "releaseDate": "2026-08-01",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/4ae43dd1-48f1-4b69-a194-67c4cd65e675/front-250.jpg",
+      "genre": "金属",
+      "tags": [
+        "金属",
+        "黑暗",
+        "北欧"
+      ],
+      "aiScore": 7,
+      "tagsEn": [
+        "metal",
+        "dark",
+        "Nordic"
+      ],
+      "highlight": "Vígundr金属单曲，北欧黑暗氛围",
+      "highlightEn": "Vígundr's metal single, Nordic dark atmosphere",
+      "summary": "Vígundr的《Utan Ok Innan》充满北欧黑暗金属的粗粝与原始力量。",
+      "summaryEn": "Vígundr's 'Utan Ok Innan' is full of the raw and primal power of Nordic black metal.",
+      "category": "niche"
+    },
+    {
+      "mbid": "af4ece5b-3174-426d-ad92-45090ab35b5e",
+      "title": "Eingenordet",
+      "artist": "Versengold",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/af4ece5b-3174-426d-ad92-45090ab35b5e/front-250.jpg",
+      "genre": "民谣金属",
+      "tags": [
+        "民谣金属",
+        "德国",
+        "史诗"
+      ],
+      "aiScore": 7.5,
+      "tagsEn": [
+        "folk metal",
+        "German",
+        "epic"
+      ],
+      "highlight": "德国民谣金属Versengold新专辑，史诗叙事",
+      "highlightEn": "German folk metal Versengold's new album, epic storytelling",
+      "summary": "Versengold的《Eingenordet》融合民谣旋律与重金属，讲述北方传奇。",
+      "summaryEn": "Versengold's 'Eingenordet' blends folk melodies with heavy metal, telling northern legends.",
+      "category": "niche"
     },
     {
       "mbid": "c073640e-6385-4815-b43c-b99f75a8df5c",
@@ -368,23 +466,123 @@
       "releaseDate": "2026",
       "year": "2026",
       "cover": "https://coverartarchive.org/release/c073640e-6385-4815-b43c-b99f75a8df5c/front-250.jpg",
-      "genre": "民谣",
+      "genre": "现场",
       "tags": [
-        "民谣",
         "现场",
-        "经典"
+        "经典",
+        "民谣"
       ],
       "aiScore": 8,
       "tagsEn": [
-        "folk",
         "live",
-        "classic"
+        "classic",
+        "folk"
       ],
-      "highlight": "Don McLean 1975年曼彻斯特现场，经典民谣的永恒瞬间",
-      "highlightEn": "Don McLean's 1975 Manchester live, timeless folk moments",
-      "summary": "Don McLean的1975年曼彻斯特现场录音，收录其经典曲目，展现民谣大师的舞台魅力。",
-      "summaryEn": "Live recording of Don McLean in Manchester 1975, featuring his classic songs and showcasing the folk master's stage charisma.",
+      "highlight": "Don McLean 1975年曼彻斯特现场，经典重现",
+      "highlightEn": "Don McLean's 1975 Manchester live, classic revisited",
+      "summary": "Don McLean 1975年曼彻斯特现场专辑，收录《American Pie》等经典。",
+      "summaryEn": "Don McLean's 1975 Manchester live album features classics like 'American Pie'.",
       "category": "global"
+    },
+    {
+      "mbid": "a9348826-6b9b-4475-a645-2f999d3df7dc",
+      "title": "could never forget",
+      "artist": "kkaydes",
+      "releaseDate": "2026-07-12",
+      "year": "2026",
+      "cover": "",
+      "genre": "氛围",
+      "tags": [
+        "氛围",
+        "低保真",
+        "电子"
+      ],
+      "aiScore": 7,
+      "tagsEn": [
+        "ambient",
+        "lo-fi",
+        "electronic"
+      ],
+      "highlight": "kkaydes全新专辑，氛围电子与低保真融合",
+      "highlightEn": "kkaydes' new album, blending ambient electronic with lo-fi",
+      "summary": "kkaydes的《could never forget》营造梦幻低保真氛围，适合放松聆听。",
+      "summaryEn": "kkaydes' 'could never forget' creates a dreamy lo-fi atmosphere, perfect for relaxation.",
+      "category": "niche"
+    },
+    {
+      "mbid": "b50b8d66-4eed-4f2a-9b6e-b9a07ec29096",
+      "title": "Outroom",
+      "artist": "X - Tram",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/b50b8d66-4eed-4f2a-9b6e-b9a07ec29096/front-250.jpg",
+      "genre": "实验",
+      "tags": [
+        "实验",
+        "前卫",
+        "噪音"
+      ],
+      "aiScore": 6.5,
+      "tagsEn": [
+        "experimental",
+        "avant-garde",
+        "noise"
+      ],
+      "highlight": "X - Tram的实验专辑，挑战听觉边界",
+      "highlightEn": "X - Tram's experimental album, pushing auditory boundaries",
+      "summary": "X - Tram的《Outroom》以前卫噪音实验挑战传统音乐结构。",
+      "summaryEn": "X - Tram's 'Outroom' challenges traditional musical structures with avant-garde noise experiments.",
+      "category": "niche"
+    },
+    {
+      "mbid": "def0724a-e3ba-4348-b30e-06caa81b08f4",
+      "title": "One Moment in Time: Live in the USA",
+      "artist": "Robin Trower",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/def0724a-e3ba-4348-b30e-06caa81b08f4/front-250.jpg",
+      "genre": "蓝调摇滚",
+      "tags": [
+        "蓝调摇滚",
+        "现场",
+        "吉他"
+      ],
+      "aiScore": 8,
+      "tagsEn": [
+        "blues-rock",
+        "live",
+        "guitar"
+      ],
+      "highlight": "Robin Trower美国现场，蓝调摇滚大师风采",
+      "highlightEn": "Robin Trower live in the USA, blues-rock mastery",
+      "summary": "Robin Trower美国现场专辑，展现其精湛的蓝调摇滚吉他技艺。",
+      "summaryEn": "Robin Trower's live album in the USA showcases his masterful blues-rock guitar skills.",
+      "category": "global"
+    },
+    {
+      "mbid": "54226f2a-385d-4d9f-8c03-f37d2668227e",
+      "title": "Shion. E.P",
+      "artist": "Rudo",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/54226f2a-385d-4d9f-8c03-f37d2668227e/front-250.jpg",
+      "genre": "电子",
+      "tags": [
+        "电子",
+        "氛围",
+        "实验"
+      ],
+      "aiScore": 6.5,
+      "tagsEn": [
+        "electronic",
+        "ambient",
+        "experimental"
+      ],
+      "highlight": "Rudo的EP《Shion.》，氛围电子与节奏实验",
+      "highlightEn": "Rudo's EP 'Shion.', ambient electronic with rhythmic experimentation",
+      "summary": "Rudo的EP融合氛围电子与独特节奏，适合探索性聆听。",
+      "summaryEn": "Rudo's EP blends ambient electronics with unique rhythms, suitable for exploratory listening.",
+      "category": "niche"
     },
     {
       "mbid": "f266bb87-57dd-470f-bb79-97e7eb47392d",
@@ -397,199 +595,50 @@
       "tags": [
         "民谣",
         "合作",
-        "温暖"
+        "美国"
       ],
       "aiScore": 7.5,
       "tagsEn": [
         "folk",
         "collaboration",
-        "warm"
+        "American"
       ],
-      "highlight": "两位民谣老将的温暖合作，友谊与音乐的交织",
-      "highlightEn": "Warm collaboration between two folk veterans, interweaving friendship and music",
-      "summary": "John McCutcheon与Tom Paxton的合作专辑，充满温暖的民谣旋律与真挚的情感交流。",
-      "summaryEn": "Collaboration album between John McCutcheon and Tom Paxton, filled with warm folk melodies and sincere emotional exchange.",
+      "highlight": "John McCutcheon与Tom Paxton合作专辑，民谣传奇联手",
+      "highlightEn": "John McCutcheon and Tom Paxton collaboration, folk legends unite",
+      "summary": "两位民谣传奇John McCutcheon与Tom Paxton的合作专辑，温暖而富有故事性。",
+      "summaryEn": "A collaboration album by two folk legends John McCutcheon and Tom Paxton, warm and storytelling.",
       "category": "global"
-    },
-    {
-      "mbid": "af4ece5b-3174-426d-ad92-45090ab35b5e",
-      "title": "Eingenordet",
-      "artist": "Versengold",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "https://coverartarchive.org/release/af4ece5b-3174-426d-ad92-45090ab35b5e/front-250.jpg",
-      "genre": "中世纪民谣金属",
-      "tags": [
-        "中世纪民谣金属",
-        "北欧",
-        "史诗"
-      ],
-      "aiScore": 7.5,
-      "tagsEn": [
-        "medieval folk metal",
-        "Norse",
-        "epic"
-      ],
-      "highlight": "德国中世纪民谣金属的北欧神话篇章",
-      "highlightEn": "German medieval folk metal's Norse mythology chapter",
-      "summary": "Versengold新专辑以北欧神话为主题，融合中世纪民谣与重金属，营造史诗般的听觉体验。",
-      "summaryEn": "Versengold's new album themed on Norse mythology, blending medieval folk with heavy metal for an epic auditory experience.",
-      "category": "niche"
-    },
-    {
-      "mbid": "4ae43dd1-48f1-4b69-a194-67c4cd65e675",
-      "title": "Utan Ok Innan",
-      "artist": "Vígundr",
-      "releaseDate": "2026-08-01",
-      "year": "2026",
-      "cover": "https://coverartarchive.org/release/4ae43dd1-48f1-4b69-a194-67c4cd65e675/front-250.jpg",
-      "genre": "黑金属",
-      "tags": [
-        "黑金属",
-        "氛围",
-        "极端"
-      ],
-      "aiScore": 7,
-      "tagsEn": [
-        "black metal",
-        "atmospheric",
-        "extreme"
-      ],
-      "highlight": "神秘黑金属单曲，冰冷氛围中的暴烈嘶吼",
-      "highlightEn": "Mysterious black metal single, violent screams in icy atmosphere",
-      "summary": "Vígundr的单曲营造冰冷而暴烈的黑金属氛围，适合极端金属爱好者。",
-      "summaryEn": "Vígundr's single creates an icy and violent black metal atmosphere, suitable for extreme metal fans.",
-      "category": "niche"
-    },
-    {
-      "mbid": "809b9fbd-9dca-4327-bc33-a00df0850431",
-      "title": "Galaxia Tropical",
-      "artist": "Ranil Y Su Conjunto Tropical",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "https://coverartarchive.org/release/809b9fbd-9dca-4327-bc33-a00df0850431/front-250.jpg",
-      "genre": "坎比亚",
-      "tags": [
-        "坎比亚",
-        "热带",
-        "拉丁"
-      ],
-      "aiScore": 7.5,
-      "tagsEn": [
-        "cumbia",
-        "tropical",
-        "Latin"
-      ],
-      "highlight": "秘鲁热带坎比亚的复古律动，南美阳光之音",
-      "highlightEn": "Peruvian tropical cumbia's retro groove, South American sunny sound",
-      "summary": "Ranil Y Su Conjunto Tropical带来纯正的秘鲁热带坎比亚，充满复古律动与阳光气息。",
-      "summaryEn": "Ranil Y Su Conjunto Tropical delivers authentic Peruvian tropical cumbia, full of retro groove and sunny vibes.",
-      "category": "niche"
-    },
-    {
-      "mbid": "8deaeb34-e6b2-4159-b1de-5896d3e8545a",
-      "title": "The Power Station",
-      "artist": "The Power Station",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "",
-      "genre": "放克摇滚",
-      "tags": [
-        "放克摇滚",
-        "80年代",
-        "超级乐队"
-      ],
-      "aiScore": 8,
-      "tagsEn": [
-        "funk rock",
-        "80s",
-        "supergroup"
-      ],
-      "highlight": "80年代超级乐队同名专辑，放克摇滚的黄金时代",
-      "highlightEn": "80s supergroup's self-titled album, golden age of funk rock",
-      "summary": "The Power Station的同名专辑是80年代放克摇滚的经典之作，集结多位音乐天才，充满能量与律动。",
-      "summaryEn": "The Power Station's self-titled album is a classic of 80s funk rock, featuring multiple musical talents, full of energy and groove.",
-      "category": "global"
-    },
-    {
-      "mbid": "9bd2a48e-5a93-4fbf-84ba-bb5149a62ab8",
-      "title": "Romance De La Venganza",
-      "artist": "Krystal Martínez-Rodríguez",
-      "releaseDate": "2026-07-17",
-      "year": "2026",
-      "cover": "",
-      "genre": "拉丁",
-      "tags": [
-        "拉丁",
-        "浪漫",
-        "复仇",
-        "戏剧"
-      ],
-      "aiScore": 7,
-      "tagsEn": [
-        "Latin",
-        "romantic",
-        "revenge",
-        "dramatic"
-      ],
-      "highlight": "拉丁复仇浪漫，传统与现代的激情碰撞",
-      "highlightEn": "Latin revenge romance, passionate clash of tradition and modernity",
-      "summary": "Krystal Martínez-Rodríguez的专辑融合拉丁传统与现代元素，讲述复仇与浪漫的故事，戏剧性十足。",
-      "summaryEn": "Krystal Martínez-Rodríguez's album blends Latin tradition and modernity, telling a story of revenge and romance with full drama.",
-      "category": "niche"
-    },
-    {
-      "mbid": "def0724a-e3ba-4348-b30e-06caa81b08f4",
-      "title": "One Moment in Time: Live in the USA",
-      "artist": "Robin Trower",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "https://coverartarchive.org/release/def0724a-e3ba-4348-b30e-06caa81b08f4/front-250.jpg",
-      "genre": "布鲁斯摇滚",
-      "tags": [
-        "布鲁斯摇滚",
-        "现场",
-        "吉他"
-      ],
-      "aiScore": 8,
-      "tagsEn": [
-        "blues rock",
-        "live",
-        "guitar"
-      ],
-      "highlight": "Robin Trower的现场吉他盛宴，布鲁斯摇滚的即兴火花",
-      "highlightEn": "Robin Trower's live guitar feast, blues rock improvisation sparks",
-      "summary": "Robin Trower的美国现场专辑展现其精湛的吉他技艺与布鲁斯摇滚的即兴魅力，乐迷必收。",
-      "summaryEn": "Robin Trower's live album in the USA showcases his masterful guitar skills and the improvisational charm of blues rock, a must-have for fans.",
-      "category": "global"
-    },
-    {
-      "mbid": "a9348826-6b9b-4475-a645-2f999d3df7dc",
-      "title": "could never forget",
-      "artist": "kkaydes",
-      "releaseDate": "2026-07-12",
-      "year": "2026",
-      "cover": "",
-      "genre": "电子",
-      "tags": [
-        "电子",
-        "梦幻",
-        "氛围"
-      ],
-      "aiScore": 7.5,
-      "tagsEn": [
-        "electronic",
-        "dreamy",
-        "ambient"
-      ],
-      "highlight": "kkaydes的梦幻电子，迷离氛围中的情感漂流",
-      "highlightEn": "kkaydes' dreamy electronic, emotional drift in hazy atmosphere",
-      "summary": "kkaydes的专辑营造迷离梦幻的电子氛围，适合深夜聆听，感受情感的细腻漂流。",
-      "summaryEn": "kkaydes' album creates a hazy dreamy electronic atmosphere, perfect for late-night listening, experiencing delicate emotional drift.",
-      "category": "niche"
     }
   ],
   "trending": [
+    {
+      "mbid": "27e1f99d-1be6-4edd-b92b-273d04559d53",
+      "title": "KL7",
+      "artist": "Kendrick Lamar",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/27e1f99d-1be6-4edd-b92b-273d04559d53/front-250.jpg",
+      "country": "XW",
+      "genre": "嘻哈",
+      "tags": [
+        "嘻哈",
+        "说唱",
+        "政治",
+        "叙事"
+      ],
+      "aiScore": 9.5,
+      "tagsEn": [
+        "Hip-Hop",
+        "Rap",
+        "Political",
+        "Narrative"
+      ],
+      "highlight": "Kendrick Lamar 的深度社会寓言",
+      "highlightEn": "Kendrick Lamar's profound social allegory",
+      "summary": "《KL7》延续 Kendrick Lamar 对社会议题的犀利剖析，节奏复杂，歌词充满隐喻，是当代嘻哈的里程碑。",
+      "summaryEn": "'KL7' continues Kendrick Lamar's sharp analysis of social issues, with complex rhythms and metaphorical lyrics, a milestone in contemporary hip-hop.",
+      "category": "global"
+    },
     {
       "mbid": "a5d5879b-e067-402c-b7da-a4b4468625dc",
       "title": "DREAMBOY (UNFINISHED)",
@@ -601,21 +650,49 @@
       "genre": "流行",
       "tags": [
         "流行",
-        "梦幻流行",
+        "嘻哈",
         "实验",
-        "另类"
+        "自传"
       ],
       "aiScore": 9,
       "tagsEn": [
         "Pop",
-        "Dream Pop",
+        "Hip-Hop",
         "Experimental",
-        "Alternative"
+        "Autobiographical"
       ],
-      "highlight": "Lil Nas X未完成的梦幻流行之作，充满大胆创意与情感张力。",
-      "highlightEn": "Lil Nas X's unfinished dream-pop opus, brimming with bold creativity and emotional tension.",
-      "summary": "Lil Nas X的未完成专辑，融合流行与梦幻元素，展现其不拘一格的音乐视野。",
-      "summaryEn": "An unfinished album by Lil Nas X, blending pop and dreamy elements, showcasing his eclectic musical vision.",
+      "highlight": "Lil Nas X 未完成的自传体流行巨作",
+      "highlightEn": "Lil Nas X's unfinished autobiographical pop masterpiece",
+      "summary": "Lil Nas X 在《DREAMBOY》中融合流行与嘻哈，以未完成的形式呈现个人成长与艺术探索，充满情感张力。",
+      "summaryEn": "In 'DREAMBOY', Lil Nas X blends pop and hip-hop, presenting personal growth and artistic exploration in an unfinished form, full of emotional tension.",
+      "category": "global"
+    },
+    {
+      "mbid": "c073640e-6385-4815-b43c-b99f75a8df5c",
+      "title": "Living Free (Live Manchester '75)",
+      "artist": "Don McLean",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/c073640e-6385-4815-b43c-b99f75a8df5c/front-250.jpg",
+      "country": "XW",
+      "genre": "民谣",
+      "tags": [
+        "民谣",
+        "摇滚",
+        "现场",
+        "经典"
+      ],
+      "aiScore": 8.5,
+      "tagsEn": [
+        "Folk",
+        "Rock",
+        "Live",
+        "Classic"
+      ],
+      "highlight": "Don McLean 的现场经典重现",
+      "highlightEn": "Don McLean's live classic revisited",
+      "summary": "《Living Free (Live Manchester '75)》收录 Don McLean 1975年曼彻斯特现场，演绎经典歌曲，温暖怀旧。",
+      "summaryEn": "'Living Free (Live Manchester '75)' captures Don McLean's 1975 Manchester concert, performing classic songs with warmth and nostalgia.",
       "category": "global"
     },
     {
@@ -630,104 +707,18 @@
       "tags": [
         "电子",
         "氛围",
-        "新世纪",
-        "交响"
-      ],
-      "aiScore": 8.5,
-      "tagsEn": [
-        "Electronic",
-        "Ambient",
-        "New Age",
-        "Symphonic"
-      ],
-      "highlight": "Schiller的电子交响诗篇，营造宏大的听觉宇宙。",
-      "highlightEn": "Schiller's electronic symphonic poem, creating a vast auditory universe.",
-      "summary": "德国电子音乐家Schiller的新专辑，以华丽编曲和深邃氛围构建沉浸式体验。",
-      "summaryEn": "New album by German electronic musician Schiller, offering an immersive experience with lush arrangements and deep atmospheres.",
-      "category": "global"
-    },
-    {
-      "mbid": "c073640e-6385-4815-b43c-b99f75a8df5c",
-      "title": "Living Free (Live Manchester '75)",
-      "artist": "Don McLean",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "https://coverartarchive.org/release/c073640e-6385-4815-b43c-b99f75a8df5c/front-250.jpg",
-      "country": "XW",
-      "genre": "民谣",
-      "tags": [
-        "民谣",
-        "现场",
-        "经典",
-        "怀旧"
-      ],
-      "aiScore": 8.5,
-      "tagsEn": [
-        "Folk",
-        "Live",
-        "Classic",
-        "Nostalgic"
-      ],
-      "highlight": "Don McLean 1975年曼彻斯特现场，经典民谣的珍贵录音。",
-      "highlightEn": "Don McLean's 1975 Manchester live recording, a precious piece of classic folk.",
-      "summary": "Don McLean 1975年曼彻斯特现场专辑，收录《American Pie》等经典曲目，温暖怀旧。",
-      "summaryEn": "Live album from Don McLean's 1975 Manchester concert, featuring classics like 'American Pie', warm and nostalgic.",
-      "category": "global"
-    },
-    {
-      "mbid": "aca4150c-ffa4-4ead-9251-0774aa5db5db",
-      "title": "Warehouse 2026: 7.16.2025 Allianz Amphitheater At Riverfront, Richmond, VA",
-      "artist": "Dave Matthews Band",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "https://coverartarchive.org/release/aca4150c-ffa4-4ead-9251-0774aa5db5db/front-250.jpg",
-      "country": "US",
-      "genre": "摇滚",
-      "tags": [
-        "摇滚",
-        "现场",
-        "即兴",
-        "美国"
-      ],
-      "aiScore": 8.5,
-      "tagsEn": [
-        "Rock",
-        "Live",
-        "Improvisation",
-        "American"
-      ],
-      "highlight": "Dave Matthews Band现场专辑，捕捉2025年夏夜的音乐魔力。",
-      "highlightEn": "Dave Matthews Band live album, capturing the musical magic of a summer night in 2025.",
-      "summary": "Dave Matthews Band 2025年现场录音，充满即兴与互动，体现乐队现场魅力。",
-      "summaryEn": "Live recording from Dave Matthews Band in 2025, full of improvisation and interaction, showcasing their live appeal.",
-      "category": "global"
-    },
-    {
-      "mbid": "34d3d1fe-7944-461f-a0c9-7d2104441109",
-      "title": "Electric Fantasy",
-      "artist": "Pierre Schott",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "",
-      "country": "FR",
-      "genre": "电子",
-      "tags": [
-        "电子",
-        "法国",
-        "梦幻",
-        "合成器"
+        "新世纪"
       ],
       "aiScore": 8,
       "tagsEn": [
         "Electronic",
-        "French",
-        "Dreamy",
-        "Synth"
+        "Ambient",
+        "New Age"
       ],
-      "highlight": "Pierre Schott的电子幻想曲，法式浪漫与科技感的碰撞。",
-      "highlightEn": "Pierre Schott's electronic fantasy, a collision of French romance and techno feel.",
-      "summary": "法国制作人Pierre Schott的专辑，融合梦幻旋律与电子节拍，充满浪漫气息。",
-      "summaryEn": "Album by French producer Pierre Schott, blending dreamy melodies with electronic beats, full of romance.",
+      "highlight": "Schiller 的电子氛围之旅",
+      "highlightEn": "Schiller's electronic ambient journey",
+      "summary": "《Euphoria》是 Schiller 标志性的电子氛围专辑，空灵旋律与节奏交织，营造沉浸式听觉体验。",
+      "summaryEn": "'Euphoria' is Schiller's signature electronic ambient album, intertwining ethereal melodies and rhythms for an immersive listening experience.",
       "category": "niche"
     },
     {
@@ -741,50 +732,22 @@
       "genre": "民谣金属",
       "tags": [
         "民谣金属",
-        "中世纪",
         "德国",
-        "摇滚"
+        "中世纪",
+        "力量"
       ],
       "aiScore": 8,
       "tagsEn": [
         "Folk Metal",
-        "Medieval",
         "German",
-        "Rock"
+        "Medieval",
+        "Power"
       ],
-      "highlight": "Versengold的德国中世纪民谣金属，狂欢与史诗并存。",
-      "highlightEn": "Versengold's German medieval folk metal, where revelry meets epicness.",
-      "summary": "德国乐队Versengold的新专辑，融合中世纪民谣与重金属，节奏强劲，氛围热烈。",
-      "summaryEn": "New album by German band Versengold, blending medieval folk with heavy metal, energetic and intense.",
+      "highlight": "Versengold 的德式民谣金属",
+      "highlightEn": "Versengold's German folk metal",
+      "summary": "《Eingenordet》是 Versengold 融合民谣与金属的力作，史诗旋律与强劲节奏交织，充满北欧神话色彩。",
+      "summaryEn": "'Eingenordet' is Versengold's fusion of folk and metal, with epic melodies and powerful rhythms, steeped in Norse mythology.",
       "category": "niche"
-    },
-    {
-      "mbid": "8deaeb34-e6b2-4159-b1de-5896d3e8545a",
-      "title": "The Power Station",
-      "artist": "The Power Station",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "",
-      "country": "XW",
-      "genre": "摇滚",
-      "tags": [
-        "摇滚",
-        "AOR",
-        "80年代",
-        "经典"
-      ],
-      "aiScore": 8,
-      "tagsEn": [
-        "Rock",
-        "AOR",
-        "80s",
-        "Classic"
-      ],
-      "highlight": "The Power Station同名专辑再版，80年代AOR经典重现。",
-      "highlightEn": "Reissue of The Power Station's self-titled album, a classic 80s AOR revival.",
-      "summary": "超级乐团The Power Station同名专辑，融合放克、摇滚与流行，是80年代标志性声音。",
-      "summaryEn": "Supergroup The Power Station's self-titled album, blending funk, rock, and pop, an iconic 80s sound.",
-      "category": "global"
     },
     {
       "mbid": "def0724a-e3ba-4348-b30e-06caa81b08f4",
@@ -799,20 +762,104 @@
         "布鲁斯摇滚",
         "现场",
         "吉他",
-        "即兴"
+        "经典"
       ],
       "aiScore": 8,
       "tagsEn": [
         "Blues Rock",
         "Live",
         "Guitar",
-        "Improvisation"
+        "Classic"
       ],
-      "highlight": "Robin Trower美国现场，布鲁斯摇滚的即兴盛宴。",
-      "highlightEn": "Robin Trower's US live album, a blues-rock improvisation feast.",
-      "summary": "Robin Trower的现场专辑，展现其精湛吉他技艺与布鲁斯摇滚的深厚功底。",
-      "summaryEn": "Live album by Robin Trower, showcasing his masterful guitar skills and deep blues-rock roots.",
+      "highlight": "Robin Trower 的布鲁斯摇滚现场",
+      "highlightEn": "Robin Trower's blues rock live",
+      "summary": "《One Moment in Time: Live in the USA》收录 Robin Trower 美国现场，吉他技艺精湛，布鲁斯韵味浓厚。",
+      "summaryEn": "'One Moment in Time: Live in the USA' captures Robin Trower's US concert, showcasing masterful guitar work and deep blues flavor.",
       "category": "niche"
+    },
+    {
+      "mbid": "8deaeb34-e6b2-4159-b1de-5896d3e8545a",
+      "title": "The Power Station",
+      "artist": "The Power Station",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "",
+      "country": "XW",
+      "genre": "摇滚",
+      "tags": [
+        "摇滚",
+        "放克",
+        "超级乐队",
+        "80年代"
+      ],
+      "aiScore": 8,
+      "tagsEn": [
+        "Rock",
+        "Funk",
+        "Supergroup",
+        "80s"
+      ],
+      "highlight": "The Power Station 的超级乐队回归",
+      "highlightEn": "The Power Station's supergroup return",
+      "summary": "《The Power Station》同名专辑由 Robert Palmer 等成员打造，融合摇滚与放克，经典再现。",
+      "summaryEn": "The Power Station's self-titled album, featuring Robert Palmer and others, blends rock and funk, a classic revival.",
+      "category": "global"
+    },
+    {
+      "mbid": "34d3d1fe-7944-461f-a0c9-7d2104441109",
+      "title": "Electric Fantasy",
+      "artist": "Pierre Schott",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "",
+      "country": "FR",
+      "genre": "合成器流行",
+      "tags": [
+        "合成器流行",
+        "电子",
+        "梦幻",
+        "法国"
+      ],
+      "aiScore": 7.5,
+      "tagsEn": [
+        "Synth-pop",
+        "Electronic",
+        "Dreamy",
+        "French"
+      ],
+      "highlight": "Pierre Schott 的梦幻合成器流行",
+      "highlightEn": "Pierre Schott's dreamy synth-pop",
+      "summary": "法国音乐人 Pierre Schott 的《Electric Fantasy》融合复古合成器与流行旋律，充满浪漫与未来感。",
+      "summaryEn": "French artist Pierre Schott's 'Electric Fantasy' blends retro synths with pop melodies, full of romance and futuristic vibes.",
+      "category": "niche"
+    },
+    {
+      "mbid": "b577931e-be63-4e84-a7b2-e4c0764e9920",
+      "title": "Melodrama",
+      "artist": "LINA",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/b577931e-be63-4e84-a7b2-e4c0764e9920/front-250.jpg",
+      "country": "XW",
+      "genre": "流行",
+      "tags": [
+        "流行",
+        "情感",
+        "戏剧",
+        "欧洲"
+      ],
+      "aiScore": 7.5,
+      "tagsEn": [
+        "Pop",
+        "Emotional",
+        "Dramatic",
+        "European"
+      ],
+      "highlight": "LINA 的流行情感戏剧",
+      "highlightEn": "LINA's pop emotional drama",
+      "summary": "《Melodrama》是 LINA 的流行专辑，以戏剧化编曲和真挚歌词探索爱情与自我，感染力强。",
+      "summaryEn": "'Melodrama' is LINA's pop album exploring love and self with dramatic arrangements and heartfelt lyrics, highly infectious.",
+      "category": "global"
     },
     {
       "mbid": "809b9fbd-9dca-4327-bc33-a00df0850431",
@@ -822,80 +869,52 @@
       "year": "2026",
       "cover": "https://coverartarchive.org/release/809b9fbd-9dca-4327-bc33-a00df0850431/front-250.jpg",
       "country": "DE",
-      "genre": "拉丁",
+      "genre": "热带",
       "tags": [
-        "拉丁",
         "热带",
-        "舞曲",
-        "世界音乐"
-      ],
-      "aiScore": 7.5,
-      "tagsEn": [
-        "Latin",
-        "Tropical",
-        "Dance",
-        "World Music"
-      ],
-      "highlight": "Ranil Y Su Conjunto Tropical的拉丁热带风情，舞动你的灵魂。",
-      "highlightEn": "Ranil Y Su Conjunto Tropical's Latin tropical vibes to make your soul dance.",
-      "summary": "秘鲁乐队Ranil Y Su Conjunto Tropical的专辑，充满活力的热带节奏与拉丁风情。",
-      "summaryEn": "Album by Peruvian band Ranil Y Su Conjunto Tropical, full of vibrant tropical rhythms and Latin flair.",
-      "category": "niche"
-    },
-    {
-      "mbid": "1bd2c700-5533-4dbd-8b3d-2050c6c7e1c4",
-      "title": "Pause for a moment",
-      "artist": "Dela Hüttner’s SwingThing",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "https://coverartarchive.org/release/1bd2c700-5533-4dbd-8b3d-2050c6c7e1c4/front-250.jpg",
-      "country": "CH",
-      "genre": "爵士",
-      "tags": [
-        "爵士",
-        "摇摆",
-        "瑞士",
-        "复古"
-      ],
-      "aiScore": 7.5,
-      "tagsEn": [
-        "Jazz",
-        "Swing",
-        "Swiss",
-        "Retro"
-      ],
-      "highlight": "Dela Hüttner’s SwingThing的爵士摇摆，优雅复古的听觉享受。",
-      "highlightEn": "Dela Hüttner’s SwingThing's jazz swing, an elegant retro auditory pleasure.",
-      "summary": "瑞士爵士乐队Dela Hüttner’s SwingThing的专辑，充满复古摇摆与优雅旋律。",
-      "summaryEn": "Album by Swiss jazz band Dela Hüttner’s SwingThing, full of retro swing and elegant melodies.",
-      "category": "niche"
-    },
-    {
-      "mbid": "8e86979f-a43f-4adf-bde7-333c190ebbd0",
-      "title": "Metal - The Exclusive EP",
-      "artist": "Heavysaurus",
-      "releaseDate": "2026",
-      "year": "2026",
-      "cover": "https://coverartarchive.org/release/8e86979f-a43f-4adf-bde7-333c190ebbd0/front-250.jpg",
-      "country": "DE",
-      "genre": "儿童音乐",
-      "tags": [
-        "儿童音乐",
-        "重金属",
-        "芬兰",
-        "幽默"
+        "拉丁",
+        "世界音乐",
+        "德国"
       ],
       "aiScore": 7,
       "tagsEn": [
-        "Children's Music",
-        "Heavy Metal",
-        "Finnish",
-        "Humorous"
+        "Tropical",
+        "Latin",
+        "World Music",
+        "German"
       ],
-      "highlight": "Heavysaurus的儿童金属EP，恐龙与重金属的奇妙组合。",
-      "highlightEn": "Heavysaurus's kids metal EP, a fantastic combo of dinosaurs and heavy metal.",
-      "summary": "芬兰乐队Heavysaurus的EP，以恐龙为主题，用重金属为孩子们带来欢乐。",
-      "summaryEn": "EP by Finnish band Heavysaurus, dinosaur-themed, bringing joy to kids with heavy metal.",
+      "highlight": "Ranil 的德式热带律动",
+      "highlightEn": "Ranil's German tropical grooves",
+      "summary": "《Galaxia Tropical》将拉丁节奏与德国制作结合，热情洋溢，适合舞池与夏日。",
+      "summaryEn": "'Galaxia Tropical' combines Latin rhythms with German production, exuberant and perfect for dance floors and summer.",
+      "category": "niche"
+    },
+    {
+      "mbid": "5e78e3b8-3b93-4a35-b78f-392bcd508107",
+      "title": "Plays World Hits",
+      "artist": "Michiel van der Kuy",
+      "releaseDate": "2026",
+      "year": "2026",
+      "cover": "https://coverartarchive.org/release/5e78e3b8-3b93-4a35-b78f-392bcd508107/front-250.jpg",
+      "country": "US",
+      "genre": "合成器",
+      "tags": [
+        "合成器",
+        "电子",
+        "翻奏",
+        "世界"
+      ],
+      "aiScore": 7,
+      "tagsEn": [
+        "Synth",
+        "Electronic",
+        "Cover",
+        "World"
+      ],
+      "highlight": "Michiel van der Kuy 的合成器世界名曲",
+      "highlightEn": "Michiel van der Kuy's synth world hits",
+      "summary": "《Plays World Hits》是 Michiel van der Kuy 用合成器重新演绎世界名曲，复古电子风味独特。",
+      "summaryEn": "'Plays World Hits' features Michiel van der Kuy reinterpreting world hits with synthesizers, offering a unique retro electronic flavor.",
       "category": "niche"
     }
   ]
