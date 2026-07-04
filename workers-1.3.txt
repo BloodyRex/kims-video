@@ -481,9 +481,8 @@ async function handleIntelComing(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
 
-  const [movieUpcoming, tvOnAir, musicUpcoming] = await Promise.all([
+  const [movieUpcoming, musicUpcoming] = await Promise.all([
     intelFetchTMDB(token, "/movie/upcoming"),
-    intelFetchTMDB(token, "/tv/on_the_air").catch(() => []),
     intelFetchMusicUpcoming(env, 30).catch(() => []),
   ]);
 
@@ -497,13 +496,27 @@ async function handleIntelComing(env) {
       allItems.push({ ...intelNormalizeMovie(m), mediaType: "movie", daysUntil: Math.max(0, days) });
     });
 
-  // TV
-  tvOnAir
-    .filter(s => s.first_air_date && s.first_air_date >= today)
-    .forEach(s => {
-      const days = Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000);
+  // TV — discover brand new shows premiering in the future
+  try {
+    const tvUrl = new URL("https://api.themoviedb.org/3/discover/tv");
+    tvUrl.searchParams.set("first_air_date.gte", today);
+    tvUrl.searchParams.set("sort_by", "first_air_date.asc");
+    tvUrl.searchParams.set("language", "zh-CN");
+    tvUrl.searchParams.set("watch_region", "US");
+    const cacheKey = "intel-tv-upcoming2-" + today;
+    const tvResults = await withCache(cacheKey, async () => {
+      const r = await fetch(tvUrl.toString(), {
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      });
+      if (!r.ok) return [];
+      const d = await r.json();
+      return d.results || [];
+    });
+    (tvResults || []).forEach(s => {
+      const days = s.first_air_date ? Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000) : 999;
       allItems.push({ ...intelNormalizeMovie(s, "tv"), mediaType: "tv", daysUntil: Math.max(0, days) });
     });
+  } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
   // Music
   musicUpcoming.forEach(r => {
