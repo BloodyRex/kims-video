@@ -21,7 +21,7 @@ const GENRE_ZH = {
   "Live": "现场", "Compilation": "合辑", "Remix": "混音",
 };
 
-// For music items: get best available genre tags (AI → Last.fm → MB)
+// For music items: get best available genre tags (AI -> Last.fm -> MB)
 function albumGenres(item) {
   if (item.tags?.length) return item.tags;
   if (item.lfmTags?.length) return item.lfmTags.slice(0, 5);
@@ -320,9 +320,9 @@ export function AlbumCard({ album, locale, onViewDetail }) {
 export function CountdownCard({ item, locale, onViewDetail }) {
   const title = getTitle(item, locale);
   const mediaType = item.mediaType || "movie";
-  const isMusic = mediaType === "album" || mediaType === "single";
-  const musicTags = isMusic ? albumGenres(item) : [];
-  const musicTagsEn = isMusic ? albumGenresEn(item) : [];
+  const isMusicCard = mediaType === "album" || mediaType === "single";
+  const musicTags = isMusicCard ? albumGenres(item) : [];
+  const musicTagsEn = isMusicCard ? albumGenresEn(item) : [];
   const typeLabel = mediaType === "tv"
     ? (locale === "en" ? "TV" : "剧集")
     : mediaType === "album"
@@ -380,7 +380,7 @@ export function CountdownCard({ item, locale, onViewDetail }) {
           )}
           {musicTags.length > 0
             ? <div className="flex flex-wrap gap-1">{musicTags.map((t, i) => <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[t] || t) : (musicTagsEn[i] || t)}</span>)}</div>
-            : !isMusic ? <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} /> : null
+            : isMusicCard ? null : <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
           }
           {onViewDetail && (
             <button onClick={() => onViewDetail(item)}
@@ -661,6 +661,7 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
               : null)
             : <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
           }
+        </div>
 
         {/* Action Buttons */}
         <div className="border-t-4 border-black p-4 flex flex-col sm:flex-row gap-2">
