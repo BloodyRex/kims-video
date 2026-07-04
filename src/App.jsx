@@ -33,9 +33,7 @@ function App() {
           <Route path="/intelligence/tv" element={<IntelligencePage />} />
           <Route path="/intelligence/music" element={<IntelligencePage />} />
           <Route path="/intelligence/coming" element={<IntelligencePage />} />
-          <Route path="/intelligence/trending" element={<IntelligencePage />} />
           <Route path="/intelligence/weekly" element={<IntelligencePage />} />
-          <Route path="/intelligence/spotlight" element={<IntelligencePage />} />
           <Route path="/intelligence/search" element={<IntelligencePage />} />
         </Routes>
       </LocaleProvider>

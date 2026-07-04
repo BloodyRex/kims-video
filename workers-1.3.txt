@@ -172,7 +172,7 @@ async function intelFetchMusicUpcoming(env, daysAhead = 30) {
   const futureStr = future.toISOString().split("T")[0];
   const cacheKey = `intel-mb-upcoming-${todayStr}`;
   return withCache(cacheKey, async () => {
-    const url = `https://musicbrainz.org/ws/2/release?query=date:[${todayStr}%20TO%20${futureStr}]&fmt=json&limit=50`;
+    const url = `https://musicbrainz.org/ws/2/release?query=date:[${todayStr}%20TO%20${futureStr}]&fmt=json&limit=25`;
     const res = await fetch(url, {
       headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
     });
@@ -189,8 +189,8 @@ async function intelFetchMusicUpcoming(env, daysAhead = 30) {
       genre: r["release-group"]?.["primary-type"] || "",
       tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
     }));
-    for (let i = 0; i < releases.length; i += 5) {
-      await Promise.allSettled(releases.slice(i, i + 5).map(async (rel) => {
+    for (let i = 0; i < releases.length; i += 10) {
+      await Promise.allSettled(releases.slice(i, i + 10).map(async (rel) => {
         try { const cu = await intelFetchAlbumCover(rel.mbid); if (cu) rel.cover = cu; } catch {}
       }));
     }
@@ -201,7 +201,7 @@ async function intelFetchMusicUpcoming(env, daysAhead = 30) {
 async function intelFetchMusicBrainz(dateStr) {
   const cacheKey = `intel-mb-${dateStr}`;
   return withCache(cacheKey, async () => {
-    const url = `https://musicbrainz.org/ws/2/release?query=date:${dateStr}&fmt=json&limit=50`;
+    const url = `https://musicbrainz.org/ws/2/release?query=date:${dateStr}&fmt=json&limit=25`;
     const res = await fetch(url, {
       headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
     });
@@ -220,8 +220,8 @@ async function intelFetchMusicBrainz(dateStr) {
       tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
     }));
     // Fetch cover art in batches of 5
-    for (let i = 0; i < releases.length; i += 5) {
-      await Promise.allSettled(releases.slice(i, i + 5).map(async (rel) => {
+    for (let i = 0; i < releases.length; i += 10) {
+      await Promise.allSettled(releases.slice(i, i + 10).map(async (rel) => {
         try {
           const coverUrl = await intelFetchAlbumCover(rel.mbid);
           if (coverUrl) rel.cover = coverUrl;
@@ -240,7 +240,7 @@ function intelNormalizeAlbum(r) {
     releaseDate: r.releaseDate,
     year: r.year,
     cover: r.cover,
-    genre: r.genre,
+    genre: (r.tags?.length > 0 ? r.tags[0] : r.genre),
     tags: r.tags,
   };
 }
@@ -321,7 +321,15 @@ async function handleIntelOverview(env) {
   // Music count (fast: just query today)
   const todayMB = await intelFetchMusicBrainz(today);
 
-  const enrichedToday = await intelEnrichWithAI(todayM, "movie", env);
+  // Editor's picks: past week movies, max 2
+  const editorsPicks = await intelEnrichWithAI(
+    nowPlaying
+      .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
+      .slice(0, 5)
+      .map(m => intelNormalizeMovie(m)),
+    "movie", env
+  );
+  const editorsPickTwo = editorsPicks.slice(0, 2);
 
   return {
     updated: today,
@@ -331,7 +339,7 @@ async function handleIntelOverview(env) {
       albumsReleased: todayMB.length,
       trending: trending.length,
     },
-    editorsPicks: enrichedToday,
+    editorsPicks: editorsPickTwo,
     comingSoon: upcoming
       .filter(m => m.release_date && m.release_date >= today)
       .slice(0, 6).map(m => {
@@ -377,7 +385,11 @@ async function handleIntelTV(env) {
   ]);
 
   // This week premieres via /tv/on_the_air (shows airing new episodes this week)
-  const weekPremieres = onTheAir.slice(0, 20).map(s => intelNormalizeMovie(s, "tv"));
+  const twoYearsAgo = new Date(Date.now() - 2 * 365 * 86400000).toISOString().split("T")[0];
+  const weekPremieres = onTheAir
+    .filter(s => s.first_air_date >= twoYearsAgo)
+    .slice(0, 20)
+    .map(s => intelNormalizeMovie(s, "tv"));
 
   // Upcoming brand-new shows via discover/tv (future premieres only)
   let upcomingTV = [];
@@ -503,23 +515,10 @@ async function handleIntelComing(env) {
       allItems.push({ ...intelNormalizeMovie(m), mediaType: "movie", daysUntil: Math.max(0, days) });
     });
 
-  // TV — discover brand new shows premiering in the future
+  // TV — discover brand new shows premiering in the future (bilingual)
   try {
-    const tvUrl = new URL("https://api.themoviedb.org/3/discover/tv");
-    tvUrl.searchParams.set("first_air_date.gte", today);
-    tvUrl.searchParams.set("sort_by", "first_air_date.asc");
-    tvUrl.searchParams.set("language", "zh-CN");
-    tvUrl.searchParams.set("watch_region", "US");
-    const cacheKey = "intel-tv-upcoming2-" + today;
-    const tvResults = await withCache(cacheKey, async () => {
-      const r = await fetch(tvUrl.toString(), {
-        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-      });
-      if (!r.ok) return [];
-      const d = await r.json();
-      return d.results || [];
-    });
-    (tvResults || []).forEach(s => {
+    const tvResults = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "first_air_date.asc" });
+    tvResults.forEach(s => {
       const days = s.first_air_date ? Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000) : 999;
       allItems.push({ ...intelNormalizeMovie(s, "tv"), mediaType: "tv", daysUntil: Math.max(0, days) });
     });
@@ -542,86 +541,6 @@ async function handleIntelComing(env) {
     next7Days: allItems.filter(m => m.daysUntil <= 7),
     next30Days: allItems.filter(m => m.daysUntil <= 30),
   };
-}
-
-// ── AI Spotlight / Editor's Picks ──
-async function handleIntelEditor(env) {
-  const token = env.TMDB_API_READ_ACCESS_TOKEN;
-  const today = new Date().toISOString().split("T")[0];
-
-  if (!env.DEEPSEEK_API_KEY) {
-    return { updated: today, picks: { editorsPick: [], hiddenGem: [], mostAnticipated: [], familyChoice: [], sciFi: [], horror: [], documentary: [] } };
-  }
-
-  try {
-    const [nowPlaying, todayMB] = await Promise.all([
-      intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
-      intelFetchMusicBrainz(today).catch(() => []),
-    ]);
-
-    const todayMovies = nowPlaying.filter(m => m.release_date === today).slice(0, 15).map(m => intelNormalizeMovie(m));
-    const todayAlbums = todayMB.slice(0, 5).map(intelNormalizeAlbum);
-
-    if (!todayMovies.length && !todayAlbums.length) {
-      return { updated: today, picks: { editorsPick: [], hiddenGem: [], mostAnticipated: [], familyChoice: [], sciFi: [], horror: [], documentary: [] } };
-    }
-
-    const movieList = todayMovies.map((m, i) => ({ index: i, title: m.title, genre: m.genre, summary: m.summary }));
-    const albumList = todayAlbums.map((a, i) => ({ index: i + 100, title: a.title, artist: a.artist, genre: a.genre }));
-
-        const prompt = "You are an entertainment editor. Today's new movies:\n" + JSON.stringify(movieList) + "\n\nNew albums:\n" + JSON.stringify(albumList) + "\n\nSelect 1-2 items per category. Return ONLY valid JSON:\n{\n  \"editorsPick\": [{ \"sourceIndex\": 0, \"title\": \"\", \"whyWatch\": \"one-line\", \"whyWatchEn\": \"one-line in English\", \"audience\": \"\", \"audienceEn\": \"\", \"aiScore\": 8.5, \"confidence\": 0.85, \"tags\": [], \"tagsEn\": [] }],\n  \"hiddenGem\": [...],\n  \"mostAnticipated\": [...],\n  \"familyChoice\": [...],\n  \"sciFi\": [...],\n  \"horror\": [...],\n  \"documentary\": [...]\n}";
-    const res = await fetch("https://api.deepseek.com/chat/completions", {
-      method: "POST",
-      headers: { Authorization: "Bearer " + env.DEEPSEEK_API_KEY, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.8, max_tokens: 3000 }),
-    });
-
-    if (!res.ok) throw new Error("DeepSeek: " + res.status);
-    const data = await res.json();
-    const raw = data?.choices?.[0]?.message?.content || "";
-    const parsed = JSON.parse(raw.replace(/`{3}json/g, "").replace(/`{3}/g, "").trim());
-
-    const sources = [];
-    todayMovies.forEach((m, i) => sources[i] = m);
-    todayAlbums.forEach((a, i) => sources[100 + i] = a);
-
-    const resolve = (items) => (items || []).map(p => {
-      const src = sources[p.sourceIndex] || {};
-      return {
-        title: p.title || src.title || "",
-        titleEn: src.titleEn || "",
-        poster: src.poster || src.cover || "",
-        genre: Array.isArray(src.genre) ? src.genre : (p.tags || []),
-        summary: src.summary || "",
-        summaryEn: src.summaryEn || "",
-        rating: src.rating || 0,
-        aiScore: p.aiScore || 0,
-        confidence: p.confidence || 0.7,
-        whyWatch: p.whyWatch || "",
-        whyWatchEn: p.whyWatchEn || "",
-        audience: p.audience || "",
-        audienceEn: p.audienceEn || "",
-        tags: p.tags || [],
-        tagsEn: p.tagsEn || [],
-      };
-    });
-
-    return {
-      updated: today,
-      picks: {
-        editorsPick: resolve(parsed.editorsPick),
-        hiddenGem: resolve(parsed.hiddenGem),
-        mostAnticipated: resolve(parsed.mostAnticipated),
-        familyChoice: resolve(parsed.familyChoice),
-        sciFi: resolve(parsed.sciFi),
-        horror: resolve(parsed.horror),
-        documentary: resolve(parsed.documentary),
-      },
-    };
-  } catch (e) {
-    console.warn("Editor gen failed:", e.message);
-    return { updated: today, picks: { editorsPick: [], hiddenGem: [], mostAnticipated: [], familyChoice: [], sciFi: [], horror: [], documentary: [] } };
-  }
 }
 
 // ── Daily Digest ──
@@ -782,12 +701,12 @@ export default {
 
 
       // ── Intelligence API ──
-      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|coming|weekly|editor|hidden-gems|digest)$/);
+      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|coming|weekly|hidden-gems|digest)$/);
       if (intelMatch) {
         const intelHandlers = {
           overview: handleIntelOverview, movies: handleIntelMovies, tv: handleIntelTV,
           music: handleIntelMusic, coming: handleIntelComing,
-          weekly: handleIntelWeekly, editor: handleIntelEditor, "hidden-gems": handleIntelHiddenGems,
+          weekly: handleIntelWeekly, "hidden-gems": handleIntelHiddenGems,
           digest: handleIntelDigest,
         };
         try {

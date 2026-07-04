@@ -33,7 +33,6 @@ async function main() {
     { endpoint: "/intelligence/music", file: "music.json" },
     { endpoint: "/intelligence/coming", file: "coming.json" },
     { endpoint: "/intelligence/weekly", file: "weekly.json" },
-    { endpoint: "/intelligence/editor", file: "editor.json" },
     { endpoint: "/intelligence/hidden-gems", file: "hidden-gems.json" },
     { endpoint: "/intelligence/digest", file: "digest.json" },
   ];

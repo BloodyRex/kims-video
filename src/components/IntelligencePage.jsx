@@ -16,7 +16,6 @@ const NAV_ITEMS = [
   { id: "music", icon: "Music", color: "#ffff00", zh: "音乐", en: "Music" },
   { id: "coming", icon: "Calendar", color: "#ff00ff", zh: "即将上映", en: "Coming Soon" },
   { id: "weekly", icon: "Trending", color: "#00ffff", zh: "本周热榜", en: "Weekly Hot" },
-  { id: "spotlight", icon: "Star", color: "#ff00ff", zh: "AI 精选", en: "AI Spotlight" },
 ];
 
 // ── Data fetch hook ──
@@ -291,40 +290,6 @@ function WeeklyView({ locale }) {
   );
 }
 
-// ── AI Spotlight ──
-function SpotlightView({ locale }) {
-  const { data, loading } = useJsonData("/api/editor.json");
-  if (loading) return <LoadingSpinner locale={locale} />;
-  const picks = data?.picks || {};
-  const categories = Object.keys(picks).filter(k => picks[k]?.length > 0);
-  if (categories.length === 0) return <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无 AI 精选数据" : "No AI picks yet"}</p>;
-
-  const catColors = {
-    editorsPick: "#ff00ff", hiddenGem: "#00ffff", mostAnticipated: "#ffff00",
-    familyChoice: "#ff8800", sciFi: "#00ff88", horror: "#ff0044", documentary: "#8888ff",
-  };
-  const catLabels = {
-    editorsPick: { zh: "编辑精选", en: "Editor's Pick" },
-    hiddenGem: { zh: "隐藏宝藏", en: "Hidden Gem" },
-    mostAnticipated: { zh: "最受期待", en: "Most Anticipated" },
-    familyChoice: { zh: "家庭之选", en: "Family Choice" },
-    sciFi: { zh: "科幻之选", en: "Sci-Fi Pick" },
-    horror: { zh: "恐怖之选", en: "Horror Pick" },
-    documentary: { zh: "纪录之选", en: "Documentary Pick" },
-  };
-  return (
-    <div className="space-y-10">
-      <SectionHeader label={locale === "zh" ? "AI 精选" : "AI Spotlight"} color="#ff00ff" />
-      {categories.map(cat => (
-        <section key={cat}>
-          <SectionHeader label={locale === "zh" ? catLabels[cat]?.zh : catLabels[cat]?.en} count={picks[cat].length} color={catColors[cat] || "#ff00ff"} />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{picks[cat].map((p, i) => <SpotlightCard key={i} pick={{ ...p, category: cat }} locale={locale} />)}</CardGrid>
-        </section>
-      ))}
-    </div>
-  );
-}
-
 // ── Search ──
 function SearchView({ locale, onViewDetail }) {
   const [query, setQuery] = useState("");
@@ -335,6 +300,8 @@ function SearchView({ locale, onViewDetail }) {
   const { data: movies } = useJsonData("/api/movies.json");
   const { data: tv } = useJsonData("/api/tv.json");
   const { data: music } = useJsonData("/api/music.json");
+  const { data: coming } = useJsonData("/api/coming.json");
+  const { data: weekly } = useJsonData("/api/weekly.json");
 
   const allItems = useMemo(() => {
     const items = [];
@@ -343,6 +310,16 @@ function SearchView({ locale, onViewDetail }) {
     if (movies) { add(movies.releasedToday, "movie"); add(movies.releasedThisWeek, "movie"); add(movies.upcoming, "movie"); add(movies.nowPlaying, "movie"); }
     if (tv) { add(tv.premieresToday, "tv"); add(tv.premieresThisWeek, "tv"); add(tv.upcoming, "tv"); add(tv.ongoing, "tv"); }
     if (music) { add(music.releasedToday, "album"); add(music.releasedThisWeek, "album"); }
+    // Flatten coming soon
+    if (coming) {
+      [...(coming.next7Days || []), ...(coming.next30Days || [])].forEach(item => items.push({ ...item, _type: item.mediaType === "tv" ? "tv" : item.mediaType === "album" || item.mediaType === "single" ? "album" : "movie" }));
+    }
+    // Flatten weekly hot
+    if (weekly) {
+      add(weekly.movies, "movie");
+      add(weekly.tv, "tv");
+      add(weekly.music, "album");
+    }
     // Deduplicate by title
     const seen = new Set();
     return items.filter(item => {
@@ -493,7 +470,6 @@ function IntelligencePage() {
           {activeNav === "music" && <MusicView locale={locale} onViewDetail={(item) => handleViewDetail(item, "music")} />}
           {activeNav === "coming" && <ComingView locale={locale} />}
           {activeNav === "weekly" && <WeeklyView locale={locale} />}
-          {activeNav === "spotlight" && <SpotlightView locale={locale} />}
           {activeNav === "search" && <SearchView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
         </main>
       </div>
