@@ -226,6 +226,10 @@ export function TVCard({ show, locale, onViewDetail }) {
 export function AlbumCard({ album, locale, onViewDetail }) {
   const title = album.title || "";
   const artist = album.artist || "";
+  // Style tags: prefer AI tags, fallback to single genre field
+  const styleTags = album.tags?.length
+    ? album.tags
+    : (album.genre ? [album.genre] : []);
 
   return (
     <CardShell>
@@ -248,9 +252,33 @@ export function AlbumCard({ album, locale, onViewDetail }) {
         <div className="flex-1 min-w-0 flex flex-col">
           <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{title}</h3>
           <p className="text-xs text-gray-600 font-bold mb-1 truncate">{artist}</p>
-          {album.genre && (
-            <span className="text-[8px] px-1 bg-black text-white font-bold self-start mb-1">{locale === "zh" ? (GENRE_ZH[album.genre] || album.genre) : album.genre}</span>
+
+          {/* Style tags (like MovieCard genre badges) */}
+          {styleTags.length > 0 && (
+            <div className="flex flex-wrap gap-1 mb-1">
+              {styleTags.map((g, i) => (
+                <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">
+                  {locale === "zh" ? (GENRE_ZH[g] || g) : g}
+                </span>
+              ))}
+            </div>
           )}
+
+          {/* Summary (one-line description) */}
+          {album.summary && (
+            <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
+              {locale === "en" ? (album.summaryEn || album.summary) : album.summary}
+            </p>
+          )}
+
+          {/* Highlight as alternative when no summary */}
+          {!album.summary && album.highlight && (
+            <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1 italic">
+              {locale === "en" ? (album.highlightEn || album.highlight) : album.highlight}
+            </p>
+          )}
+
+          {/* Category badge */}
           {album.category && (
             <span className={`text-[8px] px-1.5 py-0.5 self-start mb-1 font-black ${album.category === "global" ? "bg-[#ff00ff] text-white" : "bg-gray-300 text-gray-700"}`}>
               {album.category === "global"
@@ -258,16 +286,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
                 : (locale === "zh" ? "💎 小众佳作" : "💎 NICHE")}
             </span>
           )}
-          {album.highlight && (
-            <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1 italic">
-              {locale === "en" ? (album.highlightEn || album.highlight) : album.highlight}
-            </p>
-          )}
-          {album.summary && !album.highlight && (
-            <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
-              {locale === "en" ? (album.summaryEn || album.summary) : album.summary}
-            </p>
-          )}
+
           <AIScoreBadge score={album.aiScore} confidence={album.confidence} />
           <Tags tags={album.tags} tagsEn={album.tagsEn} color="#333" locale={locale} />
           {onViewDetail && (

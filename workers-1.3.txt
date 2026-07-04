@@ -395,7 +395,7 @@ async function handleIntelTV(env) {
   let upcomingTV = [];
   try {
     upcomingTV = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "popularity.desc" });
-    upcomingTV = upcomingTV.slice(0, 20).map(s => intelNormalizeMovie(s, "tv"));
+    upcomingTV = upcomingTV.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")).filter(s => s.title || s.summary);
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
   return {
@@ -410,11 +410,10 @@ async function handleIntelMusic(env) {
   const today = new Date().toISOString().split("T")[0];
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
 
-  const [todayMB, weekMB, upcomingMB, lastfmData] = await Promise.all([
+  const [todayMB, weekMB, upcomingMB] = await Promise.all([
     intelFetchMusicBrainz(today).catch(() => []),
     intelFetchMusicBrainz(weekAgo).catch(() => []),
     intelFetchMusicUpcoming(env, 30).catch(() => []),
-    intelFetchLastFM("tag.gettopalbums", { tag: "top", limit: 15 }, env).catch(() => null),
   ]);
 
   // Merge today + week into one "This Week" set, deduped, cap at 20 for AI
@@ -425,36 +424,15 @@ async function handleIntelMusic(env) {
   const weekAlbums = merged.slice(0, 20).map(intelNormalizeAlbum);
   const upcomingAlbums = upcomingMB.slice(0, 20).map(intelNormalizeAlbum);
 
-  // Last.fm trending with derived rating from play count
-  const maxPlay = lastfmData ? Math.max(...(lastfmData?.albums?.album || []).map(a => parseInt(a.playcount) || 0), 1) : 1;
-  const trendingRaw = lastfmData
-    ? (lastfmData?.albums?.album || []).map((a, i) => {
-        const coverImg = a.image?.find(img => img.size === "extralarge" || img.size === "large");
-        const playCount = parseInt(a.playcount) || 0;
-        return {
-          title: a.name,
-          titleEn: a.name,
-          artist: a.artist?.name || "",
-          cover: coverImg?.["#text"] || "",
-          playCount,
-          listeners: parseInt(a.listeners) || 0,
-          rating: Math.round((playCount / maxPlay) * 100) / 10,
-          rank: i + 1,
-          trend: "up",
-          genre: [],
-          tags: [],
-        };
-      })
-    : [];
-
-  // AI enrich trending music for tags, summary, category
-  const trendingAlbums = await intelEnrichWithAI(trendingRaw, "album", env);
+  // Single AI enrichment call for this week's albums
+  const aiWeek = await intelEnrichWithAI(weekAlbums, "album", env);
 
   return {
     updated: today,
-    releasedThisWeek: (await intelEnrichWithAI(weekAlbums, "album", env)).slice(0, 20),
+    releasedThisWeek: aiWeek.slice(0, 20),
     upcoming: (await intelEnrichWithAI(upcomingAlbums, "album", env)).slice(0, 20),
-    trending: trendingAlbums.slice(0, 20),
+    // Trending = same week albums sorted by AI score (most noteworthy first)
+    trending: [...aiWeek].sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0)).slice(0, 20),
   };
 }
 
@@ -516,7 +494,7 @@ async function handleIntelComing(env) {
 
   // TV — discover brand new shows premiering in the future (bilingual)
   try {
-    const tvResults = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "first_air_date.asc" });
+    const tvResults = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "popularity.desc" });
     tvResults.forEach(s => {
       const days = s.first_air_date ? Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000) : 999;
       allItems.push({ ...intelNormalizeMovie(s, "tv"), mediaType: "tv", daysUntil: Math.max(0, days) });

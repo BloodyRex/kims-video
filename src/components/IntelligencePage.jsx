@@ -86,13 +86,6 @@ function OverviewView({ locale }) {
           </div>
         ))}
       </div>
-      {(data?.editorsPicks || []).length > 0 && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "★ 编辑精选" : "★ Editor's Picks"} count={data.editorsPicks.length} color="#ff00ff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
-        </section>
-      )}
-
       {/* Daily Digest */}
       {digestData?.headline && (
         <section>
@@ -111,6 +104,13 @@ function OverviewView({ locale }) {
               {locale === "zh" ? "数据更新于 " : "Data updated "}{digestData.date || data?.updated || ""}
             </p>
           </div>
+        </section>
+      )}
+
+      {(data?.editorsPicks || []).length > 0 && (
+        <section>
+          <SectionHeader label={locale === "zh" ? "★ 编辑精选" : "★ Editor's Picks"} count={data.editorsPicks.length} color="#ff00ff" />
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
         </section>
       )}
 
@@ -222,14 +222,12 @@ function MusicView({ locale, onViewDetail }) {
           <button key={t.id} onClick={() => setTab(t.id)}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${tab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
-            {data?.[t.key]?.length > 0 && t.id !== "trending" && <span className="ml-1 opacity-60">({data[t.key].length})</span>}
+            {data?.[t.key]?.length > 0 && <span className="ml-1 opacity-60">({data[t.key].length})</span>}
           </button>
         ))}
       </div>
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
-      ) : tab === "trending" ? (
-        <CardList>{current.map((a, i) => <RankingCard key={i} item={a} rank={a.rank || i + 1} locale={locale} />)}</CardList>
       ) : (
         <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((a, i) => <AlbumCard key={i} album={a} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "album")} />)}</CardGrid>
       )}
@@ -239,19 +237,24 @@ function MusicView({ locale, onViewDetail }) {
 
 // ── Coming Soon ──
 function ComingView({ locale, onViewDetail }) {
-  const { data, loading, error } = useJsonData("/api/coming.json");
+  const { data: moviesAll, loading: mL, error: mE } = useJsonData("/api/movies.json");
+  const { data: tvAll, loading: tL, error: tE } = useJsonData("/api/tv.json");
+  const { data: musicAll, loading: aL, error: aE } = useJsonData("/api/music.json");
+  const loading = mL || tL || aL;
+  const error = mE || tE || aE;
   const [typeTab, setTypeTab] = useState("movies");
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
+  const moviesUpcoming = (moviesAll?.upcoming || []).map(i => ({ ...i, mediaType: "movie" }));
+  const tvUpcoming = (tvAll?.upcoming || []).map(i => ({ ...i, mediaType: "tv" }));
+  const musicUpcoming = (musicAll?.upcoming || []).map(i => ({ ...i, mediaType: "album" }));
+  const byType = { movies: moviesUpcoming, tv: tvUpcoming, music: musicUpcoming };
   const types = [
-    { id: "movies", zh: "电影", en: "Movies", filter: (i) => i.mediaType === "movie" },
-    { id: "tv", zh: "剧集", en: "TV", filter: (i) => i.mediaType === "tv" },
-    { id: "music", zh: "音乐", en: "Music", filter: (i) => i.mediaType === "album" || i.mediaType === "single" },
+    { id: "movies", zh: "电影", en: "Movies" },
+    { id: "tv", zh: "剧集", en: "TV" },
+    { id: "music", zh: "音乐", en: "Music" },
   ];
-  const allItems = [...(data?.next7Days || []), ...(data?.next30Days || [])];
-  const seen = new Set();
-  const deduped = allItems.filter(i => { const k = i.title + (i.artist || ""); if (seen.has(k)) return false; seen.add(k); return true; });
-  const current = deduped.filter(types.find(t => t.id === typeTab)?.filter || (() => true));
+  const current = byType[typeTab] || [];
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "即将上映" : "Coming Soon"} color="#ff00ff" />
@@ -260,7 +263,7 @@ function ComingView({ locale, onViewDetail }) {
           <button key={t.id} onClick={() => setTypeTab(t.id)}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${typeTab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
-            <span className="ml-1 opacity-60">({Math.min(deduped.filter(t.filter).length, 20)})</span>
+            <span className="ml-1 opacity-60">({Math.min(byType[t.id].length, 20)})</span>
           </button>
         ))}
       </div>
