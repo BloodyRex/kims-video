@@ -362,6 +362,12 @@ export function CountdownCard({ item, locale, onViewDetail }) {
             </p>
           )}
           <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
+          {onViewDetail && (
+            <button onClick={() => onViewDetail(item)}
+              className="self-start mt-1 px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
+              {locale === "en" ? "DETAILS" : "详情"}
+            </button>
+          )}
         </div>
       </div>
     </CardShell>
@@ -523,6 +529,12 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
             </p>
           )}
           <Tags tags={pick.tags} tagsEn={pick.tagsEn} color={catColor} locale={locale} />
+          {onViewDetail && (
+            <button onClick={() => onViewDetail(pick)}
+              className="self-start mt-1 px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
+              {locale === "en" ? "DETAILS" : "详情"}
+            </button>
+          )}
         </div>
       </div>
     </CardShell>

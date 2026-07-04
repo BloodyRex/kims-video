@@ -69,14 +69,13 @@ function OverviewView({ locale, onViewDetail }) {
   ];
   return (
     <div className="space-y-8">
-      <div className="bg-black border-4 border-[#ff00ff] p-6 sm:p-8 shadow-[8px_8px_0_0_rgba(0,255,255,0.5)]">
+      <div className="bg-black border-4 border-[#ff00ff] p-4 sm:p-5 shadow-[8px_8px_0_0_rgba(0,255,255,0.5)]">
         <h2 className="text-lg sm:text-2xl font-black text-white pixel-font mb-2">
           {locale === "zh" ? "娱乐情报中心" : "Entertainment Intelligence"}
         </h2>
-        <p className="text-sm text-gray-400 mb-1">
+        <p className="text-sm text-gray-400">
           {locale === "zh" ? "每日自动汇总全球最新影视音乐发行信息" : "Daily auto-aggregated global entertainment releases"}
         </p>
-        <p className="text-xs text-gray-400 pixel-font">{locale === "zh" ? "更新于：今日" : "Updated: Today"}</p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {statCards.map((s, i) => (
@@ -110,20 +109,20 @@ function OverviewView({ locale, onViewDetail }) {
       {(data?.editorsPicks || []).length > 0 && (
         <section>
           <SectionHeader label={locale === "zh" ? "★ 编辑精选" : "★ Editor's Picks"} count={data.editorsPicks.length} color="#ff00ff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
         </section>
       )}
 
       {hiddenGems.length > 0 && (
         <section>
           <SectionHeader label={locale === "zh" ? "◆ 隐藏宝藏" : "◆ Hidden Gems"} count={hiddenGems.length} color="#00ffff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{hiddenGems.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{hiddenGems.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
         </section>
       )}
       {(data?.comingSoon || []).length > 0 && (
         <section>
           <SectionHeader label={locale === "zh" ? "▶ 即将上映" : "▶ Coming Soon"} count={data.comingSoon.length} color="#ffff00" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.comingSoon.map((p, i) => <CountdownCard key={i} item={p} locale={locale} />)}</CardGrid>
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.comingSoon.map((p, i) => <CountdownCard key={i} item={p} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
         </section>
       )}
       {(data?.trending || []).length > 0 && (
@@ -478,7 +477,7 @@ function IntelligencePage() {
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row gap-0">
         {/* Sidebar - always visible, scrollable on mobile */}
         <aside className="sm:w-48 sm:min-h-[calc(100vh-200px)] sm:block sm:border-r-4 sm:border-[#ff00ff] sm:bg-black/60">
-          <nav className="flex sm:flex-col overflow-x-auto sm:overflow-x-visible p-2 sm:p-0 gap-1">
+          <nav className="flex sm:flex-col overflow-x-auto sm:overflow-x-visible px-4 py-2 sm:p-0 gap-1">
             {NAV_ITEMS.map((item) => {
               const Icon = IconComp(item.icon);
               const active = activeNav === item.id;
