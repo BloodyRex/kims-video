@@ -457,7 +457,9 @@ async function intelFetchUpcomingAlbums(env, daysAhead = 45) {
   if (!filtered.length) filtered = mb.filter(r => (r.primaryType === "Album" || r.primaryType === "EP") && r.status !== "Bootleg");
   if (!filtered.length) return intelFetchLastFMCharts(env);
   const withLFM = await intelEnrichWithLastFM(filtered.slice(0, 20), env);
-  return withLFM.map(intelNormalizeAlbum).sort((a, b) => (b.listeners || 0) - (a.listeners || 0)).slice(0, 20);
+  const sorted = withLFM.map(intelNormalizeAlbum).sort((a, b) => (b.listeners || 0) - (a.listeners || 0));
+  const withData = sorted.filter(a => a.listeners > 0);
+  return withData.length >= 6 ? withData.slice(0, 20) : sorted.slice(0, 20);
 }
 
 // ── DeepSeek enrichment ──
@@ -538,10 +540,10 @@ ${JSON.stringify(items.map((i, idx) => ({
 **Task:** Select exactly 20 of the most noteworthy albums from this week, then assign each exactly ONE tag below.
 
 **Tags (pick one per album):**
-1. "trending" = 🔥 Trending Now — high popularity (listeners > 50000), major artist, global buzz.
-2. "editor" = ⭐ Editor's Pick — strong artistic merit, outstanding quality. Not necessarily popular.
-3. "hidden" = 💎 Hidden Gem — listeners between 2000 and 10000, excellent quality, unique style.
-4. "world" = 🌍 Around the World — from outside US/UK, represents regional music culture. Prefer Japanese (JP) and Chinese (CN/TW/HK) artists.
+1. "trending" = 🔥 热门趋势 — high popularity (listeners > 50000), major artist, global buzz.
+2. "editor" = ⭐ 编辑推荐 — strong artistic merit, outstanding quality. Not necessarily popular.
+3. "hidden" = 💎 隐藏宝石 — listeners between 2000 and 10000, excellent quality, unique style.
+4. "world" = 🌍 环球音乐 — from outside US/UK, represents regional music culture. Prefer Japanese (JP) and Chinese (CN/TW/HK) artists.
 
 **Diversity requirements:**
 - Cover different genres and music styles
@@ -559,7 +561,7 @@ If a category lacks quality candidates, reduce its count — never force a pick.
 
 **Output for each selected album:**
 - "tag": one of "trending" | "editor" | "hidden" | "world"
-- "tagDisplay": Chinese label, exactly one of "🔥 Trending Now" | "⭐ Editor's Pick" | "💎 Hidden Gem" | "🌍 Around the World"
+- "tagDisplay": Chinese label, exactly one of "🔥 热门趋势" | "⭐ 编辑推荐" | "💎 隐藏宝石" | "🌍 环球音乐"
 - "tagDisplayEn": English label, exactly one of "Trending Now" | "Editor's Pick" | "Hidden Gem" | "Around the World"
 - "recommendation": 40-70 character Chinese recommendation line (punchy, informative)
 - "recommendationEn": same in English
@@ -569,7 +571,7 @@ If a category lacks quality candidates, reduce its count — never force a pick.
 - "genres": array of 1-3 Chinese genre/style tags, e.g. ["独立摇滚", "梦幻流行", "电子"]
 - "genresEn": same in English
 
-Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "🔥 Trending Now", tagDisplayEn: "Trending Now", recommendation: "...", recommendationEn: "...", reason: "...", reasonEn: "...", aiScore: 8.5, genres: ["独立摇滚", "梦幻流行"], genresEn: ["Indie Rock", "Dream Pop"] }, ... ] }`;
+Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "🔥 热门趋势", tagDisplayEn: "Trending Now", recommendation: "...", recommendationEn: "...", reason: "...", reasonEn: "...", aiScore: 8.5, genres: ["独立摇滚", "梦幻流行"], genresEn: ["Indie Rock", "Dream Pop"] }, ... ] }`;
 
     const res = await fetch("https://api.deepseek.com/chat/completions", {
       method: "POST",
@@ -765,15 +767,15 @@ async function handleIntelMusic(env) {
         const a = sorted[i];
         let tag, tagEn, tagId, cat;
         const pct = i / total;
-        if (pct < 0.3) { tag = "🔥 Trending Now"; tagEn = "Trending Now"; tagId = "trending"; cat = "trending"; }
-        else if (pct < 0.6) { tag = "⭐ Editor's Pick"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor"; }
+        if (pct < 0.3) { tag = "🔥 热门趋势"; tagEn = "Trending Now"; tagId = "trending"; cat = "trending"; }
+        else if (pct < 0.6) { tag = "⭐ 编辑推荐"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor"; }
         else if (pct < 0.85) {
-          tag = a.listeners < 2000 ? "⭐ Editor's Pick" : "💎 Hidden Gem";
+          tag = a.listeners < 2000 ? "⭐ 编辑推荐" : "💎 隐藏宝石";
           tagEn = a.listeners < 2000 ? "Editor's Pick" : "Hidden Gem";
           tagId = a.listeners < 2000 ? "editor" : "hidden";
           cat = a.listeners < 2000 ? "editor" : "hidden-gem";
         } else {
-          tag = "🌍 Around the World"; tagEn = "Around the World"; tagId = "world"; cat = "world";
+          tag = "🌍 环球音乐"; tagEn = "Around the World"; tagId = "world"; cat = "world";
         }
         aiWeek.push({
           ...a,
