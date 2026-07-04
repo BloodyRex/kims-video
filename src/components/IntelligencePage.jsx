@@ -9,15 +9,14 @@ const LANG_BUTTON_STYLE = {
 };
 
 const NAV_ITEMS = [
+  { id: "search", icon: "Search", color: "#00ffff", zh: "搜索", en: "Search" },
   { id: "overview", icon: "Target", color: "#ff00ff", zh: "总览", en: "Overview" },
   { id: "movies", icon: "Film", color: "#ff00ff", zh: "电影", en: "Movies" },
   { id: "tv", icon: "Tv", color: "#00ffff", zh: "剧集", en: "TV" },
   { id: "music", icon: "Music", color: "#ffff00", zh: "音乐", en: "Music" },
   { id: "coming", icon: "Calendar", color: "#ff00ff", zh: "即将上映", en: "Coming Soon" },
-  { id: "trending", icon: "Trending", color: "#00ffff", zh: "热榜", en: "Trending" },
-  { id: "weekly", icon: "FileText", color: "#ffff00", zh: "周报", en: "Weekly" },
+  { id: "weekly", icon: "Trending", color: "#00ffff", zh: "本周热榜", en: "Weekly Hot" },
   { id: "spotlight", icon: "Star", color: "#ff00ff", zh: "AI 精选", en: "AI Spotlight" },
-  { id: "search", icon: "Search", color: "#00ffff", zh: "搜索", en: "Search" },
 ];
 
 // ── Data fetch hook ──
@@ -131,10 +130,9 @@ function OverviewView({ locale }) {
 // ── Movies ──
 function MoviesView({ locale, onViewDetail }) {
   const { data, loading } = useJsonData("/api/movies.json");
-  const [tab, setTab] = useState("today");
+  const [tab, setTab] = useState("week");
   if (loading) return <LoadingSpinner locale={locale} />;
   const tabs = [
-    { id: "today", zh: "今日上映", en: "Today", key: "releasedToday" },
     { id: "week", zh: "本周上映", en: "This Week", key: "releasedThisWeek" },
     { id: "upcoming", zh: "即将上映", en: "Upcoming", key: "upcoming" },
     { id: "playing", zh: "热映中", en: "Now Playing", key: "nowPlaying" },
@@ -164,10 +162,9 @@ function MoviesView({ locale, onViewDetail }) {
 // ── TV ──
 function TVView({ locale, onViewDetail }) {
   const { data, loading } = useJsonData("/api/tv.json");
-  const [tab, setTab] = useState("today");
+  const [tab, setTab] = useState("week");
   if (loading) return <LoadingSpinner locale={locale} />;
   const tabs = [
-    { id: "today", zh: "今日首播", en: "Today", key: "premieresToday" },
     { id: "week", zh: "本周首播", en: "This Week", key: "premieresThisWeek" },
     { id: "upcoming", zh: "即将播出", en: "Upcoming", key: "upcoming" },
     { id: "ongoing", zh: "热播中", en: "Ongoing", key: "ongoing" },
@@ -195,24 +192,16 @@ function TVView({ locale, onViewDetail }) {
 }
 
 // ── Music ──
-function MusicView({ locale }) {
+function MusicView({ locale, onViewDetail }) {
   const { data, loading } = useJsonData("/api/music.json");
-  const [tab, setTab] = useState("latest");
-  // useMemo must be called before any early return (Rules of Hooks)
-  const allReleases = useMemo(() => {
-    if (!data) return [];
-    const today = data?.releasedToday || [];
-    const week = data?.releasedThisWeek || [];
-    const merged = [...today, ...week.filter(a => !today.some(t => t.mbid === a.mbid))];
-    return merged.sort((a, b) => (b.releaseDate || "").localeCompare(a.releaseDate || ""));
-  }, [data]);
+  const [tab, setTab] = useState("week");
   if (loading) return <LoadingSpinner locale={locale} />;
   const tabs = [
-    { id: "latest", zh: "最新发行", en: "Latest Releases", dynamic: true },
-    { id: "today", zh: "今日发行", en: "Today", key: "releasedToday" },
     { id: "week", zh: "本周发行", en: "This Week", key: "releasedThisWeek" },
+    { id: "upcoming", zh: "即将发行", en: "Upcoming", key: "upcoming" },
+    { id: "trending", zh: "热门音乐", en: "Trending", key: "trending" },
   ];
-  const current = tab === "latest" ? allReleases : (data?.[tabs.find(t => t.id === tab)?.key] || []);
+  const current = data?.[tabs.find(t => t.id === tab)?.key] || [];
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "音乐情报" : "Music Intelligence"} color="#ffff00" />
@@ -221,13 +210,16 @@ function MusicView({ locale }) {
           <button key={t.id} onClick={() => setTab(t.id)}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${tab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
+            {data?.[t.key]?.length > 0 && t.id !== "trending" && <span className="ml-1 opacity-60">({data[t.key].length})</span>}
           </button>
         ))}
       </div>
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
+      ) : tab === "trending" ? (
+        <CardList>{current.map((a, i) => <RankingCard key={i} item={a} rank={a.rank || i + 1} locale={locale} />)}</CardList>
       ) : (
-        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((a, i) => <AlbumCard key={i} album={a} locale={locale} />)}</CardGrid>
+        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((a, i) => <AlbumCard key={i} album={a} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "album")} />)}</CardGrid>
       )}
     </div>
   );
@@ -241,7 +233,6 @@ function ComingView({ locale }) {
   const tabs = [
     { id: "7days", zh: "7 天内", en: "7 Days", key: "next7Days" },
     { id: "30days", zh: "30 天内", en: "30 Days", key: "next30Days" },
-    { id: "anticipated", zh: "最受期待", en: "Most Anticipated", key: "mostAnticipated" },
   ];
   const current = data?.[tabs.find(t => t.id === tab)?.key] || [];
   return (
@@ -264,37 +255,24 @@ function ComingView({ locale }) {
   );
 }
 
-// ── Trending ──
-function TrendingView({ locale }) {
-  const { data, loading } = useJsonData("/api/trending.json");
-  const [periodTab, setPeriodTab] = useState("today");
+// ── Weekly Hot List (replaces old Trending/Weekly) ──
+function WeeklyView({ locale }) {
+  const { data, loading } = useJsonData("/api/weekly.json");
   const [typeTab, setTypeTab] = useState("movies");
   if (loading) return <LoadingSpinner locale={locale} />;
-  const periods = [
-    { id: "today", zh: "今日", en: "Today" },
-    { id: "week", zh: "本周", en: "Week" },
-  ];
   const types = [
     { id: "movies", zh: "电影", en: "Movies" },
     { id: "tv", zh: "剧集", en: "TV" },
     { id: "music", zh: "音乐", en: "Music" },
   ];
-  const current = data?.[periodTab]?.[typeTab] || [];
+  const current = data?.[typeTab] || [];
   return (
     <div className="space-y-6">
-      <SectionHeader label={locale === "zh" ? "热榜趋势" : "Trending Rankings"} count={current.length} color="#00ffff" />
-      <div className="flex gap-2 flex-wrap">
-        {periods.map(p => (
-          <button key={p.id} onClick={() => setPeriodTab(p.id)}
-            className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${periodTab === p.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
-            {locale === "zh" ? p.zh : p.en}
-          </button>
-        ))}
-      </div>
+      <SectionHeader label={locale === "zh" ? "本周热榜" : "Weekly Hot"} count={current.length} color="#ffff00" />
       <div className="flex gap-2 flex-wrap">
         {types.map(t => (
           <button key={t.id} onClick={() => setTypeTab(t.id)}
-            className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 transition-colors ${typeTab === t.id ? "bg-[#00ffff] text-black border-[#00ffff]" : "bg-white text-black border-black hover:bg-gray-100"}`}>
+            className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 transition-colors ${typeTab === t.id ? "bg-[#ffff00] text-black border-[#ffff00]" : "bg-white text-black border-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
           </button>
         ))}
@@ -303,92 +281,6 @@ function TrendingView({ locale }) {
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
         <CardList>{current.map((item, i) => <RankingCard key={i} item={item} rank={item.rank || i + 1} locale={locale} />)}</CardList>
-      )}
-    </div>
-  );
-}
-
-// ── Weekly Snapshot Dashboard ──
-function WeeklyView({ locale }) {
-  const { data: weeklyData, loading } = useJsonData("/api/weekly.json");
-  const { data: editorData } = useJsonData("/api/editor.json");
-  const { data: hiddenGemsData } = useJsonData("/api/hidden-gems.json");
-  if (loading) return <LoadingSpinner locale={locale} />;
-  if (!weeklyData) return <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>;
-
-  const stats = weeklyData.stats || {};
-  const trendingHighlights = weeklyData.trendingHighlights || [];
-  const editorsPicks = editorData?.picks?.editorsPick || [];
-  const hiddenGems = hiddenGemsData?.gems || [];
-
-  const statCards = [
-    { zh: "电影上映", en: "Movies Released", num: stats.moviesReleased ?? "--", color: "#ff00ff" },
-    { zh: "剧集首播", en: "TV Premieres", num: stats.tvPremieres ?? "--", color: "#00ffff" },
-    { zh: "专辑发行", en: "Albums Released", num: stats.albumsReleased ?? "--", color: "#000000" },
-  ];
-
-  return (
-    <div className="space-y-8">
-      {/* Week Header */}
-      <div className="bg-black border-4 border-[#ffff00] p-6 sm:p-8 shadow-[8px_8px_0_0_rgba(0,255,255,0.5)]">
-        <h2 className="text-lg sm:text-2xl font-black text-white pixel-font mb-2">
-          {locale === "zh" ? "每周快照" : "Weekly Snapshot"}
-        </h2>
-        <p className="text-sm text-[#ffff00] font-black">
-          {weeklyData.week}
-        </p>
-        <p className="text-xs text-gray-400 mt-1">
-          {weeklyData.date}
-        </p>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        {statCards.map((s, i) => (
-          <div key={i} className="bg-white border-4 border-black p-4 text-center shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
-            <div className="text-2xl sm:text-3xl font-black pixel-font" style={{ color: s.color }}>{s.num}</div>
-            <div className="text-[10px] sm:text-xs text-gray-500 mt-1">{locale === "zh" ? s.zh : s.en}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Editor's Picks */}
-      {editorsPicks.length > 0 && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "★ 编辑精选" : "★ Editor's Picks"} count={editorsPicks.length} color="#ff00ff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
-        </section>
-      )}
-
-      {/* Hidden Gems */}
-      {hiddenGems.length > 0 && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "◆ 隐藏宝藏" : "◆ Hidden Gems"} count={hiddenGems.length} color="#00ffff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{hiddenGems.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} />)}</CardGrid>
-        </section>
-      )}
-
-      {/* Trending Highlights */}
-      {trendingHighlights.length > 0 && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "↑ 本周趋势" : "↑ Trending Highlights"} count={trendingHighlights.length} color="#ff00ff" />
-          <CardList>{trendingHighlights.map((item, i) => (
-            <RankingCard key={i} item={item} rank={item.rank || i + 1} locale={locale} />
-          ))}</CardList>
-        </section>
-      )}
-
-      {/* One Minute Summary */}
-      {weeklyData.oneMinuteSummary && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "☕ 一分钟摘要" : "☕ One Minute Summary"} color="#ffff00" />
-          <div className="bg-black border-4 border-[#ff00ff] p-5 shadow-[6px_6px_0_0_rgba(0,255,255,0.3)]">
-            <p className="text-sm text-gray-200 leading-relaxed">{locale === "en" ? (weeklyData.oneMinuteSummaryEn || weeklyData.oneMinuteSummary) : weeklyData.oneMinuteSummary}</p>
-            <p className="text-[10px] text-gray-500 mt-3 pixel-font">
-              {locale === "zh" ? "更新于 " : "Updated "}{weeklyData.updated || ""}
-            </p>
-          </div>
-        </section>
       )}
     </div>
   );
@@ -593,9 +485,8 @@ function IntelligencePage() {
           {activeNav === "overview" && <OverviewView locale={locale} />}
           {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
           {activeNav === "tv" && <TVView locale={locale} onViewDetail={(item) => handleViewDetail(item, "tv")} />}
-          {activeNav === "music" && <MusicView locale={locale} />}
+          {activeNav === "music" && <MusicView locale={locale} onViewDetail={(item) => handleViewDetail(item, "music")} />}
           {activeNav === "coming" && <ComingView locale={locale} />}
-          {activeNav === "trending" && <TrendingView locale={locale} />}
           {activeNav === "weekly" && <WeeklyView locale={locale} />}
           {activeNav === "spotlight" && <SpotlightView locale={locale} />}
           {activeNav === "search" && <SearchView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}

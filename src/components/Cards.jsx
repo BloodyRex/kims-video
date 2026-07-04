@@ -270,6 +270,12 @@ export function AlbumCard({ album, locale, onViewDetail }) {
           )}
           <AIScoreBadge score={album.aiScore} confidence={album.confidence} />
           <Tags tags={album.tags} tagsEn={album.tagsEn} color="#333" locale={locale} />
+          {onViewDetail && (
+            <button onClick={() => onViewDetail(album)}
+              className="self-start mt-1 px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
+              {locale === "en" ? "DETAILS" : "详情"}
+            </button>
+          )}
         </div>
       </div>
     </CardShell>
@@ -280,6 +286,17 @@ export function AlbumCard({ album, locale, onViewDetail }) {
 
 export function CountdownCard({ item, locale, onViewDetail }) {
   const title = getTitle(item, locale);
+  const mediaType = item.mediaType || "movie";
+  const typeLabel = mediaType === "tv"
+    ? (locale === "en" ? "TV" : "剧集")
+    : mediaType === "album"
+      ? (locale === "en" ? "ALBUM" : "专辑")
+      : mediaType === "single"
+        ? (locale === "en" ? "SINGLE" : "单曲")
+        : (locale === "en" ? "MOVIE" : "电影");
+  const typeColor = mediaType === "tv" ? "#00ffff"
+    : mediaType === "album" || mediaType === "single" ? "#ffff00"
+    : "#ff00ff";
   const days = (typeof item.daysUntil === "number" && !isNaN(item.daysUntil)) ? item.daysUntil : null;
   const countdownLabel = days === null
     ? (item.releaseDate || "")
@@ -295,8 +312,8 @@ export function CountdownCard({ item, locale, onViewDetail }) {
       </div>
 
       <div className="bg-black text-white px-3 py-2 flex items-center gap-2 text-xs">
-        <span className="font-black pixel-font text-[#ff00ff] uppercase text-[9px]">
-          {locale === "en" ? "COMING" : "即将"}
+        <span className="font-black pixel-font uppercase text-[9px]" style={{ color: typeColor }}>
+          {typeLabel}
         </span>
         <span className="text-gray-400 text-[9px]">{item.releaseDate || ""}</span>
       </div>
@@ -510,9 +527,13 @@ export function CardList({ children }) {
 export function IntelDetailModal({ item, type, locale, onClose }) {
   if (!item) return null;
   const title = getTitle(item, locale);
-  const typeLabel = type === "tv" ? (locale === "en" ? "TV SERIES" : "剧集") : (locale === "en" ? "MOVIE" : "电影");
+  const isMusic = type === "music" || type === "album";
+  const typeLabel = type === "tv" ? (locale === "en" ? "TV SERIES" : "剧集")
+    : isMusic ? (locale === "en" ? "ALBUM" : "专辑")
+    : (locale === "en" ? "MOVIE" : "电影");
   const tmdbPath = type === "tv" ? "tv" : "movie";
   const tmdbUrl = `https://www.themoviedb.org/${tmdbPath}/${item.tmdbId}`;
+  const mbUrl = item.mbid ? `https://musicbrainz.org/release/${item.mbid}` : "";
   const genres = Array.isArray(item.genre) ? item.genre : (item.genre ? [item.genre] : []);
 
   const handleShare = async () => {
@@ -572,10 +593,17 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
 
         {/* 3 Action Buttons */}
         <div className="border-t-4 border-black p-4 flex flex-col sm:flex-row gap-2">
-          <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
-            className="flex-1 px-3 py-2.5 text-[10px] font-black text-center text-black bg-[#00ffff] border-2 border-black shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
-            {locale === "en" ? "View on TMDB" : "TMDB 查看完整资料"}
-          </a>
+          {!isMusic && item.tmdbId ? (
+            <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
+              className="flex-1 px-3 py-2.5 text-[10px] font-black text-center text-black bg-[#00ffff] border-2 border-black shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
+              {locale === "en" ? "View on TMDB" : "TMDB 查看完整资料"}
+            </a>
+          ) : isMusic && mbUrl ? (
+            <a href={mbUrl} target="_blank" rel="noopener noreferrer"
+              className="flex-1 px-3 py-2.5 text-[10px] font-black text-center text-black bg-[#00ffff] border-2 border-black shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
+              {locale === "en" ? "View on MusicBrainz" : "MusicBrainz 查看资料"}
+            </a>
+          ) : null}
           <button onClick={onClose}
             className="flex-1 px-3 py-2.5 text-[10px] font-black text-center text-white bg-black border-2 border-black shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
             {locale === "en" ? "Back" : "返回"}
