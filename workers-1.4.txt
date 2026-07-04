@@ -326,6 +326,28 @@ function intelNormalizeAlbum(r) {
   };
 }
 
+// ── Upcoming albums: Last.fm enrichment + hot ranking ──
+async function intelFetchUpcomingAlbums(env, daysAhead = 14) {
+  const mb = await intelFetchMusicUpcoming(env, daysAhead).catch(() => []);
+  const filtered = mb.filter(intelIsValidAlbum);
+  if (!filtered.length) return [];
+
+  const withLFM = [];
+  for (let i = 0; i < filtered.length; i += 5) {
+    const batch = await Promise.allSettled(
+      filtered.slice(i, i + 5).map(async (rel) => {
+        const lfm = await intelFetchLastFMAlbumInfo(rel.artist, rel.title, env);
+        return { ...rel, listeners: lfm?.listeners || 0, playcount: lfm?.playcount || 0, lfmTags: lfm?.tags || [] };
+      })
+    );
+    batch.forEach((r, j) => {
+      withLFM.push(r.status === "fulfilled" ? r.value : { ...filtered[i + j], listeners: 0, playcount: 0, lfmTags: [] });
+    });
+  }
+
+  return withLFM.map(intelNormalizeAlbum).sort((a, b) => (b.listeners || 0) - (a.listeners || 0)).slice(0, 20);
+}
+
 // ── DeepSeek enrichment ──
 async function intelEnrichWithAI(items, type, env) {
   if (!env.DEEPSEEK_API_KEY || !items.length) return items;
@@ -406,8 +428,8 @@ ${JSON.stringify(items.map((i, idx) => ({
 **Tags (pick one per album):**
 1. "trending" = 🔥 Trending Now — high popularity (listeners > 50000), major artist, global buzz.
 2. "editor" = ⭐ Editor's Pick — strong artistic merit, outstanding quality. Not necessarily popular.
-3. "hidden" = 💎 Hidden Gem — lower popularity (listeners < 10000) but excellent quality, unique style.
-4. "world" = 🌍 Around the World — from outside US/UK, represents regional music culture.
+3. "hidden" = 💎 Hidden Gem — listeners between 2000 and 10000, excellent quality, unique style.
+4. "world" = 🌍 Around the World — from outside US/UK, represents regional music culture. Prefer Japanese (JP) and Chinese (CN/TW/HK) artists.
 
 **Diversity requirements:**
 - Cover different genres and music styles
@@ -625,16 +647,29 @@ async function handleIntelMusic(env) {
       const pct = i / total;
       if (pct < 0.3) { tag = "🔥 Trending Now"; tagEn = "Trending Now"; tagId = "trending"; cat = "trending"; }
       else if (pct < 0.6) { tag = "⭐ Editor's Pick"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor"; }
-      else if (pct < 0.85) { tag = "💎 Hidden Gem"; tagEn = "Hidden Gem"; tagId = "hidden"; cat = "hidden-gem"; }
-      else { tag = "🌍 Around the World"; tagEn = "Around the World"; tagId = "world"; cat = "world"; }
+      else if (pct < 0.85) {
+        // Hidden Gem: skip if listeners < 2000, downgrade to Editor's Pick
+        if ((a.listeners || 0) > 0 && (a.listeners || 0) < 2000) {
+          tag = "⭐ Editor's Pick"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor";
+        } else {
+          tag = "💎 Hidden Gem"; tagEn = "Hidden Gem"; tagId = "hidden"; cat = "hidden-gem";
+        }
+      }
+      else {
+        // Around the World: prefer CN/JP/TW/HK, otherwise fallback to Editor's Pick
+        const cjk = ["CN", "JP", "TW", "HK"].includes(a.country) || /[一-鿿぀-ゟ゠-ヿ]/.test(a.artist || "");
+        if (cjk) {
+          tag = "🌍 Around the World"; tagEn = "Around the World"; tagId = "world"; cat = "world";
+        } else {
+          tag = "⭐ Editor's Pick"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor";
+        }
+      }
       aiWeek.push({ ...a, recommendationTag: tag, recommendationTagEn: tagEn, recommendationTagId: tagId, category: cat, highlight: a.highlight || `New release from ${a.artist}`, highlightEn: a.highlightEn || `New release from ${a.artist}`, summary: a.summary || "", summaryEn: a.summaryEn || "" });
     }
   }
 
-  // Upcoming: use raw data, skip AI enrichment (future releases don't need curation tags)
-  const upcomingMB = await intelFetchMusicUpcoming(env, 30).catch(() => []);
-  const upcomingFiltered = upcomingMB.filter(intelIsValidAlbum);
-  const upcomingAlbums = (upcomingFiltered.length > 0 ? upcomingFiltered : upcomingMB).slice(0, 20).map(intelNormalizeAlbum);
+  // Upcoming: use shared hot-ranked function
+  const upcomingAlbums = await intelFetchUpcomingAlbums(env).catch(() => []);
 
   return {
     updated: today,
@@ -687,7 +722,7 @@ async function handleIntelComing(env) {
 
   const [movieUpcoming, musicUpcoming] = await Promise.all([
     intelFetchTMDB(token, "/movie/upcoming"),
-    intelFetchMusicUpcoming(env, 30).catch(() => []),
+    intelFetchUpcomingAlbums(env).catch(() => []),
   ]);
 
   const allItems = [];
