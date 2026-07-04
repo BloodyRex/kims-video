@@ -1,9 +1,9 @@
 {
   "date": "2026-07-04",
-  "headline": "痴迷领跑今日热搜，福尔摩斯小姐3热度不减",
-  "headlineEn": "Obsession Tops Today's Trending, Enola Holmes 3 Stays Hot",
-  "summary": "今日娱乐新闻：无新片上映，但《痴迷》和《福尔摩斯小姐3》持续霸榜，本周《达顿牧场》等新作备受关注。",
-  "summaryEn": "Entertainment news today: No new releases, but 'Obsession' and 'Enola Holmes 3' dominate charts; 'Dutton Ranch' among this week's most anticipated.",
+  "headline": "暑期档预热：痴迷领跑，福尔摩斯小姐3回归",
+  "headlineEn": "Summer Preview: 'Obsession' Leads, 'Enola Holmes 3' Returns",
+  "summary": "今日娱乐新闻：新片《痴迷》热度登顶，《福尔摩斯小姐3》与《末日地堡》紧随其后。本周《达顿牧场》《穿普拉达的女王2》等备受期待。未来《蜘蛛侠：崭新之日》《奥德赛》即将上映。",
+  "summaryEn": "Today's entertainment news: 'Obsession' tops trending, followed by 'Enola Holmes 3' and 'Silo.' This week's highlights include 'Dutton Ranch' and 'The Devil Wears Prada 2.' Upcoming: 'Spider-Man: Freshman Year' and 'The Odyssey.'",
   "topTrends": [
     {
       "rank": 1,
@@ -19,35 +19,39 @@
     },
     {
       "rank": 3,
+      "title": "末日地堡",
+      "titleEn": "Silo",
+      "category": "movie"
+    },
+    {
+      "rank": 4,
       "title": "无职转生：到了异世界就拿出真本事",
       "titleEn": "Mushoku Tensei: Jobless Reincarnation",
       "category": "movie"
     },
     {
-      "rank": 4,
-      "title": "达顿牧场",
-      "titleEn": "Dutton Ranch",
-      "category": "movie"
-    },
-    {
       "rank": 5,
-      "title": "穿普拉达的女王2",
-      "titleEn": "The Devil Wears Prada 2",
+      "title": "气体人第一号",
+      "titleEn": "The First Gas Man",
       "category": "movie"
     }
   ],
   "industryHighlights": [
     {
-      "text": "《末日地堡》与《气体人第一号》跻身今日热搜",
-      "en": "'Silo' and 'The First Gas Man' enter today's trending"
+      "text": "本周新片仅1部，市场进入暑期档预热期",
+      "en": "Only 1 new movie this week; market enters summer preheat phase"
     },
     {
-      "text": "本周《超级少女》《小黄人与大怪兽》热度上升",
-      "en": "'Supergirl' and 'Minions and Monsters' gain traction this week"
+      "text": "《达顿牧场》与《龙族》持续占据本周热搜",
+      "en": "'Dutton Ranch' and 'House of the Dragon' remain trending this week"
     },
     {
-      "text": "未来新片《安昂传奇》《蜘蛛侠：崭新之日》备受期待",
-      "en": "Upcoming films 'Avatar: The Last Airbender' and 'Spider-Man: Brand New Day' highly anticipated"
+      "text": "《蜘蛛侠：崭新之日》定档，漫威宇宙新篇章",
+      "en": "'Spider-Man: Freshman Year' dated, new chapter in Marvel universe"
+    },
+    {
+      "text": "《鬼玩人6：燃烧》预告引恐怖片迷热议",
+      "en": "'Evil Dead 6: Burn' trailer sparks horror fan buzz"
     }
   ]
 }
