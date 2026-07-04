@@ -4,7 +4,7 @@ import { Icons } from "./Icons";
 // ── Image proxy helper ──
 function posterUrl(path) {
   if (!path) return "";
-  if (path.startsWith("https://image.tmdb.org/")) {
+  if (path.startsWith("https://image.tmdb.org/") || path.startsWith("https://coverartarchive.org/")) {
     return "https://api.bloodyrex.xyz/poster-proxy?url=" + encodeURIComponent(path);
   }
   return path;

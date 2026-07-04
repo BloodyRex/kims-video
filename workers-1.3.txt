@@ -157,7 +157,7 @@ async function intelFetchLastFM(method, params, env) {
   const cacheKey = "lfm-" + btoa(url.toString()).replace(/[=+/]/g, "");
   return withCache(cacheKey, async () => {
     const res = await fetch(url.toString());
-    if (!res.ok) throw new Error(`Last.fm: ${res.status}`);
+    if (!res.ok) { console.warn("Last.fm:", method, res.status); return null; }
     return res.json();
   }, 3600);
 }
@@ -170,7 +170,7 @@ async function intelFetchMusicUpcoming(env, daysAhead = 30) {
   const futureStr = future.toISOString().split("T")[0];
   const cacheKey = `intel-mb-upcoming-${todayStr}`;
   return withCache(cacheKey, async () => {
-    const url = `https://musicbrainz.org/ws/2/release?query=date:[${todayStr}%20TO%20${futureStr}]&fmt=json&limit=30`;
+    const url = `https://musicbrainz.org/ws/2/release?query=date:[${todayStr}%20TO%20${futureStr}]&fmt=json&limit=50`;
     const res = await fetch(url, {
       headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
     });
@@ -199,7 +199,7 @@ async function intelFetchMusicUpcoming(env, daysAhead = 30) {
 async function intelFetchMusicBrainz(dateStr) {
   const cacheKey = `intel-mb-${dateStr}`;
   return withCache(cacheKey, async () => {
-    const url = `https://musicbrainz.org/ws/2/release?query=date:${dateStr}&fmt=json&limit=30`;
+    const url = `https://musicbrainz.org/ws/2/release?query=date:${dateStr}&fmt=json&limit=50`;
     const res = await fetch(url, {
       headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
     });
@@ -249,9 +249,9 @@ async function intelEnrichWithAI(items, type, env) {
   try {
     let prompt, maxTokens;
     if (type === "album") {
-      // Album pipeline: filter 5-10 worthy albums + one-liner + tags + global/niche
-      maxTokens = 3000;
-      prompt = `You are a music editor for an entertainment intelligence platform. Today's new album releases:\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, artist: i.artist, genre: i.genre, country: i.country })))}\n\nYour task:\n1. Select ONLY the 5-10 most noteworthy albums worth featuring on a homepage.\n2. For each selected one, provide: a) "highlight" — one punchy recommendation line in Chinese (like "适合深夜聆听的电子氛围专辑"), b) "highlightEn" — same in English, c) "aiScore" (0-10), d) "tags" (3-5 style/genre tags, in Chinese), e) "tagsEn" (same tags in English), f) "category" — either "global" (mainstream/international attention) or "niche" (indie/underground/cult favorite), g) "summary" — a short description in Chinese (1-2 sentences about the album's style, mood, and notable aspects), h) "summaryEn" — same in English.\n3. Return a JSON object: { "items": [ { "index": 0, "highlight": "...", "highlightEn": "...", "aiScore": 8.5, "tags": [...], "tagsEn": [...], "category": "global", "summary": "...", "summaryEn": "..." }, ... ] }\nOnly include the selected albums. Do NOT return all albums.`;
+      // Album pipeline: filter diverse albums
+      maxTokens = 4000;
+      prompt = `You are a music editor. Today's new album releases:\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, artist: i.artist, genre: i.genre, country: i.country })))}\n\nYour task:\n1. Select 8-12 of the most noteworthy albums covering a DIVERSE range: mainstream/popular releases, niche/underground gems, and thought-provoking/unconventional works. Do NOT just pick the first ones.\n2. For each selected one, provide: a) "highlight" — one punchy recommendation line in Chinese, b) "highlightEn" — same in English, c) "aiScore" (0-10), d) "tags" (3-5 style/genre tags, in Chinese), e) "tagsEn" (same tags in English), f) "category" — either "global" (mainstream/international) or "niche" (indie/underground/cult), g) "summary" — a short description in Chinese (1-2 sentences about style, mood, notable aspects), h) "summaryEn" — same in English.\n3. Return JSON: { "items": [ { "index": 0, "highlight": "...", "highlightEn": "...", "aiScore": 8.5, "tags": [...], "tagsEn": [...], "category": "global", "summary": "...", "summaryEn": "..." }, ... ] }\nSelect 8-12 albums max. Do NOT return all albums.`;
     } else {
       maxTokens = 4000;
       prompt = `You are an entertainment editor. For each ${type} below, provide: 1) aiScore (0-10), 2) reason (2-3 sentences why it's worth watching, in Chinese), 3) reasonEn (same in English), 4) audience (target audience in Chinese), 5) audienceEn (target audience in English), 6) tags (3-5 short tags, in Chinese), 7) tagsEn (same tags in English). Return JSON object with key "items" containing an array (same count, same order).\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, genre: i.genre, summary: i.summary })))}`;
@@ -269,8 +269,8 @@ async function intelEnrichWithAI(items, type, env) {
     const enriched = parsed?.items || [];
 
     if (type === "album") {
-      // Only return the filtered subset
-      return enriched.map(ai => {
+      // Only return the filtered subset, max 12
+      return enriched.slice(0, 12).map(ai => {
         const item = items[ai.index] || {};
         return {
           ...item,
@@ -369,24 +369,54 @@ async function handleIntelTV(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
-  const sixtyDaysAgo = new Date(Date.now() - 60 * 86400000).toISOString().split("T")[0];
 
-  const [airing, onAir, popular] = await Promise.all([
-    intelFetchTMDB(token, "/tv/airing_today"),
-    intelFetchTMDB(token, "/tv/on_the_air"),
+  const [popular] = await Promise.all([
     intelFetchTMDB(token, "/tv/popular"),
   ]);
 
-  // Merge today + this week into one "This Week" set
-  const weekS = airing
-    .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
-    .slice(0, 20)
-    .map(s => intelNormalizeMovie(s, "tv"));
+  // This week premieres via discover/tv (brand new shows this week)
+  let weekPremieres = [];
+  try {
+    const url = new URL("https://api.themoviedb.org/3/discover/tv");
+    url.searchParams.set("first_air_date.gte", weekAgo);
+    url.searchParams.set("first_air_date.lte", today);
+    url.searchParams.set("sort_by", "first_air_date.desc");
+    url.searchParams.set("language", "zh-CN");
+    const cacheKey = "intel-tv-premiered-" + today;
+    const results = await withCache(cacheKey, async () => {
+      const r = await fetch(url.toString(), {
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      });
+      if (!r.ok) return [];
+      const d = await r.json();
+      return d.results || [];
+    });
+    weekPremieres = (results || []).slice(0, 20).map(s => intelNormalizeMovie(s, "tv"));
+  } catch (e) { console.warn("TV week premieres failed:", e.message); }
+
+  // Upcoming via discover/tv (new shows premiering in the future)
+  let upcomingTV = [];
+  try {
+    const url = new URL("https://api.themoviedb.org/3/discover/tv");
+    url.searchParams.set("first_air_date.gte", today);
+    url.searchParams.set("sort_by", "first_air_date.asc");
+    url.searchParams.set("language", "zh-CN");
+    const cacheKey = "intel-tv-upcoming-" + today;
+    const results = await withCache(cacheKey, async () => {
+      const r = await fetch(url.toString(), {
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      });
+      if (!r.ok) return [];
+      const d = await r.json();
+      return d.results || [];
+    });
+    upcomingTV = (results || []).slice(0, 20).map(s => intelNormalizeMovie(s, "tv"));
+  } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
   return {
     updated: today,
-    premieresThisWeek: await intelEnrichWithAI(weekS, "movie", env),
-    upcoming: onAir.filter(s => s.first_air_date && s.first_air_date >= sixtyDaysAgo).slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
+    premieresThisWeek: await intelEnrichWithAI(weekPremieres, "movie", env),
+    upcoming: upcomingTV,
     ongoing: popular.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
   };
 }
@@ -407,7 +437,8 @@ async function handleIntelMusic(env) {
   for (const rel of weekMB) {
     if (!merged.some(r => r.mbid === rel.mbid)) merged.push(rel);
   }
-  const weekAlbums = merged.slice(0, 30).map(intelNormalizeAlbum);
+  const weekAlbums = merged.slice(0, 50).map(intelNormalizeAlbum);
+  const upcomingAlbums = upcomingMB.slice(0, 50).map(intelNormalizeAlbum);
 
   // Last.fm trending
   const trendingAlbums = lastfmData
@@ -431,7 +462,7 @@ async function handleIntelMusic(env) {
   return {
     updated: today,
     releasedThisWeek: await intelEnrichWithAI(weekAlbums, "album", env),
-    upcoming: upcomingMB.map(intelNormalizeAlbum),
+    upcoming: await intelEnrichWithAI(upcomingAlbums, "album", env),
     trending: trendingAlbums,
   };
 }
@@ -764,8 +795,8 @@ export default {
       const tm = path.match(/^\/discover\/thumbnail\/(.+)$/);
       if (tm && env.DISCOVER_R2) { try { const obj = await env.DISCOVER_R2.get(`thumbnails/${tm[1]}.png`); if (!obj) return new Response("Not found", { status: 404, headers: corsHeaders }); const h = new Headers(); obj.writeHttpMetadata(h); h.set("Access-Control-Allow-Origin", corsHeaders["Access-Control-Allow-Origin"]); h.set("Cache-Control", "public, max-age=86400"); return new Response(obj.body, { headers: h }); } catch (e) { return new Response("Error", { status: 500, headers: corsHeaders }); } }
 
-      // Poster proxy
-      if (path === "/poster-proxy") { const iu = url.searchParams.get("url"); if (!iu) return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } }); if (!iu.startsWith("https://image.tmdb.org/")) return new Response("Forbidden", { status: 403, headers: { "Access-Control-Allow-Origin": "*" } }); try { const ir = await fetch(iu); const nh = new Headers(ir.headers); nh.set("Access-Control-Allow-Origin", "*"); nh.set("Cache-Control", "public, max-age=86400"); return new Response(ir.body, { status: ir.status, headers: nh }); } catch (e) { return new Response("Proxy error", { status: 502, headers: { "Access-Control-Allow-Origin": "*" } }); } }
+      // Poster proxy (TMDB + Cover Art Archive)
+      if (path === "/poster-proxy") { const iu = url.searchParams.get("url"); if (!iu) return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } }); if (!iu.startsWith("https://image.tmdb.org/") && !iu.startsWith("https://coverartarchive.org/")) return new Response("Forbidden", { status: 403, headers: { "Access-Control-Allow-Origin": "*" } }); try { const ir = await fetch(iu); const nh = new Headers(ir.headers); nh.set("Access-Control-Allow-Origin", "*"); nh.set("Cache-Control", "public, max-age=86400"); return new Response(ir.body, { status: ir.status, headers: nh }); } catch (e) { return new Response("Proxy error", { status: 502, headers: { "Access-Control-Allow-Origin": "*" } }); } }
 
       // Admin: list results
       if (path === "/admin/results") { const err = requireAdmin(); if (err) return err; try { return Response.json(await handleAdminResults(env), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }

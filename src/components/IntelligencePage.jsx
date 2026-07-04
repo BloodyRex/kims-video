@@ -228,21 +228,26 @@ function MusicView({ locale, onViewDetail }) {
 // ── Coming Soon ──
 function ComingView({ locale }) {
   const { data, loading } = useJsonData("/api/coming.json");
-  const [tab, setTab] = useState("7days");
+  const [typeTab, setTypeTab] = useState("movies");
   if (loading) return <LoadingSpinner locale={locale} />;
-  const tabs = [
-    { id: "7days", zh: "7 天内", en: "7 Days", key: "next7Days" },
-    { id: "30days", zh: "30 天内", en: "30 Days", key: "next30Days" },
+  const types = [
+    { id: "movies", zh: "电影", en: "Movies", filter: (i) => i.mediaType === "movie" },
+    { id: "tv", zh: "剧集", en: "TV", filter: (i) => i.mediaType === "tv" },
+    { id: "music", zh: "音乐", en: "Music", filter: (i) => i.mediaType === "album" || i.mediaType === "single" },
   ];
-  const current = data?.[tabs.find(t => t.id === tab)?.key] || [];
+  const allItems = [...(data?.next7Days || []), ...(data?.next30Days || [])];
+  const seen = new Set();
+  const deduped = allItems.filter(i => { const k = i.title + (i.artist || ""); if (seen.has(k)) return false; seen.add(k); return true; });
+  const current = deduped.filter(types.find(t => t.id === typeTab)?.filter || (() => true));
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "即将上映" : "Coming Soon"} color="#ff00ff" />
       <div className="flex gap-2 flex-wrap">
-        {tabs.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)}
-            className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${tab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
+        {types.map(t => (
+          <button key={t.id} onClick={() => setTypeTab(t.id)}
+            className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${typeTab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
+            <span className="ml-1 opacity-60">({deduped.filter(t.filter).length})</span>
           </button>
         ))}
       </div>
