@@ -7,6 +7,45 @@
 const GENRE_MAP = { 878: "科幻", 9648: "悬疑", 53: "悬疑", 27: "恐怖", 16: "动画", 10752: "战争", 80: "犯罪", 18: "剧情", 10749: "剧情", 36: "剧情", 10402: "剧情", 14: "奇幻", 12: "奇幻" };
 function classifyGenre(tmdbGenres) { if (!Array.isArray(tmdbGenres)) return "剧情"; for (const g of tmdbGenres) { const cat = GENRE_MAP[g.id]; if (cat) return cat; } return "剧情"; }
 
+// ── Music genre EN→ZH translation ──
+const GENRE_ZH = {
+  "hip hop": "嘻哈", "hip-hop": "嘻哈", "rap": "说唱", "trap": "陷阱说唱", "gangsta rap": "匪帮说唱", "old school hip hop": "老派嘻哈", "east coast hip hop": "东岸嘻哈", "west coast hip hop": "西岸嘻哈", "southern hip hop": "南部嘻哈", "underground hip hop": "地下嘻哈", "alternative hip hop": "另类嘻哈", "jazz rap": "爵士说唱", "cloud rap": "云说唱", "drill": "钻头说唱", "grime": "格里姆", "uk hip hop": "英国嘻哈",
+  "pop": "流行", "art pop": "艺术流行", "dream pop": "梦幻流行", "synth pop": "合成器流行", "indie pop": "独立流行", "electropop": "电子流行", "dance pop": "舞曲流行", "k-pop": "韩流", "j-pop": "日语流行", "french pop": "法国流行", "latin pop": "拉丁流行",
+  "rock": "摇滚", "indie rock": "独立摇滚", "alternative rock": "另类摇滚", "classic rock": "经典摇滚", "hard rock": "硬摇滚", "progressive rock": "前卫摇滚", "psychedelic rock": "迷幻摇滚", "garage rock": "车库摇滚", "post-rock": "后摇滚", "math rock": "数学摇滚", "soft rock": "软摇滚", "southern rock": "南方摇滚", "stoner rock": "石人摇滚", "folk rock": "民谣摇滚", "blues rock": "蓝调摇滚",
+  "electronic": "电子", "electronic music": "电子音乐", "edm": "电子舞曲", "house": "浩室", "deep house": "深度浩室", "tech house": "科技浩室", "progressive house": "前卫浩室", "trance": "迷幻", "techno": "铁克诺", "dubstep": "回响贝斯", "drum and bass": "鼓打贝斯", "ambient": "氛围", "idm": "智能舞曲", "breakbeat": "碎拍", "downtempo": "缓拍", "chillout": "弛放", "trip hop": "神游舞曲", "industrial": "工业", "synthwave": "合成器浪潮", "vaporwave": "蒸汽波",
+  "r&b": "节奏蓝调", "rnb": "节奏蓝调", "soul": "灵魂", "neo soul": "新灵魂", "funk": "放克", "disco": "迪斯科", "motown": "摩城",
+  "jazz": "爵士", "fusion": "融合爵士", "smooth jazz": "流畅爵士", "acid jazz": "酸爵士", "bebop": "比波普", "cool jazz": "冷爵士", "free jazz": "自由爵士", "latin jazz": "拉丁爵士",
+  "metal": "金属", "heavy metal": "重金属", "black metal": "黑金属", "death metal": "死亡金属", "doom metal": "厄运金属", "thrash metal": "鞭挞金属", "power metal": "力量金属", "symphonic metal": "交响金属", "folk metal": "民谣金属", "pagan metal": "异教金属", "viking metal": "维京金属", "gothic metal": "哥特金属", "progressive metal": "前卫金属", "nu metal": "新金属", "metalcore": "金属核", "deathcore": "死核",
+  "country": "乡村", "folk": "民谣", "indie folk": "独立民谣", "singer-songwriter": "唱作人",
+  "blues": "蓝调", "reggae": "雷鬼", "dancehall": "舞厅", "ska": "斯卡",
+  "latin": "拉丁", "salsa": "萨尔萨", "bossa nova": "波萨诺瓦", "samba": "桑巴", "reggaeton": "雷击顿", "cumbia": "昆比亚", "bachata": "巴恰塔",
+  "classical": "古典", "orchestral": "管弦乐", "chamber music": "室内乐", "opera": "歌剧", "baroque": "巴洛克",
+  "jesus": "福音", "gospel": "福音", "christian": "基督教音乐", "christmas": "圣诞音乐",
+  "punk": "朋克", "pop punk": "流行朋克", "hardcore punk": "硬核朋克", "post-punk": "后朋克", "skate punk": "滑板朋克",
+  "indie": "独立", "alternative": "另类", "experimental": "实验", "avant-garde": "先锋",
+  "instrumental": "器乐", "lo-fi": "低保真", "noise": "噪音乐", "ambient pop": "氛围流行",
+  "world": "世界音乐", "african": "非洲音乐", "afrobeat": "非洲节拍", "caribbean": "加勒比音乐", "celtic": "凯尔特音乐", "japanese": "日本音乐", "korean": "韩国音乐", "chinese": "中国音乐",
+  "soundtrack": "原声", "score": "配乐", "video game music": "游戏音乐", "anime": "动漫",
+  "children": "儿童音乐", "comedy": "喜剧", "spoken word": "朗诵", "audiobook": "有声书",
+  "electronic pop": "电子流行", "dreamy": "梦幻", "melancholic": "忧郁", "energetic": "活力", "dark": "暗黑", "romantic": "浪漫", "sexy": "性感", "chill": "放松", "party": "派对", "summer": "夏日",
+  "2019": "2019", "2020": "2020", "2021": "2021", "2022": "2022", "2023": "2023", "2024": "2024", "2025": "2025", "2026": "2026",
+  "favorites": "精选", "best of": "精选", "seen live": "现场", "live": "现场", "cover": "翻唱", "remix": "混音", "remastered": "重制", "deluxe": "豪华版", "compilation": "合辑",
+  "rapcore": "说唱核", "g-funk": "G放克", "hardcore hip hop": "硬核说唱", "abstract hip hop": "抽象说唱", "experimental hip hop": "实验说唱", "concept rap": "概念说唱",
+  "happy hardcore": "快乐硬核", "jersey club": "泽西俱乐部", "dariacore": "Dariacore", "donk": "Donk", "deer": "Deer", "nightcore": "Nightcore", "breakcore": "Breakcore", "speedcore": "Speedcore",
+  "glitch hop": "故障嘻哈", "wonky": "Wonky", "footwork": "Footwork", "jungle": "Jungle",
+  "new age": "新世纪", "meditation": "冥想", "relaxation": "放松",
+  "viking rock": "维京摇滚", "tropical": "热带音乐", "pagoo": "Pagoo", "karolinerna": "Karolinerna",
+  "anthem": "圣歌", "epic": "史诗", "orchestral pop": "管弦流行",
+};
+function intelGenreZH(tags) {
+  if (!tags || !tags.length) return "";
+  for (const t of tags) {
+    const key = t.toLowerCase().trim();
+    if (GENRE_ZH[key]) return GENRE_ZH[key];
+  }
+  return tags[0];
+}
+
 // ── TMDB helpers ──
 async function fetchTMDBEnrichment(title, year, token, language) { language = language || "zh-CN"; let r = await searchTMDB(title, year, "movie", token, language); if (r.poster || r.tmdbId) return r; return searchTMDB(title, year, "tv", token, language); }
 
@@ -74,6 +113,10 @@ const INTEL_GENRE_IDS = {
 };
 
 function intelMapGenres(ids) { return (ids || []).map(id => INTEL_GENRE_IDS[id]).filter(Boolean); }
+
+function intelDaysAgo(n) { return new Date(Date.now() - n * 86400000).toISOString().split("T")[0]; }
+const INTEL_TAG_CATEGORY = { trending: "trending", editor: "editor", hidden: "hidden-gem", world: "world" };
+function intelParseJSON(raw) { return JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim()); }
 
 function intelNormalizeMovie(m, type) {
   type = type || "movie";
@@ -149,37 +192,52 @@ async function intelFetchAlbumCover(mbid) {
 }
 
 // ── Last.fm ──
-async function intelFetchLastFM(method, params, env) {
+async function intelFetchLastFM(method, params, env, noCache) {
   if (!env.LASTFM_API_KEY) return null;
-  const url = new URL("https://ws.audioscrobbler.com/2.0/");
-  url.searchParams.set("method", method);
-  url.searchParams.set("api_key", env.LASTFM_API_KEY);
-  url.searchParams.set("format", "json");
-  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
-  const cacheKey = "lfm-" + btoa(url.toString()).replace(/[=+/]/g, "");
-  return withCache(cacheKey, async () => {
-    const res = await fetch(url.toString());
-    if (!res.ok) { console.warn("Last.fm:", method, res.status); return null; }
-    return res.json();
-  }, 3600);
+  try {
+    const url = new URL("https://ws.audioscrobbler.com/2.0/");
+    url.searchParams.set("method", method);
+    url.searchParams.set("api_key", env.LASTFM_API_KEY);
+    url.searchParams.set("format", "json");
+    Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
+    const urlStr = url.toString();
+    if (noCache) {
+      const res = await fetch(urlStr, { headers: { "User-Agent": "KimVideo/1.0" } });
+      if (!res.ok) return null;
+      return res.json();
+    }
+    const cacheKey = "lfm-" + btoa(urlStr).replace(/[=+/]/g, "");
+    return withCache(cacheKey, async () => {
+      const res = await fetch(urlStr, { headers: { "User-Agent": "KimVideo/1.0" } });
+      if (!res.ok) { return null; }
+      return res.json();
+    }, 3600);
+  } catch (e) { console.error("intelFetchLastFM error:", method, e?.message); return null; }
 }
 
 // ── MusicBrainz upcoming ──
-async function intelFetchMusicUpcoming(env, daysAhead = 30, limit = 50) {
+async function intelFetchMusicUpcoming(env, daysAhead = 45, limit = 100) {
   const today = new Date();
   const future = new Date(today.getTime() + daysAhead * 86400000);
   const todayStr = today.toISOString().split("T")[0];
   const futureStr = future.toISOString().split("T")[0];
   const cacheKey = `intel-mb-upcoming-${todayStr}`;
   return withCache(cacheKey, async () => {
-    const qp = new URLSearchParams({ query: `date:[${todayStr} TO ${futureStr}]`, fmt: "json", limit: String(limit) });
-    const url = `https://musicbrainz.org/ws/2/release?${qp.toString()}`;
-    const res = await fetch(url, {
-      headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
-    });
-    if (!res.ok) throw new Error(`MusicBrainz upcoming: ${res.status}`);
-    const data = await res.json();
-    const releases = (data?.releases || []).map(r => ({
+    const fetchPage = async (offset) => {
+      const qp = new URLSearchParams({ query: `date:[${todayStr} TO ${futureStr}]`, fmt: "json", limit: String(limit), offset: String(offset) });
+      const url = `https://musicbrainz.org/ws/2/release?${qp.toString()}`;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const res = await fetch(url, {
+          headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
+        });
+        if (res.ok) { const d = await res.json(); return d?.releases || []; }
+        if (res.status === 429 && attempt === 0) { await new Promise(r => setTimeout(r, 1000)); continue; }
+        return [];
+      }
+      return [];
+    };
+    const [page1, page2] = await Promise.all([fetchPage(0), fetchPage(100)]);
+    return [...page1, ...page2].map(r => ({
       mbid: r.id,
       title: r.title || "",
       artist: (r["artist-credit"] || []).map(ac => ac.name || ac.artist?.name || "").join(", "),
@@ -189,15 +247,10 @@ async function intelFetchMusicUpcoming(env, daysAhead = 30, limit = 50) {
       mediaType: r["release-group"]?.["primary-type"] === "Single" ? "single" : "album",
       primaryType: r["release-group"]?.["primary-type"] || "",
       secondaryTypes: r["release-group"]?.["secondary-types"] || [],
+      status: r.status || "",
       genre: r["release-group"]?.["primary-type"] || "",
       tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
     }));
-    for (let i = 0; i < releases.length; i += 10) {
-      await Promise.allSettled(releases.slice(i, i + 10).map(async (rel) => {
-        try { const cu = await intelFetchAlbumCover(rel.mbid); if (cu) rel.cover = cu; } catch {}
-      }));
-    }
-    return releases;
   }, 7200);
 }
 
@@ -222,15 +275,6 @@ async function intelFetchMusicBrainz(dateStr) {
       genre: (r["release-group"]?.["primary-type"] || ""),
       tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
     }));
-    // Fetch cover art in batches of 5
-    for (let i = 0; i < releases.length; i += 10) {
-      await Promise.allSettled(releases.slice(i, i + 10).map(async (rel) => {
-        try {
-          const coverUrl = await intelFetchAlbumCover(rel.mbid);
-          if (coverUrl) rel.cover = coverUrl;
-        } catch {}
-      }));
-    }
     return releases;
   }, 7200);
 }
@@ -239,14 +283,22 @@ async function intelFetchMusicBrainz(dateStr) {
 async function intelFetchMusicBrainzRange(dateFrom, dateTo) {
   const cacheKey = `intel-mb-range-${dateFrom}-${dateTo}`;
   return withCache(cacheKey, async () => {
-    const qp = new URLSearchParams({ query: `date:[${dateFrom} TO ${dateTo}]`, fmt: "json", limit: "100" });
-    const url = `https://musicbrainz.org/ws/2/release?${qp.toString()}`;
-    const res = await fetch(url, {
-      headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
-    });
-    if (!res.ok) throw new Error(`MusicBrainz range: ${res.status}`);
-    const data = await res.json();
-    const releases = (data?.releases || []).map(r => ({
+    const fetchPage = async (offset) => {
+      const qp = new URLSearchParams({ query: `date:[${dateFrom} TO ${dateTo}]`, fmt: "json", limit: "100", offset: String(offset) });
+      const url = `https://musicbrainz.org/ws/2/release?${qp.toString()}`;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const res = await fetch(url, {
+          headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
+        });
+        if (res.ok) { const d = await res.json(); return d?.releases || []; }
+        if (res.status === 429 && attempt === 0) { await new Promise(r => setTimeout(r, 1000)); continue; }
+        return [];
+      }
+      return [];
+    };
+    const [page1, page2] = await Promise.all([fetchPage(0), fetchPage(100)]);
+    const allReleases = [...page1, ...page2];
+    return allReleases.map(r => ({
       mbid: r.id,
       title: r.title || "",
       artist: (r["artist-credit"] || []).map(ac => ac.name || ac.artist?.name || "").join(", "),
@@ -259,12 +311,6 @@ async function intelFetchMusicBrainzRange(dateFrom, dateTo) {
       secondaryTypes: r["release-group"]?.["secondary-types"] || [],
       tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
     }));
-    for (let i = 0; i < releases.length; i += 10) {
-      await Promise.allSettled(releases.slice(i, i + 10).map(async (rel) => {
-        try { const coverUrl = await intelFetchAlbumCover(rel.mbid); if (coverUrl) rel.cover = coverUrl; } catch {}
-      }));
-    }
-    return releases;
   }, 7200);
 }
 
@@ -283,29 +329,30 @@ function intelIsValidAlbum(r) {
 // ── Last.fm album info (listeners, playcount, tags) ──
 async function intelFetchLastFMAlbumInfo(artist, album, env) {
   if (!env.LASTFM_API_KEY) return null;
-  try {
-    const data = await intelFetchLastFM("album.getinfo", { artist, album }, env);
-    if (data?.album) {
-      const listeners = parseInt(data.album.listeners) || 0;
-      if (listeners > 0) {
-        return {
-          listeners,
-          playcount: parseInt(data.album.playcount) || 0,
-          tags: (data.album.tags?.tag || []).map(t => t.name).slice(0, 10),
-        };
-      }
-    }
-    // Fallback: artist-level popularity when album lookup returns 0 listeners
-    const artistData = await intelFetchLastFM("artist.getinfo", { artist }, env);
-    if (artistData?.artist?.stats) {
+  // Always try album lookup first, then artist fallback — isolate errors per attempt
+  let data;
+  try { data = await intelFetchLastFM("album.getinfo", { artist, album }, env, true); } catch {}
+  if (data?.album) {
+    const listeners = parseInt(data.album.listeners) || 0;
+    if (listeners > 0) {
       return {
-        listeners: parseInt(artistData.artist.stats.listeners) || 0,
-        playcount: parseInt(artistData.artist.stats.playcount) || 0,
-        tags: (artistData.artist.tags?.tag || []).map(t => t.name).slice(0, 10),
+        listeners,
+        playcount: parseInt(data.album.playcount) || 0,
+        tags: (data.album.tags?.tag || []).map(t => t.name).slice(0, 10),
       };
     }
-    return null;
-  } catch { return null; }
+  }
+  // Fallback: artist-level popularity when album lookup returns 0 listeners or fails
+  let artistData;
+  try { artistData = await intelFetchLastFM("artist.getinfo", { artist }, env, true); } catch {}
+  if (artistData?.artist?.stats) {
+    return {
+      listeners: parseInt(artistData.artist.stats.listeners) || 0,
+      playcount: parseInt(artistData.artist.stats.playcount) || 0,
+      tags: (artistData.artist.tags?.tag || []).map(t => t.name).slice(0, 10),
+    };
+  }
+  return null;
 }
 
 function intelNormalizeAlbum(r) {
@@ -326,49 +373,85 @@ function intelNormalizeAlbum(r) {
   };
 }
 
-// ── Upcoming albums: Last.fm enrichment + hot ranking ──
-async function intelFetchUpcomingAlbums(env, daysAhead = 14) {
-  const mb = await intelFetchMusicUpcoming(env, daysAhead).catch(() => []);
-  const filtered = mb.filter(intelIsValidAlbum);
-  if (!filtered.length) return [];
-
-  const withLFM = [];
-  for (let i = 0; i < filtered.length; i += 5) {
+async function intelEnrichWithLastFM(items, env) {
+  const enriched = [];
+  for (let i = 0; i < items.length; i += 5) {
     const batch = await Promise.allSettled(
-      filtered.slice(i, i + 5).map(async (rel) => {
+      items.slice(i, i + 5).map(async (rel) => {
         const lfm = await intelFetchLastFMAlbumInfo(rel.artist, rel.title, env);
         return { ...rel, listeners: lfm?.listeners || 0, playcount: lfm?.playcount || 0, lfmTags: lfm?.tags || [] };
       })
     );
     batch.forEach((r, j) => {
-      withLFM.push(r.status === "fulfilled" ? r.value : { ...filtered[i + j], listeners: 0, playcount: 0, lfmTags: [] });
+      enriched.push(r.status === "fulfilled" ? r.value : { ...items[i + j], listeners: 0, playcount: 0, lfmTags: [] });
     });
   }
-
-  return withLFM.map(intelNormalizeAlbum).sort((a, b) => (b.listeners || 0) - (a.listeners || 0)).slice(0, 20);
+  return enriched;
 }
 
-// ── Trending albums: 3-week range, Last.fm enrichment, hot ranking ──
-async function intelFetchTrendingAlbums(env) {
-  const today = new Date().toISOString().split("T")[0];
-  const threeWeeksAgo = new Date(Date.now() - 21 * 86400000).toISOString().split("T")[0];
-  const releases = await intelFetchMusicBrainzRange(threeWeeksAgo, today).catch(() => []);
-  const filtered = releases.filter(intelIsValidAlbum);
-  if (!filtered.length) return [];
+// ── Last.fm chart top albums (guaranteed popular, has real listener data) ──
+async function intelFetchLastFMCharts(env) {
+  if (!env.LASTFM_API_KEY) return [];
+  const tags = ["hip hop", "pop", "rock", "electronic"];
+  const cacheKey = "lfm-charts-v2-" + tags.join("-");
+  return withCache(cacheKey, async () => {
+    const seen = new Set();
+    const all = [];
+    for (const tag of tags) {
+      try {
+        const data = await intelFetchLastFM("tag.gettopalbums", { tag, limit: "20" }, env, true);
+        if (data?.albums?.album) {
+          for (const a of data.albums.album) {
+            const key = (a.name + "|||" + (a.artist?.name || "")).toLowerCase();
+            if (!seen.has(key)) {
+              seen.add(key);
+              all.push({
+                title: a.name || "",
+                artist: a.artist?.name || "",
+                listeners: 0,
+                playcount: 0,
+                cover: a.image?.find(i => i.size === "large")?.["#text"] || a.image?.find(i => i.size === "extralarge")?.["#text"] || "",
+                mbid: a.mbid || "",
+                releaseDate: "",
+                year: "",
+                primaryType: "Album",
+                secondaryTypes: [],
+                lfmTags: [],
+                tags: [],
+                genre: "",
+              });
+            }
+          }
+        }
+      } catch {}
+    }
+    // Enrich top 15 items with album.getinfo to get real listener/tag data
+    const toEnrich = all.slice(0, 15);
+    for (let i = 0; i < toEnrich.length; i += 5) {
+      await Promise.allSettled(toEnrich.slice(i, i + 5).map(async (rel) => {
+        try {
+          const d = await intelFetchLastFM("album.getinfo", { artist: rel.artist, album: rel.title }, env, true);
+          if (d?.album) {
+            rel.listeners = parseInt(d.album.listeners) || 0;
+            rel.playcount = parseInt(d.album.playcount) || 0;
+            rel.lfmTags = (d.album.tags?.tag || []).map(t => t.name).slice(0, 5);
+            rel.genre = intelGenreZH(rel.lfmTags) || rel.lfmTags[0] || "";
+          }
+        } catch {}
+      }));
+    }
+    all.sort((a, b) => b.listeners - a.listeners);
+    return all.slice(0, 40);
+  }, 3600);
+}
 
-  const withLFM = [];
-  for (let i = 0; i < filtered.length; i += 5) {
-    const batch = await Promise.allSettled(
-      filtered.slice(i, i + 5).map(async (rel) => {
-        const lfm = await intelFetchLastFMAlbumInfo(rel.artist, rel.title, env);
-        return { ...rel, listeners: lfm?.listeners || 0, playcount: lfm?.playcount || 0, lfmTags: lfm?.tags || [] };
-      })
-    );
-    batch.forEach((r, j) => {
-      withLFM.push(r.status === "fulfilled" ? r.value : { ...filtered[i + j], listeners: 0, playcount: 0, lfmTags: [] });
-    });
-  }
-
+// ── Upcoming albums: Last.fm enrichment + hot ranking ──
+async function intelFetchUpcomingAlbums(env, daysAhead = 45) {
+  const mb = await intelFetchMusicUpcoming(env, daysAhead, 100).catch(() => []);
+  let filtered = mb.filter(r => intelIsValidAlbum(r) && r.status !== "Bootleg");
+  if (!filtered.length) filtered = mb.filter(r => (r.primaryType === "Album" || r.primaryType === "EP") && r.status !== "Bootleg");
+  if (!filtered.length) return intelFetchLastFMCharts(env);
+  const withLFM = await intelEnrichWithLastFM(filtered.slice(0, 20), env);
   return withLFM.map(intelNormalizeAlbum).sort((a, b) => (b.listeners || 0) - (a.listeners || 0)).slice(0, 20);
 }
 
@@ -394,7 +477,7 @@ async function intelEnrichWithAI(items, type, env) {
     if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
     const data = await res.json();
     const raw = data?.choices?.[0]?.message?.content || "";
-    const parsed = JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim());
+    const parsed = intelParseJSON(raw);
     const enriched = parsed?.items || [];
 
     if (type === "album") {
@@ -497,7 +580,7 @@ Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "🔥 Tr
     if (!res.ok) throw new Error(`DeepSeek albums: ${res.status}`);
     const data = await res.json();
     const raw = data?.choices?.[0]?.message?.content || "";
-    const parsed = JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim());
+    const parsed = intelParseJSON(raw);
     return (parsed?.items || []).slice(0, 20).map(ai => {
       const item = items[ai.index] || {};
       return {
@@ -513,7 +596,7 @@ Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "🔥 Tr
         recommendationTag: ai.tagDisplay || "",
         recommendationTagEn: ai.tagDisplayEn || "",
         recommendationTagId: ai.tag || "",
-        category: ai.tag === "trending" ? "trending" : ai.tag === "editor" ? "editor" : ai.tag === "hidden" ? "hidden-gem" : "world",
+        category: INTEL_TAG_CATEGORY[ai.tag] || "world",
       };
     });
   } catch (e) {
@@ -527,7 +610,7 @@ Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "🔥 Tr
 async function handleIntelOverview(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
-  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+  const weekAgo = intelDaysAgo(7);
 
   const [nowPlaying, upcoming, trending] = await Promise.all([
     intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
@@ -577,7 +660,7 @@ async function handleIntelOverview(env) {
 async function handleIntelMovies(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
-  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+  const weekAgo = intelDaysAgo(7);
 
   const [nowPlayingRaw, upcomingRaw] = await Promise.all([
     intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
@@ -608,7 +691,7 @@ async function handleIntelTV(env) {
   ]);
 
   // This week premieres via /tv/on_the_air (shows airing new episodes this week)
-  const twoYearsAgo = new Date(Date.now() - 2 * 365 * 86400000).toISOString().split("T")[0];
+  const twoYearsAgo = intelDaysAgo(730);
   const weekPremieres = onTheAir
     .filter(s => s.first_air_date >= twoYearsAgo)
     .slice(0, 20)
@@ -635,81 +718,91 @@ async function handleIntelTV(env) {
 
 async function handleIntelMusic(env) {
   const today = new Date().toISOString().split("T")[0];
-  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+  // Cache entire music response for 6 hours (avoids subrequest limit on every call)
+  return withCache(`intel-music-v2-${today}`, async () => {
+    const weekAgo = intelDaysAgo(7);
 
-  // Phase 1-2: Fetch full 7-day range, filter by album type
-  const weekReleases = await intelFetchMusicBrainzRange(weekAgo, today).catch(() => []);
-  const filtered = weekReleases.filter(intelIsValidAlbum).slice(0, 60);
+    // Phase 1: Fetch MB recent releases, enrich with Last.fm
+    const weekReleases = await intelFetchMusicBrainzRange(weekAgo, today).catch(() => []);
+    let validReleases = weekReleases.filter(r => intelIsValidAlbum(r) && r.status !== "Bootleg");
+    // Enrich fewer items to stay under subrequest limit (10 items × ~2 calls = ~20 subreq)
+    const withLastFM = await intelEnrichWithLastFM(validReleases.slice(0, 10), env);
+    let weekAlbums = withLastFM.map(intelNormalizeAlbum);
 
-  // Phase 3: Enrich with Last.fm popularity data (batched to respect rate limits)
-  const withLastFM = [];
-  for (let i = 0; i < filtered.length; i += 5) {
-    const batch = await Promise.allSettled(
-      filtered.slice(i, i + 5).map(async (rel) => {
-        const lfm = await intelFetchLastFMAlbumInfo(rel.artist, rel.title, env);
-        return { ...rel, listeners: lfm?.listeners || 0, playcount: lfm?.playcount || 0, lfmTags: lfm?.tags || [] };
-      })
-    );
-    batch.forEach((r, j) => {
-      withLastFM.push(r.status === "fulfilled" ? r.value : { ...filtered[i + j], listeners: 0, playcount: 0, lfmTags: [] });
-    });
-  }
+    // Phase 2: Only keep items with real listener data (album or artist-level)
+    let curated = weekAlbums.filter(a => a.listeners > 0);
 
-  const weekAlbums = withLastFM.map(intelNormalizeAlbum);
+    // Get trending data once (tag.gettopalbums — guaranteed real listeners)
+    const chartAlbums = await intelFetchLastFMCharts(env);
 
-  // Phase 4-5: AI curation with 4-tag system, max 20
-  let aiWeek = await intelEnrichAlbums(weekAlbums, env);
-
-  // Fallback: if AI returns nothing, distribute tags by popularity rank
-  if (!aiWeek.length && weekAlbums.length) {
-    const sorted = [...weekAlbums].sort((a, b) => (b.listeners || 0) - (a.listeners || 0));
-    const total = Math.min(sorted.length, 20);
-    aiWeek = [];
-    for (let i = 0; i < total; i++) {
-      const a = sorted[i];
-      let tag, tagEn, tagId, cat;
-      const pct = i / total;
-      if (pct < 0.3) { tag = "🔥 Trending Now"; tagEn = "Trending Now"; tagId = "trending"; cat = "trending"; }
-      else if (pct < 0.6) { tag = "⭐ Editor's Pick"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor"; }
-      else if (pct < 0.85) {
-        // Hidden Gem: skip if listeners < 2000, downgrade to Editor's Pick
-        if ((a.listeners || 0) > 0 && (a.listeners || 0) < 2000) {
-          tag = "⭐ Editor's Pick"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor";
-        } else {
-          tag = "💎 Hidden Gem"; tagEn = "Hidden Gem"; tagId = "hidden"; cat = "hidden-gem";
-        }
+    // Phase 3: If < 20, supplement with tag.gettopalbums data
+    if (curated.length < 20) {
+      for (const c of chartAlbums) {
+        if (curated.length >= 20) break;
+        const dup = curated.some(w =>
+          w.title.toLowerCase() === c.title.toLowerCase() &&
+          w.artist.toLowerCase() === c.artist.toLowerCase()
+        );
+        if (!dup) curated.push(c);
       }
-      else {
-        // Around the World: prefer CN/JP/TW/HK, otherwise fallback to Editor's Pick
-        const cjk = ["CN", "JP", "TW", "HK"].includes(a.country) || /[一-鿿぀-ゟ゠-ヿ]/.test(a.artist || "");
-        if (cjk) {
-          tag = "🌍 Around the World"; tagEn = "Around the World"; tagId = "world"; cat = "world";
-        } else {
-          tag = "⭐ Editor's Pick"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor";
-        }
-      }
-      aiWeek.push({ ...a, recommendationTag: tag, recommendationTagEn: tagEn, recommendationTagId: tagId, category: cat, highlight: a.highlight || `New release from ${a.artist}`, highlightEn: a.highlightEn || `New release from ${a.artist}`, summary: a.summary || "", summaryEn: a.summaryEn || "" });
     }
-  }
 
-  // Upcoming: use shared hot-ranked function
-  const upcomingAlbums = await intelFetchUpcomingAlbums(env).catch(() => []);
+    // Phase 4: AI curation with 4-tag system
+    const top40 = curated.slice(0, 40);
+    let aiWeek = top40.length ? await intelEnrichAlbums(top40, env) : [];
 
-  // Trending: 3-week range, Last.fm hot ranking, no AI tags
-  const trendingAlbums = await intelFetchTrendingAlbums(env).catch(() => []);
+    // Phase 5: Fallback if AI fails
+    if (!aiWeek.length && top40.length) {
+      const sorted = [...top40].sort((a, b) => (b.listeners || 0) - (a.listeners || 0));
+      const total = Math.min(sorted.length, 20);
+      aiWeek = [];
+      for (let i = 0; i < total; i++) {
+        const a = sorted[i];
+        let tag, tagEn, tagId, cat;
+        const pct = i / total;
+        if (pct < 0.3) { tag = "🔥 Trending Now"; tagEn = "Trending Now"; tagId = "trending"; cat = "trending"; }
+        else if (pct < 0.6) { tag = "⭐ Editor's Pick"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor"; }
+        else if (pct < 0.85) {
+          tag = a.listeners < 2000 ? "⭐ Editor's Pick" : "💎 Hidden Gem";
+          tagEn = a.listeners < 2000 ? "Editor's Pick" : "Hidden Gem";
+          tagId = a.listeners < 2000 ? "editor" : "hidden";
+          cat = a.listeners < 2000 ? "editor" : "hidden-gem";
+        } else {
+          tag = "🌍 Around the World"; tagEn = "Around the World"; tagId = "world"; cat = "world";
+        }
+        aiWeek.push({
+          ...a,
+          recommendationTag: tag, recommendationTagEn: tagEn, recommendationTagId: tagId, category: cat,
+          highlight: a.highlight || `New release from ${a.artist}`,
+          highlightEn: a.highlightEn || `New release from ${a.artist}`,
+          summary: a.summary || "", summaryEn: a.summaryEn || "",
+        });
+      }
+    }
 
-  return {
-    updated: today,
-    releasedThisWeek: aiWeek.slice(0, 20),
-    upcoming: upcomingAlbums.slice(0, 20),
-    trending: trendingAlbums.slice(0, 20),
-  };
+    // Upcoming: MB future releases + Last.fm enrichment
+    const upcomingAlbums = await intelFetchUpcomingAlbums(env).catch(() => []);
+
+    // Fetch cover art for top releasedThisWeek items (direct fetch, 1 subreq each)
+    for (const item of (aiWeek.length ? aiWeek.slice(0, 3) : [])) {
+      if (item.mbid && !item.cover) {
+        try { const r = await fetch(`https://coverartarchive.org/release/${item.mbid}/front-250.jpg`); if (r.ok) item.cover = `https://coverartarchive.org/release/${item.mbid}/front-250.jpg`; } catch {}
+      }
+    }
+
+    return {
+      updated: today,
+      releasedThisWeek: aiWeek.slice(0, 20),
+      upcoming: upcomingAlbums.slice(0, 20),
+      trending: chartAlbums.slice(0, 20),
+    };
+  }, 21600);
 }
 
 async function handleIntelWeekly(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
-  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+  const weekAgo = intelDaysAgo(7);
 
   const [movieTrending, tvTrending, todayMB, weekMB] = await Promise.all([
     intelFetchTMDB(token, "/trending/movie/week"),
@@ -790,11 +883,64 @@ async function handleIntelComing(env) {
   };
 }
 
+// ── Debug: test Last.fm API ──
+async function handleIntelDebug(env) {
+  const results = { lastfm: { configured: !!env.LASTFM_API_KEY, tests: [], chart: null } };
+  if (env.LASTFM_API_KEY) {
+    for (const { label, method, params } of [
+      { label: "Lil Nas X", method: "artist.getinfo", params: { artist: "Lil Nas X" } },
+      { label: "Kendrick Lamar", method: "artist.getinfo", params: { artist: "Kendrick Lamar" } },
+    ]) {
+      try {
+        const t0 = Date.now();
+        const data = await intelFetchLastFM(method, params, env);
+        const ms = Date.now() - t0;
+        if (data?.artist?.stats) {
+          results.lastfm.tests.push({ label, ok: true, ms, listeners: parseInt(data.artist.stats.listeners) || 0 });
+        } else if (data?.message) {
+          results.lastfm.tests.push({ label, ok: false, ms, error: data.message });
+        } else {
+          results.lastfm.tests.push({ label, ok: false, ms, error: "no data" });
+        }
+      } catch (e) {
+        results.lastfm.tests.push({ label, ok: false, error: e.message });
+      }
+    }
+    // Test chart.gettopalbums
+    try {
+      const t0 = Date.now();
+      const chart = await intelFetchLastFM("chart.gettopalbums", { limit: "3" }, env);
+      const ms = Date.now() - t0;
+      if (chart?.albums?.album) {
+        results.lastfm.chart = { ok: true, ms, count: chart.albums.album.length, first: chart.albums.album[0]?.name || "" };
+      } else {
+        results.lastfm.chart = { ok: false, ms, keys: Object.keys(chart || {}), raw: JSON.stringify(chart).slice(0, 500) };
+      }
+    } catch (e) {
+      results.lastfm.chart = { ok: false, error: e.message };
+    }
+    // Test tag.gettopalbums
+    try {
+      const t0 = Date.now();
+      const tagData = await intelFetchLastFM("tag.gettopalbums", { tag: "hip hop", limit: "3" }, env);
+      const ms = Date.now() - t0;
+      if (tagData?.albums?.album) {
+        results.lastfm.tagAlbum = { ok: true, ms, count: tagData.albums.album.length, first: tagData.albums.album[0]?.name || "", artist: tagData.albums.album[0]?.artist?.name || "" };
+      } else {
+        results.lastfm.tagAlbum = { ok: false, ms, keys: Object.keys(tagData || {}), raw: JSON.stringify(tagData).slice(0, 500) };
+      }
+    } catch (e) {
+      results.lastfm.tagAlbum = { ok: false, error: e.message };
+    }
+  }
+  return { updated: new Date().toISOString().split("T")[0], ...results };
+}
+
 // ── Daily Digest ──
 async function handleIntelDigest(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
-  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+  const weekAgo = intelDaysAgo(7);
 
   if (!env.DEEPSEEK_API_KEY) {
     return { date: today, headline: "", summary: "", topTrends: [], industryHighlights: [] };
@@ -838,7 +984,7 @@ Top 3-5 trends. 3-5 highlights.`;
     if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
     const data = await res.json();
     const raw = data?.choices?.[0]?.message?.content || "";
-    const parsed = JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim());
+    const parsed = intelParseJSON(raw);
     return { date: today, ...parsed };
   } catch (e) {
     console.warn("Digest failed:", e.message);
@@ -850,7 +996,7 @@ Top 3-5 trends. 3-5 highlights.`;
 async function handleIntelHiddenGems(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
-  const thirtyDaysAgo = new Date(Date.now() - 30 * 86400000).toISOString().split("T")[0];
+  const thirtyDaysAgo = intelDaysAgo(30);
 
   const nowPlaying = await intelFetchTMDB(token, "/movie/now_playing", { region: "US" });
 
@@ -884,7 +1030,7 @@ Movies:\n${JSON.stringify(candidates.map((m, i) => ({ index: i, title: m.title, 
     if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
     const data = await res.json();
     const raw = data?.choices?.[0]?.message?.content || "";
-    const parsed = JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim());
+    const parsed = intelParseJSON(raw);
     const gems = (parsed?.gems || []).map(g => {
       const src = candidates[g.index] || {};
       return {
@@ -948,13 +1094,13 @@ export default {
 
 
       // ── Intelligence API ──
-      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|coming|weekly|hidden-gems|digest)$/);
+      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|coming|weekly|hidden-gems|digest|debug)$/);
       if (intelMatch) {
         const intelHandlers = {
           overview: handleIntelOverview, movies: handleIntelMovies, tv: handleIntelTV,
           music: handleIntelMusic, coming: handleIntelComing,
           weekly: handleIntelWeekly, "hidden-gems": handleIntelHiddenGems,
-          digest: handleIntelDigest,
+          digest: handleIntelDigest, debug: handleIntelDebug,
         };
         try {
           const intelData = await intelHandlers[intelMatch[1]](env);
