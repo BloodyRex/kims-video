@@ -368,49 +368,20 @@ async function handleIntelMovies(env) {
 async function handleIntelTV(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
-  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
 
-  const [popular] = await Promise.all([
+  const [onTheAir, popular] = await Promise.all([
+    intelFetchTMDB(token, "/tv/on_the_air"),
     intelFetchTMDB(token, "/tv/popular"),
   ]);
 
-  // This week premieres via discover/tv (brand new shows this week)
-  let weekPremieres = [];
-  try {
-    const url = new URL("https://api.themoviedb.org/3/discover/tv");
-    url.searchParams.set("first_air_date.gte", weekAgo);
-    url.searchParams.set("first_air_date.lte", today);
-    url.searchParams.set("sort_by", "first_air_date.desc");
-    url.searchParams.set("language", "zh-CN");
-    const cacheKey = "intel-tv-premiered-" + today;
-    const results = await withCache(cacheKey, async () => {
-      const r = await fetch(url.toString(), {
-        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-      });
-      if (!r.ok) return [];
-      const d = await r.json();
-      return d.results || [];
-    });
-    weekPremieres = (results || []).slice(0, 20).map(s => intelNormalizeMovie(s, "tv"));
-  } catch (e) { console.warn("TV week premieres failed:", e.message); }
+  // This week premieres via /tv/on_the_air (shows airing new episodes this week)
+  const weekPremieres = onTheAir.slice(0, 20).map(s => intelNormalizeMovie(s, "tv"));
 
-  // Upcoming via discover/tv (new shows premiering in the future)
+  // Upcoming brand-new shows via discover/tv (future premieres only)
   let upcomingTV = [];
   try {
-    const url = new URL("https://api.themoviedb.org/3/discover/tv");
-    url.searchParams.set("first_air_date.gte", today);
-    url.searchParams.set("sort_by", "first_air_date.asc");
-    url.searchParams.set("language", "zh-CN");
-    const cacheKey = "intel-tv-upcoming-" + today;
-    const results = await withCache(cacheKey, async () => {
-      const r = await fetch(url.toString(), {
-        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-      });
-      if (!r.ok) return [];
-      const d = await r.json();
-      return d.results || [];
-    });
-    upcomingTV = (results || []).slice(0, 20).map(s => intelNormalizeMovie(s, "tv"));
+    upcomingTV = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "first_air_date.asc" });
+    upcomingTV = upcomingTV.slice(0, 20).map(s => intelNormalizeMovie(s, "tv"));
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
   return {
