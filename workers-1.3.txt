@@ -90,11 +90,13 @@ function intelNormalizeMovie(m, type) {
     summary: (m.overview || "").slice(0, 200),
     summaryEn: (m._overviewEn || m.overview || "").slice(0, 200),
   };
-  // TV extras
+  // TV extras — only set nextAirDate from actual next_episode_to_air data
   if (type === "tv") {
-    if (m.season_number) item.season = m.season_number;
-    if (m.episode_number) item.episode = m.episode_number;
-    if (m.first_air_date) item.nextAirDate = m.first_air_date;
+    if (m.next_episode_to_air?.air_date) item.nextAirDate = m.next_episode_to_air.air_date;
+    if (m.last_episode_to_air?.season_number) item.season = m.last_episode_to_air.season_number;
+    else if (m.season_number) item.season = m.season_number;
+    if (m.last_episode_to_air?.episode_number) item.episode = m.last_episode_to_air.episode_number;
+    else if (m.episode_number) item.episode = m.episode_number;
   }
   return item;
 }
@@ -359,7 +361,7 @@ async function handleIntelMovies(env) {
 
   return {
     updated: today,
-    releasedThisWeek: await intelEnrichWithAI(weekM, "movie", env),
+    releasedThisWeek: (await intelEnrichWithAI(weekM, "movie", env)).slice(0, 20),
     upcoming: upcomingRaw.filter(m => m.release_date && m.release_date >= today).slice(0, 20).map(m => intelNormalizeMovie(m)),
     nowPlaying: nowPlayingRaw.slice(0, 20).map(m => intelNormalizeMovie(m)),
   };
@@ -403,25 +405,28 @@ async function handleIntelMusic(env) {
     intelFetchLastFM("tag.gettopalbums", { tag: "top", limit: 15 }, env).catch(() => null),
   ]);
 
-  // Merge today + week into one "This Week" set, deduped
+  // Merge today + week into one "This Week" set, deduped, cap at 20 for AI
   const merged = [...todayMB];
   for (const rel of weekMB) {
     if (!merged.some(r => r.mbid === rel.mbid)) merged.push(rel);
   }
-  const weekAlbums = merged.slice(0, 50).map(intelNormalizeAlbum);
-  const upcomingAlbums = upcomingMB.slice(0, 50).map(intelNormalizeAlbum);
+  const weekAlbums = merged.slice(0, 20).map(intelNormalizeAlbum);
+  const upcomingAlbums = upcomingMB.slice(0, 20).map(intelNormalizeAlbum);
 
-  // Last.fm trending
+  // Last.fm trending with derived rating from play count
+  const maxPlay = lastfmData ? Math.max(...(lastfmData?.albums?.album || []).map(a => parseInt(a.playcount) || 0), 1) : 1;
   const trendingAlbums = lastfmData
     ? (lastfmData?.albums?.album || []).map((a, i) => {
         const coverImg = a.image?.find(img => img.size === "extralarge" || img.size === "large");
+        const playCount = parseInt(a.playcount) || 0;
         return {
           title: a.name,
           titleEn: a.name,
           artist: a.artist?.name || "",
           cover: coverImg?.["#text"] || "",
-          playCount: parseInt(a.playcount) || 0,
+          playCount,
           listeners: parseInt(a.listeners) || 0,
+          rating: Math.round((playCount / maxPlay) * 100) / 10, // normalize to 0-10 scale for StarRating
           rank: i + 1,
           trend: "up",
           genre: [],
@@ -432,9 +437,9 @@ async function handleIntelMusic(env) {
 
   return {
     updated: today,
-    releasedThisWeek: await intelEnrichWithAI(weekAlbums, "album", env),
-    upcoming: await intelEnrichWithAI(upcomingAlbums, "album", env),
-    trending: trendingAlbums,
+    releasedThisWeek: (await intelEnrichWithAI(weekAlbums, "album", env)).slice(0, 20),
+    upcoming: (await intelEnrichWithAI(upcomingAlbums, "album", env)).slice(0, 20),
+    trending: trendingAlbums.slice(0, 20),
   };
 }
 

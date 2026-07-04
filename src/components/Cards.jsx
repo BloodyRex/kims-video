@@ -349,6 +349,13 @@ export function CountdownCard({ item, locale, onViewDetail }) {
   );
 }
 
+function formatNumber(n) {
+  if (!n) return "0";
+  if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
+  if (n >= 1000) return (n / 1000).toFixed(1) + "K";
+  return String(n);
+}
+
 // ── RankingCard (Trending) ──
 
 export function RankingCard({ item, rank, locale, onViewDetail }) {
@@ -381,6 +388,11 @@ export function RankingCard({ item, rank, locale, onViewDetail }) {
             {item.trend && (
               <span className={`text-[9px] font-bold ${item.trend === "up" ? "text-green-500" : item.trend === "down" ? "text-red-500" : "text-[#00ffff]"}`}>
                 {item.trend === "up" ? "↑" : item.trend === "down" ? "↓" : "●"}
+              </span>
+            )}
+            {item.playCount > 0 && (
+              <span className="text-[8px] text-gray-400 font-bold">
+                {locale === "zh" ? `播放 ${formatNumber(item.playCount)}` : `${formatNumber(item.playCount)} plays`}
               </span>
             )}
           </div>
