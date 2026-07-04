@@ -165,14 +165,14 @@ async function intelFetchLastFM(method, params, env) {
 }
 
 // ── MusicBrainz upcoming ──
-async function intelFetchMusicUpcoming(env, daysAhead = 30) {
+async function intelFetchMusicUpcoming(env, daysAhead = 30, limit = 50) {
   const today = new Date();
   const future = new Date(today.getTime() + daysAhead * 86400000);
   const todayStr = today.toISOString().split("T")[0];
   const futureStr = future.toISOString().split("T")[0];
   const cacheKey = `intel-mb-upcoming-${todayStr}`;
   return withCache(cacheKey, async () => {
-    const qp = new URLSearchParams({ query: `date:[${todayStr} TO ${futureStr}]`, fmt: "json", limit: "25" });
+    const qp = new URLSearchParams({ query: `date:[${todayStr} TO ${futureStr}]`, fmt: "json", limit: String(limit) });
     const url = `https://musicbrainz.org/ws/2/release?${qp.toString()}`;
     const res = await fetch(url, {
       headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
@@ -187,6 +187,8 @@ async function intelFetchMusicUpcoming(env, daysAhead = 30) {
       year: (r.date || "").slice(0, 4),
       cover: "",
       mediaType: r["release-group"]?.["primary-type"] === "Single" ? "single" : "album",
+      primaryType: r["release-group"]?.["primary-type"] || "",
+      secondaryTypes: r["release-group"]?.["secondary-types"] || [],
       genre: r["release-group"]?.["primary-type"] || "",
       tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
     }));
@@ -283,12 +285,26 @@ async function intelFetchLastFMAlbumInfo(artist, album, env) {
   if (!env.LASTFM_API_KEY) return null;
   try {
     const data = await intelFetchLastFM("album.getinfo", { artist, album }, env);
-    if (!data?.album) return null;
-    return {
-      listeners: parseInt(data.album.listeners) || 0,
-      playcount: parseInt(data.album.playcount) || 0,
-      tags: (data.album.tags?.tag || []).map(t => t.name).slice(0, 10),
-    };
+    if (data?.album) {
+      const listeners = parseInt(data.album.listeners) || 0;
+      if (listeners > 0) {
+        return {
+          listeners,
+          playcount: parseInt(data.album.playcount) || 0,
+          tags: (data.album.tags?.tag || []).map(t => t.name).slice(0, 10),
+        };
+      }
+    }
+    // Fallback: artist-level popularity when album lookup returns 0 listeners
+    const artistData = await intelFetchLastFM("artist.getinfo", { artist }, env);
+    if (artistData?.artist?.stats) {
+      return {
+        listeners: parseInt(artistData.artist.stats.listeners) || 0,
+        playcount: parseInt(artistData.artist.stats.playcount) || 0,
+        tags: (artistData.artist.tags?.tag || []).map(t => t.name).slice(0, 10),
+      };
+    }
+    return null;
   } catch { return null; }
 }
 
@@ -336,7 +352,7 @@ async function intelEnrichWithAI(items, type, env) {
     const enriched = parsed?.items || [];
 
     if (type === "album") {
-      // Only return the filtered subset, max 12, with genre from first AI tag
+      if (!enriched.length) return items.slice(0, 12);
       return enriched.slice(0, 12).map(ai => {
         const item = items[ai.index] || {};
         return {
@@ -598,32 +614,32 @@ async function handleIntelMusic(env) {
   // Phase 4-5: AI curation with 4-tag system, max 20
   let aiWeek = await intelEnrichAlbums(weekAlbums, env);
 
-  // Fallback: if AI returns nothing, show albums sorted by Last.fm listeners
+  // Fallback: if AI returns nothing, distribute tags by popularity rank
   if (!aiWeek.length && weekAlbums.length) {
-    aiWeek = [...weekAlbums]
-      .sort((a, b) => (b.listeners || 0) - (a.listeners || 0))
-      .slice(0, 20)
-      .map(a => ({
-        ...a,
-        recommendationTag: a.listeners > 50000 ? "🔥 Trending Now" : a.listeners > 5000 ? "⭐ Editor's Pick" : "💎 Hidden Gem",
-        recommendationTagEn: a.listeners > 50000 ? "Trending Now" : a.listeners > 5000 ? "Editor's Pick" : "Hidden Gem",
-        recommendationTagId: a.listeners > 50000 ? "trending" : a.listeners > 5000 ? "editor" : "hidden",
-        highlight: a.highlight || `New release from ${a.artist}`,
-        highlightEn: a.highlightEn || `New release from ${a.artist}`,
-        summary: a.summary || "",
-        summaryEn: a.summaryEn || "",
-      }));
+    const sorted = [...weekAlbums].sort((a, b) => (b.listeners || 0) - (a.listeners || 0));
+    const total = Math.min(sorted.length, 20);
+    aiWeek = [];
+    for (let i = 0; i < total; i++) {
+      const a = sorted[i];
+      let tag, tagEn, tagId, cat;
+      const pct = i / total;
+      if (pct < 0.3) { tag = "🔥 Trending Now"; tagEn = "Trending Now"; tagId = "trending"; cat = "trending"; }
+      else if (pct < 0.6) { tag = "⭐ Editor's Pick"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor"; }
+      else if (pct < 0.85) { tag = "💎 Hidden Gem"; tagEn = "Hidden Gem"; tagId = "hidden"; cat = "hidden-gem"; }
+      else { tag = "🌍 Around the World"; tagEn = "Around the World"; tagId = "world"; cat = "world"; }
+      aiWeek.push({ ...a, recommendationTag: tag, recommendationTagEn: tagEn, recommendationTagId: tagId, category: cat, highlight: a.highlight || `New release from ${a.artist}`, highlightEn: a.highlightEn || `New release from ${a.artist}`, summary: a.summary || "", summaryEn: a.summaryEn || "" });
+    }
   }
 
-  // Upcoming (keep existing logic)
+  // Upcoming: use raw data, skip AI enrichment (future releases don't need curation tags)
   const upcomingMB = await intelFetchMusicUpcoming(env, 30).catch(() => []);
-  const upcomingAlbums = upcomingMB.slice(0, 20).map(intelNormalizeAlbum);
-  const aiUpcoming = await intelEnrichWithAI(upcomingAlbums, "album", env);
+  const upcomingFiltered = upcomingMB.filter(intelIsValidAlbum);
+  const upcomingAlbums = (upcomingFiltered.length > 0 ? upcomingFiltered : upcomingMB).slice(0, 20).map(intelNormalizeAlbum);
 
   return {
     updated: today,
     releasedThisWeek: aiWeek.slice(0, 20),
-    upcoming: aiUpcoming.slice(0, 20),
+    upcoming: upcomingAlbums.slice(0, 20),
     trending: [...aiWeek].sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0)).slice(0, 20),
   };
 }
