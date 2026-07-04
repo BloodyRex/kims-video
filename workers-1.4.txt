@@ -220,43 +220,56 @@ async function intelFetchLastFM(method, params, env, noCache) {
   } catch (e) { console.error("intelFetchLastFM error:", method, e?.message); return null; }
 }
 
-// ── MusicBrainz upcoming ──
-async function intelFetchMusicUpcoming(env, daysAhead = 45, limit = 100) {
-  const today = new Date();
-  const future = new Date(today.getTime() + daysAhead * 86400000);
-  const todayStr = today.toISOString().split("T")[0];
-  const futureStr = future.toISOString().split("T")[0];
-  const cacheKey = `intel-mb-upcoming-${todayStr}`;
-  return withCache(cacheKey, async () => {
-    const fetchPage = async (offset) => {
-      const qp = new URLSearchParams({ query: `date:[${todayStr} TO ${futureStr}]`, fmt: "json", limit: String(limit), offset: String(offset) });
-      const url = `https://musicbrainz.org/ws/2/release?${qp.toString()}`;
-      for (let attempt = 0; attempt < 2; attempt++) {
-        const res = await fetch(url, {
-          headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
-        });
-        if (res.ok) { const d = await res.json(); return d?.releases || []; }
-        if (res.status === 429 && attempt === 0) { await new Promise(r => setTimeout(r, 1000)); continue; }
-        return [];
+// ── Filter releases by artist popularity (Last.fm artist.getinfo) ──
+async function intelFilterByArtistPopularity(items, env) {
+  if (!env.LASTFM_API_KEY || !items.length) return [];
+  const artistMap = new Map();
+  for (const item of items) {
+    const key = item.artist.toLowerCase().trim();
+    if (!artistMap.has(key)) {
+      artistMap.set(key, { name: item.artist, releases: [] });
+    }
+    artistMap.get(key).releases.push(item);
+  }
+  const uniqueArtists = [...artistMap.values()].slice(0, 30);
+  const artistData = new Map();
+  for (let i = 0; i < uniqueArtists.length; i += 5) {
+    const batch = await Promise.allSettled(
+      uniqueArtists.slice(i, i + 5).map(async (a) => {
+        const data = await intelFetchLastFM("artist.getinfo", { artist: a.name }, env, true);
+        if (data?.artist?.stats) {
+          const listeners = parseInt(data.artist.stats.listeners) || 0;
+          let stars = 0;
+          if (listeners >= 100000) stars = 5;
+          else if (listeners >= 10000) stars = 4;
+          else if (listeners >= 1000) stars = 3;
+          return { name: a.name, listeners, stars, playcount: parseInt(data.artist.stats.playcount) || 0 };
+        }
+        return { name: a.name, listeners: 0, stars: 0, playcount: 0 };
+      })
+    );
+    batch.forEach((r) => {
+      if (r.status === "fulfilled" && r.value) {
+        artistData.set(r.value.name.toLowerCase().trim(), r.value);
       }
-      return [];
-    };
-    const [page1, page2] = await Promise.all([fetchPage(0), fetchPage(100)]);
-    return [...page1, ...page2].map(r => ({
-      mbid: r.id,
-      title: r.title || "",
-      artist: (r["artist-credit"] || []).map(ac => ac.name || ac.artist?.name || "").join(", "),
-      releaseDate: r.date || "",
-      year: (r.date || "").slice(0, 4),
-      cover: "",
-      mediaType: r["release-group"]?.["primary-type"] === "Single" ? "single" : "album",
-      primaryType: r["release-group"]?.["primary-type"] || "",
-      secondaryTypes: r["release-group"]?.["secondary-types"] || [],
-      status: r.status || "",
-      genre: r["release-group"]?.["primary-type"] || "",
-      tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
-    }));
-  }, 7200);
+    });
+  }
+  const result = [];
+  for (const item of items) {
+    const key = item.artist.toLowerCase().trim();
+    const ad = artistData.get(key);
+    if (ad && ad.stars > 0) {
+      result.push({
+        ...item,
+        artistListeners: ad.listeners,
+        artistPlaycount: ad.playcount,
+        artistStars: ad.stars,
+        listeners: ad.listeners,
+        playcount: ad.playcount,
+      });
+    }
+  }
+  return result;
 }
 
 async function intelFetchMusicBrainz(dateStr) {
@@ -331,35 +344,6 @@ function intelIsValidAlbum(r) {
   return true;
 }
 
-// ── Last.fm album info (listeners, playcount, tags) ──
-async function intelFetchLastFMAlbumInfo(artist, album, env) {
-  if (!env.LASTFM_API_KEY) return null;
-  // Always try album lookup first, then artist fallback — isolate errors per attempt
-  let data;
-  try { data = await intelFetchLastFM("album.getinfo", { artist, album }, env, true); } catch {}
-  if (data?.album) {
-    const listeners = parseInt(data.album.listeners) || 0;
-    if (listeners > 0) {
-      return {
-        listeners,
-        playcount: parseInt(data.album.playcount) || 0,
-        tags: (data.album.tags?.tag || []).map(t => t.name).slice(0, 10),
-      };
-    }
-  }
-  // Fallback: artist-level popularity when album lookup returns 0 listeners or fails
-  let artistData;
-  try { artistData = await intelFetchLastFM("artist.getinfo", { artist }, env, true); } catch {}
-  if (artistData?.artist?.stats) {
-    return {
-      listeners: parseInt(artistData.artist.stats.listeners) || 0,
-      playcount: parseInt(artistData.artist.stats.playcount) || 0,
-      tags: (artistData.artist.tags?.tag || []).map(t => t.name).slice(0, 10),
-    };
-  }
-  return null;
-}
-
 function intelNormalizeAlbum(r) {
   return {
     ...r,
@@ -376,22 +360,6 @@ function intelNormalizeAlbum(r) {
     playcount: r.playcount || 0,
     lfmTags: r.lfmTags || [],
   };
-}
-
-async function intelEnrichWithLastFM(items, env) {
-  const enriched = [];
-  for (let i = 0; i < items.length; i += 5) {
-    const batch = await Promise.allSettled(
-      items.slice(i, i + 5).map(async (rel) => {
-        const lfm = await intelFetchLastFMAlbumInfo(rel.artist, rel.title, env);
-        return { ...rel, listeners: lfm?.listeners || 0, playcount: lfm?.playcount || 0, lfmTags: lfm?.tags || [] };
-      })
-    );
-    batch.forEach((r, j) => {
-      enriched.push(r.status === "fulfilled" ? r.value : { ...items[i + j], listeners: 0, playcount: 0, lfmTags: [] });
-    });
-  }
-  return enriched;
 }
 
 // ── Last.fm chart top albums (guaranteed popular, has real listener data) ──
@@ -448,18 +416,6 @@ async function intelFetchLastFMCharts(env) {
     all.sort((a, b) => b.listeners - a.listeners);
     return all.slice(0, 40);
   }, 3600);
-}
-
-// ── Upcoming albums: Last.fm enrichment + hot ranking ──
-async function intelFetchUpcomingAlbums(env, daysAhead = 45) {
-  const mb = await intelFetchMusicUpcoming(env, daysAhead, 100).catch(() => []);
-  let filtered = mb.filter(r => intelIsValidAlbum(r) && r.status !== "Bootleg");
-  if (!filtered.length) filtered = mb.filter(r => (r.primaryType === "Album" || r.primaryType === "EP") && r.status !== "Bootleg");
-  if (!filtered.length) return intelFetchLastFMCharts(env);
-  const withLFM = await intelEnrichWithLastFM(filtered.slice(0, 20), env);
-  const sorted = withLFM.map(intelNormalizeAlbum).sort((a, b) => (b.listeners || 0) - (a.listeners || 0));
-  const withData = sorted.filter(a => a.listeners > 0);
-  return withData.length >= 6 ? withData.slice(0, 20) : sorted.slice(0, 20);
 }
 
 // ── DeepSeek enrichment ──
@@ -520,9 +476,9 @@ async function intelEnrichWithAI(items, type, env) {
 async function intelEnrichAlbums(items, env) {
   if (!env.DEEPSEEK_API_KEY || !items.length) return [];
   try {
-    const prompt = `You are an expert music editor curating "This Week's New Albums" for a diverse global audience.
+    const prompt = `You are an expert music editor curating "This Week's Picks" — a hand-picked selection of the best new album releases for a diverse global audience.
 
-Below are new releases with MusicBrainz metadata and Last.fm popularity data:
+Below are new releases with MusicBrainz metadata and artist popularity data (starRating: 5★ >100k, 4★ 10k-100k, 3★ 1k-10k listeners):
 
 ${JSON.stringify(items.map((i, idx) => ({
   index: idx,
@@ -533,23 +489,25 @@ ${JSON.stringify(items.map((i, idx) => ({
   type: i.primaryType,
   listeners: i.listeners,
   playcount: i.playcount,
+  starRating: i.artistStars || 0,
   style: (i.lfmTags || []).slice(0, 5),
   genre: (i.tags || []).slice(0, 3),
 })))}
 
-**Task:** Select exactly 20 of the most noteworthy albums from this week, then assign each exactly ONE tag below.
+**Task:** Select exactly 20 albums as "This Week's Picks". These will be the ONLY 20 albums shown — choose the mix of quality, diversity, and discoverability.
 
 **Tags (pick one per album):**
-1. "trending" = 🔥 热门趋势 — high popularity (listeners > 50000), major artist, global buzz.
-2. "editor" = ⭐ 编辑推荐 — strong artistic merit, outstanding quality. Not necessarily popular.
-3. "hidden" = 💎 隐藏宝石 — listeners between 2000 and 10000, excellent quality, unique style.
-4. "world" = 🌍 环球音乐 — from outside US/UK, represents regional music culture. Prefer Japanese (JP) and Chinese (CN/TW/HK) artists.
+1. "trending" = 🔥 热门趋势 — high popularity (starRating ≥ 4 or listeners > 50000), major artist.
+2. "editor" = ⭐ 编辑推荐 — strong artistic merit, outstanding quality, any popularity tier.
+3. "hidden" = 💎 隐藏宝石 — excellent quality, unique style, starRating 3 preferred.
+4. "world" = 🌍 环球音乐 — from outside US/UK, represents regional music culture.
 
 **Diversity requirements:**
+- Mix popularity tiers: include ★★★★★ hits AND ★★★ hidden gems
 - Cover different genres and music styles
 - Cover different countries and regions
+- Balance mainstream appeal with niche discovery
 - Do NOT over-select from one country or genre
-- Mix mainstream and niche releases
 
 **Target proportions (approximate, adjust based on data):**
 - Trending Now: ~30% (6)
@@ -565,7 +523,7 @@ If a category lacks quality candidates, reduce its count — never force a pick.
 - "tagDisplayEn": English label, exactly one of "Trending Now" | "Editor's Pick" | "Hidden Gem" | "Around the World"
 - "recommendation": 40-70 character Chinese recommendation line (punchy, informative)
 - "recommendationEn": same in English
-- "reason": objective reason in Chinese (max 100 chars). No hype, no "must-hear", no superlatives. Describe style, mood, notable aspects.
+- "reason": objective reason in Chinese (max 100 chars). Describe style, mood, notable aspects.
 - "reasonEn": same in English
 - "aiScore": 0-10
 - "genres": array of 1-3 Chinese genre/style tags, e.g. ["独立摇滚", "梦幻流行", "电子"]
@@ -725,44 +683,41 @@ async function handleIntelTV(env) {
 
 async function handleIntelMusic(env) {
   const today = new Date().toISOString().split("T")[0];
-  // Cache entire music response for 6 hours (avoids subrequest limit on every call)
-  return withCache(`intel-music-v3-${today}`, async () => {
+  return withCache(`intel-music-v4-${today}`, async () => {
     const weekAgo = intelDaysAgo(7);
 
-    // Phase 1: Fetch MB recent releases, enrich with Last.fm
+    // Phase 1: Fetch MB releases this week, filter valid
     const weekReleases = await intelFetchMusicBrainzRange(weekAgo, today).catch(() => []);
     let validReleases = weekReleases.filter(r => intelIsValidAlbum(r) && r.status !== "Bootleg");
-    // Enrich fewer items to stay under subrequest limit (10 items × ~2 calls = ~20 subreq)
-    const withLastFM = await intelEnrichWithLastFM(validReleases.slice(0, 10), env);
-    let weekAlbums = withLastFM.map(intelNormalizeAlbum);
 
-    // Phase 2: Only keep items with real listener data (album or artist-level)
-    let curated = weekAlbums.filter(a => a.listeners > 0);
+    // Phase 2: Filter by artist popularity (artist.getinfo, keep > 1000 listeners)
+    let picks = await intelFilterByArtistPopularity(validReleases, env);
 
-    // Get trending data once (tag.gettopalbums — guaranteed real listeners)
-    const chartAlbums = await intelFetchLastFMCharts(env);
-
-    // Phase 3: If < 20, supplement with tag.gettopalbums data
-    if (curated.length < 20) {
+    // Phase 3: Supplement with chart data if < 20
+    if (picks.length < 20) {
+      const chartAlbums = await intelFetchLastFMCharts(env);
       for (const c of chartAlbums) {
-        if (curated.length >= 20) break;
-        const dup = curated.some(w =>
-          w.title.toLowerCase() === c.title.toLowerCase() &&
-          w.artist.toLowerCase() === c.artist.toLowerCase()
+        if (picks.length >= 20) break;
+        const dup = picks.some(p =>
+          p.title.toLowerCase() === c.title.toLowerCase() &&
+          p.artist.toLowerCase() === c.artist.toLowerCase()
         );
-        if (!dup) curated.push(c);
+        if (!dup) {
+          const stars = c.listeners >= 100000 ? 5 : c.listeners >= 10000 ? 4 : c.listeners >= 1000 ? 3 : 0;
+          picks.push({ ...c, artistListeners: c.listeners, artistStars: stars });
+        }
       }
     }
 
-    // Phase 4: AI curation with 4-tag system
-    const top40 = curated.slice(0, 40);
-    let aiWeek = top40.length ? await intelEnrichAlbums(top40, env) : [];
+    // Phase 4: AI diversity curation
+    const top40 = picks.slice(0, 40);
+    let aiPicks = top40.length ? await intelEnrichAlbums(top40, env) : [];
 
     // Phase 5: Fallback if AI fails
-    if (!aiWeek.length && top40.length) {
+    if (!aiPicks.length && top40.length) {
       const sorted = [...top40].sort((a, b) => (b.listeners || 0) - (a.listeners || 0));
       const total = Math.min(sorted.length, 20);
-      aiWeek = [];
+      aiPicks = [];
       for (let i = 0; i < total; i++) {
         const a = sorted[i];
         let tag, tagEn, tagId, cat;
@@ -770,14 +725,14 @@ async function handleIntelMusic(env) {
         if (pct < 0.3) { tag = "🔥 热门趋势"; tagEn = "Trending Now"; tagId = "trending"; cat = "trending"; }
         else if (pct < 0.6) { tag = "⭐ 编辑推荐"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor"; }
         else if (pct < 0.85) {
-          tag = a.listeners < 2000 ? "⭐ 编辑推荐" : "💎 隐藏宝石";
-          tagEn = a.listeners < 2000 ? "Editor's Pick" : "Hidden Gem";
-          tagId = a.listeners < 2000 ? "editor" : "hidden";
-          cat = a.listeners < 2000 ? "editor" : "hidden-gem";
+          tag = (a.artistStars || 0) < 3 ? "⭐ 编辑推荐" : "💎 隐藏宝石";
+          tagEn = (a.artistStars || 0) < 3 ? "Editor's Pick" : "Hidden Gem";
+          tagId = (a.artistStars || 0) < 3 ? "editor" : "hidden";
+          cat = (a.artistStars || 0) < 3 ? "editor" : "hidden-gem";
         } else {
           tag = "🌍 环球音乐"; tagEn = "Around the World"; tagId = "world"; cat = "world";
         }
-        aiWeek.push({
+        aiPicks.push({
           ...a,
           recommendationTag: tag, recommendationTagEn: tagEn, recommendationTagId: tagId, category: cat,
           highlight: a.highlight || `New release from ${a.artist}`,
@@ -787,11 +742,8 @@ async function handleIntelMusic(env) {
       }
     }
 
-    // Upcoming: MB future releases + Last.fm enrichment
-    const upcomingAlbums = await intelFetchUpcomingAlbums(env).catch(() => []);
-
-    // Fetch cover art for top releasedThisWeek items (direct fetch, 1 subreq each)
-    for (const item of (aiWeek.length ? aiWeek.slice(0, 3) : [])) {
+    // Fetch cover art for top 3 picks (direct fetch, 1 subreq each)
+    for (const item of (aiPicks.length ? aiPicks.slice(0, 3) : [])) {
       if (item.mbid && !item.cover) {
         try { const r = await fetch(`https://coverartarchive.org/release/${item.mbid}/front-250.jpg`); if (r.ok) item.cover = `https://coverartarchive.org/release/${item.mbid}/front-250.jpg`; } catch {}
       }
@@ -799,9 +751,7 @@ async function handleIntelMusic(env) {
 
     return {
       updated: today,
-      releasedThisWeek: aiWeek.slice(0, 20),
-      upcoming: upcomingAlbums.slice(0, 20),
-      trending: chartAlbums.slice(0, 20),
+      picks: aiPicks.slice(0, 20),
     };
   }, 21600);
 }
@@ -847,10 +797,7 @@ async function handleIntelComing(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
 
-  const [movieUpcoming, musicUpcoming] = await Promise.all([
-    intelFetchTMDB(token, "/movie/upcoming"),
-    intelFetchUpcomingAlbums(env).catch(() => []),
-  ]);
+  const movieUpcoming = await intelFetchTMDB(token, "/movie/upcoming");
 
   const allItems = [];
 
@@ -870,16 +817,6 @@ async function handleIntelComing(env) {
       allItems.push({ ...intelNormalizeMovie(s, "tv"), mediaType: "tv", daysUntil: Math.max(0, days) });
     });
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
-
-  // Music
-  musicUpcoming.forEach(r => {
-    const days = r.releaseDate ? Math.ceil((new Date(r.releaseDate) - new Date(today)) / 86400000) : 999;
-    allItems.push({
-      ...intelNormalizeAlbum(r),
-      titleEn: r.title,
-      daysUntil: Math.max(0, days), mediaType: r.mediaType || "album",
-    });
-  });
 
   allItems.sort((a, b) => a.daysUntil - b.daysUntil);
 

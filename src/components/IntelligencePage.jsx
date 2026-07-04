@@ -212,44 +212,22 @@ const TAG_FILTERS = [
 
 function MusicView({ locale, onViewDetail }) {
   const { data, loading, error } = useJsonData("/api/music.json");
-  const [tab, setTab] = useState("week");
   const [tagFilter, setTagFilter] = useState("all");
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
-  const tabs = [
-    { id: "week", zh: "本周新专", en: "This Week", key: "releasedThisWeek" },
-    { id: "upcoming", zh: "即将发行", en: "Upcoming", key: "upcoming" },
-    { id: "trending", zh: "热门音乐", en: "Trending", key: "trending" },
-  ];
-  const activeTab = tabs.find(t => t.id === tab);
-  let current = data?.[activeTab?.key] || [];
-  // Apply tag filter only on "week" tab (releasedThisWeek)
-  if (tab === "week" && tagFilter !== "all") {
-    current = current.filter(a => a.recommendationTagId === tagFilter);
-  }
+  const picks = data?.picks || [];
+  const current = tagFilter === "all" ? picks : picks.filter(a => a.recommendationTagId === tagFilter);
   return (
     <div className="space-y-6">
-      <SectionHeader label={locale === "zh" ? "音乐情报" : "Music Intelligence"} color="#ffff00" />
-      <div className="flex gap-2 flex-wrap">
-        {tabs.map(t => (
-          <button key={t.id} onClick={() => { setTab(t.id); setTagFilter("all"); }}
-            className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${tab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
-            {locale === "zh" ? t.zh : t.en}
-            {data?.[t.key]?.length > 0 && <span className="ml-1 opacity-60">({data[t.key].length})</span>}
+      <SectionHeader label={locale === "zh" ? "本周精选" : "This Week's Picks"} color="#ffff00" />
+      <div className="flex gap-1.5 flex-wrap">
+        {TAG_FILTERS.map(f => (
+          <button key={f.id} onClick={() => setTagFilter(f.id)}
+            className={`px-2 py-1 text-[8px] font-black uppercase border-2 border-black transition-colors ${tagFilter === f.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
+            {locale === "en" ? f.en : f.zh}
           </button>
         ))}
       </div>
-      {/* Tag filter bar — only visible on "This Week" tab */}
-      {tab === "week" && (
-        <div className="flex gap-1.5 flex-wrap">
-          {TAG_FILTERS.map(f => (
-            <button key={f.id} onClick={() => setTagFilter(f.id)}
-              className={`px-2 py-1 text-[8px] font-black uppercase border-2 border-black transition-colors ${tagFilter === f.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
-              {locale === "en" ? f.en : f.zh}
-            </button>
-          ))}
-        </div>
-      )}
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
@@ -271,7 +249,7 @@ function ComingView({ locale, onViewDetail }) {
   if (error) return <DataError locale={locale} />;
   const moviesUpcoming = (moviesAll?.upcoming || []).map(i => ({ ...i, mediaType: "movie" }));
   const tvUpcoming = (tvAll?.upcoming || []).map(i => ({ ...i, mediaType: "tv" }));
-  const musicUpcoming = (musicAll?.upcoming || []).map(i => ({ ...i, mediaType: "album" }));
+  const musicUpcoming = (musicAll?.picks || []).map(i => ({ ...i, mediaType: "album" }));
   const byType = { movies: moviesUpcoming, tv: tvUpcoming, music: musicUpcoming };
   const types = [
     { id: "movies", zh: "电影", en: "Movies" },
@@ -364,7 +342,7 @@ function SearchView({ locale, onViewDetail }) {
     // Flatten movies
     if (movies) { add(movies.releasedToday, "movie"); add(movies.releasedThisWeek, "movie"); add(movies.upcoming, "movie"); add(movies.nowPlaying, "movie"); }
     if (tv) { add(tv.premieresToday, "tv"); add(tv.premieresThisWeek, "tv"); add(tv.upcoming, "tv"); add(tv.ongoing, "tv"); }
-    if (music) { add(music.releasedToday, "album"); add(music.releasedThisWeek, "album"); }
+    if (music) { add(music.picks, "album"); }
     // Flatten coming soon
     if (coming) {
       [...(coming.next7Days || []), ...(coming.next30Days || [])].forEach(item => items.push({ ...item, _type: item.mediaType === "tv" ? "tv" : item.mediaType === "album" || item.mediaType === "single" ? "album" : "movie" }));
