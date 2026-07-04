@@ -240,6 +240,7 @@ function intelNormalizeAlbum(r) {
     releaseDate: r.releaseDate,
     year: r.year,
     cover: r.cover,
+    country: r.country,
     genre: (r.tags?.length > 0 ? r.tags[0] : r.genre),
     tags: r.tags,
   };
@@ -252,7 +253,7 @@ async function intelEnrichWithAI(items, type, env) {
     let prompt, maxTokens;
     if (type === "album") {
       // Album pipeline: filter diverse albums
-      maxTokens = 4000;
+      maxTokens = 8000;
       prompt = `You are a music editor. Today's new album releases:\n\n${JSON.stringify(items.map((i, idx) => ({ index: idx, title: i.title, artist: i.artist, genre: i.genre, country: i.country })))}\n\nYour task:\n1. Select 8-12 of the most noteworthy albums covering a DIVERSE range: mainstream/popular releases, niche/underground gems, and thought-provoking/unconventional works. Do NOT just pick the first ones.\n2. For each selected one, provide: a) "highlight" — one punchy recommendation line in Chinese, b) "highlightEn" — same in English, c) "aiScore" (0-10), d) "tags" (3-5 style/genre tags, in Chinese), e) "tagsEn" (same tags in English), f) "category" — either "global" (mainstream/international) or "niche" (indie/underground/cult), g) "summary" — a short description in Chinese (1-2 sentences about style, mood, notable aspects), h) "summaryEn" — same in English.\n3. Return JSON: { "items": [ { "index": 0, "highlight": "...", "highlightEn": "...", "aiScore": 8.5, "tags": [...], "tagsEn": [...], "category": "global", "summary": "...", "summaryEn": "..." }, ... ] }\nSelect 8-12 albums max. Do NOT return all albums.`;
     } else {
       maxTokens = 4000;
@@ -262,7 +263,7 @@ async function intelEnrichWithAI(items, type, env) {
     const res = await fetch("https://api.deepseek.com/chat/completions", {
       method: "POST",
       headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: maxTokens }),
+      body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: maxTokens, response_format: { type: "json_object" } }),
     });
     if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
     const data = await res.json();
