@@ -22,17 +22,27 @@ const NAV_ITEMS = [
 function useJsonData(endpoint) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
+    setError(false);
     fetch(endpoint)
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
       .then(json => { if (!cancelled) setData(json); })
-      .catch(() => { if (!cancelled) setData(null); })
+      .catch(() => { if (!cancelled) { setData(null); setError(true); } })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, [endpoint]);
-  return { data, loading };
+  return { data, loading, error };
+}
+
+function DataError({ locale }) {
+  return (
+    <p className="text-red-400 text-xs text-center py-8 pixel-font">
+      {locale === "zh" ? "数据加载失败，请稍后重试" : "Failed to load data. Please retry."}
+    </p>
+  );
 }
 
 function LoadingSpinner({ locale }) {
@@ -43,17 +53,17 @@ function LoadingSpinner({ locale }) {
   );
 }
 
-// ── Overview ──
 function OverviewView({ locale }) {
-  const { data, loading } = useJsonData("/api/overview.json");
+  const { data, loading, error } = useJsonData("/api/overview.json");
   const { data: hiddenGemsData } = useJsonData("/api/hidden-gems.json");
   const { data: digestData } = useJsonData("/api/digest.json");
   if (loading) return <LoadingSpinner locale={locale} />;
+  if (error) return <DataError locale={locale} />;
   const stats = data?.stats || {};
   const hiddenGems = hiddenGemsData?.gems || [];
   const statCards = [
     { zh: "电影上映", en: "Movies Released", num: stats.moviesReleased ?? "--", color: "#ff00ff" },
-    { zh: "剧集首播", en: "TV Premieres", num: stats.tvPremieres ?? "--", color: "#00ffff" },
+    { zh: "剧集在播", en: "TV Airing", num: stats.tvAiringThisWeek ?? "--", color: "#00ffff" },
     { zh: "专辑发行", en: "Albums Released", num: stats.albumsReleased ?? "--", color: "#000000" },
     { zh: "热榜变动", en: "Trending", num: stats.trending ?? "--", color: "#ff00ff" },
   ];
@@ -128,9 +138,10 @@ function OverviewView({ locale }) {
 
 // ── Movies ──
 function MoviesView({ locale, onViewDetail }) {
-  const { data, loading } = useJsonData("/api/movies.json");
+  const { data, loading, error } = useJsonData("/api/movies.json");
   const [tab, setTab] = useState("week");
   if (loading) return <LoadingSpinner locale={locale} />;
+  if (error) return <DataError locale={locale} />;
   const tabs = [
     { id: "week", zh: "本周上映", en: "This Week", key: "releasedThisWeek" },
     { id: "upcoming", zh: "即将上映", en: "Upcoming", key: "upcoming" },
@@ -160,9 +171,10 @@ function MoviesView({ locale, onViewDetail }) {
 
 // ── TV ──
 function TVView({ locale, onViewDetail }) {
-  const { data, loading } = useJsonData("/api/tv.json");
+  const { data, loading, error } = useJsonData("/api/tv.json");
   const [tab, setTab] = useState("week");
   if (loading) return <LoadingSpinner locale={locale} />;
+  if (error) return <DataError locale={locale} />;
   const tabs = [
     { id: "week", zh: "本周首播", en: "This Week", key: "premieresThisWeek" },
     { id: "upcoming", zh: "即将播出", en: "Upcoming", key: "upcoming" },
@@ -192,9 +204,10 @@ function TVView({ locale, onViewDetail }) {
 
 // ── Music ──
 function MusicView({ locale, onViewDetail }) {
-  const { data, loading } = useJsonData("/api/music.json");
+  const { data, loading, error } = useJsonData("/api/music.json");
   const [tab, setTab] = useState("week");
   if (loading) return <LoadingSpinner locale={locale} />;
+  if (error) return <DataError locale={locale} />;
   const tabs = [
     { id: "week", zh: "本周发行", en: "This Week", key: "releasedThisWeek" },
     { id: "upcoming", zh: "即将发行", en: "Upcoming", key: "upcoming" },
@@ -225,10 +238,11 @@ function MusicView({ locale, onViewDetail }) {
 }
 
 // ── Coming Soon ──
-function ComingView({ locale }) {
-  const { data, loading } = useJsonData("/api/coming.json");
+function ComingView({ locale, onViewDetail }) {
+  const { data, loading, error } = useJsonData("/api/coming.json");
   const [typeTab, setTypeTab] = useState("movies");
   if (loading) return <LoadingSpinner locale={locale} />;
+  if (error) return <DataError locale={locale} />;
   const types = [
     { id: "movies", zh: "电影", en: "Movies", filter: (i) => i.mediaType === "movie" },
     { id: "tv", zh: "剧集", en: "TV", filter: (i) => i.mediaType === "tv" },
@@ -246,24 +260,31 @@ function ComingView({ locale }) {
           <button key={t.id} onClick={() => setTypeTab(t.id)}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${typeTab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
-            <span className="ml-1 opacity-60">({deduped.filter(t.filter).length})</span>
+            <span className="ml-1 opacity-60">({Math.min(deduped.filter(t.filter).length, 20)})</span>
           </button>
         ))}
       </div>
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
-        <CardList>{current.map((item, i) => <CountdownCard key={i} item={item} locale={locale} />)}</CardList>
+        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+          {current.slice(0, 20).map((item, i) =>
+            typeTab === "movies" ? <MovieCard key={i} movie={item} locale={locale} onViewDetail={onViewDetail} />
+            : typeTab === "tv" ? <TVCard key={i} show={item} locale={locale} onViewDetail={onViewDetail} />
+            : <AlbumCard key={i} album={item} locale={locale} onViewDetail={(album) => onViewDetail?.(album, "album")} />
+          )}
+        </CardGrid>
       )}
     </div>
   );
 }
 
 // ── Weekly Hot List (replaces old Trending/Weekly) ──
-function WeeklyView({ locale }) {
-  const { data, loading } = useJsonData("/api/weekly.json");
+function WeeklyView({ locale, onViewDetail }) {
+  const { data, loading, error } = useJsonData("/api/weekly.json");
   const [typeTab, setTypeTab] = useState("movies");
   if (loading) return <LoadingSpinner locale={locale} />;
+  if (error) return <DataError locale={locale} />;
   const types = [
     { id: "movies", zh: "电影", en: "Movies" },
     { id: "tv", zh: "剧集", en: "TV" },
@@ -284,7 +305,14 @@ function WeeklyView({ locale }) {
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
-        <CardList>{current.map((item, i) => <RankingCard key={i} item={item} rank={item.rank || i + 1} locale={locale} />)}</CardList>
+        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+          {current.slice(0, 20).map((item, i) => {
+            const rank = item.rank || i + 1;
+            return typeTab === "movies" ? <MovieCard key={i} movie={item} locale={locale} onViewDetail={onViewDetail} />
+              : typeTab === "tv" ? <TVCard key={i} show={item} locale={locale} onViewDetail={onViewDetail} />
+              : <AlbumCard key={i} album={item} locale={locale} onViewDetail={(album) => onViewDetail?.(album, "album")} />;
+          })}
+        </CardGrid>
       )}
     </div>
   );
@@ -468,8 +496,8 @@ function IntelligencePage() {
           {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
           {activeNav === "tv" && <TVView locale={locale} onViewDetail={(item) => handleViewDetail(item, "tv")} />}
           {activeNav === "music" && <MusicView locale={locale} onViewDetail={(item) => handleViewDetail(item, "music")} />}
-          {activeNav === "coming" && <ComingView locale={locale} />}
-          {activeNav === "weekly" && <WeeklyView locale={locale} />}
+          {activeNav === "coming" && <ComingView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
+          {activeNav === "weekly" && <WeeklyView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
           {activeNav === "search" && <SearchView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
         </main>
       </div>

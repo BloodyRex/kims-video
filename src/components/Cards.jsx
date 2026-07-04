@@ -26,7 +26,7 @@ function label(locale, zh, en) {
 }
 
 function getTitle(item, locale) {
-  return locale === "en" ? (item.titleEn || item.title) : item.title;
+  return locale === "en" ? (item.titleEn || item.title) : (item.title || item.titleEn || "");
 }
 
 function StarRating({ score, max = 10 }) {
@@ -121,7 +121,7 @@ export function MovieCard({ movie, locale, onViewDetail }) {
           )}
           {movie.summary && (
             <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
-              {locale === "en" ? (movie.summaryEn || movie.summary) : movie.summary}
+              {locale === "en" ? (movie.summaryEn || movie.summary) : (movie.summary || movie.summaryEn)}
             </p>
           )}
           {movie.reason && (
@@ -199,7 +199,7 @@ export function TVCard({ show, locale, onViewDetail }) {
           )}
           {show.summary && (
             <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
-              {locale === "en" ? (show.summaryEn || show.summary) : show.summary}
+              {locale === "en" ? (show.summaryEn || show.summary) : (show.summary || show.summaryEn)}
             </p>
           )}
           <Tags tags={show.tags} tagsEn={show.tagsEn} color="#00ffff" locale={locale} />

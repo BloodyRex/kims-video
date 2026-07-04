@@ -271,12 +271,13 @@ async function intelEnrichWithAI(items, type, env) {
     const enriched = parsed?.items || [];
 
     if (type === "album") {
-      // Only return the filtered subset, max 12
+      // Only return the filtered subset, max 12, with genre from first AI tag
       return enriched.slice(0, 12).map(ai => {
         const item = items[ai.index] || {};
         return {
           ...item,
           aiScore: ai.aiScore,
+          genre: ai.tags?.[0] || item.genre || "",
           tags: ai.tags || [],
           tagsEn: ai.tagsEn || [],
           highlight: ai.highlight || "",
@@ -314,9 +315,8 @@ async function handleIntelOverview(env) {
   const todayM = nowPlaying.filter(m => m.release_date === today).map(m => intelNormalizeMovie(m));
   const weekM = nowPlaying.filter(m => m.release_date >= weekAgo && m.release_date < today).slice(0, 20).map(m => intelNormalizeMovie(m));
 
-  const tvAiring = await intelFetchTMDB(token, "/tv/airing_today");
-  const todayTV = tvAiring.filter(s => s.first_air_date === today).map(s => intelNormalizeMovie(s, "tv"));
-  const weekTV = tvAiring.filter(s => s.first_air_date >= weekAgo && s.first_air_date < today).slice(0, 10).map(s => intelNormalizeMovie(s, "tv"));
+  const tvOnAir = await intelFetchTMDB(token, "/tv/on_the_air");
+  const tvCount = tvOnAir.length;
 
   // Music count (fast: just query today)
   const todayMB = await intelFetchMusicBrainz(today);
@@ -335,7 +335,7 @@ async function handleIntelOverview(env) {
     updated: today,
     stats: {
       moviesReleased: todayM.length + weekM.length,
-      tvPremieres: todayTV.length + weekTV.length,
+      tvAiringThisWeek: tvCount,
       albumsReleased: todayMB.length,
       trending: trending.length,
     },
@@ -347,7 +347,7 @@ async function handleIntelOverview(env) {
         return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
       }),
     trending: trending.slice(0, 5).map((m, i) => ({ ...intelNormalizeMovie(m), rank: i + 1, trend: "new" })),
-    brief: `Today: ${todayM.length} movie(s) released, ${todayTV.length} TV premiere(s), ${todayMB.length} new album(s).`,
+    brief: `Today: ${todayM.length} movie(s) released, ${tvCount} TV show(s) airing, ${todayMB.length} new album(s).`,
   };
 }
 
@@ -394,7 +394,7 @@ async function handleIntelTV(env) {
   // Upcoming brand-new shows via discover/tv (future premieres only)
   let upcomingTV = [];
   try {
-    upcomingTV = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "first_air_date.asc" });
+    upcomingTV = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "popularity.desc" });
     upcomingTV = upcomingTV.slice(0, 20).map(s => intelNormalizeMovie(s, "tv"));
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
@@ -427,7 +427,7 @@ async function handleIntelMusic(env) {
 
   // Last.fm trending with derived rating from play count
   const maxPlay = lastfmData ? Math.max(...(lastfmData?.albums?.album || []).map(a => parseInt(a.playcount) || 0), 1) : 1;
-  const trendingAlbums = lastfmData
+  const trendingRaw = lastfmData
     ? (lastfmData?.albums?.album || []).map((a, i) => {
         const coverImg = a.image?.find(img => img.size === "extralarge" || img.size === "large");
         const playCount = parseInt(a.playcount) || 0;
@@ -438,7 +438,7 @@ async function handleIntelMusic(env) {
           cover: coverImg?.["#text"] || "",
           playCount,
           listeners: parseInt(a.listeners) || 0,
-          rating: Math.round((playCount / maxPlay) * 100) / 10, // normalize to 0-10 scale for StarRating
+          rating: Math.round((playCount / maxPlay) * 100) / 10,
           rank: i + 1,
           trend: "up",
           genre: [],
@@ -446,6 +446,9 @@ async function handleIntelMusic(env) {
         };
       })
     : [];
+
+  // AI enrich trending music for tags, summary, category
+  const trendingAlbums = await intelEnrichWithAI(trendingRaw, "album", env);
 
   return {
     updated: today,
@@ -458,11 +461,13 @@ async function handleIntelMusic(env) {
 async function handleIntelWeekly(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
+  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
 
-  const [movieTrending, tvTrending, lastfmData] = await Promise.all([
+  const [movieTrending, tvTrending, todayMB, weekMB] = await Promise.all([
     intelFetchTMDB(token, "/trending/movie/week"),
     intelFetchTMDB(token, "/trending/tv/week"),
-    intelFetchLastFM("tag.gettopalbums", { tag: "top", limit: 15 }, env).catch(() => null),
+    intelFetchMusicBrainz(today).catch(() => []),
+    intelFetchMusicBrainz(weekAgo).catch(() => []),
   ]);
 
   const normalizeItem = (item, rank) => {
@@ -470,29 +475,23 @@ async function handleIntelWeekly(env) {
     return { ...intelNormalizeMovie(item, type), rank, trend: "new" };
   };
 
-  const musicTrending = lastfmData
-    ? (lastfmData?.albums?.album || []).map((a, i) => {
-        const coverImg = a.image?.find(img => img.size === "extralarge" || img.size === "large");
-        return {
-          title: a.name,
-          titleEn: a.name,
-          artist: a.artist?.name || "",
-          cover: coverImg?.["#text"] || "",
-          playCount: parseInt(a.playcount) || 0,
-          listeners: parseInt(a.listeners) || 0,
-          rank: i + 1,
-          trend: "up",
-          genre: [],
-          tags: [],
-        };
-      })
-    : [];
+  // Music: this week's releases, deduped, AI ranked by score
+  const merged = [...todayMB];
+  for (const rel of weekMB) {
+    if (!merged.some(r => r.mbid === rel.mbid)) merged.push(rel);
+  }
+  const weekAlbums = merged.slice(0, 20).map(intelNormalizeAlbum);
+  const musicEnriched = await intelEnrichWithAI(weekAlbums, "album", env);
+  const musicWeekly = musicEnriched
+    .sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0))
+    .slice(0, 10)
+    .map((item, i) => ({ ...item, rank: i + 1, trend: "new" }));
 
   return {
     updated: today,
     movies: movieTrending.slice(0, 10).map((m, i) => normalizeItem(m, i + 1)),
     tv: tvTrending.slice(0, 10).map((s, i) => normalizeItem(s, i + 1)),
-    music: musicTrending,
+    music: musicWeekly,
   };
 }
 
