@@ -41,7 +41,12 @@ function intelGenreZH(tags) {
   if (!tags || !tags.length) return "";
   for (const t of tags) {
     const key = t.toLowerCase().trim();
+    if (/^\d+$/.test(key)) continue;
     if (GENRE_ZH[key]) return GENRE_ZH[key];
+  }
+  for (const t of tags) {
+    const key = t.toLowerCase().trim();
+    if (!/^\d+$/.test(key)) return t;
   }
   return tags[0];
 }
