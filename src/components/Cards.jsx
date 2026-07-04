@@ -579,16 +579,6 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
   const mbUrl = item.mbid ? `https://musicbrainz.org/release/${item.mbid}` : "";
   const genres = Array.isArray(item.genre) ? item.genre : (item.genre ? [item.genre] : []);
 
-  const handleShare = async () => {
-    const shareUrl = tmdbUrl;
-    if (navigator.share) {
-      try { await navigator.share({ title, url: shareUrl }); return; } catch {}
-    }
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-    } catch {}
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4" onClick={onClose}>
       <div className="bg-white border-4 border-black max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-[12px_12px_0_0_#ff00ff]" onClick={e => e.stopPropagation()}>
@@ -634,7 +624,7 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
           <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
         </div>
 
-        {/* 3 Action Buttons */}
+        {/* Action Buttons */}
         <div className="border-t-4 border-black p-4 flex flex-col sm:flex-row gap-2">
           {!isMusic && item.tmdbId ? (
             <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
@@ -650,10 +640,6 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
           <button onClick={onClose}
             className="flex-1 px-3 py-2.5 text-[10px] font-black text-center text-white bg-black border-2 border-black shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
             {locale === "en" ? "Back" : "返回"}
-          </button>
-          <button onClick={handleShare}
-            className="flex-1 px-3 py-2.5 text-[10px] font-black text-center text-white bg-[#ff00ff] border-2 border-black shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
-            {locale === "en" ? "Share" : "分享此页"}
           </button>
         </div>
       </div>
