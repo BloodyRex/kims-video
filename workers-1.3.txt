@@ -429,7 +429,7 @@ async function handleIntelMusic(env) {
     intelFetchMusicBrainz(today).catch(() => []),
     intelFetchMusicBrainz(weekAgo).catch(() => []),
     intelFetchMusicUpcoming(env, 30).catch(() => []),
-    intelFetchLastFM("chart.gettopalbums", { limit: 10 }, env).catch(() => null),
+    intelFetchLastFM("tag.gettopalbums", { tag: "top", limit: 15 }, env).catch(() => null),
   ]);
 
   // Merge today + week into one "This Week" set, deduped
@@ -474,7 +474,7 @@ async function handleIntelWeekly(env) {
   const [movieTrending, tvTrending, lastfmData] = await Promise.all([
     intelFetchTMDB(token, "/trending/movie/week"),
     intelFetchTMDB(token, "/trending/tv/week"),
-    intelFetchLastFM("chart.gettopalbums", { limit: 10 }, env).catch(() => null),
+    intelFetchLastFM("tag.gettopalbums", { tag: "top", limit: 15 }, env).catch(() => null),
   ]);
 
   const normalizeItem = (item, rank) => {
