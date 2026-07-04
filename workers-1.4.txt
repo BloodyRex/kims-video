@@ -348,6 +348,30 @@ async function intelFetchUpcomingAlbums(env, daysAhead = 14) {
   return withLFM.map(intelNormalizeAlbum).sort((a, b) => (b.listeners || 0) - (a.listeners || 0)).slice(0, 20);
 }
 
+// ── Trending albums: 3-week range, Last.fm enrichment, hot ranking ──
+async function intelFetchTrendingAlbums(env) {
+  const today = new Date().toISOString().split("T")[0];
+  const threeWeeksAgo = new Date(Date.now() - 21 * 86400000).toISOString().split("T")[0];
+  const releases = await intelFetchMusicBrainzRange(threeWeeksAgo, today).catch(() => []);
+  const filtered = releases.filter(intelIsValidAlbum);
+  if (!filtered.length) return [];
+
+  const withLFM = [];
+  for (let i = 0; i < filtered.length; i += 5) {
+    const batch = await Promise.allSettled(
+      filtered.slice(i, i + 5).map(async (rel) => {
+        const lfm = await intelFetchLastFMAlbumInfo(rel.artist, rel.title, env);
+        return { ...rel, listeners: lfm?.listeners || 0, playcount: lfm?.playcount || 0, lfmTags: lfm?.tags || [] };
+      })
+    );
+    batch.forEach((r, j) => {
+      withLFM.push(r.status === "fulfilled" ? r.value : { ...filtered[i + j], listeners: 0, playcount: 0, lfmTags: [] });
+    });
+  }
+
+  return withLFM.map(intelNormalizeAlbum).sort((a, b) => (b.listeners || 0) - (a.listeners || 0)).slice(0, 20);
+}
+
 // ── DeepSeek enrichment ──
 async function intelEnrichWithAI(items, type, env) {
   if (!env.DEEPSEEK_API_KEY || !items.length) return items;
@@ -671,11 +695,14 @@ async function handleIntelMusic(env) {
   // Upcoming: use shared hot-ranked function
   const upcomingAlbums = await intelFetchUpcomingAlbums(env).catch(() => []);
 
+  // Trending: 3-week range, Last.fm hot ranking, no AI tags
+  const trendingAlbums = await intelFetchTrendingAlbums(env).catch(() => []);
+
   return {
     updated: today,
     releasedThisWeek: aiWeek.slice(0, 20),
     upcoming: upcomingAlbums.slice(0, 20),
-    trending: [...aiWeek].sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0)).slice(0, 20),
+    trending: trendingAlbums.slice(0, 20),
   };
 }
 

@@ -237,9 +237,16 @@ function getTagStyle(tagId) {
 export function AlbumCard({ album, locale, onViewDetail }) {
   const title = album.title || "";
   const artist = album.artist || "";
-  const styleTags = album.tags?.length
+  const displayTags = album.tags?.length
     ? album.tags
-    : (album.genre ? [album.genre] : []);
+    : album.lfmTags?.length
+      ? album.lfmTags.slice(0, 5)
+      : (album.genre ? [album.genre] : []);
+  const displayTagsEn = album.tagsEn?.length
+    ? album.tagsEn
+    : album.lfmTags?.length
+      ? album.lfmTags.slice(0, 5)
+      : [];
   const tagId = album.recommendationTagId || "";
   const tagLabel = album.recommendationTag || "";
   const tagStyle = getTagStyle(tagId);
@@ -273,11 +280,11 @@ export function AlbumCard({ album, locale, onViewDetail }) {
           <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{title}</h3>
           <p className="text-xs text-gray-600 font-bold mb-1 truncate">{artist}</p>
 
-          {styleTags.length > 0 && (
+          {displayTags.length > 0 && (
             <div className="flex flex-wrap gap-1 mb-1">
-              {styleTags.map((g, i) => (
+              {displayTags.map((g, i) => (
                 <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">
-                  {locale === "zh" ? (GENRE_ZH[g] || g) : g}
+                  {locale === "zh" ? (GENRE_ZH[g] || g) : (displayTagsEn[i] || g)}
                 </span>
               ))}
             </div>
@@ -291,7 +298,6 @@ export function AlbumCard({ album, locale, onViewDetail }) {
           )}
 
           <AIScoreBadge score={album.aiScore} confidence={album.confidence} />
-          <Tags tags={album.tags} tagsEn={album.tagsEn} color="#333" locale={locale} />
           {onViewDetail && (
             <button onClick={() => onViewDetail(album)}
               className="self-start mt-1 px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
@@ -364,7 +370,12 @@ export function CountdownCard({ item, locale, onViewDetail }) {
               {locale === "en" ? (item.summaryEn || item.summary) : item.summary}
             </p>
           )}
-          <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
+          {(mediaType === "album" || mediaType === "single")
+            ? (item.tags?.length || item.lfmTags?.length || item.genre
+              ? <div className="flex flex-wrap gap-1">{(item.tags?.length ? item.tags : item.lfmTags?.length ? item.lfmTags.slice(0, 5) : [item.genre]).map((g, i) => <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>)}</div>
+              : null)
+            : <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
+          }
           {onViewDetail && (
             <button onClick={() => onViewDetail(item)}
               className="self-start mt-1 px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
@@ -616,7 +627,16 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
                 <StarRating score={item.rating} max={10} />
                 <AIScoreBadge score={item.aiScore} confidence={item.confidence} />
               </div>
-              {genres.length > 0 && (
+              {isMusic
+                ? (() => {
+                    const g = item.tags?.length ? item.tags : item.lfmTags?.length ? item.lfmTags.slice(0, 5) : item.genre ? [item.genre] : [];
+                    return g.length > 0 ? (
+                      <div className="flex flex-wrap gap-1">
+                        {g.map((t, i) => <span key={i} className="text-[9px] px-1.5 py-0.5 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[t] || t) : t}</span>)}
+                      </div>
+                    ) : null;
+                  })()
+                : genres.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {genres.map((g, i) => (
                     <span key={i} className="text-[9px] px-1.5 py-0.5 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
@@ -632,8 +652,18 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
             </div>
           )}
 
-          <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
-        </div>
+          {isMusic
+            ? (() => {
+                const g = item.tags?.length ? item.tags : item.lfmTags?.length ? item.lfmTags.slice(0, 5) : item.genre ? [item.genre] : [];
+                const ge = item.tagsEn?.length ? item.tagsEn : item.lfmTags?.length ? item.lfmTags.slice(0, 5) : [];
+                return g.length > 0 ? (
+                  <div className="flex flex-wrap gap-1">
+                    {g.map((t, i) => <span key={i} className="text-[9px] px-1.5 py-0.5 border font-black" style={{ color: "#333", borderColor: "#333" }}>{locale === "zh" ? (GENRE_ZH[t] || t) : (ge[i] || t)}</span>)}
+                  </div>
+                ) : null;
+              })()
+            : <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
+          }
 
         {/* Action Buttons */}
         <div className="border-t-4 border-black p-4 flex flex-col sm:flex-row gap-2">
