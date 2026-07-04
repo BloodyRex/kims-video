@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
-import { MovieCard, TVCard, AlbumCard, CountdownCard, RankingCard, SpotlightCard, SectionHeader, CardGrid, CardList, IntelDetailModal } from "./Cards";
+import { MovieCard, TVCard, AlbumCard, CountdownCard, SpotlightCard, SectionHeader, CardGrid, IntelDetailModal } from "./Cards";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -129,7 +129,7 @@ function OverviewView({ locale }) {
       {(data?.trending || []).length > 0 && (
         <section>
           <SectionHeader label={locale === "zh" ? "↑ 热榜趋势" : "↑ Trending"} count={data.trending.length} color="#ff00ff" />
-          <CardList>{data.trending.map((p, i) => <RankingCard key={i} item={p} rank={p.rank || i + 1} locale={locale} />)}</CardList>
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.trending.map((p, i) => <MovieCard key={i} movie={p} locale={locale} />)}</CardGrid>
         </section>
       )}
     </div>
