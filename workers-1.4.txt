@@ -172,7 +172,8 @@ async function intelFetchMusicUpcoming(env, daysAhead = 30) {
   const futureStr = future.toISOString().split("T")[0];
   const cacheKey = `intel-mb-upcoming-${todayStr}`;
   return withCache(cacheKey, async () => {
-    const url = `https://musicbrainz.org/ws/2/release?query=date:[${todayStr}%20TO%20${futureStr}]&fmt=json&limit=25`;
+    const qp = new URLSearchParams({ query: `date:[${todayStr} TO ${futureStr}]`, fmt: "json", limit: "25" });
+    const url = `https://musicbrainz.org/ws/2/release?${qp.toString()}`;
     const res = await fetch(url, {
       headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
     });
@@ -236,7 +237,8 @@ async function intelFetchMusicBrainz(dateStr) {
 async function intelFetchMusicBrainzRange(dateFrom, dateTo) {
   const cacheKey = `intel-mb-range-${dateFrom}-${dateTo}`;
   return withCache(cacheKey, async () => {
-    const url = `https://musicbrainz.org/ws/2/release?query=date:[${dateFrom} TO ${dateTo}]&fmt=json&limit=100`;
+    const qp = new URLSearchParams({ query: `date:[${dateFrom} TO ${dateTo}]`, fmt: "json", limit: "100" });
+    const url = `https://musicbrainz.org/ws/2/release?${qp.toString()}`;
     const res = await fetch(url, {
       headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
     });
@@ -574,7 +576,7 @@ async function handleIntelMusic(env) {
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
 
   // Phase 1-2: Fetch full 7-day range, filter by album type
-  const weekReleases = await intelFetchMusicBrainzRange(weekAgo, today);
+  const weekReleases = await intelFetchMusicBrainzRange(weekAgo, today).catch(() => []);
   const filtered = weekReleases.filter(intelIsValidAlbum).slice(0, 60);
 
   // Phase 3: Enrich with Last.fm popularity data (batched to respect rate limits)
@@ -594,7 +596,24 @@ async function handleIntelMusic(env) {
   const weekAlbums = withLastFM.map(intelNormalizeAlbum);
 
   // Phase 4-5: AI curation with 4-tag system, max 20
-  const aiWeek = await intelEnrichAlbums(weekAlbums, env);
+  let aiWeek = await intelEnrichAlbums(weekAlbums, env);
+
+  // Fallback: if AI returns nothing, show albums sorted by Last.fm listeners
+  if (!aiWeek.length && weekAlbums.length) {
+    aiWeek = [...weekAlbums]
+      .sort((a, b) => (b.listeners || 0) - (a.listeners || 0))
+      .slice(0, 20)
+      .map(a => ({
+        ...a,
+        recommendationTag: a.listeners > 50000 ? "🔥 Trending Now" : a.listeners > 5000 ? "⭐ Editor's Pick" : "💎 Hidden Gem",
+        recommendationTagEn: a.listeners > 50000 ? "Trending Now" : a.listeners > 5000 ? "Editor's Pick" : "Hidden Gem",
+        recommendationTagId: a.listeners > 50000 ? "trending" : a.listeners > 5000 ? "editor" : "hidden",
+        highlight: a.highlight || `New release from ${a.artist}`,
+        highlightEn: a.highlightEn || `New release from ${a.artist}`,
+        summary: a.summary || "",
+        summaryEn: a.summaryEn || "",
+      }));
+  }
 
   // Upcoming (keep existing logic)
   const upcomingMB = await intelFetchMusicUpcoming(env, 30).catch(() => []);
