@@ -232,17 +232,79 @@ async function intelFetchMusicBrainz(dateStr) {
   }, 7200);
 }
 
+// ── MusicBrainz date range query (full week) ──
+async function intelFetchMusicBrainzRange(dateFrom, dateTo) {
+  const cacheKey = `intel-mb-range-${dateFrom}-${dateTo}`;
+  return withCache(cacheKey, async () => {
+    const url = `https://musicbrainz.org/ws/2/release?query=date:[${dateFrom} TO ${dateTo}]&fmt=json&limit=100`;
+    const res = await fetch(url, {
+      headers: { "User-Agent": "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)" },
+    });
+    if (!res.ok) throw new Error(`MusicBrainz range: ${res.status}`);
+    const data = await res.json();
+    const releases = (data?.releases || []).map(r => ({
+      mbid: r.id,
+      title: r.title || "",
+      artist: (r["artist-credit"] || []).map(ac => ac.name || ac.artist?.name || "").join(", "),
+      releaseDate: r.date || "",
+      year: (r.date || "").slice(0, 4),
+      cover: "",
+      status: r.status || "",
+      country: r.country || "",
+      primaryType: r["release-group"]?.["primary-type"] || "",
+      secondaryTypes: r["release-group"]?.["secondary-types"] || [],
+      tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
+    }));
+    for (let i = 0; i < releases.length; i += 10) {
+      await Promise.allSettled(releases.slice(i, i + 10).map(async (rel) => {
+        try { const coverUrl = await intelFetchAlbumCover(rel.mbid); if (coverUrl) rel.cover = coverUrl; } catch {}
+      }));
+    }
+    return releases;
+  }, 7200);
+}
+
+// ── Album type filter: keep Album/EP, exclude remixes/live/compilations ──
+function intelIsValidAlbum(r) {
+  if (r.primaryType !== "Album" && r.primaryType !== "EP") return false;
+  const st = new Set(r.secondaryTypes || []);
+  const badST = ["Live", "Compilation", "Remix", "Soundtrack", "Demo", "Bootleg", "Karaoke", "Other"];
+  for (const t of badST) { if (st.has(t)) return false; }
+  const t = (r.title || "").toLowerCase();
+  const badKW = ["live", "remastered", "deluxe", "expanded", "anniversary", "greatest hits", "the collection", "box set", "instrumental", "remix album", "karaoke", "bootleg", "demo"];
+  for (const kw of badKW) { if (t.includes(kw)) return false; }
+  return true;
+}
+
+// ── Last.fm album info (listeners, playcount, tags) ──
+async function intelFetchLastFMAlbumInfo(artist, album, env) {
+  if (!env.LASTFM_API_KEY) return null;
+  try {
+    const data = await intelFetchLastFM("album.getinfo", { artist, album }, env);
+    if (!data?.album) return null;
+    return {
+      listeners: parseInt(data.album.listeners) || 0,
+      playcount: parseInt(data.album.playcount) || 0,
+      tags: (data.album.tags?.tag || []).map(t => t.name).slice(0, 10),
+    };
+  } catch { return null; }
+}
+
 function intelNormalizeAlbum(r) {
   return {
+    ...r,
     mbid: r.mbid,
     title: r.title,
     artist: r.artist,
     releaseDate: r.releaseDate,
     year: r.year,
-    cover: r.cover,
-    country: r.country,
-    genre: (r.tags?.length > 0 ? r.tags[0] : r.genre),
-    tags: r.tags,
+    cover: r.cover || "",
+    country: r.country || "",
+    genre: (r.tags?.length > 0 ? r.tags[0] : (r.genre || "")),
+    tags: r.tags || [],
+    listeners: r.listeners || 0,
+    playcount: r.playcount || 0,
+    lfmTags: r.lfmTags || [],
   };
 }
 
@@ -297,6 +359,102 @@ async function intelEnrichWithAI(items, type, env) {
   } catch (e) {
     console.warn("DeepSeek enrichment skipped:", e.message);
     return items;
+  }
+}
+
+// ── AI album curation with 4-tag system (Trending Now / Editor's Pick / Hidden Gem / Around the World) ──
+async function intelEnrichAlbums(items, env) {
+  if (!env.DEEPSEEK_API_KEY || !items.length) return [];
+  try {
+    const prompt = `You are an expert music editor curating "This Week's New Albums" for a diverse global audience.
+
+Below are new releases with MusicBrainz metadata and Last.fm popularity data:
+
+${JSON.stringify(items.map((i, idx) => ({
+  index: idx,
+  title: i.title,
+  artist: i.artist,
+  country: i.country || "Unknown",
+  releaseDate: i.releaseDate,
+  type: i.primaryType,
+  listeners: i.listeners,
+  playcount: i.playcount,
+  style: (i.lfmTags || []).slice(0, 5),
+  genre: (i.tags || []).slice(0, 3),
+})))}
+
+**Task:** Select exactly 20 of the most noteworthy albums from this week, then assign each exactly ONE tag below.
+
+**Tags (pick one per album):**
+1. "trending" = 🔥 Trending Now — high popularity (listeners > 50000), major artist, global buzz.
+2. "editor" = ⭐ Editor's Pick — strong artistic merit, outstanding quality. Not necessarily popular.
+3. "hidden" = 💎 Hidden Gem — lower popularity (listeners < 10000) but excellent quality, unique style.
+4. "world" = 🌍 Around the World — from outside US/UK, represents regional music culture.
+
+**Diversity requirements:**
+- Cover different genres and music styles
+- Cover different countries and regions
+- Do NOT over-select from one country or genre
+- Mix mainstream and niche releases
+
+**Target proportions (approximate, adjust based on data):**
+- Trending Now: ~30% (6)
+- Editor's Pick: ~30% (6)
+- Hidden Gem: ~25% (5)
+- Around the World: ~15% (3)
+
+If a category lacks quality candidates, reduce its count — never force a pick.
+
+**Output for each selected album:**
+- "tag": one of "trending" | "editor" | "hidden" | "world"
+- "tagDisplay": Chinese label, exactly one of "🔥 Trending Now" | "⭐ Editor's Pick" | "💎 Hidden Gem" | "🌍 Around the World"
+- "tagDisplayEn": English label, exactly one of "Trending Now" | "Editor's Pick" | "Hidden Gem" | "Around the World"
+- "recommendation": 40-70 character Chinese recommendation line (punchy, informative)
+- "recommendationEn": same in English
+- "reason": objective reason in Chinese (max 100 chars). No hype, no "must-hear", no superlatives. Describe style, mood, notable aspects.
+- "reasonEn": same in English
+- "aiScore": 0-10
+- "genres": array of 1-3 Chinese genre/style tags, e.g. ["独立摇滚", "梦幻流行", "电子"]
+- "genresEn": same in English
+
+Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "🔥 Trending Now", tagDisplayEn: "Trending Now", recommendation: "...", recommendationEn: "...", reason: "...", reasonEn: "...", aiScore: 8.5, genres: ["独立摇滚", "梦幻流行"], genresEn: ["Indie Rock", "Dream Pop"] }, ... ] }`;
+
+    const res = await fetch("https://api.deepseek.com/chat/completions", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "deepseek-chat",
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.7,
+        max_tokens: 8000,
+        response_format: { type: "json_object" },
+      }),
+    });
+    if (!res.ok) throw new Error(`DeepSeek albums: ${res.status}`);
+    const data = await res.json();
+    const raw = data?.choices?.[0]?.message?.content || "";
+    const parsed = JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim());
+    return (parsed?.items || []).slice(0, 20).map(ai => {
+      const item = items[ai.index] || {};
+      return {
+        ...item,
+        aiScore: ai.aiScore || 0,
+        tags: ai.genres || [],
+        tagsEn: ai.genresEn || [],
+        genre: (ai.genres || [])[0] || item.genre || "",
+        highlight: ai.recommendation || "",
+        highlightEn: ai.recommendationEn || "",
+        summary: ai.reason || "",
+        summaryEn: ai.reasonEn || "",
+        recommendationTag: ai.tagDisplay || "",
+        recommendationTagEn: ai.tagDisplayEn || "",
+        recommendationTagId: ai.tag || "",
+        category: ai.tag === "trending" ? "trending" : ai.tag === "editor" ? "editor" : ai.tag === "hidden" ? "hidden-gem" : "world",
+      };
+    });
+  } catch (e) {
+    console.warn("DeepSeek album curation failed:", e.message);
+    return [];
   }
 }
 
@@ -415,28 +573,38 @@ async function handleIntelMusic(env) {
   const today = new Date().toISOString().split("T")[0];
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
 
-  const [todayMB, weekMB, upcomingMB] = await Promise.all([
-    intelFetchMusicBrainz(today).catch(() => []),
-    intelFetchMusicBrainz(weekAgo).catch(() => []),
-    intelFetchMusicUpcoming(env, 30).catch(() => []),
-  ]);
+  // Phase 1-2: Fetch full 7-day range, filter by album type
+  const weekReleases = await intelFetchMusicBrainzRange(weekAgo, today);
+  const filtered = weekReleases.filter(intelIsValidAlbum).slice(0, 60);
 
-  // Merge today + week into one "This Week" set, deduped, cap at 20 for AI
-  const merged = [...todayMB];
-  for (const rel of weekMB) {
-    if (!merged.some(r => r.mbid === rel.mbid)) merged.push(rel);
+  // Phase 3: Enrich with Last.fm popularity data (batched to respect rate limits)
+  const withLastFM = [];
+  for (let i = 0; i < filtered.length; i += 5) {
+    const batch = await Promise.allSettled(
+      filtered.slice(i, i + 5).map(async (rel) => {
+        const lfm = await intelFetchLastFMAlbumInfo(rel.artist, rel.title, env);
+        return { ...rel, listeners: lfm?.listeners || 0, playcount: lfm?.playcount || 0, lfmTags: lfm?.tags || [] };
+      })
+    );
+    batch.forEach((r, j) => {
+      withLastFM.push(r.status === "fulfilled" ? r.value : { ...filtered[i + j], listeners: 0, playcount: 0, lfmTags: [] });
+    });
   }
-  const weekAlbums = merged.slice(0, 20).map(intelNormalizeAlbum);
-  const upcomingAlbums = upcomingMB.slice(0, 20).map(intelNormalizeAlbum);
 
-  // Single AI enrichment call for this week's albums
-  const aiWeek = await intelEnrichWithAI(weekAlbums, "album", env);
+  const weekAlbums = withLastFM.map(intelNormalizeAlbum);
+
+  // Phase 4-5: AI curation with 4-tag system, max 20
+  const aiWeek = await intelEnrichAlbums(weekAlbums, env);
+
+  // Upcoming (keep existing logic)
+  const upcomingMB = await intelFetchMusicUpcoming(env, 30).catch(() => []);
+  const upcomingAlbums = upcomingMB.slice(0, 20).map(intelNormalizeAlbum);
+  const aiUpcoming = await intelEnrichWithAI(upcomingAlbums, "album", env);
 
   return {
     updated: today,
     releasedThisWeek: aiWeek.slice(0, 20),
-    upcoming: (await intelEnrichWithAI(upcomingAlbums, "album", env)).slice(0, 20),
-    // Trending = same week albums sorted by AI score (most noteworthy first)
+    upcoming: aiUpcoming.slice(0, 20),
     trending: [...aiWeek].sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0)).slice(0, 20),
   };
 }

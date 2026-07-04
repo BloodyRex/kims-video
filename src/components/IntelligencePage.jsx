@@ -202,33 +202,58 @@ function TVView({ locale, onViewDetail }) {
 }
 
 // ── Music ──
+const TAG_FILTERS = [
+  { id: "all", zh: "全部", en: "All" },
+  { id: "trending", zh: "🔥 Trending Now", en: "🔥 Trending" },
+  { id: "editor", zh: "⭐ Editor's Pick", en: "⭐ Editor's Pick" },
+  { id: "hidden", zh: "💎 Hidden Gem", en: "💎 Hidden Gem" },
+  { id: "world", zh: "🌍 Around the World", en: "🌍 Around the World" },
+];
+
 function MusicView({ locale, onViewDetail }) {
   const { data, loading, error } = useJsonData("/api/music.json");
   const [tab, setTab] = useState("week");
+  const [tagFilter, setTagFilter] = useState("all");
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
   const tabs = [
-    { id: "week", zh: "本周发行", en: "This Week", key: "releasedThisWeek" },
+    { id: "week", zh: "本周新专", en: "This Week", key: "releasedThisWeek" },
     { id: "upcoming", zh: "即将发行", en: "Upcoming", key: "upcoming" },
     { id: "trending", zh: "热门音乐", en: "Trending", key: "trending" },
   ];
-  const current = data?.[tabs.find(t => t.id === tab)?.key] || [];
+  const activeTab = tabs.find(t => t.id === tab);
+  let current = data?.[activeTab?.key] || [];
+  // Apply tag filter only on "week" tab (releasedThisWeek)
+  if (tab === "week" && tagFilter !== "all") {
+    current = current.filter(a => a.recommendationTagId === tagFilter);
+  }
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "音乐情报" : "Music Intelligence"} color="#ffff00" />
       <div className="flex gap-2 flex-wrap">
         {tabs.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)}
+          <button key={t.id} onClick={() => { setTab(t.id); setTagFilter("all"); }}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${tab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
             {data?.[t.key]?.length > 0 && <span className="ml-1 opacity-60">({data[t.key].length})</span>}
           </button>
         ))}
       </div>
+      {/* Tag filter bar — only visible on "This Week" tab */}
+      {tab === "week" && (
+        <div className="flex gap-1.5 flex-wrap">
+          {TAG_FILTERS.map(f => (
+            <button key={f.id} onClick={() => setTagFilter(f.id)}
+              className={`px-2 py-1 text-[8px] font-black uppercase border-2 border-black transition-colors ${tagFilter === f.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
+              {locale === "en" ? f.en : f.zh}
+            </button>
+          ))}
+        </div>
+      )}
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
-        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((a, i) => <AlbumCard key={i} album={a} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "album")} />)}</CardGrid>
+        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((a, i) => <AlbumCard key={a.mbid || i} album={a} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "album")} />)}</CardGrid>
       )}
     </div>
   );

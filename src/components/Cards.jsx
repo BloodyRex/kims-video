@@ -223,21 +223,41 @@ export function TVCard({ show, locale, onViewDetail }) {
 
 // ── AlbumCard ──
 
+const TAG_STYLES = {
+  trending: { bg: "bg-red-600", text: "text-white" },
+  editor: { bg: "bg-blue-600", text: "text-white" },
+  "hidden-gem": { bg: "bg-purple-600", text: "text-white" },
+  world: { bg: "bg-teal-600", text: "text-white" },
+};
+
+function getTagStyle(tagId) {
+  return TAG_STYLES[tagId] || { bg: "bg-gray-600", text: "text-white" };
+}
+
 export function AlbumCard({ album, locale, onViewDetail }) {
   const title = album.title || "";
   const artist = album.artist || "";
-  // Style tags: prefer AI tags, fallback to single genre field
   const styleTags = album.tags?.length
     ? album.tags
     : (album.genre ? [album.genre] : []);
+  const tagId = album.recommendationTagId || "";
+  const tagLabel = album.recommendationTag || "";
+  const tagStyle = getTagStyle(tagId);
 
   return (
     <CardShell>
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
-        <span className="font-black pixel-font text-[#ffff00] uppercase text-[9px]">
-          {locale === "en" ? "ALBUM" : "专辑"}
-        </span>
-        <span className="text-gray-400 text-[9px]">{album.releaseDate || album.year || ""}</span>
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="font-black pixel-font text-[#ffff00] uppercase text-[9px] flex-shrink-0">
+            {locale === "en" ? "ALBUM" : "专辑"}
+          </span>
+          {tagLabel && (
+            <span className={`text-[8px] px-1.5 py-0.5 font-black ${tagStyle.bg} ${tagStyle.text} leading-none`}>
+              {locale === "en" ? (album.recommendationTagEn || tagLabel) : tagLabel}
+            </span>
+          )}
+        </div>
+        <span className="text-gray-400 text-[9px] flex-shrink-0">{album.releaseDate || album.year || ""}</span>
       </div>
 
       <div className="flex gap-3 p-3">
@@ -253,7 +273,6 @@ export function AlbumCard({ album, locale, onViewDetail }) {
           <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{title}</h3>
           <p className="text-xs text-gray-600 font-bold mb-1 truncate">{artist}</p>
 
-          {/* Style tags (like MovieCard genre badges) */}
           {styleTags.length > 0 && (
             <div className="flex flex-wrap gap-1 mb-1">
               {styleTags.map((g, i) => (
@@ -264,27 +283,11 @@ export function AlbumCard({ album, locale, onViewDetail }) {
             </div>
           )}
 
-          {/* Summary (one-line description) */}
-          {album.summary && (
+          {/* Recommendation text (primary) */}
+          {(album.highlight || album.summary) && (
             <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
-              {locale === "en" ? (album.summaryEn || album.summary) : album.summary}
+              {locale === "en" ? (album.highlightEn || album.summaryEn || album.highlight || album.summary) : (album.highlight || album.summary)}
             </p>
-          )}
-
-          {/* Highlight as alternative when no summary */}
-          {!album.summary && album.highlight && (
-            <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1 italic">
-              {locale === "en" ? (album.highlightEn || album.highlight) : album.highlight}
-            </p>
-          )}
-
-          {/* Category badge */}
-          {album.category && (
-            <span className={`text-[8px] px-1.5 py-0.5 self-start mb-1 font-black ${album.category === "global" ? "bg-[#ff00ff] text-white" : "bg-gray-300 text-gray-700"}`}>
-              {album.category === "global"
-                ? (locale === "zh" ? "✨ 全球关注" : "✨ GLOBAL")
-                : (locale === "zh" ? "💎 小众佳作" : "💎 NICHE")}
-            </span>
           )}
 
           <AIScoreBadge score={album.aiScore} confidence={album.confidence} />
@@ -583,9 +586,16 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4" onClick={onClose}>
       <div className="bg-white border-4 border-black max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-[12px_12px_0_0_#ff00ff]" onClick={e => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-black text-white px-4 py-3 flex items-center justify-between">
-          <span className="font-black pixel-font text-[#ff00ff] text-xs">{typeLabel}</span>
-          <button onClick={onClose} className="w-8 h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center font-black text-sm hover:bg-black hover:text-[#ff00ff] transition-colors pixel-font">X</button>
+        <div className="bg-black text-white px-4 py-3 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="font-black pixel-font text-[#ff00ff] text-xs flex-shrink-0">{typeLabel}</span>
+            {isMusic && item.recommendationTag && (
+              <span className="text-[9px] px-1.5 py-0.5 font-black bg-[#ffff00] text-black leading-none">
+                {locale === "en" ? (item.recommendationTagEn || item.recommendationTag) : item.recommendationTag}
+              </span>
+            )}
+          </div>
+          <button onClick={onClose} className="w-8 h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center font-black text-sm hover:bg-black hover:text-[#ff00ff] transition-colors pixel-font flex-shrink-0">X</button>
         </div>
 
         {/* Body */}
@@ -600,6 +610,7 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
             )}
             <div className="flex-1 min-w-0">
               <h2 className="text-lg font-black leading-tight mb-1">{title}</h2>
+              {isMusic && item.artist && <p className="text-sm text-gray-600 font-bold mb-1">{item.artist}</p>}
               {item.year && <p className="text-sm text-gray-500 mb-1">{item.year}</p>}
               <div className="flex items-center gap-2 mb-2">
                 <StarRating score={item.rating} max={10} />
