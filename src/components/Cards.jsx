@@ -21,6 +21,19 @@ const GENRE_ZH = {
   "Live": "现场", "Compilation": "合辑", "Remix": "混音",
 };
 
+// For music items: get best available genre tags (AI → Last.fm → MB)
+function albumGenres(item) {
+  if (item.tags?.length) return item.tags;
+  if (item.lfmTags?.length) return item.lfmTags.slice(0, 5);
+  if (item.genre) return [item.genre];
+  return [];
+}
+function albumGenresEn(item) {
+  if (item.tagsEn?.length) return item.tagsEn;
+  if (item.lfmTags?.length) return item.lfmTags.slice(0, 5);
+  return [];
+}
+
 function label(locale, zh, en) {
   return locale === "zh" ? zh : en;
 }
@@ -237,16 +250,8 @@ function getTagStyle(tagId) {
 export function AlbumCard({ album, locale, onViewDetail }) {
   const title = album.title || "";
   const artist = album.artist || "";
-  const displayTags = album.tags?.length
-    ? album.tags
-    : album.lfmTags?.length
-      ? album.lfmTags.slice(0, 5)
-      : (album.genre ? [album.genre] : []);
-  const displayTagsEn = album.tagsEn?.length
-    ? album.tagsEn
-    : album.lfmTags?.length
-      ? album.lfmTags.slice(0, 5)
-      : [];
+  const displayTags = albumGenres(album);
+  const displayTagsEn = albumGenresEn(album);
   const tagId = album.recommendationTagId || "";
   const tagLabel = album.recommendationTag || "";
   const tagStyle = getTagStyle(tagId);
@@ -315,6 +320,9 @@ export function AlbumCard({ album, locale, onViewDetail }) {
 export function CountdownCard({ item, locale, onViewDetail }) {
   const title = getTitle(item, locale);
   const mediaType = item.mediaType || "movie";
+  const isMusic = mediaType === "album" || mediaType === "single";
+  const musicTags = isMusic ? albumGenres(item) : [];
+  const musicTagsEn = isMusic ? albumGenresEn(item) : [];
   const typeLabel = mediaType === "tv"
     ? (locale === "en" ? "TV" : "剧集")
     : mediaType === "album"
@@ -370,11 +378,9 @@ export function CountdownCard({ item, locale, onViewDetail }) {
               {locale === "en" ? (item.summaryEn || item.summary) : item.summary}
             </p>
           )}
-          {(mediaType === "album" || mediaType === "single")
-            ? (item.tags?.length || item.lfmTags?.length || item.genre
-              ? <div className="flex flex-wrap gap-1">{(item.tags?.length ? item.tags : item.lfmTags?.length ? item.lfmTags.slice(0, 5) : [item.genre]).map((g, i) => <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>)}</div>
-              : null)
-            : <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
+          {musicTags.length > 0
+            ? <div className="flex flex-wrap gap-1">{musicTags.map((t, i) => <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[t] || t) : (musicTagsEn[i] || t)}</span>)}</div>
+            : !isMusic ? <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} /> : null
           }
           {onViewDetail && (
             <button onClick={() => onViewDetail(item)}
@@ -592,6 +598,8 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
   const tmdbUrl = `https://www.themoviedb.org/${tmdbPath}/${item.tmdbId}`;
   const mbUrl = item.mbid ? `https://musicbrainz.org/release/${item.mbid}` : "";
   const genres = Array.isArray(item.genre) ? item.genre : (item.genre ? [item.genre] : []);
+  const musicGenres = isMusic ? albumGenres(item) : [];
+  const musicGenresEn = isMusic ? albumGenresEn(item) : [];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4" onClick={onClose}>
@@ -628,14 +636,9 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
                 <AIScoreBadge score={item.aiScore} confidence={item.confidence} />
               </div>
               {isMusic
-                ? (() => {
-                    const g = item.tags?.length ? item.tags : item.lfmTags?.length ? item.lfmTags.slice(0, 5) : item.genre ? [item.genre] : [];
-                    return g.length > 0 ? (
-                      <div className="flex flex-wrap gap-1">
-                        {g.map((t, i) => <span key={i} className="text-[9px] px-1.5 py-0.5 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[t] || t) : t}</span>)}
-                      </div>
-                    ) : null;
-                  })()
+                ? (musicGenres.length > 0
+                  ? <div className="flex flex-wrap gap-1">{musicGenres.map((t, i) => <span key={i} className="text-[9px] px-1.5 py-0.5 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[t] || t) : t}</span>)}</div>
+                  : null)
                 : genres.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {genres.map((g, i) => (
@@ -653,15 +656,9 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
           )}
 
           {isMusic
-            ? (() => {
-                const g = item.tags?.length ? item.tags : item.lfmTags?.length ? item.lfmTags.slice(0, 5) : item.genre ? [item.genre] : [];
-                const ge = item.tagsEn?.length ? item.tagsEn : item.lfmTags?.length ? item.lfmTags.slice(0, 5) : [];
-                return g.length > 0 ? (
-                  <div className="flex flex-wrap gap-1">
-                    {g.map((t, i) => <span key={i} className="text-[9px] px-1.5 py-0.5 border font-black" style={{ color: "#333", borderColor: "#333" }}>{locale === "zh" ? (GENRE_ZH[t] || t) : (ge[i] || t)}</span>)}
-                  </div>
-                ) : null;
-              })()
+            ? (musicGenres.length > 0
+              ? <div className="flex flex-wrap gap-1">{musicGenres.map((t, i) => <span key={i} className="text-[9px] px-1.5 py-0.5 border font-black" style={{ color: "#333", borderColor: "#333" }}>{locale === "zh" ? (GENRE_ZH[t] || t) : (musicGenresEn[i] || t)}</span>)}</div>
+              : null)
             : <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
           }
 
