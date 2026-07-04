@@ -393,7 +393,7 @@ async function intelEnrichWithLastFM(items, env) {
 async function intelFetchLastFMCharts(env) {
   if (!env.LASTFM_API_KEY) return [];
   const tags = ["hip hop", "pop", "rock", "electronic"];
-  const cacheKey = "lfm-charts-v2-" + tags.join("-");
+  const cacheKey = "lfm-charts-v3-" + tags.join("-");
   return withCache(cacheKey, async () => {
     const seen = new Set();
     const all = [];
@@ -719,7 +719,7 @@ async function handleIntelTV(env) {
 async function handleIntelMusic(env) {
   const today = new Date().toISOString().split("T")[0];
   // Cache entire music response for 6 hours (avoids subrequest limit on every call)
-  return withCache(`intel-music-v2-${today}`, async () => {
+  return withCache(`intel-music-v3-${today}`, async () => {
     const weekAgo = intelDaysAgo(7);
 
     // Phase 1: Fetch MB recent releases, enrich with Last.fm
