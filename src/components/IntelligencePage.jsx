@@ -9,13 +9,13 @@ const LANG_BUTTON_STYLE = {
 };
 
 const NAV_ITEMS = [
-  { id: "search", icon: "Search", color: "#00ffff", zh: "搜索", en: "Search" },
   { id: "overview", icon: "Target", color: "#ff00ff", zh: "总览", en: "Overview" },
+  { id: "weekly", icon: "Trending", color: "#00ffff", zh: "本周热榜", en: "Weekly Hot" },
+  { id: "coming", icon: "Calendar", color: "#ff00ff", zh: "即将上映", en: "Coming Soon" },
   { id: "movies", icon: "Film", color: "#ff00ff", zh: "电影", en: "Movies" },
   { id: "tv", icon: "Tv", color: "#00ffff", zh: "剧集", en: "TV" },
   { id: "music", icon: "Music", color: "#ffff00", zh: "音乐", en: "Music" },
-  { id: "coming", icon: "Calendar", color: "#ff00ff", zh: "即将上映", en: "Coming Soon" },
-  { id: "weekly", icon: "Trending", color: "#00ffff", zh: "本周热榜", en: "Weekly Hot" },
+  { id: "search", icon: "Search", color: "#00ffff", zh: "搜索", en: "Search" },
 ];
 
 // ── Data fetch hook ──
@@ -53,7 +53,7 @@ function LoadingSpinner({ locale }) {
   );
 }
 
-function OverviewView({ locale }) {
+function OverviewView({ locale, onViewDetail }) {
   const { data, loading, error } = useJsonData("/api/overview.json");
   const { data: hiddenGemsData } = useJsonData("/api/hidden-gems.json");
   const { data: digestData } = useJsonData("/api/digest.json");
@@ -129,7 +129,7 @@ function OverviewView({ locale }) {
       {(data?.trending || []).length > 0 && (
         <section>
           <SectionHeader label={locale === "zh" ? "↑ 热榜趋势" : "↑ Trending"} count={data.trending.length} color="#ff00ff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.trending.map((p, i) => <MovieCard key={i} movie={p} locale={locale} />)}</CardGrid>
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.trending.map((p, i) => <MovieCard key={i} movie={p} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "movie")} />)}</CardGrid>
         </section>
       )}
     </div>
@@ -495,7 +495,7 @@ function IntelligencePage() {
 
         {/* Main content */}
         <main className="flex-1 p-4 sm:p-6 min-w-0">
-          {activeNav === "overview" && <OverviewView locale={locale} />}
+          {activeNav === "overview" && <OverviewView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
           {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
           {activeNav === "tv" && <TVView locale={locale} onViewDetail={(item) => handleViewDetail(item, "tv")} />}
           {activeNav === "music" && <MusicView locale={locale} onViewDetail={(item) => handleViewDetail(item, "music")} />}

@@ -397,8 +397,9 @@ async function handleIntelTV(env) {
   try {
     upcomingTV = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "popularity.desc" });
     upcomingTV = upcomingTV.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")).filter(s => {
-      // Filter out shows with neither Chinese title nor Chinese summary
-      return s.summary || (s.title && s.titleEn && s.title !== s.titleEn);
+      // Only keep shows that have actual Chinese content (not English fallback)
+      const hasChinese = (text) => /[一-鿿]/.test(text || "");
+      return hasChinese(s.summary) || hasChinese(s.title);
     });
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
