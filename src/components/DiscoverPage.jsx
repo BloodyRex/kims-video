@@ -367,13 +367,13 @@ const DiscoverPage = () => {
       {modalThumbnail && <PosterModal thumbnail={modalThumbnail} onClose={() => setModalThumbnail(null)} />}
 
       {/* Footer */}
-      <footer className="fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white text-xs pixel-font uppercase tracking-widest">
+      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white pixel-font uppercase tracking-widest ${locale === "zh" ? "text-sm" : "text-xs"}`}>
         <p>
-          <Link to="/" className="hover:text-[#ff00ff] transition-colors">Home</Link>
+          <Link to="/" className="hover:text-[#ff00ff] transition-colors">{t('footer.home')}</Link>
           <span className="text-gray-600 mx-2">|</span>
-          <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">Intel</Link>
+          <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">{t('footer.intel')}</Link>
           <span className="text-gray-600 mx-2">|</span>
-          <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">Contact</a>
+          <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">{t('footer.contact')}</a>
           <span className="text-gray-800 mx-1">·</span>
           <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
         </p>

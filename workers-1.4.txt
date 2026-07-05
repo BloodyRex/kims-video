@@ -710,6 +710,8 @@ async function handleIntelMusicV2(env, request) {
     // Map candidates to format expected by AI enrichment
     const aiInput = candidates.map((c, index) => ({
       index,
+      mbid: c.mbid,
+      cover: c.cover || "",
       title: c.title,
       artist: c.artist,
       country: c.country || "Unknown",
