@@ -102,6 +102,17 @@ async function main() {
     const musicData = await musicRes.json();
     const picksCount = musicData?.picks?.length || 0;
 
+    // Merge mbid/cover from original candidates (Worker may drop these)
+    if (musicData.picks) {
+      musicData.picks = musicData.picks.map(pick => {
+        const original = topCandidates[pick.index];
+        if (original?.mbid || original?.cover) {
+          return { ...pick, mbid: pick.mbid || original.mbid, cover: pick.cover || original.cover };
+        }
+        return pick;
+      });
+    }
+
     // Write music.json (same format as before — frontend unaffected)
     writeFileSync(join(API_DIR, "music.json"), JSON.stringify(musicData, null, 2), "utf8");
     console.log(`OK music.json — ${picksCount} picks from AI`);
