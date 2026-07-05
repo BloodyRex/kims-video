@@ -203,20 +203,19 @@ function TVView({ locale, onViewDetail }) {
 
 // ── Music ──
 const TAG_FILTERS = [
-  { id: "all", zh: "全部", en: "All" },
-  { id: "trending", zh: "🔥 Trending Now", en: "🔥 Trending" },
-  { id: "editor", zh: "⭐ Editor's Pick", en: "⭐ Editor's Pick" },
-  { id: "hidden", zh: "💎 Hidden Gem", en: "💎 Hidden Gem" },
-  { id: "world", zh: "🌍 Around the World", en: "🌍 Around the World" },
+  { id: "trending", zh: "🔥 热门趋势", en: "🔥 Trending Now" },
+  { id: "editor", zh: "⭐ 编辑推荐", en: "⭐ Editor's Pick" },
+  { id: "hidden", zh: "💎 隐藏宝石", en: "💎 Hidden Gem" },
+  { id: "world", zh: "🌍 环球音乐", en: "🌍 Around the World" },
 ];
 
 function MusicView({ locale, onViewDetail }) {
   const { data, loading, error } = useJsonData("/api/music.json");
-  const [tagFilter, setTagFilter] = useState("all");
+  const [tagFilter, setTagFilter] = useState("trending");
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
   const picks = data?.picks || [];
-  const current = tagFilter === "all" ? picks : picks.filter(a => a.recommendationTagId === tagFilter);
+  const current = picks.filter(a => a.recommendationTagId === tagFilter);
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "本周精选" : "This Week's Picks"} color="#ffff00" />

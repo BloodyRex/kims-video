@@ -248,6 +248,7 @@ function getTagStyle(tagId) {
 }
 
 export function AlbumCard({ album, locale, onViewDetail }) {
+  const [coverError, setCoverError] = React.useState(false);
   const title = album.title || "";
   const artist = album.artist || "";
   const displayTags = albumGenres(album);
@@ -255,6 +256,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
   const tagId = album.recommendationTagId || "";
   const tagLabel = album.recommendationTag || "";
   const tagStyle = getTagStyle(tagId);
+  const coverSrc = !coverError && (album.cover || (album.mbid ? `https://coverartarchive.org/release/${album.mbid}/front-250.jpg` : null));
 
   return (
     <CardShell>
@@ -273,8 +275,8 @@ export function AlbumCard({ album, locale, onViewDetail }) {
       </div>
 
       <div className="flex gap-3 p-3">
-        {album.cover ? (
-          <img src={posterUrl(album.cover)} alt={title} className="w-20 h-20 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+        {coverSrc ? (
+          <img src={posterUrl(coverSrc)} alt={title} className="w-20 h-20 object-cover border-2 border-black flex-shrink-0" loading="lazy" onError={() => setCoverError(true)} />
         ) : (
           <div className="w-20 h-20 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Music />

@@ -243,9 +243,10 @@ async function intelFilterByArtistPopularity(items, env) {
           if (listeners >= 100000) stars = 5;
           else if (listeners >= 10000) stars = 4;
           else if (listeners >= 1000) stars = 3;
-          return { name: a.name, listeners, stars, playcount: parseInt(data.artist.stats.playcount) || 0 };
+          const tags = (data.artist.tags?.tag || []).map(t => t.name).slice(0, 10);
+          return { name: a.name, listeners, stars, playcount: parseInt(data.artist.stats.playcount) || 0, tags };
         }
-        return { name: a.name, listeners: 0, stars: 0, playcount: 0 };
+        return { name: a.name, listeners: 0, stars: 0, playcount: 0, tags: [] };
       })
     );
     batch.forEach((r) => {
@@ -266,6 +267,10 @@ async function intelFilterByArtistPopularity(items, env) {
         artistStars: ad.stars,
         listeners: ad.listeners,
         playcount: ad.playcount,
+        lfmTags: ad.tags || [],
+        tags: ad.tags?.map(t => intelGenreZH([t])).filter(Boolean).slice(0, 5) || [],
+        tagsEn: (ad.tags || []).slice(0, 5),
+        genre: intelGenreZH(ad.tags || []) || (ad.tags?.[0] || ""),
       });
     }
   }
@@ -551,13 +556,13 @@ Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "🔥 �
       return {
         ...item,
         aiScore: ai.aiScore || 0,
-        tags: ai.genres || [],
-        tagsEn: ai.genresEn || [],
+        tags: ai.genres || item.tags || [],
+        tagsEn: ai.genresEn || item.tagsEn || [],
         genre: (ai.genres || [])[0] || item.genre || "",
-        highlight: ai.recommendation || "",
-        highlightEn: ai.recommendationEn || "",
-        summary: ai.reason || "",
-        summaryEn: ai.reasonEn || "",
+        highlight: ai.recommendation || item.highlight || (item.genre ? `${item.genre}精选` : ""),
+        highlightEn: ai.recommendationEn || item.highlightEn || "",
+        summary: ai.reason || item.summary || (item.genre ? `${item.genre}风格作品` : ""),
+        summaryEn: ai.reasonEn || item.summaryEn || "",
         recommendationTag: ai.tagDisplay || "",
         recommendationTagEn: ai.tagDisplayEn || "",
         recommendationTagId: ai.tag || "",
@@ -641,7 +646,10 @@ async function handleIntelMovies(env) {
   return {
     updated: today,
     releasedThisWeek: (await intelEnrichWithAI(weekM, "movie", env)).slice(0, 20),
-    upcoming: upcomingRaw.filter(m => m.release_date && m.release_date >= today).slice(0, 20).map(m => intelNormalizeMovie(m)),
+    upcoming: upcomingRaw.filter(m => m.release_date && m.release_date >= today).slice(0, 20).map(m => {
+      const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
+      return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
+    }),
     nowPlaying: nowPlayingRaw.slice(0, 20).map(m => intelNormalizeMovie(m)),
   };
 }
