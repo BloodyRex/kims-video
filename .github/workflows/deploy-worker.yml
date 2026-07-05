@@ -1,0 +1,27 @@
+name: Deploy Worker
+
+on:
+  push:
+    paths:
+      - "workers-1.4.txt"
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-worker
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy Worker to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy workers-1.4.txt --name kims-video
