@@ -369,7 +369,7 @@ const DiscoverPage = () => {
       {modalThumbnail && <PosterModal thumbnail={modalThumbnail} onClose={() => setModalThumbnail(null)} />}
 
       {/* Footer */}
-      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm font-bold" : "pixel-font text-xs uppercase tracking-widest"}`}>
+      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-base font-bold tracking-wider" : "pixel-font text-xs uppercase tracking-widest"}`}>
         <p>
           <Link to="/" className="hover:text-[#ffff00] transition-colors">{t('footer.home')}</Link>
           <span className="text-gray-600 mx-2">|</span>
