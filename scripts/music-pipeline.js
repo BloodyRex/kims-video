@@ -446,6 +446,7 @@ function buildCandidate(release, artistData) {
     title: release.title,
     artist: release.artist,
     releaseDate: release.releaseDate,
+    year: release.releaseDate ? release.releaseDate.slice(0, 4) : "",
     type: release.primaryType === "EP" ? "EP" : "Album",
     country: release.country || "",
     genres: [],

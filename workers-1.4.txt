@@ -714,6 +714,7 @@ async function handleIntelMusicV2(env, request) {
       artist: c.artist,
       country: c.country || "Unknown",
       releaseDate: c.releaseDate,
+      year: c.year || (c.releaseDate || "").slice(0, 4),
       primaryType: c.type,
       listeners: c.artistListeners || 0,
       playcount: c.artistPlaycount || 0,

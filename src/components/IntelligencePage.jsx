@@ -222,7 +222,7 @@ function MusicView({ locale, onViewDetail }) {
       <div className="flex gap-1.5 flex-wrap">
         {TAG_FILTERS.map(f => (
           <button key={f.id} onClick={() => setTagFilter(f.id)}
-            className={`px-2 py-1 text-[8px] font-black uppercase border-2 border-black transition-colors ${tagFilter === f.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
+            className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${tagFilter === f.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "en" ? f.en : f.zh}
           </button>
         ))}
