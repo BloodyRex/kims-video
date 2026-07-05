@@ -3,6 +3,8 @@
   "picks": [
     {
       "index": 0,
+      "mbid": "c6358baf-1e01-4991-ab6e-cb5d794e222a",
+      "cover": "",
       "title": "Uprising",
       "artist": "Bob Marley & The Wailers",
       "country": "XE",
@@ -23,16 +25,16 @@
         "雷鬼",
         "根源雷鬼"
       ],
-      "aiScore": 9.5,
+      "aiScore": 9,
       "tagsEn": [
         "Reggae",
         "Roots Reggae"
       ],
       "genre": "雷鬼",
-      "highlight": "雷鬼传奇鲍勃·马利2026年新专辑，经典之声延续",
-      "highlightEn": "Reggae legend Bob Marley's 2026 album continues the classic sound",
-      "summary": "超高人气，雷鬼乐标杆，风格经典，全球影响力",
-      "summaryEn": "Extremely high popularity, reggae benchmark, classic style, global influence",
+      "highlight": "雷鬼传奇新作，全球3.5M听众热捧",
+      "highlightEn": "Reggae legend's new album, 3.5M listeners worldwide",
+      "summary": "Bob Marley经典阵容新专辑，雷鬼风格，全球听众超3.5M，热度极高。",
+      "summaryEn": "Bob Marley & The Wailers new album, reggae, over 3.5M listeners, highly trending.",
       "recommendationTag": "🔥 热门趋势",
       "recommendationTagEn": "Trending Now",
       "recommendationTagId": "trending",
@@ -40,6 +42,8 @@
     },
     {
       "index": 1,
+      "mbid": "6f7853c8-e90a-4886-9535-0a14fa328903",
+      "cover": "https://coverartarchive.org/release/6f7853c8-e90a-4886-9535-0a14fa328903/front-250.jpg",
       "title": "The Stooges",
       "artist": "The Stooges",
       "country": "US",
@@ -60,16 +64,16 @@
         "车库摇滚",
         "朋克"
       ],
-      "aiScore": 9,
+      "aiScore": 8.5,
       "tagsEn": [
         "Garage Rock",
         "Punk"
       ],
       "genre": "车库摇滚",
-      "highlight": "朋克先驱2026年回归，原始车库摇滚能量",
-      "highlightEn": "Punk pioneers return in 2026 with raw garage rock energy",
-      "summary": "极高人气，朋克/车库摇滚奠基人，历史地位重要",
-      "summaryEn": "Very high popularity, founders of punk/garage rock, historically important",
+      "highlight": "朋克先驱回归，车库摇滚爆发",
+      "highlightEn": "Punk pioneers return, garage rock explosion",
+      "summary": "The Stooges经典车库/朋克风格，1.3M听众，2026新专辑。",
+      "summaryEn": "The Stooges classic garage/punk, 1.3M listeners, 2026 album.",
       "recommendationTag": "🔥 热门趋势",
       "recommendationTagEn": "Trending Now",
       "recommendationTagId": "trending",
@@ -77,6 +81,8 @@
     },
     {
       "index": 3,
+      "mbid": "07bc494f-85f7-4993-b5df-1a47c5e9a13c",
+      "cover": "https://coverartarchive.org/release/07bc494f-85f7-4993-b5df-1a47c5e9a13c/front-250.jpg",
       "title": "Night at the Opera",
       "artist": "Emei",
       "country": "XW",
@@ -94,91 +100,20 @@
       ],
       "tags": [
         "流行",
-        "电子"
+        "电子",
+        "节奏蓝调"
       ],
       "aiScore": 8,
       "tagsEn": [
         "Pop",
-        "Electronic"
+        "Electronic",
+        "R&B"
       ],
       "genre": "流行",
-      "highlight": "Emei的流行电子EP，律动十足",
-      "highlightEn": "Emei's pop-electronic EP, full of groove",
-      "summary": "人气高，流行电子风格，适合大众",
-      "summaryEn": "High popularity, pop-electronic style, mass appeal",
-      "recommendationTag": "🔥 热门趋势",
-      "recommendationTagEn": "Trending Now",
-      "recommendationTagId": "trending",
-      "category": "trending"
-    },
-    {
-      "index": 6,
-      "title": "Silver City",
-      "artist": "Falling Up",
-      "country": "US",
-      "releaseDate": "2026-06-20",
-      "year": "2026",
-      "primaryType": "Album",
-      "listeners": 207096,
-      "playcount": 4908412,
-      "artistStars": 4,
-      "lfmTags": [
-        "christian rock",
-        "alternative rock",
-        "rock",
-        "alternative",
-        "christian"
-      ],
-      "tags": [
-        "基督教摇滚",
-        "另类摇滚"
-      ],
-      "aiScore": 7.5,
-      "tagsEn": [
-        "Christian Rock",
-        "Alternative Rock"
-      ],
-      "genre": "基督教摇滚",
-      "highlight": "Falling Up的另类摇滚专辑，能量充沛",
-      "highlightEn": "Falling Up's alternative rock album, energetic",
-      "summary": "人气较高，基督教摇滚/另类摇滚，风格鲜明",
-      "summaryEn": "Moderately high popularity, Christian rock/alternative, distinctive style",
-      "recommendationTag": "🔥 热门趋势",
-      "recommendationTagEn": "Trending Now",
-      "recommendationTagId": "trending",
-      "category": "trending"
-    },
-    {
-      "index": 8,
-      "title": "Frisson Noir",
-      "artist": "Tarja",
-      "country": "XW",
-      "releaseDate": "2026-06-12",
-      "year": "2026",
-      "primaryType": "Album",
-      "listeners": 290357,
-      "playcount": 12072351,
-      "artistStars": 4,
-      "lfmTags": [
-        "metal",
-        "gothic rock",
-        "symphonic",
-        "2026"
-      ],
-      "tags": [
-        "交响金属",
-        "哥特摇滚"
-      ],
-      "aiScore": 8.5,
-      "tagsEn": [
-        "Symphonic Metal",
-        "Gothic Rock"
-      ],
-      "genre": "交响金属",
-      "highlight": "Tarja的交响金属新作，气势恢宏",
-      "highlightEn": "Tarja's symphonic metal new work, grand and majestic",
-      "summary": "人气高，交响金属/哥特摇滚，前夜愿主唱",
-      "summaryEn": "High popularity, symphonic metal/gothic rock, ex-Nightwish vocalist",
+      "highlight": "流行电子新EP，406K听众热捧",
+      "highlightEn": "Pop-electronic new EP, 406K listeners",
+      "summary": "Emei流行电子R&B风格，EP形式，听众超400K。",
+      "summaryEn": "Emei pop-electronic R&B, EP, over 400K listeners.",
       "recommendationTag": "🔥 热门趋势",
       "recommendationTagEn": "Trending Now",
       "recommendationTagId": "trending",
@@ -186,6 +121,8 @@
     },
     {
       "index": 9,
+      "mbid": "ca12bdf9-c25a-4d98-9188-86d41c71efbd",
+      "cover": "",
       "title": "Leather Temple",
       "artist": "Carpenter Brut",
       "country": "XE",
@@ -204,18 +141,20 @@
       ],
       "tags": [
         "电子",
-        "摇滚"
+        "摇滚",
+        "器乐"
       ],
-      "aiScore": 8,
+      "aiScore": 8.5,
       "tagsEn": [
         "Electronic",
-        "Rock"
+        "Rock",
+        "Instrumental"
       ],
       "genre": "电子",
-      "highlight": "Carpenter Brut的电子摇滚，复古合成器浪潮",
-      "highlightEn": "Carpenter Brut's electronic rock, retro synthwave",
-      "summary": "人气高，电子/摇滚融合，器乐为主，氛围感强",
-      "summaryEn": "High popularity, electronic/rock fusion, instrumental, atmospheric",
+      "highlight": "电子摇滚巨制，508K听众期待",
+      "highlightEn": "Electronic rock masterpiece, 508K listeners",
+      "summary": "Carpenter Brut电子摇滚/器乐风格，听众超500K，2026专辑。",
+      "summaryEn": "Carpenter Brut electronic rock/instrumental, over 500K listeners, 2026 album.",
       "recommendationTag": "🔥 热门趋势",
       "recommendationTagEn": "Trending Now",
       "recommendationTagId": "trending",
@@ -223,6 +162,81 @@
     },
     {
       "index": 12,
+      "mbid": "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "cover": "",
+      "title": "Snow, Vol. 9",
+      "artist": "Wun Two",
+      "country": "XW",
+      "releaseDate": "2026",
+      "year": "2026",
+      "primaryType": "EP",
+      "listeners": 473935,
+      "playcount": 6376603,
+      "artistStars": 4,
+      "lfmTags": [],
+      "tags": [
+        "Lo-fi",
+        "器乐"
+      ],
+      "aiScore": 7.5,
+      "tagsEn": [
+        "Lo-fi",
+        "Instrumental"
+      ],
+      "genre": "Lo-fi",
+      "highlight": "Lo-fi EP系列第9卷，473K听众",
+      "highlightEn": "Lo-fi EP series Vol.9, 473K listeners",
+      "summary": "Wun Two lo-fi风格，EP系列，听众超470K。",
+      "summaryEn": "Wun Two lo-fi style, EP series, over 470K listeners.",
+      "recommendationTag": "🔥 热门趋势",
+      "recommendationTagEn": "Trending Now",
+      "recommendationTagId": "trending",
+      "category": "trending"
+    },
+    {
+      "index": 8,
+      "mbid": "0ff52cf8-c0e6-455e-8ad9-e5b0ea808a5a",
+      "cover": "",
+      "title": "Frisson Noir",
+      "artist": "Tarja",
+      "country": "XW",
+      "releaseDate": "2026-06-12",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 290357,
+      "playcount": 12072351,
+      "artistStars": 4,
+      "lfmTags": [
+        "metal",
+        "gothic rock",
+        "symphonic",
+        "2026"
+      ],
+      "tags": [
+        "金属",
+        "哥特摇滚",
+        "交响"
+      ],
+      "aiScore": 8,
+      "tagsEn": [
+        "Metal",
+        "Gothic Rock",
+        "Symphonic"
+      ],
+      "genre": "金属",
+      "highlight": "交响金属女声新作，290K听众",
+      "highlightEn": "Symphonic metal female vocal new album, 290K listeners",
+      "summary": "Tarja哥特/交响金属风格，听众超290K，2026专辑。",
+      "summaryEn": "Tarja gothic/symphonic metal, over 290K listeners, 2026 album.",
+      "recommendationTag": "🔥 热门趋势",
+      "recommendationTagEn": "Trending Now",
+      "recommendationTagId": "trending",
+      "category": "trending"
+    },
+    {
+      "index": 13,
+      "mbid": "ccca0f73-1b3d-4264-9fd8-68ae932c3130",
+      "cover": "",
       "title": "Monument",
       "artist": "Crematory",
       "country": "XW",
@@ -249,48 +263,19 @@
         "Industrial Metal"
       ],
       "genre": "哥特金属",
-      "highlight": "Crematory的哥特金属，工业元素暗黑深邃",
-      "highlightEn": "Crematory's gothic metal with industrial elements, dark and deep",
-      "summary": "人气较高，哥特/工业金属风格成熟，制作精良",
-      "summaryEn": "Moderately high popularity, mature gothic/industrial metal, well-produced",
-      "recommendationTag": "⭐ 编辑推荐",
-      "recommendationTagEn": "Editor's Pick",
-      "recommendationTagId": "editor",
-      "category": "editor"
-    },
-    {
-      "index": 17,
-      "title": "The Great Adventure",
-      "artist": "DJ BoBo",
-      "country": "CH",
-      "releaseDate": "2026",
-      "year": "2026",
-      "primaryType": "Album",
-      "listeners": 389428,
-      "playcount": 3996177,
-      "artistStars": 4,
-      "lfmTags": [],
-      "tags": [
-        "欧陆舞曲",
-        "流行"
-      ],
-      "aiScore": 7,
-      "tagsEn": [
-        "Eurodance",
-        "Pop"
-      ],
-      "genre": "欧陆舞曲",
-      "highlight": "DJ BoBo的欧陆舞曲，欢乐派对节奏",
-      "highlightEn": "DJ BoBo's Eurodance, joyful party beats",
-      "summary": "人气高，瑞士舞曲代表人物，旋律洗脑",
-      "summaryEn": "High popularity, Swiss dance music icon, catchy melodies",
-      "recommendationTag": "⭐ 编辑推荐",
-      "recommendationTagEn": "Editor's Pick",
-      "recommendationTagId": "editor",
-      "category": "editor"
+      "highlight": "哥特工业金属新专辑，203K听众",
+      "highlightEn": "Gothic industrial metal new album, 203K listeners",
+      "summary": "Crematory哥特/工业金属，听众超200K，2026专辑。",
+      "summaryEn": "Crematory gothic/industrial metal, over 200K listeners, 2026 album.",
+      "recommendationTag": "🔥 热门趋势",
+      "recommendationTagEn": "Trending Now",
+      "recommendationTagId": "trending",
+      "category": "trending"
     },
     {
       "index": 31,
+      "mbid": "74d81edb-75d4-44f4-bf72-71e3c433d96d",
+      "cover": "",
       "title": "\"Solo\" OMORI Piano Arrangement",
       "artist": "OMORI",
       "country": "US",
@@ -302,19 +287,91 @@
       "artistStars": 4,
       "lfmTags": [],
       "tags": [
-        "钢琴",
-        "原声"
+        "原声",
+        "钢琴"
+      ],
+      "aiScore": 9,
+      "tagsEn": [
+        "Soundtrack",
+        "Piano"
+      ],
+      "genre": "原声",
+      "highlight": "游戏《OMORI》钢琴改编，516K听众",
+      "highlightEn": "OMORI game piano arrangement, 516K listeners",
+      "summary": "热门游戏钢琴改编，听众超500K，情感丰富。",
+      "summaryEn": "Popular game piano arrangement, over 500K listeners, emotionally rich.",
+      "recommendationTag": "⭐ 编辑推荐",
+      "recommendationTagEn": "Editor's Pick",
+      "recommendationTagId": "editor",
+      "category": "editor"
+    },
+    {
+      "index": 6,
+      "mbid": "19c8eddd-b573-45b0-bf69-f91fe411d41e",
+      "cover": "",
+      "title": "Silver City",
+      "artist": "Falling Up",
+      "country": "US",
+      "releaseDate": "2026-06-20",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 207096,
+      "playcount": 4908412,
+      "artistStars": 4,
+      "lfmTags": [
+        "christian rock",
+        "alternative rock",
+        "rock",
+        "alternative",
+        "christian"
+      ],
+      "tags": [
+        "基督教摇滚",
+        "另类摇滚"
       ],
       "aiScore": 8,
       "tagsEn": [
-        "Piano",
-        "Soundtrack"
+        "Christian Rock",
+        "Alternative Rock"
       ],
-      "genre": "钢琴",
-      "highlight": "OMORI游戏钢琴改编，情感细腻治愈",
-      "highlightEn": "OMORI game piano arrangements, delicate and healing",
-      "summary": "人气极高，游戏音乐改编，钢琴独奏，情感丰富",
-      "summaryEn": "Very high popularity, game music adaptation, piano solo, emotional",
+      "genre": "基督教摇滚",
+      "highlight": "基督教摇滚新作，另类摇滚融合",
+      "highlightEn": "Christian rock new album, alternative rock fusion",
+      "summary": "Falling Up基督教另类摇滚，207K听众，风格独特。",
+      "summaryEn": "Falling Up Christian alternative rock, 207K listeners, unique style.",
+      "recommendationTag": "⭐ 编辑推荐",
+      "recommendationTagEn": "Editor's Pick",
+      "recommendationTagId": "editor",
+      "category": "editor"
+    },
+    {
+      "index": 18,
+      "mbid": "678bbf03-22b8-4342-bf02-7f0a0dcb353d",
+      "cover": "",
+      "title": "The Great Adventure",
+      "artist": "DJ BoBo",
+      "country": "CH",
+      "releaseDate": "2026",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 389428,
+      "playcount": 3996177,
+      "artistStars": 4,
+      "lfmTags": [],
+      "tags": [
+        "舞曲",
+        "流行"
+      ],
+      "aiScore": 7.5,
+      "tagsEn": [
+        "Dance",
+        "Pop"
+      ],
+      "genre": "舞曲",
+      "highlight": "瑞士舞曲传奇新专辑，389K听众",
+      "highlightEn": "Swiss dance legend new album, 389K listeners",
+      "summary": "DJ BoBo流行舞曲风格，听众近400K，欧洲知名。",
+      "summaryEn": "DJ BoBo pop dance style, nearly 400K listeners, well-known in Europe.",
       "recommendationTag": "⭐ 编辑推荐",
       "recommendationTagEn": "Editor's Pick",
       "recommendationTagId": "editor",
@@ -322,6 +379,8 @@
     },
     {
       "index": 2,
+      "mbid": "03b901b9-3497-4666-8815-c526a4216ff0",
+      "cover": "",
       "title": "Satanic Chaos Legions",
       "artist": "Nunslaughter",
       "country": "XW",
@@ -340,10 +399,10 @@
         "Death Metal"
       ],
       "genre": "死亡金属",
-      "highlight": "Nunslaughter的地下死亡金属，极端凶猛",
-      "highlightEn": "Nunslaughter's underground death metal, extreme and ferocious",
-      "summary": "小众极端金属，风格纯粹，硬核乐迷之选",
-      "summaryEn": "Niche extreme metal, pure style, choice for hardcore fans",
+      "highlight": "死亡金属小众精品，48K听众",
+      "highlightEn": "Death metal niche gem, 48K listeners",
+      "summary": "Nunslaughter极端金属，48K听众，风格凶猛。",
+      "summaryEn": "Nunslaughter extreme metal, 48K listeners, aggressive style.",
       "recommendationTag": "💎 隐藏宝石",
       "recommendationTagEn": "Hidden Gem",
       "recommendationTagId": "hidden",
@@ -351,6 +410,8 @@
     },
     {
       "index": 4,
+      "mbid": "67098c37-f75e-4384-983c-4ce8ac5bf0bb",
+      "cover": "",
       "title": "Time Will Tell",
       "artist": "Devon Gilfillian",
       "country": "XW",
@@ -362,17 +423,19 @@
       "artistStars": 3,
       "lfmTags": [],
       "tags": [
-        "灵魂乐"
+        "灵魂",
+        "流行"
       ],
       "aiScore": 7,
       "tagsEn": [
-        "Soul"
+        "Soul",
+        "Pop"
       ],
-      "genre": "灵魂乐",
-      "highlight": "Devon Gilfillian的灵魂乐，温暖复古",
-      "highlightEn": "Devon Gilfillian's soul music, warm and retro",
-      "summary": "中等偏高人气，灵魂乐风格，嗓音出色",
-      "summaryEn": "Moderately high popularity, soul style, excellent vocals",
+      "genre": "灵魂",
+      "highlight": "灵魂流行新声，81K听众",
+      "highlightEn": "Soulful pop new voice, 81K listeners",
+      "summary": "Devon Gilfillian灵魂流行风格，81K听众，值得关注。",
+      "summaryEn": "Devon Gilfillian soul pop style, 81K listeners, worth attention.",
       "recommendationTag": "💎 隐藏宝石",
       "recommendationTagEn": "Hidden Gem",
       "recommendationTagId": "hidden",
@@ -380,6 +443,8 @@
     },
     {
       "index": 7,
+      "mbid": "e75203bf-5479-4885-a959-779d8a01fad1",
+      "cover": "",
       "title": "ABSTRACT / NATURAL",
       "artist": "LIFE",
       "country": "XW",
@@ -400,23 +465,163 @@
         "后朋克",
         "车库摇滚"
       ],
-      "aiScore": 6.5,
+      "aiScore": 7.5,
       "tagsEn": [
         "Post-Punk",
         "Garage Rock"
       ],
       "genre": "后朋克",
-      "highlight": "LIFE的后朋克，粗粝直接",
-      "highlightEn": "LIFE's post-punk, raw and direct",
-      "summary": "后朋克/车库摇滚，独立气质，节奏强劲",
-      "summaryEn": "Post-punk/garage rock, indie vibe, strong rhythms",
+      "highlight": "后朋克车库摇滚，119K听众",
+      "highlightEn": "Post-punk garage rock, 119K listeners",
+      "summary": "LIFE后朋克/车库摇滚，119K听众，独立气质。",
+      "summaryEn": "LIFE post-punk/garage rock, 119K listeners, indie vibe.",
       "recommendationTag": "💎 隐藏宝石",
       "recommendationTagEn": "Hidden Gem",
       "recommendationTagId": "hidden",
       "category": "hidden-gem"
     },
     {
+      "index": 19,
+      "mbid": "0029fbd8-6fae-44ef-be42-8b910d846115",
+      "cover": "",
+      "title": "Liminal",
+      "artist": "Poppy Ackroyd",
+      "country": "XW",
+      "releaseDate": "2026-06-05",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 151770,
+      "playcount": 1353499,
+      "artistStars": 3,
+      "lfmTags": [],
+      "tags": [
+        "氛围",
+        "古典"
+      ],
+      "aiScore": 7,
+      "tagsEn": [
+        "Ambient",
+        "Classical"
+      ],
+      "genre": "氛围",
+      "highlight": "氛围古典钢琴，151K听众",
+      "highlightEn": "Ambient classical piano, 151K listeners",
+      "summary": "Poppy Ackroyd氛围/古典风格，151K听众，宁静致远。",
+      "summaryEn": "Poppy Ackroyd ambient/classical, 151K listeners, serene.",
+      "recommendationTag": "💎 隐藏宝石",
+      "recommendationTagEn": "Hidden Gem",
+      "recommendationTagId": "hidden",
+      "category": "hidden-gem"
+    },
+    {
+      "index": 20,
+      "mbid": "50568f3c-616c-4d19-a8f1-8151ecb6eb72",
+      "cover": "",
+      "title": "Von Abseits",
+      "artist": "Doppelkopf",
+      "country": "XW",
+      "releaseDate": "2026",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 20502,
+      "playcount": 153638,
+      "artistStars": 3,
+      "lfmTags": [
+        "german hip hop",
+        "hip hop",
+        "deutschrap",
+        "german",
+        "country"
+      ],
+      "tags": [
+        "德国嘻哈",
+        "说唱"
+      ],
+      "aiScore": 6.5,
+      "tagsEn": [
+        "German Hip Hop",
+        "Rap"
+      ],
+      "genre": "德国嘻哈",
+      "highlight": "德国嘻哈新专辑，20K听众",
+      "highlightEn": "German hip hop new album, 20K listeners",
+      "summary": "Doppelkopf德国嘻哈/说唱，20K听众，德式风格。",
+      "summaryEn": "Doppelkopf German hip hop/rap, 20K listeners, German style.",
+      "recommendationTag": "🌍 环球音乐",
+      "recommendationTagEn": "Around the World",
+      "recommendationTagId": "world",
+      "category": "world"
+    },
+    {
+      "index": 23,
+      "mbid": "af4ece5b-3174-426d-ad92-45090ab35b5e",
+      "cover": "",
+      "title": "Eingenordet",
+      "artist": "Versengold",
+      "country": "DE",
+      "releaseDate": "2026",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 42845,
+      "playcount": 1793927,
+      "artistStars": 3,
+      "lfmTags": [],
+      "tags": [
+        "民谣金属",
+        "德国"
+      ],
+      "aiScore": 7,
+      "tagsEn": [
+        "Folk Metal",
+        "German"
+      ],
+      "genre": "民谣金属",
+      "highlight": "德国民谣金属新作，42K听众",
+      "highlightEn": "German folk metal new album, 42K listeners",
+      "summary": "Versengold德国民谣/金属，42K听众，富有民族特色。",
+      "summaryEn": "Versengold German folk/metal, 42K listeners, ethnic flavor.",
+      "recommendationTag": "🌍 环球音乐",
+      "recommendationTagEn": "Around the World",
+      "recommendationTagId": "world",
+      "category": "world"
+    },
+    {
+      "index": 27,
+      "mbid": "75228242-54bd-4991-a16d-789aeb0d1b0e",
+      "cover": "",
+      "title": "Candramawa",
+      "artist": "Danilla",
+      "country": "XW",
+      "releaseDate": "2026-06-05",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 24932,
+      "playcount": 1163024,
+      "artistStars": 3,
+      "lfmTags": [],
+      "tags": [
+        "独立",
+        "流行"
+      ],
+      "aiScore": 6.5,
+      "tagsEn": [
+        "Indie",
+        "Pop"
+      ],
+      "genre": "独立",
+      "highlight": "印尼独立音乐，24K听众",
+      "highlightEn": "Indonesian indie music, 24K listeners",
+      "summary": "Danilla印尼独立/流行，24K听众，东南亚风情。",
+      "summaryEn": "Danilla Indonesian indie/pop, 24K listeners, Southeast Asian vibe.",
+      "recommendationTag": "🌍 环球音乐",
+      "recommendationTagEn": "Around the World",
+      "recommendationTagId": "world",
+      "category": "world"
+    },
+    {
       "index": 11,
+      "mbid": "46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
+      "cover": "",
       "title": "RAVEPOP",
       "artist": "r u s s e l b u c k",
       "country": "XW",
@@ -437,248 +642,86 @@
         "快乐硬核",
         "电子"
       ],
-      "aiScore": 6.5,
+      "aiScore": 7.5,
       "tagsEn": [
         "Happy Hardcore",
         "Electronic"
       ],
       "genre": "快乐硬核",
-      "highlight": "r u s s e l b u c k的快乐硬核，能量爆炸",
-      "highlightEn": "r u s s e l b u c k's happy hardcore, explosive energy",
-      "summary": "小众电子舞曲风格，快乐硬核/多流派融合",
-      "summaryEn": "Niche electronic dance style, happy hardcore/multi-genre fusion",
-      "recommendationTag": "💎 隐藏宝石",
-      "recommendationTagEn": "Hidden Gem",
-      "recommendationTagId": "hidden",
-      "category": "hidden-gem"
+      "highlight": "快乐硬核电子，130K听众",
+      "highlightEn": "Happy hardcore electronic, 130K listeners",
+      "summary": "r u s s e l b u c k快乐硬核/电子，130K听众，节奏狂喜。",
+      "summaryEn": "r u s s e l b u c k happy hardcore/electronic, 130K listeners, euphoric beats.",
+      "recommendationTag": "⭐ 编辑推荐",
+      "recommendationTagEn": "Editor's Pick",
+      "recommendationTagId": "editor",
+      "category": "editor"
     },
     {
-      "index": 18,
-      "title": "Liminal",
-      "artist": "Poppy Ackroyd",
+      "index": 10,
+      "mbid": "8deaeb34-e6b2-4159-b1de-5896d3e8545a",
+      "cover": "",
+      "title": "The Power Station",
+      "artist": "The Power Station",
       "country": "XW",
-      "releaseDate": "2026-06-05",
+      "releaseDate": "2026",
       "year": "2026",
       "primaryType": "Album",
-      "listeners": 151770,
-      "playcount": 1353499,
+      "listeners": 157795,
+      "playcount": 1005646,
       "artistStars": 3,
-      "lfmTags": [],
-      "tags": [
-        "器乐",
-        "氛围"
+      "lfmTags": [
+        "80s",
+        "rock",
+        "1985",
+        "pop",
+        "classic rock"
       ],
-      "aiScore": 6.5,
-      "tagsEn": [
-        "Instrumental",
-        "Ambient"
-      ],
-      "genre": "器乐",
-      "highlight": "Poppy Ackroyd的器乐氛围，空灵实验",
-      "highlightEn": "Poppy Ackroyd's instrumental ambient, ethereal and experimental",
-      "summary": "器乐/氛围，实验性，适合深度聆听",
-      "summaryEn": "Instrumental/ambient, experimental, suitable for deep listening",
-      "recommendationTag": "💎 隐藏宝石",
-      "recommendationTagEn": "Hidden Gem",
-      "recommendationTagId": "hidden",
-      "category": "hidden-gem"
-    },
-    {
-      "index": 26,
-      "title": "Candramawa",
-      "artist": "Danilla",
-      "country": "XW",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "primaryType": "Album",
-      "listeners": 24932,
-      "playcount": 1163024,
-      "artistStars": 3,
-      "lfmTags": [],
       "tags": [
-        "另类流行",
-        "印尼"
+        "80年代",
+        "摇滚"
       ],
       "aiScore": 7,
       "tagsEn": [
-        "Alternative Pop",
-        "Indonesian"
+        "80s",
+        "Rock"
       ],
-      "genre": "另类流行",
-      "highlight": "Danilla的印尼另类流行，异域风情",
-      "highlightEn": "Danilla's Indonesian alternative pop, exotic flavor",
-      "summary": "印尼音乐人，风格独特，融合流行与当地元素",
-      "summaryEn": "Indonesian artist, unique style, blends pop with local elements",
-      "recommendationTag": "🌍 环球音乐",
-      "recommendationTagEn": "Around the World",
-      "recommendationTagId": "world",
-      "category": "world"
-    },
-    {
-      "index": 33,
-      "title": "Se se on rokkii... ja sinfoniaa",
-      "artist": "Mikko Alatalo",
-      "country": "FI",
-      "releaseDate": "2026",
-      "year": "2026",
-      "primaryType": "Album",
-      "listeners": 24978,
-      "playcount": 359641,
-      "artistStars": 3,
-      "lfmTags": [],
-      "tags": [
-        "芬兰摇滚",
-        "民谣"
-      ],
-      "aiScore": 6,
-      "tagsEn": [
-        "Finnish Rock",
-        "Folk"
-      ],
-      "genre": "芬兰摇滚",
-      "highlight": "Mikko Alatalo的芬兰摇滚，民谣风味",
-      "highlightEn": "Mikko Alatalo's Finnish rock with folk flavor",
-      "summary": "芬兰音乐人，摇滚与芬兰民谣结合，地域特色",
-      "summaryEn": "Finnish artist, rock combined with Finnish folk, regional character",
-      "recommendationTag": "🌍 环球音乐",
-      "recommendationTagEn": "Around the World",
-      "recommendationTagId": "world",
-      "category": "world"
-    },
-    {
-      "index": 34,
-      "title": "Bobbysocks",
-      "artist": "Bobbysocks",
-      "country": "NO",
-      "releaseDate": "2026",
-      "year": "2026",
-      "primaryType": "Album",
-      "listeners": 25462,
-      "playcount": 135481,
-      "artistStars": 3,
-      "lfmTags": [
-        "eurovision",
-        "1985",
-        "pop",
-        "norway",
-        "linedance 2019"
-      ],
-      "tags": [
-        "流行",
-        "欧洲电视网"
-      ],
-      "aiScore": 6,
-      "tagsEn": [
-        "Pop",
-        "Eurovision"
-      ],
-      "genre": "流行",
-      "highlight": "Bobbysocks的挪威流行，80年代欧洲电视网",
-      "highlightEn": "Bobbysocks' Norwegian pop, 80s Eurovision",
-      "summary": "挪威组合，欧洲电视网获奖，流行旋律",
-      "summaryEn": "Norwegian duo, Eurovision winners, pop melodies",
-      "recommendationTag": "🌍 环球音乐",
-      "recommendationTagEn": "Around the World",
-      "recommendationTagId": "world",
-      "category": "world"
-    },
-    {
-      "index": 48,
-      "title": "Galaxia Tropical",
-      "artist": "Ranil Y Su Conjunto Tropical",
-      "country": "DE",
-      "releaseDate": "2026",
-      "year": "2026",
-      "primaryType": "Album",
-      "listeners": 1071,
-      "playcount": 9998,
-      "artistStars": 2,
-      "lfmTags": [
-        "cumbia",
-        "latin",
-        "peruvian",
-        "guitar",
-        "psychedelic"
-      ],
-      "tags": [
-        "昆比亚",
-        "拉丁"
-      ],
-      "aiScore": 6.5,
-      "tagsEn": [
-        "Cumbia",
-        "Latin"
-      ],
-      "genre": "昆比亚",
-      "highlight": "Ranil的秘鲁昆比亚，热带迷幻",
-      "highlightEn": "Ranil's Peruvian cumbia, tropical psychedelic",
-      "summary": "秘鲁/德国音乐人，昆比亚风格，拉丁节奏",
-      "summaryEn": "Peruvian/German artist, cumbia style, Latin rhythms",
-      "recommendationTag": "🌍 环球音乐",
-      "recommendationTagEn": "Around the World",
-      "recommendationTagId": "world",
-      "category": "world"
-    },
-    {
-      "index": 49,
-      "title": "la patience n'existe pas",
-      "artist": "Natacha Tertone",
-      "country": "FR",
-      "releaseDate": "2026",
-      "year": "2026",
-      "primaryType": "Album",
-      "listeners": 1036,
-      "playcount": 5283,
-      "artistStars": 2,
-      "lfmTags": [
-        "chanson francaise",
-        "au feminin"
-      ],
-      "tags": [
-        "香颂",
-        "法语"
-      ],
-      "aiScore": 6,
-      "tagsEn": [
-        "Chanson",
-        "French"
-      ],
-      "genre": "香颂",
-      "highlight": "Natacha Tertone的法语香颂，优雅细腻",
-      "highlightEn": "Natacha Tertone's French chanson, elegant and delicate",
-      "summary": "法国音乐人，香颂风格，女性视角",
-      "summaryEn": "French artist, chanson style, feminine perspective",
-      "recommendationTag": "🌍 环球音乐",
-      "recommendationTagEn": "Around the World",
-      "recommendationTagId": "world",
-      "category": "world"
+      "genre": "80年代",
+      "highlight": "80年代经典摇滚，157K听众",
+      "highlightEn": "80s classic rock, 157K listeners",
+      "summary": "The Power Station 80年代摇滚/流行，157K听众，怀旧金曲。",
+      "summaryEn": "The Power Station 80s rock/pop, 157K listeners, nostalgic hits.",
+      "recommendationTag": "⭐ 编辑推荐",
+      "recommendationTagEn": "Editor's Pick",
+      "recommendationTagId": "editor",
+      "category": "editor"
     },
     {
       "index": 22,
-      "title": "Eingenordet",
-      "artist": "Versengold",
-      "country": "DE",
+      "mbid": "b577931e-be63-4e84-a7b2-e4c0764e9920",
+      "cover": "",
+      "title": "Melodrama",
+      "artist": "LINA",
+      "country": "XW",
       "releaseDate": "2026",
       "year": "2026",
       "primaryType": "Album",
-      "listeners": 42845,
-      "playcount": 1793927,
+      "listeners": 74983,
+      "playcount": 799965,
       "artistStars": 3,
       "lfmTags": [],
       "tags": [
-        "民谣金属",
-        "德国摇滚"
+        "流行"
       ],
       "aiScore": 6.5,
       "tagsEn": [
-        "Folk Metal",
-        "German Rock"
+        "Pop"
       ],
-      "genre": "民谣金属",
-      "highlight": "Versengold的德国摇滚，民谣金属元素",
-      "highlightEn": "Versengold's German rock with folk metal elements",
-      "summary": "德国乐队，民谣金属/摇滚，风格独特",
-      "summaryEn": "German band, folk metal/rock, unique style",
+      "genre": "流行",
+      "highlight": "流行新星Melodrama，74K听众",
+      "highlightEn": "Pop newcomer Melodrama, 74K listeners",
+      "summary": "LINA流行风格，74K听众，旋律动人。",
+      "summaryEn": "LINA pop style, 74K listeners, catchy melodies.",
       "recommendationTag": "💎 隐藏宝石",
       "recommendationTagEn": "Hidden Gem",
       "recommendationTagId": "hidden",

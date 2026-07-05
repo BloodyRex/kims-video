@@ -26,7 +26,7 @@
   },
   "stats": {
     "mbRaw": 300,
-    "afterFilter": 183,
+    "afterFilter": 187,
     "artistsChecked": 75,
     "afterArtistFilter": 52,
     "albumEnriched": 40,
@@ -499,6 +499,32 @@
       "scoreBreakdown": {
         "artist": 34.114058794929846,
         "album": 24.5032828092203,
+        "freshness": 0
+      },
+      "daysOld": 185
+    },
+    {
+      "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "mbid": "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "title": "Snow, Vol. 9",
+      "artist": "Wun Two",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 473935,
+      "artistPlaycount": 6376603,
+      "albumListeners": 5528,
+      "albumPlaycount": 19367,
+      "score": 56.55096538809616,
+      "scoreBreakdown": {
+        "artist": 37.838125216265446,
+        "album": 18.71284017183071,
         "freshness": 0
       },
       "daysOld": 185
@@ -1032,32 +1058,6 @@
         "freshness": 21
       },
       "daysOld": 9
-    },
-    {
-      "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
-      "mbid": "00292388-ab95-4285-8846-120dcfd95b71",
-      "title": "Perspective",
-      "artist": "Coloured Rocks",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 21063,
-      "artistPlaycount": 62836,
-      "albumListeners": 344,
-      "albumPlaycount": 734,
-      "score": 41.506260397886564,
-      "scoreBreakdown": {
-        "artist": 28.82346818502892,
-        "album": 12.682792212857649,
-        "freshness": 0
-      },
-      "daysOld": 185
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
