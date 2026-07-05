@@ -22,6 +22,10 @@ jobs:
 
       - name: Fetch intelligence data
         run: node scripts/fetch-intelligence-data.js
+        env:
+          WORKER_BASE_URL: ${{ vars.WORKER_BASE_URL || 'https://api.bloodyrex.xyz' }}
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          MUSICBRAINZ_USER_AGENT: "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)"
 
       - name: Commit and push
         run: |

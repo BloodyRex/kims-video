@@ -231,7 +231,7 @@ async function intelFilterByArtistPopularity(items, env) {
     }
     artistMap.get(key).releases.push(item);
   }
-  const uniqueArtists = [...artistMap.values()].slice(0, 30);
+  const uniqueArtists = [...artistMap.values()].slice(0, 20);
   const artistData = new Map();
   for (let i = 0; i < uniqueArtists.length; i += 5) {
     const batch = await Promise.allSettled(
@@ -242,7 +242,6 @@ async function intelFilterByArtistPopularity(items, env) {
           let stars = 0;
           if (listeners >= 100000) stars = 5;
           else if (listeners >= 10000) stars = 4;
-          else if (listeners >= 1000) stars = 3;
           const tags = (data.artist.tags?.tag || []).map(t => t.name).slice(0, 10);
           return { name: a.name, listeners, stars, playcount: parseInt(data.artist.stats.playcount) || 0, tags };
         }
@@ -370,14 +369,14 @@ function intelNormalizeAlbum(r) {
 // ── Last.fm chart top albums (guaranteed popular, has real listener data) ──
 async function intelFetchLastFMCharts(env) {
   if (!env.LASTFM_API_KEY) return [];
-  const tags = ["hip hop", "pop", "rock", "electronic"];
-  const cacheKey = "lfm-charts-v3-" + tags.join("-");
+  const tags = ["hip hop", "pop", "rock", "electronic", "jazz", "blues", "classical", "folk", "k-pop", "j-pop", "mandopop", "latin"];
+  const cacheKey = "lfm-charts-v5-" + tags.join("-");
   return withCache(cacheKey, async () => {
     const seen = new Set();
     const all = [];
     for (const tag of tags) {
       try {
-        const data = await intelFetchLastFM("tag.gettopalbums", { tag, limit: "20" }, env, true);
+        const data = await intelFetchLastFM("tag.gettopalbums", { tag, limit: "30" }, env, true);
         if (data?.albums?.album) {
           for (const a of data.albums.album) {
             const key = (a.name + "|||" + (a.artist?.name || "")).toLowerCase();
@@ -396,6 +395,7 @@ async function intelFetchLastFMCharts(env) {
                 secondaryTypes: [],
                 lfmTags: [],
                 tags: [],
+                tagsEn: [],
                 genre: "",
               });
             }
@@ -403,24 +403,23 @@ async function intelFetchLastFMCharts(env) {
         }
       } catch {}
     }
-    // Enrich top 15 items with album.getinfo to get real listener/tag data
-    const toEnrich = all.slice(0, 15);
-    for (let i = 0; i < toEnrich.length; i += 5) {
-      await Promise.allSettled(toEnrich.slice(i, i + 5).map(async (rel) => {
-        try {
-          const d = await intelFetchLastFM("album.getinfo", { artist: rel.artist, album: rel.title }, env, true);
-          if (d?.album) {
-            rel.listeners = parseInt(d.album.listeners) || 0;
-            rel.playcount = parseInt(d.album.playcount) || 0;
-            rel.lfmTags = (d.album.tags?.tag || []).map(t => t.name).slice(0, 5);
-            rel.genre = intelGenreZH(rel.lfmTags) || rel.lfmTags[0] || "";
-          }
-        } catch {}
-      }));
-    }
-    all.sort((a, b) => b.listeners - a.listeners);
-    return all.slice(0, 40);
-  }, 3600);
+    // Enrich top 5 chart items with album.getinfo for real listener/tag data
+    const toEnrich = all.slice(0, 5);
+    const enriched = await Promise.allSettled(toEnrich.map(async (rel) => {
+      try {
+        const d = await intelFetchLastFM("album.getinfo", { artist: rel.artist, album: rel.title }, env, true);
+        if (d?.album) {
+          rel.listeners = parseInt(d.album.listeners) || 0;
+          rel.playcount = parseInt(d.album.playcount) || 0;
+          rel.lfmTags = (d.album.tags?.tag || []).map(t => t.name).slice(0, 5);
+          rel.tags = rel.lfmTags.map(t => intelGenreZH([t])).filter(Boolean).slice(0, 5);
+          rel.tagsEn = rel.lfmTags.slice(0, 5);
+          rel.genre = intelGenreZH(rel.lfmTags) || rel.lfmTags[0] || "";
+        }
+      } catch {}
+    }));
+    return all.slice(0, 100);
+  }, 21600);
 }
 
 // ── DeepSeek enrichment ──
@@ -499,20 +498,20 @@ ${JSON.stringify(items.map((i, idx) => ({
   genre: (i.tags || []).slice(0, 3),
 })))}
 
-**Task:** Select exactly 20 albums as "This Week's Picks". These will be the ONLY 20 albums shown — choose the mix of quality, diversity, and discoverability.
+**Task:** Select exactly 20 albums as "This Week's Picks". These will be the ONLY 20 albums shown.
+
+**Critical constraints (follow strictly):**
+1. **Popularity first** — strongly prefer 4★ (10k-100k listeners) and 5★ (>100k) items. Only pick 3★ or no-data items if truly exceptional.
+2. **Same artist max 1** — never pick more than one album by the same artist.
+3. **CJK representation** — MUST include at least 2-3 Chinese/Korean/Japanese items IF available in the data.
+4. **Genre diversity** — avoid clustering. If a genre already has 2 picks, deprioritize more from that genre.
+5. **Regional diversity** — spread across different countries, not dominated by one region.
 
 **Tags (pick one per album):**
 1. "trending" = 🔥 热门趋势 — high popularity (starRating ≥ 4 or listeners > 50000), major artist.
 2. "editor" = ⭐ 编辑推荐 — strong artistic merit, outstanding quality, any popularity tier.
-3. "hidden" = 💎 隐藏宝石 — excellent quality, unique style, starRating 3 preferred.
-4. "world" = 🌍 环球音乐 — from outside US/UK, represents regional music culture.
-
-**Diversity requirements:**
-- Mix popularity tiers: include ★★★★★ hits AND ★★★ hidden gems
-- Cover different genres and music styles
-- Cover different countries and regions
-- Balance mainstream appeal with niche discovery
-- Do NOT over-select from one country or genre
+3. "hidden" = 💎 隐藏宝石 — excellent quality, unique style, lower popularity (starRating 3 or no data).
+4. "world" = 🌍 环球音乐 — from outside US/UK/EU, represents regional music culture.
 
 **Target proportions (approximate, adjust based on data):**
 - Trending Now: ~30% (6)
@@ -689,41 +688,100 @@ async function handleIntelTV(env) {
   };
 }
 
+// ── Music V2 handler (Pipeline-fed: receives POST from GitHub Actions, calls DeepSeek) ──
+async function handleIntelMusicV2(env, request) {
+  const today = new Date().toISOString().split("T")[0];
+
+  if (request.method !== "POST") {
+    return new Response(JSON.stringify({ updated: today, picks: [] }), {
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  try {
+    const body = await request.json();
+    const candidates = body?.candidates || [];
+    if (!candidates.length) {
+      return new Response(JSON.stringify({ updated: today, picks: [] }), {
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    // Map candidates to format expected by AI enrichment
+    const aiInput = candidates.map((c, index) => ({
+      index,
+      title: c.title,
+      artist: c.artist,
+      country: c.country || "Unknown",
+      releaseDate: c.releaseDate,
+      primaryType: c.type,
+      listeners: c.artistListeners || 0,
+      playcount: c.artistPlaycount || 0,
+      artistStars: c.scoreBreakdown?.artist
+        ? Math.min(5, Math.max(1, Math.round(c.scoreBreakdown.artist / 10)))
+        : 0,
+      lfmTags: c.lfmTags || [],
+      tags: c.genres || [],
+    }));
+
+    const aiPicks = await intelEnrichAlbums(aiInput, env);
+
+    // Cover art: top 3 from Cover Art Archive
+    for (const item of (aiPicks || []).slice(0, 3)) {
+      if (item.mbid && !item.cover) {
+        try {
+          const r = await fetch(`https://coverartarchive.org/release/${item.mbid}/front-250.jpg`);
+          if (r.ok) item.cover = `https://coverartarchive.org/release/${item.mbid}/front-250.jpg`;
+        } catch {}
+      }
+    }
+
+    const result = { updated: today, picks: (aiPicks || []).slice(0, 20) };
+    return new Response(JSON.stringify(result), {
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (e) {
+    return new Response(JSON.stringify({ updated: today, picks: [], error: e.message }), {
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+}
+
+// @deprecated — Music data collection moved to Pipeline (handleIntelMusicV2)
 async function handleIntelMusic(env) {
   const today = new Date().toISOString().split("T")[0];
-  return withCache(`intel-music-v4-${today}`, async () => {
+  return withCache(`intel-music-v6-${today}`, async () => {
     const weekAgo = intelDaysAgo(7);
 
     // Phase 1: Fetch MB releases this week, filter valid
     const weekReleases = await intelFetchMusicBrainzRange(weekAgo, today).catch(() => []);
     let validReleases = weekReleases.filter(r => intelIsValidAlbum(r) && r.status !== "Bootleg");
 
-    // Phase 2: Filter by artist popularity (artist.getinfo, keep > 1000 listeners)
+    // Phase 2: Filter by artist popularity (artist.getinfo, keep 4★+ = 10k+ listeners)
     let picks = await intelFilterByArtistPopularity(validReleases, env);
 
-    // Phase 3: Supplement with chart data if < 20
-    if (picks.length < 20) {
-      const chartAlbums = await intelFetchLastFMCharts(env);
-      for (const c of chartAlbums) {
-        if (picks.length >= 20) break;
-        const dup = picks.some(p =>
-          p.title.toLowerCase() === c.title.toLowerCase() &&
-          p.artist.toLowerCase() === c.artist.toLowerCase()
-        );
-        if (!dup) {
-          const stars = c.listeners >= 100000 ? 5 : c.listeners >= 10000 ? 4 : c.listeners >= 1000 ? 3 : 0;
-          picks.push({ ...c, artistListeners: c.listeners, artistStars: stars });
-        }
+    // Phase 3: Always supplement with chart data for diversity (CJK, jazz, blues, classical, folk, etc.)
+    const chartAlbums = await intelFetchLastFMCharts(env);
+    for (const c of chartAlbums) {
+      const dup = picks.some(p =>
+        p.title.toLowerCase() === c.title.toLowerCase() &&
+        p.artist.toLowerCase() === c.artist.toLowerCase()
+      );
+      if (!dup) {
+        // Chart items: use real listeners if enriched, default 0 otherwise
+        const stars = c.listeners >= 100000 ? 5 : c.listeners >= 10000 ? 4 : 0;
+        picks.push({ ...c, artistListeners: c.listeners, artistStars: stars });
       }
+      if (picks.length >= 100) break;
     }
 
-    // Phase 4: AI diversity curation
-    const top40 = picks.slice(0, 40);
-    let aiPicks = top40.length ? await intelEnrichAlbums(top40, env) : [];
+    // Phase 4: AI diversity curation (select 20 from up to 80 candidates)
+    const topInput = picks.slice(0, 80);
+    let aiPicks = topInput.length ? await intelEnrichAlbums(topInput, env) : [];
 
     // Phase 5: Fallback if AI fails
-    if (!aiPicks.length && top40.length) {
-      const sorted = [...top40].sort((a, b) => (b.listeners || 0) - (a.listeners || 0));
+    if (!aiPicks.length && topInput.length) {
+      const sorted = [...topInput].sort((a, b) => (b.listeners || 0) - (a.listeners || 0));
       const total = Math.min(sorted.length, 20);
       aiPicks = [];
       for (let i = 0; i < total; i++) {
@@ -1076,6 +1134,11 @@ export default {
       // Discover like
       const lm = path.match(/^\/discover\/results\/(.+)\/like$/);
       if (lm) { try { return Response.json(await handleDiscoverLike(env, lm[1]), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
+
+      // Intelligence Music V2 (Pipeline-fed: POST candidates, returns AI-curated picks)
+      if (url.pathname === "/intelligence/music/v2") {
+        return handleIntelMusicV2(env, request);
+      }
 
       let body;
       try { body = await request.json(); } catch (e) { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }

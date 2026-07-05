@@ -6,6 +6,8 @@
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { INTELLIGENCE_CONFIG } from "../config/intelligence.config.js";
+import { collectMusicCandidates, stripDebugFields } from "./music-pipeline.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -30,7 +32,7 @@ async function main() {
     { endpoint: "/intelligence/overview", file: "overview.json" },
     { endpoint: "/intelligence/movies", file: "movies.json" },
     { endpoint: "/intelligence/tv", file: "tv.json" },
-    { endpoint: "/intelligence/music", file: "music.json" },
+    // Music is handled separately via pipeline (see below)
     { endpoint: "/intelligence/coming", file: "coming.json" },
     { endpoint: "/intelligence/weekly", file: "weekly.json" },
     { endpoint: "/intelligence/hidden-gems", file: "hidden-gems.json" },
@@ -61,6 +63,53 @@ async function main() {
       console.error(`FAIL ${task.file}: ${e.message}`);
       process.exitCode = 1;
     }
+  }
+
+  // ── Music Pipeline (separate, runs in Node.js, no Worker subrequest limits) ──
+  console.log("\n[MUSIC] Starting pipeline...");
+  const musicStart = Date.now();
+  try {
+    const { candidates, topCandidates, stats: musicStats } = await collectMusicCandidates(INTELLIGENCE_CONFIG);
+
+    // Write candidate.json (stripped debug fields, for Worker AI)
+    const candidatePayload = {
+      updated: new Date().toISOString().split("T")[0],
+      candidates: topCandidates.map(stripDebugFields),
+    };
+    writeFileSync(join(API_DIR, "candidate.json"), JSON.stringify(candidatePayload, null, 2), "utf8");
+    console.log(`OK candidate.json — ${topCandidates.length} candidates for AI`);
+
+    // Write candidate-debug.json (full debug info)
+    const debugPayload = {
+      updated: new Date().toISOString().split("T")[0],
+      config: INTELLIGENCE_CONFIG,
+      stats: musicStats,
+      candidates,
+    };
+    writeFileSync(join(API_DIR, "candidate-debug.json"), JSON.stringify(debugPayload, null, 2), "utf8");
+    console.log(`OK candidate-debug.json — ${candidates.length} total`);
+
+    // POST candidates to Worker V2 for AI curation
+    const musicRes = await fetch(`${WORKER_BASE}/intelligence/music/v2`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ candidates: topCandidates.map(stripDebugFields) }),
+    });
+    if (!musicRes.ok) {
+      const errBody = await musicRes.text().catch(() => "");
+      throw new Error(`Worker V2: ${musicRes.status} — ${errBody.slice(0, 200)}`);
+    }
+    const musicData = await musicRes.json();
+    const picksCount = musicData?.picks?.length || 0;
+
+    // Write music.json (same format as before — frontend unaffected)
+    writeFileSync(join(API_DIR, "music.json"), JSON.stringify(musicData, null, 2), "utf8");
+    console.log(`OK music.json — ${picksCount} picks from AI`);
+    anyChange = true;
+    console.log(`[MUSIC] Done in ${((Date.now() - musicStart) / 1000).toFixed(1)}s`);
+  } catch (e) {
+    console.error(`FAIL music pipeline: ${e.message}`);
+    process.exitCode = 1;
   }
 
   if (!anyChange) {
