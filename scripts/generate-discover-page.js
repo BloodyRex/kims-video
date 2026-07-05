@@ -157,15 +157,15 @@ const html = `<!DOCTYPE html>
   <title>AI 电影推荐发现页 | Discover 相似电影合集 | Kim's Video</title>
   <meta name="description" content="探索基于 AI 的电影推荐组合，发现与你喜欢电影相似的科幻、剧情与悬疑作品。涵盖科幻、悬疑、恐怖、动画、战争、犯罪、剧情、奇幻八大类型。" />
   <meta name="keywords" content="电影推荐,AI推荐,相似电影,Discover,冷门推荐,科幻电影,悬疑电影" />
-  <link rel="canonical" href="${SITE}/discover" />
+  <link rel="canonical" href="${SITE}/discover/" />
   <meta property="og:title" content="AI 电影推荐发现页 | Kim's Video" />
   <meta property="og:description" content="探索基于 AI 的电影推荐组合，发现与你喜欢电影相似的科幻、剧情与悬疑作品。" />
-  <meta property="og:url" content="${SITE}/discover" />
+  <meta property="og:url" content="${SITE}/discover/" />
   <meta property="og:type" content="website" />
 
-  <link rel="alternate" hreflang="zh" href="${SITE}/discover?lang=zh" />
-  <link rel="alternate" hreflang="en" href="${SITE}/discover?lang=en" />
-  <link rel="alternate" hreflang="x-default" href="${SITE}/discover" />
+  <link rel="alternate" hreflang="zh" href="${SITE}/discover/?lang=zh" />
+  <link rel="alternate" hreflang="en" href="${SITE}/discover/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="${SITE}/discover/" />
 
   <script type="application/ld+json">${JSON.stringify(faqSchema, null, 2)}</script>
 

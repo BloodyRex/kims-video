@@ -1,0 +1,18 @@
+{
+  "name": "Kim's Video — AI Movie Recommender",
+  "short_name": "Kim's Video",
+  "description": "AI-powered movie recommendation engine. Enter films you love, discover hidden gems and cult classics.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#ffff00",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "lang": "zh",
+  "categories": ["entertainment", "movies", "recommendation"]
+}

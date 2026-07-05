@@ -3,6 +3,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { MovieCard, TVCard, AlbumCard, CountdownCard, SpotlightCard, SectionHeader, CardGrid, IntelDetailModal } from "./Cards";
+import { setCanonical } from "../services/seo";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -448,6 +449,7 @@ function IntelligencePage() {
     document.title = locale === "zh"
       ? "娱乐情报 | Intelligence | Kim's Video"
       : "Entertainment Intelligence | Kim's Video";
+    setCanonical("https://bloodyrex.xyz/intelligence");
   }, [locale]);
 
   const IconComp = (name) => Icons[name] || Icons.Target;

@@ -107,6 +107,16 @@ export const resetSeo = (locale = "zh") => {
   manageHreflang("https://bloodyrex.xyz/");
 };
 
+export const setCanonical = (url) => {
+  let linkEl = document.querySelector('link[rel="canonical"]');
+  if (!linkEl) {
+    linkEl = document.createElement("link");
+    linkEl.rel = "canonical";
+    document.head.appendChild(linkEl);
+  }
+  linkEl.href = url;
+};
+
 // ── Structured data ─────────────────────────────────
 
 const generateStructuredData = (movie) => {

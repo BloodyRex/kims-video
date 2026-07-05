@@ -20,7 +20,8 @@ function buildEntries() {
 
   const entries = [
     { loc: `${SITE}/`, changefreq: "daily", priority: "1.0", lastmod: today },
-    { loc: `${SITE}/discover`, changefreq: "daily", priority: "0.9", lastmod: today },
+    { loc: `${SITE}/discover/`, changefreq: "daily", priority: "0.9", lastmod: today },
+    { loc: `${SITE}/intelligence`, changefreq: "daily", priority: "0.9", lastmod: today },
   ];
 
   // Genre pages
@@ -30,7 +31,7 @@ function buildEntries() {
     if (!seenSlugs.has(slug)) {
       seenSlugs.add(slug);
       entries.push({
-        loc: `${SITE}/genre/${slug}`,
+        loc: `${SITE}/genre/${slug}/`,
         changefreq: "weekly",
         priority: "0.8",
         lastmod: today,
@@ -38,40 +39,20 @@ function buildEntries() {
     }
   }
 
-  const seenSources = new Set();
-
+  // Detail pages (deduplicated)
+  const seenDetail = new Set();
   for (const genre of discover.genres) {
     for (const pair of genre.pairs) {
-      seenSources.add(pair.source.tmdbId);
-      const from = pair.source.tmdbId;
-      const r = pair.recommend.tmdbId;
-
-      // Legacy query-param URLs
+      const key = `${pair.source.tmdbId}-${pair.recommend.tmdbId}`;
+      if (seenDetail.has(key)) continue;
+      seenDetail.add(key);
       entries.push({
-        loc: `${SITE}/?from=${from}&r=${r}`,
-        changefreq: "weekly",
-        priority: "0.6",
-        lastmod: today,
-      });
-
-      // Path-based static pre-rendered detail pages
-      entries.push({
-        loc: `${SITE}/d/${from}-${r}`,
+        loc: `${SITE}/d/${pair.source.tmdbId}-${pair.recommend.tmdbId}`,
         changefreq: "weekly",
         priority: "0.8",
         lastmod: today,
       });
     }
-  }
-
-  // Individual source-movie result pages
-  for (const tmdbId of seenSources) {
-    entries.push({
-      loc: `${SITE}/?from=${tmdbId}`,
-      changefreq: "weekly",
-      priority: "0.6",
-      lastmod: today,
-    });
   }
 
   return entries;

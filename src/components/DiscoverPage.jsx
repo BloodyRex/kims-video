@@ -5,6 +5,7 @@ import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { fetchMovieByTmdbId } from "../services/api";
 import { fetchDiscoverResults, likeDiscoverResult } from "../services/discoverApi";
+import { setCanonical } from "../services/seo";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -240,6 +241,7 @@ const DiscoverPage = () => {
 
   useEffect(() => {
     document.title = locale === "zh" ? "AI 电影推荐发现页 | Discover 相似电影合集 | Kim's Video" : "AI Movie Discovery Hub | Curated Film Recommendations | Kim's Video";
+    setCanonical("https://bloodyrex.xyz/discover/");
   }, [locale]);
 
   return (

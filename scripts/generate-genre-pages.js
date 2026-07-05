@@ -59,7 +59,7 @@ for (const genre of discover.genres) {
   const color = GENRE_COLORS[genre.name] || '#ff00ff';
   const slug = GENRE_SLUGS[genre.name] || genre.name;
   const theme = GENRE_THEMES[genre.name] || { zh: "主题与情感体验", en: "themes and emotional experience" };
-  const pagePath = `/genre/${slug}`;
+  const pagePath = `/genre/${slug}/`;
 
   const zhTitle = `${genre.name}电影推荐 — 相似电影发现 | Kim's Video`;
   const enTitle = `${genre.name} Movie Recommendations — Similar Movies | Kim's Video`;
