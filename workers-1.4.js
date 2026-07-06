@@ -661,18 +661,19 @@ async function intelFetchTVEpisodeDates(shows, token) {
   // Fetch /tv/{id} details to get last_episode_to_air / next_episode_to_air
   // (list endpoints like on_the_air don't include these fields)
   const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
-  return Promise.all((shows || []).map(async (show) => {
+  const results = await Promise.allSettled((shows || []).map(async (show) => {
     try {
-      const details = await withCache(`tv-ep-${show.id}`, async () => {
-        const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
-        return r.ok ? r.json() : null;
-      }, 86400);
+      const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
+      if (!r.ok) return show;
+      const details = await r.json();
       if (details?.last_episode_to_air || details?.next_episode_to_air) {
-        return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
+        return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air, _enriched: true };
       }
-    } catch (e) { /* skip enrichment on error */ }
+    } catch (e) { console.warn("TV enrich fail:", show.id, e.message); }
     return show;
   }));
+  }));
+  return results.map(r => r.status === "fulfilled" ? r.value : null).filter(Boolean);
 }
 
 async function handleIntelTV(env) {
