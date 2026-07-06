@@ -660,11 +660,13 @@ async function handleIntelMovies(env) {
 async function intelFetchTVEpisodeDates(shows, token) {
   // Fetch /tv/{id} details to get last_episode_to_air / next_episode_to_air
   // (list endpoints like on_the_air don't include these fields)
-  const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
+  const hasToken = !!token;
+  const headers = hasToken ? { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } : {};
   const results = await Promise.allSettled((shows || []).map(async (show) => {
     try {
       const showId = show.id;
       if (!showId) { console.warn("TV enrich: show has no id"); return { ...show, _enriched: false, _noId: true }; }
+      if (!hasToken) return { ...show, _enriched: false, _noToken: true };
       const r = await fetch(`https://api.themoviedb.org/3/tv/${showId}?language=zh-CN`, { headers });
       if (!r.ok) { console.warn("TV enrich HTTP", r.status, "for", showId); return { ...show, _enriched: false, _httpStatus: r.status }; }
       const details = await r.json();
@@ -705,9 +707,10 @@ async function handleIntelTV(env) {
     });
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
-  const ongoingItems = onTheAirEnriched.map(s => ({ ...intelNormalizeMovie(s, "tv"), _enriched: s._enriched || false, _noId: s._noId || false, _httpStatus: s._httpStatus || 0, _noEpData: s._noEpData || false, _error: s._error || null }));
+  const ongoingItems = onTheAirEnriched.map(s => ({ ...intelNormalizeMovie(s, "tv"), _enriched: s._enriched || false, _noId: s._noId || false, _noToken: s._noToken || false, _httpStatus: s._httpStatus || 0, _noEpData: s._noEpData || false, _error: s._error || null }));
   const enrichedCount = ongoingItems.filter(s => s._enriched).length;
   const noIdCount = ongoingItems.filter(s => s._noId).length;
+  const noTokenCount = ongoingItems.filter(s => s._noToken).length;
   const httpFailCount = ongoingItems.filter(s => s._httpStatus > 0).length;
   const noEpDataCount = ongoingItems.filter(s => s._noEpData).length;
   const errorCount = ongoingItems.filter(s => s._error).length;
@@ -717,7 +720,7 @@ async function handleIntelTV(env) {
     premieresThisWeek: await intelEnrichWithAI(weekPremieres, "movie", env),
     upcoming: upcomingTV,
     ongoing: ongoingItems,
-    _debug: { total: ongoingItems.length, enriched: enrichedCount, noId: noIdCount, httpFail: httpFailCount, noEpData: noEpDataCount, errors: errorCount, sampleKeys: firstShowId },
+    _debug: { total: ongoingItems.length, enriched: enrichedCount, noId: noIdCount, noToken: noTokenCount, httpFail: httpFailCount, noEpData: noEpDataCount, errors: errorCount, sampleKeys: firstShowId },
   };
 }
 
