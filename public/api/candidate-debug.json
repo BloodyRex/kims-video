@@ -26,7 +26,7 @@
   },
   "stats": {
     "mbRaw": 300,
-    "afterFilter": 179,
+    "afterFilter": 183,
     "artistsChecked": 74,
     "afterArtistFilter": 53,
     "albumEnriched": 40,
@@ -35,6 +35,50 @@
     "sentToWorker": 60
   },
   "candidates": [
+    {
+      "id": "mb-22daa424-0371-42bc-bee8-a12c6cb7ce6c",
+      "mbid": "22daa424-0371-42bc-bee8-a12c6cb7ce6c",
+      "title": "This Is the One",
+      "artist": "Utada",
+      "releaseDate": "2026-06-24",
+      "year": "2026",
+      "type": "Album",
+      "country": "JP",
+      "genres": [
+        "流行",
+        "best albums of 2009",
+        "节奏蓝调",
+        "2009",
+        "utada"
+      ],
+      "genresEn": [
+        "pop",
+        "best albums of 2009",
+        "rnb",
+        "2009",
+        "utada"
+      ],
+      "lfmTags": [
+        "pop",
+        "best albums of 2009",
+        "rnb",
+        "2009",
+        "utada"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 243757,
+      "artistPlaycount": 8043092,
+      "albumListeners": 120642,
+      "albumPlaycount": 3901439,
+      "score": 79.32053994979546,
+      "scoreBreakdown": {
+        "artist": 35.91304730825434,
+        "album": 25.407492641541126,
+        "freshness": 18
+      },
+      "daysOld": 12
+    },
     {
       "id": "mb-e4019e40-6561-4be9-a7f8-a25152be02d3",
       "mbid": "e4019e40-6561-4be9-a7f8-a25152be02d3",
@@ -548,6 +592,32 @@
       "daysOld": 186
     },
     {
+      "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "mbid": "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "title": "Snow, Vol. 9",
+      "artist": "Wun Two",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 473957,
+      "artistPlaycount": 6377135,
+      "albumListeners": 5528,
+      "albumPlaycount": 19367,
+      "score": 56.55109978425948,
+      "scoreBreakdown": {
+        "artist": 37.83825961242877,
+        "album": 18.71284017183071,
+        "freshness": 0
+      },
+      "daysOld": 186
+    },
+    {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
       "mbid": "ccca0f73-1b3d-4264-9fd8-68ae932c3130",
       "title": "Monument",
@@ -712,32 +782,6 @@
         "freshness": 0
       },
       "daysOld": 186
-    },
-    {
-      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "title": "Truthsayer",
-      "artist": "Outshine",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2617,
-      "artistPlaycount": 22150,
-      "albumListeners": 49,
-      "albumPlaycount": 234,
-      "score": 51.23633855107511,
-      "scoreBreakdown": {
-        "artist": 22.785358150932538,
-        "album": 8.450980400142567,
-        "freshness": 20
-      },
-      "daysOld": 10
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -938,6 +982,38 @@
         "freshness": 0
       },
       "daysOld": 186
+    },
+    {
+      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "title": "Truthsayer",
+      "artist": "Outshine",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "Progressive metal",
+        "rock",
+        "post-grunge",
+        "alternative",
+        "Gothic Metal"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 2617,
+      "artistPlaycount": 22150,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 42.78535815093254,
+      "scoreBreakdown": {
+        "artist": 22.785358150932538,
+        "album": 0,
+        "freshness": 20
+      },
+      "daysOld": 10
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -1270,32 +1346,6 @@
       "daysOld": 186
     },
     {
-      "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
-      "mbid": "017c16c7-e4c5-488d-8bde-d2e41a15096f",
-      "title": "Nick Collection 2",
-      "artist": "Pop! not soda.",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 3447,
-      "artistPlaycount": 42689,
-      "albumListeners": 192,
-      "albumPlaycount": 1160,
-      "score": 34.99944803290407,
-      "scoreBreakdown": {
-        "artist": 23.58294188938632,
-        "album": 11.416506143517747,
-        "freshness": 0
-      },
-      "daysOld": 186
-    },
-    {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
       "mbid": "8cad04bc-f71b-4bbd-a518-77399a2352ad",
       "title": "Miten asiat oikeesti on?",
@@ -1320,32 +1370,6 @@
         "freshness": 0
       },
       "daysOld": 186
-    },
-    {
-      "id": "mb-da3e070d-7164-4fba-99e9-ea342c501008",
-      "mbid": "da3e070d-7164-4fba-99e9-ea342c501008",
-      "title": "Sweating Someone Else’s Fever",
-      "artist": "Hard‐Fi",
-      "releaseDate": "2026-06-19",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1848,
-      "artistPlaycount": 21374,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 34.778013112560586,
-      "scoreBreakdown": {
-        "artist": 21.778013112560583,
-        "album": 0,
-        "freshness": 13
-      },
-      "daysOld": 17
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
