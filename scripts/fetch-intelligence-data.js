@@ -46,11 +46,7 @@ function filterChineseContent(data) {
     }
     data[key] = val.filter(item => {
       const check = (text) => typeof text === "string" && hasChinese(text);
-      return check(item.title || item.name)
-        || check(item.summary)
-        || check(item.summaryCn || item.overviewCn)
-        || check(item.highlight)
-        || check(item.overview);
+      return check(item.title || item.name) && check(item.summary || item.overview);
     });
   }
 }

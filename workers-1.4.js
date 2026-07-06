@@ -632,28 +632,49 @@ async function handleIntelMovies(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
   const weekAgo = intelDaysAgo(7);
+  const ninetyDaysAgo = intelDaysAgo(90);
 
   const [nowPlayingRaw, upcomingRaw] = await Promise.all([
     intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
     intelFetchTMDB(token, "/movie/upcoming"),
   ]);
 
-  // Merge today + this week into one "This Week" set
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
+  // AND filter: both title and overview must contain Chinese
+  const cnFilter = (m) => hasChinese(m.title || m.name) && hasChinese(m.overview);
+
+  // This week: now_playing released in past 7 days
   const weekM = nowPlayingRaw
     .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
-    .filter(m => hasChinese(m.title) || hasChinese(m.overview))
+    .filter(cnFilter)
+    .slice(0, 20)
+    .map(m => intelNormalizeMovie(m));
+
+  // Upcoming: release_date >= today
+  const weekIds = new Set(weekM.map(m => m.tmdbId));
+  const upcoming = upcomingRaw
+    .filter(m => m.release_date && m.release_date >= today)
+    .filter(cnFilter)
+    .slice(0, 20)
+    .map(m => {
+      const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
+      return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
+    });
+
+  // Now playing: exclude this week, 90-day window, Chinese filter
+  const upcomingIds = new Set(upcoming.map(m => m.tmdbId));
+  const nowPlaying = nowPlayingRaw
+    .filter(m => m.release_date && m.release_date >= ninetyDaysAgo)
+    .filter(m => !weekIds.has(m.id) && !upcomingIds.has(m.id))
+    .filter(cnFilter)
     .slice(0, 20)
     .map(m => intelNormalizeMovie(m));
 
   return {
     updated: today,
     releasedThisWeek: (await intelEnrichWithAI(weekM, "movie", env)).slice(0, 20),
-    upcoming: upcomingRaw.filter(m => m.release_date && m.release_date >= today).slice(0, 20).map(m => {
-      const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
-      return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
-    }),
-    nowPlaying: nowPlayingRaw.slice(0, 20).map(m => intelNormalizeMovie(m)),
+    upcoming,
+    nowPlaying,
   };
 }
 
@@ -677,31 +698,48 @@ async function intelFetchTVEpisodeDates(shows, token) {
 async function handleIntelTV(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
+  const weekAgo = intelDaysAgo(7);
 
   const onTheAir = await intelFetchTMDB(token, "/tv/on_the_air");
 
-  // Enrich on_the_air shows with episode dates for ongoing section
-  const onTheAirEnriched = await intelFetchTVEpisodeDates(onTheAir.slice(0, 20), token);
+  // Enrich on_the_air shows with episode dates (fetch extra to account for filtering)
+  const onTheAirEnriched = await intelFetchTVEpisodeDates(onTheAir, token);
+
+  const hasChinese = (text) => /[一-鿿]/.test(text || "");
+  // AND filter: both title and overview must contain Chinese
+  const cnFilter = (s) => hasChinese(s.title || s.name) && hasChinese(s.overview);
+
+  // This week premieres: on_the_air with first_air_date in past 7 days
+  const weekPremieres = onTheAirEnriched
+    .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
+    .filter(cnFilter)
+    .slice(0, 20)
+    .map(s => intelNormalizeMovie(s, "tv"));
 
   // Upcoming brand-new shows via discover/tv (future premieres only)
   let upcomingTV = [];
   try {
     upcomingTV = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "popularity.desc" });
-    upcomingTV = upcomingTV.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")).filter(s => {
-      // Only keep shows that have actual Chinese content (not English fallback)
-      const hasChinese = (text) => /[一-鿿]/.test(text || "");
-      return hasChinese(s.summary) || hasChinese(s.title);
-    });
+    upcomingTV = upcomingTV
+      .filter(cnFilter)
+      .slice(0, 20)
+      .map(s => intelNormalizeMovie(s, "tv"));
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
-  // Deduplicate: excludes from ongoing any show already in upcoming
-  const upcomingIds = new Set(upcomingTV.map(s => s.tmdbId));
+  // Ongoing: exclude week premieres + upcoming, Chinese filter
+  const excludeIds = new Set([
+    ...weekPremieres.map(s => s.tmdbId),
+    ...upcomingTV.map(s => s.tmdbId),
+  ]);
   const ongoingTV = onTheAirEnriched
-    .map(s => intelNormalizeMovie(s, "tv"))
-    .filter(s => !upcomingIds.has(s.tmdbId));
+    .filter(s => !excludeIds.has(s.id))
+    .filter(cnFilter)
+    .slice(0, 20)
+    .map(s => intelNormalizeMovie(s, "tv"));
 
   return {
     updated: today,
+    premieresThisWeek: await intelEnrichWithAI(weekPremieres, "movie", env),
     upcoming: upcomingTV,
     ongoing: ongoingTV,
   };
