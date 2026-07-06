@@ -637,8 +637,10 @@ async function handleIntelMovies(env) {
   ]);
 
   // Merge today + this week into one "This Week" set
+  const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const weekM = nowPlayingRaw
     .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
+    .filter(m => hasChinese(m.title) || hasChinese(m.overview))
     .slice(0, 20)
     .map(m => intelNormalizeMovie(m));
 
