@@ -1069,55 +1069,37 @@ async function handleIntelComing(env) {
 
 // ── Debug: test Last.fm API ──
 async function handleIntelDebug(env) {
-  const results = { lastfm: { configured: !!env.LASTFM_API_KEY, tests: [], chart: null } };
-  if (env.LASTFM_API_KEY) {
-    for (const { label, method, params } of [
-      { label: "Lil Nas X", method: "artist.getinfo", params: { artist: "Lil Nas X" } },
-      { label: "Kendrick Lamar", method: "artist.getinfo", params: { artist: "Kendrick Lamar" } },
-    ]) {
-      try {
-        const t0 = Date.now();
-        const data = await intelFetchLastFM(method, params, env);
-        const ms = Date.now() - t0;
-        if (data?.artist?.stats) {
-          results.lastfm.tests.push({ label, ok: true, ms, listeners: parseInt(data.artist.stats.listeners) || 0 });
-        } else if (data?.message) {
-          results.lastfm.tests.push({ label, ok: false, ms, error: data.message });
-        } else {
-          results.lastfm.tests.push({ label, ok: false, ms, error: "no data" });
-        }
-      } catch (e) {
-        results.lastfm.tests.push({ label, ok: false, error: e.message });
-      }
-    }
-    // Test chart.gettopalbums
-    try {
-      const t0 = Date.now();
-      const chart = await intelFetchLastFM("chart.gettopalbums", { limit: "3" }, env);
-      const ms = Date.now() - t0;
-      if (chart?.albums?.album) {
-        results.lastfm.chart = { ok: true, ms, count: chart.albums.album.length, first: chart.albums.album[0]?.name || "" };
-      } else {
-        results.lastfm.chart = { ok: false, ms, keys: Object.keys(chart || {}), raw: JSON.stringify(chart).slice(0, 500) };
-      }
-    } catch (e) {
-      results.lastfm.chart = { ok: false, error: e.message };
-    }
-    // Test tag.gettopalbums
-    try {
-      const t0 = Date.now();
-      const tagData = await intelFetchLastFM("tag.gettopalbums", { tag: "hip hop", limit: "3" }, env);
-      const ms = Date.now() - t0;
-      if (tagData?.albums?.album) {
-        results.lastfm.tagAlbum = { ok: true, ms, count: tagData.albums.album.length, first: tagData.albums.album[0]?.name || "", artist: tagData.albums.album[0]?.artist?.name || "" };
-      } else {
-        results.lastfm.tagAlbum = { ok: false, ms, keys: Object.keys(tagData || {}), raw: JSON.stringify(tagData).slice(0, 500) };
-      }
-    } catch (e) {
-      results.lastfm.tagAlbum = { ok: false, error: e.message };
-    }
-  }
-  return { updated: new Date().toISOString().split("T")[0], ...results };
+  const token = env.TMDB_API_READ_ACCESS_TOKEN;
+  const today = new Date().toISOString().split("T")[0];
+  const thirtyDaysLater = new Date(Date.now() + 30 * 86400000).toISOString().split("T")[0];
+  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+
+  const [discover, onTheAir, trending] = await Promise.all([
+    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 5),
+    intelFetchPages(token, "/tv/on_the_air", {}, 2),
+    intelFetchTMDB(token, "/trending/tv/week"),
+  ]);
+
+  const hasChinese = (text) => /[一-鿿]/.test(text || "");
+  const titleCn = (s) => hasChinese(s.title || s.name);
+
+  const extractPop = (items, label) => items.map((s, i) => ({
+    rank: i + 1,
+    title: s.title || s.name,
+    titleEn: s._titleEn || "",
+    originalLanguage: s.original_language,
+    popularity: s.popularity,
+    voteAverage: s.vote_average,
+    releaseDate: s.first_air_date || s.release_date,
+    hasCnTitle: titleCn(s),
+  }));
+
+  return {
+    updated: today,
+    discoverTV: extractPop(discover, "discover"),
+    onTheAir: extractPop(onTheAir, "on_the_air"),
+    trendingTV: extractPop(trending, "trending"),
+  };
 }
 
 // ── Daily Digest ──
