@@ -775,10 +775,12 @@ async function handleIntelTV(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
   const weekAgo = intelDaysAgo(7);
+  const ninetyDaysAgo = intelDaysAgo(90);
+  const thirtyDaysLater = new Date(Date.now() + 30 * 86400000).toISOString().split("T")[0];
 
   const [onTheAir, discoverRaw] = await Promise.all([
     intelFetchPages(token, "/tv/on_the_air", {}, 4),
-    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "popularity.desc" }, 4),
+    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 4),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -793,9 +795,10 @@ async function handleIntelTV(env) {
   const weekPremieres = premiereSelected.map(s => intelNormalizeMovie(s, "tv"));
   const premiereIds = new Set(premiereSelected.map(s => s.id));
 
-  // Upcoming via discover/tv (future premieres, dedup against premieres)
+  // Upcoming via discover/tv (future premieres within 30 days, dedup against premieres)
   const upcomingCandidates = discoverRaw
     .filter(s => !premiereIds.has(s.id))
+    .filter(s => (s.popularity || 0) >= 3)  // filter out obscure shows
     .filter(cnFilter);
   const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, reserve);
   const upcomingTV = upcomingSelected.map(s => intelNormalizeMovie(s, "tv"));
@@ -807,7 +810,12 @@ async function handleIntelTV(env) {
     .filter(cnFilter);
   const ongoingSelected = intelSelectDiverse(ongoingCandidates, 20, reserve);
   const ongoingEnriched = await intelFetchTVEpisodeDates(ongoingSelected, token);
-  const ongoingTV = ongoingEnriched.map(s => intelNormalizeMovie(s, "tv"));
+  const ongoingTV = ongoingEnriched
+    .filter(s => {
+      const lastAir = s.last_episode_to_air?.air_date;
+      return !lastAir || lastAir >= ninetyDaysAgo;
+    })
+    .map(s => intelNormalizeMovie(s, "tv"));
 
   return {
     updated: today,
