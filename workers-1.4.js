@@ -686,7 +686,7 @@ async function handleIntelOverview(env) {
   const upcomingCandidates = upcoming
     .filter(m => m.release_date && m.release_date >= today)
     .filter(titleCn);
-  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, { zh: 1 });
+  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, {});
   const comingSoon = upcomingSelected.slice(0, 6).map(m => {
     const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
     return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
@@ -738,7 +738,7 @@ async function handleIntelMovies(env) {
     .filter(m => m.release_date && m.release_date >= today)
     .filter(m => !weekIds.has(m.id))
     .filter(titleCn);
-  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, { zh: 1 });
+  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, {});
   const upcoming = upcomingSelected.map(m => {
     const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
     return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
@@ -821,7 +821,7 @@ async function handleIntelTV(env) {
   for (const s of upcomingFromDiscover) {
     if (!trendIds.has(s.id)) upcomingMerged.push(s);
   }
-  const upcomingSelected = intelSelectDiverse(upcomingMerged, 20, { cn: 1 });
+  const upcomingSelected = intelSelectDiverse(upcomingMerged, 20, {});
   const upcomingTV = upcomingSelected.map(s => intelNormalizeMovie(s, "tv"));
   const upcomingIds = new Set(upcomingSelected.map(s => s.id));
 
