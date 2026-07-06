@@ -788,7 +788,7 @@ async function handleIntelTV(env) {
   const [onTheAir, trendingTV, discoverRaw] = await Promise.all([
     intelFetchPages(token, "/tv/on_the_air", {}, 4),
     intelFetchTMDB(token, "/trending/tv/week"),
-    intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }),
+    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 3),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -804,17 +804,18 @@ async function handleIntelTV(env) {
   const premiereIds = new Set(premiereSelected.map(s => s.id));
 
   // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 30 days)
-  // Relaxed title-only Chinese filter; English shows auto-pass, non-English need popularity >= 5
+  // Relaxed title-only Chinese filter; English shows auto-pass
+  // Trending: require vote_average > 0 (exclude unscored), Discover: higher popularity threshold (all scored 0)
   const titleCn = (s) => hasChinese(s.title || s.name);
-  const qualityFilter = (s) => s.original_language === "en" || (s.popularity || 0) >= 5;
   const upcomingFromTrending = trendingTV
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
+    .filter(s => (s.vote_average || 0) > 0)
     .filter(titleCn)
-    .filter(qualityFilter);
+    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
   const upcomingFromDiscover = discoverRaw
     .filter(s => !premiereIds.has(s.id))
     .filter(titleCn)
-    .filter(qualityFilter);
+    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 15);
   // Merge and dedup
   const upcomingMerged = [...upcomingFromTrending];
   const trendIds = new Set(upcomingFromTrending.map(s => s.id));
