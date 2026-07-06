@@ -657,11 +657,32 @@ async function handleIntelMovies(env) {
   };
 }
 
+async function intelFetchTVEpisodeDates(shows, token) {
+  // Fetch /tv/{id} details to get last_episode_to_air / next_episode_to_air
+  // (list endpoints like on_the_air don't include these fields)
+  const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
+  return Promise.all((shows || []).map(async (show) => {
+    try {
+      const details = await withCache(`tv-ep-${show.id}`, async () => {
+        const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
+        return r.ok ? r.json() : null;
+      }, 86400);
+      if (details?.last_episode_to_air || details?.next_episode_to_air) {
+        return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
+      }
+    } catch (e) { /* skip enrichment on error */ }
+    return show;
+  }));
+}
+
 async function handleIntelTV(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
 
   const onTheAir = await intelFetchTMDB(token, "/tv/on_the_air");
+
+  // Enrich on_the_air shows with episode dates for ongoing section
+  const onTheAirEnriched = await intelFetchTVEpisodeDates(onTheAir.slice(0, 20), token);
 
   // This week premieres via /tv/on_the_air (shows airing new episodes this week)
   const twoYearsAgo = intelDaysAgo(730);
@@ -685,7 +706,7 @@ async function handleIntelTV(env) {
     updated: today,
     premieresThisWeek: await intelEnrichWithAI(weekPremieres, "movie", env),
     upcoming: upcomingTV,
-    ongoing: onTheAir.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
+    ongoing: onTheAirEnriched.map(s => intelNormalizeMovie(s, "tv")),
   };
 }
 
