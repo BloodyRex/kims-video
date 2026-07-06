@@ -44,7 +44,14 @@ async function main() {
   for (const task of tasks) {
     const filePath = join(API_DIR, task.file);
     try {
-      const data = await fetchJSON(task.endpoint);
+      let data = await fetchJSON(task.endpoint);
+
+      // Filter non-Chinese content from movies
+      if (task.file === "movies.json") {
+        const hasChinese = (text) => /[一-鿿]/.test(text || "");
+        if (data.releasedThisWeek) data.releasedThisWeek = data.releasedThisWeek.filter(m => hasChinese(m.title) || hasChinese(m.summary));
+        if (data.upcoming) data.upcoming = data.upcoming.filter(m => hasChinese(m.title) || hasChinese(m.summary));
+      }
 
       // Check if data actually changed
       let oldData = null;
