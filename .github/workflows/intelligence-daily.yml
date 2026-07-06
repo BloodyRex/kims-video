@@ -5,7 +5,7 @@ on:
     paths:
       - ".github/workflows/intelligence-daily.yml"
   schedule:
-    - cron: "3 16 * * *"
+    - cron: "28 17 * * *"
   workflow_dispatch:
 
 jobs:
