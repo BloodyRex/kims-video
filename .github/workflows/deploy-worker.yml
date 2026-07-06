@@ -3,7 +3,7 @@ name: Deploy Worker
 on:
   push:
     paths:
-      - "workers-1.4.txt"
+      - "workers-1.4.js"
     branches: [main]
   workflow_dispatch:
 
@@ -24,4 +24,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy workers-1.4.txt --name kims-video --compatibility-date 2024-12-01
+          command: deploy workers-1.4.js --name kims-video --compatibility-date 2024-12-01
