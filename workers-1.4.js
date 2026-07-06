@@ -757,9 +757,10 @@ async function handleIntelTV(env) {
   const ninetyDaysAgo = intelDaysAgo(90);
   const thirtyDaysLater = new Date(Date.now() + 30 * 86400000).toISOString().split("T")[0];
 
-  const [onTheAir, discoverRaw] = await Promise.all([
+  const [onTheAir, trendingTV, discoverRaw] = await Promise.all([
     intelFetchPages(token, "/tv/on_the_air", {}, 4),
-    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 4),
+    intelFetchTMDB(token, "/trending/tv/week"),
+    intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -774,12 +775,21 @@ async function handleIntelTV(env) {
   const weekPremieres = premiereSelected.map(s => intelNormalizeMovie(s, "tv"));
   const premiereIds = new Set(premiereSelected.map(s => s.id));
 
-  // Upcoming via discover/tv (future premieres within 30 days, dedup against premieres)
-  const upcomingCandidates = discoverRaw
+  // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 30 days)
+  // Use relaxed filter: only require Chinese title (not overview) so US/EU shows with translated titles also appear
+  const upcomingFromTrending = trendingTV
+    .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
+    .filter(s => hasChinese(s.title || s.name));
+  const upcomingFromDiscover = discoverRaw
     .filter(s => !premiereIds.has(s.id))
-    .filter(s => (s.popularity || 0) >= 4)  // filter out obscure shows
-    .filter(cnFilter);
-  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, reserve);
+    .filter(s => hasChinese(s.title || s.name));
+  // Merge and dedup
+  const upcomingMerged = [...upcomingFromTrending];
+  const trendIds = new Set(upcomingFromTrending.map(s => s.id));
+  for (const s of upcomingFromDiscover) {
+    if (!trendIds.has(s.id)) upcomingMerged.push(s);
+  }
+  const upcomingSelected = intelSelectDiverse(upcomingMerged, 20, reserve);
   const upcomingTV = upcomingSelected.map(s => intelNormalizeMovie(s, "tv"));
   const upcomingIds = new Set(upcomingSelected.map(s => s.id));
 
