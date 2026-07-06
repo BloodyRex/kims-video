@@ -656,50 +656,29 @@ Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "ðŸ”¥ çƒ
 async function handleIntelOverview(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
-  const weekAgo = intelDaysAgo(7);
 
-  const [nowPlaying, upcoming, trending] = await Promise.all([
-    intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
-    intelFetchTMDB(token, "/movie/upcoming"),
+  // Reuse movie & TV handler data for consistency with category pages
+  const [movieData, tvData, trendingRaw, todayMB] = await Promise.all([
+    handleIntelMovies(env),
+    handleIntelTV(env),
     intelFetchTMDB(token, "/trending/movie/week"),
+    intelFetchMusicBrainz(today),
   ]);
-
-  const todayM = nowPlaying.filter(m => m.release_date === today).map(m => intelNormalizeMovie(m));
-  const weekM = nowPlaying.filter(m => m.release_date >= weekAgo && m.release_date < today).slice(0, 20).map(m => intelNormalizeMovie(m));
-
-  const tvOnAir = await intelFetchTMDB(token, "/tv/on_the_air");
-  const tvCount = tvOnAir.length;
-
-  // Music count (fast: just query today)
-  const todayMB = await intelFetchMusicBrainz(today);
-
-  // Editor's picks: past week movies, max 2
-  const editorsPicks = await intelEnrichWithAI(
-    nowPlaying
-      .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
-      .slice(0, 5)
-      .map(m => intelNormalizeMovie(m)),
-    "movie", env
-  );
-  const editorsPickTwo = editorsPicks.slice(0, 2);
 
   return {
     updated: today,
     stats: {
-      moviesReleased: todayM.length + weekM.length,
-      tvAiringThisWeek: tvCount,
-      albumsReleased: todayMB.length,
-      trending: trending.length,
+      moviesReleased: (movieData.releasedThisWeek || []).length,
+      tvAiringThisWeek: (tvData.ongoing || []).length,
+      albumsReleased: (todayMB || []).length,
+      trending: (trendingRaw || []).length,
     },
-    editorsPicks: editorsPickTwo,
-    comingSoon: upcoming
-      .filter(m => m.release_date && m.release_date >= today)
-      .slice(0, 6).map(m => {
-        const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
-        return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
-      }),
-    trending: trending.slice(0, 5).map((m, i) => ({ ...intelNormalizeMovie(m), rank: i + 1, trend: "new" })),
-    brief: `Today: ${todayM.length} movie(s) released, ${tvCount} TV show(s) airing, ${todayMB.length} new album(s).`,
+    editorsPicks: (movieData.releasedThisWeek || []).slice(0, 2),
+    comingSoon: (movieData.upcoming || []).slice(0, 6),
+    trending: (trendingRaw || []).slice(0, 5).map((m, i) => ({
+      ...intelNormalizeMovie(m), rank: i + 1, trend: "new"
+    })),
+    brief: `Today: ${(movieData.releasedThisWeek || []).length} movie(s) released, ${(tvData.ongoing || []).length} TV show(s) airing, ${(todayMB || []).length} new album(s).`,
   };
 }
 
@@ -798,7 +777,7 @@ async function handleIntelTV(env) {
   // Upcoming via discover/tv (future premieres within 30 days, dedup against premieres)
   const upcomingCandidates = discoverRaw
     .filter(s => !premiereIds.has(s.id))
-    .filter(s => (s.popularity || 0) >= 3)  // filter out obscure shows
+    .filter(s => (s.popularity || 0) >= 4)  // filter out obscure shows
     .filter(cnFilter);
   const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, reserve);
   const upcomingTV = upcomingSelected.map(s => intelNormalizeMovie(s, "tv"));
