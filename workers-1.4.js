@@ -749,7 +749,8 @@ async function handleIntelMovies(env) {
   const nowPlayingCandidates = nowPlayingRaw
     .filter(m => m.release_date && m.release_date >= ninetyDaysAgo)
     .filter(m => !weekIds.has(m.id) && !upcomingIds.has(m.id))
-    .filter(cnFilter);
+    .filter(cnFilter)
+    .filter(m => (m.popularity || 0) >= 25);
   const nowPlaying = intelSelectDiverse(nowPlayingCandidates, 20, reserve)
     .map(m => intelNormalizeMovie(m));
 
@@ -841,7 +842,8 @@ async function handleIntelTV(env) {
   // Ongoing: exclude premieres + upcoming, enrich episode dates on final 20 only
   const ongoingCandidates = onTheAir
     .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
-    .filter(cnFilter);
+    .filter(cnFilter)
+    .filter(s => (s.popularity || 0) >= 80);
   const ongoingSelected = intelSelectDiverse(ongoingCandidates, 20, reserve);
   const ongoingEnriched = await intelFetchTVEpisodeDates(ongoingSelected, token);
   const ongoingTV = ongoingEnriched
