@@ -656,29 +656,56 @@ Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "🔥 �
 async function handleIntelOverview(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
+  const weekAgo = intelDaysAgo(7);
 
-  // Reuse movie & TV handler data for consistency with category pages
-  const [movieData, tvData, trendingRaw, todayMB] = await Promise.all([
-    handleIntelMovies(env),
-    handleIntelTV(env),
+  // Fetch data directly with same page counts as category handlers (21 subrequests)
+  const [nowPlaying, upcoming, trending, tvOnAir, todayMB] = await Promise.all([
+    intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
+    intelFetchTMDB(token, "/movie/upcoming"),
     intelFetchTMDB(token, "/trending/movie/week"),
+    intelFetchPages(token, "/tv/on_the_air", {}, 4),
     intelFetchMusicBrainz(today),
   ]);
+
+  const hasChinese = (text) => /[一-鿿]/.test(text || "");
+  const cnFilter = (m) => hasChinese(m.title || m.name) && hasChinese(m.overview);
+  const titleCn = (m) => hasChinese(m.title || m.name);
+
+  // Movies: same cnFilter + diversity as handleIntelMovies
+  const weekCandidates = nowPlaying
+    .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
+    .filter(cnFilter);
+  const weekSelected = intelSelectDiverse(weekCandidates, 20, { zh: 2, ja: 1, ko: 1 });
+  const moviesReleased = weekSelected.length;
+
+  // TV: same cnFilter as handleIntelTV  (ongoing section)
+  const tvCandidates = tvOnAir.filter(cnFilter);
+  const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 });
+
+  // Upcoming movies: same title-only filter + reduced reserve as handleIntelMovies
+  const upcomingCandidates = upcoming
+    .filter(m => m.release_date && m.release_date >= today)
+    .filter(titleCn);
+  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, { zh: 1 });
+  const comingSoon = upcomingSelected.slice(0, 6).map(m => {
+    const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
+    return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
+  });
 
   return {
     updated: today,
     stats: {
-      moviesReleased: (movieData.releasedThisWeek || []).length,
-      tvAiringThisWeek: (tvData.ongoing || []).length,
+      moviesReleased,
+      tvAiringThisWeek: tvSelected.length,
       albumsReleased: (todayMB || []).length,
-      trending: (trendingRaw || []).length,
+      trending: (trending || []).length,
     },
-    editorsPicks: (movieData.releasedThisWeek || []).slice(0, 2),
-    comingSoon: (movieData.upcoming || []).slice(0, 6),
-    trending: (trendingRaw || []).slice(0, 5).map((m, i) => ({
+    editorsPicks: weekSelected.slice(0, 2).map(m => intelNormalizeMovie(m)),
+    comingSoon,
+    trending: (trending || []).slice(0, 5).map((m, i) => ({
       ...intelNormalizeMovie(m), rank: i + 1, trend: "new"
     })),
-    brief: `Today: ${(movieData.releasedThisWeek || []).length} movie(s) released, ${(tvData.ongoing || []).length} TV show(s) airing, ${(todayMB || []).length} new album(s).`,
+    brief: `Today: ${moviesReleased} movie(s) released, ${tvSelected.length} TV show(s) airing, ${(todayMB || []).length} new album(s).`,
   };
 }
 
