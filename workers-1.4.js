@@ -820,6 +820,7 @@ async function handleIntelTV(env) {
   // Trending: require vote_average > 0 (exclude unscored), Discover: higher popularity threshold (all scored 0)
   const upcomingFromTrending = trendingTV
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
+    .filter(s => !premiereIds.has(s.id))
     .filter(s => (s.vote_average || 0) > 0)
     .filter(titleCn)
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
