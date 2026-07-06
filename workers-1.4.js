@@ -827,7 +827,7 @@ async function handleIntelTV(env) {
   const upcomingFromDiscover = discoverRaw
     .filter(s => !premiereIds.has(s.id))
     .filter(titleCn)
-    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 50);
+    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 15);
   // Merge and dedup
   const upcomingMerged = [...upcomingFromTrending];
   const trendIds = new Set(upcomingFromTrending.map(s => s.id));
