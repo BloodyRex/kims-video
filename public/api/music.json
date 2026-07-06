@@ -31,10 +31,10 @@
         "R&B"
       ],
       "genre": "流行",
-      "highlight": "宇多田光经典回归，R&B流行杰作",
-      "highlightEn": "Utada's classic R&B pop masterpiece returns",
-      "summary": "高人气日本天后，2009年经典专辑，风格融合R&B与流行",
-      "summaryEn": "Highly popular Japanese diva, classic 2009 album blending R&B and pop",
+      "highlight": "宇多田光2009年经典回归，R&B流行杰作",
+      "highlightEn": "Utada's 2009 classic R&B pop masterpiece",
+      "summary": "日本流行天后，高人气，风格融合R&B与流行",
+      "summaryEn": "Japanese pop diva, high popularity, blends R&B and pop",
       "recommendationTag": "🔥 热门趋势",
       "recommendationTagEn": "Trending Now",
       "recommendationTagId": "trending",
@@ -64,16 +64,16 @@
         "经典摇滚",
         "软摇滚"
       ],
-      "aiScore": 9.2,
+      "aiScore": 9.5,
       "tagsEn": [
         "Classic Rock",
         "Soft Rock"
       ],
       "genre": "经典摇滚",
-      "highlight": "Fleetwood Mac同名经典，软摇滚传奇",
-      "highlightEn": "Fleetwood Mac's self-titled classic soft rock legend",
-      "summary": "极受欢迎，1975年经典摇滚，全球数百万听众",
-      "summaryEn": "Extremely popular, 1975 classic rock with millions of listeners worldwide",
+      "highlight": "Fleetwood Mac同名经典，软摇滚里程碑",
+      "highlightEn": "Fleetwood Mac's self-titled classic, soft rock milestone",
+      "summary": "极高人气，1975年经典摇滚，影响深远",
+      "summaryEn": "Extremely high popularity, 1975 classic rock, influential",
       "recommendationTag": "🔥 热门趋势",
       "recommendationTagEn": "Trending Now",
       "recommendationTagId": "trending",
@@ -103,16 +103,16 @@
         "雷鬼",
         "根源雷鬼"
       ],
-      "aiScore": 9.1,
+      "aiScore": 9,
       "tagsEn": [
         "Reggae",
         "Roots Reggae"
       ],
       "genre": "雷鬼",
-      "highlight": "Bob Marley雷鬼经典，反抗之声",
-      "highlightEn": "Bob Marley's reggae classic, voice of resistance",
-      "summary": "雷鬼传奇，80年代根源雷鬼，全球影响力巨大",
-      "summaryEn": "Reggae legend, 80s roots reggae with global impact",
+      "highlight": "Bob Marley雷鬼经典，反抗与希望之声",
+      "highlightEn": "Bob Marley reggae classic, voice of resistance and hope",
+      "summary": "雷鬼传奇，高人气，根源雷鬼风格",
+      "summaryEn": "Reggae legend, high popularity, roots reggae style",
       "recommendationTag": "🔥 热门趋势",
       "recommendationTagEn": "Trending Now",
       "recommendationTagId": "trending",
@@ -142,63 +142,23 @@
         "车库摇滚",
         "朋克"
       ],
-      "aiScore": 8.8,
+      "aiScore": 8.5,
       "tagsEn": [
         "Garage Rock",
         "Punk"
       ],
       "genre": "车库摇滚",
-      "highlight": "The Stooges车库朋克始祖，原始能量",
-      "highlightEn": "The Stooges garage punk originators, raw energy",
-      "summary": "车库摇滚与原型朋克，60年代经典，影响力深远",
-      "summaryEn": "Garage rock and proto-punk, 60s classic, highly influential",
-      "recommendationTag": "🔥 热门趋势",
-      "recommendationTagEn": "Trending Now",
-      "recommendationTagId": "trending",
-      "category": "trending"
+      "highlight": "The Stooges车库摇滚开山之作，原始能量",
+      "highlightEn": "The Stooges' garage rock pioneering work, raw energy",
+      "summary": "原型朋克奠基者，风格原始有力",
+      "summaryEn": "Proto-punk founders, raw and powerful style",
+      "recommendationTag": "⭐ 编辑推荐",
+      "recommendationTagEn": "Editor's Pick",
+      "recommendationTagId": "editor",
+      "category": "editor"
     },
     {
-      "index": 5,
-      "mbid": "07bc494f-85f7-4993-b5df-1a47c5e9a13c",
-      "cover": "",
-      "title": "Night at the Opera",
-      "artist": "Emei",
-      "country": "XW",
-      "releaseDate": "2026-06-12",
-      "year": "2026",
-      "primaryType": "EP",
-      "listeners": 406616,
-      "playcount": 8284854,
-      "artistStars": 4,
-      "lfmTags": [
-        "pop",
-        "electronic",
-        "rnb",
-        "3-5"
-      ],
-      "tags": [
-        "流行",
-        "电子",
-        "节奏蓝调"
-      ],
-      "aiScore": 8.5,
-      "tagsEn": [
-        "Pop",
-        "Electronic",
-        "R&B"
-      ],
-      "genre": "流行",
-      "highlight": "Emei电子流行EP，迷幻律动",
-      "highlightEn": "Emei's electronic pop EP, psychedelic groove",
-      "summary": "流行电子R&B融合，高播放量，风格新颖",
-      "summaryEn": "Pop-electronic-R&B fusion, high playcount, fresh style",
-      "recommendationTag": "🔥 热门趋势",
-      "recommendationTagEn": "Trending Now",
-      "recommendationTagId": "trending",
-      "category": "trending"
-    },
-    {
-      "index": 8,
+      "index": 7,
       "mbid": "19c8eddd-b573-45b0-bf69-f91fe411d41e",
       "cover": "",
       "title": "Silver City",
@@ -221,23 +181,23 @@
         "基督教摇滚",
         "另类摇滚"
       ],
-      "aiScore": 8.2,
+      "aiScore": 8,
       "tagsEn": [
         "Christian Rock",
         "Alternative Rock"
       ],
       "genre": "基督教摇滚",
-      "highlight": "Falling Up另类摇滚，信仰与力量",
-      "highlightEn": "Falling Up alternative rock, faith and power",
-      "summary": "基督教摇滚与另类摇滚结合，旋律动人，制作精良",
-      "summaryEn": "Christian rock meets alternative rock, melodic and well-produced",
+      "highlight": "Falling Up基督教摇滚，另类金属氛围",
+      "highlightEn": "Falling Up Christian rock with alternative metal vibes",
+      "summary": "高人气基督教摇滚，另类摇滚风格",
+      "summaryEn": "High popularity Christian rock, alternative rock style",
       "recommendationTag": "⭐ 编辑推荐",
       "recommendationTagEn": "Editor's Pick",
       "recommendationTagId": "editor",
       "category": "editor"
     },
     {
-      "index": 10,
+      "index": 9,
       "mbid": "0ff52cf8-c0e6-455e-8ad9-e5b0ea808a5a",
       "cover": "",
       "title": "Frisson Noir",
@@ -257,25 +217,25 @@
       ],
       "tags": [
         "金属",
-        "交响金属"
+        "哥特摇滚"
       ],
-      "aiScore": 8.7,
+      "aiScore": 8.5,
       "tagsEn": [
         "Metal",
-        "Symphonic Metal"
+        "Gothic Rock"
       ],
       "genre": "金属",
-      "highlight": "Tarja交响金属，暗黑优雅",
-      "highlightEn": "Tarja symphonic metal, dark elegance",
-      "summary": "前夜愿主唱个人专辑，哥特交响金属，气势磅礴",
-      "summaryEn": "Ex-Nightwish vocalist solo album, gothic symphonic metal, grand",
-      "recommendationTag": "⭐ 编辑推荐",
-      "recommendationTagEn": "Editor's Pick",
-      "recommendationTagId": "editor",
-      "category": "editor"
+      "highlight": "Tarja交响金属，暗黑哥特美声",
+      "highlightEn": "Tarja symphonic metal, dark gothic beauty",
+      "summary": "前夜愿主唱，高人气交响金属",
+      "summaryEn": "Ex-Nightwish vocalist, high popularity symphonic metal",
+      "recommendationTag": "🔥 热门趋势",
+      "recommendationTagEn": "Trending Now",
+      "recommendationTagId": "trending",
+      "category": "trending"
     },
     {
-      "index": 11,
+      "index": 10,
       "mbid": "ca12bdf9-c25a-4d98-9188-86d41c71efbd",
       "cover": "",
       "title": "Leather Temple",
@@ -298,23 +258,56 @@
         "电子",
         "摇滚"
       ],
-      "aiScore": 8.6,
+      "aiScore": 8.5,
       "tagsEn": [
         "Electronic",
         "Rock"
       ],
       "genre": "电子",
-      "highlight": "Carpenter Brut电子摇滚，复古未来",
-      "highlightEn": "Carpenter Brut electro rock, retro-future",
-      "summary": "法国电子摇滚，器乐为主，合成器驱动，风格独特",
-      "summaryEn": "French electro rock, instrumental, synth-driven, unique style",
+      "highlight": "Carpenter Brut电子摇滚，合成器浪潮",
+      "highlightEn": "Carpenter Brut electronic rock, synthwave energy",
+      "summary": "法国电子摇滚，高人气，器乐为主",
+      "summaryEn": "French electronic rock, high popularity, instrumental focus",
+      "recommendationTag": "🔥 热门趋势",
+      "recommendationTagEn": "Trending Now",
+      "recommendationTagId": "trending",
+      "category": "trending"
+    },
+    {
+      "index": 13,
+      "mbid": "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "cover": "",
+      "title": "Snow, Vol. 9",
+      "artist": "Wun Two",
+      "country": "XW",
+      "releaseDate": "2026",
+      "year": "2026",
+      "primaryType": "EP",
+      "listeners": 473957,
+      "playcount": 6377135,
+      "artistStars": 4,
+      "lfmTags": [],
+      "tags": [
+        "Lo-fi",
+        "嘻哈"
+      ],
+      "aiScore": 8,
+      "tagsEn": [
+        "Lo-fi",
+        "Hip Hop"
+      ],
+      "genre": "Lo-fi",
+      "highlight": "Wun Two lo-fi hip hop，雪系列第九卷",
+      "highlightEn": "Wun Two lo-fi hip hop, Snow series Vol. 9",
+      "summary": "高人气lo-fi beat制作人，氛围舒适",
+      "summaryEn": "High popularity lo-fi beat producer, chill vibes",
       "recommendationTag": "⭐ 编辑推荐",
       "recommendationTagEn": "Editor's Pick",
       "recommendationTagId": "editor",
       "category": "editor"
     },
     {
-      "index": 15,
+      "index": 14,
       "mbid": "ccca0f73-1b3d-4264-9fd8-68ae932c3130",
       "cover": "",
       "title": "Monument",
@@ -337,23 +330,23 @@
         "哥特金属",
         "工业金属"
       ],
-      "aiScore": 8.3,
+      "aiScore": 8,
       "tagsEn": [
         "Gothic Metal",
         "Industrial Metal"
       ],
       "genre": "哥特金属",
-      "highlight": "Crematory工业哥特金属，暗潮汹涌",
-      "highlightEn": "Crematory industrial gothic metal, dark tide",
-      "summary": "德国哥特金属代表，工业元素，重型与旋律并存",
-      "summaryEn": "German gothic metal representative, industrial elements, heavy yet melodic",
+      "highlight": "Crematory工业哥特金属，暗黑律动",
+      "highlightEn": "Crematory industrial gothic metal, dark grooves",
+      "summary": "德国哥特金属代表，工业元素",
+      "summaryEn": "German gothic metal representative, industrial elements",
       "recommendationTag": "⭐ 编辑推荐",
       "recommendationTagEn": "Editor's Pick",
       "recommendationTagId": "editor",
       "category": "editor"
     },
     {
-      "index": 16,
+      "index": 15,
       "mbid": "dda01573-1be8-4f7a-b06f-9cc3d066f515",
       "cover": "",
       "title": "Masekela",
@@ -374,58 +367,25 @@
       ],
       "tags": [
         "爵士融合",
-        "非洲爵士"
+        "非洲音乐"
       ],
-      "aiScore": 8.4,
+      "aiScore": 8.5,
       "tagsEn": [
         "Jazz Fusion",
-        "African Jazz"
+        "African"
       ],
       "genre": "爵士融合",
       "highlight": "Hugh Masekela非洲爵士，小号传奇",
       "highlightEn": "Hugh Masekela African jazz, trumpet legend",
-      "summary": "南非爵士小号手，融合爵士与非洲节奏，文化代表",
-      "summaryEn": "South African jazz trumpeter, fusion of jazz and African rhythms, cultural icon",
+      "summary": "南非爵士大师，融合非洲节奏",
+      "summaryEn": "South African jazz master, fused with African rhythms",
       "recommendationTag": "🌍 环球音乐",
       "recommendationTagEn": "Around the World",
       "recommendationTagId": "world",
       "category": "world"
     },
     {
-      "index": 14,
-      "mbid": "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
-      "cover": "",
-      "title": "Snow, Vol. 9",
-      "artist": "Wun Two",
-      "country": "XW",
-      "releaseDate": "2026",
-      "year": "2026",
-      "primaryType": "EP",
-      "listeners": 473957,
-      "playcount": 6377135,
-      "artistStars": 4,
-      "lfmTags": [],
-      "tags": [
-        "低传真嘻哈",
-        "器乐嘻哈"
-      ],
-      "aiScore": 7.8,
-      "tagsEn": [
-        "Lo-fi Hip Hop",
-        "Instrumental Hip Hop"
-      ],
-      "genre": "低传真嘻哈",
-      "highlight": "Wun Two lo-fi hip hop，悠闲氛围",
-      "highlightEn": "Wun Two lo-fi hip hop, laid-back vibes",
-      "summary": "低传真嘻哈EP，轻松惬意，适合放松聆听",
-      "summaryEn": "Lo-fi hip hop EP, relaxing and easy-listening",
-      "recommendationTag": "💎 隐藏宝石",
-      "recommendationTagEn": "Hidden Gem",
-      "recommendationTagId": "hidden",
-      "category": "hidden-gem"
-    },
-    {
-      "index": 19,
+      "index": 18,
       "mbid": "678bbf03-22b8-4342-bf02-7f0a0dcb353d",
       "cover": "",
       "title": "The Great Adventure",
@@ -448,17 +408,17 @@
         "Pop"
       ],
       "genre": "舞曲",
-      "highlight": "DJ BoBo瑞士舞曲，欧陆流行",
-      "highlightEn": "DJ BoBo Swiss dance, Euro pop",
-      "summary": "瑞士舞曲流行代表，高人气，欧陆风格",
-      "summaryEn": "Swiss dance-pop representative, high popularity, Euro style",
-      "recommendationTag": "🌍 环球音乐",
-      "recommendationTagEn": "Around the World",
-      "recommendationTagId": "world",
-      "category": "world"
+      "highlight": "DJ BoBo欧陆舞曲，瑞士流行巨星",
+      "highlightEn": "DJ BoBo Eurodance, Swiss pop superstar",
+      "summary": "瑞士舞曲代表，高人气，节奏动感",
+      "summaryEn": "Swiss dance music icon, high popularity, energetic beats",
+      "recommendationTag": "⭐ 编辑推荐",
+      "recommendationTagEn": "Editor's Pick",
+      "recommendationTagId": "editor",
+      "category": "editor"
     },
     {
-      "index": 32,
+      "index": 31,
       "mbid": "74d81edb-75d4-44f4-bf72-71e3c433d96d",
       "cover": "",
       "title": "\"Solo\" OMORI Piano Arrangement",
@@ -475,23 +435,118 @@
         "原声",
         "钢琴"
       ],
-      "aiScore": 8.1,
+      "aiScore": 8.5,
       "tagsEn": [
         "Soundtrack",
         "Piano"
       ],
       "genre": "原声",
-      "highlight": "OMORI钢琴改编，游戏配乐唯美",
-      "highlightEn": "OMORI piano arrangements, beautiful game soundtrack",
-      "summary": "独立游戏OMORI钢琴独奏，情感细腻，高播放量",
-      "summaryEn": "Solo piano arrangements from indie game OMORI, emotional and delicate",
+      "highlight": "OMORI游戏钢琴独奏，情感叙事",
+      "highlightEn": "OMORI game piano solo, emotional storytelling",
+      "summary": "游戏原声改编，高人气，治愈系",
+      "summaryEn": "Game soundtrack arrangement, high popularity, healing",
+      "recommendationTag": "🔥 热门趋势",
+      "recommendationTagEn": "Trending Now",
+      "recommendationTagId": "trending",
+      "category": "trending"
+    },
+    {
+      "index": 4,
+      "mbid": "03b901b9-3497-4666-8815-c526a4216ff0",
+      "cover": "",
+      "title": "Satanic Chaos Legions",
+      "artist": "Nunslaughter",
+      "country": "XW",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 48926,
+      "playcount": 2203076,
+      "artistStars": 3,
+      "lfmTags": [],
+      "tags": [
+        "死亡金属"
+      ],
+      "aiScore": 7.5,
+      "tagsEn": [
+        "Death Metal"
+      ],
+      "genre": "死亡金属",
+      "highlight": "Nunslaughter死亡金属，撒旦混沌军团",
+      "highlightEn": "Nunslaughter death metal, Satanic chaos legions",
+      "summary": "极端金属地下经典，风格纯粹",
+      "summaryEn": "Underground extreme metal classic, pure style",
       "recommendationTag": "💎 隐藏宝石",
       "recommendationTagEn": "Hidden Gem",
       "recommendationTagId": "hidden",
       "category": "hidden-gem"
     },
     {
-      "index": 9,
+      "index": 5,
+      "mbid": "67098c37-f75e-4384-983c-4ce8ac5bf0bb",
+      "cover": "",
+      "title": "Time Will Tell",
+      "artist": "Devon Gilfillian",
+      "country": "XW",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 81609,
+      "playcount": 419700,
+      "artistStars": 3,
+      "lfmTags": [],
+      "tags": [
+        "灵魂",
+        "放克"
+      ],
+      "aiScore": 7.5,
+      "tagsEn": [
+        "Soul",
+        "Funk"
+      ],
+      "genre": "灵魂",
+      "highlight": "Devon Gilfillian灵魂放克，时间会证明",
+      "highlightEn": "Devon Gilfillian soul funk, time will tell",
+      "summary": "新兴灵魂乐歌手，嗓音温暖",
+      "summaryEn": "Emerging soul singer, warm vocals",
+      "recommendationTag": "💎 隐藏宝石",
+      "recommendationTagEn": "Hidden Gem",
+      "recommendationTagId": "hidden",
+      "category": "hidden-gem"
+    },
+    {
+      "index": 6,
+      "mbid": "03283d25-b04f-445f-ab39-ab51d45919c1",
+      "cover": "",
+      "title": "Elephant in the Room",
+      "artist": "Fai Laci",
+      "country": "XW",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 46085,
+      "playcount": 352947,
+      "artistStars": 3,
+      "lfmTags": [],
+      "tags": [
+        "独立摇滚"
+      ],
+      "aiScore": 7,
+      "tagsEn": [
+        "Indie Rock"
+      ],
+      "genre": "独立摇滚",
+      "highlight": "Fai Laci独立摇滚，房间大象",
+      "highlightEn": "Fai Laci indie rock, elephant in the room",
+      "summary": "独立摇滚新声，旋律动听",
+      "summaryEn": "New indie rock sound, catchy melodies",
+      "recommendationTag": "💎 隐藏宝石",
+      "recommendationTagEn": "Hidden Gem",
+      "recommendationTagId": "hidden",
+      "category": "hidden-gem"
+    },
+    {
+      "index": 8,
       "mbid": "e75203bf-5479-4885-a959-779d8a01fad1",
       "cover": "",
       "title": "ABSTRACT / NATURAL",
@@ -512,27 +567,25 @@
       ],
       "tags": [
         "后朋克",
-        "车库摇滚",
-        "独立摇滚"
+        "车库摇滚"
       ],
-      "aiScore": 7.9,
+      "aiScore": 7.5,
       "tagsEn": [
         "Post-Punk",
-        "Garage Rock",
-        "Indie Rock"
+        "Garage Rock"
       ],
       "genre": "后朋克",
-      "highlight": "LIFE后朋克车库，独立尖锋",
-      "highlightEn": "LIFE post-punk garage, indie edge",
-      "summary": "后朋克与车库摇滚结合，独立气质，另类风格",
-      "summaryEn": "Post-punk meets garage rock, indie spirit, alternative style",
+      "highlight": "LIFE后朋克车库，抽象自然",
+      "highlightEn": "LIFE post-punk garage, abstract natural",
+      "summary": "后朋克与车库摇滚融合，实验性",
+      "summaryEn": "Post-punk and garage rock fusion, experimental",
       "recommendationTag": "💎 隐藏宝石",
       "recommendationTagEn": "Hidden Gem",
       "recommendationTagId": "hidden",
       "category": "hidden-gem"
     },
     {
-      "index": 13,
+      "index": 12,
       "mbid": "46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
       "cover": "",
       "title": "RAVEPOP",
@@ -553,22 +606,61 @@
       ],
       "tags": [
         "快乐硬核",
-        "俱乐部"
+        "电子"
       ],
-      "aiScore": 7.7,
+      "aiScore": 7.5,
       "tagsEn": [
         "Happy Hardcore",
-        "Club"
+        "Electronic"
       ],
       "genre": "快乐硬核",
-      "highlight": "r u s s e l b u c k快乐硬核，狂野派对",
-      "highlightEn": "r u s s e l b u c k happy hardcore, wild party",
-      "summary": "快乐硬核与Jersey Club融合，高能量，实验性",
-      "summaryEn": "Happy hardcore and Jersey club fusion, high energy, experimental",
+      "highlight": "r u s s e l b u c k欢乐硬核，RAVEPOP",
+      "highlightEn": "r u s s e l b u c k happy hardcore, RAVEPOP",
+      "summary": "欢乐硬核与Jersey club混合，能量充沛",
+      "summaryEn": "Happy hardcore and Jersey club mix, high energy",
       "recommendationTag": "💎 隐藏宝石",
       "recommendationTagEn": "Hidden Gem",
       "recommendationTagId": "hidden",
       "category": "hidden-gem"
+    },
+    {
+      "index": 36,
+      "mbid": "48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
+      "cover": "",
+      "title": "Bobbysocks",
+      "artist": "Bobbysocks",
+      "country": "NO",
+      "releaseDate": "2026",
+      "year": "2026",
+      "primaryType": "Album",
+      "listeners": 25468,
+      "playcount": 135522,
+      "artistStars": 3,
+      "lfmTags": [
+        "eurovision",
+        "1985",
+        "pop",
+        "norway",
+        "linedance 2019"
+      ],
+      "tags": [
+        "流行",
+        "欧洲电视网"
+      ],
+      "aiScore": 7.5,
+      "tagsEn": [
+        "Pop",
+        "Eurovision"
+      ],
+      "genre": "流行",
+      "highlight": "Bobbysocks挪威流行，欧洲电视网经典",
+      "highlightEn": "Bobbysocks Norwegian pop, Eurovision classic",
+      "summary": "1985年欧洲电视网冠军，挪威流行代表",
+      "summaryEn": "1985 Eurovision winner, Norwegian pop representative",
+      "recommendationTag": "🌍 环球音乐",
+      "recommendationTagEn": "Around the World",
+      "recommendationTagId": "world",
+      "category": "world"
     },
     {
       "index": 49,
@@ -592,131 +684,52 @@
       ],
       "tags": [
         "坎比亚",
-        "拉丁",
-        "迷幻"
+        "拉丁"
       ],
-      "aiScore": 7.6,
+      "aiScore": 7,
       "tagsEn": [
         "Cumbia",
-        "Latin",
-        "Psychedelic"
+        "Latin"
       ],
       "genre": "坎比亚",
-      "highlight": "Ranil秘鲁坎比亚，热带迷幻",
-      "highlightEn": "Ranil Peruvian cumbia, tropical psychedelic",
-      "summary": "秘鲁坎比亚乐队，拉丁吉他迷幻，异域风情",
-      "summaryEn": "Peruvian cumbia band, Latin guitar psychedelic, exotic",
+      "highlight": "Ranil Y Su Conjunto Tropical秘鲁坎比亚",
+      "highlightEn": "Ranil Y Su Conjunto Tropical Peruvian cumbia",
+      "summary": "秘鲁坎比亚，拉丁迷幻吉他",
+      "summaryEn": "Peruvian cumbia, Latin psychedelic guitar",
       "recommendationTag": "🌍 环球音乐",
       "recommendationTagEn": "Around the World",
       "recommendationTagId": "world",
       "category": "world"
     },
     {
-      "index": 28,
-      "mbid": "f6319d87-cc91-4654-8bee-79db8d857e5a",
+      "index": 50,
+      "mbid": "60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
       "cover": "",
-      "title": "Ultima Thule",
-      "artist": "Ultima Thule",
-      "country": "XW",
+      "title": "la patience n'existe pas",
+      "artist": "Natacha Tertone",
+      "country": "FR",
       "releaseDate": "2026",
       "year": "2026",
       "primaryType": "Album",
-      "listeners": 36700,
-      "playcount": 2060254,
-      "artistStars": 3,
+      "listeners": 1036,
+      "playcount": 5283,
+      "artistStars": 2,
       "lfmTags": [
-        "viking rock",
-        "swedish",
-        "rock",
-        "vikingarock",
-        "rac"
+        "chanson francaise",
+        "au feminin"
       ],
       "tags": [
-        "维京摇滚",
-        "民谣摇滚"
+        "法国香颂"
       ],
-      "aiScore": 7.5,
+      "aiScore": 7,
       "tagsEn": [
-        "Viking Rock",
-        "Folk Rock"
+        "French Chanson"
       ],
-      "genre": "维京摇滚",
-      "highlight": "Ultima Thule维京摇滚，北欧神话",
-      "highlightEn": "Ultima Thule Viking rock, Norse mythology",
-      "summary": "瑞典维京摇滚，硬朗民谣风，文化特色鲜明",
-      "summaryEn": "Swedish Viking rock, rugged folk style, distinct cultural flavor",
-      "recommendationTag": "💎 隐藏宝石",
-      "recommendationTagEn": "Hidden Gem",
-      "recommendationTagId": "hidden",
-      "category": "hidden-gem"
-    },
-    {
-      "index": 37,
-      "mbid": "48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
-      "cover": "",
-      "title": "Bobbysocks",
-      "artist": "Bobbysocks",
-      "country": "NO",
-      "releaseDate": "2026",
-      "year": "2026",
-      "primaryType": "Album",
-      "listeners": 25468,
-      "playcount": 135522,
-      "artistStars": 3,
-      "lfmTags": [
-        "eurovision",
-        "1985",
-        "pop",
-        "norway",
-        "linedance 2019"
-      ],
-      "tags": [
-        "流行",
-        "欧洲歌唱大赛"
-      ],
-      "aiScore": 7.4,
-      "tagsEn": [
-        "Pop",
-        "Eurovision"
-      ],
-      "genre": "流行",
-      "highlight": "Bobbysocks挪威流行，欧视经典",
-      "highlightEn": "Bobbysocks Norwegian pop, Eurovision classic",
-      "summary": "挪威流行组合，1985年欧洲歌唱大赛冠军，怀旧旋律",
-      "summaryEn": "Norwegian pop duo, 1985 Eurovision winner, nostalgic melody",
-      "recommendationTag": "💎 隐藏宝石",
-      "recommendationTagEn": "Hidden Gem",
-      "recommendationTagId": "hidden",
-      "category": "hidden-gem"
-    },
-    {
-      "index": 4,
-      "mbid": "03b901b9-3497-4666-8815-c526a4216ff0",
-      "cover": "",
-      "title": "Satanic Chaos Legions",
-      "artist": "Nunslaughter",
-      "country": "XW",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "primaryType": "Album",
-      "listeners": 48926,
-      "playcount": 2203076,
-      "artistStars": 3,
-      "lfmTags": [],
-      "tags": [
-        "死亡金属",
-        "极端金属"
-      ],
-      "aiScore": 7.3,
-      "tagsEn": [
-        "Death Metal",
-        "Extreme Metal"
-      ],
-      "genre": "死亡金属",
-      "highlight": "Nunslaughter死亡金属，撒旦混沌",
-      "highlightEn": "Nunslaughter death metal, satanic chaos",
-      "summary": "极端死亡金属，地下风格，高播放量小众精品",
-      "summaryEn": "Extreme death metal, underground style, high playcount niche gem",
+      "genre": "法国香颂",
+      "highlight": "Natacha Tertone法国香颂，耐心不存在",
+      "highlightEn": "Natacha Tertone French chanson, patience doesn't exist",
+      "summary": "法国女性香颂，细腻情感",
+      "summaryEn": "French female chanson, delicate emotions",
       "recommendationTag": "💎 隐藏宝石",
       "recommendationTagEn": "Hidden Gem",
       "recommendationTagId": "hidden",
