@@ -661,10 +661,7 @@ async function handleIntelTV(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
 
-  const [onTheAir, popular] = await Promise.all([
-    intelFetchTMDB(token, "/tv/on_the_air"),
-    intelFetchTMDB(token, "/tv/popular"),
-  ]);
+  const onTheAir = await intelFetchTMDB(token, "/tv/on_the_air");
 
   // This week premieres via /tv/on_the_air (shows airing new episodes this week)
   const twoYearsAgo = intelDaysAgo(730);
@@ -688,7 +685,7 @@ async function handleIntelTV(env) {
     updated: today,
     premieresThisWeek: await intelEnrichWithAI(weekPremieres, "movie", env),
     upcoming: upcomingTV,
-    ongoing: popular.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
+    ongoing: onTheAir.slice(0, 20).map(s => intelNormalizeMovie(s, "tv")),
   };
 }
 
