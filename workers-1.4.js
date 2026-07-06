@@ -683,13 +683,6 @@ async function handleIntelTV(env) {
   // Enrich on_the_air shows with episode dates for ongoing section
   const onTheAirEnriched = await intelFetchTVEpisodeDates(onTheAir.slice(0, 20), token);
 
-  // This week premieres via /tv/on_the_air (shows airing new episodes this week)
-  const twoYearsAgo = intelDaysAgo(730);
-  const weekPremieres = onTheAir
-    .filter(s => s.first_air_date >= twoYearsAgo)
-    .slice(0, 20)
-    .map(s => intelNormalizeMovie(s, "tv"));
-
   // Upcoming brand-new shows via discover/tv (future premieres only)
   let upcomingTV = [];
   try {
@@ -701,11 +694,16 @@ async function handleIntelTV(env) {
     });
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
+  // Deduplicate: excludes from ongoing any show already in upcoming
+  const upcomingIds = new Set(upcomingTV.map(s => s.tmdbId));
+  const ongoingTV = onTheAirEnriched
+    .map(s => intelNormalizeMovie(s, "tv"))
+    .filter(s => !upcomingIds.has(s.tmdbId));
+
   return {
     updated: today,
-    premieresThisWeek: await intelEnrichWithAI(weekPremieres, "movie", env),
     upcoming: upcomingTV,
-    ongoing: onTheAirEnriched.map(s => intelNormalizeMovie(s, "tv")),
+    ongoing: ongoingTV,
   };
 }
 

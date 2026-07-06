@@ -179,7 +179,7 @@ export function TVCard({ show, locale, onViewDetail }) {
               S{show.season}{show.episode ? `E${show.episode}` : ""}
             </span>
           )}
-          <span className="text-gray-400 text-[9px]">{show.releaseDate || show.year || ""}</span>
+          <span className="text-gray-400 text-[9px]">{show.latestAirDate || show.releaseDate || show.year || ""}</span>
         </div>
       </div>
 
@@ -205,9 +205,9 @@ export function TVCard({ show, locale, onViewDetail }) {
               ))}
             </div>
           )}
-          {show.nextAirDate && (
+          {show.releaseDate && (
             <p className="text-[9px] text-[#00ffff] font-bold mb-1">
-              {locale === "en" ? "Next: " : "下次播出: "}{show.nextAirDate}
+              {locale === "en" ? "Premiered: " : "首播: "}{show.releaseDate}
             </p>
           )}
           {show.summary && (

@@ -176,7 +176,6 @@ function TVView({ locale, onViewDetail }) {
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
   const tabs = [
-    { id: "week", zh: "本周首播", en: "This Week", key: "premieresThisWeek" },
     { id: "upcoming", zh: "即将播出", en: "Upcoming", key: "upcoming" },
     { id: "ongoing", zh: "热播中", en: "Ongoing", key: "ongoing" },
   ];
@@ -341,7 +340,7 @@ function SearchView({ locale, onViewDetail }) {
     const add = (list, type) => { if (Array.isArray(list)) list.forEach(item => items.push({ ...item, _type: type })); };
     // Flatten movies
     if (movies) { add(movies.releasedToday, "movie"); add(movies.releasedThisWeek, "movie"); add(movies.upcoming, "movie"); add(movies.nowPlaying, "movie"); }
-    if (tv) { add(tv.premieresToday, "tv"); add(tv.premieresThisWeek, "tv"); add(tv.upcoming, "tv"); add(tv.ongoing, "tv"); }
+    if (tv) { add(tv.upcoming, "tv"); add(tv.ongoing, "tv"); }
     if (music) { add(music.picks, "album"); }
     // Flatten coming soon
     if (coming) {
