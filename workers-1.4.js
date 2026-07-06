@@ -1073,17 +1073,20 @@ async function handleIntelDebug(env) {
   const today = new Date().toISOString().split("T")[0];
   const thirtyDaysLater = new Date(Date.now() + 30 * 86400000).toISOString().split("T")[0];
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
+  const ninetyDaysAgo = new Date(Date.now() - 90 * 86400000).toISOString().split("T")[0];
 
-  const [discover, onTheAir, trending] = await Promise.all([
+  const [discover, onTheAir, trending, nowPlayingRaw] = await Promise.all([
     intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 5),
-    intelFetchPages(token, "/tv/on_the_air", {}, 2),
+    intelFetchPages(token, "/tv/on_the_air", {}, 4),
     intelFetchTMDB(token, "/trending/tv/week"),
+    intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const titleCn = (s) => hasChinese(s.title || s.name);
+  const cnFilter = (s) => hasChinese(s.title || s.name) && hasChinese(s.overview);
 
-  const extractPop = (items, label) => items.map((s, i) => ({
+  const extractPop = (items) => items.map((s, i) => ({
     rank: i + 1,
     title: s.title || s.name,
     titleEn: s._titleEn || "",
@@ -1092,13 +1095,15 @@ async function handleIntelDebug(env) {
     voteAverage: s.vote_average,
     releaseDate: s.first_air_date || s.release_date,
     hasCnTitle: titleCn(s),
+    hasCnOverview: hasChinese(s.overview || ""),
   }));
 
   return {
     updated: today,
-    discoverTV: extractPop(discover, "discover"),
-    onTheAir: extractPop(onTheAir, "on_the_air"),
-    trendingTV: extractPop(trending, "trending"),
+    discoverTV: extractPop(discover),
+    onTheAir: extractPop(onTheAir),
+    trendingTV: extractPop(trending),
+    nowPlaying: extractPop(nowPlayingRaw),
   };
 }
 
