@@ -130,6 +130,8 @@ function intelNormalizeMovie(m, type) {
     tmdbId: m.id,
     title: m.title || m.name || "",
     titleEn: m._titleEn || m.original_title || m.original_name || m.title || "",
+    originalLanguage: m.original_language || "",
+    originCountry: m.origin_country || [],
     year: (m[df] || "").slice(0, 4),
     releaseDate: m[df] || "",
     poster: m.poster_path ? `https://image.tmdb.org/t/p/w500${m.poster_path}` : "",
