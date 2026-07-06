@@ -672,7 +672,6 @@ async function intelFetchTVEpisodeDates(shows, token) {
     } catch (e) { console.warn("TV enrich fail:", show.id, e.message); }
     return show;
   }));
-  }));
   return results.map(r => r.status === "fulfilled" ? r.value : null).filter(Boolean);
 }
 
