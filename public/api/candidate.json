@@ -1,6 +1,92 @@
 {
-  "updated": "2026-07-05",
+  "updated": "2026-07-06",
   "candidates": [
+    {
+      "id": "mb-22daa424-0371-42bc-bee8-a12c6cb7ce6c",
+      "mbid": "22daa424-0371-42bc-bee8-a12c6cb7ce6c",
+      "title": "This Is the One",
+      "artist": "Utada",
+      "releaseDate": "2026-06-24",
+      "year": "2026",
+      "type": "Album",
+      "country": "JP",
+      "genres": [
+        "流行",
+        "best albums of 2009",
+        "节奏蓝调",
+        "2009",
+        "utada"
+      ],
+      "genresEn": [
+        "pop",
+        "best albums of 2009",
+        "rnb",
+        "2009",
+        "utada"
+      ],
+      "lfmTags": [
+        "pop",
+        "best albums of 2009",
+        "rnb",
+        "2009",
+        "utada"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 243757,
+      "artistPlaycount": 8043092,
+      "albumListeners": 120642,
+      "albumPlaycount": 3901439,
+      "score": 79.32053994979546,
+      "scoreBreakdown": {
+        "artist": 35.91304730825434,
+        "album": 25.407492641541126,
+        "freshness": 18
+      }
+    },
+    {
+      "id": "mb-e4019e40-6561-4be9-a7f8-a25152be02d3",
+      "mbid": "e4019e40-6561-4be9-a7f8-a25152be02d3",
+      "title": "Fleetwood Mac",
+      "artist": "Fleetwood Mac",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "US",
+      "genres": [
+        "1975",
+        "70s",
+        "经典摇滚",
+        "软摇滚",
+        "摇滚"
+      ],
+      "genresEn": [
+        "1975",
+        "70s",
+        "classic rock",
+        "soft rock",
+        "rock"
+      ],
+      "lfmTags": [
+        "1975",
+        "70s",
+        "classic rock",
+        "soft rock",
+        "rock"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 4987740,
+      "artistPlaycount": 311421905,
+      "albumListeners": 1875037,
+      "albumPlaycount": 32701862,
+      "score": 70,
+      "scoreBreakdown": {
+        "artist": 40,
+        "album": 30,
+        "freshness": 0
+      }
+    },
     {
       "id": "mb-c6358baf-1e01-4991-ab6e-cb5d794e222a",
       "mbid": "c6358baf-1e01-4991-ab6e-cb5d794e222a",
@@ -33,8 +119,8 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3556369,
-      "artistPlaycount": 129314495,
+      "artistListeners": 3557482,
+      "artistPlaycount": 129351187,
       "albumListeners": 1278491,
       "albumPlaycount": 13430836,
       "score": 70,
@@ -105,11 +191,11 @@
       "artistPlaycount": 2203076,
       "albumListeners": 2163,
       "albumPlaycount": 17382,
-      "score": 68.93888067038786,
+      "score": 67.93888067038786,
       "scoreBreakdown": {
         "artist": 31.2635980731924,
         "album": 16.675282597195455,
-        "freshness": 21
+        "freshness": 20
       }
     },
     {
@@ -145,11 +231,11 @@
       "artistPlaycount": 8284854,
       "albumListeners": 34647,
       "albumPlaycount": 230362,
-      "score": 67.0928912720866,
+      "score": 66.0928912720866,
       "scoreBreakdown": {
         "artist": 37.39456309175598,
         "album": 22.698328180330634,
-        "freshness": 7
+        "freshness": 6
       }
     },
     {
@@ -170,11 +256,11 @@
       "artistPlaycount": 419700,
       "albumListeners": 431,
       "albumPlaycount": 2411,
-      "score": 66.91730672573155,
+      "score": 65.91730672573155,
       "scoreBreakdown": {
         "artist": 32.7449203749279,
         "album": 13.172386350803658,
-        "freshness": 21
+        "freshness": 20
       }
     },
     {
@@ -195,11 +281,11 @@
       "artistPlaycount": 352947,
       "albumListeners": 910,
       "albumPlaycount": 3856,
-      "score": 66.88560424044495,
+      "score": 65.88560424044495,
       "scoreBreakdown": {
         "artist": 31.09039727883948,
         "album": 14.795206961605468,
-        "freshness": 21
+        "freshness": 20
       }
     },
     {
@@ -238,11 +324,11 @@
       "artistPlaycount": 4908618,
       "albumListeners": 1826,
       "albumPlaycount": 32646,
-      "score": 66.74873248551833,
+      "score": 65.74873248551833,
       "scoreBreakdown": {
         "artist": 35.441228619526925,
         "album": 16.307503865991404,
-        "freshness": 15
+        "freshness": 14
       }
     },
     {
@@ -281,11 +367,11 @@
       "artistPlaycount": 1696865,
       "albumListeners": 820,
       "albumPlaycount": 4656,
-      "score": 62.42237711655302,
+      "score": 61.42237711655302,
       "scoreBreakdown": {
         "artist": 33.85330785463444,
         "album": 14.569069261918584,
-        "freshness": 14
+        "freshness": 13
       }
     },
     {
@@ -321,11 +407,11 @@
       "artistPlaycount": 12074077,
       "albumListeners": 5200,
       "albumPlaycount": 79729,
-      "score": 61.99993431089981,
+      "score": 60.99993431089981,
       "scoreBreakdown": {
         "artist": 36.41991759272582,
         "album": 18.580016718173994,
-        "freshness": 7
+        "freshness": 6
       }
     },
     {
@@ -458,6 +544,31 @@
       }
     },
     {
+      "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "mbid": "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "title": "Snow, Vol. 9",
+      "artist": "Wun Two",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 473957,
+      "artistPlaycount": 6377135,
+      "albumListeners": 5528,
+      "albumPlaycount": 19367,
+      "score": 56.55109978425948,
+      "scoreBreakdown": {
+        "artist": 37.83825961242877,
+        "album": 18.71284017183071,
+        "freshness": 0
+      }
+    },
+    {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
       "mbid": "ccca0f73-1b3d-4264-9fd8-68ae932c3130",
       "title": "Monument",
@@ -501,6 +612,49 @@
       }
     },
     {
+      "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
+      "mbid": "dda01573-1be8-4f7a-b06f-9cc3d066f515",
+      "title": "Masekela",
+      "artist": "Hugh Masekela",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [
+        "jazz fusion",
+        "爵士",
+        "trumpet",
+        "africa",
+        "非洲音乐"
+      ],
+      "genresEn": [
+        "jazz fusion",
+        "jazz",
+        "trumpet",
+        "africa",
+        "african"
+      ],
+      "lfmTags": [
+        "jazz fusion",
+        "jazz",
+        "trumpet",
+        "africa",
+        "african"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 250792,
+      "artistPlaycount": 1969198,
+      "albumListeners": 3376,
+      "albumPlaycount": 16197,
+      "score": 53.637436715396156,
+      "scoreBreakdown": {
+        "artist": 35.99542452562807,
+        "album": 17.64201218976809,
+        "freshness": 0
+      }
+    },
+    {
       "id": "mb-68eb725d-8856-45b5-a530-99e8293bac0a",
       "mbid": "68eb725d-8856-45b5-a530-99e8293bac0a",
       "title": "Bingo!",
@@ -518,11 +672,11 @@
       "artistPlaycount": 161114,
       "albumListeners": 3539,
       "albumPlaycount": 20341,
-      "score": 54.4526997142647,
+      "score": 53.4526997142647,
       "scoreBreakdown": {
         "artist": 29.70829690107713,
         "album": 17.744402813187573,
-        "freshness": 7
+        "freshness": 6
       }
     },
     {
@@ -543,61 +697,11 @@
       "artistPlaycount": 2487691,
       "albumListeners": 1354,
       "albumPlaycount": 18266,
-      "score": 53.501411906945684,
+      "score": 52.501411906945684,
       "scoreBreakdown": {
         "artist": 31.843318585200056,
         "album": 15.658093321745628,
-        "freshness": 6
-      }
-    },
-    {
-      "id": "mb-cb86717a-04b0-4d43-aa9a-429ae89e5dc1",
-      "mbid": "cb86717a-04b0-4d43-aa9a-429ae89e5dc1",
-      "title": "Seahaven",
-      "artist": "Seahaven",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 145241,
-      "artistPlaycount": 5107577,
-      "albumListeners": 4521,
-      "albumPlaycount": 63660,
-      "score": 52.690100737942444,
-      "scoreBreakdown": {
-        "artist": 34.413928202770975,
-        "album": 18.276172535171472,
-        "freshness": 0
-      }
-    },
-    {
-      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "title": "Truthsayer",
-      "artist": "Outshine",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2617,
-      "artistPlaycount": 22150,
-      "albumListeners": 49,
-      "albumPlaycount": 234,
-      "score": 52.23633855107511,
-      "scoreBreakdown": {
-        "artist": 22.785358150932538,
-        "album": 8.450980400142567,
-        "freshness": 21
+        "freshness": 5
       }
     },
     {
@@ -622,31 +726,6 @@
       "scoreBreakdown": {
         "artist": 37.27008691332161,
         "album": 14.69009548738105,
-        "freshness": 0
-      }
-    },
-    {
-      "id": "mb-0029fbd8-6fae-44ef-be42-8b910d846115",
-      "mbid": "0029fbd8-6fae-44ef-be42-8b910d846115",
-      "title": "Liminal",
-      "artist": "Poppy Ackroyd",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 151785,
-      "artistPlaycount": 1353721,
-      "albumListeners": 1647,
-      "albumPlaycount": 10269,
-      "score": 50.62499369561241,
-      "scoreBreakdown": {
-        "artist": 34.54152569976364,
-        "album": 16.08346799584877,
         "freshness": 0
       }
     },
@@ -715,6 +794,31 @@
       "scoreBreakdown": {
         "artist": 30.63972619171699,
         "album": 17.80371650527356,
+        "freshness": 0
+      }
+    },
+    {
+      "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
+      "mbid": "4e05d16b-0198-4994-b1fe-78053c4c5055",
+      "title": "The Lighthouse Session II",
+      "artist": "Saturnus",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "DE",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 118133,
+      "artistPlaycount": 5408741,
+      "albumListeners": 805,
+      "albumPlaycount": 3547,
+      "score": 48.344787622224175,
+      "scoreBreakdown": {
+        "artist": 33.81580822038483,
+        "album": 14.528979401839344,
         "freshness": 0
       }
     },
@@ -794,31 +898,6 @@
       }
     },
     {
-      "id": "mb-a67509a1-8a10-4bb6-a194-55e55f7ce164",
-      "mbid": "a67509a1-8a10-4bb6-a194-55e55f7ce164",
-      "title": "Easy Peeler",
-      "artist": "Brockhoff",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 14337,
-      "artistPlaycount": 86887,
-      "albumListeners": 3160,
-      "albumPlaycount": 15472,
-      "score": 45.20815731469506,
-      "scoreBreakdown": {
-        "artist": 27.709721901603043,
-        "album": 17.498435413092018,
-        "freshness": 0
-      }
-    },
-    {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
       "mbid": "81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
       "title": "(EN)LIGHTEN",
@@ -844,28 +923,34 @@
       }
     },
     {
-      "id": "mb-75228242-54bd-4991-a16d-789aeb0d1b0e",
-      "mbid": "75228242-54bd-4991-a16d-789aeb0d1b0e",
-      "title": "Candramawa",
-      "artist": "Danilla",
-      "releaseDate": "2026-06-05",
+      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "title": "Truthsayer",
+      "artist": "Outshine",
+      "releaseDate": "2026-06-26",
       "year": "2026",
       "type": "Album",
       "country": "XW",
       "genres": [],
       "genresEn": [],
-      "lfmTags": [],
+      "lfmTags": [
+        "Progressive metal",
+        "rock",
+        "post-grunge",
+        "alternative",
+        "Gothic Metal"
+      ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 24943,
-      "artistPlaycount": 1163272,
-      "albumListeners": 587,
-      "albumPlaycount": 5866,
-      "score": 43.156181751013655,
+      "artistListeners": 2617,
+      "artistPlaycount": 22150,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 42.78535815093254,
       "scoreBreakdown": {
-        "artist": 29.312991244775585,
-        "album": 13.843190506238072,
-        "freshness": 0
+        "artist": 22.785358150932538,
+        "album": 0,
+        "freshness": 20
       }
     },
     {
@@ -931,11 +1016,36 @@
       "artistPlaycount": 6678,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 42.585299955159485,
+      "score": 41.585299955159485,
       "scoreBreakdown": {
         "artist": 21.585299955159485,
         "album": 0,
-        "freshness": 21
+        "freshness": 20
+      }
+    },
+    {
+      "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
+      "mbid": "00292388-ab95-4285-8846-120dcfd95b71",
+      "title": "Perspective",
+      "artist": "Coloured Rocks",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 21079,
+      "artistPlaycount": 62917,
+      "albumListeners": 345,
+      "albumPlaycount": 735,
+      "score": 41.514762167678384,
+      "scoreBreakdown": {
+        "artist": 28.825666692312012,
+        "album": 12.689095475366369,
+        "freshness": 0
       }
     },
     {
@@ -962,36 +1072,11 @@
       "artistPlaycount": 14406,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 42.30230705565613,
+      "score": 41.30230705565613,
       "scoreBreakdown": {
         "artist": 21.30230705565613,
         "album": 0,
-        "freshness": 21
-      }
-    },
-    {
-      "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
-      "mbid": "00292388-ab95-4285-8846-120dcfd95b71",
-      "title": "Perspective",
-      "artist": "Coloured Rocks",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 21079,
-      "artistPlaycount": 62917,
-      "albumListeners": 345,
-      "albumPlaycount": 735,
-      "score": 41.514762167678384,
-      "scoreBreakdown": {
-        "artist": 28.825666692312012,
-        "album": 12.689095475366369,
-        "freshness": 0
+        "freshness": 20
       }
     },
     {
@@ -1045,6 +1130,31 @@
       }
     },
     {
+      "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
+      "mbid": "ee43185d-de89-4967-bd54-2c0af6179b8a",
+      "title": "Ristiriita",
+      "artist": "kukkatalo",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "FI",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 4177,
+      "artistPlaycount": 105048,
+      "albumListeners": 1363,
+      "albumPlaycount": 20721,
+      "score": 39.81157578094084,
+      "scoreBreakdown": {
+        "artist": 24.139096501767476,
+        "album": 15.672479279173368,
+        "freshness": 0
+      }
+    },
+    {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
       "mbid": "cea5026f-761e-49df-ad47-02f85c162a7e",
       "title": "Se se on rokkii... ja sinfoniaa",
@@ -1066,6 +1176,31 @@
       "scoreBreakdown": {
         "artist": 29.31751469347917,
         "album": 9.162544563531181,
+        "freshness": 0
+      }
+    },
+    {
+      "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
+      "mbid": "8c5b6568-d616-4e00-b3b9-2117642ef141",
+      "title": "ADHD",
+      "artist": "Mucha",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "CZ",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 9592,
+      "artistPlaycount": 264098,
+      "albumListeners": 243,
+      "albumPlaycount": 4026,
+      "score": 38.47409250193017,
+      "scoreBreakdown": {
+        "artist": 26.54606113393861,
+        "album": 11.928031367991561,
         "freshness": 0
       }
     },
@@ -1138,31 +1273,6 @@
       }
     },
     {
-      "id": "mb-d53761a5-6d5d-45df-b360-b6e239e7ae64",
-      "mbid": "d53761a5-6d5d-45df-b360-b6e239e7ae64",
-      "title": "A Distracted God",
-      "artist": "Beatriz Ferreyra",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 9193,
-      "artistPlaycount": 39141,
-      "albumListeners": 150,
-      "albumPlaycount": 427,
-      "score": 37.303504696056464,
-      "scoreBreakdown": {
-        "artist": 26.423048400778054,
-        "album": 10.880456295278407,
-        "freshness": 0
-      }
-    },
-    {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
       "mbid": "8cad04bc-f71b-4bbd-a518-77399a2352ad",
       "title": "Miten asiat oikeesti on?",
@@ -1227,31 +1337,6 @@
       "scoreBreakdown": {
         "artist": 24.96560264523586,
         "album": 9.256291743595376,
-        "freshness": 0
-      }
-    },
-    {
-      "id": "mb-7a7145af-e654-450a-b8f7-3bf30a0fdce0",
-      "mbid": "7a7145af-e654-450a-b8f7-3bf30a0fdce0",
-      "title": "SNVRKOLEPSY",
-      "artist": "SNVRK",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 8329,
-      "artistPlaycount": 20084,
-      "albumListeners": 16,
-      "albumPlaycount": 2265,
-      "score": 32.15788566051168,
-      "scoreBreakdown": {
-        "artist": 26.137285747232056,
-        "album": 6.020599913279623,
         "freshness": 0
       }
     },
@@ -1762,30 +1847,6 @@
       "genresEn": [],
       "lfmTags": [],
       "cover": "https://lastfm.freetls.fastly.net/i/u/174s/8f1f485f7ec54bd4dabdc9f8e184ef22.png",
-      "source": "chart",
-      "artistListeners": 0,
-      "artistPlaycount": 0,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 0,
-      "scoreBreakdown": {
-        "artist": 0,
-        "album": 0,
-        "freshness": 0
-      }
-    },
-    {
-      "id": "chart-7",
-      "mbid": "2257d35c-f5a3-4ea2-901c-692b0a5e37fc",
-      "title": "One for All",
-      "artist": "Brand Nubian",
-      "releaseDate": "",
-      "type": "Album",
-      "country": "",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://lastfm.freetls.fastly.net/i/u/174s/f36888ba92d3984270c7693616a52923.png",
       "source": "chart",
       "artistListeners": 0,
       "artistPlaycount": 0,

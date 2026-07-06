@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05",
+  "updated": "2026-07-06",
   "config": {
     "releaseWindowDays": 30,
     "mbPages": 3,
@@ -26,15 +26,103 @@
   },
   "stats": {
     "mbRaw": 300,
-    "afterFilter": 182,
-    "artistsChecked": 75,
-    "afterArtistFilter": 52,
+    "afterFilter": 183,
+    "artistsChecked": 74,
+    "afterArtistFilter": 53,
     "albumEnriched": 40,
     "chartItems": 359,
     "totalCandidates": 411,
     "sentToWorker": 60
   },
   "candidates": [
+    {
+      "id": "mb-22daa424-0371-42bc-bee8-a12c6cb7ce6c",
+      "mbid": "22daa424-0371-42bc-bee8-a12c6cb7ce6c",
+      "title": "This Is the One",
+      "artist": "Utada",
+      "releaseDate": "2026-06-24",
+      "year": "2026",
+      "type": "Album",
+      "country": "JP",
+      "genres": [
+        "流行",
+        "best albums of 2009",
+        "节奏蓝调",
+        "2009",
+        "utada"
+      ],
+      "genresEn": [
+        "pop",
+        "best albums of 2009",
+        "rnb",
+        "2009",
+        "utada"
+      ],
+      "lfmTags": [
+        "pop",
+        "best albums of 2009",
+        "rnb",
+        "2009",
+        "utada"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 243757,
+      "artistPlaycount": 8043092,
+      "albumListeners": 120642,
+      "albumPlaycount": 3901439,
+      "score": 79.32053994979546,
+      "scoreBreakdown": {
+        "artist": 35.91304730825434,
+        "album": 25.407492641541126,
+        "freshness": 18
+      },
+      "daysOld": 12
+    },
+    {
+      "id": "mb-e4019e40-6561-4be9-a7f8-a25152be02d3",
+      "mbid": "e4019e40-6561-4be9-a7f8-a25152be02d3",
+      "title": "Fleetwood Mac",
+      "artist": "Fleetwood Mac",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "US",
+      "genres": [
+        "1975",
+        "70s",
+        "经典摇滚",
+        "软摇滚",
+        "摇滚"
+      ],
+      "genresEn": [
+        "1975",
+        "70s",
+        "classic rock",
+        "soft rock",
+        "rock"
+      ],
+      "lfmTags": [
+        "1975",
+        "70s",
+        "classic rock",
+        "soft rock",
+        "rock"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 4987740,
+      "artistPlaycount": 311421905,
+      "albumListeners": 1875037,
+      "albumPlaycount": 32701862,
+      "score": 70,
+      "scoreBreakdown": {
+        "artist": 40,
+        "album": 30,
+        "freshness": 0
+      },
+      "daysOld": 186
+    },
     {
       "id": "mb-c6358baf-1e01-4991-ab6e-cb5d794e222a",
       "mbid": "c6358baf-1e01-4991-ab6e-cb5d794e222a",
@@ -67,8 +155,8 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3556369,
-      "artistPlaycount": 129314495,
+      "artistListeners": 3557482,
+      "artistPlaycount": 129351187,
       "albumListeners": 1278491,
       "albumPlaycount": 13430836,
       "score": 70,
@@ -77,7 +165,7 @@
         "album": 30,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-6f7853c8-e90a-4886-9535-0a14fa328903",
@@ -121,7 +209,7 @@
         "album": 29.540112988329597,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-03b901b9-3497-4666-8815-c526a4216ff0",
@@ -141,13 +229,13 @@
       "artistPlaycount": 2203076,
       "albumListeners": 2163,
       "albumPlaycount": 17382,
-      "score": 68.93888067038786,
+      "score": 67.93888067038786,
       "scoreBreakdown": {
         "artist": 31.2635980731924,
         "album": 16.675282597195455,
-        "freshness": 21
+        "freshness": 20
       },
-      "daysOld": 9
+      "daysOld": 10
     },
     {
       "id": "mb-07bc494f-85f7-4993-b5df-1a47c5e9a13c",
@@ -182,13 +270,13 @@
       "artistPlaycount": 8284854,
       "albumListeners": 34647,
       "albumPlaycount": 230362,
-      "score": 67.0928912720866,
+      "score": 66.0928912720866,
       "scoreBreakdown": {
         "artist": 37.39456309175598,
         "album": 22.698328180330634,
-        "freshness": 7
+        "freshness": 6
       },
-      "daysOld": 23
+      "daysOld": 24
     },
     {
       "id": "mb-67098c37-f75e-4384-983c-4ce8ac5bf0bb",
@@ -208,13 +296,13 @@
       "artistPlaycount": 419700,
       "albumListeners": 431,
       "albumPlaycount": 2411,
-      "score": 66.91730672573155,
+      "score": 65.91730672573155,
       "scoreBreakdown": {
         "artist": 32.7449203749279,
         "album": 13.172386350803658,
-        "freshness": 21
+        "freshness": 20
       },
-      "daysOld": 9
+      "daysOld": 10
     },
     {
       "id": "mb-03283d25-b04f-445f-ab39-ab51d45919c1",
@@ -234,13 +322,13 @@
       "artistPlaycount": 352947,
       "albumListeners": 910,
       "albumPlaycount": 3856,
-      "score": 66.88560424044495,
+      "score": 65.88560424044495,
       "scoreBreakdown": {
         "artist": 31.09039727883948,
         "album": 14.795206961605468,
-        "freshness": 21
+        "freshness": 20
       },
-      "daysOld": 9
+      "daysOld": 10
     },
     {
       "id": "mb-19c8eddd-b573-45b0-bf69-f91fe411d41e",
@@ -278,13 +366,13 @@
       "artistPlaycount": 4908618,
       "albumListeners": 1826,
       "albumPlaycount": 32646,
-      "score": 66.74873248551833,
+      "score": 65.74873248551833,
       "scoreBreakdown": {
         "artist": 35.441228619526925,
         "album": 16.307503865991404,
-        "freshness": 15
+        "freshness": 14
       },
-      "daysOld": 15
+      "daysOld": 16
     },
     {
       "id": "mb-e75203bf-5479-4885-a959-779d8a01fad1",
@@ -322,13 +410,13 @@
       "artistPlaycount": 1696865,
       "albumListeners": 820,
       "albumPlaycount": 4656,
-      "score": 62.42237711655302,
+      "score": 61.42237711655302,
       "scoreBreakdown": {
         "artist": 33.85330785463444,
         "album": 14.569069261918584,
-        "freshness": 14
+        "freshness": 13
       },
-      "daysOld": 16
+      "daysOld": 17
     },
     {
       "id": "mb-0ff52cf8-c0e6-455e-8ad9-e5b0ea808a5a",
@@ -363,13 +451,13 @@
       "artistPlaycount": 12074077,
       "albumListeners": 5200,
       "albumPlaycount": 79729,
-      "score": 61.99993431089981,
+      "score": 60.99993431089981,
       "scoreBreakdown": {
         "artist": 36.41991759272582,
         "album": 18.580016718173994,
-        "freshness": 7
+        "freshness": 6
       },
-      "daysOld": 23
+      "daysOld": 24
     },
     {
       "id": "mb-ca12bdf9-c25a-4d98-9188-86d41c71efbd",
@@ -413,7 +501,7 @@
         "album": 21.97234596173717,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
@@ -457,7 +545,7 @@
         "album": 24.712470953278796,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
@@ -501,7 +589,33 @@
         "album": 24.50535630893337,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
+    },
+    {
+      "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "mbid": "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "title": "Snow, Vol. 9",
+      "artist": "Wun Two",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 473957,
+      "artistPlaycount": 6377135,
+      "albumListeners": 5528,
+      "albumPlaycount": 19367,
+      "score": 56.55109978425948,
+      "scoreBreakdown": {
+        "artist": 37.83825961242877,
+        "album": 18.71284017183071,
+        "freshness": 0
+      },
+      "daysOld": 186
     },
     {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
@@ -545,7 +659,51 @@
         "album": 20.644579892269185,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
+    },
+    {
+      "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
+      "mbid": "dda01573-1be8-4f7a-b06f-9cc3d066f515",
+      "title": "Masekela",
+      "artist": "Hugh Masekela",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [
+        "jazz fusion",
+        "爵士",
+        "trumpet",
+        "africa",
+        "非洲音乐"
+      ],
+      "genresEn": [
+        "jazz fusion",
+        "jazz",
+        "trumpet",
+        "africa",
+        "african"
+      ],
+      "lfmTags": [
+        "jazz fusion",
+        "jazz",
+        "trumpet",
+        "africa",
+        "african"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 250792,
+      "artistPlaycount": 1969198,
+      "albumListeners": 3376,
+      "albumPlaycount": 16197,
+      "score": 53.637436715396156,
+      "scoreBreakdown": {
+        "artist": 35.99542452562807,
+        "album": 17.64201218976809,
+        "freshness": 0
+      },
+      "daysOld": 186
     },
     {
       "id": "mb-68eb725d-8856-45b5-a530-99e8293bac0a",
@@ -565,13 +723,13 @@
       "artistPlaycount": 161114,
       "albumListeners": 3539,
       "albumPlaycount": 20341,
-      "score": 54.4526997142647,
+      "score": 53.4526997142647,
       "scoreBreakdown": {
         "artist": 29.70829690107713,
         "album": 17.744402813187573,
-        "freshness": 7
+        "freshness": 6
       },
-      "daysOld": 23
+      "daysOld": 24
     },
     {
       "id": "mb-7a93e5a1-7b02-45a9-8edb-6fd88b71ebbc",
@@ -591,65 +749,13 @@
       "artistPlaycount": 2487691,
       "albumListeners": 1354,
       "albumPlaycount": 18266,
-      "score": 53.501411906945684,
+      "score": 52.501411906945684,
       "scoreBreakdown": {
         "artist": 31.843318585200056,
         "album": 15.658093321745628,
-        "freshness": 6
+        "freshness": 5
       },
-      "daysOld": 24
-    },
-    {
-      "id": "mb-cb86717a-04b0-4d43-aa9a-429ae89e5dc1",
-      "mbid": "cb86717a-04b0-4d43-aa9a-429ae89e5dc1",
-      "title": "Seahaven",
-      "artist": "Seahaven",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 145241,
-      "artistPlaycount": 5107577,
-      "albumListeners": 4521,
-      "albumPlaycount": 63660,
-      "score": 52.690100737942444,
-      "scoreBreakdown": {
-        "artist": 34.413928202770975,
-        "album": 18.276172535171472,
-        "freshness": 0
-      },
-      "daysOld": 30
-    },
-    {
-      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "title": "Truthsayer",
-      "artist": "Outshine",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2617,
-      "artistPlaycount": 22150,
-      "albumListeners": 49,
-      "albumPlaycount": 234,
-      "score": 52.23633855107511,
-      "scoreBreakdown": {
-        "artist": 22.785358150932538,
-        "album": 8.450980400142567,
-        "freshness": 21
-      },
-      "daysOld": 9
+      "daysOld": 25
     },
     {
       "id": "mb-678bbf03-22b8-4342-bf02-7f0a0dcb353d",
@@ -675,33 +781,7 @@
         "album": 14.69009548738105,
         "freshness": 0
       },
-      "daysOld": 185
-    },
-    {
-      "id": "mb-0029fbd8-6fae-44ef-be42-8b910d846115",
-      "mbid": "0029fbd8-6fae-44ef-be42-8b910d846115",
-      "title": "Liminal",
-      "artist": "Poppy Ackroyd",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 151785,
-      "artistPlaycount": 1353721,
-      "albumListeners": 1647,
-      "albumPlaycount": 10269,
-      "score": 50.62499369561241,
-      "scoreBreakdown": {
-        "artist": 34.54152569976364,
-        "album": 16.08346799584877,
-        "freshness": 0
-      },
-      "daysOld": 30
+      "daysOld": 186
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -745,7 +825,7 @@
         "album": 20.42127229555615,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
@@ -771,7 +851,33 @@
         "album": 17.80371650527356,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
+    },
+    {
+      "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
+      "mbid": "4e05d16b-0198-4994-b1fe-78053c4c5055",
+      "title": "The Lighthouse Session II",
+      "artist": "Saturnus",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "DE",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 118133,
+      "artistPlaycount": 5408741,
+      "albumListeners": 805,
+      "albumPlaycount": 3547,
+      "score": 48.344787622224175,
+      "scoreBreakdown": {
+        "artist": 33.81580822038483,
+        "album": 14.528979401839344,
+        "freshness": 0
+      },
+      "daysOld": 186
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -797,7 +903,7 @@
         "album": 14.097719677709344,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -823,7 +929,7 @@
         "album": 15.664498849722413,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-15e13404-810d-4918-880f-1d43ac51d1fe",
@@ -849,33 +955,7 @@
         "album": 15.711947330594182,
         "freshness": 0
       },
-      "daysOld": 185
-    },
-    {
-      "id": "mb-a67509a1-8a10-4bb6-a194-55e55f7ce164",
-      "mbid": "a67509a1-8a10-4bb6-a194-55e55f7ce164",
-      "title": "Easy Peeler",
-      "artist": "Brockhoff",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 14337,
-      "artistPlaycount": 86887,
-      "albumListeners": 3160,
-      "albumPlaycount": 15472,
-      "score": 45.20815731469506,
-      "scoreBreakdown": {
-        "artist": 27.709721901603043,
-        "album": 17.498435413092018,
-        "freshness": 0
-      },
-      "daysOld": 30
+      "daysOld": 186
     },
     {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
@@ -901,33 +981,39 @@
         "album": 17.847454771743916,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
-      "id": "mb-75228242-54bd-4991-a16d-789aeb0d1b0e",
-      "mbid": "75228242-54bd-4991-a16d-789aeb0d1b0e",
-      "title": "Candramawa",
-      "artist": "Danilla",
-      "releaseDate": "2026-06-05",
+      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "title": "Truthsayer",
+      "artist": "Outshine",
+      "releaseDate": "2026-06-26",
       "year": "2026",
       "type": "Album",
       "country": "XW",
       "genres": [],
       "genresEn": [],
-      "lfmTags": [],
+      "lfmTags": [
+        "Progressive metal",
+        "rock",
+        "post-grunge",
+        "alternative",
+        "Gothic Metal"
+      ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 24943,
-      "artistPlaycount": 1163272,
-      "albumListeners": 587,
-      "albumPlaycount": 5866,
-      "score": 43.156181751013655,
+      "artistListeners": 2617,
+      "artistPlaycount": 22150,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 42.78535815093254,
       "scoreBreakdown": {
-        "artist": 29.312991244775585,
-        "album": 13.843190506238072,
-        "freshness": 0
+        "artist": 22.785358150932538,
+        "album": 0,
+        "freshness": 20
       },
-      "daysOld": 30
+      "daysOld": 10
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -971,7 +1057,7 @@
         "album": 12.156818820794935,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-a965713d-65d9-4f95-a6b3-a276bada8d00",
@@ -993,45 +1079,13 @@
       "artistPlaycount": 6678,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 42.585299955159485,
+      "score": 41.585299955159485,
       "scoreBreakdown": {
         "artist": 21.585299955159485,
         "album": 0,
-        "freshness": 21
+        "freshness": 20
       },
-      "daysOld": 9
-    },
-    {
-      "id": "mb-1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
-      "mbid": "1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
-      "title": "Back into the Womb",
-      "artist": "Sans Froid",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "Progressive rock",
-        "UK",
-        "england",
-        "art rock",
-        "United Kingdom"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1568,
-      "artistPlaycount": 14406,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 42.30230705565613,
-      "scoreBreakdown": {
-        "artist": 21.30230705565613,
-        "album": 0,
-        "freshness": 21
-      },
-      "daysOld": 9
+      "daysOld": 10
     },
     {
       "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
@@ -1057,7 +1111,39 @@
         "album": 12.689095475366369,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
+    },
+    {
+      "id": "mb-1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
+      "mbid": "1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
+      "title": "Back into the Womb",
+      "artist": "Sans Froid",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "Progressive rock",
+        "UK",
+        "england",
+        "art rock",
+        "United Kingdom"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1568,
+      "artistPlaycount": 14406,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 41.30230705565613,
+      "scoreBreakdown": {
+        "artist": 21.30230705565613,
+        "album": 0,
+        "freshness": 20
+      },
+      "daysOld": 10
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
@@ -1083,7 +1169,7 @@
         "album": 2.385606273598312,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-f8536d9f-b285-4ec7-add3-62d1d53ccd14",
@@ -1109,7 +1195,33 @@
         "album": 5.206963425791125,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
+    },
+    {
+      "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
+      "mbid": "ee43185d-de89-4967-bd54-2c0af6179b8a",
+      "title": "Ristiriita",
+      "artist": "kukkatalo",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "FI",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 4177,
+      "artistPlaycount": 105048,
+      "albumListeners": 1363,
+      "albumPlaycount": 20721,
+      "score": 39.81157578094084,
+      "scoreBreakdown": {
+        "artist": 24.139096501767476,
+        "album": 15.672479279173368,
+        "freshness": 0
+      },
+      "daysOld": 186
     },
     {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
@@ -1135,7 +1247,33 @@
         "album": 9.162544563531181,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
+    },
+    {
+      "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
+      "mbid": "8c5b6568-d616-4e00-b3b9-2117642ef141",
+      "title": "ADHD",
+      "artist": "Mucha",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "CZ",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 9592,
+      "artistPlaycount": 264098,
+      "albumListeners": 243,
+      "albumPlaycount": 4026,
+      "score": 38.47409250193017,
+      "scoreBreakdown": {
+        "artist": 26.54606113393861,
+        "album": 11.928031367991561,
+        "freshness": 0
+      },
+      "daysOld": 186
     },
     {
       "id": "mb-48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
@@ -1179,7 +1317,7 @@
         "album": 8.817139967814686,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-eed0703e-1587-4667-81df-c390c4f6a59a",
@@ -1205,33 +1343,7 @@
         "album": 6.505149978319906,
         "freshness": 0
       },
-      "daysOld": 185
-    },
-    {
-      "id": "mb-d53761a5-6d5d-45df-b360-b6e239e7ae64",
-      "mbid": "d53761a5-6d5d-45df-b360-b6e239e7ae64",
-      "title": "A Distracted God",
-      "artist": "Beatriz Ferreyra",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 9193,
-      "artistPlaycount": 39141,
-      "albumListeners": 150,
-      "albumPlaycount": 427,
-      "score": 37.303504696056464,
-      "scoreBreakdown": {
-        "artist": 26.423048400778054,
-        "album": 10.880456295278407,
-        "freshness": 0
-      },
-      "daysOld": 30
+      "daysOld": 186
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
@@ -1257,7 +1369,7 @@
         "album": 11.312255448652145,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
@@ -1301,33 +1413,7 @@
         "album": 9.256291743595376,
         "freshness": 0
       },
-      "daysOld": 185
-    },
-    {
-      "id": "mb-7a7145af-e654-450a-b8f7-3bf30a0fdce0",
-      "mbid": "7a7145af-e654-450a-b8f7-3bf30a0fdce0",
-      "title": "SNVRKOLEPSY",
-      "artist": "SNVRK",
-      "releaseDate": "2026-06-05",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 8329,
-      "artistPlaycount": 20084,
-      "albumListeners": 16,
-      "albumPlaycount": 2265,
-      "score": 32.15788566051168,
-      "scoreBreakdown": {
-        "artist": 26.137285747232056,
-        "album": 6.020599913279623,
-        "freshness": 0
-      },
-      "daysOld": 30
+      "daysOld": 186
     },
     {
       "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
@@ -1353,7 +1439,7 @@
         "album": 7.5257498915995305,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
@@ -1379,7 +1465,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
@@ -1411,7 +1497,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-f10db834-996c-4b1f-9563-98c7b9e80baa",
@@ -1437,7 +1523,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
@@ -1469,7 +1555,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-e178c01c-3f05-4070-9454-749687762747",
@@ -1501,7 +1587,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
@@ -1533,7 +1619,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
@@ -1565,7 +1651,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
@@ -1597,7 +1683,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
@@ -1626,7 +1712,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-dc113487-3606-48ce-976d-37748757097c",
@@ -1658,7 +1744,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "mb-901435e9-1c31-4a69-9fe9-288b4d510d99",
@@ -1690,7 +1776,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 185
+      "daysOld": 186
     },
     {
       "id": "chart-0",
@@ -5994,31 +6080,6 @@
     },
     {
       "id": "chart-172",
-      "mbid": "072b83ba-8238-4c89-9f19-24f991528a6a",
-      "title": "Fleetwood Mac",
-      "artist": "Fleetwood Mac",
-      "releaseDate": "",
-      "type": "Album",
-      "country": "",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://lastfm.freetls.fastly.net/i/u/174s/97e59a52bf1c49ceb28cfa4d763e8520.png",
-      "source": "chart",
-      "artistListeners": 0,
-      "artistPlaycount": 0,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 0,
-      "scoreBreakdown": {
-        "artist": 0,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 999
-    },
-    {
-      "id": "chart-173",
       "mbid": "0ec36324-1297-4985-a8ac-0dc63164ac3f",
       "title": "Canned Heat",
       "artist": "Canned Heat",
@@ -6043,7 +6104,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-174",
+      "id": "chart-173",
       "mbid": "0432e1e7-1692-4668-bc57-78e32b90ecf8",
       "title": "Hard Again",
       "artist": "Muddy Waters",
@@ -6068,7 +6129,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-175",
+      "id": "chart-174",
       "mbid": "069fa715-cdc5-4395-9e3c-2956e1fa3b05",
       "title": "The Paul Butterfield Blues Band",
       "artist": "The Paul Butterfield Blues Band",
@@ -6093,7 +6154,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-176",
+      "id": "chart-175",
       "mbid": "4a3b4a98-d3db-4b97-bb62-22831713f011",
       "title": "KEB' MO'",
       "artist": "Keb' Mo'",
@@ -6118,7 +6179,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-177",
+      "id": "chart-176",
       "mbid": "26fd4747-4bb2-4d2c-be6d-05e22644f624",
       "title": "Briefcase Full of Blues",
       "artist": "The Blues Brothers",
@@ -6143,7 +6204,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-178",
+      "id": "chart-177",
       "mbid": "19047b58-9c7f-4346-813c-0e1ee3c3cfa2",
       "title": "Closing Time",
       "artist": "Tom Waits",
@@ -6168,7 +6229,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-179",
+      "id": "chart-178",
       "mbid": "1ed6d8d7-c1bc-4f4f-88e7-bc6b9d1e548a",
       "title": "Lindsey Stirling",
       "artist": "Lindsey Stirling",
@@ -6193,7 +6254,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-180",
+      "id": "chart-179",
       "mbid": "cad73ae7-5966-4de1-bad4-4a603891fd27",
       "title": "The Lord of the Rings: The Fellowship of the Ring - The Complete Recordings",
       "artist": "Howard Shore",
@@ -6218,7 +6279,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-181",
+      "id": "chart-180",
       "mbid": "4694854e-5960-4fa2-b25e-46ad32707a31",
       "title": "Divenire",
       "artist": "Ludovico Einaudi",
@@ -6243,7 +6304,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-182",
+      "id": "chart-181",
       "mbid": "2f129296-8895-4477-853e-cccc56d5c86b",
       "title": "The Nutcracker",
       "artist": "Pyotr Ilyich Tchaikovsky",
@@ -6268,7 +6329,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-183",
+      "id": "chart-182",
       "mbid": "",
       "title": "Mahler: Symphony No. 5",
       "artist": "Gustav Mahler",
@@ -6293,7 +6354,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-184",
+      "id": "chart-183",
       "mbid": "0000e9aa-dd06-4d97-95c6-f1c1f4c69602",
       "title": "The Four Seasons",
       "artist": "Antonio Vivaldi",
@@ -6318,7 +6379,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-185",
+      "id": "chart-184",
       "mbid": "35f8ebff-74cd-4961-bf37-b71e64914651",
       "title": "Peer Gynt",
       "artist": "Edvard Grieg",
@@ -6343,7 +6404,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-186",
+      "id": "chart-185",
       "mbid": "1b5b1c66-8a3b-4b66-82b7-a7bd110106ec",
       "title": "Chopin",
       "artist": "Frédéric Chopin",
@@ -6368,7 +6429,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-187",
+      "id": "chart-186",
       "mbid": "022a6185-4ba0-465d-b5db-47a0e77b1658",
       "title": "The Planets",
       "artist": "Gustav Holst",
@@ -6393,7 +6454,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-188",
+      "id": "chart-187",
       "mbid": "686bbe77-7a7f-4dd3-8634-8cd66afdb7b2",
       "title": "Eden Roc",
       "artist": "Ludovico Einaudi",
@@ -6418,7 +6479,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-189",
+      "id": "chart-188",
       "mbid": "",
       "title": "TCHAIKOVSKY: The Sleeping Beauty (Complete Ballet)",
       "artist": "Pyotr Ilyich Tchaikovsky",
@@ -6443,7 +6504,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-190",
+      "id": "chart-189",
       "mbid": "",
       "title": "Tchaikovsky: The Nutcracker",
       "artist": "Pyotr Ilyich Tchaikovsky",
@@ -6468,7 +6529,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-191",
+      "id": "chart-190",
       "mbid": "",
       "title": "MOSZKOWSKI: Piano Concerto in E Major / From Foreign Lands",
       "artist": "Moritz Moszkowski",
@@ -6493,7 +6554,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-192",
+      "id": "chart-191",
       "mbid": "c3c7168b-adbc-3ac1-8231-0fd551deb87d",
       "title": "Harry Potter and The Sorcerer's Stone Original Motion Picture Soundtrack",
       "artist": "John Williams",
@@ -6518,7 +6579,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-193",
+      "id": "chart-192",
       "mbid": "",
       "title": "Moonlight",
       "artist": "Ludwig van Beethoven",
@@ -6543,7 +6604,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-194",
+      "id": "chart-193",
       "mbid": "",
       "title": "VANHAL: Symphonies, Vol. 3",
       "artist": "Johann Baptist Vanhal",
@@ -6568,7 +6629,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-195",
+      "id": "chart-194",
       "mbid": "046893a3-61a0-4f84-9904-2882ddd623d0",
       "title": "Josh Groban",
       "artist": "Josh Groban",
@@ -6593,7 +6654,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-196",
+      "id": "chart-195",
       "mbid": "",
       "title": "Hilary Hahn Plays Bach",
       "artist": "Johann Sebastian Bach",
@@ -6618,7 +6679,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-197",
+      "id": "chart-196",
       "mbid": "30331fef-213e-4acb-a813-5e403ecc8f28",
       "title": "Gregorian Chant",
       "artist": "Monks Of The Abbey Of Notre Dame",
@@ -6643,7 +6704,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-198",
+      "id": "chart-197",
       "mbid": "",
       "title": "MOZART: Overtures",
       "artist": "Wolfgang Amadeus Mozart",
@@ -6668,7 +6729,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-199",
+      "id": "chart-198",
       "mbid": "068f5a87-1356-48ed-ad6f-18e567853d39",
       "title": "The Yellow Shark",
       "artist": "Frank Zappa",
@@ -6693,7 +6754,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-200",
+      "id": "chart-199",
       "mbid": "",
       "title": "Bach: Greatest Hits",
       "artist": "Johann Sebastian Bach",
@@ -6718,7 +6779,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-201",
+      "id": "chart-200",
       "mbid": "",
       "title": "Mission: Impossible III (Music from the Original Motion Picture Soundtrack)",
       "artist": "Michael Giacchino",
@@ -6743,7 +6804,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-202",
+      "id": "chart-201",
       "mbid": "10adf07f-c862-34c1-be81-b1ee63015d22",
       "title": "Il Divo",
       "artist": "Il Divo",
@@ -6768,7 +6829,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-203",
+      "id": "chart-202",
       "mbid": "",
       "title": "Laced/Unlaced (Double Disc)",
       "artist": "Emilie Autumn",
@@ -6793,7 +6854,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-204",
+      "id": "chart-203",
       "mbid": "",
       "title": "Bloodborne Original Soundtrack",
       "artist": "SIE Sound Team",
@@ -6818,7 +6879,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-205",
+      "id": "chart-204",
       "mbid": "23665052-6ebf-4594-b213-a9ed593d79eb",
       "title": "Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",
       "artist": "John Williams",
@@ -6843,7 +6904,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-206",
+      "id": "chart-205",
       "mbid": "",
       "title": "Assassin's Creed Syndicate (Original Game Soundtrack)",
       "artist": "Austin Wintory",
@@ -6868,7 +6929,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-207",
+      "id": "chart-206",
       "mbid": "383bebb3-3c04-424e-8705-966e0b69993a",
       "title": "Hallelujah",
       "artist": "Igorrr",
@@ -6893,7 +6954,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-208",
+      "id": "chart-207",
       "mbid": "",
       "title": "The Ultimate Most Relaxing Debussy in the Universe",
       "artist": "Claude Debussy",
@@ -6918,7 +6979,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-209",
+      "id": "chart-208",
       "mbid": "05a09b3b-6367-4021-9a64-24ba36ada700",
       "title": "Just Another Diamond Day",
       "artist": "Vashti Bunyan",
@@ -6943,7 +7004,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-210",
+      "id": "chart-209",
       "mbid": "0981a26e-ca63-3385-934d-c65a8b0d9179",
       "title": "Highway 61 Revisited",
       "artist": "Bob Dylan",
@@ -6968,7 +7029,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-211",
+      "id": "chart-210",
       "mbid": "2e911ac0-d0a9-49c1-87fa-490885a850ca",
       "title": "Peaceful, The World Lays Me Down",
       "artist": "Noah and the Whale",
@@ -6993,7 +7054,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-212",
+      "id": "chart-211",
       "mbid": "",
       "title": "folklore (deluxe version)",
       "artist": "Taylor Swift",
@@ -7018,7 +7079,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-213",
+      "id": "chart-212",
       "mbid": "73249796-dda7-4fd2-899b-8e8819dd1a21",
       "title": "The Shepherd's Dog",
       "artist": "Iron & Wine",
@@ -7043,7 +7104,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-214",
+      "id": "chart-213",
       "mbid": "0095cc52-5893-3cb2-a4b6-c1b76d50608f",
       "title": "Another Side of Bob Dylan",
       "artist": "Bob Dylan",
@@ -7068,7 +7129,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-215",
+      "id": "chart-214",
       "mbid": "04a9e611-fe7c-365d-b554-f3f8e6fbce39",
       "title": "Ladies of the Canyon",
       "artist": "Joni Mitchell",
@@ -7093,7 +7154,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-216",
+      "id": "chart-215",
       "mbid": "25951225-d8f1-482a-bb83-e9ab9e89c6ab",
       "title": "Veneer",
       "artist": "José González",
@@ -7118,7 +7179,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-217",
+      "id": "chart-216",
       "mbid": "135a4684-8a27-410c-83ec-b6aee745d817",
       "title": "Paul Simon",
       "artist": "Paul Simon",
@@ -7143,7 +7204,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-218",
+      "id": "chart-217",
       "mbid": "093c881d-0c72-4e7d-b6da-16b2e51f2b64",
       "title": "Nebraska",
       "artist": "Bruce Springsteen",
@@ -7168,7 +7229,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-219",
+      "id": "chart-218",
       "mbid": "0093e290-9a72-4617-b04d-e7aa05de157b",
       "title": "Greatest Hits",
       "artist": "James Taylor",
@@ -7193,7 +7254,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-220",
+      "id": "chart-219",
       "mbid": "02fdffc0-27d7-4656-8d18-1c1804843cda",
       "title": "O",
       "artist": "Damien Rice",
@@ -7218,7 +7279,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-221",
+      "id": "chart-220",
       "mbid": "89fbb1ea-519a-4a19-9f30-75e44a0c99e2",
       "title": "Gossip in the Grain",
       "artist": "Ray LaMontagne",
@@ -7243,7 +7304,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-222",
+      "id": "chart-221",
       "mbid": "06eb2cba-778c-37aa-b902-f994c64e29a8",
       "title": "Joan Baez",
       "artist": "Joan Baez",
@@ -7268,7 +7329,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-223",
+      "id": "chart-222",
       "mbid": "014dbe28-0080-4c72-8a9e-5a65e0ce341a",
       "title": "Court and Spark",
       "artist": "Joni Mitchell",
@@ -7293,7 +7354,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-224",
+      "id": "chart-223",
       "mbid": "00d2273a-85df-367a-84f3-4fca5c3f2bba",
       "title": "Clouds",
       "artist": "Joni Mitchell",
@@ -7318,7 +7379,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-225",
+      "id": "chart-224",
       "mbid": "0b9f29be-4d44-4ee5-992c-a8bf2428cd03",
       "title": "The Essential Bob Dylan",
       "artist": "Bob Dylan",
@@ -7343,7 +7404,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-226",
+      "id": "chart-225",
       "mbid": "0d503030-d8aa-301d-b0f2-d7e163d3ac6c",
       "title": "The Flying Club Cup",
       "artist": "Beirut",
@@ -7368,7 +7429,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-227",
+      "id": "chart-226",
       "mbid": "0084311d-5257-492f-a37a-1295ecc41011",
       "title": "Chemtrails Over the Country Club",
       "artist": "Lana Del Rey",
@@ -7393,7 +7454,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-228",
+      "id": "chart-227",
       "mbid": "2515918c-59dd-4a0e-ac35-e1818ef8aab5",
       "title": "Wednesday Morning, 3 A.M.",
       "artist": "Simon & Garfunkel",
@@ -7418,7 +7479,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-229",
+      "id": "chart-228",
       "mbid": "",
       "title": "This Land Is Your Land: The Asch Recordings, Vol. 1",
       "artist": "Woody Guthrie",
@@ -7443,7 +7504,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-230",
+      "id": "chart-229",
       "mbid": "02d8cd35-6893-43a4-b783-484abe3a383d",
       "title": "I Speak Because I Can",
       "artist": "Laura Marling",
@@ -7468,7 +7529,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-231",
+      "id": "chart-230",
       "mbid": "44346661-bdfe-44db-b31c-2b5cdc582dce",
       "title": "Sun Giant",
       "artist": "Fleet Foxes",
@@ -7493,7 +7554,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-232",
+      "id": "chart-231",
       "mbid": "29367888-10ce-4c58-a2ef-fd461f439c6b",
       "title": "3 Rounds and a Sound",
       "artist": "Blind Pilot",
@@ -7518,7 +7579,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-233",
+      "id": "chart-232",
       "mbid": "04ef7d7b-5ad6-4662-84c0-3546215a4370",
       "title": "John Wesley Harding",
       "artist": "Bob Dylan",
@@ -7543,7 +7604,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-234",
+      "id": "chart-233",
       "mbid": "",
       "title": "Windswept Adan",
       "artist": "Ichiko Aoba",
@@ -7568,7 +7629,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-235",
+      "id": "chart-234",
       "mbid": "106895e0-c415-4d21-a61a-9257840aff25",
       "title": "Dust Bowl Ballads",
       "artist": "Woody Guthrie",
@@ -7593,7 +7654,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-236",
+      "id": "chart-235",
       "mbid": "47c91666-fb2a-4aac-96e1-8e0b461c491f",
       "title": "Lookaftering",
       "artist": "Vashti Bunyan",
@@ -7618,7 +7679,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-237",
+      "id": "chart-236",
       "mbid": "14b6ef82-a25f-3698-b1d1-4c2a53133685",
       "title": "Declaration of Dependence",
       "artist": "Kings of Convenience",
@@ -7643,7 +7704,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-238",
+      "id": "chart-237",
       "mbid": "1e5b6ed2-5830-44a7-b584-329cb6fcde4f",
       "title": "Our Endless Numbered Days",
       "artist": "Iron & Wine",
@@ -7668,7 +7729,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-239",
+      "id": "chart-238",
       "mbid": "26009131-a9b5-40f5-b923-c3e88f0df1ed",
       "title": "FEARLESS",
       "artist": "LE SSERAFIM",
@@ -7693,7 +7754,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-240",
+      "id": "chart-239",
       "mbid": "1f11977b-09b2-4fee-a95b-d6c4a71f426b",
       "title": "MADE",
       "artist": "Bigbang",
@@ -7718,7 +7779,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-241",
+      "id": "chart-240",
       "mbid": "baaf2b32-e3a9-42c5-9c45-eb370016f6d3",
       "title": "‘The ReVe Festival’ Day 1",
       "artist": "Red Velvet",
@@ -7743,7 +7804,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-242",
+      "id": "chart-241",
       "mbid": "",
       "title": "2NE1 2nd Mini Album",
       "artist": "2NE1",
@@ -7768,7 +7829,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-243",
+      "id": "chart-242",
       "mbid": "1ae53a48-a16b-495f-ae10-d2faeca9c982",
       "title": "NU ABO",
       "artist": "f(x)",
@@ -7793,7 +7854,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-244",
+      "id": "chart-243",
       "mbid": "8409a270-8e42-4831-a327-1a38b55509e5",
       "title": "One of a Kind",
       "artist": "G-DRAGON",
@@ -7818,7 +7879,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-245",
+      "id": "chart-244",
       "mbid": "",
       "title": "The Perfect Red Velvet - The 2nd Album Repackage",
       "artist": "Red Velvet",
@@ -7843,7 +7904,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-246",
+      "id": "chart-245",
       "mbid": "d9d212ff-0fcd-4d0d-b812-57f3298e6360",
       "title": "Trouble Maker",
       "artist": "Trouble Maker",
@@ -7868,7 +7929,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-247",
+      "id": "chart-246",
       "mbid": "6caa7ac5-2726-4137-b40e-67404e3f933c",
       "title": "STRANG3R",
       "artist": "LADIES' CODE",
@@ -7893,7 +7954,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-248",
+      "id": "chart-247",
       "mbid": "5e0ae0bd-4ab5-45f8-800f-aaf608a70d48",
       "title": "Revolution",
       "artist": "Kara",
@@ -7918,7 +7979,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-249",
+      "id": "chart-248",
       "mbid": "487d8a1f-13d6-4775-a12d-5ff78bfb689a",
       "title": "POP/STARS",
       "artist": "K/DA",
@@ -7943,7 +8004,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-250",
+      "id": "chart-249",
       "mbid": "",
       "title": "1:59PM",
       "artist": "2PM",
@@ -7968,7 +8029,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-251",
+      "id": "chart-250",
       "mbid": "8f475e00-afb0-45b0-8d90-502ac33e63a4",
       "title": "Heart Attack",
       "artist": "AOA",
@@ -7993,7 +8054,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-252",
+      "id": "chart-251",
       "mbid": "50610c76-7ddc-4297-b261-6099ca99769d",
       "title": "Crazy",
       "artist": "4minute",
@@ -8018,7 +8079,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-253",
+      "id": "chart-252",
       "mbid": "54b86679-fa5a-4b1f-b299-8173852ffbb1",
       "title": "Short Hair",
       "artist": "AOA",
@@ -8043,7 +8104,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-254",
+      "id": "chart-253",
       "mbid": "",
       "title": "[&]",
       "artist": "Loona",
@@ -8068,7 +8129,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-255",
+      "id": "chart-254",
       "mbid": "52106b44-8c94-455c-8c5b-845937cfecd4",
       "title": "Identify",
       "artist": "GOT7",
@@ -8093,7 +8154,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-256",
+      "id": "chart-255",
       "mbid": "",
       "title": "GO LIVE",
       "artist": "Stray Kids",
@@ -8118,7 +8179,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-257",
+      "id": "chart-256",
       "mbid": "1123492d-643b-4184-af05-2a5fa27c51fc",
       "title": "I am WHO",
       "artist": "Stray Kids",
@@ -8143,7 +8204,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-258",
+      "id": "chart-257",
       "mbid": "",
       "title": "NCT#127 LIMITLESS - The 2nd Mini Album",
       "artist": "NCT 127",
@@ -8168,7 +8229,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-259",
+      "id": "chart-258",
       "mbid": "5fbe93e9-5cdb-451d-b50b-80b9a1e46b61",
       "title": "WARRIOR",
       "artist": "B.A.P",
@@ -8193,7 +8254,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-260",
+      "id": "chart-259",
       "mbid": "",
       "title": "Hot Sauce - The 1st Album",
       "artist": "NCT DREAM",
@@ -8218,7 +8279,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-261",
+      "id": "chart-260",
       "mbid": "1a1a64b5-a914-4885-84d7-97994e2a69ee",
       "title": "Return",
       "artist": "Ikon",
@@ -8243,7 +8304,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-262",
+      "id": "chart-261",
       "mbid": "",
       "title": "Summer Special [Flip That]",
       "artist": "Loona",
@@ -8268,7 +8329,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-263",
+      "id": "chart-262",
       "mbid": "5e8afb15-6837-43af-be5b-31b331f69796",
       "title": "YES or YES",
       "artist": "TWICE",
@@ -8293,7 +8354,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-264",
+      "id": "chart-263",
       "mbid": "",
       "title": "Summer Magic - Summer Mini Album",
       "artist": "Red Velvet",
@@ -8318,7 +8379,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-265",
+      "id": "chart-264",
       "mbid": "",
       "title": "We Young - The 1st Mini Album",
       "artist": "NCT DREAM",
@@ -8343,7 +8404,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-266",
+      "id": "chart-265",
       "mbid": "",
       "title": "Wait On Me - The 4th Mini Album",
       "artist": "Kai",
@@ -8368,7 +8429,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-267",
+      "id": "chart-266",
       "mbid": "0ae0635f-4ef9-4d13-9ac0-d053217142be",
       "title": "IN LIFE",
       "artist": "Stray Kids",
@@ -8393,7 +8454,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-268",
+      "id": "chart-267",
       "mbid": "",
       "title": "[#]",
       "artist": "Loona",
@@ -8418,7 +8479,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-269",
+      "id": "chart-268",
       "mbid": "1415e24c-7247-411c-a83f-a0a5d68557df",
       "title": "JPN",
       "artist": "Perfume",
@@ -8443,7 +8504,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-270",
+      "id": "chart-269",
       "mbid": "1489b651-808d-465b-b92e-15fee371a158",
       "title": "THE BOOK",
       "artist": "YOASOBI",
@@ -8468,7 +8529,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-271",
+      "id": "chart-270",
       "mbid": "39d2115d-4f42-4bb7-af84-1c953a57da59",
       "title": "GAME",
       "artist": "Perfume",
@@ -8493,7 +8554,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-272",
+      "id": "chart-271",
       "mbid": "1b7bb1e7-8616-41df-bf28-f7024672ce89",
       "title": "Milk",
       "artist": "Goose house",
@@ -8518,7 +8579,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-273",
+      "id": "chart-272",
       "mbid": "3f9bfd93-14ac-424f-a705-85c029258069",
       "title": "Today Is A Beautiful Day",
       "artist": "Supercell",
@@ -8543,7 +8604,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-274",
+      "id": "chart-273",
       "mbid": "4c99e4a8-532c-48d7-921c-01c6aa57748b",
       "title": "DEEP RIVER",
       "artist": "宇多田ヒカル",
@@ -8568,7 +8629,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-275",
+      "id": "chart-274",
       "mbid": "36379a06-b646-4e83-ac12-7a9464fb20ad",
       "title": "HEART STATION",
       "artist": "宇多田ヒカル",
@@ -8593,7 +8654,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-276",
+      "id": "chart-275",
       "mbid": "4640b02e-fdc2-4e9f-b60d-c1c4c6e510c2",
       "title": "New Album",
       "artist": "Boris",
@@ -8618,7 +8679,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-277",
+      "id": "chart-276",
       "mbid": "0475b16c-6b82-497e-ac28-5059a86abf04",
       "title": "First Love",
       "artist": "宇多田ヒカル",
@@ -8643,7 +8704,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-278",
+      "id": "chart-277",
       "mbid": "290500cf-4649-4b2a-a424-82714dd8a822",
       "title": "Spending all my time",
       "artist": "Perfume",
@@ -8668,7 +8729,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-279",
+      "id": "chart-278",
       "mbid": "",
       "title": "なんだこれくしょん",
       "artist": "Kyary Pamyu Pamyu",
@@ -8693,7 +8754,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-280",
+      "id": "chart-279",
       "mbid": "294fdf0c-5207-4361-adfa-dee7585627ef",
       "title": "無罪モラトリアム",
       "artist": "椎名林檎",
@@ -8718,7 +8779,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-281",
+      "id": "chart-280",
       "mbid": "633e97ea-33c8-4cad-a274-d735a8fb03e8",
       "title": "&TWICE",
       "artist": "TWICE",
@@ -8743,7 +8804,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-282",
+      "id": "chart-281",
       "mbid": "023cd56e-0f5c-4661-8939-477cd8d4f7b1",
       "title": "PLAY",
       "artist": "安室奈美恵",
@@ -8768,7 +8829,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-283",
+      "id": "chart-282",
       "mbid": "130cdc9e-68fc-4c8e-908d-e8d9ae3053d8",
       "title": "FIVE",
       "artist": "SHINee",
@@ -8793,7 +8854,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-284",
+      "id": "chart-283",
       "mbid": "",
       "title": "ネバー・モア-『ペルソナ4』輪廻転生-",
       "artist": "Atlus Sound Team",
@@ -8818,7 +8879,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-285",
+      "id": "chart-284",
       "mbid": "6ccc09fb-6270-4e9a-89a6-62f9afc7c232",
       "title": "MICROCOSM",
       "artist": "Flow",
@@ -8843,7 +8904,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-286",
+      "id": "chart-285",
       "mbid": "3e16ed39-a891-438a-8897-444bfa372dd4",
       "title": "(miss)understood",
       "artist": "浜崎あゆみ",
@@ -8868,7 +8929,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-287",
+      "id": "chart-286",
       "mbid": "ce4144fe-d4c6-49b3-bd3a-8311ec4bf9b9",
       "title": "The French Operation",
       "artist": "girls be",
@@ -8893,7 +8954,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-288",
+      "id": "chart-287",
       "mbid": "16f7ac3b-f60b-4e6a-a61a-ac11497e9022",
       "title": "Distance",
       "artist": "宇多田ヒカル",
@@ -8918,7 +8979,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-289",
+      "id": "chart-288",
       "mbid": "199beeb9-7e7c-447c-b04b-e92cc37cfade",
       "title": "COUNTDOWN",
       "artist": "Exo",
@@ -8943,7 +9004,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-290",
+      "id": "chart-289",
       "mbid": "",
       "title": "Taste of Love",
       "artist": "TWICE",
@@ -8968,7 +9029,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-291",
+      "id": "chart-290",
       "mbid": "",
       "title": "I am...",
       "artist": "浜崎あゆみ",
@@ -8993,7 +9054,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-292",
+      "id": "chart-291",
       "mbid": "439e50d9-2422-4184-8ed7-760db41443fd",
       "title": "BEST FICTION",
       "artist": "安室奈美恵",
@@ -9018,7 +9079,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-293",
+      "id": "chart-292",
       "mbid": "0cee0f92-b5d7-44b5-ac39-a069a65e239d",
       "title": "Nino",
       "artist": "ROUND TABLE featuring Nino",
@@ -9043,7 +9104,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-294",
+      "id": "chart-293",
       "mbid": "0cba95f4-1bac-4599-8e12-5f42cefcfb2d",
       "title": "Deal with the devil",
       "artist": "Tia",
@@ -9068,7 +9129,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-295",
+      "id": "chart-294",
       "mbid": "25d86110-0874-4d4b-bda3-cc35713b9669",
       "title": "⊿",
       "artist": "Perfume",
@@ -9093,7 +9154,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-296",
+      "id": "chart-295",
       "mbid": "4eeb949a-e5b6-3bb8-98f7-442b170abc51",
       "title": "CAN'T BUY MY LOVE",
       "artist": "YUI",
@@ -9118,7 +9179,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-297",
+      "id": "chart-296",
       "mbid": "07c8e104-c12c-4793-bd3c-e8be266a724a",
       "title": "Photographs",
       "artist": "Casiopea",
@@ -9143,7 +9204,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-298",
+      "id": "chart-297",
       "mbid": "28305341-06d9-4fc0-9718-6748dd060119",
       "title": "World Atlas",
       "artist": "fhána",
@@ -9168,7 +9229,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-299",
+      "id": "chart-298",
       "mbid": "2b9aa4c3-4752-43b4-af04-b373a4bc478c",
       "title": "Awaken The World - The 1st Album",
       "artist": "WayV",
@@ -9193,7 +9254,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-300",
+      "id": "chart-299",
       "mbid": "",
       "title": "On My Youth - The 2nd Album",
       "artist": "WayV",
@@ -9218,7 +9279,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-301",
+      "id": "chart-300",
       "mbid": "",
       "title": "PLAY",
       "artist": "蔡依林",
@@ -9243,7 +9304,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-302",
+      "id": "chart-301",
       "mbid": "",
       "title": "我可以抱你嗎?愛人",
       "artist": "張惠妹",
@@ -9268,7 +9329,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-303",
+      "id": "chart-302",
       "mbid": "",
       "title": "LIMBO",
       "artist": "Jun",
@@ -9293,7 +9354,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-304",
+      "id": "chart-303",
       "mbid": "45e62a56-76c8-35be-b3f3-c5ed3781e2d4",
       "title": "浮躁",
       "artist": "王菲",
@@ -9318,7 +9379,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-305",
+      "id": "chart-304",
       "mbid": "",
       "title": "蓮",
       "artist": "LAY",
@@ -9343,7 +9404,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-306",
+      "id": "chart-305",
       "mbid": "",
       "title": "寂寞号登机口",
       "artist": "Jun",
@@ -9368,7 +9429,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-307",
+      "id": "chart-306",
       "mbid": "",
       "title": "摩天動物園",
       "artist": "G.E.M.",
@@ -9393,7 +9454,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-308",
+      "id": "chart-307",
       "mbid": "54b6ec1a-428b-4c64-b37c-ff2fb3cca947",
       "title": "呸",
       "artist": "蔡依林",
@@ -9418,7 +9479,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-309",
+      "id": "chart-308",
       "mbid": "",
       "title": "乌鸦",
       "artist": "Jun",
@@ -9443,7 +9504,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-310",
+      "id": "chart-309",
       "mbid": "",
       "title": "Overdose - The 2nd Mini Album",
       "artist": "EXO-M",
@@ -9468,7 +9529,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-311",
+      "id": "chart-310",
       "mbid": "",
       "title": "Take Off - The 1st Mini Album",
       "artist": "WayV",
@@ -9493,7 +9554,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-312",
+      "id": "chart-311",
       "mbid": "",
       "title": "NUNA",
       "artist": "隊長",
@@ -9518,7 +9579,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-313",
+      "id": "chart-312",
       "mbid": "27a0a231-2f43-4f8d-8e24-cdaa2733010d",
       "title": "天空",
       "artist": "王菲",
@@ -9543,7 +9604,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-314",
+      "id": "chart-313",
       "mbid": "5bd30692-319c-43af-a35c-c402ad9abf4b",
       "title": "OKAY",
       "artist": "Jackson Wang",
@@ -9568,7 +9629,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-315",
+      "id": "chart-314",
       "mbid": "",
       "title": "Dream (电视剧《永远的主君》原声音乐)",
       "artist": "Jun",
@@ -9593,7 +9654,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-316",
+      "id": "chart-315",
       "mbid": "",
       "title": "UGLY BEAUTY",
       "artist": "Jolin Tsai",
@@ -9618,7 +9679,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-317",
+      "id": "chart-316",
       "mbid": "e39ef56e-ed79-4a26-b7e5-25037f9e4663",
       "title": "杰倫",
       "artist": "周杰倫",
@@ -9643,7 +9704,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-318",
+      "id": "chart-317",
       "mbid": "",
       "title": "Phantom - The 4th Mini Album",
       "artist": "WayV",
@@ -9668,7 +9729,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-319",
+      "id": "chart-318",
       "mbid": "",
       "title": "Pleasure",
       "artist": "Jolin",
@@ -9693,7 +9754,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-320",
+      "id": "chart-319",
       "mbid": "007df470-bd37-324d-9b65-fec3c606da2f",
       "title": "淡淡幽情",
       "artist": "鄧麗君",
@@ -9718,7 +9779,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-321",
+      "id": "chart-320",
       "mbid": "",
       "title": "One Chance 张杰新歌精选 2011这就是爱成都演唱会",
       "artist": "Jason Zhang",
@@ -9743,7 +9804,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-322",
+      "id": "chart-321",
       "mbid": "45cb7a0b-5169-4347-9cbe-9f8062e8d839",
       "title": "華麗的冒險",
       "artist": "陳綺貞",
@@ -9768,7 +9829,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-323",
+      "id": "chart-322",
       "mbid": "517ce9e8-ea83-35b6-9690-726a2b66c1b1",
       "title": "絲路",
       "artist": "梁靜茹",
@@ -9793,7 +9854,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-324",
+      "id": "chart-323",
       "mbid": "",
       "title": "Empty Space",
       "artist": "朱正廷 (Theo Zhu)",
@@ -9818,7 +9879,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-325",
+      "id": "chart-324",
       "mbid": "16a2a84f-9133-4952-b18f-6bc19edcbb91",
       "title": "曖昧",
       "artist": "楊丞琳",
@@ -9843,7 +9904,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-326",
+      "id": "chart-325",
       "mbid": "",
       "title": "格格blue",
       "artist": "gary chaw",
@@ -9868,7 +9929,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-327",
+      "id": "chart-326",
       "mbid": "",
       "title": "反深代詞",
       "artist": "Zhou Shen",
@@ -9893,7 +9954,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-328",
+      "id": "chart-327",
       "mbid": "06d7aef7-8db5-4619-8614-fa006011e145",
       "title": "菲靡靡之音",
       "artist": "王菲",
@@ -9918,7 +9979,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-329",
+      "id": "chart-328",
       "mbid": "14dd5d50-34b9-4488-b87f-a79b5a6b52f5",
       "title": "Clandestino",
       "artist": "Manu Chao",
@@ -9943,7 +10004,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-330",
+      "id": "chart-329",
       "mbid": "025b0459-a918-4855-a473-b47657cd6d7e",
       "title": "Escape",
       "artist": "Enrique Iglesias",
@@ -9968,7 +10029,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-331",
+      "id": "chart-330",
       "mbid": "8e5df3b1-f454-402d-982e-ee5cc19932d0",
       "title": "Adentro",
       "artist": "Ricardo Arjona",
@@ -9993,7 +10054,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-332",
+      "id": "chart-331",
       "mbid": "09dd9825-41fe-417a-a19b-f02e4e610b39",
       "title": "Grandes Exitos",
       "artist": "Shakira",
@@ -10018,7 +10079,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-333",
+      "id": "chart-332",
       "mbid": "61a9b9a3-84cf-403f-9b91-cdb1e3d80f45",
       "title": "A Mis Amigos",
       "artist": "Nat King Cole",
@@ -10043,7 +10104,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-334",
+      "id": "chart-333",
       "mbid": "61d170e0-ced5-40e6-b576-ca8ecd343b26",
       "title": "Inesperado",
       "artist": "Anahí",
@@ -10068,7 +10129,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-335",
+      "id": "chart-334",
       "mbid": "16dc2c58-486f-40f0-ba41-97332ad57025",
       "title": "Re",
       "artist": "Café Tacvba",
@@ -10093,7 +10154,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-336",
+      "id": "chart-335",
       "mbid": "63a61333-9bfc-45a7-9afd-c39964b774b8",
       "title": "Afro",
       "artist": "Dizzy Gillespie",
@@ -10118,7 +10179,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-337",
+      "id": "chart-336",
       "mbid": "10bc40c4-360c-451a-855e-95722587f7c2",
       "title": "Live From Paris",
       "artist": "Shakira",
@@ -10143,7 +10204,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-338",
+      "id": "chart-337",
       "mbid": "",
       "title": "Taki Taki (with Selena Gomez, Ozuna & Cardi B)",
       "artist": "DJ Snake",
@@ -10168,7 +10229,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-339",
+      "id": "chart-338",
       "mbid": "d95751d8-e622-4fa1-b745-b69c4596889c",
       "title": "Reik",
       "artist": "Reik",
@@ -10193,7 +10254,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-340",
+      "id": "chart-339",
       "mbid": "43405c16-9b59-4ec9-966d-9422c6853faf",
       "title": "Real Fantasia",
       "artist": "Ivete Sangalo",
@@ -10218,7 +10279,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-341",
+      "id": "chart-340",
       "mbid": "",
       "title": "Har-You Percussion Group",
       "artist": "Har-You Percussion Group",
@@ -10243,7 +10304,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-342",
+      "id": "chart-341",
       "mbid": "3f7202ed-f84c-4011-8f3a-0ff2857d63f4",
       "title": "Cuatro Caminos",
       "artist": "Café Tacvba",
@@ -10268,7 +10329,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-343",
+      "id": "chart-342",
       "mbid": "3285d296-43fd-47ca-9567-a0633eb83083",
       "title": "Rei Momo",
       "artist": "David Byrne",
@@ -10293,7 +10354,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-344",
+      "id": "chart-343",
       "mbid": "de9954c1-682d-4be4-90e0-ac416be9cefe",
       "title": "Solo in Rio 1959",
       "artist": "Luiz Bonfá",
@@ -10318,7 +10379,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-345",
+      "id": "chart-344",
       "mbid": "5ccd629e-4301-487b-98c6-3603ce17e8f2",
       "title": "La Familia",
       "artist": "J Balvin",
@@ -10343,7 +10404,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-346",
+      "id": "chart-345",
       "mbid": "41353501-a44d-445d-a3ba-8acedee8dead",
       "title": "nadie sabe lo que va a pasar mañana",
       "artist": "Bad Bunny",
@@ -10368,7 +10429,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-347",
+      "id": "chart-346",
       "mbid": "",
       "title": "RR",
       "artist": "ROSALÍA",
@@ -10393,7 +10454,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-348",
+      "id": "chart-347",
       "mbid": "ff1d3bd8-5294-4373-a963-fd6bcb275004",
       "title": "Servicio De Lavandería",
       "artist": "Shakira",
@@ -10418,7 +10479,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-349",
+      "id": "chart-348",
       "mbid": "",
       "title": "Djavan \"Ao Vivo\"",
       "artist": "Djavan",
@@ -10443,7 +10504,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-350",
+      "id": "chart-349",
       "mbid": "1e3a2569-2d9f-4d06-a62f-bb0425e965f6",
       "title": "Almas Del Silencio",
       "artist": "Ricky Martin",
@@ -10468,7 +10529,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-351",
+      "id": "chart-350",
       "mbid": "054f5c16-216a-4c34-8c08-942e90c3207d",
       "title": "Rodrigo y Gabriela",
       "artist": "Rodrigo y Gabriela",
@@ -10493,7 +10554,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-352",
+      "id": "chart-351",
       "mbid": "86ff936c-b64f-40f2-b840-c460ba5df654",
       "title": "Belinda",
       "artist": "Belinda",
@@ -10518,7 +10579,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-353",
+      "id": "chart-352",
       "mbid": "0b1c3a5b-4a01-4375-8a8c-53d3171bd7fe",
       "title": "Gipsy Kings",
       "artist": "Gipsy Kings",
@@ -10543,7 +10604,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-354",
+      "id": "chart-353",
       "mbid": "",
       "title": "Ele E Carioca",
       "artist": "João Gilberto",
@@ -10568,7 +10629,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-355",
+      "id": "chart-354",
       "mbid": "",
       "title": "Roberto Carlos (1971 Remasterizado)",
       "artist": "Roberto Carlos",
@@ -10593,7 +10654,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-356",
+      "id": "chart-355",
       "mbid": "395bd6d6-3efb-4151-90d4-7a7065be2fd1",
       "title": "Todo Panchos",
       "artist": "Los Panchos",
@@ -10618,7 +10679,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-357",
+      "id": "chart-356",
       "mbid": "0d267c6d-2cb8-43a7-8d06-8a9bf0043a92",
       "title": "Vuelve",
       "artist": "Ricky Martin",
@@ -10643,7 +10704,7 @@
       "daysOld": 999
     },
     {
-      "id": "chart-358",
+      "id": "chart-357",
       "mbid": "e337e235-9289-44b7-97f4-dde396be4b62",
       "title": "O Dia Em Que Faremos Contato",
       "artist": "Lenine",
