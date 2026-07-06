@@ -793,20 +793,31 @@ async function handleIntelTV(env) {
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const cnFilter = (s) => hasChinese(s.title || s.name) && hasChinese(s.overview);
+  const titleCn = (s) => hasChinese(s.title || s.name);
   const reserve = { cn: 1, hmt: 1, jp: 1, kr: 1 };
 
-  // This week premieres: on_the_air with first_air_date in past 7 days
-  const premiereCandidates = onTheAir
+  // This week premieres: on_the_air + trending supplement, title-only filter, English auto-pass
+  const premiereFromOnAir = onTheAir
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
-    .filter(cnFilter);
-  const premiereSelected = intelSelectDiverse(premiereCandidates, 20, reserve);
+    .filter(titleCn)
+    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 50);
+  const premiereFromTrending = trendingTV
+    .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
+    .filter(s => (s.vote_average || 0) > 0)
+    .filter(titleCn)
+    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
+  const premiereMerged = [...premiereFromOnAir];
+  const onAirPremIds = new Set(premiereFromOnAir.map(s => s.id));
+  for (const s of premiereFromTrending) {
+    if (!onAirPremIds.has(s.id)) premiereMerged.push(s);
+  }
+  const premiereSelected = intelSelectDiverse(premiereMerged, 20, reserve);
   const weekPremieres = premiereSelected.map(s => intelNormalizeMovie(s, "tv"));
   const premiereIds = new Set(premiereSelected.map(s => s.id));
 
   // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 30 days)
   // Relaxed title-only Chinese filter; English shows auto-pass
   // Trending: require vote_average > 0 (exclude unscored), Discover: higher popularity threshold (all scored 0)
-  const titleCn = (s) => hasChinese(s.title || s.name);
   const upcomingFromTrending = trendingTV
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
     .filter(s => (s.vote_average || 0) > 0)
