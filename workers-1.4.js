@@ -788,7 +788,7 @@ async function handleIntelTV(env) {
   const [onTheAir, trendingTV, discoverRaw] = await Promise.all([
     intelFetchPages(token, "/tv/on_the_air", {}, 4),
     intelFetchTMDB(token, "/trending/tv/week"),
-    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 3),
+    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 5),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -815,7 +815,7 @@ async function handleIntelTV(env) {
   const upcomingFromDiscover = discoverRaw
     .filter(s => !premiereIds.has(s.id))
     .filter(titleCn)
-    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 15);
+    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 50);
   // Merge and dedup
   const upcomingMerged = [...upcomingFromTrending];
   const trendIds = new Set(upcomingFromTrending.map(s => s.id));
