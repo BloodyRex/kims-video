@@ -663,14 +663,17 @@ async function intelFetchTVEpisodeDates(shows, token) {
   const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
   const results = await Promise.allSettled((shows || []).map(async (show) => {
     try {
-      const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
-      if (!r.ok) return show;
+      const showId = show.id;
+      if (!showId) { console.warn("TV enrich: show has no id"); return { ...show, _enriched: false, _noId: true }; }
+      const r = await fetch(`https://api.themoviedb.org/3/tv/${showId}?language=zh-CN`, { headers });
+      if (!r.ok) { console.warn("TV enrich HTTP", r.status, "for", showId); return { ...show, _enriched: false, _httpStatus: r.status }; }
       const details = await r.json();
-      if (details?.last_episode_to_air || details?.next_episode_to_air) {
+      const hasEpData = !!(details?.last_episode_to_air || details?.next_episode_to_air);
+      if (hasEpData) {
         return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air, _enriched: true };
       }
-    } catch (e) { console.warn("TV enrich fail:", show.id, e.message); }
-    return show;
+      return { ...show, _enriched: false, _noEpData: true };
+    } catch (e) { console.warn("TV enrich fail:", show?.id, e.message); return { ...show || {}, _enriched: false, _error: e.message }; }
   }));
   return results.map(r => r.status === "fulfilled" ? r.value : null).filter(Boolean);
 }
@@ -702,14 +705,19 @@ async function handleIntelTV(env) {
     });
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
-  const ongoingItems = onTheAirEnriched.map(s => ({ ...intelNormalizeMovie(s, "tv"), _enriched: s._enriched || false }));
+  const ongoingItems = onTheAirEnriched.map(s => ({ ...intelNormalizeMovie(s, "tv"), _enriched: s._enriched || false, _noId: s._noId || false, _httpStatus: s._httpStatus || 0, _noEpData: s._noEpData || false, _error: s._error || null }));
   const enrichedCount = ongoingItems.filter(s => s._enriched).length;
+  const noIdCount = ongoingItems.filter(s => s._noId).length;
+  const httpFailCount = ongoingItems.filter(s => s._httpStatus > 0).length;
+  const noEpDataCount = ongoingItems.filter(s => s._noEpData).length;
+  const errorCount = ongoingItems.filter(s => s._error).length;
+  const firstShowId = onTheAir[0] ? Object.keys(onTheAir[0]).slice(0,10) : [];
   return {
     updated: today,
     premieresThisWeek: await intelEnrichWithAI(weekPremieres, "movie", env),
     upcoming: upcomingTV,
     ongoing: ongoingItems,
-    _debug: { total: ongoingItems.length, enriched: enrichedCount },
+    _debug: { total: ongoingItems.length, enriched: enrichedCount, noId: noIdCount, httpFail: httpFailCount, noEpData: noEpDataCount, errors: errorCount, sampleKeys: firstShowId },
   };
 }
 
