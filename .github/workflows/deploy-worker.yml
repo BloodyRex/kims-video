@@ -25,3 +25,10 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy workers-1.4.js --name kims-video --compatibility-date 2024-12-01
+
+      - name: Set TMDB secret
+        run: echo "${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}" | npx wrangler@3.90.0 secret put TMDB_API_READ_ACCESS_TOKEN --name kims-video
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

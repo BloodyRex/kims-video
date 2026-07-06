@@ -1,0 +1,9 @@
+name = "kims-video"
+main = "workers-1.4.js"
+compatibility_date = "2024-12-01"
+
+# KV Namespace for Discover community features
+# ID: from Cloudflare Dashboard → Workers & Pages → KV
+[[kv_namespaces]]
+binding = "DISCOVER_KV"
+id = "76a4dab6048441cea229055a262bff8f"
