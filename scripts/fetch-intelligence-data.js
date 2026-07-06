@@ -25,6 +25,30 @@ async function fetchJSON(endpoint) {
   return res.json();
 }
 
+// Universal Chinese content filter
+function filterChineseContent(data) {
+  if (!data || typeof data !== "object") return;
+  const hasChinese = (text) => /[一-鿿]/.test(text || "");
+  for (const key of Object.keys(data)) {
+    const val = data[key];
+    if (!Array.isArray(val) || val.length === 0) continue;
+    const sample = val[0];
+    if (!sample || typeof sample !== "object") continue;
+    // Only filter arrays where items have a title/name (content items)
+    if (!("title" in sample || "name" in sample)) continue;
+    // Don't filter music items (global content, Chinese not required)
+    if (key === "music") continue;
+    data[key] = val.filter(item => {
+      const check = (text) => typeof text === "string" && hasChinese(text);
+      return check(item.title || item.name)
+        || check(item.summary)
+        || check(item.summaryCn || item.overviewCn)
+        || check(item.highlight)
+        || check(item.overview);
+    });
+  }
+}
+
 async function main() {
   if (!existsSync(API_DIR)) mkdirSync(API_DIR, { recursive: true });
 
@@ -46,12 +70,8 @@ async function main() {
     try {
       let data = await fetchJSON(task.endpoint);
 
-      // Filter non-Chinese content from movies
-      if (task.file === "movies.json") {
-        const hasChinese = (text) => /[一-鿿]/.test(text || "");
-        if (data.releasedThisWeek) data.releasedThisWeek = data.releasedThisWeek.filter(m => hasChinese(m.title) || hasChinese(m.summary));
-        if (data.upcoming) data.upcoming = data.upcoming.filter(m => hasChinese(m.title) || hasChinese(m.summary));
-      }
+      // Universal filter: all content items must have Chinese title + summary
+      filterChineseContent(data);
 
       // Check if data actually changed
       let oldData = null;
