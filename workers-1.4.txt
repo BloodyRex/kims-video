@@ -145,6 +145,8 @@ function intelNormalizeMovie(m, type) {
     else if (m.season_number) item.season = m.season_number;
     if (m.last_episode_to_air?.episode_number) item.episode = m.last_episode_to_air.episode_number;
     else if (m.episode_number) item.episode = m.episode_number;
+    if (m.last_episode_to_air?.air_date) item.latestAirDate = m.last_episode_to_air.air_date;
+    else if (m.next_episode_to_air?.air_date) item.latestAirDate = m.next_episode_to_air.air_date;
   }
   return item;
 }

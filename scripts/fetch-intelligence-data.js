@@ -38,6 +38,12 @@ function filterChineseContent(data) {
     if (!("title" in sample || "name" in sample)) continue;
     // Don't filter music items (global content, Chinese not required)
     if (key === "music") continue;
+    // TV ongoing: also check latest season is within 6 months
+    if (key === "ongoing") {
+      const sixMonthsAgo = new Date(Date.now() - 180 * 86400000).toISOString().split("T")[0];
+      data[key] = val.filter(item => !item.latestAirDate || item.latestAirDate >= sixMonthsAgo);
+      continue;
+    }
     data[key] = val.filter(item => {
       const check = (text) => typeof text === "string" && hasChinese(text);
       return check(item.title || item.name)
