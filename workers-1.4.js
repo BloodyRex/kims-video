@@ -702,11 +702,14 @@ async function handleIntelTV(env) {
     });
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
+  const ongoingItems = onTheAirEnriched.map(s => ({ ...intelNormalizeMovie(s, "tv"), _enriched: s._enriched || false }));
+  const enrichedCount = ongoingItems.filter(s => s._enriched).length;
   return {
     updated: today,
     premieresThisWeek: await intelEnrichWithAI(weekPremieres, "movie", env),
     upcoming: upcomingTV,
-    ongoing: onTheAirEnriched.map(s => intelNormalizeMovie(s, "tv")),
+    ongoing: ongoingItems,
+    _debug: { total: ongoingItems.length, enriched: enrichedCount },
   };
 }
 
