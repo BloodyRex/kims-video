@@ -289,13 +289,6 @@ function WeeklyView({ locale, onViewDetail }) {
   const { data, loading, error } = useJsonData("/api/weekly.json");
   const { data: musicData } = useJsonData("/api/music.json");
   const [typeTab, setTypeTab] = useState("movies");
-  if (loading) return <LoadingSpinner locale={locale} />;
-  if (error) return <DataError locale={locale} />;
-  const types = [
-    { id: "movies", zh: "电影", en: "Movies" },
-    { id: "tv", zh: "剧集", en: "TV" },
-    { id: "music", zh: "音乐", en: "Music" },
-  ];
   // Music: trending + editor picks from music.json, sorted by heat
   const musicPicks = useMemo(() => {
     return (musicData?.picks || [])
@@ -303,6 +296,13 @@ function WeeklyView({ locale, onViewDetail }) {
       .sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0))
       .map((item, i) => ({ ...item, rank: i + 1, trend: "new" }));
   }, [musicData]);
+  if (loading) return <LoadingSpinner locale={locale} />;
+  if (error) return <DataError locale={locale} />;
+  const types = [
+    { id: "movies", zh: "电影", en: "Movies" },
+    { id: "tv", zh: "剧集", en: "TV" },
+    { id: "music", zh: "音乐", en: "Music" },
+  ];
   const current = typeTab === "music" ? musicPicks : (data?.[typeTab] || []);
   return (
     <div className="space-y-6">
