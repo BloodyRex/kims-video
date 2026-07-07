@@ -377,6 +377,8 @@ async function intelFetchMusicBrainz(dateStr) {
       cover: "",
       status: r.status || "",
       country: r.country || "",
+      primaryType: r["release-group"]?.["primary-type"] || "",
+      secondaryTypes: r["release-group"]?.["secondary-types"] || [],
       genre: (r["release-group"]?.["primary-type"] || ""),
       tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
     }));
@@ -1021,17 +1023,25 @@ async function handleIntelWeekly(env) {
     return { ...intelNormalizeMovie(item, type), rank, trend: "new" };
   };
 
-  // Music: this week's releases, deduped, AI ranked by score
+  // Music: this week's releases, deduped, filtered, AI ranked by score
   const merged = [...todayMB];
   for (const rel of weekMB) {
     if (!merged.some(r => r.mbid === rel.mbid)) merged.push(rel);
   }
-  const weekAlbums = merged.slice(0, 20).map(intelNormalizeAlbum);
+  const validAlbums = merged.filter(r => intelIsValidAlbum(r));
+  const weekAlbums = validAlbums.slice(0, 20).map(intelNormalizeAlbum);
   const musicEnriched = await intelEnrichWithAI(weekAlbums, "album", env);
-  const musicWeekly = musicEnriched
-    .sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0))
-    .slice(0, 10)
-    .map((item, i) => ({ ...item, rank: i + 1, trend: "new" }));
+  // Fetch cover art for top picks
+  const topMusic = musicEnriched.sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0)).slice(0, 10);
+  for (const item of topMusic) {
+    if (item.mbid && !item.cover) {
+      try {
+        const r = await fetch(`https://coverartarchive.org/release/${item.mbid}/front-250.jpg`);
+        if (r.ok) item.cover = `https://coverartarchive.org/release/${item.mbid}/front-250.jpg`;
+      } catch {}
+    }
+  }
+  const musicWeekly = topMusic.map((item, i) => ({ ...item, rank: i + 1, trend: "new" }));
 
   return {
     updated: today,
