@@ -57,16 +57,8 @@ function StarRating({ score, max = 10 }) {
   );
 }
 
-function AIScoreBadge({ score, confidence }) {
-  if (!score && score !== 0) return null;
-  const color = score >= 8 ? "#00ff88" : score >= 6 ? "#ff8800" : score >= 4 ? "#ff8800" : "#ff0044";
-  return (
-    <span className="inline-flex items-center gap-1 text-[9px] font-black pixel-font" style={{ color }}>
-      <Icons.Target className="w-3 h-3" />
-      AI {score}
-      {confidence ? ` (${Math.round(confidence * 100)}%)` : ""}
-    </span>
-  );
+function AIScoreBadge() {
+  return null;
 }
 
 function Tags({ tags, tagsEn, color = "#ff00ff", locale = "zh" }) {
