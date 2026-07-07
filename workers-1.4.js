@@ -192,10 +192,16 @@ async function intelFetchTMDB(token, path, params, lang) {
 // ── Multi-page TMDB fetch ──
 async function intelFetchPages(token, path, params = {}, pages = 4) {
   const all = [];
+  const seen = new Set();
   for (let p = 1; p <= pages; p++) {
     const page = await intelFetchTMDB(token, path, { ...params, page: p });
     if (!page || page.length === 0) break;
-    all.push(...page);
+    for (const item of page) {
+      if (!seen.has(item.id)) {
+        seen.add(item.id);
+        all.push(item);
+      }
+    }
   }
   return all;
 }
