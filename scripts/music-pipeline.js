@@ -113,6 +113,7 @@ async function fetchMBReleases(config) {
 // ── Album type filter: keep Album/EP, exclude remixes/live/compilations ──
 function isValidAlbum(r) {
   if (r.primaryType !== "Album" && r.primaryType !== "EP") return false;
+  if (r.status === "Bootleg") return false;
   const st = new Set(r.secondaryTypes || []);
   const badST = ["Live", "Compilation", "Remix", "Soundtrack", "Demo", "Bootleg", "Karaoke", "Other"];
   for (const t of badST) { if (st.has(t)) return false; }
