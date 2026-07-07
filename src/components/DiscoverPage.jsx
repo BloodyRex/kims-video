@@ -51,7 +51,7 @@ function EditorPickCard({ pair, posterMap, locale, getTitle, onOpenPoster }) {
   const recTitle = getTitle(pair.recommend);
 
   return (
-    <div className="flex-shrink-0 w-[260px] sm:w-[300px] bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
+    <div className="flex-shrink-0 w-[220px] sm:w-[260px] lg:w-[300px] bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
       {/* Source header bar */}
       <div className="bg-black text-white px-3 py-2 flex items-center gap-2 text-xs">
         <span className="font-black pixel-font text-xs text-gray-400 uppercase">{locale === "en" ? "If you like" : "如果你喜欢"}</span>
@@ -115,7 +115,7 @@ function UserResultCard({ result, posterMap, locale, onLike, onOpenPoster }) {
 
   return (
     <div
-      className={`bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] transition-all ${result.thumbnail ? "hover:-translate-y-1 cursor-pointer" : ""}`}
+      className={`bg-white border-4 max-sm:border-2 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] max-sm:shadow-[3px_3px_0_0_rgba(0,0,0,1)] transition-all ${result.thumbnail ? "hover:-translate-y-1 cursor-pointer" : ""}`}
       onClick={handleCardClick}
     >
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
@@ -255,17 +255,17 @@ const DiscoverPage = () => {
             KIM'S <span className="text-[#00ffff]">VIDEO</span>
           </h1>
         </Link>
-        <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
+        <p className="text-gray-500 text-[10px] max-sm:text-[9px] pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 
-      <section className="max-w-4xl mx-auto px-2 sm:px-4 pt-3 pb-4 text-center relative">
+      <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 text-center relative">
         <button onClick={toggleLocale} className="absolute left-2 sm:left-4 top-3 w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs flex-shrink-0 z-10" style={LANG_BUTTON_STYLE}>{locale === "zh" ? "En" : "中"}</button>
         <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font discover-title">{t('discover.title')}</h2>
         <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed">{t('discover.desc')}</p>
       </section>
 
       {/* ── Editor's Picks Carousel ── */}
-      <section className="max-w-4xl mx-auto px-2 sm:px-4 mb-6">
+      <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 mb-6">
         <h3 className="px-2 sm:px-0 text-base sm:text-lg font-black pixel-font text-[#ffff00] uppercase tracking-widest mb-3 bg-black inline-block px-4 py-1.5 border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff]">{locale === "en" ? "★ Editor's Picks" : "★ 编辑精选"}</h3>
         <div ref={scrollRef} className="flex gap-3 overflow-x-auto pb-3 px-2 sm:px-0" style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
           {(discoverData.editorPicks || []).map((pair, i) => (
@@ -280,7 +280,7 @@ const DiscoverPage = () => {
       </section>
 
       {/* ── Tab switcher ── */}
-      <div className="max-w-4xl mx-auto px-4 mb-6">
+      <div className="max-w-4xl mx-auto px-4 max-sm:px-3 mb-6">
         <div className="flex gap-3">
           <button onClick={() => setActiveTab("editor")} className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${activeTab === "editor" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"}`}>{locale === "en" ? "★ Category" : "★ 分类推荐"}{totalPairs > 0 && <span className="ml-1.5 bg-black text-white text-[10px] px-1.5 py-0.5">{totalPairs}</span>}</button>
           <button onClick={() => setActiveTab("community")} className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${activeTab === "community" ? "bg-[#ffff00] text-black" : "bg-white text-black hover:bg-gray-100"}`}>{locale === "en" ? "Community" : "社区发现"}{totalUserCount > 0 && <span className="ml-1.5 bg-black text-white text-[10px] px-1.5 py-0.5">{totalUserCount}</span>}</button>
@@ -288,7 +288,7 @@ const DiscoverPage = () => {
       </div>
 
       {/* ── Content area ── */}
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-4xl mx-auto px-4 max-sm:px-3">
         {activeTab === "editor" ? (
           discoverData.genres.map((genre) => {
             const color = GENRE_COLORS[genre.name] || "#ff00ff";
@@ -304,25 +304,25 @@ const DiscoverPage = () => {
                     const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
 
                     return (
-                      <article key={idx} className="bg-white border-4 border-black overflow-hidden" style={{ boxShadow: `8px 8px 0 0 ${color}` }}>
+                      <article key={idx} className="bg-white border-4 max-sm:border-2 border-black overflow-hidden" style={{ boxShadow: `8px 8px 0 0 ${color}` }}>
                         <div className="bg-black text-white px-4 py-2 flex items-center gap-2 text-xs">
                           <span className="font-black pixel-font text-xs text-gray-400 uppercase">{t('discover.if_like')}</span>
                           <span className="font-black text-sm" style={{ color }}>{getBracketed(pair.source)}</span>
                           <span className="text-gray-400">({pair.source.year})</span>
                           <span className="text-gray-500 mx-1">{t('discover.arrow')}</span>
                         </div>
-                        <div className="flex flex-col sm:flex-row gap-4 p-4">
+                        <div className="flex flex-col sm:flex-row gap-4 max-sm:gap-2 p-4 max-sm:p-3">
                           {recPoster ? (
-                            <img src={recPoster} alt={getTitle(pair.recommend)} className="w-28 h-40 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+                            <img src={recPoster} alt={getTitle(pair.recommend)} className="w-28 max-sm:w-20 h-40 max-sm:h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
                           ) : (
-                            <div className="w-28 h-40 bg-gray-800 border-2 border-black flex items-center justify-center text-xs text-gray-500 font-bold flex-shrink-0">?</div>
+                            <div className="w-28 max-sm:w-20 h-40 max-sm:h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-xs text-gray-500 font-bold flex-shrink-0">?</div>
                           )}
                           <div className="flex-1 min-w-0 flex flex-col">
                             <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-2">
                               <h3 className="text-lg sm:text-xl font-black">{getBracketed(pair.recommend)}</h3>
                               <span className="text-gray-400 text-sm">({pair.recommend.year})</span>
                             </div>
-                            <p className="text-sm text-gray-600 leading-relaxed mb-3 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
+                            <p className="text-sm max-sm:text-xs text-gray-600 leading-relaxed mb-3 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
                             <div className="flex gap-2 flex-wrap mt-auto">
                               <Link to={detailUrl} className="inline-block px-4 py-2 text-xs font-black text-white bg-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-gray-800 hover:translate-y-0.5 transition-all">{t('discover.view_detail')}</Link>
                             </div>
@@ -353,7 +353,7 @@ const DiscoverPage = () => {
               return (
                 <section key={genre.name} className="mb-12">
                   <h2 className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black" style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}>{locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}<span className="ml-2 text-sm opacity-75">({items.length})</span></h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{items.map(r => <UserResultCard key={r.id} result={r} posterMap={userPosterMap} locale={locale} onLike={handleLikeUpdate} onOpenPoster={(url) => setModalThumbnail(url)} />)}</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-sm:gap-2">{items.map(r => <UserResultCard key={r.id} result={r} posterMap={userPosterMap} locale={locale} onLike={handleLikeUpdate} onOpenPoster={(url) => setModalThumbnail(url)} />)}</div>
                 </section>
               );
             })}
@@ -361,7 +361,7 @@ const DiscoverPage = () => {
         )}
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 pt-8 pb-16 text-center">
+      <div className="max-w-4xl mx-auto px-4 max-sm:px-3 pt-8 pb-16 text-center">
         <Link to="/" className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all">{locale === "en" ? "← Get Your Own AI Picks" : "← 获取属于你的 AI 推荐"}</Link>
       </div>
 
@@ -369,7 +369,7 @@ const DiscoverPage = () => {
       {modalThumbnail && <PosterModal thumbnail={modalThumbnail} onClose={() => setModalThumbnail(null)} />}
 
       {/* Footer */}
-      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-base font-bold tracking-wider" : "pixel-font text-xs uppercase tracking-widest"}`}>
+      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
         <p>
           <Link to="/" className="hover:text-[#ffff00] transition-colors">{t('footer.home')}</Link>
           <span className="text-gray-600 mx-2">|</span>

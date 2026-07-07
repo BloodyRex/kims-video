@@ -156,8 +156,8 @@ const ResultsPage = ({
   }
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-10 bg-white border-8 border-black p-6 shadow-[12px_12px_0_0_#ff00ff]">
+    <div className="max-w-5xl mx-auto space-y-8 max-sm:px-3">
+      <div className="flex flex-col md:flex-row justify-between items-end mb-10 max-sm:mb-6 bg-white border-8 max-sm:border-4 border-black p-6 max-sm:p-3 shadow-[12px_12px_0_0_#ff00ff] max-sm:shadow-[8px_8px_0_0_#ff00ff]">
         <div>
           <h2
             className="text-xl sm:text-3xl font-black text-black pixel-font uppercase mb-2 tracking-widest"
@@ -189,7 +189,7 @@ const ResultsPage = ({
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
             )}
-            SAVE
+            {locale === "en" ? "SAVE" : "保存图片"}
           </button>
           <button
             onClick={onShare}
@@ -202,7 +202,7 @@ const ResultsPage = ({
               <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
               <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
             </svg>
-            SHARE
+            {locale === "en" ? "SHARE" : "分享链接"}
           </button>
           <button
             onClick={() => { setShowPublishModal(true); setPublishDone(false); setPublishError(""); }}
@@ -220,7 +220,7 @@ const ResultsPage = ({
       {/* Publish modal */}
       {showPublishModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" onClick={() => setShowPublishModal(false)}>
-          <div className="bg-white border-8 border-black shadow-[16px_16px_0_0_rgba(0,0,0,1)] p-6 max-w-md w-full" onClick={e => e.stopPropagation()}>
+          <div className="bg-white border-8 max-sm:border-4 border-black shadow-[16px_16px_0_0_rgba(0,0,0,1)] max-sm:shadow-[8px_8px_0_0_rgba(0,0,0,1)] p-6 max-sm:p-4 max-w-md w-full" onClick={e => e.stopPropagation()}>
             {publishDone ? (
               <div className="text-center py-4">
                 <div className="text-4xl mb-3">🎉</div>
@@ -276,7 +276,7 @@ const ResultsPage = ({
         </div>
       )}
 
-      <div id="results-content" className="grid grid-cols-1 gap-8">
+      <div id="results-content" className="grid grid-cols-1 gap-8 max-sm:gap-6">
         {recommendations.map((rec, idx) => {
           const isReplacing = !!replacingIndexes[idx];
           const isNiche = idx >= 2 && idx <= 3;
@@ -285,7 +285,7 @@ const ResultsPage = ({
           return (
             <div
               key={`${rec.title}-${rec.year}-${idx}`}
-              className={`bg-white border-8 border-black p-6 md:p-8 shadow-[16px_16px_0_0_#ffff00] flex flex-col md:flex-row gap-6 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300 ${
+              className={`bg-white border-8 max-sm:border-4 border-black p-6 max-sm:p-3 md:p-8 shadow-[16px_16px_0_0_#ffff00] max-sm:shadow-[8px_8px_0_0_#ffff00] flex flex-col md:flex-row gap-6 max-sm:gap-4 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300 ${
                 isReplacing ? "scale-95 opacity-50" : ""
               }`}
             >
@@ -320,14 +320,14 @@ const ResultsPage = ({
                   </span>
                 </div>
 
-                <div className="bg-[#f0f0f0] border-4 border-black p-5 relative">
+                <div className="bg-[#f0f0f0] border-4 max-sm:border-2 border-black p-5 max-sm:p-3 relative">
                   <div className="absolute -left-2 -top-2 bg-[#ffff00] border-2 border-black px-2 py-1 flex items-center text-sm font-black transform -rotate-3">
                     <span className="mr-1 text-black">
                       <Icons.Star />
                     </span>{" "}
                     {t('results.diagnosis')}
                   </div>
-                  <p className="text-black font-bold leading-relaxed mt-4">
+                  <p className="text-black font-bold leading-relaxed mt-4 text-sm max-sm:text-xs">
                     {rec.reason}
                   </p>
                 </div>
@@ -336,7 +336,7 @@ const ResultsPage = ({
                   <button
                     onClick={() => onViewDetail(rec.tmdbId)}
                     disabled={!rec.tmdbId}
-                    className={`flex-1 px-3 py-3 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors flex items-center justify-center shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font ${
+                    className={`flex-1 px-3 py-3 max-sm:py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors flex items-center justify-center shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font ${
                       !rec.tmdbId ? "opacity-40 pointer-events-none" : ""
                     }`}
                   >
@@ -349,7 +349,7 @@ const ResultsPage = ({
                   <button
                     onClick={() => onReplaceOne(idx)}
                     disabled={isReplacing}
-                    className="flex-1 px-4 py-3 bg-[#ffff00] hover:bg-[#ffff40] text-black border-4 border-black text-sm font-black uppercase transition-colors flex items-center justify-center shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none disabled:opacity-50 pixel-font"
+                    className="flex-1 px-4 py-3 max-sm:py-2 bg-[#ffff00] hover:bg-[#ffff40] text-black border-4 border-black text-sm font-black uppercase transition-colors flex items-center justify-center shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none disabled:opacity-50 pixel-font"
                   >
                     {isReplacing ? (
                       <>
@@ -389,7 +389,7 @@ const ResultsPage = ({
       <div className="flex justify-center pt-4">
         <button
           onClick={onReset}
-          className="flex items-center text-white bg-black border-4 border-[#ff00ff] px-8 py-3 uppercase font-bold hover:bg-[#ff00ff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+          className="flex items-center text-white bg-black border-4 border-[#ff00ff] px-8 max-sm:px-6 py-3 max-sm:py-2.5 uppercase font-bold hover:bg-[#ff00ff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
         >
           <Icons.RefreshCw className="mr-2" /> {t('results.reboot')}
         </button>

@@ -102,9 +102,9 @@ export function MovieCard({ movie, locale, onViewDetail }) {
         <span className="text-gray-400 text-[9px]">{movie.releaseDate || movie.year || ""}</span>
       </div>
 
-      <div className="flex gap-3 p-3">
+      <div className="flex gap-3 max-sm:gap-2 p-3 max-sm:p-2">
         {movie.poster ? (
-          <img src={posterUrl(movie.poster)} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(movie.poster)} alt={title} className="w-20 max-sm:w-16 h-28 max-sm:h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
           <div className="w-20 h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Film />
@@ -125,7 +125,7 @@ export function MovieCard({ movie, locale, onViewDetail }) {
             </div>
           )}
           {movie.summary && (
-            <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
+            <p className="text-[10px] max-sm:text-[9px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
               {locale === "en" ? (movie.summaryEn || movie.summary) : (movie.summary || movie.summaryEn)}
             </p>
           )}
@@ -175,11 +175,11 @@ export function TVCard({ show, locale, onViewDetail }) {
         </div>
       </div>
 
-      <div className="flex gap-3 p-3">
+      <div className="flex gap-3 max-sm:gap-2 p-3 max-sm:p-2">
         {show.poster ? (
-          <img src={posterUrl(show.poster)} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(show.poster)} alt={title} className="w-20 max-sm:w-16 h-28 max-sm:h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
-          <div className="w-20 h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
+          <div className="w-20 max-sm:w-16 h-28 max-sm:h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Tv />
           </div>
         )}
@@ -203,7 +203,7 @@ export function TVCard({ show, locale, onViewDetail }) {
             </p>
           )}
           {show.summary && (
-            <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
+            <p className="text-[10px] max-sm:text-[9px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
               {locale === "en" ? (show.summaryEn || show.summary) : (show.summary || show.summaryEn)}
             </p>
           )}
@@ -266,11 +266,11 @@ export function AlbumCard({ album, locale, onViewDetail }) {
         <span className="text-gray-400 text-[9px] flex-shrink-0">{album.releaseDate || album.year || ""}</span>
       </div>
 
-      <div className="flex gap-3 p-3">
+      <div className="flex gap-3 max-sm:gap-2 p-3 max-sm:p-2">
         {coverSrc ? (
-          <img src={posterUrl(coverSrc)} alt={title} className="w-20 h-20 object-cover border-2 border-black flex-shrink-0" loading="lazy" onError={() => setCoverError(true)} />
+          <img src={posterUrl(coverSrc)} alt={title} className="w-20 max-sm:w-16 h-20 max-sm:h-16 object-cover border-2 border-black flex-shrink-0" loading="lazy" onError={() => setCoverError(true)} />
         ) : (
-          <div className="w-20 h-20 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
+          <div className="w-20 max-sm:w-16 h-20 max-sm:h-16 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Music />
           </div>
         )}
@@ -291,7 +291,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
 
           {/* Recommendation text (primary) */}
           {(album.highlight || album.summary) && (
-            <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
+            <p className="text-[10px] max-sm:text-[9px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
               {locale === "en" ? (album.highlightEn || album.summaryEn || album.highlight || album.summary) : (album.highlight || album.summary)}
             </p>
           )}
@@ -348,11 +348,11 @@ export function CountdownCard({ item, locale, onViewDetail }) {
         <span className="text-gray-400 text-[9px]">{item.releaseDate || ""}</span>
       </div>
 
-      <div className="flex gap-3 p-3">
+      <div className="flex gap-3 max-sm:gap-2 p-3 max-sm:p-2">
         {item.poster ? (
-          <img src={posterUrl(item.poster)} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(item.poster)} alt={title} className="w-20 max-sm:w-16 h-28 max-sm:h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
-          <div className="w-20 h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
+          <div className="w-20 max-sm:w-16 h-28 max-sm:h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Calendar />
           </div>
         )}
@@ -368,7 +368,7 @@ export function CountdownCard({ item, locale, onViewDetail }) {
             )}
           </div>
           {item.summary && (
-            <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
+            <p className="text-[10px] max-sm:text-[9px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
               {locale === "en" ? (item.summaryEn || item.summary) : item.summary}
             </p>
           )}
@@ -514,13 +514,13 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
         </span>
       </div>
 
-      <div className="flex gap-3 p-3">
+      <div className="flex gap-3 max-sm:gap-2 p-3 max-sm:p-2">
         {pick.poster ? (
-          <img src={posterUrl(pick.poster)} alt={title} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(pick.poster)} alt={title} className="w-20 max-sm:w-16 h-28 max-sm:h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : pick.cover ? (
-          <img src={posterUrl(pick.cover)} alt={title} className="w-20 h-20 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={posterUrl(pick.cover)} alt={title} className="w-20 max-sm:w-16 h-20 max-sm:h-16 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
-          <div className="w-20 h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
+          <div className="w-20 max-sm:w-16 h-28 max-sm:h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0">
             <Icons.Target />
           </div>
         )}
@@ -533,7 +533,7 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
             <AIScoreBadge score={pick.aiScore} confidence={pick.confidence} />
           </div>
           {pick.whyWatch && (
-            <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
+            <p className="text-[10px] max-sm:text-[9px] text-gray-500 leading-relaxed line-clamp-2 mb-1">
               {locale === "en" ? (pick.whyWatchEn || pick.whyWatch) : pick.whyWatch}
             </p>
           )}

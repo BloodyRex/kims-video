@@ -293,15 +293,15 @@ function AppContent() {
       ) : (
         <>
       <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
-        <div className="flex items-center justify-center">
+        <Link to="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
             <span className="text-black transform rotate-90"><Icons.Play /></span>
           </div>
           <h1 className="text-lg sm:text-2xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap">
             KIM'S <span className="text-[#00ffff]">VIDEO</span>
           </h1>
-        </div>
-        <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
+        </Link>
+        <p className="text-gray-500 text-[10px] max-sm:text-[9px] pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 
       <main className="relative z-10 container mx-auto px-4 md:py-8">
@@ -329,7 +329,7 @@ function AppContent() {
               locale={locale}
             />
             {/* Entry buttons */}
-            <div className="max-w-2xl mx-auto mt-6 mb-4 flex flex-col sm:flex-row gap-3">
+            <div className="max-w-2xl mx-auto mt-6 mb-4 flex flex-col sm:flex-row gap-3 max-sm:mx-3">
               <Link
                 to="/discover"
                 className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
@@ -383,7 +383,7 @@ function AppContent() {
         )}
       </main>
 
-      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-base font-bold tracking-wider" : "pixel-font text-xs uppercase tracking-widest"}`}>
+      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
         <p>
           <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t('footer.discover')}</Link>
           <span className="text-gray-600 mx-2">|</span>

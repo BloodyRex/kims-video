@@ -225,6 +225,7 @@ function MusicView({ locale, onViewDetail }) {
           <button key={f.id} onClick={() => setTagFilter(f.id)}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${tagFilter === f.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "en" ? f.en : f.zh}
+            <span className="ml-1 opacity-60">({picks.filter(a => a.recommendationTagId === f.id).length})</span>
           </button>
         ))}
       </div>
@@ -312,6 +313,7 @@ function WeeklyView({ locale, onViewDetail }) {
           <button key={t.id} onClick={() => setTypeTab(t.id)}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 transition-colors ${typeTab === t.id ? "bg-[#ffff00] text-black border-[#ffff00]" : "bg-white text-black border-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
+            <span className="ml-1 opacity-60">({t.id === "music" ? musicPicks.length : (data?.[t.id]?.length || 0)})</span>
           </button>
         ))}
       </div>
@@ -473,7 +475,7 @@ function IntelligencePage() {
             KIM'S <span className="text-[#00ffff]">VIDEO</span>
           </h1>
         </Link>
-        <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">{t('tagline')}</p>
+        <p className="text-gray-500 text-[10px] max-sm:text-[9px] pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 
       {/* Top bar */}
@@ -516,7 +518,7 @@ function IntelligencePage() {
       </div>
 
       {/* Footer */}
-      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-base font-bold tracking-wider" : "pixel-font text-xs uppercase tracking-widest"}`}>
+      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
         <p>
           <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t('footer.discover')}</Link>
           <span className="text-gray-600 mx-2">|</span>

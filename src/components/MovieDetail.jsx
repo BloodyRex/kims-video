@@ -39,10 +39,10 @@ const MovieDetail = ({
     : "";
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-6 max-sm:px-3">
       {/* 推荐来源 */}
       {sourceDisplay && (
-        <div className="bg-black border-4 border-[#00ffff] p-4 shadow-[8px_8px_0_0_#ff00ff]">
+        <div className="bg-black border-4 max-sm:border-2 border-[#00ffff] p-4 max-sm:p-3 shadow-[8px_8px_0_0_#ff00ff] max-sm:shadow-[4px_4px_0_0_#ff00ff]">
           <p className="text-[#00ffff] pixel-font text-sm flex items-center">
             <span className="mr-2">🎬</span> {sourceDisplay}
           </p>
@@ -50,7 +50,7 @@ const MovieDetail = ({
       )}
 
       {/* 电影资料卡片 */}
-      <div className="bg-white border-8 border-black p-6 md:p-8 shadow-[16px_16px_0_0_#ffff00] flex flex-col md:flex-row gap-6">
+      <div className="bg-white border-8 max-sm:border-4 border-black p-6 max-sm:p-4 md:p-8 shadow-[16px_16px_0_0_#ffff00] max-sm:shadow-[8px_8px_0_0_#ffff00] flex flex-col md:flex-row gap-6 max-sm:gap-4">
         {/* 海报 */}
         <div className="w-full md:w-48 flex-shrink-0">
           {detailData.poster ? (
