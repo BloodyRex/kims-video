@@ -1083,11 +1083,12 @@ async function handleIntelDebug(env) {
   const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
   const ninetyDaysAgo = new Date(Date.now() - 90 * 86400000).toISOString().split("T")[0];
 
-  const [discover, onTheAir, trending, nowPlayingRaw] = await Promise.all([
+  const [discover, onTheAir, trending, nowPlayingRaw, upcomingRaw] = await Promise.all([
     intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 5),
     intelFetchPages(token, "/tv/on_the_air", {}, 4),
     intelFetchTMDB(token, "/trending/tv/week"),
     intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
+    intelFetchPages(token, "/movie/upcoming", {}, 4),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -1112,6 +1113,7 @@ async function handleIntelDebug(env) {
     onTheAir: extractPop(onTheAir),
     trendingTV: extractPop(trending),
     nowPlaying: extractPop(nowPlayingRaw),
+    upcomingMovies: extractPop(upcomingRaw),
   };
 }
 
