@@ -1010,13 +1010,10 @@ async function handleIntelMusic(env) {
 async function handleIntelWeekly(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = new Date().toISOString().split("T")[0];
-  const weekAgo = intelDaysAgo(7);
 
-  const [movieTrending, tvTrending, todayMB, weekMB] = await Promise.all([
+  const [movieTrending, tvTrending] = await Promise.all([
     intelFetchTMDB(token, "/trending/movie/week"),
     intelFetchTMDB(token, "/trending/tv/week"),
-    intelFetchMusicBrainz(today).catch(() => []),
-    intelFetchMusicBrainz(weekAgo).catch(() => []),
   ]);
 
   const normalizeItem = (item, rank) => {
@@ -1024,31 +1021,11 @@ async function handleIntelWeekly(env) {
     return { ...intelNormalizeMovie(item, type), rank, trend: "new" };
   };
 
-  // Music: this week's releases, deduped, filtered, AI ranked by score
-  const merged = [...todayMB];
-  for (const rel of weekMB) {
-    if (!merged.some(r => r.mbid === rel.mbid)) merged.push(rel);
-  }
-  const validAlbums = merged.filter(r => intelIsValidAlbum(r));
-  const weekAlbums = validAlbums.slice(0, 20).map(intelNormalizeAlbum);
-  const musicEnriched = await intelEnrichWithAI(weekAlbums, "album", env);
-  // Fetch cover art for top picks
-  const topMusic = musicEnriched.sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0)).slice(0, 10);
-  for (const item of topMusic) {
-    if (item.mbid && !item.cover) {
-      try {
-        const r = await fetch(`https://coverartarchive.org/release/${item.mbid}/front-250.jpg`);
-        if (r.ok) item.cover = `https://coverartarchive.org/release/${item.mbid}/front-250.jpg`;
-      } catch {}
-    }
-  }
-  const musicWeekly = topMusic.map((item, i) => ({ ...item, rank: i + 1, trend: "new" }));
-
   return {
     updated: today,
     movies: movieTrending.slice(0, 10).map((m, i) => normalizeItem(m, i + 1)),
     tv: tvTrending.slice(0, 10).map((s, i) => normalizeItem(s, i + 1)),
-    music: musicWeekly,
+    music: [],
   };
 }
 

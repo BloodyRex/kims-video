@@ -287,6 +287,7 @@ function ComingView({ locale, onViewDetail }) {
 // ── Weekly Hot List (replaces old Trending/Weekly) ──
 function WeeklyView({ locale, onViewDetail }) {
   const { data, loading, error } = useJsonData("/api/weekly.json");
+  const { data: musicData } = useJsonData("/api/music.json");
   const [typeTab, setTypeTab] = useState("movies");
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
@@ -295,7 +296,14 @@ function WeeklyView({ locale, onViewDetail }) {
     { id: "tv", zh: "剧集", en: "TV" },
     { id: "music", zh: "音乐", en: "Music" },
   ];
-  const current = data?.[typeTab] || [];
+  // Music: trending + editor picks from music.json, sorted by heat
+  const musicPicks = useMemo(() => {
+    return (musicData?.picks || [])
+      .filter(a => a.recommendationTagId === "trending" || a.recommendationTagId === "editor")
+      .sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0))
+      .map((item, i) => ({ ...item, rank: i + 1, trend: "new" }));
+  }, [musicData]);
+  const current = typeTab === "music" ? musicPicks : (data?.[typeTab] || []);
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "本周热榜" : "Weekly Hot"} count={current.length} color="#ffff00" />
@@ -347,11 +355,10 @@ function SearchView({ locale, onViewDetail }) {
     if (coming) {
       [...(coming.next7Days || []), ...(coming.next30Days || [])].forEach(item => items.push({ ...item, _type: item.mediaType === "tv" ? "tv" : item.mediaType === "album" || item.mediaType === "single" ? "album" : "movie" }));
     }
-    // Flatten weekly hot
+    // Flatten weekly hot (movies + tv only; music uses music.json picks)
     if (weekly) {
       add(weekly.movies, "movie");
       add(weekly.tv, "tv");
-      add(weekly.music, "album");
     }
     // Deduplicate by title
     const seen = new Set();
