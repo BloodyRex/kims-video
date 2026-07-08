@@ -13,6 +13,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const API_DIR = join(__dirname, "..", "public", "api");
 
+const beijingDate = () => new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
+
 const WORKER_BASE = process.env.WORKER_BASE_URL || "https://api.bloodyrex.xyz";
 
 async function fetchJSON(endpoint) {
@@ -40,7 +42,7 @@ function filterChineseContent(data) {
     if (key === "music") continue;
     // TV ongoing: also check latest season is within 6 months
     if (key === "ongoing") {
-      const sixMonthsAgo = new Date(Date.now() - 180 * 86400000).toISOString().split("T")[0];
+      const sixMonthsAgo = new Date(Date.now() - 180 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
       data[key] = val.filter(item => !item.latestAirDate || item.latestAirDate >= sixMonthsAgo);
       continue;
     }
@@ -102,7 +104,7 @@ async function main() {
 
     // Write candidate.json (stripped debug fields, for Worker AI)
     const candidatePayload = {
-      updated: new Date().toISOString().split("T")[0],
+      updated: beijingDate(),
       candidates: topCandidates.map(stripDebugFields),
     };
     writeFileSync(join(API_DIR, "candidate.json"), JSON.stringify(candidatePayload, null, 2), "utf8");
@@ -110,7 +112,7 @@ async function main() {
 
     // Write candidate-debug.json (full debug info)
     const debugPayload = {
-      updated: new Date().toISOString().split("T")[0],
+      updated: beijingDate(),
       config: INTELLIGENCE_CONFIG,
       stats: musicStats,
       candidates,
@@ -158,7 +160,7 @@ async function main() {
     console.log("\nData updated — ready for commit.");
   }
 
-  console.log("Pipeline done:", new Date().toISOString().split("T")[0]);
+  console.log("Pipeline done:", beijingDate());
 }
 
 main();
