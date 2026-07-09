@@ -121,6 +121,7 @@ function intelMapGenres(ids) { return (ids || []).map(id => INTEL_GENRE_IDS[id])
 
 function intelToday() { return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }); }
 function intelDaysAgo(n) { return new Date(Date.now() - n * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }); }
+function intelRatingOk(m) { return !m.vote_average || m.vote_average >= 4; }
 const INTEL_TAG_CATEGORY = { trending: "trending", editor: "editor", hidden: "hidden-gem", world: "world" };
 function intelParseJSON(raw) { return JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim()); }
 
@@ -684,18 +685,20 @@ async function handleIntelOverview(env) {
   // Movies: same cnFilter + diversity as handleIntelMovies
   const weekCandidates = nowPlaying
     .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
-    .filter(cnFilter);
+    .filter(cnFilter)
+    .filter(intelRatingOk);
   const weekSelected = intelSelectDiverse(weekCandidates, 20, { zh: 2, ja: 1, ko: 1 });
   const moviesReleased = weekSelected.length;
 
   // TV: same cnFilter as handleIntelTV  (ongoing section)
-  const tvCandidates = tvOnAir.filter(cnFilter);
+  const tvCandidates = tvOnAir.filter(cnFilter).filter(intelRatingOk);
   const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 });
 
   // Upcoming movies: same title-only filter + reduced reserve as handleIntelMovies
   const upcomingCandidates = upcoming
     .filter(m => m.release_date && m.release_date >= today)
-    .filter(titleCn);
+    .filter(titleCn)
+    .filter(intelRatingOk);
   const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, {});
   const comingSoon = upcomingSelected.slice(0, 6).map(m => {
     const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
@@ -712,7 +715,7 @@ async function handleIntelOverview(env) {
     },
     editorsPicks: weekSelected.slice(0, 2).map(m => intelNormalizeMovie(m)),
     comingSoon,
-    trending: (trending || []).slice(0, 5).map((m, i) => ({
+    trending: (trending || []).filter(intelRatingOk).slice(0, 5).map((m, i) => ({
       ...intelNormalizeMovie(m), rank: i + 1, trend: "new"
     })),
     brief: `Today: ${moviesReleased} movie(s) released, ${tvSelected.length} TV show(s) airing, ${(todayMB || []).length} new album(s).`,
@@ -737,7 +740,8 @@ async function handleIntelMovies(env) {
   // This week: now_playing released in past 7 days
   const weekCandidates = nowPlayingRaw
     .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
-    .filter(cnFilter);
+    .filter(cnFilter)
+    .filter(intelRatingOk);
   const weekSelected = intelSelectDiverse(weekCandidates, 20, reserve);
   const weekM = weekSelected.map(m => intelNormalizeMovie(m));
 
@@ -747,7 +751,8 @@ async function handleIntelMovies(env) {
   const upcomingCandidates = upcomingRaw
     .filter(m => m.release_date && m.release_date >= today)
     .filter(m => !weekIds.has(m.id))
-    .filter(titleCn);
+    .filter(titleCn)
+    .filter(intelRatingOk);
   const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, {});
   const upcoming = upcomingSelected.map(m => {
     const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
@@ -760,7 +765,8 @@ async function handleIntelMovies(env) {
     .filter(m => m.release_date && m.release_date >= ninetyDaysAgo)
     .filter(m => !weekIds.has(m.id) && !upcomingIds.has(m.id))
     .filter(cnFilter)
-    .filter(m => (m.popularity || 0) >= 25);
+    .filter(m => (m.popularity || 0) >= 25)
+    .filter(intelRatingOk);
   const nowPlaying = intelSelectDiverse(nowPlayingCandidates, 20, reserve)
     .map(m => intelNormalizeMovie(m));
 
@@ -811,10 +817,11 @@ async function handleIntelTV(env) {
   const premiereFromOnAir = onTheAir
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
     .filter(titleCn)
+    .filter(intelRatingOk)
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 50);
   const premiereFromTrending = trendingTV
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
-    .filter(s => (s.vote_average || 0) > 0)
+    .filter(intelRatingOk)
     .filter(titleCn)
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
   const premiereMerged = [...premiereFromOnAir];
@@ -828,16 +835,17 @@ async function handleIntelTV(env) {
 
   // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 30 days)
   // Relaxed title-only Chinese filter; English shows auto-pass
-  // Trending: require vote_average > 0 (exclude unscored), Discover: higher popularity threshold (all scored 0)
+  // Trending: intelRatingOk (keep unscored, exclude < 4), Discover: higher popularity threshold (all scored 0)
   const upcomingFromTrending = trendingTV
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
     .filter(s => !premiereIds.has(s.id))
-    .filter(s => (s.vote_average || 0) > 0)
+    .filter(intelRatingOk)
     .filter(titleCn)
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
   const upcomingFromDiscover = discoverRaw
     .filter(s => !premiereIds.has(s.id))
     .filter(titleCn)
+    .filter(intelRatingOk)
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 15);
   // Merge and dedup
   const upcomingMerged = [...upcomingFromTrending];
@@ -853,6 +861,7 @@ async function handleIntelTV(env) {
   const ongoingCandidates = onTheAir
     .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
     .filter(cnFilter)
+    .filter(intelRatingOk)
     .filter(s => (s.popularity || 0) >= 80);
   const ongoingSelected = intelSelectDiverse(ongoingCandidates, 20, reserve);
   const ongoingEnriched = await intelFetchTVEpisodeDates(ongoingSelected, token);
@@ -1024,8 +1033,8 @@ async function handleIntelWeekly(env) {
 
   return {
     updated: today,
-    movies: movieTrending.slice(0, 10).map((m, i) => normalizeItem(m, i + 1)),
-    tv: tvTrending.slice(0, 10).map((s, i) => normalizeItem(s, i + 1)),
+    movies: movieTrending.filter(intelRatingOk).slice(0, 10).map((m, i) => normalizeItem(m, i + 1)),
+    tv: tvTrending.filter(intelRatingOk).slice(0, 10).map((s, i) => normalizeItem(s, i + 1)),
     music: [],
   };
 }
@@ -1041,6 +1050,7 @@ async function handleIntelComing(env) {
   // Movies
   movieUpcoming
     .filter(m => m.release_date && m.release_date >= today)
+    .filter(intelRatingOk)
     .forEach(m => {
       const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
       allItems.push({ ...intelNormalizeMovie(m), mediaType: "movie", daysUntil: Math.max(0, days) });
@@ -1049,7 +1059,7 @@ async function handleIntelComing(env) {
   // TV — discover brand new shows premiering in the future (bilingual)
   try {
     const tvResults = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "popularity.desc" });
-    tvResults.forEach(s => {
+    tvResults.filter(intelRatingOk).forEach(s => {
       const days = s.first_air_date ? Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000) : 999;
       allItems.push({ ...intelNormalizeMovie(s, "tv"), mediaType: "tv", daysUntil: Math.max(0, days) });
     });
