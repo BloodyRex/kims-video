@@ -119,7 +119,8 @@ const INTEL_GENRE_IDS = {
 
 function intelMapGenres(ids) { return (ids || []).map(id => INTEL_GENRE_IDS[id]).filter(Boolean); }
 
-function intelDaysAgo(n) { return new Date(Date.now() - n * 86400000).toISOString().split("T")[0]; }
+function intelToday() { return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }); }
+function intelDaysAgo(n) { return new Date(Date.now() - n * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }); }
 const INTEL_TAG_CATEGORY = { trending: "trending", editor: "editor", hidden: "hidden-gem", world: "world" };
 function intelParseJSON(raw) { return JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim()); }
 
@@ -664,7 +665,7 @@ Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "🔥 �
 
 async function handleIntelOverview(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
-  const today = new Date().toISOString().split("T")[0];
+  const today = intelToday();
   const weekAgo = intelDaysAgo(7);
 
   // Fetch data directly with same page counts as category handlers (21 subrequests)
@@ -720,7 +721,7 @@ async function handleIntelOverview(env) {
 
 async function handleIntelMovies(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
-  const today = new Date().toISOString().split("T")[0];
+  const today = intelToday();
   const weekAgo = intelDaysAgo(7);
   const ninetyDaysAgo = intelDaysAgo(90);
 
@@ -790,10 +791,10 @@ async function intelFetchTVEpisodeDates(shows, token) {
 
 async function handleIntelTV(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
-  const today = new Date().toISOString().split("T")[0];
+  const today = intelToday();
   const weekAgo = intelDaysAgo(7);
   const ninetyDaysAgo = intelDaysAgo(90);
-  const thirtyDaysLater = new Date(Date.now() + 30 * 86400000).toISOString().split("T")[0];
+  const thirtyDaysLater = new Date(Date.now() + 30 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
 
   const [onTheAir, trendingTV, discoverRaw] = await Promise.all([
     intelFetchPages(token, "/tv/on_the_air", {}, 4),
@@ -872,7 +873,7 @@ async function handleIntelTV(env) {
 
 // ── Music V2 handler (Pipeline-fed: receives POST from GitHub Actions, calls DeepSeek) ──
 async function handleIntelMusicV2(env, request) {
-  const today = new Date().toISOString().split("T")[0];
+  const today = intelToday();
 
   if (request.method !== "POST") {
     return new Response(JSON.stringify({ updated: today, picks: [] }), {
@@ -934,7 +935,7 @@ async function handleIntelMusicV2(env, request) {
 
 // @deprecated — Music data collection moved to Pipeline (handleIntelMusicV2)
 async function handleIntelMusic(env) {
-  const today = new Date().toISOString().split("T")[0];
+  const today = intelToday();
   return withCache(`intel-music-v6-${today}`, async () => {
     const weekAgo = intelDaysAgo(7);
 
@@ -1009,7 +1010,7 @@ async function handleIntelMusic(env) {
 
 async function handleIntelWeekly(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
-  const today = new Date().toISOString().split("T")[0];
+  const today = intelToday();
 
   const [movieTrending, tvTrending] = await Promise.all([
     intelFetchTMDB(token, "/trending/movie/week"),
@@ -1031,7 +1032,7 @@ async function handleIntelWeekly(env) {
 
 async function handleIntelComing(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
-  const today = new Date().toISOString().split("T")[0];
+  const today = intelToday();
 
   const movieUpcoming = await intelFetchTMDB(token, "/movie/upcoming");
 
@@ -1066,10 +1067,10 @@ async function handleIntelComing(env) {
 // ── Debug: test Last.fm API ──
 async function handleIntelDebug(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
-  const today = new Date().toISOString().split("T")[0];
-  const thirtyDaysLater = new Date(Date.now() + 30 * 86400000).toISOString().split("T")[0];
-  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0];
-  const ninetyDaysAgo = new Date(Date.now() - 90 * 86400000).toISOString().split("T")[0];
+  const today = intelToday();
+  const thirtyDaysLater = new Date(Date.now() + 30 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
+  const weekAgo = intelDaysAgo(7);
+  const ninetyDaysAgo = intelDaysAgo(90);
 
   const [discover, onTheAir, trending, nowPlayingRaw, upcomingRaw] = await Promise.all([
     intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 5),
@@ -1108,7 +1109,7 @@ async function handleIntelDebug(env) {
 // ── Daily Digest ──
 async function handleIntelDigest(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
-  const today = new Date().toISOString().split("T")[0];
+  const today = intelToday();
   const weekAgo = intelDaysAgo(7);
 
   if (!env.DEEPSEEK_API_KEY) {
@@ -1164,7 +1165,7 @@ Top 3-5 trends. 3-5 highlights.`;
 // ── Hidden Gems ──
 async function handleIntelHiddenGems(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
-  const today = new Date().toISOString().split("T")[0];
+  const today = intelToday();
   const thirtyDaysAgo = intelDaysAgo(30);
 
   const nowPlaying = await intelFetchTMDB(token, "/movie/now_playing", { region: "US" });
