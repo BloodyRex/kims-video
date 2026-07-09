@@ -421,12 +421,26 @@ export function CountdownCard({ item, locale, onViewDetail }) {
             ? <div className="flex flex-wrap gap-1">{musicTags.map((t, i) => <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[t] || t) : (musicTagsEn[i] || t)}</span>)}</div>
             : isMusicCard ? null : <Tags tags={item.tags} tagsEn={item.tagsEn} locale={locale} />
           }
-          {onViewDetail && (
-            <button onClick={() => onViewDetail(item)}
-              className="self-start mt-1 px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
-              {locale === "en" ? "DETAILS" : "详情"}
-            </button>
-          )}
+          <div className="flex items-center gap-2 mt-1">
+            {onViewDetail && (
+              <button onClick={() => onViewDetail(item)}
+                className="px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
+                {locale === "en" ? "DETAILS" : "详情"}
+              </button>
+            )}
+            {!isMusicCard && (item.titleEn || item.title) && (
+              <a
+                href={`https://www.imdb.com/find?q=${encodeURIComponent(((item.titleEn || item.title) + " " + (item.year || "")).trim())}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2 py-0.5 text-[8px] font-black text-white bg-[#F5C518] border-2 border-black uppercase hover:bg-[#dbaa00] transition-colors pixel-font"
+                title="Open in IMDb"
+              >
+                <Icons.Imdb className="w-3 h-3" />
+                IMDb
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </CardShell>
@@ -572,6 +586,9 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
 
         <div className="flex-1 min-w-0 flex flex-col">
           <h3 className="text-sm font-black leading-tight mb-0.5">{title}</h3>
+          {pick.titleEn && pick.titleEn !== (locale === "en" ? (pick.titleEn || pick.title) : pick.title) && !pick.artist && (
+            <p className="text-xs text-gray-600 font-bold mb-1 truncate">{pick.titleEn}</p>
+          )}
           {pick.artist && <p className="text-xs text-gray-600 font-bold mb-1">{pick.artist}</p>}
           <div className="flex items-center gap-2 mb-1">
             <StarRating score={pick.rating} max={10} />
@@ -588,12 +605,26 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
             </p>
           )}
           <Tags tags={pick.tags} tagsEn={pick.tagsEn} color={catColor} locale={locale} />
-          {onViewDetail && (
-            <button onClick={() => onViewDetail(pick)}
-              className="self-start mt-1 px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
-              {locale === "en" ? "DETAILS" : "详情"}
-            </button>
-          )}
+          <div className="flex items-center gap-2 mt-1">
+            {onViewDetail && (
+              <button onClick={() => onViewDetail(pick)}
+                className="px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
+                {locale === "en" ? "DETAILS" : "详情"}
+              </button>
+            )}
+            {!pick.artist && (pick.titleEn || pick.title) && (
+              <a
+                href={`https://www.imdb.com/find?q=${encodeURIComponent(((pick.titleEn || pick.title) + " " + (pick.year || "")).trim())}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2 py-0.5 text-[8px] font-black text-white bg-[#F5C518] border-2 border-black uppercase hover:bg-[#dbaa00] transition-colors pixel-font"
+                title="Open in IMDb"
+              >
+                <Icons.Imdb className="w-3 h-3" />
+                IMDb
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </CardShell>
