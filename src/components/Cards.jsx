@@ -113,6 +113,9 @@ export function MovieCard({ movie, locale, onViewDetail }) {
 
         <div className="flex-1 min-w-0 flex flex-col">
           <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{title}</h3>
+          {movie.titleEn && movie.titleEn !== (locale === "en" ? (movie.titleEn || movie.title) : movie.title) && (
+            <p className="text-xs text-gray-600 font-bold mb-1 truncate">{movie.titleEn}</p>
+          )}
           <div className="flex items-center gap-2 mb-1">
             <StarRating score={movie.rating} max={10} />
             <AIScoreBadge score={movie.aiScore} confidence={movie.confidence} />
@@ -141,12 +144,24 @@ export function MovieCard({ movie, locale, onViewDetail }) {
               {locale === "en" ? (movie.audienceEn || movie.audience) : movie.audience}
             </p>
           )}
-          {onViewDetail && (
-            <button onClick={() => onViewDetail(movie)}
-              className="self-start mt-1 px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
-              {locale === "en" ? "DETAILS" : "详情"}
-            </button>
-          )}
+          <div className="flex items-center gap-2 mt-1">
+            {onViewDetail && (
+              <button onClick={() => onViewDetail(movie)}
+                className="px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
+                {locale === "en" ? "DETAILS" : "详情"}
+              </button>
+            )}
+            <a
+              href={`https://www.imdb.com/find?q=${encodeURIComponent(((movie.titleEn || movie.title) + " " + (movie.year || "")).trim())}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-2 py-0.5 text-[8px] font-black text-white bg-[#F5C518] border-2 border-black uppercase hover:bg-[#dbaa00] transition-colors pixel-font"
+              title="Open in IMDb"
+            >
+              <Icons.Imdb className="w-3 h-3" />
+              IMDb
+            </a>
+          </div>
         </div>
       </div>
     </CardShell>
@@ -186,6 +201,9 @@ export function TVCard({ show, locale, onViewDetail }) {
 
         <div className="flex-1 min-w-0 flex flex-col">
           <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{title}</h3>
+          {show.titleEn && show.titleEn !== (locale === "en" ? (show.titleEn || show.title) : show.title) && (
+            <p className="text-xs text-gray-600 font-bold mb-1 truncate">{show.titleEn}</p>
+          )}
           <div className="flex items-center gap-2 mb-1">
             <StarRating score={show.rating} max={10} />
             <AIScoreBadge score={show.aiScore} confidence={show.confidence} />
@@ -214,12 +232,24 @@ export function TVCard({ show, locale, onViewDetail }) {
               {locale === "en" ? (show.audienceEn || show.audience) : show.audience}
             </p>
           )}
-          {onViewDetail && (
-            <button onClick={() => onViewDetail(show)}
-              className="self-start mt-1 px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
-              {locale === "en" ? "DETAILS" : "详情"}
-            </button>
-          )}
+          <div className="flex items-center gap-2 mt-1">
+            {onViewDetail && (
+              <button onClick={() => onViewDetail(show)}
+                className="px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
+                {locale === "en" ? "DETAILS" : "详情"}
+              </button>
+            )}
+            <a
+              href={`https://www.imdb.com/find?q=${encodeURIComponent(((show.titleEn || show.title) + " " + (show.year || "")).trim())}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-2 py-0.5 text-[8px] font-black text-white bg-[#F5C518] border-2 border-black uppercase hover:bg-[#dbaa00] transition-colors pixel-font"
+              title="Open in IMDb"
+            >
+              <Icons.Imdb className="w-3 h-3" />
+              IMDb
+            </a>
+          </div>
         </div>
       </div>
     </CardShell>
@@ -297,12 +327,24 @@ export function AlbumCard({ album, locale, onViewDetail }) {
           )}
 
           <AIScoreBadge score={album.aiScore} confidence={album.confidence} />
-          {onViewDetail && (
-            <button onClick={() => onViewDetail(album)}
-              className="self-start mt-1 px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
-              {locale === "en" ? "DETAILS" : "详情"}
-            </button>
-          )}
+          <div className="flex items-center gap-2 mt-1">
+            {onViewDetail && (
+              <button onClick={() => onViewDetail(album)}
+                className="px-2 py-0.5 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font">
+                {locale === "en" ? "DETAILS" : "详情"}
+              </button>
+            )}
+            <a
+              href={`https://open.spotify.com/search/${encodeURIComponent((artist + " " + title).trim())}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-2 py-0.5 text-[8px] font-black text-white bg-[#1DB954] border-2 border-black uppercase hover:bg-[#169c46] transition-colors pixel-font"
+              title="Open in Spotify"
+            >
+              <Icons.Spotify className="w-3 h-3" />
+              SPOTIFY
+            </a>
+          </div>
         </div>
       </div>
     </CardShell>
@@ -359,6 +401,9 @@ export function CountdownCard({ item, locale, onViewDetail }) {
 
         <div className="flex-1 min-w-0 flex flex-col">
           <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{title}</h3>
+          {item.titleEn && item.titleEn !== (locale === "en" ? (item.titleEn || item.title) : item.title) && !isMusicCard && (
+            <p className="text-xs text-gray-600 font-bold mb-1 truncate">{item.titleEn}</p>
+          )}
           <div className="flex items-center gap-2 mb-1">
             <AIScoreBadge score={item.aiScore} confidence={item.confidence} />
             {item.anticipation && (

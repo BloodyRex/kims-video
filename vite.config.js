@@ -9,6 +9,9 @@ export default defineConfig({
       "/api": {
         target: "https://api.bloodyrex.xyz",
         changeOrigin: true,
+        bypass: (req) => {
+          if (req.url.endsWith(".json")) return req.url;
+        },
       },
     },
   },
