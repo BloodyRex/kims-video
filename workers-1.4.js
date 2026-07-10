@@ -1579,7 +1579,7 @@ async function buildDigestHTML(env, now) {
       <span style="color:#444"> · </span>
       <a href="https://bloodyrex.xyz" style="color:#666">bloodyrex.xyz</a>
     </p>
-    <p style="font-size:9px;color:#444;margin:0">Sent by Kim's Video · 武汉变色龙科技文化有限公司</p>
+    <p style="font-size:9px;color:#444;margin:0">Sent by Kim's Video · Rex Huang</p>
   </div>
 
 </div></body></html>`;
