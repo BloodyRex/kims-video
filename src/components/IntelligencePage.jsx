@@ -490,7 +490,7 @@ function IntelligencePage() {
 
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row gap-0">
         {/* Sidebar - always visible, scrollable on mobile */}
-        <aside className="sm:w-48 sm:min-h-[calc(100vh-200px)] sm:block sm:border-r-4 sm:border-[#ff00ff] sm:bg-black/60">
+        <aside className="sticky top-0 z-20 bg-black/90 sm:bg-black/60 sm:static sm:w-48 sm:min-h-[calc(100vh-200px)] sm:block sm:border-r-4 sm:border-[#ff00ff]">
           <nav className="flex sm:flex-col overflow-x-auto sm:overflow-x-visible px-4 py-2 sm:p-0 gap-1">
             {NAV_ITEMS.map((item) => {
               const Icon = IconComp(item.icon);
