@@ -26,7 +26,7 @@
   },
   "stats": {
     "mbRaw": 300,
-    "afterFilter": 184,
+    "afterFilter": 181,
     "artistsChecked": 74,
     "afterArtistFilter": 54,
     "albumEnriched": 40,
@@ -212,32 +212,6 @@
       "daysOld": 190
     },
     {
-      "id": "mb-03b901b9-3497-4666-8815-c526a4216ff0",
-      "mbid": "03b901b9-3497-4666-8815-c526a4216ff0",
-      "title": "Satanic Chaos Legions",
-      "artist": "Nunslaughter",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 49052,
-      "artistPlaycount": 2208567,
-      "albumListeners": 2365,
-      "albumPlaycount": 20684,
-      "score": 64.14020052264054,
-      "scoreBreakdown": {
-        "artist": 31.27104479727139,
-        "album": 16.86915572536915,
-        "freshness": 16
-      },
-      "daysOld": 14
-    },
-    {
       "id": "mb-03283d25-b04f-445f-ab39-ab51d45919c1",
       "mbid": "03283d25-b04f-445f-ab39-ab51d45919c1",
       "title": "Elephant in the Room",
@@ -288,6 +262,47 @@
         "freshness": 16
       },
       "daysOld": 14
+    },
+    {
+      "id": "mb-07bc494f-85f7-4993-b5df-1a47c5e9a13c",
+      "mbid": "07bc494f-85f7-4993-b5df-1a47c5e9a13c",
+      "title": "Night at the Opera",
+      "artist": "Emei",
+      "releaseDate": "2026-06-12",
+      "year": "2026",
+      "type": "EP",
+      "country": "XW",
+      "genres": [
+        "流行",
+        "电子",
+        "节奏蓝调",
+        "3-5"
+      ],
+      "genresEn": [
+        "pop",
+        "electronic",
+        "rnb",
+        "3-5"
+      ],
+      "lfmTags": [
+        "pop",
+        "electronic",
+        "rnb",
+        "3-5"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 407604,
+      "artistPlaycount": 8312025,
+      "albumListeners": 35547,
+      "albumPlaycount": 239098,
+      "score": 62.15560435285249,
+      "scoreBreakdown": {
+        "artist": 37.40158958187276,
+        "album": 22.75401477097973,
+        "freshness": 2
+      },
+      "daysOld": 28
     },
     {
       "id": "mb-19c8eddd-b573-45b0-bf69-f91fe411d41e",
@@ -520,18 +535,21 @@
       "country": "XW",
       "genres": [
         "金属",
+        "交响金属",
         "gothic rock",
         "symphonic",
         "2026"
       ],
       "genresEn": [
         "metal",
+        "symphonic metal",
         "gothic rock",
         "symphonic",
         "2026"
       ],
       "lfmTags": [
         "metal",
+        "symphonic metal",
         "gothic rock",
         "symphonic",
         "2026"
@@ -837,6 +855,38 @@
         "freshness": 0
       },
       "daysOld": 190
+    },
+    {
+      "id": "mb-03b901b9-3497-4666-8815-c526a4216ff0",
+      "mbid": "03b901b9-3497-4666-8815-c526a4216ff0",
+      "title": "Satanic Chaos Legions",
+      "artist": "Nunslaughter",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "death metal",
+        "old school death metal",
+        "Blackened Death Metal",
+        "black metal",
+        "american"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 49052,
+      "artistPlaycount": 2208567,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 47.27104479727139,
+      "scoreBreakdown": {
+        "artist": 31.27104479727139,
+        "album": 0,
+        "freshness": 16
+      },
+      "daysOld": 14
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -1303,32 +1353,6 @@
         "freshness": 16
       },
       "daysOld": 14
-    },
-    {
-      "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
-      "mbid": "017c16c7-e4c5-488d-8bde-d2e41a15096f",
-      "title": "Nick Collection 2",
-      "artist": "Pop! not soda.",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 3466,
-      "artistPlaycount": 43385,
-      "albumListeners": 194,
-      "albumPlaycount": 1642,
-      "score": 35.03786570550378,
-      "scoreBreakdown": {
-        "artist": 23.598857055852655,
-        "album": 11.439008649651129,
-        "freshness": 0
-      },
-      "daysOld": 190
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
