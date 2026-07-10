@@ -7,3 +7,10 @@ compatibility_date = "2024-12-01"
 [[kv_namespaces]]
 binding = "DISCOVER_KV"
 id = "76a4dab6048441cea229055a262bff8f"
+
+# KV Namespace for email subscriptions
+# 1. Create a new KV namespace in Cloudflare Dashboard → Workers & Pages → KV
+# 2. Replace the ID below with your namespace ID
+[[kv_namespaces]]
+binding = "SUBSCRIBE_KV"
+id = "27b767e03348423dbcd9382a925446b2"

@@ -3,6 +3,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { MovieCard, TVCard, AlbumCard, CountdownCard, SpotlightCard, SectionHeader, CardGrid, IntelDetailModal } from "./Cards";
+import SubscribeSection from "./SubscribeSection";
 import { setCanonical } from "../services/seo";
 
 const LANG_BUTTON_STYLE = {
@@ -516,6 +517,8 @@ function IntelligencePage() {
           {activeNav === "search" && <SearchView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
         </main>
       </div>
+
+      <SubscribeSection locale={locale} />
 
       {/* Footer */}
       <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>

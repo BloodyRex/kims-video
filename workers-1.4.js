@@ -1239,10 +1239,401 @@ Movies:\n${JSON.stringify(candidates.map((m, i) => ({ index: i, title: m.title, 
   }
 }
 
+// ── Unsubscribe (Worker-rendered HTML, no frontend needed) ──
+async function handleUnsubscribe(request, env) {
+  const url = new URL(request.url);
+  const email = url.searchParams.get("email") || "";
+
+  // POST: process unsubscribe
+  if (request.method === "POST") {
+    let postEmail = email;
+    try {
+      const form = await request.formData();
+      postEmail = form.get("email") || postEmail;
+    } catch {}
+    if (postEmail && env.SUBSCRIBE_KV) {
+      await env.SUBSCRIBE_KV.delete(`sub:${postEmail}`);
+    }
+    const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unsubscribed — Kim's Video</title></head>
+<body style="margin:0;padding:0;background:#111;color:#eee;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh">
+<div style="text-align:center;max-width:400px;padding:30px">
+  <div style="background:#ff00ff;padding:12px;text-align:center;border:4px solid #000;margin-bottom:20px">
+    <h1 style="margin:0;font-size:16px;color:#000;text-transform:uppercase">KIM'S VIDEO</h1>
+  </div>
+  <h2 style="color:#00ff00;font-size:18px">✅ 已取消订阅</h2>
+  <p style="color:#ccc;font-size:13px;line-height:1.5">您已成功取消 Kim's Video 每日影音情报摘要的订阅。如需再次订阅，可随时访问网站。</p>
+  <div style="text-align:center;margin-top:20px">
+    <a href="https://bloodyrex.xyz/intelligence" style="display:inline-block;background:#ffff00;color:#000;padding:10px 20px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase">返回 Kim's Video</a>
+  </div>
+  <p style="font-size:10px;color:#666;margin-top:20px">Sent by Kim's Video · bloodyrex.xyz</p>
+</div></body></html>`;
+    return new Response(html, { headers: { "Content-Type": "text/html;charset=utf-8" } });
+  }
+
+  // GET: show confirmation form
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Invalid Link — Kim's Video</title></head>
+<body style="margin:0;padding:0;background:#111;color:#eee;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh">
+<div style="text-align:center;max-width:400px;padding:30px">
+  <h2 style="color:#ff00ff">无效链接</h2>
+  <p style="color:#ccc">此取消订阅链接无效，请检查邮件中的链接是否正确。</p>
+  <a href="https://bloodyrex.xyz" style="color:#ffff00">返回首页</a>
+</div></body></html>`;
+    return new Response(html, { headers: { "Content-Type": "text/html;charset=utf-8" } });
+  }
+
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unsubscribe — Kim's Video</title></head>
+<body style="margin:0;padding:0;background:#111;color:#eee;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh">
+<div style="text-align:center;max-width:420px;padding:30px">
+  <div style="background:#ff00ff;padding:12px;text-align:center;border:4px solid #000;margin-bottom:20px">
+    <h1 style="margin:0;font-size:16px;color:#000;text-transform:uppercase">KIM'S VIDEO</h1>
+  </div>
+  <h2 style="color:#ffff00;font-size:16px">取消订阅</h2>
+  <p style="color:#ccc;font-size:13px">确认取消 Kim's Video 每日影音情报摘要？</p>
+  <p style="color:#999;font-size:12px">邮箱：${email}</p>
+  <form method="POST" action="/intelligence/unsubscribe?email=${encodeURIComponent(email)}" style="margin-top:16px">
+    <input type="hidden" name="email" value="${email}">
+    <button type="submit" style="background:#ff00ff;color:#fff;border:4px solid #000;padding:10px 24px;font-size:13px;font-weight:bold;cursor:pointer;text-transform:uppercase">确认取消订阅</button>
+  </form>
+  <p style="margin-top:16px"><a href="https://bloodyrex.xyz/intelligence" style="color:#666;font-size:12px">不取消，返回 Kim's Video</a></p>
+  <p style="font-size:10px;color:#666;margin-top:20px">Sent by Kim's Video · bloodyrex.xyz</p>
+</div></body></html>`;
+  return new Response(html, { headers: { "Content-Type": "text/html;charset=utf-8" } });
+}
+
+// ── Subscribe ──
+async function handleSubscribe(request, env) {
+  const ALLOWED_ORIGINS = ["https://bloodyrex.xyz", "https://www.bloodyrex.xyz", "https://bloodyrex.github.io", "http://localhost:4173", "http://localhost:5173", "http://localhost:5174", "http://localhost:7850", "http://127.0.0.1:7850"];
+  const origin = request.headers.get("Origin");
+  const corsHeaders = { "Access-Control-Allow-Origin": ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0], "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "POST, OPTIONS", "Access-Control-Max-Age": "86400" };
+
+  if (!env.SUBSCRIBE_KV) return Response.json({ error: "Subscribe not configured" }, { status: 503, headers: corsHeaders });
+
+  let body;
+  try { body = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
+
+  const email = (body.email || "").trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return Response.json({ error: "Invalid email" }, { status: 400, headers: corsHeaders });
+
+  // Check already subscribed
+  const existing = await env.SUBSCRIBE_KV.get(`sub:${email}`);
+  if (existing) return Response.json({ ok: true, message: "Already subscribed" }, { headers: corsHeaders });
+
+  // Store
+  const subscriber = JSON.stringify({ email, locale: body.locale || "zh", subscribedAt: new Date().toISOString() });
+  await env.SUBSCRIBE_KV.put(`sub:${email}`, subscriber);
+
+  // Send confirmation via Resend
+  if (env.RESEND_API_KEY) {
+    const unsubUrl = `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(email)}`;
+    try {
+      await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from: "Kim's Video <digest@bloodyrex.xyz>",
+          to: email,
+          subject: body.locale === "en" ? "Subscription confirmed — Kim's Video Daily Digest" : "✅ 订阅确认 — Kim's Video 每日影音情报摘要",
+          html: body.locale === "en"
+            ? `<!DOCTYPE html>
+<html><body style="margin:0;padding:20px;background:#111;color:#eee;font-family:sans-serif">
+<div style="max-width:480px;margin:0 auto">
+  <div style="background:#ff00ff;padding:12px;text-align:center;border:4px solid #000;margin-bottom:16px">
+    <h1 style="margin:0;font-size:16px;color:#000;text-transform:uppercase">KIM'S VIDEO · DIGEST</h1>
+  </div>
+  <div style="background:#000;border:4px solid #ffff00;padding:16px;margin-bottom:16px">
+    <p style="font-size:14px;color:#00ff00;font-weight:bold;margin:0 0 8px">✅ Subscription confirmed!</p>
+    <p style="font-size:13px;color:#ccc;line-height:1.5;margin:0">You'll receive the Kim's Video Daily Intelligence Digest every morning (Beijing time 8:00), including:</p>
+    <ul style="font-size:12px;color:#999;line-height:1.8;padding-left:16px;margin:8px 0 0">
+      <li>📰 AI-curated daily headlines</li>
+      <li>🔥 Weekly hot lists (movies & TV top 10)</li>
+      <li>▶ Coming soon preview</li>
+      <li>🎬 New movie releases</li>
+      <li>📺 TV premieres & ongoing</li>
+      <li>💿 Editor's album picks</li>
+    </ul>
+  </div>
+  <div style="text-align:center;margin:16px 0">
+    <a href="https://bloodyrex.xyz/intelligence" style="display:inline-block;background:#ffff00;color:#000;padding:10px 20px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase">Explore Intelligence</a>
+  </div>
+  <p style="font-size:10px;color:#666;text-align:center;margin-top:20px">
+    <a href="${unsubUrl}" style="color:#666">Unsubscribe</a> · <a href="https://bloodyrex.xyz" style="color:#666">bloodyrex.xyz</a>
+  </p>
+</div></body></html>`
+            : `<!DOCTYPE html>
+<html><body style="margin:0;padding:20px;background:#111;color:#eee;font-family:sans-serif">
+<div style="max-width:480px;margin:0 auto">
+  <div style="background:#ff00ff;padding:12px;text-align:center;border:4px solid #000;margin-bottom:16px">
+    <h1 style="margin:0;font-size:16px;color:#000;text-transform:uppercase">KIM'S VIDEO · 每日影音情报</h1>
+  </div>
+  <div style="background:#000;border:4px solid #ffff00;padding:16px;margin-bottom:16px">
+    <p style="font-size:14px;color:#00ff00;font-weight:bold;margin:0 0 8px">✅ 订阅成功！</p>
+    <p style="font-size:13px;color:#ccc;line-height:1.5;margin:0">每天上午 8:00（北京时间）您将收到以下内容：</p>
+    <ul style="font-size:12px;color:#999;line-height:1.8;padding-left:16px;margin:8px 0 0">
+      <li>📰 AI 精选每日摘要</li>
+      <li>🔥 本周热榜（电影 & 剧集 Top 10）</li>
+      <li>▶ 即将上映预告</li>
+      <li>🎬 本周新片速递</li>
+      <li>📺 剧集首播与热播追踪</li>
+      <li>💿 编辑精选专辑推荐</li>
+    </ul>
+  </div>
+  <div style="text-align:center;margin:16px 0">
+    <a href="https://bloodyrex.xyz/intelligence" style="display:inline-block;background:#ffff00;color:#000;padding:10px 20px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase">前往情报中心</a>
+  </div>
+  <p style="font-size:10px;color:#666;text-align:center;margin-top:20px">
+    <a href="${unsubUrl}" style="color:#666">取消订阅</a> · <a href="https://bloodyrex.xyz" style="color:#666">bloodyrex.xyz</a>
+  </p>
+</div></body></html>`,
+        }),
+      });
+    } catch (e) { console.warn("Resend confirmation failed:", e.message); }
+  }
+
+  return Response.json({ ok: true, message: "Subscribed" }, { headers: corsHeaders });
+}
+
+// ── Digest email builder: fetches rich data, returns ready-to-send HTML ──
+async function buildDigestHTML(env, now) {
+  now = now || intelToday();
+  // Fetch sections in parallel (cached calls from daily pipeline)
+  const [digestData, weeklyData, comingData, overviewData] = await Promise.allSettled([
+    handleIntelDigest(env),
+    handleIntelWeekly(env),
+    handleIntelComing(env),
+    handleIntelOverview(env),
+  ]);
+  const digest = digestData.status === "fulfilled" ? digestData.value : {};
+  const weekly = weeklyData.status === "fulfilled" ? weeklyData.value : {};
+  const coming = comingData.status === "fulfilled" ? comingData.value : {};
+  const overview = overviewData.status === "fulfilled" ? overviewData.value : {};
+  const stats = overview.stats || {};
+  const date = digest.date || overview.updated || now;
+
+  // ── Daily Digest section ──
+  const headline = digest.headline || "";
+  const summaryZh = digest.summary || "";
+  const trends = (digest.topTrends || []).slice(0, 5);
+  const trendsHtml = trends.length
+    ? `<div style="margin:8px 0">${trends.map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:2px 7px;font-size:10px;font-weight:bold;margin:2px;text-transform:uppercase">${t.title}</span>`).join("")}</div>`
+    : "";
+
+  // ── Weekly Hot section ──
+  const hotMovies = (weekly.movies || []).slice(0, 3);
+  const hotTV = (weekly.tv || []).slice(0, 3);
+  const hotMoviesHtml = hotMovies.length
+    ? `<table style="width:100%;border-collapse:collapse">${hotMovies.map((m, i) =>
+      `<tr><td style="padding:3px 6px;font-size:13px;color:#fff;width:20px;vertical-align:top"><strong style="color:#ff00ff">${i+1}.</strong></td><td style="padding:3px 6px;font-size:13px;color:#fff">${m.title || ""}</td></tr>`
+    ).join("")}</table>`
+    : "";
+  const hotTVHtml = hotTV.length
+    ? `<table style="width:100%;border-collapse:collapse">${hotTV.map((s, i) =>
+      `<tr><td style="padding:3px 6px;font-size:13px;color:#fff;width:20px;vertical-align:top"><strong style="color:#00ffff">${i+1}.</strong></td><td style="padding:3px 6px;font-size:13px;color:#fff">${s.title || ""}</td></tr>`
+    ).join("")}</table>`
+    : "";
+
+  // ── Coming Soon section ──
+  const comingItems = (coming.next7Days || []).slice(0, 5);
+  const comingHtml = comingItems.length
+    ? `<table style="width:100%;border-collapse:collapse">${comingItems.map(item => {
+      const d = item.daysUntil || 0;
+      const label = d === 0 ? "今日" : d <= 3 ? `${d}天后` : `${d}天`;
+      const genre = Array.isArray(item.genre) ? item.genre.slice(0, 2).join("/") : (item.genre || "");
+      return `<tr><td style="padding:4px 8px;font-size:11px;color:#ff00ff;white-space:nowrap;width:50px">${label}</td><td style="padding:4px 8px;font-size:13px;color:#fff">${item.title || ""}</td><td style="padding:4px 8px;font-size:11px;color:#999;text-align:right">${genre}</td></tr>`;
+    }).join("")}</table>`
+    : "";
+
+  // ── Editor's Picks (movies) ──
+  const editorsPicks = (overview.editorsPicks || []).slice(0, 2);
+  const editorsHtml = editorsPicks.length
+    ? editorsPicks.map(pick => {
+      const g = Array.isArray(pick.genre) ? pick.genre.slice(0, 2).join(" / ") : (pick.genre || "");
+      const r = pick.rating || 0;
+      const s = pick.summary || "";
+      return `<div style="background:#000;border:2px solid #ff00ff;padding:10px;margin:6px 0">
+  <div style="font-size:14px;color:#ffff00;font-weight:bold">${pick.title || ""}</div>
+  <div style="font-size:11px;color:#999;margin-top:2px">${g} · ${r}/10</div>
+  ${s ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s}</div>` : ""}
+</div>`;
+    }).join("")
+    : "";
+
+  // ── Stats ──
+  const statsHtml = `<table style="width:100%;border-collapse:collapse">
+    <tr><td style="padding:3px 8px;font-size:12px;color:#fff">🎬 电影上新</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right">${stats.moviesReleased || 0}</td></tr>
+    <tr><td style="padding:3px 8px;font-size:12px;color:#fff">📺 剧集在播</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right">${stats.tvAiringThisWeek || 0}</td></tr>
+    <tr><td style="padding:3px 8px;font-size:12px;color:#fff">💿 专辑发行</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right">${stats.albumsReleased || 0}</td></tr>
+    <tr><td style="padding:3px 8px;font-size:12px;color:#fff">🔥 热榜变动</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right">${stats.trending || 0}</td></tr>
+  </table>`;
+
+  // ── Assemble full HTML ──
+  const unsubUrl = `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=`;
+  const title = (text) => `<div style="display:flex;align-items:center;gap:6px;margin:12px 0 8px"><span style="font-size:16px;font-weight:bold;color:#ffff00;text-transform:uppercase">${text}</span></div>`;
+  const divider = `<div style="border-top:2px dashed #333;margin:16px 0"></div>`;
+
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>a{color:#999;text-decoration:none}@media only screen and (max-width:480px){.body{padding:10px!important}}</style>
+</head>
+<body style="margin:0;padding:0;background:#111;color:#eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+<div style="max-width:560px;margin:0 auto;padding:20px">
+
+  <!-- Header -->
+  <div style="background:#ff00ff;padding:14px;text-align:center;border:4px solid #000;margin-bottom:16px">
+    <h1 style="margin:0;font-size:18px;color:#000;text-transform:uppercase;letter-spacing:2px">KIM'S VIDEO · ${date}</h1>
+    <p style="margin:4px 0 0;font-size:10px;color:#000;text-transform:uppercase;letter-spacing:1px">每日影音情报摘要</p>
+  </div>
+
+  <!-- Daily Digest -->
+  ${headline || summaryZh ? `
+  <div style="background:#000;border:4px solid #ffff00;padding:14px;margin-bottom:16px">
+    ${title("📰 每日摘要")}
+    ${headline ? `<h2 style="margin:0;font-size:15px;color:#ffff00;line-height:1.4">${headline}</h2>` : ""}
+    ${summaryZh ? `<p style="font-size:12px;color:#ccc;line-height:1.6;margin:6px 0 0">${summaryZh}</p>` : ""}
+    ${trendsHtml}
+  </div>` : ""}
+
+  ${divider}
+
+  <!-- Weekly Hot -->
+  ${hotMoviesHtml || hotTVHtml ? `
+  ${title("🔥 本周热榜")}
+  <table style="width:100%"><tr>
+    <td style="vertical-align:top;padding-right:8px;width:50%">
+      <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 电影 Top 3</p>
+      ${hotMoviesHtml || '<p style="font-size:11px;color:#666">暂无数据</p>'}
+    </td>
+    <td style="vertical-align:top;padding-left:8px;width:50%">
+      <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 剧集 Top 3</p>
+      ${hotTVHtml || '<p style="font-size:11px;color:#666">暂无数据</p>'}
+    </td>
+  </tr></table>
+  <div style="text-align:right;margin:4px 0">
+    <a href="https://bloodyrex.xyz/intelligence/weekly" style="font-size:11px;color:#00ffff">查看完整热榜 →</a>
+  </div>` : ""}
+
+  ${divider}
+
+  <!-- Coming Soon -->
+  ${comingHtml ? `
+  ${title("▶ 即将上映")}
+  ${comingHtml}
+  <div style="text-align:right;margin:4px 0">
+    <a href="https://bloodyrex.xyz/intelligence/coming" style="font-size:11px;color:#ff00ff">查看全部 →</a>
+  </div>` : ""}
+
+  ${divider}
+
+  <!-- Editor's Picks (Movies) -->
+  ${editorsHtml ? `
+  ${title("🎬 本周电影精选")}
+  ${editorsHtml}
+  <div style="text-align:right;margin:4px 0">
+    <a href="https://bloodyrex.xyz/intelligence/movies" style="font-size:11px;color:#ff00ff">查看全部电影 →</a>
+  </div>` : ""}
+
+  ${divider}
+
+  <!-- TV Section -->
+  ${hotTVHtml ? `
+  ${title("📺 本周剧集精选")}
+  <div style="background:#000;border:2px solid #00ffff;padding:10px;margin:6px 0">
+    ${hotTV.slice(0, 2).map(s => {
+      const g = Array.isArray(s.genre) ? s.genre.slice(0, 2).join(" / ") : (s.genre || "");
+      return `<div style="margin:4px 0"><span style="font-size:13px;color:#fff;font-weight:bold">${s.title || ""}</span>${g ? ` <span style="font-size:11px;color:#999">· ${g}</span>` : ""}</div>`;
+    }).join("")}
+  </div>
+  <div style="text-align:right;margin:4px 0">
+    <a href="https://bloodyrex.xyz/intelligence/tv" style="font-size:11px;color:#00ffff">查看全部剧集 →</a>
+  </div>` : ""}
+
+  ${divider}
+
+  <!-- Music Section -->
+  ${title("💿 本周音乐精选")}
+  <div style="background:#000;border:2px solid #ffff00;padding:10px;margin:6px 0">
+    <p style="font-size:12px;color:#ccc;margin:0">本周共发行 <strong style="color:#ffff00">${stats.albumsReleased || 0}</strong> 张新专辑</p>
+    <p style="font-size:11px;color:#999;margin:4px 0 0">涵盖流行、摇滚、电子、嘻哈等多种风格，由 AI 精选推荐</p>
+  </div>
+  <div style="text-align:right;margin:4px 0">
+    <a href="https://bloodyrex.xyz/intelligence/music" style="font-size:11px;color:#ffff00">查看全部专辑 →</a>
+  </div>
+
+  ${divider}
+
+  <!-- Stats + CTA -->
+  <div style="background:#000;border:4px solid #ff00ff;padding:10px;margin:12px 0">
+    ${statsHtml}
+  </div>
+  <div style="text-align:center;margin:16px 0">
+    <a href="https://bloodyrex.xyz/intelligence" style="display:inline-block;background:#ffff00;color:#000;padding:12px 28px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase;letter-spacing:1px">查看完整情报</a>
+  </div>
+
+  <!-- Footer -->
+  <div style="border-top:2px dashed #333;margin:16px 0;padding-top:12px;text-align:center">
+    <p style="font-size:10px;color:#666;margin:0 0 4px">
+      <a href="${unsubUrl}" style="color:#666;text-decoration:underline">取消订阅</a>
+      <span style="color:#444"> · </span>
+      <a href="https://bloodyrex.xyz" style="color:#666">bloodyrex.xyz</a>
+    </p>
+    <p style="font-size:9px;color:#444;margin:0">Sent by Kim's Video · 武汉变色龙科技文化有限公司</p>
+  </div>
+
+</div></body></html>`;
+
+  return { html, date };
+}
+
+async function handleSendDigest(request, env) {
+  const corsHeaders = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "POST, OPTIONS" };
+  if (!env.RESEND_API_KEY) return Response.json({ error: "Resend not configured" }, { status: 503, headers: corsHeaders });
+  if (!env.SUBSCRIBE_KV) return Response.json({ error: "KV not configured" }, { status: 503, headers: corsHeaders });
+
+  const auth = request.headers.get("Authorization");
+  if (!auth || auth !== `Bearer ${env.DIGEST_SECRET}`) return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
+
+  const list = await env.SUBSCRIBE_KV.list({ prefix: "sub:" });
+  if (!list.keys.length) return Response.json({ ok: true, sent: 0 }, { headers: corsHeaders });
+
+  // Build digest once
+  const { html, date } = await buildDigestHTML(env);
+
+  let sent = 0;
+  for (const key of list.keys) {
+    try {
+      const raw = await env.SUBSCRIBE_KV.get(key.name);
+      if (!raw) continue;
+      const sub = JSON.parse(raw);
+      const personalHtml = html.replace(
+        "https://api.bloodyrex.xyz/intelligence/unsubscribe?email=",
+        `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(sub.email)}`
+      );
+      await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from: "Kim's Video <digest@bloodyrex.xyz>",
+          to: sub.email,
+          subject: `Kim's Video 每日影音情报 · ${date}`,
+          html: personalHtml,
+        }),
+      });
+      sub.lastSentAt = new Date().toISOString();
+      await env.SUBSCRIBE_KV.put(key.name, JSON.stringify(sub));
+      sent++;
+    } catch (e) { console.warn(`Send to ${key.name} failed:`, e.message); }
+  }
+
+  return Response.json({ ok: true, sent }, { headers: corsHeaders });
+}
+
 // ── Main ──
 export default {
   async fetch(request, env) {
-    const ALLOWED_ORIGINS = ["https://bloodyrex.xyz", "https://www.bloodyrex.xyz", "https://bloodyrex.github.io", "http://localhost:4173", "http://localhost:5173", "http://localhost:5174"];
+    const ALLOWED_ORIGINS = ["https://bloodyrex.xyz", "https://www.bloodyrex.xyz", "https://bloodyrex.github.io", "http://localhost:4173", "http://localhost:5173", "http://localhost:5174", "http://localhost:7850", "http://127.0.0.1:7850"];
     const origin = request.headers.get("Origin");
     const corsHeaders = { "Access-Control-Allow-Origin": ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0], "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS", "Access-Control-Max-Age": "86400" };
     if (origin && !ALLOWED_ORIGINS.includes(origin)) return new Response(JSON.stringify({ error: "Forbidden Origin" }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
@@ -1272,6 +1663,11 @@ export default {
       // Discover list
       if (path === "/discover/results") { try { return Response.json(await handleDiscoverList(env, url), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message, results: [] }, { headers: corsHeaders }); } }
 
+
+      // Unsubscribe page
+      if (path === "/intelligence/unsubscribe") {
+        return handleUnsubscribe(request, env);
+      }
 
       // ── Intelligence API ──
       const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|coming|weekly|hidden-gems|digest|debug)$/);
@@ -1308,6 +1704,21 @@ export default {
       // Intelligence Music V2 (Pipeline-fed: POST candidates, returns AI-curated picks)
       if (url.pathname === "/intelligence/music/v2") {
         return handleIntelMusicV2(env, request);
+      }
+
+      // Subscribe
+      if (path === "/intelligence/subscribe") {
+        return handleSubscribe(request, env);
+      }
+
+      // Send digest (internal, authenticated)
+      if (path === "/intelligence/send-digest") {
+        return handleSendDigest(request, env);
+      }
+
+      // Unsubscribe (POST)
+      if (path === "/intelligence/unsubscribe") {
+        return handleUnsubscribe(request, env);
       }
 
       let body;

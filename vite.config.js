@@ -13,6 +13,14 @@ export default defineConfig({
           if (req.url.endsWith(".json")) return req.url;
         },
       },
+      "/intelligence/subscribe": {
+        target: "https://api.bloodyrex.xyz",
+        changeOrigin: true,
+      },
+      "/intelligence/send-digest": {
+        target: "https://api.bloodyrex.xyz",
+        changeOrigin: true,
+      },
     },
   },
 });
