@@ -1598,8 +1598,21 @@ async function handleSendDigest(request, env) {
   const list = await env.SUBSCRIBE_KV.list({ prefix: "sub:" });
   if (!list.keys.length) return Response.json({ ok: true, sent: 0 }, { headers: corsHeaders });
 
-  // Build digest once
-  const { html, date } = await buildDigestHTML(env);
+  // Build or retrieve cached digest (generated once per day)
+  const today = intelToday();
+  let html, date;
+  const cachedDigest = await env.SUBSCRIBE_KV.get(`digest:${today}`);
+  if (cachedDigest) {
+    const parsed = JSON.parse(cachedDigest);
+    html = parsed.html;
+    date = parsed.date;
+  } else {
+    const result = await buildDigestHTML(env, today);
+    html = result.html;
+    date = result.date;
+    // Cache digest content for 24h so all sends on the same day use identical content
+    await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html, date }), { expirationTtl: 86400 });
+  }
 
   let sent = 0;
   for (const key of list.keys) {
