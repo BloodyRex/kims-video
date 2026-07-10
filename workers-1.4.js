@@ -1393,6 +1393,36 @@ async function handleSubscribe(request, env) {
     } catch (e) { console.warn("Resend confirmation failed:", e.message); }
   }
 
+  // Send today's daily digest to new subscriber
+  if (env.RESEND_API_KEY && env.SUBSCRIBE_KV) {
+    try {
+      const today = intelToday();
+      let digestHtml;
+      const cachedDigest = await env.SUBSCRIBE_KV.get(`digest:${today}`);
+      if (cachedDigest) {
+        digestHtml = JSON.parse(cachedDigest).html;
+      } else {
+        const result = await buildDigestHTML(env, today);
+        digestHtml = result.html;
+        await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html: result.html, date: result.date }), { expirationTtl: 86400 });
+      }
+      const personalHtml = digestHtml.replace(
+        "https://api.bloodyrex.xyz/intelligence/unsubscribe?email=",
+        `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(email)}`
+      );
+      await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from: "Kim's Video <digest@bloodyrex.xyz>",
+          to: email,
+          subject: `Kim's Video 每日影音情报 · ${today}`,
+          html: personalHtml,
+        }),
+      });
+    } catch (e) { console.warn("Welcome digest failed:", e.message); }
+  }
+
   return Response.json({ ok: true, message: "Subscribed" }, { headers: corsHeaders });
 }
 
