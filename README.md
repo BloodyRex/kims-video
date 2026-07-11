@@ -1,6 +1,6 @@
 # Kim's Video — AI Entertainment Platform / AI 娱乐推荐平台
 
-**Three interconnected pages / 三大页面联动:** [Discover / 发现推荐](#-discover--ai-movie-recommender--ai-电影推荐) → [Intelligence / 情报中心](#-intelligence--entertainment-data-hub--娱乐情报中心) → [Curated Picks / 精选合辑](#-curated-picks--community-discovery--社区发现)
+**Three interconnected pages / 三大页面联动:** [Discover / 发现推荐](#-home--ai-movie-recommender--ai-电影推荐) → [Intelligence / 情报中心](#-intelligence--entertainment-data-hub--娱乐情报中心) → [Curated Picks / 精选合辑](#-curated-picks--community-discovery--社区发现)
 
 ![Tech Stack](https://img.shields.io/badge/React-18-61DAFB?logo=react)
 ![Tech Stack](https://img.shields.io/badge/Vite-6-646CFF?logo=vite)
@@ -9,6 +9,7 @@
 ![Tech Stack](https://img.shields.io/badge/DeepSeek-4F46E5)
 ![Tech Stack](https://img.shields.io/badge/TMDB-01D277?logo=themoviedatabase)
 ![Tech Stack](https://img.shields.io/badge/MusicBrainz-BA478F)
+![Tech Stack](https://img.shields.io/badge/Resend-000000?logo=resend)
 
 ---
 
@@ -21,12 +22,12 @@ This platform consists of three interconnected pages, each serving a distinct ro
 | Page / 页面 | Role / 角色 | Data Source / 数据来源 |
 |-------------|-------------|----------------------|
 | **Home / 首页** (Discover) | Personalized AI recommendation / 个性化 AI 推荐 | DeepSeek + TMDB (on-demand / 实时) |
-| **Intelligence / 情报** | Daily updated data hub / 每日更新数据中心 | Cloudflare Worker → GitHub Actions → static JSON / 静态 JSON |
-| **Curated Picks / 精选合辑** | Community discovery & sharing / 社区发现与分享 | Pre-curated pairs in `data/discover.json` / 预配置推荐对 |
+| **Intelligence / 情报** | Daily updated data hub / 每日更新数据中心 | Cloudflare Worker → TMDB/MusicBrainz, cached as static JSON |
+| **Curated Picks / 精选合辑** | Community discovery & sharing / 社区发现与分享 | Pre-curated pairs in `src/data/discover.json` / 预配置推荐对 |
 
-**Flow / 数据流转:** Worker fetches from TMDB + MusicBrainz → DeepSeek AI enriches → GitHub Actions commits JSON → Pages deploys static site → all three pages served from the same build.
+**Data flow / 数据流转:** Cloudflare Worker fetches from TMDB + MusicBrainz → DeepSeek AI enriches → GitHub Actions commits daily snapshots → Worker sends daily digest email via Resend → Pages serves the SPA.
 
-**流程:** Worker 从 TMDB + MusicBrainz 获取数据 → DeepSeek AI 丰富内容 → GitHub Actions 提交 JSON → Pages 部署静态站点 → 三个页面均由同一构建版本提供服务。
+**流程:** Cloudflare Worker 从 TMDB + MusicBrainz 获取数据 → DeepSeek AI 丰富内容 → GitHub Actions 提交每日快照 → Worker 通过 Resend 发送每日邮件摘要 → Pages 提供 SPA 服务。
 
 ---
 
@@ -50,9 +51,9 @@ The core recommendation engine. Users input 1–2 reference films, answer a prog
 
 ## 📡 Intelligence — Entertainment Data Hub / 娱乐情报中心
 
-Daily auto-aggregated hub for movies, TV, and music. All data is fetched by the Cloudflare Worker, enriched by DeepSeek AI, and committed as static JSON via GitHub Actions every day at 02:00 Beijing time.
+Daily auto-aggregated hub for movies, TV, and music. All data is fetched by the Cloudflare Worker, enriched by DeepSeek AI, and committed as static JSON via GitHub Actions.
 
-每日自动汇总的影视音乐数据中心。所有数据由 Cloudflare Worker 获取、DeepSeek AI 丰富，通过 GitHub Actions 每天北京时间 02:00 提交为静态 JSON。
+每日自动汇总的影视音乐数据中心。所有数据由 Cloudflare Worker 获取、DeepSeek AI 丰富，通过 GitHub Actions 提交为静态 JSON。
 
 - **Overview / 总览** — Stats dashboard (movies/TV/albums released) + Daily Digest + Editor's Picks + Hidden Gems + Trending + Coming Soon / 数据统计面板 + 每日摘要 + 编辑精选 + 隐藏宝藏 + 热榜趋势 + 即将上映
 - **Movies / 电影** — This Week / Upcoming / Now Playing with AI scores & tags / 本周上映 / 即将上映 / 热映中，含 AI 评分与标签
@@ -61,6 +62,18 @@ Daily auto-aggregated hub for movies, TV, and music. All data is fetched by the 
 - **Coming Soon / 即将上映** — Countdown cards × movies / TV / music, cross-referenced from each category's upcoming data / 倒计时卡片 × 电影/剧集/音乐，数据来自各栏目即将上映内容
 - **Weekly Hot / 本周热榜** — Weekly ranked charts across movies, TV, and music / 电影/剧集/音乐周榜排行
 - **Search / 搜索** — Local full-text search across all intelligence data / 全量情报数据本地全文搜索
+
+### 📧 Email Subscription / 邮件订阅
+
+Users can subscribe to receive a daily digest email every morning at 08:00 Beijing time.
+
+用户可订阅每日影音情报邮件，每天北京时间 08:00 发送。
+
+- **Subscribe / 订阅:** One-click subscribe on the Intelligence page / 情报页一键订阅
+- **Daily digest / 每日摘要:** Rich HTML email with sections: Daily Digest, Weekly Hot, Coming Soon, Editor's Picks, TV Highlights, Music Releases / 丰富 HTML 邮件，含每日摘要、本周热榜、即将上映、精选推荐、剧集亮点、音乐发行等板块
+- **Unsubscribe / 取消订阅:** One-click unsubscribe link in every email (Worker-rendered page) / 每封邮件底部一键退订（Worker 渲染页面）
+- **Today's digest on subscribe / 订阅即收:** New subscribers receive confirmation + today's digest immediately / 新用户订阅后立即收到确认邮件 + 当日摘要
+- **Delivery / 投递:** Powered by Resend API, domain `digest@bloodyrex.xyz` / 通过 Resend API 投递
 
 **→ Bridges to: Home** (intelligence detail modals share the same TMDB-backed movie data used by the recommender)
 
@@ -89,31 +102,43 @@ A browsable gallery of pre-curated recommendation pairs organized by genre, them
 
 ```
 Browser (React 18 + Vite SPA)
-
+  ├── bloodyrex.xyz (GitHub Pages)
+  │
   ├── Home / 首页 (Discover)
   │     POST /api → Worker → DeepSeek + TMDB (on-demand / 实时)
   │
   ├── Intelligence / 情报
-  │     GET /api/*.json → static daily snapshots / 每日静态快照
+  │     GET /intelligence/* → Worker → TMDB/MusicBrainz + DeepSeek
+  │     Daily digest email → Worker → Resend → Subscribers
   │
   └── Curated Picks / 精选合辑
-        data/discover.json → genre-filtered pre-curated pairs / 分类预配置对
+        src/data/discover.json → genre-filtered pre-curated pairs / 分类预配置对
 
 GitHub Actions
-  ├── intelligence-daily.yml  — 02:00 CST daily fetch & commit / 每日获取并提交
-  └── deploy.yml              — auto-deploy on push to main / 推送 main 自动部署
+  ├── intelligence-daily.yml  — 01:28 CST daily data fetch & commit / 每日数据获取
+  ├── deploy-frontend.yml     — auto-deploy SPA on push to main / 推送 main 自动部署前端
+  └── deploy-worker.yml       — auto-deploy Worker + secrets on push to workers-1.4.js
 
-Cloudflare Worker (workers-1.4.txt)
+Cloudflare Worker (workers-1.4.js)
   ├── POST /           → DeepSeek recommendation / DeepSeek 推荐
   ├── GET /poster-proxy → TMDB image proxy / TMDB 图片代理
-  └── GET /intelligence/* (10 endpoints / 个端点)
-       /overview, /movies, /tv, /music,
-       /coming, /weekly, /hidden-gems, /digest, /editor
+  ├── GET /intelligence/* (10 endpoints / 个端点)
+  │     /overview, /movies, /tv, /music, /coming,
+  │     /weekly, /hidden-gems, /digest, /editor, /debug
+  ├── POST /intelligence/subscribe   → Subscribe to daily digest / 订阅每日邮件
+  ├── GET|POST /intelligence/unsubscribe → Unsubscribe page / 退订页面
+  ├── POST /intelligence/send-digest → Manual digest trigger / 手动触发邮件发送
+  └── Cron Trigger (00:00 UTC / 08:00 CST) → Auto send daily digest / 自动发送每日邮件
 
 External APIs / 外部接口
-  ├── DeepSeek Chat   — AI enrichment & recommendation / AI 丰富与推荐
-  ├── TMDB v4         — movie/TV metadata & images / 影视元数据与图片
-  └── MusicBrainz     — album release data / 专辑发行数据
+  ├── DeepSeek Chat     — AI enrichment & recommendation / AI 丰富与推荐
+  ├── TMDB v4           — movie/TV metadata & images / 影视元数据与图片
+  ├── MusicBrainz       — album release data / 专辑发行数据
+  └── Resend            — email delivery / 邮件投递
+
+Data flow / 数据流:
+  Worker API (live) ──→ GitHub Actions (01:28 CST) ──→ git commit static JSON ──→ GitHub Pages SPA
+                                              └──→ Worker Cron (08:00 CST) ──→ Resend ──→ Email subscribers
 ```
 
 ---
@@ -125,23 +150,53 @@ src/
 ├── App.jsx                    # Routing: /, /discover, /intelligence, /admin
 ├── App.css                    # Tailwind + pixel-art theme / 像素风主题
 ├── i18n.jsx                   # zh-CN / en-US bilingual / 双语
+├── main.jsx                   # Entry point / 入口
 ├── components/
-│   ├── IntelligencePage.jsx   # Intelligence hub (7 sub-views + search)
-│   ├── DiscoverPage.jsx       # Curated Picks gallery / 精选合辑
-│   ├── Cards.jsx              # 10 card components / 卡片组件
+│   ├── IntelligencePage.jsx   # Intelligence hub (7 sub-views + search) / 情报中心
+│   ├── SubscribeSection.jsx   # Email subscription form / 邮件订阅组件
+│   ├── DiscoverPage.jsx       # Curated Picks gallery / 精选合辑页面
+│   ├── Cards.jsx              # 10 card components / 卡片组件（10种）
 │   ├── AdminPage.jsx          # Admin dashboard / 管理后台
 │   ├── InputPage.jsx          # Recommendation input / 推荐输入
 │   ├── ResultsPage.jsx        # Recommendation results / 推荐结果
-│   └── MovieDetail.jsx        # Movie detail sub-page / 电影详情
-├── logic/useMovieEngine.js    # Core recommendation engine / 推荐引擎
-├── services/                  # API + SEO + config
-├── data/discover.json         # Curated recommendation pairs / 精选推荐对
+│   ├── MovieDetail.jsx        # Movie detail sub-page / 电影详情
+│   ├── Loading.jsx            # Loading states / 加载状态
+│   ├── SplashPage.jsx         # Splash screen / 启动画面
+│   ├── SaveContent.jsx        # Save/share content / 保存与分享
+│   └── Icons.jsx              # SVG icon set / SVG 图标集
+├── logic/
+│   └── useMovieEngine.js      # Core recommendation engine / 推荐引擎
+├── services/
+│   ├── api.js                 # API client / API 客户端
+│   ├── adminApi.js            # Admin API / 管理 API
+│   ├── config.js              # App config / 应用配置
+│   ├── discoverApi.js         # Discover API / 发现 API
+│   ├── prompts.js             # LLM prompts / 提示词
+│   └── seo.js                 # SEO helpers / SEO 工具
+├── utils/
+│   ├── cache.js               # Local caching / 本地缓存
+│   ├── discoverGenre.js       # Genre helpers / 分类工具
+│   ├── parseJSON.js           # JSON parsing / JSON 解析
+│   ├── posterAlt.js           # Poster fallbacks / 海报备选
+│   └── url.js                 # URL utilities / URL 工具
+└── data/
+    └── discover.json          # Curated recommendation pairs / 精选推荐对
+
 scripts/
 ├── fetch-intelligence-data.js # Daily data pipeline / 每日数据流水线
+├── music-pipeline.js          # Music data processing / 音乐数据处理
+├── generate-detail-pages.js   # Detail page generator / 详情页生成
+├── generate-discover-page.js  # Curated picks generator / 精选页生成
+├── generate-genre-pages.js    # Genre page generator / 分类页生成
+└── generate-sitemap.js        # SEO sitemap generator / 站点地图生成
+
 .github/workflows/
-├── deploy.yml                 # GitHub Pages deploy / 部署
-├── intelligence-daily.yml     # 02:00 CST daily pipeline / 每日数据更新
-workers-1.4.txt                # Cloudflare Worker (full source / 完整源码)
+├── deploy-frontend.yml        # GitHub Pages SPA deploy / 前端部署
+├── deploy-worker.yml          # Cloudflare Worker deploy / Worker 部署
+└── intelligence-daily.yml     # 01:28 CST daily pipeline / 每日数据更新
+
+workers-1.4.js                 # Cloudflare Worker (full source / 完整源码)
+wrangler.toml                  # Worker config + KV bindings + cron triggers
 ```
 
 ---
@@ -150,20 +205,33 @@ workers-1.4.txt                # Cloudflare Worker (full source / 完整源码)
 
 ### Worker
 
-```bash
-# Paste workers-1.4.txt into Cloudflare Worker Editor → Deploy
-# 将 workers-1.4.txt 粘贴到 Cloudflare Worker 编辑器 → 部署
-```
+Deployed automatically via GitHub Actions on push to `workers-1.4.js` (main branch).
 
-**Env vars / 环境变量:** `DEEPSEEK_API_KEY` | `TMDB_API_READ_ACCESS_TOKEN` | `LASTFM_API_KEY`
+推送 `workers-1.4.js` 到 main 分支时自动部署。
+
+**Secrets / 环境变量 (set in GitHub → Settings → Secrets → Actions):**
+
+| Secret | Purpose / 用途 |
+|--------|---------------|
+| `CLOUDFLARE_API_TOKEN` | Worker deploy / Worker 部署 |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare account / Cloudflare 账户 ID |
+| `TMDB_API_READ_ACCESS_TOKEN` | TMDB API / TMDB 接口 |
+| `RESEND_API_KEY` | Email delivery / 邮件投递 |
+| `DIGEST_SECRET` | Digest API auth / 邮件接口鉴权 |
+| `DEEPSEEK_API_KEY` | AI enrichment / AI 丰富内容 |
+| `LASTFM_API_KEY` | Music data / 音乐数据 |
 
 ### Frontend / 前端
 Push to `main` → GitHub Actions auto-deploys to GitHub Pages.
 推送 `main` 分支 → GitHub Actions 自动部署到 GitHub Pages。
 
 ### Data Pipeline / 数据流水线
-`Intelligence Daily Pipeline` runs daily at **02:00 Beijing Time** (18:00 UTC). Manual trigger available in Actions tab.
-每日 **北京时间 02:00** 自动运行，可在 Actions 标签页手动触发。
+`Intelligence Daily Pipeline` runs daily at **01:28 CST** (17:28 UTC). Manual trigger available in Actions tab.
+每日 **北京时间 01:28** 自动运行，可在 Actions 标签页手动触发。
+
+### Daily Digest Email / 每日邮件
+Worker Cron Trigger sends at **08:00 CST** (00:00 UTC) automatically. Subscribers receive identical content each day.
+Worker Cron Trigger 每天 **北京时间 08:00** 自动发送，所有订阅者当天收到内容完全一致。
 
 ### Local Dev / 本地开发
 ```bash
@@ -184,25 +252,28 @@ npm run dev
 | UI / 界面 | React 18 + Tailwind CSS 4 |
 | AI / 人工智能 | DeepSeek Chat |
 | Film Data / 电影数据 | TMDB v4 |
-| Music Data / 音乐数据 | MusicBrainz API |
-| Backend / 后端 | Cloudflare Workers |
+| Music Data / 音乐数据 | MusicBrainz + Last.fm |
+| Backend / 后端 | Cloudflare Workers (ESM) |
 | Pipeline / 流水线 | GitHub Actions (cron + manual) |
-| Deploy / 部署 | GitHub Pages + Cloudflare |
+| Deploy / 部署 | GitHub Pages + Cloudflare Workers |
+| Email / 邮件 | Resend API (digest@bloodyrex.xyz) |
+| Storage / 存储 | Cloudflare KV (subscriptions + cache) |
 | i18n / 国际化 | zh-CN / en-US |
 
 ---
 
 ## Daily Schedule / 每日更新
 
-| Task / 任务 | Time / 时间 | Trigger / 触发方式 |
+| Task / 任务 | Time (CST) / 北京时间 | Trigger / 触发方式 |
 |------|------|---------|
-| Intelligence data fetch / 情报数据获取 | 02:00 CST / 北京时间 | GitHub Actions cron |
-| Deploy to Pages / 部署到 Pages | After data commit / 数据提交后 | Push trigger / 推送触发 |
-| Worker runs / Worker 运行 | On demand / 按需 | Cloudflare edge / 边缘节点 |
+| Intelligence data fetch / 情报数据获取 | 01:28 | GitHub Actions cron `28 17 * * *` |
+| Daily digest email / 每日邮件发送 | 08:00 | Worker Cron Trigger `0 0 * * *` |
+| Frontend deploy / 前端部署 | After push / 推送后 | GitHub Actions push trigger |
+| Worker deploy / Worker 部署 | After push / 推送后 | GitHub Actions push trigger |
 
 No manual operation needed — the site updates itself daily.
 无需手动操作——网站每日自动更新。
 
 ---
 
-MIT © BLOODYREX
+MIT © BLOODYREX (Rex Huang)
