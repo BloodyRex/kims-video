@@ -18,6 +18,7 @@ import { updateSeo, updateStructuredData, resetSeo, injectStructuredData } from 
 import { useMovieEngine } from "./logic/useMovieEngine";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { LocaleProvider, useLocale } from "./i18n";
+import ShareButton from "./components/ShareButton";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/intelligence/weekly" element={<IntelligencePage />} />
           <Route path="/intelligence/search" element={<IntelligencePage />} />
         </Routes>
+        <ShareButtonWrapper />
       </LocaleProvider>
     </BrowserRouter>
   );
@@ -408,6 +410,11 @@ function AppContent() {
       )}
     </div>
   );
+}
+
+function ShareButtonWrapper() {
+  const { locale } = useLocale();
+  return <ShareButton locale={locale} />;
 }
 
 export default App;
