@@ -36,6 +36,8 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL || 'https://api.bloodyrex.xyz/' }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
