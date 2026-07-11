@@ -14,3 +14,7 @@ id = "76a4dab6048441cea229055a262bff8f"
 [[kv_namespaces]]
 binding = "SUBSCRIBE_KV"
 id = "27b767e03348423dbcd9382a925446b2"
+
+# Cron Triggers: send daily digest at 00:00 UTC (08:00 Beijing)
+[triggers]
+crons = ["0 0 * * *"]

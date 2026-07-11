@@ -1456,12 +1456,12 @@ async function buildDigestHTML(env, now) {
   const hotTV = (weekly.tv || []).slice(0, 3);
   const hotMoviesHtml = hotMovies.length
     ? `<table style="width:100%;border-collapse:collapse">${hotMovies.map((m, i) =>
-      `<tr><td style="padding:3px 6px;font-size:13px;color:#fff;width:20px;vertical-align:top"><strong style="color:#ff00ff">${i+1}.</strong></td><td style="padding:3px 6px;font-size:13px;color:#fff">${m.title || ""}</td></tr>`
+      `<tr><td style="padding:3px 6px;font-size:13px;color:#fff;width:20px;vertical-align:top;background:#111"><strong style="color:#ff00ff">${i+1}.</strong></td><td style="padding:3px 6px;font-size:13px;color:#fff;background:#111">${m.title || ""}</td></tr>`
     ).join("")}</table>`
     : "";
   const hotTVHtml = hotTV.length
     ? `<table style="width:100%;border-collapse:collapse">${hotTV.map((s, i) =>
-      `<tr><td style="padding:3px 6px;font-size:13px;color:#fff;width:20px;vertical-align:top"><strong style="color:#00ffff">${i+1}.</strong></td><td style="padding:3px 6px;font-size:13px;color:#fff">${s.title || ""}</td></tr>`
+      `<tr><td style="padding:3px 6px;font-size:13px;color:#fff;width:20px;vertical-align:top;background:#111"><strong style="color:#00ffff">${i+1}.</strong></td><td style="padding:3px 6px;font-size:13px;color:#fff;background:#111">${s.title || ""}</td></tr>`
     ).join("")}</table>`
     : "";
 
@@ -1472,7 +1472,7 @@ async function buildDigestHTML(env, now) {
       const d = item.daysUntil || 0;
       const label = d === 0 ? "今日" : d <= 3 ? `${d}天后` : `${d}天`;
       const genre = Array.isArray(item.genre) ? item.genre.slice(0, 2).join("/") : (item.genre || "");
-      return `<tr><td style="padding:4px 8px;font-size:11px;color:#ff00ff;white-space:nowrap;width:50px">${label}</td><td style="padding:4px 8px;font-size:13px;color:#fff">${item.title || ""}</td><td style="padding:4px 8px;font-size:11px;color:#999;text-align:right">${genre}</td></tr>`;
+      return `<tr><td style="padding:4px 8px;font-size:11px;color:#ff00ff;white-space:nowrap;width:50px;background:#111">${label}</td><td style="padding:4px 8px;font-size:13px;color:#fff;background:#111">${item.title || ""}</td><td style="padding:4px 8px;font-size:11px;color:#999;text-align:right;background:#111">${genre}</td></tr>`;
     }).join("")}</table>`
     : "";
 
@@ -1492,11 +1492,11 @@ async function buildDigestHTML(env, now) {
     : "";
 
   // ── Stats ──
-  const statsHtml = `<table style="width:100%;border-collapse:collapse">
-    <tr><td style="padding:3px 8px;font-size:12px;color:#fff">🎬 电影上新</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right">${stats.moviesReleased || 0}</td></tr>
-    <tr><td style="padding:3px 8px;font-size:12px;color:#fff">📺 剧集在播</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right">${stats.tvAiringThisWeek || 0}</td></tr>
-    <tr><td style="padding:3px 8px;font-size:12px;color:#fff">💿 专辑发行</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right">${stats.albumsReleased || 0}</td></tr>
-    <tr><td style="padding:3px 8px;font-size:12px;color:#fff">🔥 热榜变动</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right">${stats.trending || 0}</td></tr>
+  const statsHtml = `<table style="width:100%;border-collapse:collapse;background:#111">
+    <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">🎬 电影上新</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.moviesReleased || 0}</td></tr>
+    <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">📺 剧集在播</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.tvAiringThisWeek || 0}</td></tr>
+    <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">💿 专辑发行</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.albumsReleased || 0}</td></tr>
+    <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">🔥 热榜变动</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.trending || 0}</td></tr>
   </table>`;
 
   // ── Assemble full HTML ──
@@ -1508,8 +1508,8 @@ async function buildDigestHTML(env, now) {
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>a{color:#999;text-decoration:none}@media only screen and (max-width:480px){.body{padding:10px!important}}</style>
 </head>
-<body style="margin:0;padding:0;background:#111;color:#eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-<div style="max-width:560px;margin:0 auto;padding:20px">
+<body style="margin:0;padding:0;color:#eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+<div style="max-width:560px;margin:0 auto;padding:20px;background:#111">
 
   <!-- Header -->
   <div style="background:#ff00ff;padding:14px;text-align:center;border:4px solid #000;margin-bottom:16px">
@@ -1532,11 +1532,11 @@ async function buildDigestHTML(env, now) {
   ${hotMoviesHtml || hotTVHtml ? `
   ${title("🔥 本周热榜")}
   <table style="width:100%"><tr>
-    <td style="vertical-align:top;padding-right:8px;width:50%">
+    <td style="vertical-align:top;padding-right:8px;width:50%;background:#111">
       <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 电影 Top 3</p>
       ${hotMoviesHtml || '<p style="font-size:11px;color:#666">暂无数据</p>'}
     </td>
-    <td style="vertical-align:top;padding-left:8px;width:50%">
+    <td style="vertical-align:top;padding-left:8px;width:50%;background:#111">
       <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 剧集 Top 3</p>
       ${hotTVHtml || '<p style="font-size:11px;color:#666">暂无数据</p>'}
     </td>
@@ -1619,14 +1619,19 @@ async function buildDigestHTML(env, now) {
 
 async function handleSendDigest(request, env) {
   const corsHeaders = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "POST, OPTIONS" };
-  if (!env.RESEND_API_KEY) return Response.json({ error: "Resend not configured" }, { status: 503, headers: corsHeaders });
-  if (!env.SUBSCRIBE_KV) return Response.json({ error: "KV not configured" }, { status: 503, headers: corsHeaders });
-
   const auth = request.headers.get("Authorization");
   if (!auth || auth !== `Bearer ${env.DIGEST_SECRET}`) return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
+  const result = await sendDigestToAll(env);
+  return Response.json(result, { headers: corsHeaders });
+}
+
+// ── Core digest send (shared by HTTP endpoint and cron trigger) ──
+async function sendDigestToAll(env) {
+  if (!env.RESEND_API_KEY) return { ok: false, error: "Resend not configured" };
+  if (!env.SUBSCRIBE_KV) return { ok: false, error: "KV not configured" };
 
   const list = await env.SUBSCRIBE_KV.list({ prefix: "sub:" });
-  if (!list.keys.length) return Response.json({ ok: true, sent: 0 }, { headers: corsHeaders });
+  if (!list.keys.length) return { ok: true, sent: 0 };
 
   // Build or retrieve cached digest (generated once per day)
   const today = intelToday();
@@ -1670,7 +1675,7 @@ async function handleSendDigest(request, env) {
     } catch (e) { console.warn(`Send to ${key.name} failed:`, e.message); }
   }
 
-  return Response.json({ ok: true, sent }, { headers: corsHeaders });
+  return { ok: true, sent };
 }
 
 // ── Main ──
@@ -1793,5 +1798,16 @@ export default {
     }
 
     return Response.json({ error: "Method not allowed" }, { status: 405, headers: corsHeaders });
+  },
+
+  // Cron trigger: send daily digest at 00:00 UTC (08:00 Beijing)
+  async scheduled(event, env) {
+    console.log(`Cron triggered: ${event.cron}`);
+    try {
+      const result = await sendDigestToAll(env);
+      console.log(`Digest cron complete:`, JSON.stringify(result));
+    } catch (e) {
+      console.error(`Digest cron failed:`, e.message);
+    }
   }
 };

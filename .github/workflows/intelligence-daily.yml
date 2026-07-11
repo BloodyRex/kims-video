@@ -5,7 +5,7 @@ on:
     paths:
       - ".github/workflows/intelligence-daily.yml"
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "28 17 * * *"
   workflow_dispatch:
 
 jobs:
@@ -34,11 +34,3 @@ jobs:
           git add public/api/
           git commit -m "chore: daily intelligence data update [data]" || echo "No changes to commit"
           git push
-
-      - name: Send daily digest email
-        run: |
-          curl -X POST "${{ vars.WORKER_BASE_URL || 'https://api.bloodyrex.xyz' }}/intelligence/send-digest" \
-            -H "Authorization: Bearer ${{ secrets.DIGEST_SECRET }}" \
-            -H "Content-Type: application/json" \
-            -w "\nHTTP %{http_code}\n" || echo "Digest send skipped (will be handled by Worker cron)"
-        shell: bash
