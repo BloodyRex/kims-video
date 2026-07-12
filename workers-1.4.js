@@ -1630,11 +1630,23 @@ async function sendDigestToAll(env) {
   if (!env.RESEND_API_KEY) return { ok: false, error: "Resend not configured" };
   if (!env.SUBSCRIBE_KV) return { ok: false, error: "KV not configured" };
 
+  const today = intelToday();
+
+  // Dedup: skip if already sent today (handles redundant triggers from backup crons)
+  const lastSent = await env.SUBSCRIBE_KV.get("lastDigestSent");
+  if (lastSent === today) {
+    return { ok: true, sent: 0, skipped: "already sent today" };
+  }
+
   const list = await env.SUBSCRIBE_KV.list({ prefix: "sub:" });
-  if (!list.keys.length) return { ok: true, sent: 0 };
+  if (!list.keys.length) {
+    // Mark as sent even with no subscribers so we don't retry
+    await env.SUBSCRIBE_KV.put("lastDigestSent", today);
+    return { ok: true, sent: 0 };
+  }
 
   // Build or retrieve cached digest (generated once per day)
-  const today = intelToday();
+
   let html, date;
   const cachedDigest = await env.SUBSCRIBE_KV.get(`digest:${today}`);
   if (cachedDigest) {
@@ -1674,6 +1686,9 @@ async function sendDigestToAll(env) {
       sent++;
     } catch (e) { console.warn(`Send to ${key.name} failed:`, e.message); }
   }
+
+  // Record send date for dedup across redundant triggers
+  await env.SUBSCRIBE_KV.put("lastDigestSent", today);
 
   return { ok: true, sent };
 }

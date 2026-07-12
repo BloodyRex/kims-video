@@ -1,0 +1,29 @@
+name: Digest Send Backup
+
+on:
+  schedule:
+    # 08:05 Beijing = 00:05 UTC — 5 min after Worker cron trigger as backup
+    - cron: "5 0 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: digest-send
+  cancel-in-progress: false
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger digest send via Worker API
+        run: |
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            "https://api.bloodyrex.xyz/intelligence/send-digest" \
+            -H "Authorization: Bearer ${{ secrets.DIGEST_SECRET }}" \
+            -H "Content-Type: application/json")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          echo "HTTP $HTTP_CODE: $BODY"
+          if [ "$HTTP_CODE" -ne 200 ]; then
+            echo "Digest send failed or skipped"
+            exit 1
+          fi
