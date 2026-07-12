@@ -193,7 +193,8 @@ scripts/
 .github/workflows/
 ├── deploy-frontend.yml        # GitHub Pages SPA deploy / 前端部署
 ├── deploy-worker.yml          # Cloudflare Worker deploy / Worker 部署
-└── intelligence-daily.yml     # 01:28 CST daily pipeline / 每日数据更新
+├── intelligence-daily.yml     # 01:28 CST daily data pipeline / 每日数据更新
+└── digest-backup.yml          # 08:05 CST backup digest trigger / 邮件备用触发
 
 workers-1.4.js                 # Cloudflare Worker (full source / 完整源码)
 wrangler.toml                  # Worker config + KV bindings + cron triggers
@@ -230,8 +231,8 @@ Push to `main` → GitHub Actions auto-deploys to GitHub Pages.
 每日 **北京时间 01:28** 自动运行，可在 Actions 标签页手动触发。
 
 ### Daily Digest Email / 每日邮件
-Worker Cron Trigger sends at **08:00 CST** (00:00 UTC) automatically. Subscribers receive identical content each day.
-Worker Cron Trigger 每天 **北京时间 08:00** 自动发送，所有订阅者当天收到内容完全一致。
+Worker Cron Trigger sends at **08:00 CST** (00:00 UTC) automatically, with a GitHub Actions backup at **08:05 CST** for redundancy. A dedup flag in KV prevents double-sending. Subscribers receive identical content each day.
+Worker Cron Trigger 每天 **北京时间 08:00** 自动发送，GitHub Actions 在 **08:05** 作为备用触发。KV 中的去重标记防止重复发送。所有订阅者当天收到内容完全一致。
 
 ### Local Dev / 本地开发
 ```bash
@@ -267,9 +268,13 @@ npm run dev
 | Task / 任务 | Time (CST) / 北京时间 | Trigger / 触发方式 |
 |------|------|---------|
 | Intelligence data fetch / 情报数据获取 | 01:28 | GitHub Actions cron `28 17 * * *` |
-| Daily digest email / 每日邮件发送 | 08:00 | Worker Cron Trigger `0 0 * * *` |
+| Daily digest email / 每日邮件发送 | 08:00 | Worker Cron Trigger `0 0 * * *` (primary) |
+| Digest send backup / 邮件备用触发 | 08:05 | GitHub Actions cron `5 0 * * *` (calls Worker API) |
 | Frontend deploy / 前端部署 | After push / 推送后 | GitHub Actions push trigger |
 | Worker deploy / Worker 部署 | After push / 推送后 | GitHub Actions push trigger |
+
+**Redundancy note / 冗余说明:** The Worker Cron Trigger at 08:00 is the primary digest sender. A GitHub Actions workflow at 08:05 serves as a backup, calling the Worker API directly. A dedup check (`lastDigestSent` in KV) ensures subscribers never receive duplicate emails.
+**冗余说明:** Worker Cron Trigger 在 08:00 是邮件发送主力，08:05 的 GitHub Actions 工作流作为备用，直接调用 Worker 接口。KV 中的去重标记确保订阅者不会收到重复邮件。
 
 No manual operation needed — the site updates itself daily.
 无需手动操作——网站每日自动更新。
