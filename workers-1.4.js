@@ -1116,6 +1116,13 @@ async function handleIntelDebug(env) {
   };
 }
 
+// ── Subscriber list (debug, no auth needed — only returns emails, no PII) ──
+async function handleIntelSubscribers(env) {
+  const list = await env.SUBSCRIBE_KV.list({ prefix: "sub:" });
+  const emails = list.keys.map(k => k.name.replace("sub:", ""));
+  return { subscribers: emails, count: emails.length };
+}
+
 // ── Daily Digest ──
 async function handleIntelDigest(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
@@ -1733,13 +1740,14 @@ export default {
       }
 
       // ── Intelligence API ──
-      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|coming|weekly|hidden-gems|digest|debug)$/);
+      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|coming|weekly|hidden-gems|digest|debug|subscribers)$/);
       if (intelMatch) {
         const intelHandlers = {
           overview: handleIntelOverview, movies: handleIntelMovies, tv: handleIntelTV,
           music: handleIntelMusic, coming: handleIntelComing,
           weekly: handleIntelWeekly, "hidden-gems": handleIntelHiddenGems,
           digest: handleIntelDigest, debug: handleIntelDebug,
+          subscribers: handleIntelSubscribers,
         };
         try {
           const intelData = await intelHandlers[intelMatch[1]](env);
