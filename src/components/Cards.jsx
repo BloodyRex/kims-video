@@ -11,7 +11,7 @@ function posterUrl(path) {
 }
 // ── Shared helpers ──
 
-const GENRE_ZH = {
+export const GENRE_ZH = {
   "Action": "动作", "Adventure": "冒险", "Animation": "动画", "Comedy": "喜剧",
   "Crime": "犯罪", "Documentary": "纪录", "Drama": "剧情", "Family": "家庭",
   "Fantasy": "奇幻", "History": "历史", "Horror": "恐怖", "Music": "音乐",
@@ -42,7 +42,7 @@ function getTitle(item, locale) {
   return locale === "en" ? (item.titleEn || item.title) : (item.title || item.titleEn || "");
 }
 
-function StarRating({ score, max = 10 }) {
+export function StarRating({ score, max = 10 }) {
   const pct = Math.min(Math.max((score || 0) / max, 0), 1);
   const stars = Math.round(pct * 5);
   return (

@@ -6,7 +6,7 @@ import { useLocale } from "../i18n";
 import { fetchMovieByTmdbId } from "../services/api";
 import { fetchDiscoverResults, likeDiscoverResult } from "../services/discoverApi";
 import { setCanonical } from "../services/seo";
-import { TrailerButtons } from "./Cards";
+import { TrailerButtons, StarRating, GENRE_ZH } from "./Cards";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -43,49 +43,63 @@ function usePosters(tmdbIds) {
   return map;
 }
 
-// ── Editor's Picks Card (SpotlightCard style) ──
-function EditorPickCard({ pair, posterMap, locale, getTitle, onOpenPoster }) {
-  const srcPoster = posterMap[pair.source.tmdbId];
+// ── Editor's Picks Card (MovieCard style) ──
+function EditorPickCard({ pair, posterMap, metaMap, locale, getTitle }) {
   const recPoster = posterMap[pair.recommend.tmdbId];
+  const meta = metaMap[pair.recommend.tmdbId] || {};
   const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
-  const srcTitle = getTitle(pair.source);
   const recTitle = getTitle(pair.recommend);
+  const srcTitle = getTitle(pair.source);
+  const titleEn = meta.originalTitle && meta.originalTitle !== pair.recommend.titleEn && meta.originalTitle !== pair.recommend.title ? meta.originalTitle : (pair.recommend.titleEn || "");
+  const genres = meta.genres || [];
+  const dateLabel = meta.releaseDate || pair.recommend.year || "";
 
   return (
-    <div className="flex-shrink-0 w-[220px] sm:w-[260px] lg:w-[300px] bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all" style={{ scrollSnapAlign: "start" }}>
-      {/* Spotlight-style header */}
-      <div className="px-3 py-2 flex items-center gap-2 text-xs" style={{ backgroundColor: "#ff00ff" }}>
-        <Icons.Star className="w-4 h-4 text-black flex-shrink-0" />
-        <span className="font-black pixel-font text-black uppercase text-[9px] flex-shrink-0">{locale === "en" ? "Editor's Pick" : "编辑精选"}</span>
-        <span className="text-black text-[9px] font-bold truncate">{locale === "en" ? "If you like" : "如果你喜欢"}</span>
-        <span className="text-black font-black text-xs truncate">{srcTitle}</span>
+    <div className="flex-shrink-0 w-[240px] sm:w-[280px] lg:w-[320px] bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all" style={{ scrollSnapAlign: "start" }}>
+      {/* MovieCard-style header */}
+      <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
+        <span className="font-black pixel-font text-[#ff00ff] uppercase text-[9px] truncate">
+          {locale === "en" ? "If you like" : "如果你喜欢"} {srcTitle}
+        </span>
+        <span className="text-gray-400 text-[9px] flex-shrink-0">{dateLabel}</span>
       </div>
 
       {/* Body */}
-      <div className="flex gap-3 p-3">
+      <div className="flex gap-3 max-sm:gap-2 p-3 max-sm:p-2">
         {recPoster ? (
-          <img src={recPoster} alt={recTitle} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={recPoster} alt={recTitle} className="w-20 max-sm:w-16 h-28 max-sm:h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
-          <div className="w-20 h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-xs text-gray-500 font-bold flex-shrink-0">?</div>
+          <div className="w-20 max-sm:w-16 h-28 max-sm:h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0"><Icons.Film /></div>
         )}
         <div className="flex-1 min-w-0 flex flex-col">
-          <h3 className="text-sm font-black mb-0.5 leading-tight truncate">{recTitle}</h3>
-          <span className="text-[10px] text-gray-400 mb-1">({pair.recommend.year})</span>
-          <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-          {/* Action buttons row — SpotlightCard style */}
+          <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{recTitle}</h3>
+          {titleEn && (
+            <p className="text-xs text-gray-600 font-bold mb-1 truncate">{titleEn}</p>
+          )}
+          {meta.rating > 0 && (
+            <div className="flex items-center gap-2 mb-1">
+              <StarRating score={meta.rating} max={10} />
+            </div>
+          )}
+          {genres.length > 0 && (
+            <div className="flex flex-wrap gap-1 mb-1">
+              {genres.map((g, i) => (
+                <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
+              ))}
+            </div>
+          )}
+          <p className="text-[10px] max-sm:text-[9px] text-gray-500 leading-relaxed line-clamp-2 mb-1 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
+          {/* Action buttons row */}
           <div className="flex items-center gap-2 mt-1">
             <Link to={linkUrl}
               className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
               title={locale === "en" ? "Details" : "详情"}>
               <Icons.Info className="w-3.5 h-3.5 text-white" />
             </Link>
-            <a
-              href={`https://www.imdb.com/find?q=${encodeURIComponent(((pair.recommend.titleEn || pair.recommend.title) + " " + (pair.recommend.year || "")).trim())}`}
+            <a href={`https://www.imdb.com/find?q=${encodeURIComponent(((pair.recommend.titleEn || pair.recommend.title) + " " + (meta.year || pair.recommend.year || "")).trim())}`}
               target="_blank" rel="noopener noreferrer"
               className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
-              title="Open in IMDb">
-              <Icons.Imdb className="w-full h-full" />
-            </a>
+              title="Open in IMDb"><Icons.Imdb className="w-full h-full" /></a>
             <TrailerButtons item={pair.recommend} locale={locale} />
           </div>
         </div>
@@ -179,6 +193,7 @@ function PosterModal({ thumbnail, onClose }) {
 const DiscoverPage = () => {
   const { t, locale, toggleLocale } = useLocale();
   const [posterMap, setPosterMap] = useState({});
+  const [metaMap, setMetaMap] = useState({});
   const [userResults, setUserResults] = useState([]);
   const [loadingResults, setLoadingResults] = useState(true);
   const [activeTab, setActiveTab] = useState("editor");
@@ -212,16 +227,26 @@ const DiscoverPage = () => {
         }
       } catch {}
       const map = {};
+      const meta = {};
       const ids = [...allIds];
       for (let i = 0; i < ids.length; i += 5) {
         const batch = ids.slice(i, i + 5);
         await Promise.allSettled(batch.map(async id => {
           const data = await fetchMovieByTmdbId(id, "zh");
-          if (data?.poster && !cancelled) map[id] = data.poster;
+          if (!data || cancelled) return;
+          if (data.poster) map[id] = data.poster;
+          meta[id] = {
+            rating: data.vote_average || data.rating || 0,
+            genres: Array.isArray(data.genres) ? data.genres.map(g => g.name || g) : [],
+            releaseDate: data.release_date || data.releaseDate || "",
+            originalTitle: data.original_title || data.originalTitle || "",
+            year: (data.release_date || data.releaseDate || "").slice(0, 4) || data.year || "",
+          };
         }));
       }
       if (!cancelled) {
         setPosterMap(map);
+        setMetaMap(meta);
         try { localStorage.setItem("kims_discover_posters", JSON.stringify(map)); localStorage.setItem("kims_discover_posters_ts", String(Date.now())); } catch {}
       }
     })();
@@ -279,7 +304,7 @@ const DiscoverPage = () => {
         <h3 className="px-2 sm:px-0 text-base sm:text-lg font-black pixel-font text-[#ffff00] uppercase tracking-widest mb-3 bg-black inline-block px-4 py-1.5 border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff]">{locale === "en" ? "★ Editor's Picks" : "★ 编辑精选"}</h3>
         <div ref={scrollRef} className="flex gap-3 overflow-x-auto pb-3 px-2 sm:px-0" style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
           {(discoverData.editorPicks || []).map((pair, i) => (
-            <EditorPickCard key={i} pair={pair} posterMap={posterMap} locale={locale} getTitle={getTitle} />
+            <EditorPickCard key={i} pair={pair} posterMap={posterMap} metaMap={metaMap} locale={locale} getTitle={getTitle} />
           ))}
           <Link to="/" className="flex-shrink-0 min-w-[140px] sm:min-w-[160px] bg-[#ffff00] border-4 border-black flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-[#ffff40] transition-colors shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
             <span className="text-2xl">🎬</span>
@@ -308,49 +333,62 @@ const DiscoverPage = () => {
             return (
               <section key={genre.name} className="mb-12">
                 <h2 className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black" style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}>{locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}<span className="ml-2 text-sm opacity-75">({filtered.length})</span></h2>
-                <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {filtered.map((pair, idx) => {
                     const recPoster = posterMap[pair.recommend.tmdbId];
+                    const meta = metaMap[pair.recommend.tmdbId] || {};
                     const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
+                    const titleEn = meta.originalTitle && meta.originalTitle !== pair.recommend.titleEn && meta.originalTitle !== pair.recommend.title ? meta.originalTitle : (pair.recommend.titleEn || "");
+                    const genres = meta.genres || [];
+                    const dateLabel = meta.releaseDate || pair.recommend.year || "";
 
                     return (
-                      <article key={idx} className="bg-white border-4 max-sm:border-2 border-black overflow-hidden hover:-translate-y-0.5 transition-all" style={{ boxShadow: `8px 8px 0 0 ${color}` }}>
-                        <div className="px-4 py-2 flex items-center gap-2 text-xs" style={{ backgroundColor: color }}>
-                          <Icons.Star className="w-4 h-4 text-black flex-shrink-0" />
-                          <span className="font-black pixel-font text-black uppercase text-[9px]">{locale === "en" ? (genre.nameEn || genre.name) : genre.name}</span>
-                          <span className="font-black text-sm text-black truncate">{getBracketed(pair.source)}</span>
-                          <span className="text-[9px] text-black flex-shrink-0">({pair.source.year})</span>
+                      <div key={idx} className="bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all">
+                        <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
+                          <span className="font-black pixel-font uppercase text-[9px] truncate" style={{ color }}>
+                            {locale === "en" ? "If you like" : "如果你喜欢"} {getBracketed(pair.source)}
+                          </span>
+                          <span className="text-gray-400 text-[9px] flex-shrink-0">{dateLabel}</span>
                         </div>
-                        <div className="flex flex-col sm:flex-row gap-4 max-sm:gap-2 p-4 max-sm:p-3">
+                        <div className="flex gap-3 max-sm:gap-2 p-3 max-sm:p-2">
                           {recPoster ? (
-                            <img src={recPoster} alt={getTitle(pair.recommend)} className="w-28 max-sm:w-20 h-40 max-sm:h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+                            <img src={recPoster} alt={getTitle(pair.recommend)} className="w-20 max-sm:w-16 h-28 max-sm:h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
                           ) : (
-                            <div className="w-28 max-sm:w-20 h-40 max-sm:h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-xs text-gray-500 font-bold flex-shrink-0">?</div>
+                            <div className="w-20 max-sm:w-16 h-28 max-sm:h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0"><Icons.Film /></div>
                           )}
                           <div className="flex-1 min-w-0 flex flex-col">
-                            <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-2">
-                              <h3 className="text-lg sm:text-xl font-black">{getBracketed(pair.recommend)}</h3>
-                              <span className="text-gray-400 text-sm">({pair.recommend.year})</span>
-                            </div>
-                            <p className="text-sm max-sm:text-xs text-gray-600 leading-relaxed mb-3 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-                            <div className="flex items-center gap-2 mt-auto">
+                            <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{getTitle(pair.recommend)}</h3>
+                            {titleEn && (
+                              <p className="text-xs text-gray-600 font-bold mb-1 truncate">{titleEn}</p>
+                            )}
+                            {meta.rating > 0 && (
+                              <div className="flex items-center gap-2 mb-1">
+                                <StarRating score={meta.rating} max={10} />
+                              </div>
+                            )}
+                            {genres.length > 0 && (
+                              <div className="flex flex-wrap gap-1 mb-1">
+                                {genres.map((g, i) => (
+                                  <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
+                                ))}
+                              </div>
+                            )}
+                            <p className="text-[10px] max-sm:text-[9px] text-gray-500 leading-relaxed line-clamp-2 mb-1 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
+                            <div className="flex items-center gap-2 mt-1">
                               <Link to={detailUrl}
-                                className="flex items-center justify-center w-8 h-8 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
+                                className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
                                 title={locale === "en" ? "Details" : "详情"}>
-                                <Icons.Info className="w-4 h-4 text-white" />
+                                <Icons.Info className="w-3.5 h-3.5 text-white" />
                               </Link>
-                              <a
-                                href={`https://www.imdb.com/find?q=${encodeURIComponent(((pair.recommend.titleEn || pair.recommend.title) + " " + (pair.recommend.year || "")).trim())}`}
+                              <a href={`https://www.imdb.com/find?q=${encodeURIComponent(((pair.recommend.titleEn || pair.recommend.title) + " " + (meta.year || pair.recommend.year || "")).trim())}`}
                                 target="_blank" rel="noopener noreferrer"
-                                className="flex items-center justify-center w-8 h-8 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
-                                title="Open in IMDb">
-                                <Icons.Imdb className="w-full h-full" />
-                              </a>
+                                className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
+                                title="Open in IMDb"><Icons.Imdb className="w-full h-full" /></a>
                               <TrailerButtons item={pair.recommend} locale={locale} />
                             </div>
                           </div>
                         </div>
-                      </article>
+                      </div>
                     );
                   })}
                 </div>
