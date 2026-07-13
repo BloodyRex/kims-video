@@ -53,7 +53,7 @@ function AppContent() {
   });
   const [showInfoModal, setShowInfoModal] = useState(false);
 
-  const { t, locale, toggleLocale } = useLocale();
+  const { t, locale } = useLocale();
 
   const handleIntroStart = () => {
     localStorage.setItem("kims_video_intro_seen", "1");
@@ -327,7 +327,6 @@ function AppContent() {
               onSelectMovie={selectMovie}
               currentYear={currentYear}
               onShowInfo={() => setShowInfoModal(true)}
-              toggleLocale={toggleLocale}
               locale={locale}
             />
             {/* Entry buttons */}

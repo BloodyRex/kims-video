@@ -20,7 +20,6 @@ const InputPage = ({
   onSelectMovie,
   currentYear,
   onShowInfo,
-  toggleLocale,
   locale,
 }) => {
   const { t, tArray } = useLocale();
@@ -51,16 +50,9 @@ const InputPage = ({
       <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#00ffff] rounded-full mix-blend-multiply filter blur-2xl opacity-50 pointer-events-none"></div>
 
       <button
-        onClick={toggleLocale}
-        className={`absolute top-3 left-3 w-7 h-7 sm:w-9 sm:h-9 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black sm:text-sm z-20 ${locale === "zh" ? "text-[9px]" : "text-xs"}`}
-        style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace" }}
-      >
-        {locale === "zh" ? "En" : "中"}
-      </button>
-      <button
         onClick={onShowInfo}
-        className="absolute top-3 right-3 w-7 h-7 sm:w-9 sm:h-9 bg-black border-2 border-[#ffff00] text-[#ffff00] flex items-center justify-center hover:bg-[#ffff00] hover:text-black transition-colors z-20 rounded-full pixel-font"
-        style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace", fontSize: "clamp(10px, 2.5vw, 14px)" }}
+        className="absolute max-sm:top-1 max-sm:right-1 max-sm:w-5 max-sm:h-5 top-3 right-3 w-7 h-7 sm:w-9 sm:h-9 bg-black border-2 border-[#ffff00] text-[#ffff00] flex items-center justify-center hover:bg-[#ffff00] hover:text-black transition-colors z-20 rounded-full pixel-font"
+        style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace", fontSize: "clamp(8px, 2.5vw, 14px)" }}
         title={t('app.info')}
       >
         ?
