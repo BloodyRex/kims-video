@@ -62,7 +62,30 @@ function OverviewView({ locale, onViewDetail }) {
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
   const stats = data?.stats || {};
-  const hiddenGems = hiddenGemsData?.gems || [];
+  const rawGems = hiddenGemsData?.gems || [];
+
+  // Dedup across sections: collect seen tmdbIds, filter later sections
+  const seenIds = new Set();
+  const editorsPicks = (data?.editorsPicks || []).filter(p => {
+    if (p.tmdbId && seenIds.has(p.tmdbId)) return false;
+    if (p.tmdbId) seenIds.add(p.tmdbId);
+    return true;
+  });
+  const hiddenGems = rawGems.filter(g => {
+    if (g.tmdbId && seenIds.has(g.tmdbId)) return false;
+    if (g.tmdbId) seenIds.add(g.tmdbId);
+    return true;
+  });
+  const comingSoon = (data?.comingSoon || []).filter(c => {
+    if (c.tmdbId && seenIds.has(c.tmdbId)) return false;
+    if (c.tmdbId) seenIds.add(c.tmdbId);
+    return true;
+  });
+  const trending = (data?.trending || []).filter(t => {
+    if (t.tmdbId && seenIds.has(t.tmdbId)) return false;
+    if (t.tmdbId) seenIds.add(t.tmdbId);
+    return true;
+  });
   const statCards = [
     { zh: "电影上映", en: "Movies Released", num: stats.moviesReleased ?? "--", color: "#ff00ff" },
     { zh: "剧集在播", en: "TV Airing", num: stats.tvAiringThisWeek ?? "--", color: "#00ffff" },
@@ -110,8 +133,8 @@ function OverviewView({ locale, onViewDetail }) {
 
       {(data?.editorsPicks || []).length > 0 && (
         <section>
-          <SectionHeader label={locale === "zh" ? "★ 编辑精选" : "★ Editor's Picks"} count={data.editorsPicks.length} color="#ff00ff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
+          <SectionHeader label={locale === "zh" ? "★ 编辑精选" : "★ Editor's Picks"} count={editorsPicks.length} color="#ff00ff" />
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
         </section>
       )}
 
@@ -123,14 +146,14 @@ function OverviewView({ locale, onViewDetail }) {
       )}
       {(data?.comingSoon || []).length > 0 && (
         <section>
-          <SectionHeader label={locale === "zh" ? "▶ 即将上映" : "▶ Coming Soon"} count={data.comingSoon.length} color="#ffff00" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.comingSoon.map((p, i) => <CountdownCard key={i} item={p} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
+          <SectionHeader label={locale === "zh" ? "▶ 即将上映" : "▶ Coming Soon"} count={comingSoon.length} color="#ffff00" />
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{comingSoon.map((p, i) => <CountdownCard key={i} item={p} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
         </section>
       )}
-      {(data?.trending || []).length > 0 && (
+      {trending.length > 0 && (
         <section>
-          <SectionHeader label={locale === "zh" ? "↑ 热榜趋势" : "↑ Trending"} count={data.trending.length} color="#ff00ff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{data.trending.map((p, i) => <MovieCard key={i} movie={p} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "movie")} />)}</CardGrid>
+          <SectionHeader label={locale === "zh" ? "↑ 热榜趋势" : "↑ Trending"} count={trending.length} color="#ff00ff" />
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{trending.map((p, i) => <MovieCard key={i} movie={p} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "movie")} />)}</CardGrid>
         </section>
       )}
     </div>

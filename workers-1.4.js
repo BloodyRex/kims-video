@@ -1281,6 +1281,7 @@ Movies:\n${JSON.stringify(candidates.map((m, i) => ({ index: i, title: m.title, 
     const gems = (parsed?.gems || []).map(g => {
       const src = candidates[g.index] || {};
       return {
+        tmdbId: src.tmdbId || null,
         title: src.title || "",
         titleEn: src.titleEn || "",
         poster: src.poster || "",
