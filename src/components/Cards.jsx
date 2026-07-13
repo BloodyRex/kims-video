@@ -86,7 +86,7 @@ function TrailerButtons({ item, locale }) {
   React.useEffect(() => {
     if (!tmdbId) return;
     const mtype = item.type === "剧集" || item.type === "TV Series" || item.type === "tv" ? "tv" : "movie";
-    fetch(`/intelligence/trailer?tmdbId=${tmdbId}&type=${mtype}`)
+    fetch(`https://api.bloodyrex.xyz/intelligence/trailer?tmdbId=${tmdbId}&type=${mtype}`)
       .then(r => r.json())
       .then(d => { if (d.key) setYtKey(d.key); })
       .catch(() => {});
@@ -97,14 +97,14 @@ function TrailerButtons({ item, locale }) {
   return (
     <>
       <a href={biliHref} target="_blank" rel="noopener noreferrer"
-        className="px-2 py-0.5 text-[8px] font-black text-white bg-[#fb7299] border-2 border-black uppercase hover:bg-[#e55a80] transition-colors pixel-font flex-shrink-0"
+        className="flex items-center justify-center w-6 h-6 bg-[#fb7299] border-2 border-black hover:bg-[#e55a80] transition-colors flex-shrink-0"
         title="在Bilibili搜索预告片">
-        Bilibili
+        <Icons.Bilibili />
       </a>
       <a href={ytHref} target="_blank" rel="noopener noreferrer"
-        className="px-2 py-0.5 text-[8px] font-black text-white bg-[#ff0000] border-2 border-black uppercase hover:bg-[#cc0000] transition-colors pixel-font flex-shrink-0"
+        className="flex items-center justify-center w-6 h-6 bg-[#ff0000] border-2 border-black hover:bg-[#cc0000] transition-colors flex-shrink-0"
         title={ytKey ? "观看YouTube预告片" : "在YouTube搜索预告片"}>
-        ▶ YT
+        <Icons.Youtube />
       </a>
     </>
   );
@@ -461,6 +461,7 @@ export function CountdownCard({ item, locale, onViewDetail }) {
                 {locale === "en" ? "DETAILS" : "详情"}
               </button>
             )}
+            <TrailerButtons item={item} locale={locale} />
             {!isMusicCard && (item.titleEn || item.title) && (
               <a
                 href={`https://www.imdb.com/find?q=${encodeURIComponent(((item.titleEn || item.title) + " " + (item.year || "")).trim())}`}
@@ -645,6 +646,7 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
                 {locale === "en" ? "DETAILS" : "详情"}
               </button>
             )}
+            <TrailerButtons item={pick} locale={locale} />
             {!pick.artist && (pick.titleEn || pick.title) && (
               <a
                 href={`https://www.imdb.com/find?q=${encodeURIComponent(((pick.titleEn || pick.title) + " " + (pick.year || "")).trim())}`}
