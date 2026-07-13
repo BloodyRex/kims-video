@@ -1687,15 +1687,36 @@ async function sendDigestToAll(env) {
     } catch (e) { console.warn(`Send to ${key.name} failed:`, e.message); }
   }
 
-  // Record send date for dedup across redundant triggers
-  await env.SUBSCRIBE_KV.put("lastDigestSent", today);
+  // Record send date for dedup only if at least one email was sent
+  if (sent > 0) {
+    await env.SUBSCRIBE_KV.put("lastDigestSent", today);
+  }
 
   return { ok: true, sent };
 }
 
+// ── Request-triggered digest check (reliable backup when no cron fires) ──
+async function checkDigestTrigger(env) {
+  try {
+    if (!env.SUBSCRIBE_KV || !env.RESEND_API_KEY) return;
+    // Only check between 00:00-01:00 UTC (08:00-09:00 Beijing)
+    const hour = new Date().getUTCHours();
+    if (hour !== 0) return;
+    const today = intelToday();
+    const lastSent = await env.SUBSCRIBE_KV.get("lastDigestSent");
+    if (lastSent === today) return;
+    console.log("Request-triggered digest send...");
+    await sendDigestToAll(env);
+  } catch (e) {
+    console.error("Request-triggered digest failed:", e.message);
+  }
+}
+
 // ── Main ──
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
+    // Request-triggered digest backup: fires on first HTTP request after 08:00 CST
+    ctx.waitUntil(checkDigestTrigger(env));
     const ALLOWED_ORIGINS = ["https://bloodyrex.xyz", "https://www.bloodyrex.xyz", "https://bloodyrex.github.io", "http://localhost:4173", "http://localhost:5173", "http://localhost:5174", "http://localhost:7850", "http://127.0.0.1:7850"];
     const origin = request.headers.get("Origin");
     const corsHeaders = { "Access-Control-Allow-Origin": ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0], "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS", "Access-Control-Max-Age": "86400" };
@@ -1705,6 +1726,16 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
     const method = request.method;
+
+    // TEMP: clear lastDigestSent KV key (will revert immediately after use)
+    if (path === "/intelligence/reset-digest" && method === "GET") {
+      try {
+        await env.SUBSCRIBE_KV.delete("lastDigestSent");
+        return new Response("OK", { headers: corsHeaders });
+      } catch (e) {
+        return new Response(e.message, { status: 500, headers: corsHeaders });
+      }
+    }
     const auth = request.headers.get("Authorization");
     const token = auth ? auth.replace("Bearer ", "") : "";
 
