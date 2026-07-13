@@ -133,10 +133,10 @@ export default function ShareButton({ locale = "zh" }) {
       {/* FAB Button */}
       <button
         onClick={handleOpen}
-        className="fixed bottom-24 sm:bottom-20 right-3 sm:right-4 z-40 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[#ff00ff] border-4 sm:border-4 border-2 border-black shadow-[4px_4px_0_0_#000] hover:bg-[#ff40ff] active:translate-y-1 active:shadow-none transition-all"
+        className="fixed bottom-20 sm:bottom-20 right-3 sm:right-4 z-40 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-[#ff00ff] border-2 border-black shadow-[2px_2px_0_0_#000] hover:bg-[#ff40ff] active:translate-y-0.5 active:shadow-none transition-all"
         aria-label="Share"
       >
-        <Icons.Share2 className="text-black w-5 h-5 sm:w-6 sm:h-6" />
+        <Icons.Share2 className="text-black w-3.5 h-3.5 sm:w-4 sm:h-4" />
       </button>
 
       {/* Share Panel */}

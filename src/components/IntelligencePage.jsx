@@ -481,11 +481,6 @@ function IntelligencePage() {
 
       {/* Top bar */}
       <div className="max-w-6xl mx-auto px-4 pt-3 pb-1 flex items-center justify-end">
-        <div className="flex items-center gap-2">
-          <button onClick={toggleLocale} className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs flex-shrink-0" style={LANG_BUTTON_STYLE}>
-            {locale === "zh" ? "En" : "中"}
-          </button>
-        </div>
       </div>
 
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row gap-0">
@@ -519,6 +514,15 @@ function IntelligencePage() {
       </div>
 
       <SubscribeSection locale={locale} />
+
+      {/* Lang + Share floating group */}
+      <div className="fixed bottom-36 sm:bottom-32 right-3 sm:right-4 z-40 flex flex-col gap-2">
+        <button onClick={toggleLocale}
+          className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none"
+          style={LANG_BUTTON_STYLE}>
+          {locale === "zh" ? "En" : "中"}
+        </button>
+      </div>
 
       {/* Footer */}
       <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>

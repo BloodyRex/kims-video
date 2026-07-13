@@ -96,15 +96,15 @@ function TrailerButtons({ item, locale }) {
     : `https://www.youtube.com/results?search_query=${encodeURIComponent((title + " trailer").trim())}`;
   return (
     <>
-      <a href={biliHref} target="_blank" rel="noopener noreferrer"
-        className="flex items-center justify-center w-6 h-6 bg-[#fb7299] border-2 border-black hover:bg-[#e55a80] transition-colors flex-shrink-0"
-        title="在Bilibili搜索预告片">
-        <Icons.Bilibili />
-      </a>
       <a href={ytHref} target="_blank" rel="noopener noreferrer"
         className="flex items-center justify-center w-6 h-6 bg-[#ff0000] border-2 border-black hover:bg-[#cc0000] transition-colors flex-shrink-0"
         title={ytKey ? "观看YouTube预告片" : "在YouTube搜索预告片"}>
         <Icons.Youtube />
+      </a>
+      <a href={biliHref} target="_blank" rel="noopener noreferrer"
+        className="flex items-center justify-center w-6 h-6 bg-[#00a1d6] border-2 border-black hover:bg-[#0085b3] transition-colors flex-shrink-0"
+        title="在Bilibili搜索预告片">
+        <Icons.Bilibili />
       </a>
     </>
   );
@@ -182,7 +182,6 @@ export function MovieCard({ movie, locale, onViewDetail }) {
                 {locale === "en" ? "DETAILS" : "详情"}
               </button>
             )}
-            <TrailerButtons item={movie} locale={locale} />
             <a
               href={`https://www.imdb.com/find?q=${encodeURIComponent(((movie.titleEn || movie.title) + " " + (movie.year || "")).trim())}`}
               target="_blank"
@@ -193,6 +192,7 @@ export function MovieCard({ movie, locale, onViewDetail }) {
               <Icons.Imdb className="w-3 h-3" />
               IMDb
             </a>
+            <TrailerButtons item={movie} locale={locale} />
           </div>
         </div>
       </div>
@@ -271,7 +271,6 @@ export function TVCard({ show, locale, onViewDetail }) {
                 {locale === "en" ? "DETAILS" : "详情"}
               </button>
             )}
-            <TrailerButtons item={show} locale={locale} />
             <a
               href={`https://www.imdb.com/find?q=${encodeURIComponent(((show.titleEn || show.title) + " " + (show.year || "")).trim())}`}
               target="_blank"
@@ -282,6 +281,7 @@ export function TVCard({ show, locale, onViewDetail }) {
               <Icons.Imdb className="w-3 h-3" />
               IMDb
             </a>
+            <TrailerButtons item={show} locale={locale} />
           </div>
         </div>
       </div>
@@ -461,7 +461,6 @@ export function CountdownCard({ item, locale, onViewDetail }) {
                 {locale === "en" ? "DETAILS" : "详情"}
               </button>
             )}
-            <TrailerButtons item={item} locale={locale} />
             {!isMusicCard && (item.titleEn || item.title) && (
               <a
                 href={`https://www.imdb.com/find?q=${encodeURIComponent(((item.titleEn || item.title) + " " + (item.year || "")).trim())}`}
@@ -474,6 +473,7 @@ export function CountdownCard({ item, locale, onViewDetail }) {
                 IMDb
               </a>
             )}
+            <TrailerButtons item={item} locale={locale} />
           </div>
         </div>
       </div>
@@ -646,7 +646,6 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
                 {locale === "en" ? "DETAILS" : "详情"}
               </button>
             )}
-            <TrailerButtons item={pick} locale={locale} />
             {!pick.artist && (pick.titleEn || pick.title) && (
               <a
                 href={`https://www.imdb.com/find?q=${encodeURIComponent(((pick.titleEn || pick.title) + " " + (pick.year || "")).trim())}`}
@@ -659,6 +658,7 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
                 IMDb
               </a>
             )}
+            <TrailerButtons item={pick} locale={locale} />
           </div>
         </div>
       </div>
