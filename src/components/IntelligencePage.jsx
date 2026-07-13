@@ -516,7 +516,7 @@ function IntelligencePage() {
       <SubscribeSection locale={locale} />
 
       {/* Lang + Share floating group */}
-      <div className="fixed bottom-36 sm:bottom-32 right-3 sm:right-4 z-40 flex flex-col gap-2">
+      <div className="relative mt-4 mb-2 flex justify-end px-4 gap-2">
         <button onClick={toggleLocale}
           className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none"
           style={LANG_BUTTON_STYLE}>
