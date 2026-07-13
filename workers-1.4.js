@@ -1690,6 +1690,9 @@ async function sendDigestToAll(env) {
   // Record send date for dedup only if at least one email was sent
   if (sent > 0) {
     await env.SUBSCRIBE_KV.put("lastDigestSent", today);
+  } else {
+    // No emails sent — clear the cached digest so next retry rebuilds fresh
+    await env.SUBSCRIBE_KV.delete(`digest:${today}`);
   }
 
   return { ok: true, sent };
