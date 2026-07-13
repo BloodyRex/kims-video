@@ -178,16 +178,16 @@ export function MovieCard({ movie, locale, onViewDetail }) {
           <div className="flex items-center gap-2 mt-1">
             {onViewDetail && (
               <button onClick={() => onViewDetail(movie)}
-                className="flex items-center justify-center w-6 h-6 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font"
+                className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
                 title={locale === "en" ? "Details" : "详情"}>
-                D
+                <Icons.Info className="w-3.5 h-3.5 text-white" />
               </button>
             )}
             <a
               href={`https://www.imdb.com/find?q=${encodeURIComponent(((movie.titleEn || movie.title) + " " + (movie.year || "")).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0"
+              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
               title="Open in IMDb"
             >
               <Icons.Imdb className="w-3.5 h-3.5" />
@@ -267,16 +267,16 @@ export function TVCard({ show, locale, onViewDetail }) {
           <div className="flex items-center gap-2 mt-1">
             {onViewDetail && (
               <button onClick={() => onViewDetail(show)}
-                className="flex items-center justify-center w-6 h-6 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font"
+                className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
                 title={locale === "en" ? "Details" : "详情"}>
-                D
+                <Icons.Info className="w-3.5 h-3.5 text-white" />
               </button>
             )}
             <a
               href={`https://www.imdb.com/find?q=${encodeURIComponent(((show.titleEn || show.title) + " " + (show.year || "")).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0"
+              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
               title="Open in IMDb"
             >
               <Icons.Imdb className="w-3.5 h-3.5" />
@@ -363,16 +363,16 @@ export function AlbumCard({ album, locale, onViewDetail }) {
           <div className="flex items-center gap-2 mt-1">
             {onViewDetail && (
               <button onClick={() => onViewDetail(album)}
-                className="flex items-center justify-center w-6 h-6 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font"
+                className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
                 title={locale === "en" ? "Details" : "详情"}>
-                D
+                <Icons.Info className="w-3.5 h-3.5 text-white" />
               </button>
             )}
             <a
               href={`https://open.spotify.com/search/${encodeURIComponent((artist + " " + title).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-[#1DB954] border-2 border-black hover:bg-[#169c46] transition-colors flex-shrink-0"
+              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
               title="Open in Spotify"
             >
               <Icons.Spotify className="w-3.5 h-3.5" />
@@ -381,16 +381,16 @@ export function AlbumCard({ album, locale, onViewDetail }) {
               href={`https://music.apple.com/search?term=${encodeURIComponent((artist + " " + title).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
+              className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
               title="Open in Apple Music"
             >
-              <Icons.AppleMusic className="w-3.5 h-3.5 text-black" />
+              <Icons.AppleMusic className="w-3.5 h-3.5" />
             </a>
             <a
               href={`https://music.163.com/#/search/m/?s=${encodeURIComponent((artist + " " + title).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-[#C20C0C] border-2 border-black hover:bg-[#a00a0a] transition-colors flex-shrink-0"
+              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
               title="Open in NetEase Cloud Music"
             >
               <Icons.NeteaseCloudMusic className="w-3.5 h-3.5" />
@@ -475,9 +475,9 @@ export function CountdownCard({ item, locale, onViewDetail }) {
           <div className="flex items-center gap-2 mt-1">
             {onViewDetail && (
               <button onClick={() => onViewDetail(item)}
-                className="flex items-center justify-center w-6 h-6 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font"
+                className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
                 title={locale === "en" ? "Details" : "详情"}>
-                D
+                <Icons.Info className="w-3.5 h-3.5 text-white" />
               </button>
             )}
             {!isMusicCard && (item.titleEn || item.title) && (
@@ -485,7 +485,7 @@ export function CountdownCard({ item, locale, onViewDetail }) {
                 href={`https://www.imdb.com/find?q=${encodeURIComponent(((item.titleEn || item.title) + " " + (item.year || "")).trim())}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0"
+                className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
                 title="Open in IMDb"
               >
                 <Icons.Imdb className="w-3.5 h-3.5" />
@@ -660,9 +660,9 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
           <div className="flex items-center gap-2 mt-1">
             {onViewDetail && (
               <button onClick={() => onViewDetail(pick)}
-                className="flex items-center justify-center w-6 h-6 text-[8px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors pixel-font"
+                className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
                 title={locale === "en" ? "Details" : "详情"}>
-                D
+                <Icons.Info className="w-3.5 h-3.5 text-white" />
               </button>
             )}
             {!pick.artist && (pick.titleEn || pick.title) && (
@@ -670,11 +670,10 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
                 href={`https://www.imdb.com/find?q=${encodeURIComponent(((pick.titleEn || pick.title) + " " + (pick.year || "")).trim())}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-2 py-0.5 text-[8px] font-black text-white bg-[#F5C518] border-2 border-black uppercase hover:bg-[#dbaa00] transition-colors pixel-font"
+                className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
                 title="Open in IMDb"
               >
-                <Icons.Imdb className="w-3 h-3" />
-                IMDb
+                <Icons.Imdb className="w-3.5 h-3.5" />
               </a>
             )}
             <TrailerButtons item={pick} locale={locale} />

@@ -129,11 +129,11 @@ export default function ShareButton({ locale = "zh" }) {
   }, []);
 
   return (
-    <div className="relative inline-block">
+    <>
       {/* FAB Button */}
       <button
         onClick={handleOpen}
-        className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-[#ff00ff] border-2 border-black shadow-[2px_2px_0_0_#000] hover:bg-[#ff40ff] active:translate-y-0.5 active:shadow-none transition-all"
+        className="fixed bottom-20 right-3 sm:right-4 z-40 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-[#ff00ff] border-2 border-black shadow-[2px_2px_0_0_#000] hover:bg-[#ff40ff] active:translate-y-0.5 active:shadow-none transition-all"
         aria-label="Share"
       >
         <Icons.Share2 className="text-black w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -143,7 +143,7 @@ export default function ShareButton({ locale = "zh" }) {
       {isOpen && (
         <>
           <div className="fixed inset-0 z-40" onClick={handleOverlayClick} />
-          <div className="absolute bottom-full right-0 mb-2 z-50 bg-black border-2 sm:border-4 border-[#ff00ff] shadow-[4px_4px_0_0_#000] p-1.5 sm:p-2 min-w-[160px] sm:min-w-[180px]">
+          <div className="fixed bottom-[calc(24px_+_44px)] right-3 sm:right-4 z-50 bg-black border-2 sm:border-4 border-[#ff00ff] shadow-[4px_4px_0_0_#000] p-1.5 sm:p-2 min-w-[160px] sm:min-w-[180px]">
             <p className="text-[9px] sm:text-[10px] text-[#ff00ff] uppercase font-bold tracking-wider px-2 pb-1 border-b border-[#ff00ff]/30 mb-1">
               {locale === "zh" ? "分享此页面" : "SHARE THIS PAGE"}
             </p>
@@ -199,6 +199,6 @@ export default function ShareButton({ locale = "zh" }) {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
