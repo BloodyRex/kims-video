@@ -77,7 +77,38 @@ function Tags({ tags, tagsEn, color = "#ff00ff", locale = "zh" }) {
   );
 }
 
-// ── Generic Card Shell ──
+// ── Trailer button component ──
+function TrailerButtons({ item, locale }) {
+  const title = (item.titleEn || item.title || "");
+  const tmdbId = item.tmdbId;
+  const biliHref = `https://search.bilibili.com/all?keyword=${encodeURIComponent((title + " 预告片").trim())}`;
+  const [ytKey, setYtKey] = React.useState(null);
+  React.useEffect(() => {
+    if (!tmdbId) return;
+    const mtype = item.type === "剧集" || item.type === "TV Series" || item.type === "tv" ? "tv" : "movie";
+    fetch(`/intelligence/trailer?tmdbId=${tmdbId}&type=${mtype}`)
+      .then(r => r.json())
+      .then(d => { if (d.key) setYtKey(d.key); })
+      .catch(() => {});
+  }, [tmdbId]);
+  const ytHref = ytKey
+    ? `https://www.youtube.com/watch?v=${ytKey}`
+    : `https://www.youtube.com/results?search_query=${encodeURIComponent((title + " trailer").trim())}`;
+  return (
+    <>
+      <a href={biliHref} target="_blank" rel="noopener noreferrer"
+        className="px-2 py-0.5 text-[8px] font-black text-white bg-[#fb7299] border-2 border-black uppercase hover:bg-[#e55a80] transition-colors pixel-font flex-shrink-0"
+        title="在Bilibili搜索预告片">
+        Bilibili
+      </a>
+      <a href={ytHref} target="_blank" rel="noopener noreferrer"
+        className="px-2 py-0.5 text-[8px] font-black text-white bg-[#ff0000] border-2 border-black uppercase hover:bg-[#cc0000] transition-colors pixel-font flex-shrink-0"
+        title={ytKey ? "观看YouTube预告片" : "在YouTube搜索预告片"}>
+        ▶ YT
+      </a>
+    </>
+  );
+}
 
 function CardShell({ children, className = "" }) {
   return (
@@ -151,6 +182,7 @@ export function MovieCard({ movie, locale, onViewDetail }) {
                 {locale === "en" ? "DETAILS" : "详情"}
               </button>
             )}
+            <TrailerButtons item={movie} locale={locale} />
             <a
               href={`https://www.imdb.com/find?q=${encodeURIComponent(((movie.titleEn || movie.title) + " " + (movie.year || "")).trim())}`}
               target="_blank"
@@ -239,6 +271,7 @@ export function TVCard({ show, locale, onViewDetail }) {
                 {locale === "en" ? "DETAILS" : "详情"}
               </button>
             )}
+            <TrailerButtons item={show} locale={locale} />
             <a
               href={`https://www.imdb.com/find?q=${encodeURIComponent(((show.titleEn || show.title) + " " + (show.year || "")).trim())}`}
               target="_blank"

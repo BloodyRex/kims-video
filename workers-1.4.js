@@ -1772,6 +1772,24 @@ export default {
           return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
         }
       }
+      // Trailer lookup
+      if (path === "/intelligence/trailer") {
+        const tmdbId = url.searchParams.get("tmdbId");
+        const mtype = url.searchParams.get("type") || "movie";
+        if (!tmdbId) return Response.json({ error: "Missing tmdbId" }, { status: 400, headers: corsHeaders });
+        try {
+          const tk = env.TMDB_API_READ_ACCESS_TOKEN;
+          const vurl = `https://api.themoviedb.org/3/${mtype}/${tmdbId}/videos?language=en-US`;
+          const vr = await fetch(vurl, { headers: { Authorization: "Bearer " + tk, "Content-Type": "application/json" } });
+          if (!vr.ok) return Response.json({ key: null }, { headers: corsHeaders });
+          const vd = await vr.json();
+          const videos = vd?.results || [];
+          const trailer = videos.find(v => v.site === "YouTube" && v.type === "Trailer") || videos.find(v => v.site === "YouTube");
+          return Response.json({ key: trailer?.key || null }, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ key: null }, { headers: corsHeaders });
+        }
+      }
       return Response.json({ status: "ok" }, { headers: corsHeaders });
     }
 
