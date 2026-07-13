@@ -6,6 +6,7 @@ import { useLocale } from "../i18n";
 import { fetchMovieByTmdbId } from "../services/api";
 import { fetchDiscoverResults, likeDiscoverResult } from "../services/discoverApi";
 import { setCanonical } from "../services/seo";
+import { TrailerButtons } from "./Cards";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -42,7 +43,7 @@ function usePosters(tmdbIds) {
   return map;
 }
 
-// ── Editor's Picks Card (community style, horizontal scroll) ──
+// ── Editor's Picks Card (SpotlightCard style) ──
 function EditorPickCard({ pair, posterMap, locale, getTitle, onOpenPoster }) {
   const srcPoster = posterMap[pair.source.tmdbId];
   const recPoster = posterMap[pair.recommend.tmdbId];
@@ -51,32 +52,42 @@ function EditorPickCard({ pair, posterMap, locale, getTitle, onOpenPoster }) {
   const recTitle = getTitle(pair.recommend);
 
   return (
-    <div className="flex-shrink-0 w-[220px] sm:w-[260px] lg:w-[300px] bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
-      {/* Source header bar */}
-      <div className="bg-black text-white px-3 py-2 flex items-center gap-2 text-xs">
-        <span className="font-black pixel-font text-xs text-gray-400 uppercase">{locale === "en" ? "If you like" : "如果你喜欢"}</span>
-        <span className="font-black text-sm truncate">{srcTitle}</span>
-        <span className="text-gray-400 flex-shrink-0">({pair.source.year})</span>
-        <span className="text-gray-500 mx-1"></span>
+    <div className="flex-shrink-0 w-[220px] sm:w-[260px] lg:w-[300px] bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all" style={{ scrollSnapAlign: "start" }}>
+      {/* Spotlight-style header */}
+      <div className="px-3 py-2 flex items-center gap-2 text-xs" style={{ backgroundColor: "#ff00ff" }}>
+        <Icons.Star className="w-4 h-4 text-black flex-shrink-0" />
+        <span className="font-black pixel-font text-black uppercase text-[9px] flex-shrink-0">{locale === "en" ? "Editor's Pick" : "编辑精选"}</span>
+        <span className="text-black text-[9px] font-bold truncate">{locale === "en" ? "If you like" : "如果你喜欢"}</span>
+        <span className="text-black font-black text-xs truncate">{srcTitle}</span>
       </div>
 
       {/* Body */}
       <div className="flex gap-3 p-3">
         {recPoster ? (
-          <img src={recPoster} alt={recTitle} className="w-16 h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={recPoster} alt={recTitle} className="w-20 h-28 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
         ) : (
-          <div className="w-16 h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-xs text-gray-500 font-bold flex-shrink-0">?</div>
+          <div className="w-20 h-28 bg-gray-800 border-2 border-black flex items-center justify-center text-xs text-gray-500 font-bold flex-shrink-0">?</div>
         )}
         <div className="flex-1 min-w-0 flex flex-col">
-          <h3 className="text-sm font-black mb-1 leading-tight">{recTitle}</h3>
+          <h3 className="text-sm font-black mb-0.5 leading-tight truncate">{recTitle}</h3>
           <span className="text-[10px] text-gray-400 mb-1">({pair.recommend.year})</span>
           <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-          <Link
-            to={linkUrl}
-            className="inline-block self-start mt-2 px-2.5 py-1 text-[10px] font-black text-white bg-black border-2 border-black uppercase hover:bg-gray-800 transition-colors"
-          >
-            {locale === "en" ? "Details" : "查看详情"}
-          </Link>
+          {/* Action buttons row — SpotlightCard style */}
+          <div className="flex items-center gap-2 mt-1">
+            <Link to={linkUrl}
+              className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
+              title={locale === "en" ? "Details" : "详情"}>
+              <Icons.Info className="w-3.5 h-3.5 text-white" />
+            </Link>
+            <a
+              href={`https://www.imdb.com/find?q=${encodeURIComponent(((pair.recommend.titleEn || pair.recommend.title) + " " + (pair.recommend.year || "")).trim())}`}
+              target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
+              title="Open in IMDb">
+              <Icons.Imdb className="w-full h-full" />
+            </a>
+            <TrailerButtons item={pair.recommend} locale={locale} />
+          </div>
         </div>
       </div>
     </div>
@@ -303,12 +314,12 @@ const DiscoverPage = () => {
                     const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
 
                     return (
-                      <article key={idx} className="bg-white border-4 max-sm:border-2 border-black overflow-hidden" style={{ boxShadow: `8px 8px 0 0 ${color}` }}>
-                        <div className="bg-black text-white px-4 py-2 flex items-center gap-2 text-xs">
-                          <span className="font-black pixel-font text-xs text-gray-400 uppercase">{t('discover.if_like')}</span>
-                          <span className="font-black text-sm" style={{ color }}>{getBracketed(pair.source)}</span>
-                          <span className="text-gray-400">({pair.source.year})</span>
-                          <span className="text-gray-500 mx-1">{t('discover.arrow')}</span>
+                      <article key={idx} className="bg-white border-4 max-sm:border-2 border-black overflow-hidden hover:-translate-y-0.5 transition-all" style={{ boxShadow: `8px 8px 0 0 ${color}` }}>
+                        <div className="px-4 py-2 flex items-center gap-2 text-xs" style={{ backgroundColor: color }}>
+                          <Icons.Star className="w-4 h-4 text-black flex-shrink-0" />
+                          <span className="font-black pixel-font text-black uppercase text-[9px]">{locale === "en" ? (genre.nameEn || genre.name) : genre.name}</span>
+                          <span className="font-black text-sm text-black truncate">{getBracketed(pair.source)}</span>
+                          <span className="text-[9px] text-black flex-shrink-0">({pair.source.year})</span>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4 max-sm:gap-2 p-4 max-sm:p-3">
                           {recPoster ? (
@@ -322,8 +333,20 @@ const DiscoverPage = () => {
                               <span className="text-gray-400 text-sm">({pair.recommend.year})</span>
                             </div>
                             <p className="text-sm max-sm:text-xs text-gray-600 leading-relaxed mb-3 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-                            <div className="flex gap-2 flex-wrap mt-auto">
-                              <Link to={detailUrl} className="inline-block px-4 py-2 text-xs font-black text-white bg-black border-2 border-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-gray-800 hover:translate-y-0.5 transition-all">{t('discover.view_detail')}</Link>
+                            <div className="flex items-center gap-2 mt-auto">
+                              <Link to={detailUrl}
+                                className="flex items-center justify-center w-8 h-8 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
+                                title={locale === "en" ? "Details" : "详情"}>
+                                <Icons.Info className="w-4 h-4 text-white" />
+                              </Link>
+                              <a
+                                href={`https://www.imdb.com/find?q=${encodeURIComponent(((pair.recommend.titleEn || pair.recommend.title) + " " + (pair.recommend.year || "")).trim())}`}
+                                target="_blank" rel="noopener noreferrer"
+                                className="flex items-center justify-center w-8 h-8 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
+                                title="Open in IMDb">
+                                <Icons.Imdb className="w-full h-full" />
+                              </a>
+                              <TrailerButtons item={pair.recommend} locale={locale} />
                             </div>
                           </div>
                         </div>

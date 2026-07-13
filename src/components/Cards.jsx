@@ -78,7 +78,7 @@ function Tags({ tags, tagsEn, color = "#ff00ff", locale = "zh" }) {
 }
 
 // ── Trailer button component ──
-function TrailerButtons({ item, locale }) {
+export function TrailerButtons({ item, locale }) {
   const title = (item.titleEn || item.title || "");
   const tmdbId = item.tmdbId;
   const biliHref = `https://search.bilibili.com/all?keyword=${encodeURIComponent((title + " 预告片").trim())}`;
