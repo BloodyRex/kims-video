@@ -259,7 +259,6 @@ const DiscoverPage = () => {
       </header>
 
       <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 text-center relative">
-        <button onClick={toggleLocale} className="absolute left-2 sm:left-4 top-3 w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs flex-shrink-0 z-10" style={LANG_BUTTON_STYLE}>{locale === "zh" ? "En" : "中"}</button>
         <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font discover-title">{t('discover.title')}</h2>
         <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed">{t('discover.desc')}</p>
       </section>
@@ -369,6 +368,13 @@ const DiscoverPage = () => {
       {modalThumbnail && <PosterModal thumbnail={modalThumbnail} onClose={() => setModalThumbnail(null)} />}
 
       {/* Footer */}
+      <div className="fixed bottom-[116px] sm:bottom-[128px] right-3 sm:right-4 z-40">
+        <button onClick={toggleLocale}
+          className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none"
+          style={{fontFamily:"'Press Start 2P','Courier New',Courier,monospace"}}>
+          {locale === "zh" ? "En" : "中"}
+        </button>
+      </div>
       <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
         <p>
           <Link to="/" className="hover:text-[#ffff00] transition-colors">{t('footer.home')}</Link>

@@ -338,7 +338,7 @@ function AppContent() {
               >
                 <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
                   <span className="text-base">🎬</span>
-                  {locale === "zh" ? "精选推荐合辑" : "CURATED PICKS"}
+                  {locale === "zh" ? "社区精选合辑" : "CURATED PICKS"}
                 </span>
               </Link>
               <Link
@@ -385,6 +385,8 @@ function AppContent() {
         )}
       </main>
 
+      <LangButtonWrapper />
+
       <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
         <p>
           <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t('footer.discover')}</Link>
@@ -415,6 +417,23 @@ function AppContent() {
 function ShareButtonWrapper() {
   const { locale } = useLocale();
   return <ShareButton locale={locale} />;
+}
+
+const LANG_BUTTON_STYLE_APP = {
+  fontFamily: "'Press Start 2P','Courier New',Courier,monospace",
+};
+
+function LangButtonWrapper() {
+  const { locale, toggleLocale } = useLocale();
+  return (
+    <div className="fixed bottom-[116px] sm:bottom-[128px] right-3 sm:right-4 z-40">
+      <button onClick={toggleLocale}
+        className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none"
+        style={LANG_BUTTON_STYLE_APP}>
+        {locale === "zh" ? "En" : "中"}
+      </button>
+    </div>
+  );
 }
 
 export default App;

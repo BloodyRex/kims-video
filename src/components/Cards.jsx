@@ -656,7 +656,6 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
               {locale === "en" ? (pick.summaryEn || pick.summary) : pick.summary}
             </p>
           )}
-          <Tags tags={pick.tags} tagsEn={pick.tagsEn} color={catColor} locale={locale} />
           <div className="flex items-center gap-2 mt-1">
             {onViewDetail && (
               <button onClick={() => onViewDetail(pick)}
