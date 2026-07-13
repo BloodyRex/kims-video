@@ -1726,16 +1726,6 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
     const method = request.method;
-
-    // TEMP: clear lastDigestSent KV key (will revert immediately after use)
-    if (path === "/intelligence/reset-digest" && method === "GET") {
-      try {
-        await env.SUBSCRIBE_KV.delete("lastDigestSent");
-        return new Response("OK", { headers: corsHeaders });
-      } catch (e) {
-        return new Response(e.message, { status: 500, headers: corsHeaders });
-      }
-    }
     const auth = request.headers.get("Authorization");
     const token = auth ? auth.replace("Bearer ", "") : "";
 
