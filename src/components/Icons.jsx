@@ -299,6 +299,6 @@ export const Icons = {
     <img src="/applemusic-logo.png" alt="Apple Music" className={className} style={{ objectFit: "contain", width: "100%", height: "100%" }} />
   ),
   NeteaseCloudMusic: ({ className }) => (
-    <img src="/netease-logo.png" alt="NetEase Cloud Music" className={className} style={{ objectFit: "contain", width: "100%", height: "100%" }} />
+    <img src="/netease-logo.jpg" alt="NetEase Cloud Music" className={className} style={{ objectFit: "contain", width: "100%", height: "100%" }} />
   ),
 };

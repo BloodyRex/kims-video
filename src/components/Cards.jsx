@@ -372,10 +372,10 @@ export function AlbumCard({ album, locale, onViewDetail }) {
               href={`https://open.spotify.com/search/${encodeURIComponent((artist + " " + title).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0 overflow-hidden"
+              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
               title="Open in Spotify"
             >
-              <Icons.Spotify className="w-full h-full" />
+              <Icons.Spotify className="w-3.5 h-3.5" />
             </a>
             <a
               href={`https://music.apple.com/us/search?term=${encodeURIComponent((artist + " " + title).trim())}`}
