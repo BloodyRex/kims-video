@@ -102,9 +102,9 @@ function TrailerButtons({ item, locale }) {
         <Icons.Youtube />
       </a>
       <a href={biliHref} target="_blank" rel="noopener noreferrer"
-        className="flex items-center justify-center w-6 h-6 bg-[#00a1d6] border-2 border-black hover:bg-[#0085b3] transition-colors flex-shrink-0"
+        className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0 overflow-hidden"
         title="在Bilibili搜索预告片">
-        <Icons.Bilibili />
+        <Icons.Bilibili className="w-full h-full" />
       </a>
     </>
   );
@@ -187,10 +187,10 @@ export function MovieCard({ movie, locale, onViewDetail }) {
               href={`https://www.imdb.com/find?q=${encodeURIComponent(((movie.titleEn || movie.title) + " " + (movie.year || "")).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
+              className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
               title="Open in IMDb"
             >
-              <Icons.Imdb className="w-3.5 h-3.5" />
+              <Icons.Imdb className="w-full h-full" />
             </a>
             <TrailerButtons item={movie} locale={locale} />
           </div>
@@ -276,10 +276,10 @@ export function TVCard({ show, locale, onViewDetail }) {
               href={`https://www.imdb.com/find?q=${encodeURIComponent(((show.titleEn || show.title) + " " + (show.year || "")).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
+              className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
               title="Open in IMDb"
             >
-              <Icons.Imdb className="w-3.5 h-3.5" />
+              <Icons.Imdb className="w-full h-full" />
             </a>
             <TrailerButtons item={show} locale={locale} />
           </div>
@@ -372,28 +372,28 @@ export function AlbumCard({ album, locale, onViewDetail }) {
               href={`https://open.spotify.com/search/${encodeURIComponent((artist + " " + title).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
+              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0 overflow-hidden"
               title="Open in Spotify"
             >
-              <Icons.Spotify className="w-3.5 h-3.5" />
+              <Icons.Spotify className="w-full h-full" />
             </a>
             <a
-              href={`https://music.apple.com/search?term=${encodeURIComponent((artist + " " + title).trim())}`}
+              href={`https://music.apple.com/us/search?term=${encodeURIComponent((artist + " " + title).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
+              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0 overflow-hidden"
               title="Open in Apple Music"
             >
-              <Icons.AppleMusic className="w-3.5 h-3.5" />
+              <Icons.AppleMusic className="w-full h-full" />
             </a>
             <a
               href={`https://music.163.com/#/search/m/?s=${encodeURIComponent((artist + " " + title).trim())}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
+              className="flex items-center justify-center w-6 h-6 bg-[#C20C0C] border-2 border-black hover:bg-[#a00a0a] transition-colors flex-shrink-0 overflow-hidden"
               title="Open in NetEase Cloud Music"
             >
-              <Icons.NeteaseCloudMusic className="w-3.5 h-3.5" />
+              <Icons.NeteaseCloudMusic className="w-full h-full" />
             </a>
           </div>
         </div>
@@ -485,10 +485,10 @@ export function CountdownCard({ item, locale, onViewDetail }) {
                 href={`https://www.imdb.com/find?q=${encodeURIComponent(((item.titleEn || item.title) + " " + (item.year || "")).trim())}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
+                className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
                 title="Open in IMDb"
               >
-                <Icons.Imdb className="w-3.5 h-3.5" />
+                <Icons.Imdb className="w-full h-full" />
               </a>
             )}
             <TrailerButtons item={item} locale={locale} />
@@ -670,10 +670,10 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
                 href={`https://www.imdb.com/find?q=${encodeURIComponent(((pick.titleEn || pick.title) + " " + (pick.year || "")).trim())}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0"
+                className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
                 title="Open in IMDb"
               >
-                <Icons.Imdb className="w-3.5 h-3.5" />
+                <Icons.Imdb className="w-full h-full" />
               </a>
             )}
             <TrailerButtons item={pick} locale={locale} />
