@@ -835,7 +835,7 @@ async function handleIntelMovies(env) {
 
   return {
     updated: today,
-    releasedThisWeek: (await intelEnrichWithAI(weekM, "movie", env)).slice(0, 20),
+    releasedThisWeek: weekM.slice(0, 20),
     upcoming,
     nowPlaying,
   };
@@ -937,7 +937,7 @@ async function handleIntelTV(env) {
 
   return {
     updated: today,
-    premieresThisWeek: await intelEnrichWithAI(weekPremieres, "movie", env),
+    premieresThisWeek: weekPremieres,
     upcoming: upcomingTV,
     ongoing: ongoingTV,
   };
