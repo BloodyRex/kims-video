@@ -125,6 +125,61 @@ function intelRatingOk(m) { return !m.vote_average || m.vote_average >= 4; }
 const INTEL_TAG_CATEGORY = { trending: "trending", editor: "editor", hidden: "hidden-gem", world: "world" };
 function intelParseJSON(raw) { return JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim()); }
 
+// ── Composite scoring system ──
+// Category-specific parameter presets
+const SCORE_OPTS = {
+  movie:  { w_pop: 0.25, w_date: 0.55, w_qual: 0.20, hlFuture: 14, hlPast: 7 },
+  tv:     { w_pop: 0.25, w_date: 0.45, w_qual: 0.30, hlFuture: 14, hlPast: 7 },
+  music:  { w_pop: 0.50, w_date: 0.20, w_qual: 0.30, hlFuture: 21, hlPast: 14 },
+};
+
+/**
+ * Compute composite score for a TMDB item.
+ * Returns { score (0-1), S_pop, S_date, S_qual (each 0-100) }
+ * Non-axial decay: future uses hlFuture half-life, past uses hlPast.
+ * Missing data is handled gracefully (baseline values, no exclusion).
+ */
+function intelComputeScore(item, opts, today, batchMinPop, batchMaxPop) {
+  const {
+    w_pop = 0.25, w_date = 0.55, w_qual = 0.20,
+    hlFuture = 14, hlPast = 7
+  } = opts || {};
+
+  // ── S_pop: popularity (0-100), normalized within current batch ──
+  const pop = item.popularity || 0;
+  const popRange = Math.max(batchMaxPop - batchMinPop, 1);
+  const S_pop = Math.min(100, Math.max(0, ((pop - batchMinPop) / popRange) * 100));
+
+  // ── S_qual: quality from vote_average (0-100) ──
+  let S_qual;
+  const rawQual = item.vote_average;
+  if (rawQual != null && rawQual > 0) {
+    // TMDB 0-10 scale → 0-100
+    S_qual = Math.min(100, Math.max(0, (rawQual / 10) * 100));
+  } else if ((item.vote_count || 0) > 0) {
+    // Has votes but result is 0 or unrated → neutral baseline
+    S_qual = 50;
+  } else {
+    // No data at all → mild baseline (won't boost but won't bury)
+    S_qual = 40;
+  }
+
+  // ── S_date: non-axial decay (0-100) ──
+  const dateStr = item.release_date || item.first_air_date;
+  let S_date = 0;
+  if (dateStr) {
+    const now = new Date(today + "T00:00:00");
+    const release = new Date(dateStr + "T00:00:00");
+    const daysUntil = (release - now) / 86400000;
+    const halfLife = daysUntil >= 0 ? hlFuture : hlPast;
+    S_date = 100 * Math.exp(-Math.LN2 / halfLife * Math.abs(daysUntil));
+  }
+  // No date → S_date stays 0, item sinks in ranking
+
+  const composite = (w_pop * S_pop + w_date * S_date + w_qual * S_qual) / 100;
+  return { score: composite, S_pop, S_date, S_qual };
+}
+
 function intelNormalizeMovie(m, type) {
   type = type || "movie";
   const df = type === "movie" ? "release_date" : "first_air_date";
@@ -223,19 +278,27 @@ function classifyRegion(item) {
 }
 
 // ── Diverse selection: guarantee regional representation + genre diversity ──
-function intelSelectDiverse(items, count = 20, reserved = { zh: 2, ja: 1, ko: 1 }) {
+function intelSelectDiverse(items, count = 20, reserved = { zh: 2, ja: 1, ko: 1 }, opts = null, today = null) {
   if (items.length <= count) return items;
 
   const maxPop = Math.max(...items.map(m => m.popularity || 0), 0);
   const minPop = Math.min(...items.map(m => m.popularity || 0), 0);
-  const popRange = Math.max(maxPop - minPop, 1);
 
-  const scored = items.map(m => ({
-    item: m,
-    region: classifyRegion(m),
-    score: ((m.vote_average || 0) / 10) * 0.5 + ((m.popularity || 0) - minPop) / popRange * 0.5,
-    mainGenre: (m.genre_ids || [])[0],
-  }));
+  const scored = items.map(m => {
+    let score;
+    if (opts && today) {
+      score = intelComputeScore(m, opts, today, minPop, maxPop).score;
+    } else {
+      const popRange = Math.max(maxPop - minPop, 1);
+      score = ((m.vote_average || 0) / 10) * 0.5 + ((m.popularity || 0) - minPop) / popRange * 0.5;
+    }
+    return {
+      item: m,
+      region: classifyRegion(m),
+      score,
+      mainGenre: (m.genre_ids || [])[0],
+    };
+  });
   scored.sort((a, b) => b.score - a.score);
 
   // Reserve slots by region (pick highest scored per region)
@@ -687,19 +750,19 @@ async function handleIntelOverview(env) {
     .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
     .filter(cnFilter)
     .filter(intelRatingOk);
-  const weekSelected = intelSelectDiverse(weekCandidates, 20, { zh: 2, ja: 1, ko: 1 });
+  const weekSelected = intelSelectDiverse(weekCandidates, 20, { zh: 2, ja: 1, ko: 1 }, SCORE_OPTS.movie, today);
   const moviesReleased = weekSelected.length;
 
   // TV: same cnFilter as handleIntelTV  (ongoing section)
   const tvCandidates = tvOnAir.filter(cnFilter).filter(intelRatingOk);
-  const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 });
+  const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today);
 
   // Upcoming movies: same title-only filter + reduced reserve as handleIntelMovies
   const upcomingCandidates = upcoming
     .filter(m => m.release_date && m.release_date >= today)
     .filter(titleCn)
     .filter(intelRatingOk);
-  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, {});
+  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, {}, SCORE_OPTS.movie, today);
   const comingSoon = upcomingSelected.slice(0, 6).map(m => {
     const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
     return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
@@ -742,7 +805,7 @@ async function handleIntelMovies(env) {
     .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
     .filter(cnFilter)
     .filter(intelRatingOk);
-  const weekSelected = intelSelectDiverse(weekCandidates, 20, reserve);
+  const weekSelected = intelSelectDiverse(weekCandidates, 20, reserve, SCORE_OPTS.movie, today);
   const weekM = weekSelected.map(m => intelNormalizeMovie(m));
 
   // Upcoming: release_date >= today, relaxed filter (title Chinese only), reduced reserve
@@ -753,7 +816,7 @@ async function handleIntelMovies(env) {
     .filter(m => !weekIds.has(m.id))
     .filter(titleCn)
     .filter(intelRatingOk);
-  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, {});
+  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, {}, SCORE_OPTS.movie, today);
   const upcoming = upcomingSelected.map(m => {
     const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
     return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
@@ -767,7 +830,7 @@ async function handleIntelMovies(env) {
     .filter(cnFilter)
     .filter(m => (m.popularity || 0) >= 25)
     .filter(intelRatingOk);
-  const nowPlaying = intelSelectDiverse(nowPlayingCandidates, 20, reserve)
+  const nowPlaying = intelSelectDiverse(nowPlayingCandidates, 20, reserve, SCORE_OPTS.movie, today)
     .map(m => intelNormalizeMovie(m));
 
   return {
@@ -829,7 +892,7 @@ async function handleIntelTV(env) {
   for (const s of premiereFromTrending) {
     if (!onAirPremIds.has(s.id)) premiereMerged.push(s);
   }
-  const premiereSelected = intelSelectDiverse(premiereMerged, 20, reserve);
+  const premiereSelected = intelSelectDiverse(premiereMerged, 20, reserve, SCORE_OPTS.tv, today);
   const weekPremieres = premiereSelected.map(s => intelNormalizeMovie(s, "tv"));
   const premiereIds = new Set(premiereSelected.map(s => s.id));
 
@@ -853,7 +916,7 @@ async function handleIntelTV(env) {
   for (const s of upcomingFromDiscover) {
     if (!trendIds.has(s.id)) upcomingMerged.push(s);
   }
-  const upcomingSelected = intelSelectDiverse(upcomingMerged, 20, {});
+  const upcomingSelected = intelSelectDiverse(upcomingMerged, 20, {}, SCORE_OPTS.tv, today);
   const upcomingTV = upcomingSelected.map(s => intelNormalizeMovie(s, "tv"));
   const upcomingIds = new Set(upcomingSelected.map(s => s.id));
 
@@ -863,7 +926,7 @@ async function handleIntelTV(env) {
     .filter(cnFilter)
     .filter(intelRatingOk)
     .filter(s => (s.popularity || 0) >= 80);
-  const ongoingSelected = intelSelectDiverse(ongoingCandidates, 20, reserve);
+  const ongoingSelected = intelSelectDiverse(ongoingCandidates, 20, reserve, SCORE_OPTS.tv, today);
   const ongoingEnriched = await intelFetchTVEpisodeDates(ongoingSelected, token);
   const ongoingTV = ongoingEnriched
     .filter(s => {
@@ -946,10 +1009,10 @@ async function handleIntelMusicV2(env, request) {
 async function handleIntelMusic(env) {
   const today = intelToday();
   return withCache(`intel-music-v6-${today}`, async () => {
-    const weekAgo = intelDaysAgo(7);
+    const twoWeekAgo = intelDaysAgo(14);
 
     // Phase 1: Fetch MB releases this week, filter valid
-    const weekReleases = await intelFetchMusicBrainzRange(weekAgo, today).catch(() => []);
+    const weekReleases = await intelFetchMusicBrainzRange(twoWeekAgo, today).catch(() => []);
     let validReleases = weekReleases.filter(r => intelIsValidAlbum(r) && r.status !== "Bootleg");
 
     // Phase 2: Filter by artist popularity (artist.getinfo, keep 4★+ = 10k+ listeners)
@@ -1065,7 +1128,11 @@ async function handleIntelComing(env) {
     });
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
-  allItems.sort((a, b) => a.daysUntil - b.daysUntil);
+  // Primary sort by daysUntil, secondary by composite score tiebreak
+  allItems.sort((a, b) => {
+    if (a.daysUntil !== b.daysUntil) return a.daysUntil - b.daysUntil;
+    return (b.vote_average || 0) - (a.vote_average || 0);
+  });
 
   return {
     updated: today,
