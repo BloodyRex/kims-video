@@ -26,15 +26,59 @@
   },
   "stats": {
     "mbRaw": 300,
-    "afterFilter": 174,
+    "afterFilter": 177,
     "artistsChecked": 74,
-    "afterArtistFilter": 54,
+    "afterArtistFilter": 55,
     "albumEnriched": 40,
     "chartItems": 357,
-    "totalCandidates": 411,
+    "totalCandidates": 412,
     "sentToWorker": 60
   },
   "candidates": [
+    {
+      "id": "mb-22daa424-0371-42bc-bee8-a12c6cb7ce6c",
+      "mbid": "22daa424-0371-42bc-bee8-a12c6cb7ce6c",
+      "title": "This Is the One",
+      "artist": "Utada",
+      "releaseDate": "2026-06-24",
+      "year": "2026",
+      "type": "Album",
+      "country": "JP",
+      "genres": [
+        "流行",
+        "best albums of 2009",
+        "节奏蓝调",
+        "2009",
+        "utada"
+      ],
+      "genresEn": [
+        "pop",
+        "best albums of 2009",
+        "rnb",
+        "2009",
+        "utada"
+      ],
+      "lfmTags": [
+        "pop",
+        "best albums of 2009",
+        "rnb",
+        "2009",
+        "utada"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 244417,
+      "artistPlaycount": 8056764,
+      "albumListeners": 120687,
+      "albumPlaycount": 3903400,
+      "score": 71.32917852080193,
+      "scoreBreakdown": {
+        "artist": 35.920876061463844,
+        "album": 25.408302459338085,
+        "freshness": 10
+      },
+      "daysOld": 20
+    },
     {
       "id": "mb-c6358baf-1e01-4991-ab6e-cb5d794e222a",
       "mbid": "c6358baf-1e01-4991-ab6e-cb5d794e222a",
@@ -77,7 +121,7 @@
         "album": 30,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-6f7853c8-e90a-4886-9535-0a14fa328903",
@@ -121,7 +165,7 @@
         "album": 29.543349783879254,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-ca12bdf9-c25a-4d98-9188-86d41c71efbd",
@@ -165,59 +209,7 @@
         "album": 21.994905333290657,
         "freshness": 0
       },
-      "daysOld": 193
-    },
-    {
-      "id": "mb-03283d25-b04f-445f-ab39-ab51d45919c1",
-      "mbid": "03283d25-b04f-445f-ab39-ab51d45919c1",
-      "title": "Elephant in the Room",
-      "artist": "Fai Laci",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 46696,
-      "artistPlaycount": 358987,
-      "albumListeners": 1271,
-      "albumPlaycount": 6013,
-      "score": 59.64925895478406,
-      "scoreBreakdown": {
-        "artist": 31.128531202014024,
-        "album": 15.52072775277004,
-        "freshness": 13
-      },
-      "daysOld": 17
-    },
-    {
-      "id": "mb-67098c37-f75e-4384-983c-4ce8ac5bf0bb",
-      "mbid": "67098c37-f75e-4384-983c-4ce8ac5bf0bb",
-      "title": "Time Will Tell",
-      "artist": "Devon Gilfillian",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 81847,
-      "artistPlaycount": 421574,
-      "albumListeners": 571,
-      "albumPlaycount": 3083,
-      "score": 59.53653231133288,
-      "scoreBreakdown": {
-        "artist": 32.753351770103635,
-        "album": 13.78318054122924,
-        "freshness": 13
-      },
-      "daysOld": 17
+      "daysOld": 194
     },
     {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
@@ -261,51 +253,7 @@
         "album": 24.71677997219014,
         "freshness": 0
       },
-      "daysOld": 193
-    },
-    {
-      "id": "mb-19c8eddd-b573-45b0-bf69-f91fe411d41e",
-      "mbid": "19c8eddd-b573-45b0-bf69-f91fe411d41e",
-      "title": "Silver City",
-      "artist": "Falling Up",
-      "releaseDate": "2026-06-20",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [
-        "christian rock",
-        "另类摇滚",
-        "摇滚",
-        "另类",
-        "基督教音乐"
-      ],
-      "genresEn": [
-        "christian rock",
-        "alternative rock",
-        "rock",
-        "alternative",
-        "christian"
-      ],
-      "lfmTags": [
-        "christian rock",
-        "alternative rock",
-        "rock",
-        "alternative",
-        "christian"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 207175,
-      "artistPlaycount": 4910707,
-      "albumListeners": 1826,
-      "albumPlaycount": 32656,
-      "score": 58.749752849429655,
-      "scoreBreakdown": {
-        "artist": 35.442248983438255,
-        "album": 16.307503865991404,
-        "freshness": 7
-      },
-      "daysOld": 23
+      "daysOld": 194
     },
     {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
@@ -349,7 +297,103 @@
         "album": 24.54322919453557,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
+    },
+    {
+      "id": "mb-03283d25-b04f-445f-ab39-ab51d45919c1",
+      "mbid": "03283d25-b04f-445f-ab39-ab51d45919c1",
+      "title": "Elephant in the Room",
+      "artist": "Fai Laci",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 46696,
+      "artistPlaycount": 358987,
+      "albumListeners": 1271,
+      "albumPlaycount": 6013,
+      "score": 58.64925895478406,
+      "scoreBreakdown": {
+        "artist": 31.128531202014024,
+        "album": 15.52072775277004,
+        "freshness": 12
+      },
+      "daysOld": 18
+    },
+    {
+      "id": "mb-67098c37-f75e-4384-983c-4ce8ac5bf0bb",
+      "mbid": "67098c37-f75e-4384-983c-4ce8ac5bf0bb",
+      "title": "Time Will Tell",
+      "artist": "Devon Gilfillian",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 81847,
+      "artistPlaycount": 421574,
+      "albumListeners": 571,
+      "albumPlaycount": 3083,
+      "score": 58.53653231133288,
+      "scoreBreakdown": {
+        "artist": 32.753351770103635,
+        "album": 13.78318054122924,
+        "freshness": 12
+      },
+      "daysOld": 18
+    },
+    {
+      "id": "mb-19c8eddd-b573-45b0-bf69-f91fe411d41e",
+      "mbid": "19c8eddd-b573-45b0-bf69-f91fe411d41e",
+      "title": "Silver City",
+      "artist": "Falling Up",
+      "releaseDate": "2026-06-20",
+      "year": "2026",
+      "type": "Album",
+      "country": "US",
+      "genres": [
+        "christian rock",
+        "另类摇滚",
+        "摇滚",
+        "另类",
+        "基督教音乐"
+      ],
+      "genresEn": [
+        "christian rock",
+        "alternative rock",
+        "rock",
+        "alternative",
+        "christian"
+      ],
+      "lfmTags": [
+        "christian rock",
+        "alternative rock",
+        "rock",
+        "alternative",
+        "christian"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 207175,
+      "artistPlaycount": 4910707,
+      "albumListeners": 1826,
+      "albumPlaycount": 32656,
+      "score": 57.749752849429655,
+      "scoreBreakdown": {
+        "artist": 35.442248983438255,
+        "album": 16.307503865991404,
+        "freshness": 6
+      },
+      "daysOld": 24
     },
     {
       "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
@@ -375,7 +419,7 @@
         "album": 18.713232949693683,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
@@ -419,51 +463,7 @@
         "album": 20.64699918067948,
         "freshness": 0
       },
-      "daysOld": 193
-    },
-    {
-      "id": "mb-e75203bf-5479-4885-a959-779d8a01fad1",
-      "mbid": "e75203bf-5479-4885-a959-779d8a01fad1",
-      "title": "ABSTRACT / NATURAL",
-      "artist": "LIFE",
-      "releaseDate": "2026-06-19",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [
-        "后朋克",
-        "车库摇滚",
-        "朋克",
-        "另类",
-        "独立摇滚"
-      ],
-      "genresEn": [
-        "post-punk",
-        "garage rock",
-        "punk",
-        "alternative",
-        "indie rock"
-      ],
-      "lfmTags": [
-        "post-punk",
-        "garage rock",
-        "punk",
-        "alternative",
-        "indie rock"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 119983,
-      "artistPlaycount": 1705004,
-      "albumListeners": 917,
-      "albumPlaycount": 5313,
-      "score": 54.67264478926735,
-      "scoreBreakdown": {
-        "artist": 33.860798110917244,
-        "album": 14.811846678350104,
-        "freshness": 6
-      },
-      "daysOld": 24
+      "daysOld": 194
     },
     {
       "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
@@ -507,7 +507,51 @@
         "album": 17.833365688030582,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
+    },
+    {
+      "id": "mb-e75203bf-5479-4885-a959-779d8a01fad1",
+      "mbid": "e75203bf-5479-4885-a959-779d8a01fad1",
+      "title": "ABSTRACT / NATURAL",
+      "artist": "LIFE",
+      "releaseDate": "2026-06-19",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [
+        "后朋克",
+        "车库摇滚",
+        "朋克",
+        "另类",
+        "独立摇滚"
+      ],
+      "genresEn": [
+        "post-punk",
+        "garage rock",
+        "punk",
+        "alternative",
+        "indie rock"
+      ],
+      "lfmTags": [
+        "post-punk",
+        "garage rock",
+        "punk",
+        "alternative",
+        "indie rock"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 119983,
+      "artistPlaycount": 1705004,
+      "albumListeners": 917,
+      "albumPlaycount": 5313,
+      "score": 53.67264478926735,
+      "scoreBreakdown": {
+        "artist": 33.860798110917244,
+        "album": 14.811846678350104,
+        "freshness": 5
+      },
+      "daysOld": 25
     },
     {
       "id": "mb-678bbf03-22b8-4342-bf02-7f0a0dcb353d",
@@ -533,7 +577,7 @@
         "album": 14.710040265111566,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-aca30a57-12bb-4a41-af25-59457048a844",
@@ -577,7 +621,7 @@
         "album": 21.401525716275025,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-268d81bf-6af4-4bfd-b4ce-41a7e777c144",
@@ -603,33 +647,7 @@
         "album": 19.959672748594738,
         "freshness": 0
       },
-      "daysOld": 193
-    },
-    {
-      "id": "mb-25b2c0e7-1f6a-4186-bfd2-8233dcb934c7",
-      "mbid": "25b2c0e7-1f6a-4186-bfd2-8233dcb934c7",
-      "title": "In Echo",
-      "artist": "Soft Palms",
-      "releaseDate": "2026-06-19",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 11062,
-      "artistPlaycount": 44596,
-      "albumListeners": 2335,
-      "albumPlaycount": 7622,
-      "score": 49.80032545206497,
-      "scoreBreakdown": {
-        "artist": 26.958891027554316,
-        "album": 16.841434424510656,
-        "freshness": 6
-      },
-      "daysOld": 24
+      "daysOld": 194
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -673,7 +691,33 @@
         "album": 20.422166383932723,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
+    },
+    {
+      "id": "mb-25b2c0e7-1f6a-4186-bfd2-8233dcb934c7",
+      "mbid": "25b2c0e7-1f6a-4186-bfd2-8233dcb934c7",
+      "title": "In Echo",
+      "artist": "Soft Palms",
+      "releaseDate": "2026-06-19",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 11062,
+      "artistPlaycount": 44596,
+      "albumListeners": 2335,
+      "albumPlaycount": 7622,
+      "score": 48.80032545206497,
+      "scoreBreakdown": {
+        "artist": 26.958891027554316,
+        "album": 16.841434424510656,
+        "freshness": 5
+      },
+      "daysOld": 25
     },
     {
       "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
@@ -699,7 +743,7 @@
         "album": 17.82096230313099,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
@@ -725,7 +769,7 @@
         "album": 14.542425094393248,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -751,7 +795,7 @@
         "album": 14.107567642023865,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -777,7 +821,7 @@
         "album": 15.705680450603696,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-15e13404-810d-4918-880f-1d43ac51d1fe",
@@ -803,65 +847,7 @@
         "album": 15.7568492512373,
         "freshness": 0
       },
-      "daysOld": 193
-    },
-    {
-      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "title": "Truthsayer",
-      "artist": "Outshine",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2642,
-      "artistPlaycount": 22258,
-      "albumListeners": 76,
-      "albumPlaycount": 317,
-      "score": 45.21695338326068,
-      "scoreBreakdown": {
-        "artist": 22.812885421856723,
-        "album": 9.404067961403957,
-        "freshness": 13
-      },
-      "daysOld": 17
-    },
-    {
-      "id": "mb-03b901b9-3497-4666-8815-c526a4216ff0",
-      "mbid": "03b901b9-3497-4666-8815-c526a4216ff0",
-      "title": "Satanic Chaos Legions",
-      "artist": "Nunslaughter",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "death metal",
-        "old school death metal",
-        "Blackened Death Metal",
-        "black metal",
-        "american"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 49160,
-      "artistPlaycount": 2212759,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 44.27741249476278,
-      "scoreBreakdown": {
-        "artist": 31.27741249476278,
-        "album": 0,
-        "freshness": 13
-      },
-      "daysOld": 17
+      "daysOld": 194
     },
     {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
@@ -887,7 +873,39 @@
         "album": 17.91202149009514,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
+    },
+    {
+      "id": "mb-03b901b9-3497-4666-8815-c526a4216ff0",
+      "mbid": "03b901b9-3497-4666-8815-c526a4216ff0",
+      "title": "Satanic Chaos Legions",
+      "artist": "Nunslaughter",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "death metal",
+        "old school death metal",
+        "Blackened Death Metal",
+        "black metal",
+        "american"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 49160,
+      "artistPlaycount": 2212759,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 43.27741249476278,
+      "scoreBreakdown": {
+        "artist": 31.27741249476278,
+        "album": 0,
+        "freshness": 12
+      },
+      "daysOld": 18
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -931,7 +949,7 @@
         "album": 12.164846454372029,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
@@ -957,7 +975,7 @@
         "album": 12.689095475366369,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
@@ -983,7 +1001,7 @@
         "album": 2.385606273598312,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-f8536d9f-b285-4ec7-add3-62d1d53ccd14",
@@ -1009,7 +1027,7 @@
         "album": 5.206963425791125,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
@@ -1035,7 +1053,7 @@
         "album": 15.719755582119815,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
@@ -1061,7 +1079,7 @@
         "album": 11.980996735478682,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
@@ -1087,7 +1105,7 @@
         "album": 9.162544563531181,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
@@ -1131,7 +1149,7 @@
         "album": 8.817139967814686,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-eed0703e-1587-4667-81df-c390c4f6a59a",
@@ -1157,7 +1175,7 @@
         "album": 6.611096473669597,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
@@ -1183,7 +1201,7 @@
         "album": 11.45017305681259,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
@@ -1209,13 +1227,13 @@
         "album": 11.3707892463184,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
-      "id": "mb-a965713d-65d9-4f95-a6b3-a276bada8d00",
-      "mbid": "a965713d-65d9-4f95-a6b3-a276bada8d00",
-      "title": "Howl",
-      "artist": "Emily Magpie",
+      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "title": "Truthsayer",
+      "artist": "Outshine",
       "releaseDate": "2026-06-26",
       "year": "2026",
       "type": "Album",
@@ -1223,53 +1241,25 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [
-        "All"
+        "Progressive metal",
+        "rock",
+        "post-grunge",
+        "alternative",
+        "Sweden"
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 1741,
-      "artistPlaycount": 6741,
+      "artistListeners": 2642,
+      "artistPlaycount": 22258,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 34.605325140782206,
+      "score": 34.81288542185672,
       "scoreBreakdown": {
-        "artist": 21.605325140782206,
+        "artist": 22.812885421856723,
         "album": 0,
-        "freshness": 13
+        "freshness": 12
       },
-      "daysOld": 17
-    },
-    {
-      "id": "mb-1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
-      "mbid": "1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
-      "title": "Back into the Womb",
-      "artist": "Sans Froid",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "UK",
-        "Progressive rock",
-        "england",
-        "art rock",
-        "United Kingdom"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1692,
-      "artistPlaycount": 15599,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 34.52266905802003,
-      "scoreBreakdown": {
-        "artist": 21.522669058020032,
-        "album": 0,
-        "freshness": 13
-      },
-      "daysOld": 17
+      "daysOld": 18
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
@@ -1313,7 +1303,67 @@
         "album": 9.256291743595376,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
+    },
+    {
+      "id": "mb-a965713d-65d9-4f95-a6b3-a276bada8d00",
+      "mbid": "a965713d-65d9-4f95-a6b3-a276bada8d00",
+      "title": "Howl",
+      "artist": "Emily Magpie",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "All"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1741,
+      "artistPlaycount": 6741,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 33.605325140782206,
+      "scoreBreakdown": {
+        "artist": 21.605325140782206,
+        "album": 0,
+        "freshness": 12
+      },
+      "daysOld": 18
+    },
+    {
+      "id": "mb-1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
+      "mbid": "1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
+      "title": "Back into the Womb",
+      "artist": "Sans Froid",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "UK",
+        "Progressive rock",
+        "england",
+        "art rock",
+        "United Kingdom"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1692,
+      "artistPlaycount": 15599,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 33.52266905802003,
+      "scoreBreakdown": {
+        "artist": 21.522669058020032,
+        "album": 0,
+        "freshness": 12
+      },
+      "daysOld": 18
     },
     {
       "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
@@ -1339,7 +1389,7 @@
         "album": 7.592569699389438,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
@@ -1365,7 +1415,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-da3e070d-7164-4fba-99e9-ea342c501008",
@@ -1385,13 +1435,13 @@
       "artistPlaycount": 21524,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 27.79675296145277,
+      "score": 26.79675296145277,
       "scoreBreakdown": {
         "artist": 21.79675296145277,
         "album": 0,
-        "freshness": 6
+        "freshness": 5
       },
-      "daysOld": 24
+      "daysOld": 25
     },
     {
       "id": "mb-338d60e1-ad46-44c3-a5fa-b2b2d4daa554",
@@ -1417,7 +1467,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
@@ -1449,7 +1499,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-f10db834-996c-4b1f-9563-98c7b9e80baa",
@@ -1475,7 +1525,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
@@ -1507,7 +1557,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-e178c01c-3f05-4070-9454-749687762747",
@@ -1539,7 +1589,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
@@ -1571,7 +1621,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
@@ -1603,7 +1653,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
@@ -1635,7 +1685,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
@@ -1664,7 +1714,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-dc113487-3606-48ce-976d-37748757097c",
@@ -1696,7 +1746,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-901435e9-1c31-4a69-9fe9-288b4d510d99",
@@ -1728,7 +1778,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "mb-4f123c9f-5775-4f3e-938c-6e4d90cd3944",
@@ -1754,7 +1804,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 193
+      "daysOld": 194
     },
     {
       "id": "chart-0",

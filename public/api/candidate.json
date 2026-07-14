@@ -2,6 +2,49 @@
   "updated": "2026-07-14",
   "candidates": [
     {
+      "id": "mb-22daa424-0371-42bc-bee8-a12c6cb7ce6c",
+      "mbid": "22daa424-0371-42bc-bee8-a12c6cb7ce6c",
+      "title": "This Is the One",
+      "artist": "Utada",
+      "releaseDate": "2026-06-24",
+      "year": "2026",
+      "type": "Album",
+      "country": "JP",
+      "genres": [
+        "流行",
+        "best albums of 2009",
+        "节奏蓝调",
+        "2009",
+        "utada"
+      ],
+      "genresEn": [
+        "pop",
+        "best albums of 2009",
+        "rnb",
+        "2009",
+        "utada"
+      ],
+      "lfmTags": [
+        "pop",
+        "best albums of 2009",
+        "rnb",
+        "2009",
+        "utada"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 244417,
+      "artistPlaycount": 8056764,
+      "albumListeners": 120687,
+      "albumPlaycount": 3903400,
+      "score": 71.32917852080193,
+      "scoreBreakdown": {
+        "artist": 35.920876061463844,
+        "album": 25.408302459338085,
+        "freshness": 10
+      }
+    },
+    {
       "id": "mb-c6358baf-1e01-4991-ab6e-cb5d794e222a",
       "mbid": "c6358baf-1e01-4991-ab6e-cb5d794e222a",
       "title": "Uprising",
@@ -131,56 +174,6 @@
       }
     },
     {
-      "id": "mb-03283d25-b04f-445f-ab39-ab51d45919c1",
-      "mbid": "03283d25-b04f-445f-ab39-ab51d45919c1",
-      "title": "Elephant in the Room",
-      "artist": "Fai Laci",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 46696,
-      "artistPlaycount": 358987,
-      "albumListeners": 1271,
-      "albumPlaycount": 6013,
-      "score": 59.64925895478406,
-      "scoreBreakdown": {
-        "artist": 31.128531202014024,
-        "album": 15.52072775277004,
-        "freshness": 13
-      }
-    },
-    {
-      "id": "mb-67098c37-f75e-4384-983c-4ce8ac5bf0bb",
-      "mbid": "67098c37-f75e-4384-983c-4ce8ac5bf0bb",
-      "title": "Time Will Tell",
-      "artist": "Devon Gilfillian",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 81847,
-      "artistPlaycount": 421574,
-      "albumListeners": 571,
-      "albumPlaycount": 3083,
-      "score": 59.53653231133288,
-      "scoreBreakdown": {
-        "artist": 32.753351770103635,
-        "album": 13.78318054122924,
-        "freshness": 13
-      }
-    },
-    {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
       "mbid": "8deaeb34-e6b2-4159-b1de-5896d3e8545a",
       "title": "The Power Station",
@@ -224,49 +217,6 @@
       }
     },
     {
-      "id": "mb-19c8eddd-b573-45b0-bf69-f91fe411d41e",
-      "mbid": "19c8eddd-b573-45b0-bf69-f91fe411d41e",
-      "title": "Silver City",
-      "artist": "Falling Up",
-      "releaseDate": "2026-06-20",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [
-        "christian rock",
-        "另类摇滚",
-        "摇滚",
-        "另类",
-        "基督教音乐"
-      ],
-      "genresEn": [
-        "christian rock",
-        "alternative rock",
-        "rock",
-        "alternative",
-        "christian"
-      ],
-      "lfmTags": [
-        "christian rock",
-        "alternative rock",
-        "rock",
-        "alternative",
-        "christian"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 207175,
-      "artistPlaycount": 4910707,
-      "albumListeners": 1826,
-      "albumPlaycount": 32656,
-      "score": 58.749752849429655,
-      "scoreBreakdown": {
-        "artist": 35.442248983438255,
-        "album": 16.307503865991404,
-        "freshness": 7
-      }
-    },
-    {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
       "mbid": "46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
       "title": "RAVEPOP",
@@ -307,6 +257,99 @@
         "artist": 34.14430123119908,
         "album": 24.54322919453557,
         "freshness": 0
+      }
+    },
+    {
+      "id": "mb-03283d25-b04f-445f-ab39-ab51d45919c1",
+      "mbid": "03283d25-b04f-445f-ab39-ab51d45919c1",
+      "title": "Elephant in the Room",
+      "artist": "Fai Laci",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 46696,
+      "artistPlaycount": 358987,
+      "albumListeners": 1271,
+      "albumPlaycount": 6013,
+      "score": 58.64925895478406,
+      "scoreBreakdown": {
+        "artist": 31.128531202014024,
+        "album": 15.52072775277004,
+        "freshness": 12
+      }
+    },
+    {
+      "id": "mb-67098c37-f75e-4384-983c-4ce8ac5bf0bb",
+      "mbid": "67098c37-f75e-4384-983c-4ce8ac5bf0bb",
+      "title": "Time Will Tell",
+      "artist": "Devon Gilfillian",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 81847,
+      "artistPlaycount": 421574,
+      "albumListeners": 571,
+      "albumPlaycount": 3083,
+      "score": 58.53653231133288,
+      "scoreBreakdown": {
+        "artist": 32.753351770103635,
+        "album": 13.78318054122924,
+        "freshness": 12
+      }
+    },
+    {
+      "id": "mb-19c8eddd-b573-45b0-bf69-f91fe411d41e",
+      "mbid": "19c8eddd-b573-45b0-bf69-f91fe411d41e",
+      "title": "Silver City",
+      "artist": "Falling Up",
+      "releaseDate": "2026-06-20",
+      "year": "2026",
+      "type": "Album",
+      "country": "US",
+      "genres": [
+        "christian rock",
+        "另类摇滚",
+        "摇滚",
+        "另类",
+        "基督教音乐"
+      ],
+      "genresEn": [
+        "christian rock",
+        "alternative rock",
+        "rock",
+        "alternative",
+        "christian"
+      ],
+      "lfmTags": [
+        "christian rock",
+        "alternative rock",
+        "rock",
+        "alternative",
+        "christian"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 207175,
+      "artistPlaycount": 4910707,
+      "albumListeners": 1826,
+      "albumPlaycount": 32656,
+      "score": 57.749752849429655,
+      "scoreBreakdown": {
+        "artist": 35.442248983438255,
+        "album": 16.307503865991404,
+        "freshness": 6
       }
     },
     {
@@ -378,49 +421,6 @@
       }
     },
     {
-      "id": "mb-e75203bf-5479-4885-a959-779d8a01fad1",
-      "mbid": "e75203bf-5479-4885-a959-779d8a01fad1",
-      "title": "ABSTRACT / NATURAL",
-      "artist": "LIFE",
-      "releaseDate": "2026-06-19",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [
-        "后朋克",
-        "车库摇滚",
-        "朋克",
-        "另类",
-        "独立摇滚"
-      ],
-      "genresEn": [
-        "post-punk",
-        "garage rock",
-        "punk",
-        "alternative",
-        "indie rock"
-      ],
-      "lfmTags": [
-        "post-punk",
-        "garage rock",
-        "punk",
-        "alternative",
-        "indie rock"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 119983,
-      "artistPlaycount": 1705004,
-      "albumListeners": 917,
-      "albumPlaycount": 5313,
-      "score": 54.67264478926735,
-      "scoreBreakdown": {
-        "artist": 33.860798110917244,
-        "album": 14.811846678350104,
-        "freshness": 6
-      }
-    },
-    {
       "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
       "mbid": "dda01573-1be8-4f7a-b06f-9cc3d066f515",
       "title": "Masekela",
@@ -461,6 +461,49 @@
         "artist": 36.00094912101283,
         "album": 17.833365688030582,
         "freshness": 0
+      }
+    },
+    {
+      "id": "mb-e75203bf-5479-4885-a959-779d8a01fad1",
+      "mbid": "e75203bf-5479-4885-a959-779d8a01fad1",
+      "title": "ABSTRACT / NATURAL",
+      "artist": "LIFE",
+      "releaseDate": "2026-06-19",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [
+        "后朋克",
+        "车库摇滚",
+        "朋克",
+        "另类",
+        "独立摇滚"
+      ],
+      "genresEn": [
+        "post-punk",
+        "garage rock",
+        "punk",
+        "alternative",
+        "indie rock"
+      ],
+      "lfmTags": [
+        "post-punk",
+        "garage rock",
+        "punk",
+        "alternative",
+        "indie rock"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 119983,
+      "artistPlaycount": 1705004,
+      "albumListeners": 917,
+      "albumPlaycount": 5313,
+      "score": 53.67264478926735,
+      "scoreBreakdown": {
+        "artist": 33.860798110917244,
+        "album": 14.811846678350104,
+        "freshness": 5
       }
     },
     {
@@ -557,31 +600,6 @@
       }
     },
     {
-      "id": "mb-25b2c0e7-1f6a-4186-bfd2-8233dcb934c7",
-      "mbid": "25b2c0e7-1f6a-4186-bfd2-8233dcb934c7",
-      "title": "In Echo",
-      "artist": "Soft Palms",
-      "releaseDate": "2026-06-19",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 11062,
-      "artistPlaycount": 44596,
-      "albumListeners": 2335,
-      "albumPlaycount": 7622,
-      "score": 49.80032545206497,
-      "scoreBreakdown": {
-        "artist": 26.958891027554316,
-        "album": 16.841434424510656,
-        "freshness": 6
-      }
-    },
-    {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
       "mbid": "50568f3c-616c-4d19-a8f1-8151ecb6eb72",
       "title": "Von Abseits",
@@ -622,6 +640,31 @@
         "artist": 28.746155391789078,
         "album": 20.422166383932723,
         "freshness": 0
+      }
+    },
+    {
+      "id": "mb-25b2c0e7-1f6a-4186-bfd2-8233dcb934c7",
+      "mbid": "25b2c0e7-1f6a-4186-bfd2-8233dcb934c7",
+      "title": "In Echo",
+      "artist": "Soft Palms",
+      "releaseDate": "2026-06-19",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 11062,
+      "artistPlaycount": 44596,
+      "albumListeners": 2335,
+      "albumPlaycount": 7622,
+      "score": 48.80032545206497,
+      "scoreBreakdown": {
+        "artist": 26.958891027554316,
+        "album": 16.841434424510656,
+        "freshness": 5
       }
     },
     {
@@ -750,11 +793,11 @@
       }
     },
     {
-      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "title": "Truthsayer",
-      "artist": "Outshine",
-      "releaseDate": "2026-06-26",
+      "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
+      "mbid": "81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
+      "title": "(EN)LIGHTEN",
+      "artist": "Altrr",
+      "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
       "country": "XW",
@@ -763,15 +806,15 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 2642,
-      "artistPlaycount": 22258,
-      "albumListeners": 76,
-      "albumPlaycount": 317,
-      "score": 45.21695338326068,
+      "artistListeners": 7038,
+      "artistPlaycount": 30628,
+      "albumListeners": 3823,
+      "albumPlaycount": 20188,
+      "score": 43.56168324008962,
       "scoreBreakdown": {
-        "artist": 22.812885421856723,
-        "album": 9.404067961403957,
-        "freshness": 13
+        "artist": 25.649661749994483,
+        "album": 17.91202149009514,
+        "freshness": 0
       }
     },
     {
@@ -798,36 +841,11 @@
       "artistPlaycount": 2212759,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 44.27741249476278,
+      "score": 43.27741249476278,
       "scoreBreakdown": {
         "artist": 31.27741249476278,
         "album": 0,
-        "freshness": 13
-      }
-    },
-    {
-      "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
-      "mbid": "81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
-      "title": "(EN)LIGHTEN",
-      "artist": "Altrr",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 7038,
-      "artistPlaycount": 30628,
-      "albumListeners": 3823,
-      "albumPlaycount": 20188,
-      "score": 43.56168324008962,
-      "scoreBreakdown": {
-        "artist": 25.649661749994483,
-        "album": 17.91202149009514,
-        "freshness": 0
+        "freshness": 12
       }
     },
     {
@@ -1142,10 +1160,10 @@
       }
     },
     {
-      "id": "mb-a965713d-65d9-4f95-a6b3-a276bada8d00",
-      "mbid": "a965713d-65d9-4f95-a6b3-a276bada8d00",
-      "title": "Howl",
-      "artist": "Emily Magpie",
+      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "title": "Truthsayer",
+      "artist": "Outshine",
       "releaseDate": "2026-06-26",
       "year": "2026",
       "type": "Album",
@@ -1153,50 +1171,23 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [
-        "All"
+        "Progressive metal",
+        "rock",
+        "post-grunge",
+        "alternative",
+        "Sweden"
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 1741,
-      "artistPlaycount": 6741,
+      "artistListeners": 2642,
+      "artistPlaycount": 22258,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 34.605325140782206,
+      "score": 34.81288542185672,
       "scoreBreakdown": {
-        "artist": 21.605325140782206,
+        "artist": 22.812885421856723,
         "album": 0,
-        "freshness": 13
-      }
-    },
-    {
-      "id": "mb-1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
-      "mbid": "1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
-      "title": "Back into the Womb",
-      "artist": "Sans Froid",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "UK",
-        "Progressive rock",
-        "england",
-        "art rock",
-        "United Kingdom"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1692,
-      "artistPlaycount": 15599,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 34.52266905802003,
-      "scoreBreakdown": {
-        "artist": 21.522669058020032,
-        "album": 0,
-        "freshness": 13
+        "freshness": 12
       }
     },
     {
@@ -1240,6 +1231,64 @@
         "artist": 24.967165277213716,
         "album": 9.256291743595376,
         "freshness": 0
+      }
+    },
+    {
+      "id": "mb-a965713d-65d9-4f95-a6b3-a276bada8d00",
+      "mbid": "a965713d-65d9-4f95-a6b3-a276bada8d00",
+      "title": "Howl",
+      "artist": "Emily Magpie",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "All"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1741,
+      "artistPlaycount": 6741,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 33.605325140782206,
+      "scoreBreakdown": {
+        "artist": 21.605325140782206,
+        "album": 0,
+        "freshness": 12
+      }
+    },
+    {
+      "id": "mb-1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
+      "mbid": "1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
+      "title": "Back into the Womb",
+      "artist": "Sans Froid",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "UK",
+        "Progressive rock",
+        "england",
+        "art rock",
+        "United Kingdom"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1692,
+      "artistPlaycount": 15599,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 33.52266905802003,
+      "scoreBreakdown": {
+        "artist": 21.522669058020032,
+        "album": 0,
+        "freshness": 12
       }
     },
     {
@@ -1310,11 +1359,11 @@
       "artistPlaycount": 21524,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 27.79675296145277,
+      "score": 26.79675296145277,
       "scoreBreakdown": {
         "artist": 21.79675296145277,
         "album": 0,
-        "freshness": 6
+        "freshness": 5
       }
     },
     {
@@ -1776,30 +1825,6 @@
       "genresEn": [],
       "lfmTags": [],
       "cover": "https://lastfm.freetls.fastly.net/i/u/174s/28c1e08b7ff4753bd9e386cd92b23653.png",
-      "source": "chart",
-      "artistListeners": 0,
-      "artistPlaycount": 0,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 0,
-      "scoreBreakdown": {
-        "artist": 0,
-        "album": 0,
-        "freshness": 0
-      }
-    },
-    {
-      "id": "chart-5",
-      "mbid": "23e6d5d6-7bdc-4b76-85a8-d5de4a95f2e8",
-      "title": "The Unseen",
-      "artist": "Quasimoto",
-      "releaseDate": "",
-      "type": "Album",
-      "country": "",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://lastfm.freetls.fastly.net/i/u/174s/0197fc53ae4b4ddecdb4c781906f4fab.png",
       "source": "chart",
       "artistListeners": 0,
       "artistPlaycount": 0,
