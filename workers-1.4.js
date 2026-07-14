@@ -1694,26 +1694,58 @@ async function handleSendDigest(request, env) {
 }
 
 // ── Core digest send (shared by HTTP endpoint and cron trigger) ──
+
+// Timeout wrapper: rejects if promise doesn't settle within ms
+async function withTimeout(promise, ms, label) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms);
+  });
+  try {
+    return await Promise.race([promise, timeout]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function sendDigestToAll(env) {
   if (!env.RESEND_API_KEY) return { ok: false, error: "Resend not configured" };
   if (!env.SUBSCRIBE_KV) return { ok: false, error: "KV not configured" };
 
   const today = intelToday();
+  const digestKey = `digestStatus:${today}`;
 
-  // Dedup: skip if already sent today (handles redundant triggers from backup crons)
-  const lastSent = await env.SUBSCRIBE_KV.get("lastDigestSent");
-  if (lastSent === today) {
+  // ── Attempt tracking: max 3 retries per day ──
+  const raw = await env.SUBSCRIBE_KV.get(digestKey);
+  const status = raw ? JSON.parse(raw) : null;
+
+  // Backward compat: also check old lastDigestSent key
+  if (status?.status === "sent") {
+    return { ok: true, sent: 0, skipped: "already sent today" };
+  }
+  const oldSent = await env.SUBSCRIBE_KV.get("lastDigestSent");
+  if (oldSent === today && !status) {
+    // Migrate old key to new format
+    await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "sent", attemptCount: 1 }), { expirationTtl: 172800 });
     return { ok: true, sent: 0, skipped: "already sent today" };
   }
 
+  const attemptCount = (status?.attemptCount || 0) + 1;
+  if (attemptCount > 3) {
+    return { ok: false, sent: 0, error: "max retries reached", attemptCount };
+  }
+
+  // Mark this attempt
+  await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "attempting", attemptCount }), { expirationTtl: 172800 });
+
   const list = await env.SUBSCRIBE_KV.list({ prefix: "sub:" });
   if (!list.keys.length) {
-    // Mark as sent even with no subscribers so we don't retry
-    await env.SUBSCRIBE_KV.put("lastDigestSent", today);
+    // No subscribers — mark as sent so we don't retry today
+    await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "sent", attemptCount }), { expirationTtl: 172800 });
     return { ok: true, sent: 0 };
   }
 
-  // Build or retrieve cached digest (generated once per day)
+  // ── Build or retrieve cached digest (generated once per day) ──
 
   let html, date;
   const cachedDigest = await env.SUBSCRIBE_KV.get(`digest:${today}`);
@@ -1722,11 +1754,23 @@ async function sendDigestToAll(env) {
     html = parsed.html;
     date = parsed.date;
   } else {
-    const result = await buildDigestHTML(env, today);
+    // Build with timeout (60s — generous for cron, avoids hanging HTTP requests)
+    const result = await withTimeout(
+      buildDigestHTML(env, today),
+      60000,
+      "buildDigestHTML"
+    ).catch(e => {
+      console.warn("Digest build failed:", e.message);
+      return null;
+    });
+    if (!result) {
+      await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "failed", attemptCount }), { expirationTtl: 172800 });
+      return { ok: false, sent: 0, error: "digest build failed", attemptCount };
+    }
     html = result.html;
     date = result.date;
     // Cache digest content for 24h so all sends on the same day use identical content
-    await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html, date }), { expirationTtl: 86400 });
+    await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html, date }), { expirationTtl: 172800 });
   }
 
   let sent = 0;
@@ -1739,28 +1783,36 @@ async function sendDigestToAll(env) {
         "https://api.bloodyrex.xyz/intelligence/unsubscribe?email=",
         `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(sub.email)}`
       );
-      await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({
-          from: "Kim's Video <digest@bloodyrex.xyz>",
-          to: sub.email,
-          subject: `Kim's Video 每日影音情报 · ${date}`,
-          html: personalHtml,
+      // Per-email timeout (15s — Resend usually responds in <2s)
+      await withTimeout(
+        fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            from: "Kim's Video <digest@bloodyrex.xyz>",
+            to: sub.email,
+            subject: `Kim's Video 每日影音情报 · ${date}`,
+            html: personalHtml,
+          }),
         }),
-      });
+        15000,
+        `Resend send to ${sub.email}`
+      );
       sub.lastSentAt = new Date().toISOString();
       await env.SUBSCRIBE_KV.put(key.name, JSON.stringify(sub));
       sent++;
     } catch (e) { console.warn(`Send to ${key.name} failed:`, e.message); }
   }
 
-  // Record send date for dedup only if at least one email was sent
+  // Record status
   if (sent > 0) {
-    await env.SUBSCRIBE_KV.put("lastDigestSent", today);
+    await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "sent", attemptCount }), { expirationTtl: 172800 });
+    // Also write old key for backward compat during migration window
+    await env.SUBSCRIBE_KV.put("lastDigestSent", today, { expirationTtl: 172800 });
   } else {
-    // No emails sent — clear the cached digest so next retry rebuilds fresh
+    // No emails sent — clear cached digest so next retry rebuilds fresh
     await env.SUBSCRIBE_KV.delete(`digest:${today}`);
+    await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "failed", attemptCount }), { expirationTtl: 172800 });
   }
 
   return { ok: true, sent };
@@ -1774,8 +1826,13 @@ async function checkDigestTrigger(env) {
     const hour = new Date().getUTCHours();
     if (hour !== 0) return;
     const today = intelToday();
-    const lastSent = await env.SUBSCRIBE_KV.get("lastDigestSent");
-    if (lastSent === today) return;
+    const digestKey = `digestStatus:${today}`;
+    const raw = await env.SUBSCRIBE_KV.get(digestKey);
+    const status = raw ? JSON.parse(raw) : null;
+    if (status?.status === "sent") return;
+    // Also check old key
+    const oldSent = await env.SUBSCRIBE_KV.get("lastDigestSent");
+    if (oldSent === today) return;
     console.log("Request-triggered digest send...");
     await sendDigestToAll(env);
   } catch (e) {
