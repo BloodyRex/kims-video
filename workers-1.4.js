@@ -1682,7 +1682,7 @@ async function buildDigestHTML(env, now) {
 
 </div></body></html>`;
 
-  return { html, date };
+  return { html, date, stats };
 }
 
 async function handleSendDigest(request, env) {
@@ -1769,6 +1769,13 @@ async function sendDigestToAll(env) {
     }
     html = result.html;
     date = result.date;
+    // Sanity check: if overview returned all-zero stats, TMDB likely failed
+    // Don't cache bad data; let retry rebuild fresh
+    if (!result.stats?.moviesReleased && !result.stats?.tvAiringThisWeek) {
+      await env.SUBSCRIBE_KV.delete(`digest:${today}`);
+      await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "failed", attemptCount }), { expirationTtl: 172800 });
+      return { ok: false, sent: 0, error: "overview data empty (TMDB likely failed)", attemptCount };
+    }
     // Cache digest content for 24h so all sends on the same day use identical content
     await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html, date }), { expirationTtl: 172800 });
   }
@@ -1821,6 +1828,8 @@ async function sendDigestToAll(env) {
 // ── Main ──
 export default {
   async fetch(request, env, ctx) {
+    // KV warm-up: ensure consistent reads after cold start / deploy
+    ctx.waitUntil(env.SUBSCRIBE_KV?.get("__warmup").catch(() => {}));
     const ALLOWED_ORIGINS = ["https://bloodyrex.xyz", "https://www.bloodyrex.xyz", "https://bloodyrex.github.io", "http://localhost:4173", "http://localhost:5173", "http://localhost:5174", "http://localhost:7850", "http://127.0.0.1:7850"];
     const origin = request.headers.get("Origin");
     const corsHeaders = { "Access-Control-Allow-Origin": ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0], "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS", "Access-Control-Max-Age": "86400" };
