@@ -46,10 +46,9 @@ function filterChineseContent(data) {
       data[key] = val.filter(item => !item.latestAirDate || item.latestAirDate >= sixMonthsAgo);
       continue;
     }
-    // Upcoming: items haven't premiered yet, title may lack Chinese translations
-    // Only require Chinese in overview/summary
-    if (key === "upcoming") {
-      data[key] = val.filter(item => hasChinese(item.summary || item.overview));
+    // Upcoming/next*: items haven't premiered yet, likely lack Chinese translations
+    // Don't filter — TMDB zh-CN locale already provides localization where available
+    if (key === "upcoming" || key === "next7Days" || key === "next30Days") {
       continue;
     }
     data[key] = val.filter(item => {
