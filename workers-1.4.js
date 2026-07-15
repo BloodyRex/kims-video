@@ -1106,7 +1106,8 @@ async function handleIntelWeekly(env) {
     .filter(intelRatingOk)
     .filter(s => (s.popularity || 0) >= 80);
   const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today);
-  const tvWeekly = tvSelected.map((s, i) => ({ ...intelNormalizeMovie(s, "tv"), rank: i + 1, trend: "new" }));
+  const tvEnriched = await intelFetchTVEpisodeDates(tvSelected, token);
+  const tvWeekly = tvEnriched.map((s, i) => ({ ...intelNormalizeMovie(s, "tv"), rank: i + 1, trend: "new" }));
 
   return {
     updated: today,
