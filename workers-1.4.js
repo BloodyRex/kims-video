@@ -201,8 +201,10 @@ function intelNormalizeMovie(m, type) {
   if (type === "tv") {
     if (m.next_episode_to_air?.air_date) item.nextAirDate = m.next_episode_to_air.air_date;
     if (m.last_episode_to_air?.season_number) item.season = m.last_episode_to_air.season_number;
+    else if (m.next_episode_to_air?.season_number) item.season = m.next_episode_to_air.season_number;
     else if (m.season_number) item.season = m.season_number;
     if (m.last_episode_to_air?.episode_number) item.episode = m.last_episode_to_air.episode_number;
+    else if (m.next_episode_to_air?.episode_number) item.episode = m.next_episode_to_air.episode_number;
     else if (m.episode_number) item.episode = m.episode_number;
     if (m.last_episode_to_air?.air_date) item.latestAirDate = m.last_episode_to_air.air_date;
     else if (m.next_episode_to_air?.air_date) item.latestAirDate = m.next_episode_to_air.air_date;
@@ -893,7 +895,8 @@ async function handleIntelTV(env) {
     if (!onAirPremIds.has(s.id)) premiereMerged.push(s);
   }
   const premiereSelected = intelSelectDiverse(premiereMerged, 20, reserve, SCORE_OPTS.tv, today);
-  const weekPremieres = premiereSelected.map(s => intelNormalizeMovie(s, "tv"));
+  const premiereEnriched = await intelFetchTVEpisodeDates(premiereSelected, token);
+  const weekPremieres = premiereEnriched.map(s => intelNormalizeMovie(s, "tv"));
   const premiereIds = new Set(premiereSelected.map(s => s.id));
 
   // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 30 days)
@@ -917,7 +920,8 @@ async function handleIntelTV(env) {
     if (!trendIds.has(s.id)) upcomingMerged.push(s);
   }
   const upcomingSelected = intelSelectDiverse(upcomingMerged, 20, {}, SCORE_OPTS.tv, today);
-  const upcomingTV = upcomingSelected.map(s => intelNormalizeMovie(s, "tv"));
+  const upcomingEnriched = await intelFetchTVEpisodeDates(upcomingSelected, token);
+  const upcomingTV = upcomingEnriched.map(s => intelNormalizeMovie(s, "tv"));
   const upcomingIds = new Set(upcomingSelected.map(s => s.id));
 
   // Ongoing: exclude premieres + upcoming, enrich episode dates on final 20 only
