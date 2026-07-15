@@ -46,6 +46,12 @@ function filterChineseContent(data) {
       data[key] = val.filter(item => !item.latestAirDate || item.latestAirDate >= sixMonthsAgo);
       continue;
     }
+    // Upcoming: items haven't premiered yet, title may lack Chinese translations
+    // Only require Chinese in overview/summary
+    if (key === "upcoming") {
+      data[key] = val.filter(item => hasChinese(item.summary || item.overview));
+      continue;
+    }
     data[key] = val.filter(item => {
       const check = (text) => typeof text === "string" && hasChinese(text);
       return check(item.title || item.name) && check(item.summary || item.overview);

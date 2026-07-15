@@ -903,11 +903,11 @@ async function handleIntelTV(env) {
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
     .filter(s => !premiereIds.has(s.id))
     .filter(intelRatingOk)
-    .filter(titleCn)
+    .filter(s => hasChinese(s.overview))
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
   const upcomingFromDiscover = discoverRaw
     .filter(s => !premiereIds.has(s.id))
-    .filter(titleCn)
+    .filter(s => hasChinese(s.overview))
     .filter(intelRatingOk)
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 15);
   // Merge and dedup
@@ -1084,9 +1084,9 @@ async function handleIntelWeekly(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
 
-  const [movieTrending, tvTrending] = await Promise.all([
+  const [movieTrending, tvOnAir] = await Promise.all([
     intelFetchTMDB(token, "/trending/movie/week"),
-    intelFetchTMDB(token, "/trending/tv/week"),
+    intelFetchPages(token, "/tv/on_the_air", {}, 4),
   ]);
 
   const normalizeItem = (item, rank) => {
@@ -1094,10 +1094,20 @@ async function handleIntelWeekly(env) {
     return { ...intelNormalizeMovie(item, type), rank, trend: "new" };
   };
 
+  // TV: same cnFilter + popularity threshold + diverse scoring as handleIntelTV's ongoing
+  const hasChinese = (text) => /[一-鿿]/.test(text || "");
+  const cnFilter = (s) => hasChinese(s.title || s.name) && hasChinese(s.overview);
+  const tvCandidates = tvOnAir
+    .filter(cnFilter)
+    .filter(intelRatingOk)
+    .filter(s => (s.popularity || 0) >= 80);
+  const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today);
+  const tvWeekly = tvSelected.map((s, i) => ({ ...intelNormalizeMovie(s, "tv"), rank: i + 1, trend: "new" }));
+
   return {
     updated: today,
     movies: movieTrending.filter(intelRatingOk).slice(0, 10).map((m, i) => normalizeItem(m, i + 1)),
-    tv: tvTrending.filter(intelRatingOk).slice(0, 10).map((s, i) => normalizeItem(s, i + 1)),
+    tv: tvWeekly,
     music: [],
   };
 }
