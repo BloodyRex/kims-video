@@ -897,15 +897,17 @@ async function handleIntelTV(env) {
   const premiereIds = new Set(premiereSelected.map(s => s.id));
 
   // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 30 days)
-  // Relaxed: no Chinese filter — TMDB zh-CN locale already provides localization where available
+  // Chinese filter: title OR overview must contain Chinese characters
   // Trending: intelRatingOk (keep unscored, exclude < 4), Discover: higher popularity threshold
   const upcomingFromTrending = trendingTV
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
     .filter(s => !premiereIds.has(s.id))
     .filter(intelRatingOk)
+    .filter(s => hasChinese(s.title || s.name) || hasChinese(s.overview))
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
   const upcomingFromDiscover = discoverRaw
     .filter(s => !premiereIds.has(s.id))
+    .filter(s => hasChinese(s.title || s.name) || hasChinese(s.overview))
     .filter(intelRatingOk)
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 15);
   // Merge and dedup
