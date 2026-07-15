@@ -909,7 +909,7 @@ async function handleIntelTV(env) {
     .filter(s => !premiereIds.has(s.id))
     .filter(s => hasChinese(s.title || s.name) || hasChinese(s.overview))
     .filter(intelRatingOk)
-    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 15);
+    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
   // Merge and dedup
   const upcomingMerged = [...upcomingFromTrending];
   const trendIds = new Set(upcomingFromTrending.map(s => s.id));
