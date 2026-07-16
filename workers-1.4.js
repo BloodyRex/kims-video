@@ -1519,10 +1519,11 @@ async function buildDigestHTML(env, now) {
     try { return await result.value.json(); } catch { return null; }
   };
 
-  const [digestR, overviewR, weeklyR, comingR, tvR, musicR] = await Promise.allSettled([
+  const [digestR, overviewR, weeklyR, comingR, tvR, musicR, moviesR] = await Promise.allSettled([
     fetch(`${BASE}/digest.json`), fetch(`${BASE}/overview.json`),
     fetch(`${BASE}/weekly.json`), fetch(`${BASE}/coming.json`),
     fetch(`${BASE}/tv.json`), fetch(`${BASE}/music.json`),
+    fetch(`${BASE}/movies.json`),
   ]);
 
   const dig = await safeJson(digestR) || {};
@@ -1531,10 +1532,17 @@ async function buildDigestHTML(env, now) {
   const coming = await safeJson(comingR) || {};
   const tvData = await safeJson(tvR) || {};
   const musicData = await safeJson(musicR) || {};
+  const moviesData = await safeJson(moviesR) || {};
 
   const stats = overview.stats || {};
   const date = dig.date || overview.updated || now;
-  const musicPicks = (musicData.picks || []).filter(p => p.recommendationTagId === "trending" || p.recommendationTagId === "editor").slice(0, 5);
+
+  // ── Helpers ──
+  const genreStr = (g) => Array.isArray(g) ? g.slice(0, 2).join(" / ") : (g || "");
+  const safeSummary = (s) => (s || "").slice(0, 120);
+  const title = (text) => `<div style="display:flex;align-items:center;gap:6px;margin:12px 0 8px"><span style="font-size:16px;font-weight:bold;color:#ffff00;text-transform:uppercase">${text}</span></div>`;
+  const divider = `<div style="border-top:2px dashed #333;margin:16px 0"></div>`;
+  const card = (inner, borderColor) => `<div style="background:#000;border:2px solid ${borderColor};padding:10px;margin:6px 0">${inner}</div>`;
 
   // ── Daily Digest section ──
   const headline = dig.headline || "";
@@ -1558,24 +1566,41 @@ async function buildDigestHTML(env, now) {
     ).join("")}</table>`
     : "";
 
-  // ── Coming Soon section ──
-  const comingItems = (coming.next7Days || []).slice(0, 5);
-  const comingHtml = comingItems.length
-    ? `<table style="width:100%;border-collapse:collapse">${comingItems.map(item => {
-      const d = item.daysUntil || 0;
-      const label = d === 0 ? "今日" : d <= 3 ? `${d}天后` : `${d}天`;
-      const genre = Array.isArray(item.genre) ? item.genre.slice(0, 2).join("/") : (item.genre || "");
-      return `<tr><td style="padding:4px 8px;font-size:11px;color:#ff00ff;white-space:nowrap;width:50px;background:#111">${label}</td><td style="padding:4px 8px;font-size:13px;color:#fff;background:#111">${item.title || ""}</td><td style="padding:4px 8px;font-size:11px;color:#999;text-align:right;background:#111">${genre}</td></tr>`;
-    }).join("")}</table>`
+  // ── Release Calendar (replaces Coming Soon) ──
+  // Movies: from movies.json upcoming (has daysUntil)
+  const movieCalendar = (moviesData.upcoming || []).filter(m => m.daysUntil !== undefined && m.daysUntil <= 30).slice(0, 6);
+  // TV: from coming.json items with mediaType="tv" (has daysUntil)
+  const allComing = [...(coming.next7Days || []), ...(coming.next30Days || [])];
+  const tvCalendar = allComing.filter(c => c.mediaType === "tv" && c.daysUntil !== undefined).slice(0, 6);
+  const calendarRow = (item) => {
+    const d = item.daysUntil || 0;
+    const label = d === 0 ? "今日" : d <= 3 ? `${d}天后` : `${d}天`;
+    const g = genreStr(item.genre);
+    return `<tr><td style="padding:2px 6px;font-size:10px;color:#ff00ff;white-space:nowrap;width:36px;background:#111">${label}</td><td style="padding:2px 6px;font-size:12px;color:#fff;background:#111">${item.title || ""}</td><td style="padding:2px 6px;font-size:10px;color:#999;text-align:right;background:#111">${g}</td></tr>`;
+  };
+  const calendarHtml = (movieCalendar.length || tvCalendar.length)
+    ? `<table style="width:100%"><tr>
+    <td style="vertical-align:top;padding-right:8px;width:50%">
+      <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 电影排片</p>
+      <table style="width:100%;border-collapse:collapse">${movieCalendar.length ? movieCalendar.map(calendarRow).join("") : '<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">暂无</td></tr>'}</table>
+    </td>
+    <td style="vertical-align:top;padding-left:8px;width:50%">
+      <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 剧集排片</p>
+      <table style="width:100%;border-collapse:collapse">${tvCalendar.length ? tvCalendar.map(calendarRow).join("") : '<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">暂无</td></tr>'}</table>
+    </td>
+  </tr></table>
+  <div style="text-align:right;margin:4px 0">
+    <a href="https://bloodyrex.xyz/intelligence/coming" style="font-size:11px;color:#ff00ff">查看全部排片 →</a>
+  </div>`
     : "";
 
   // ── Editor's Picks (movies) ──
   const editorsPicks = (overview.editorsPicks || []).slice(0, 2);
   const editorsHtml = editorsPicks.length
     ? editorsPicks.map(pick => {
-      const g = Array.isArray(pick.genre) ? pick.genre.slice(0, 2).join(" / ") : (pick.genre || "");
+      const g = genreStr(pick.genre);
       const r = pick.rating || 0;
-      const s = pick.summary || "";
+      const s = safeSummary(pick.summary);
       return `<div style="background:#000;border:2px solid #ff00ff;padding:10px;margin:6px 0">
   <div style="font-size:14px;color:#ffff00;font-weight:bold">${pick.title || ""}</div>
   <div style="font-size:11px;color:#999;margin-top:2px">${g} · ${r}/10</div>
@@ -1584,18 +1609,56 @@ async function buildDigestHTML(env, now) {
     }).join("")
     : "";
 
+  // ── TV Section (enhanced: premieresThisWeek with S/E + details) ──
+  const tvPicks = (tvData.premieresThisWeek || []).slice(0, 3);
+  const tvPicksHtml = tvPicks.length
+    ? tvPicks.map(s => {
+      const g = genreStr(s.genre);
+      const r = s.rating || 0;
+      const se = s.season ? `S${s.season}${s.episode ? `E${s.episode}` : ""}` : "";
+      const tag = se ? `${se} · ` : "";
+      const summary = safeSummary(s.summary);
+      return `<div style="background:#000;border:2px solid #00ffff;padding:10px;margin:6px 0">
+  <div style="font-size:14px;color:#00ffff;font-weight:bold">${s.title || ""}</div>
+  <div style="font-size:11px;color:#999;margin-top:2px">${tag}${g} · ${r}/10</div>
+  ${summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${summary}</div>` : ""}
+</div>`;
+    }).join("")
+    : "";
+
+  // ── Music Section (enhanced: multi-category with highlights) ──
+  const musicPicks = musicData.picks || [];
+  const musicCategories = [
+    { id: "trending", label: "🔥 热门趋势", enLabel: "Trending", color: "#ff00ff" },
+    { id: "editor", label: "⭐ 编辑推荐", enLabel: "Editor's Pick", color: "#ffff00" },
+    { id: "hidden", label: "💎 隐藏宝石", enLabel: "Hidden Gem", color: "#00ffff" },
+    { id: "world", label: "🌍 环球音乐", enLabel: "World Music", color: "#00ff00" },
+  ];
+  const musicHtml = musicPicks.length
+    ? musicCategories.map(cat => {
+      const items = musicPicks.filter(p => p.recommendationTagId === cat.id).slice(0, 2);
+      if (!items.length) return "";
+      return `<div style="margin:6px 0">
+  <p style="font-size:11px;color:${cat.color};font-weight:bold;margin:0 0 4px;text-transform:uppercase">${cat.label}</p>
+  ${items.map(a => {
+    const hl = a.highlight ? ` — ${a.highlight}` : "";
+    const l = a.listeners ? ` · ${(a.listeners/1000).toFixed(0)}k 听众` : "";
+    return `<div style="font-size:12px;color:#ccc;line-height:1.5;padding:2px 0"><strong style="color:#fff">${a.title || ""}</strong>${a.artist ? ` <span style="color:#999">${a.artist}</span>` : ""}${hl}</div>`;
+  }).join("")}
+</div>`;
+    }).join("")
+    : "";
+
   // ── Stats ──
   const statsHtml = `<table style="width:100%;border-collapse:collapse;background:#111">
     <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">🎬 电影上新</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.moviesReleased || 0}</td></tr>
     <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">📺 剧集在播</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.tvAiringThisWeek || 0}</td></tr>
-    <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">💿 专辑发行</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.albumsReleased || 0}</td></tr>
+    <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">💿 专辑发行</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${musicPicks.length || 0}</td></tr>
     <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">🔥 热榜变动</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.trending || 0}</td></tr>
   </table>`;
 
   // ── Assemble full HTML ──
   const unsubUrl = `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=`;
-  const title = (text) => `<div style="display:flex;align-items:center;gap:6px;margin:12px 0 8px"><span style="font-size:16px;font-weight:bold;color:#ffff00;text-transform:uppercase">${text}</span></div>`;
-  const divider = `<div style="border-top:2px dashed #333;margin:16px 0"></div>`;
 
   const html = `<!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -1640,15 +1703,12 @@ async function buildDigestHTML(env, now) {
 
   ${divider}
 
-  <!-- Coming Soon -->
-  ${comingHtml ? `
-  ${title("▶ 即将上映")}
-  ${comingHtml}
-  <div style="text-align:right;margin:4px 0">
-    <a href="https://bloodyrex.xyz/intelligence/coming" style="font-size:11px;color:#ff00ff">查看全部 →</a>
-  </div>` : ""}
+  <!-- Release Calendar (Movies + TV) -->
+  ${calendarHtml ? `
+  ${title("📅 排片日历")}
+  ${calendarHtml}` : ""}
 
-  ${divider}
+  ${calendarHtml ? divider : ""}
 
   <!-- Editor's Picks (Movies) -->
   ${editorsHtml ? `
@@ -1658,35 +1718,29 @@ async function buildDigestHTML(env, now) {
     <a href="https://bloodyrex.xyz/intelligence/movies" style="font-size:11px;color:#ff00ff">查看全部电影 →</a>
   </div>` : ""}
 
-  ${divider}
+  ${editorsHtml ? divider : ""}
 
-  <!-- TV Section -->
-  ${hotTVHtml ? `
+  <!-- TV Section (enhanced: premieres with S/E + details) -->
+  ${tvPicksHtml ? `
   ${title("📺 本周剧集精选")}
-  <div style="background:#000;border:2px solid #00ffff;padding:10px;margin:6px 0">
-    ${hotTV.slice(0, 2).map(s => {
-      const g = Array.isArray(s.genre) ? s.genre.slice(0, 2).join(" / ") : (s.genre || "");
-      return `<div style="margin:4px 0"><span style="font-size:13px;color:#fff;font-weight:bold">${s.title || ""}</span>${g ? ` <span style="font-size:11px;color:#999">· ${g}</span>` : ""}</div>`;
-    }).join("")}
-  </div>
+  ${tvPicksHtml}
   <div style="text-align:right;margin:4px 0">
     <a href="https://bloodyrex.xyz/intelligence/tv" style="font-size:11px;color:#00ffff">查看全部剧集 →</a>
   </div>` : ""}
 
-  ${divider}
+  ${tvPicksHtml ? divider : ""}
 
-  <!-- Music Section -->
+  <!-- Music Section (enhanced: multi-category with highlights) -->
+  ${musicHtml ? `
   ${title("💿 本周音乐精选")}
   <div style="background:#000;border:2px solid #ffff00;padding:10px;margin:6px 0">
-    <p style="font-size:12px;color:#ccc;margin:0">本周共发行 <strong style="color:#ffff00">${stats.albumsReleased || 0}</strong> 张新专辑</p>
-    ${musicPicks.length ? `<div style="margin-top:6px;font-size:11px;color:#999;line-height:1.6">${musicPicks.map(a => `🎵 ${a.title || ""}${a.artist ? ` — ${a.artist}` : ""}`).join("<br>")}</div>` : ""}
-    <p style="font-size:11px;color:#999;margin:4px 0 0">涵盖流行、摇滚、电子、嘻哈等多种风格，由 AI 精选推荐</p>
+    ${musicHtml}
   </div>
   <div style="text-align:right;margin:4px 0">
     <a href="https://bloodyrex.xyz/intelligence/music" style="font-size:11px;color:#ffff00">查看全部专辑 →</a>
-  </div>
+  </div>` : ""}
 
-  ${divider}
+  ${musicHtml ? divider : ""}
 
   <!-- Stats + CTA -->
   <div style="background:#000;border:4px solid #ff00ff;padding:10px;margin:12px 0">
@@ -1710,7 +1764,6 @@ async function buildDigestHTML(env, now) {
 
   return { html, date, stats };
 }
-
 async function handleSendDigest(request, env) {
   const corsHeaders = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "POST, OPTIONS" };
   const auth = request.headers.get("Authorization");
