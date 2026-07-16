@@ -1106,8 +1106,7 @@ async function handleIntelWeekly(env) {
     .filter(intelRatingOk)
     .filter(s => (s.popularity || 0) >= 80);
   const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today);
-  const tvEnriched = await intelFetchTVEpisodeDates(tvSelected, token);
-  const tvWeekly = tvEnriched.map((s, i) => ({ ...intelNormalizeMovie(s, "tv"), rank: i + 1, trend: "new" }));
+  const tvWeekly = tvSelected.map((s, i) => ({ ...intelNormalizeMovie(s, "tv"), rank: i + 1, trend: "new" }));
 
   return {
     updated: today,
@@ -1512,17 +1511,17 @@ async function handleSubscribe(request, env) {
 // ── Digest email builder: fetches rich data, returns ready-to-send HTML ──
 async function buildDigestHTML(env, now) {
   now = now || intelToday();
-  // Fetch sections in parallel (cached calls from daily pipeline)
-  const [digestData, weeklyData, comingData, overviewData] = await Promise.allSettled([
+  // Overview first (warms TMDB cache), then others in parallel
+  const overviewData = await Promise.allSettled([handleIntelOverview(env)]);
+  const overview = overviewData[0].status === "fulfilled" ? overviewData[0].value : {};
+  const [digestData, weeklyData, comingData] = await Promise.allSettled([
     handleIntelDigest(env),
     handleIntelWeekly(env),
     handleIntelComing(env),
-    handleIntelOverview(env),
   ]);
   const digest = digestData.status === "fulfilled" ? digestData.value : {};
   const weekly = weeklyData.status === "fulfilled" ? weeklyData.value : {};
   const coming = comingData.status === "fulfilled" ? comingData.value : {};
-  const overview = overviewData.status === "fulfilled" ? overviewData.value : {};
   const stats = overview.stats || {};
   const date = digest.date || overview.updated || now;
 
@@ -1787,6 +1786,7 @@ async function sendDigestToAll(env) {
     // Sanity check: if overview returned all-zero stats, TMDB likely failed
     // Don't cache bad data; let retry rebuild fresh
     if (!result.stats?.moviesReleased && !result.stats?.tvAiringThisWeek) {
+      console.warn("Digest overview data empty, will retry on next attempt");
       await env.SUBSCRIBE_KV.delete(`digest:${today}`);
       await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "failed", attemptCount }), { expirationTtl: 172800 });
       return { ok: false, sent: 0, error: "overview data empty (TMDB likely failed)", attemptCount };
