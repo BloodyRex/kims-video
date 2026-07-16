@@ -1511,24 +1511,35 @@ async function handleSubscribe(request, env) {
 // ── Digest email builder: fetches rich data, returns ready-to-send HTML ──
 async function buildDigestHTML(env, now) {
   now = now || intelToday();
-  // Overview first (warms TMDB cache), then others in parallel
-  const overviewData = await Promise.allSettled([handleIntelOverview(env)]);
-  const overview = overviewData[0].status === "fulfilled" ? overviewData[0].value : {};
-  const [digestData, weeklyData, comingData] = await Promise.allSettled([
-    handleIntelDigest(env),
-    handleIntelWeekly(env),
-    handleIntelComing(env),
+  const BASE = "https://bloodyrex.xyz/api";
+
+  // Fetch all static JSON files — pre-fetched by daily pipeline, zero API cost
+  const safeJson = async (result) => {
+    if (result.status !== "fulfilled") return null;
+    try { return await result.value.json(); } catch { return null; }
+  };
+
+  const [digestR, overviewR, weeklyR, comingR, tvR, musicR] = await Promise.allSettled([
+    fetch(`${BASE}/digest.json`), fetch(`${BASE}/overview.json`),
+    fetch(`${BASE}/weekly.json`), fetch(`${BASE}/coming.json`),
+    fetch(`${BASE}/tv.json`), fetch(`${BASE}/music.json`),
   ]);
-  const digest = digestData.status === "fulfilled" ? digestData.value : {};
-  const weekly = weeklyData.status === "fulfilled" ? weeklyData.value : {};
-  const coming = comingData.status === "fulfilled" ? comingData.value : {};
+
+  const dig = await safeJson(digestR) || {};
+  const overview = await safeJson(overviewR) || {};
+  const weekly = await safeJson(weeklyR) || {};
+  const coming = await safeJson(comingR) || {};
+  const tvData = await safeJson(tvR) || {};
+  const musicData = await safeJson(musicR) || {};
+
   const stats = overview.stats || {};
-  const date = digest.date || overview.updated || now;
+  const date = dig.date || overview.updated || now;
+  const musicPicks = (musicData.picks || []).filter(p => p.recommendationTagId === "trending" || p.recommendationTagId === "editor").slice(0, 5);
 
   // ── Daily Digest section ──
-  const headline = digest.headline || "";
-  const summaryZh = digest.summary || "";
-  const trends = (digest.topTrends || []).slice(0, 5);
+  const headline = dig.headline || "";
+  const summaryZh = dig.summary || "";
+  const trends = (dig.topTrends || []).slice(0, 5);
   const trendsHtml = trends.length
     ? `<div style="margin:8px 0">${trends.map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:2px 7px;font-size:10px;font-weight:bold;margin:2px;text-transform:uppercase">${t.title}</span>`).join("")}</div>`
     : "";
@@ -1543,7 +1554,7 @@ async function buildDigestHTML(env, now) {
     : "";
   const hotTVHtml = hotTV.length
     ? `<table style="width:100%;border-collapse:collapse">${hotTV.map((s, i) =>
-      `<tr><td style="padding:3px 6px;font-size:13px;color:#fff;width:20px;vertical-align:top;background:#111"><strong style="color:#00ffff">${i+1}.</strong></td><td style="padding:3px 6px;font-size:13px;color:#fff;background:#111">${s.title || ""}</td></tr>`
+      `<tr><td style="padding:3px 6px;font-size:13px;color:#fff;width:20px;vertical-align:top;background:#111"><strong style="color:#00ffff">${i+1}.</strong></td><td style="padding:3px 6px;font-size:13px;color:#fff;background:#111">${s.title || ""}${s.season ? ` <span style="font-size:10px;color:#999">S${s.season}${s.episode ? `E${s.episode}` : ""}</span>` : ""}</td></tr>`
     ).join("")}</table>`
     : "";
 
@@ -1668,6 +1679,7 @@ async function buildDigestHTML(env, now) {
   ${title("💿 本周音乐精选")}
   <div style="background:#000;border:2px solid #ffff00;padding:10px;margin:6px 0">
     <p style="font-size:12px;color:#ccc;margin:0">本周共发行 <strong style="color:#ffff00">${stats.albumsReleased || 0}</strong> 张新专辑</p>
+    ${musicPicks.length ? `<div style="margin-top:6px;font-size:11px;color:#999;line-height:1.6">${musicPicks.map(a => `🎵 ${a.title || ""}${a.artist ? ` — ${a.artist}` : ""}`).join("<br>")}</div>` : ""}
     <p style="font-size:11px;color:#999;margin:4px 0 0">涵盖流行、摇滚、电子、嘻哈等多种风格，由 AI 精选推荐</p>
   </div>
   <div style="text-align:right;margin:4px 0">
