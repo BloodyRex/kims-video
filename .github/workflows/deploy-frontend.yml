@@ -7,6 +7,7 @@ on:
       - "index.html"
       - "vite.config.*"
       - "package.json"
+      - "public/api/**"
       - ".github/workflows/deploy-frontend.yml"
     branches: [main]
   workflow_dispatch:
