@@ -1540,6 +1540,7 @@ async function buildDigestHTML(env, now) {
   // ── Helpers ──
   const genreStr = (g) => Array.isArray(g) ? g.slice(0, 2).join(" / ") : (g || "");
   const safeSummary = (s) => (s || "").slice(0, 120);
+  const thumb = (url) => (url || "").replace("/w500/", "/w92/");
   const title = (text) => `<div style="display:flex;align-items:center;gap:6px;margin:12px 0 8px"><span style="font-size:16px;font-weight:bold;color:#ffff00;text-transform:uppercase">${text}</span></div>`;
   const divider = `<div style="border-top:2px dashed #333;margin:16px 0"></div>`;
   const card = (inner, borderColor) => `<div style="background:#000;border:2px solid ${borderColor};padding:10px;margin:6px 0">${inner}</div>`;
@@ -1566,32 +1567,42 @@ async function buildDigestHTML(env, now) {
     ).join("")}</table>`
     : "";
 
-  // ── Release Calendar (replaces Coming Soon) ──
-  // Movies: from movies.json upcoming (has daysUntil)
-  const movieCalendar = (moviesData.upcoming || []).filter(m => m.daysUntil !== undefined && m.daysUntil <= 30).slice(0, 6);
-  // TV: from coming.json items with mediaType="tv" (has daysUntil)
-  const allComing = [...(coming.next7Days || []), ...(coming.next30Days || [])];
-  const tvCalendar = allComing.filter(c => c.mediaType === "tv" && c.daysUntil !== undefined).slice(0, 6);
+  // ── Release Calendar — stacked, same sources as website, sorted, deduped ──
+  const today = new Date();
+  const calcDays = (item) => {
+    const d = item.releaseDate || item.release_date || item.first_air_date || "";
+    if (!d) return 999;
+    return Math.max(0, Math.ceil((new Date(d) - today) / 86400000));
+  };
+  // Movies: same source as website (movies.json.upcoming, has daysUntil)
+  const movieCalendar = (moviesData.upcoming || [])
+    .map(m => ({ ...m, _days: m.daysUntil !== undefined ? m.daysUntil : calcDays(m) }))
+    .filter(m => m._days <= 30)
+    .sort((a, b) => a._days - b._days)
+    .slice(0, 6);
+  // TV: same source as website (tv.json.upcoming), calculate daysUntil
+  const tvCalendar = (tvData.upcoming || [])
+    .map(s => ({ ...s, _days: calcDays(s) }))
+    .filter(s => s._days <= 30)
+    .sort((a, b) => a._days - b._days)
+    .slice(0, 6);
   const calendarRow = (item) => {
-    const d = item.daysUntil || 0;
+    const d = item._days;
     const label = d === 0 ? "今日" : d <= 3 ? `${d}天后` : `${d}天`;
     const g = genreStr(item.genre);
     return `<tr><td style="padding:2px 6px;font-size:10px;color:#ff00ff;white-space:nowrap;width:36px;background:#111">${label}</td><td style="padding:2px 6px;font-size:12px;color:#fff;background:#111">${item.title || ""}</td><td style="padding:2px 6px;font-size:10px;color:#999;text-align:right;background:#111">${g}</td></tr>`;
   };
   const calendarHtml = (movieCalendar.length || tvCalendar.length)
-    ? `<table style="width:100%"><tr>
-    <td style="vertical-align:top;padding-right:8px;width:50%">
-      <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 电影排片</p>
-      <table style="width:100%;border-collapse:collapse">${movieCalendar.length ? movieCalendar.map(calendarRow).join("") : '<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">暂无</td></tr>'}</table>
-    </td>
-    <td style="vertical-align:top;padding-left:8px;width:50%">
-      <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 剧集排片</p>
-      <table style="width:100%;border-collapse:collapse">${tvCalendar.length ? tvCalendar.map(calendarRow).join("") : '<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">暂无</td></tr>'}</table>
-    </td>
-  </tr></table>
-  <div style="text-align:right;margin:4px 0">
-    <a href="https://bloodyrex.xyz/intelligence/coming" style="font-size:11px;color:#ff00ff">查看全部排片 →</a>
-  </div>`
+    ? `<div style="background:#000;border:2px dashed #444;padding:8px;margin:6px 0">
+  <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 电影排片</p>
+  <table style="width:100%;border-collapse:collapse">${movieCalendar.length ? movieCalendar.map(calendarRow).join("") : '<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">暂无</td></tr>'}</table>
+  <div style="border-top:1px dashed #333;margin:8px 0"></div>
+  <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 剧集排片</p>
+  <table style="width:100%;border-collapse:collapse">${tvCalendar.length ? tvCalendar.map(calendarRow).join("") : '<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">暂无</td></tr>'}</table>
+</div>
+<div style="text-align:right;margin:4px 0">
+  <a href="https://bloodyrex.xyz/intelligence/coming" style="font-size:11px;color:#ff00ff">查看全部排片 →</a>
+</div>`
     : "";
 
   // ── Editor's Picks (movies) ──
@@ -1601,10 +1612,16 @@ async function buildDigestHTML(env, now) {
       const g = genreStr(pick.genre);
       const r = pick.rating || 0;
       const s = safeSummary(pick.summary);
-      return `<div style="background:#000;border:2px solid #ff00ff;padding:10px;margin:6px 0">
-  <div style="font-size:14px;color:#ffff00;font-weight:bold">${pick.title || ""}</div>
-  <div style="font-size:11px;color:#999;margin-top:2px">${g} · ${r}/10</div>
-  ${s ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s}</div>` : ""}
+      const poster = thumb(pick.poster);
+      return `<div style="background:#000;border:2px solid #ff00ff;padding:8px;margin:6px 0">
+  <table style="width:100%"><tr>
+    ${poster ? `<td style="width:46px;vertical-align:top;padding-right:8px"><img src="${poster}" alt="" style="width:46px;height:69px;border:1px solid #333;display:block"></td>` : ""}
+    <td style="vertical-align:top">
+      <div style="font-size:14px;color:#ffff00;font-weight:bold">${pick.title || ""}</div>
+      <div style="font-size:11px;color:#999;margin-top:2px">${g} · ${r}/10</div>
+      ${s ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s}</div>` : ""}
+    </td>
+  </tr></table>
 </div>`;
     }).join("")
     : "";
@@ -1618,10 +1635,16 @@ async function buildDigestHTML(env, now) {
       const se = s.season ? `S${s.season}${s.episode ? `E${s.episode}` : ""}` : "";
       const tag = se ? `${se} · ` : "";
       const summary = safeSummary(s.summary);
-      return `<div style="background:#000;border:2px solid #00ffff;padding:10px;margin:6px 0">
-  <div style="font-size:14px;color:#00ffff;font-weight:bold">${s.title || ""}</div>
-  <div style="font-size:11px;color:#999;margin-top:2px">${tag}${g} · ${r}/10</div>
-  ${summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${summary}</div>` : ""}
+      const poster = thumb(s.poster);
+      return `<div style="background:#000;border:2px solid #00ffff;padding:8px;margin:6px 0">
+  <table style="width:100%"><tr>
+    ${poster ? `<td style="width:46px;vertical-align:top;padding-right:8px"><img src="${poster}" alt="" style="width:46px;height:69px;border:1px solid #333;display:block"></td>` : ""}
+    <td style="vertical-align:top">
+      <div style="font-size:14px;color:#00ffff;font-weight:bold">${s.title || ""}</div>
+      <div style="font-size:11px;color:#999;margin-top:2px">${tag}${g} · ${r}/10</div>
+      ${summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${summary}</div>` : ""}
+    </td>
+  </tr></table>
 </div>`;
     }).join("")
     : "";
