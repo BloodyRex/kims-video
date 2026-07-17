@@ -2,8 +2,8 @@ name: Digest Send Backup
 
 on:
   schedule:
-    # 05:00 Beijing = 21:00 UTC previous day — GH Actions sends before Worker would
-    - cron: "0 21 * * *"
+    # 06:28 Beijing = 22:28 UTC previous day
+    - cron: "28 22 * * *"
   workflow_dispatch:
 
 concurrency:
