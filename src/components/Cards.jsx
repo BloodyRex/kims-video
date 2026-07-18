@@ -737,7 +737,7 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
   const enriched = detailData || {};
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-2 sm:p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-3 sm:p-6" onClick={onClose}>
       <div className="bg-white border-8 max-sm:border-4 border-black max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-[16px_16px_0_0_#ffff00] max-sm:shadow-[8px_8px_0_0_#ffff00]" onClick={e => e.stopPropagation()}>
 
         {/* Header bar */}
@@ -831,6 +831,20 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
                   ))}
                 </div>
               )}
+
+              {/* TMDB 外部链接 */}
+              {!isMusic && item.tmdbId && (
+                <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font mt-3">
+                  {locale === "en" ? "View on TMDB" : "TMDB 查看资料"}
+                </a>
+              )}
+              {isMusic && mbUrl && (
+                <a href={mbUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font mt-3">
+                  {locale === "en" ? "View on MusicBrainz" : "MusicBrainz 查看资料"}
+                </a>
+              )}
             </div>
           </div>
 
@@ -864,17 +878,6 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
 
         {/* Action Buttons */}
         <div className="border-t-4 border-black p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row gap-2 sm:gap-3">
-          {!isMusic && item.tmdbId ? (
-            <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center text-black bg-[#00ffff] border-4 border-black px-6 py-3 uppercase font-bold hover:bg-black hover:text-[#00ffff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
-              {locale === "en" ? "View on TMDB" : "TMDB 查看完整资料"}
-            </a>
-          ) : isMusic && mbUrl ? (
-            <a href={mbUrl} target="_blank" rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center text-black bg-[#00ffff] border-4 border-black px-6 py-3 uppercase font-bold hover:bg-black hover:text-[#00ffff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
-              {locale === "en" ? "View on MusicBrainz" : "MusicBrainz 查看资料"}
-            </a>
-          ) : null}
           <button onClick={onClose}
             className="flex-1 flex items-center justify-center text-white bg-black border-4 border-black px-6 py-3 uppercase font-bold hover:bg-gray-800 transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
             {locale === "en" ? "Back" : "返回"}
