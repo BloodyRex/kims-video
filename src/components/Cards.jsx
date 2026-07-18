@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Icons } from "./Icons";
+import { fetchMovieByTmdbId } from "../services/api";
 
 // ── Image proxy helper ──
 function posterUrl(path) {
@@ -723,6 +724,18 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
   const musicGenres = isMusic ? albumGenres(item) : [];
   const musicGenresEn = isMusic ? albumGenresEn(item) : [];
 
+  // Lazy-load enriched details (director, runtime, cast) from Worker API
+  const [detailData, setDetailData] = useState(null);
+  useEffect(() => {
+    if (!item.tmdbId || isMusic) return;
+    let cancelled = false;
+    fetchMovieByTmdbId(item.tmdbId, locale).then(data => {
+      if (!cancelled && data) setDetailData(data);
+    });
+    return () => { cancelled = true; };
+  }, [item.tmdbId, isMusic, locale]);
+  const enriched = detailData || {};
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4" onClick={onClose}>
       <div className="bg-white border-4 border-black max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-[12px_12px_0_0_#ff00ff]" onClick={e => e.stopPropagation()}>
@@ -751,12 +764,29 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
             )}
             <div className="flex-1 min-w-0">
               <h2 className="text-lg font-black leading-tight mb-1">{title}</h2>
+              {!isMusic && item.titleEn && item.titleEn !== title && (
+                <p className="text-xs text-gray-500 italic font-bold mb-1 truncate">{item.titleEn}</p>
+              )}
               {isMusic && item.artist && <p className="text-sm text-gray-600 font-bold mb-1">{item.artist}</p>}
               {item.year && <p className="text-sm text-gray-500 mb-1">{item.year}</p>}
               <div className="flex items-center gap-2 mb-2">
                 <StarRating score={item.rating} max={10} />
                 <AIScoreBadge score={item.aiScore} confidence={item.confidence} />
               </div>
+              {!isMusic && (enriched.director || enriched.runtime) && (
+                <div className="flex flex-wrap gap-2 mb-2 text-[10px]">
+                  {enriched.director && (
+                    <span className="bg-white text-black px-1.5 py-0.5 font-bold border border-gray-300 leading-none">
+                      🎬 {locale === "en" ? (enriched.directorEn || enriched.director) : enriched.director}
+                    </span>
+                  )}
+                  {enriched.runtime && (
+                    <span className="bg-black text-white px-1.5 py-0.5 font-bold border border-gray-600 leading-none">
+                      ⏱ {locale === "en" ? `${enriched.runtime} min` : `${enriched.runtime}分钟`}
+                    </span>
+                  )}
+                </div>
+              )}
               {isMusic
                 ? (musicGenres.length > 0
                   ? <div className="flex flex-wrap gap-1">{musicGenres.map((t, i) => <span key={i} className="text-[9px] px-1.5 py-0.5 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[t] || t) : t}</span>)}</div>
@@ -765,6 +795,15 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
                 <div className="flex flex-wrap gap-1">
                   {genres.map((g, i) => (
                     <span key={i} className="text-[9px] px-1.5 py-0.5 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
+                  ))}
+                </div>
+              )}
+              {!isMusic && enriched.cast && enriched.cast.length > 0 && (
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {enriched.cast.slice(0, 5).map((actor, i) => (
+                    <span key={i} className="text-[9px] px-1.5 py-0.5 bg-black text-white font-bold border border-gray-600 leading-none">
+                      🎭 {actor}
+                    </span>
                   ))}
                 </div>
               )}
