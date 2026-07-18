@@ -738,7 +738,7 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-2 sm:p-4" onClick={onClose}>
-      <div className="bg-white border-8 max-sm:border-4 border-black max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-[16px_16px_0_0_#ffff00] max-sm:shadow-[8px_8px_0_0_#ff00ff]" onClick={e => e.stopPropagation()}>
+      <div className="bg-white border-8 max-sm:border-4 border-black max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-[16px_16px_0_0_#ffff00] max-sm:shadow-[8px_8px_0_0_#ffff00]" onClick={e => e.stopPropagation()}>
 
         {/* Header bar */}
         <div className="bg-black text-white px-4 sm:px-5 py-2 sm:py-3 flex items-center justify-between gap-2">
@@ -837,7 +837,7 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
           {/* Summary */}
           {item.summary && (
             <div className="bg-[#f0f0f0] border-4 border-black p-4 mb-4">
-              <p className="text-black font-bold leading-relaxed text-xs sm:text-sm">
+              <p className="text-black font-bold leading-relaxed text-sm sm:text-base">
                 {locale === "en" ? (item.summaryEn || item.summary) : item.summary}
               </p>
             </div>
@@ -866,17 +866,17 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
         <div className="border-t-4 border-black p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row gap-2 sm:gap-3">
           {!isMusic && item.tmdbId ? (
             <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
-              className="flex-1 px-4 py-3 text-[10px] sm:text-xs font-black text-center text-black bg-[#00ffff] border-2 border-black shadow-[4px_4px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
+              className="flex-1 flex items-center justify-center text-black bg-[#00ffff] border-4 border-black px-6 py-3 uppercase font-bold hover:bg-black hover:text-[#00ffff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
               {locale === "en" ? "View on TMDB" : "TMDB 查看完整资料"}
             </a>
           ) : isMusic && mbUrl ? (
             <a href={mbUrl} target="_blank" rel="noopener noreferrer"
-              className="flex-1 px-4 py-3 text-[10px] sm:text-xs font-black text-center text-black bg-[#00ffff] border-2 border-black shadow-[4px_4px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
+              className="flex-1 flex items-center justify-center text-black bg-[#00ffff] border-4 border-black px-6 py-3 uppercase font-bold hover:bg-black hover:text-[#00ffff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
               {locale === "en" ? "View on MusicBrainz" : "MusicBrainz 查看资料"}
             </a>
           ) : null}
           <button onClick={onClose}
-            className="flex-1 px-4 py-3 text-[10px] sm:text-xs font-black text-center text-white bg-black border-2 border-black shadow-[4px_4px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
+            className="flex-1 flex items-center justify-center text-white bg-black border-4 border-black px-6 py-3 uppercase font-bold hover:bg-gray-800 transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
             {locale === "en" ? "Back" : "返回"}
           </button>
         </div>
