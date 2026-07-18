@@ -737,8 +737,9 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
   const enriched = detailData || {};
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-3 sm:p-6" onClick={onClose}>
-      <div className="bg-white border-8 max-sm:border-4 border-black max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-[16px_16px_0_0_#ffff00] max-sm:shadow-[8px_8px_0_0_#ffff00]" onClick={e => e.stopPropagation()}>
+    <div className="fixed inset-0 z-50 overflow-y-auto" onClick={onClose}>
+      <div className="min-h-full flex items-center justify-center p-3 sm:p-6">
+        <div className="bg-white border-8 max-sm:border-4 border-black max-w-4xl w-full shadow-[16px_16px_0_0_#ffff00] max-sm:shadow-[8px_8px_0_0_#ffff00]" onClick={e => e.stopPropagation()}>
 
         {/* Header bar */}
         <div className="bg-black text-white px-4 sm:px-5 py-2 sm:py-3 flex items-center justify-between gap-2">
@@ -836,13 +837,13 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
               {!isMusic && item.tmdbId && (
                 <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
                   className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font mt-3">
-                  {locale === "en" ? "View on TMDB" : "TMDB 查看资料"}
+                  {locale === "en" ? "View on TMDB ↗" : "在 TMDB 查看完整资料 ↗"}
                 </a>
               )}
               {isMusic && mbUrl && (
                 <a href={mbUrl} target="_blank" rel="noopener noreferrer"
                   className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font mt-3">
-                  {locale === "en" ? "View on MusicBrainz" : "MusicBrainz 查看资料"}
+                  {locale === "en" ? "View on MusicBrainz ↗" : "MusicBrainz 查看资料 ↗"}
                 </a>
               )}
             </div>
@@ -882,6 +883,7 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
             className="flex-1 flex items-center justify-center text-white bg-black border-4 border-black px-6 py-3 uppercase font-bold hover:bg-gray-800 transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
             {locale === "en" ? "Back" : "返回"}
           </button>
+        </div>
         </div>
       </div>
     </div>
