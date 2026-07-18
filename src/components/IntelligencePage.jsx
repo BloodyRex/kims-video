@@ -526,13 +526,19 @@ function IntelligencePage() {
 
         {/* Main content */}
         <main className="flex-1 p-4 sm:p-6 min-w-0">
-          {activeNav === "overview" && <OverviewView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
-          {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
-          {activeNav === "tv" && <TVView locale={locale} onViewDetail={(item) => handleViewDetail(item, "tv")} />}
-          {activeNav === "music" && <MusicView locale={locale} onViewDetail={(item) => handleViewDetail(item, "music")} />}
-          {activeNav === "coming" && <ComingView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
-          {activeNav === "weekly" && <WeeklyView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
-          {activeNav === "search" && <SearchView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
+          {detailItem ? (
+            <IntelDetailModal item={detailItem} type={detailType} locale={locale} onClose={() => setDetailItem(null)} />
+          ) : (
+            <>
+              {activeNav === "overview" && <OverviewView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
+              {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
+              {activeNav === "tv" && <TVView locale={locale} onViewDetail={(item) => handleViewDetail(item, "tv")} />}
+              {activeNav === "music" && <MusicView locale={locale} onViewDetail={(item) => handleViewDetail(item, "music")} />}
+              {activeNav === "coming" && <ComingView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
+              {activeNav === "weekly" && <WeeklyView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
+              {activeNav === "search" && <SearchView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
+            </>
+          )}
         </main>
       </div>
 
@@ -559,10 +565,6 @@ function IntelligencePage() {
           <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
         </p>
       </footer>
-      {/* Detail Modal */}
-      {detailItem && (
-        <IntelDetailModal item={detailItem} type={detailType} locale={locale} onClose={() => setDetailItem(null)} />
-      )}
     </div>
   );
 }
