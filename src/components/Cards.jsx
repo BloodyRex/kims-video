@@ -738,13 +738,13 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-2 sm:p-4" onClick={onClose}>
-      <div className="bg-white border-4 sm:border-8 border-black max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-[8px_8px_0_0_#ffff00] sm:shadow-[12px_12px_0_0_#ff00ff]" onClick={e => e.stopPropagation()}>
+      <div className="bg-white border-8 max-sm:border-4 border-black max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-[16px_16px_0_0_#ffff00] max-sm:shadow-[8px_8px_0_0_#ff00ff]" onClick={e => e.stopPropagation()}>
         {/* Header bar */}
-        <div className="bg-black text-white px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-2">
+        <div className="bg-black text-white px-4 sm:px-5 py-2 sm:py-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 min-w-0">
             <span className="font-black pixel-font text-[#ff00ff] text-[10px] sm:text-xs flex-shrink-0">{typeLabel}</span>
             {isMusic && item.recommendationTag && (
-              <span className="text-[8px] sm:text-[9px] px-1 py-0.5 font-black bg-[#ffff00] text-black leading-none">
+              <span className="text-[8px] sm:text-[9px] px-1 py-[3px] font-black bg-[#ffff00] text-black leading-none">
                 {locale === "en" ? (item.recommendationTagEn || item.recommendationTag) : item.recommendationTag}
               </span>
             )}
@@ -753,18 +753,18 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
         </div>
 
         {/* Body */}
-        <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4">
+        <div className="p-5 max-sm:p-4 sm:p-6 md:p-8">
           {/* Poster + Info row */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="flex flex-col md:flex-row gap-4 sm:gap-6 mb-4 sm:mb-6">
             {/* Poster */}
-            <div className="flex-shrink-0 mx-auto sm:mx-0">
+            <div className="w-full md:w-44 flex-shrink-0">
               {item.poster ? (
-                <div className="border-4 border-black overflow-hidden shadow-[3px_3px_0_0_#000]">
-                  <img src={posterUrl(item.poster)} alt={title} className="w-24 h-36 sm:w-28 sm:h-40 object-cover" />
+                <div className="border-4 border-black overflow-hidden shadow-[4px_4px_0_0_#000]">
+                  <img src={posterUrl(item.poster)} alt={title} className="w-full h-auto object-cover" />
                 </div>
               ) : (
-                <div className="w-24 h-36 sm:w-28 sm:h-40 bg-gray-800 border-4 border-black flex items-center justify-center text-gray-500 font-bold shadow-[3px_3px_0_0_#000]">
-                  <Icons.Film className="w-6 h-6 sm:w-8 sm:h-8" />
+                <div className="border-4 border-black bg-gray-800 text-white flex items-center justify-center h-48 sm:h-60 text-xs pixel-font shadow-[4px_4px_0_0_#000]">
+                  <Icons.Film className="w-8 h-8" />
                 </div>
               )}
             </div>
@@ -772,35 +772,35 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
             {/* Info */}
             <div className="flex-1 min-w-0">
               {/* Title block - dark bg */}
-              <div className="bg-black border-2 border-[#00ffff] p-2 sm:p-3 mb-3">
-                <h2 className="text-sm sm:text-lg font-black text-white leading-tight">{title}</h2>
+              <div className="bg-black border-2 border-[#00ffff] p-3 sm:p-4 mb-4">
+                <h2 className="text-xl sm:text-2xl font-black text-white leading-tight">{title}</h2>
                 {!isMusic && item.titleEn && item.titleEn !== title && (
-                  <p className="text-[10px] sm:text-xs text-[#00ffff] italic font-bold truncate mt-0.5">{item.titleEn}</p>
+                  <p className="text-xs sm:text-sm text-[#00ffff] italic font-bold truncate mt-1">{item.titleEn}</p>
                 )}
-                {isMusic && item.artist && <p className="text-[10px] sm:text-xs text-gray-400 font-bold mt-0.5">{item.artist}</p>}
-                <div className="flex flex-wrap items-center gap-2 mt-1.5">
-                  <span className="bg-[#ff00ff] text-white px-1.5 sm:px-2 py-0.5 font-black pixel-font text-[8px] sm:text-[10px] border border-white leading-none">
+                {isMusic && item.artist && <p className="text-xs sm:text-sm text-gray-400 font-bold mt-1">{item.artist}</p>}
+                <div className="flex flex-wrap items-center gap-2 mt-2">
+                  <span className="bg-[#ff00ff] text-white px-2 py-[3px] font-black pixel-font text-[10px] sm:text-xs border-2 border-white leading-none">
                     {item.year || ""} | {isMusic ? (locale === "en" ? "ALBUM" : "专辑") : type === "tv" ? (locale === "en" ? "TV" : "剧集") : (locale === "en" ? "MOVIE" : "电影")}
                   </span>
                 </div>
               </div>
 
               {/* Rating + AI Score */}
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <StarRating score={item.rating} max={10} />
                 <AIScoreBadge score={item.aiScore} confidence={item.confidence} />
               </div>
 
               {/* Director / Runtime */}
               {!isMusic && (enriched.director || enriched.runtime) && (
-                <div className="flex flex-wrap gap-2 mb-2">
+                <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
                   {enriched.director && (
-                    <span className="bg-white text-black px-1.5 py-0.5 font-black text-[10px] border-2 border-black leading-none">
+                    <span className="bg-white text-black px-2 py-1 font-black text-[10px] sm:text-xs border-2 border-black leading-none">
                       🎬 {locale === "en" ? (enriched.directorEn || enriched.director) : enriched.director}
                     </span>
                   )}
                   {enriched.runtime && (
-                    <span className="bg-black text-white px-1.5 py-0.5 font-black text-[10px] border-2 border-[#00ffff] leading-none">
+                    <span className="bg-black text-white px-2 py-1 font-black text-[10px] sm:text-xs border-2 border-[#00ffff] leading-none">
                       ⏱ {locale === "en" ? `${enriched.runtime} min` : `${enriched.runtime}分钟`}
                     </span>
                   )}
@@ -810,21 +810,21 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
               {/* Genre tags */}
               {isMusic
                 ? (musicGenres.length > 0
-                  ? <div className="flex flex-wrap gap-1 mb-2">{musicGenres.map((t, i) => <span key={i} className="text-[8px] sm:text-[9px] px-1.5 py-0.5 bg-black text-white font-bold border border-gray-600">{locale === "zh" ? (GENRE_ZH[t] || t) : t}</span>)}</div>
+                  ? <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">{musicGenres.map((t, i) => <span key={i} className="text-[9px] sm:text-xs px-2 py-[3px] bg-black text-white font-bold border border-gray-600">{locale === "zh" ? (GENRE_ZH[t] || t) : t}</span>)}</div>
                   : null)
                 : genres.length > 0 && (
-                <div className="flex flex-wrap gap-1 mb-2">
+                <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
                   {genres.map((g, i) => (
-                    <span key={i} className="text-[8px] sm:text-[9px] px-1.5 py-0.5 bg-black text-white font-bold border border-[#ff00ff]">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
+                    <span key={i} className="text-[9px] sm:text-xs px-2 py-[3px] bg-black text-white font-bold border border-[#ff00ff]">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
                   ))}
                 </div>
               )}
 
               {/* Cast */}
               {!isMusic && enriched.cast && enriched.cast.length > 0 && (
-                <div className="flex flex-wrap gap-1 mb-2">
+                <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
                   {enriched.cast.slice(0, 5).map((actor, i) => (
-                    <span key={i} className="text-[8px] sm:text-[9px] px-1.5 py-0.5 bg-gray-900 text-white font-bold border border-gray-600 leading-none">
+                    <span key={i} className="text-[9px] sm:text-xs px-2 py-[3px] bg-gray-900 text-white font-bold border border-gray-600 leading-none">
                       🎭 {actor}
                     </span>
                   ))}
@@ -833,9 +833,9 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
 
               {/* Tags (AI labels) */}
               {!isMusic && item.tags && item.tags.length > 0 && (
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-1 sm:gap-2">
                   {item.tags.slice(0, 3).map((t, i) => (
-                    <span key={i} className="text-[8px] px-1 py-0.5 bg-[#ffff00] text-black font-black border border-black leading-none" style={{ fontSize: "8px" }}>
+                    <span key={i} className="text-[8px] sm:text-[10px] px-1.5 py-[2px] bg-[#ffff00] text-black font-black border border-black leading-none">
                       #{locale === "en" ? (item.tagsEn?.[i] || t) : t}
                     </span>
                   ))}
@@ -846,28 +846,26 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
 
           {/* Summary */}
           {item.summary && (
-            <div className="bg-[#f0f0f0] border-4 border-black p-3 sm:p-4">
+            <div className="bg-[#f0f0f0] border-4 border-black p-4 sm:p-5 mb-4">
               <p className="text-xs sm:text-sm text-black font-bold leading-relaxed">
                 {locale === "en" ? (item.summaryEn || item.summary) : item.summary}
               </p>
             </div>
           )}
 
-          {/* Tags below summary (music only) */}
+          {/* Music extras */}
           {isMusic && musicGenres.length > 0 && (
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
               {musicGenres.map((t, i) => (
-                <span key={i} className="text-[9px] px-1.5 py-0.5 border-2 border-black font-black" style={{ color: "#333", borderColor: "#333" }}>
+                <span key={i} className="text-[9px] sm:text-xs px-2 py-[3px] border-2 border-black font-black" style={{ color: "#333", borderColor: "#333" }}>
                   {locale === "zh" ? (GENRE_ZH[t] || t) : (musicGenresEn[i] || t)}
                 </span>
               ))}
             </div>
           )}
-
-          {/* AI recommendation tag for music */}
           {isMusic && item.recommendationTag && (
-            <div className="bg-black border-2 border-[#ffff00] p-2">
-              <span className="text-[10px] text-[#ffff00] font-black pixel-font">
+            <div className="bg-black border-2 border-[#ffff00] p-3 mb-4">
+              <span className="text-[10px] sm:text-xs text-[#ffff00] font-black pixel-font">
                 {locale === "en" ? (item.recommendationTagEn || item.recommendationTag) : item.recommendationTag}
               </span>
             </div>
@@ -875,20 +873,20 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
         </div>
 
         {/* Action Buttons (unchanged) */}
-        <div className="border-t-4 border-black p-3 sm:p-4 flex flex-col sm:flex-row gap-2">
+        <div className="border-t-4 border-black p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row gap-2 sm:gap-3">
           {!isMusic && item.tmdbId ? (
             <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
-              className="flex-1 px-3 py-2.5 text-[10px] font-black text-center text-black bg-[#00ffff] border-2 border-black shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
+              className="flex-1 px-4 py-3 text-[10px] sm:text-xs font-black text-center text-black bg-[#00ffff] border-2 border-black shadow-[4px_4px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
               {locale === "en" ? "View on TMDB" : "TMDB 查看完整资料"}
             </a>
           ) : isMusic && mbUrl ? (
             <a href={mbUrl} target="_blank" rel="noopener noreferrer"
-              className="flex-1 px-3 py-2.5 text-[10px] font-black text-center text-black bg-[#00ffff] border-2 border-black shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
+              className="flex-1 px-4 py-3 text-[10px] sm:text-xs font-black text-center text-black bg-[#00ffff] border-2 border-black shadow-[4px_4px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
               {locale === "en" ? "View on MusicBrainz" : "MusicBrainz 查看资料"}
             </a>
           ) : null}
           <button onClick={onClose}
-            className="flex-1 px-3 py-2.5 text-[10px] font-black text-center text-white bg-black border-2 border-black shadow-[3px_3px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
+            className="flex-1 px-4 py-3 text-[10px] sm:text-xs font-black text-center text-white bg-black border-2 border-black shadow-[4px_4px_0_0_#000] hover:translate-y-0.5 hover:shadow-[1px_1px_0_0_#000] transition-all pixel-font uppercase">
             {locale === "en" ? "Back" : "返回"}
           </button>
         </div>
