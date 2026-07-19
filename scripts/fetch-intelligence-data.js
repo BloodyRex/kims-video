@@ -74,6 +74,7 @@ async function main() {
   ];
 
   let anyChange = false;
+  let failCount = 0;
 
   for (const task of tasks) {
     const filePath = join(API_DIR, task.file);
@@ -98,6 +99,7 @@ async function main() {
       console.log(`OK ${task.file} — ${changed ? "NEW DATA" : "unchanged"}`);
     } catch (e) {
       console.error(`FAIL ${task.file}: ${e.message}`);
+      failCount++;
       // Don't set exit code — non-critical endpoint failure shouldn't block commit
     }
   }
@@ -164,6 +166,13 @@ async function main() {
     console.log("\nNo data changes detected — skipping commit.");
   } else {
     console.log("\nData updated — ready for commit.");
+  }
+
+  // If ALL endpoints failed, signal retry (partial failure still commits)
+  const tasksTotal = tasks.length;
+  if (failCount === tasksTotal) {
+    console.error(`FAIL ALL ${failCount}/${tasksTotal} endpoints failed — triggering retry`);
+    process.exitCode = 1;
   }
 
   console.log("Pipeline done:", beijingDate());

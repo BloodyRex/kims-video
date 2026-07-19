@@ -20,17 +20,31 @@ jobs:
         with:
           node-version: 20
 
-      - name: Fetch intelligence data
-        run: node scripts/fetch-intelligence-data.js
+      - name: Fetch intelligence data (with retry)
+        run: |
+          for i in 1 2 3; do
+            echo "=== Attempt $i ==="
+            if node scripts/fetch-intelligence-data.js; then
+              echo "Pipeline succeeded"
+              exit 0
+            fi
+            echo "Attempt $i failed"
+            if [ "$i" -lt 3 ]; then
+              echo "Retrying in 30 seconds..."
+              sleep 30
+            fi
+          done
+          echo "All 3 attempts failed"
+          exit 1
         env:
           WORKER_BASE_URL: ${{ vars.WORKER_BASE_URL || 'https://api.bloodyrex.xyz' }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           MUSICBRAINZ_USER_AGENT: "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)"
 
-      - name: Commit and push
+      - name: Commit and push (with retry)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/api/
           git commit -m "chore: daily intelligence data update [data]" || echo "No changes to commit"
-          git push
+          git push || (echo "Push failed, retrying..." && sleep 10 && git push) || echo "WARN: git push failed after 2 attempts"
