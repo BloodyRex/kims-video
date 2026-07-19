@@ -98,7 +98,7 @@ async function main() {
       console.log(`OK ${task.file} — ${changed ? "NEW DATA" : "unchanged"}`);
     } catch (e) {
       console.error(`FAIL ${task.file}: ${e.message}`);
-      process.exitCode = 1;
+      // Don't set exit code — non-critical endpoint failure shouldn't block commit
     }
   }
 
@@ -157,7 +157,7 @@ async function main() {
     console.log(`[MUSIC] Done in ${((Date.now() - musicStart) / 1000).toFixed(1)}s`);
   } catch (e) {
     console.error(`FAIL music pipeline: ${e.message}`);
-    process.exitCode = 1;
+    // Don't set exit code — music pipeline failure shouldn't block commit of other data
   }
 
   if (!anyChange) {
