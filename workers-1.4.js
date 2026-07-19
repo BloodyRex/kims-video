@@ -1850,12 +1850,25 @@ async function sendDigestToAll(env) {
   // ── Build or retrieve cached digest (generated once per day) ──
 
   let html, date;
+  let rebuildCache = false;
   const cachedDigest = await env.SUBSCRIBE_KV.get(`digest:${today}`);
   if (cachedDigest) {
     const parsed = JSON.parse(cachedDigest);
-    html = parsed.html;
-    date = parsed.date;
-  } else {
+    // Validate cached date against current digest.json — if data has been
+    // updated after cache was built (e.g. pipeline re-run), rebuild fresh
+    try {
+      const digCheck = await fetch("https://bloodyrex.xyz/api/digest.json").then(r => r.ok ? r.json() : null);
+      if (digCheck?.date && digCheck.date !== parsed.date) {
+        console.log(`Cache stale: cached=${parsed.date}, current=${digCheck.date} — rebuilding`);
+        rebuildCache = true;
+      }
+    } catch {}
+    if (!rebuildCache) {
+      html = parsed.html;
+      date = parsed.date;
+    }
+  }
+  if (!html) {
     // Build with timeout (60s — generous for cron, avoids hanging HTTP requests)
     const result = await withTimeout(
       buildDigestHTML(env, today),
