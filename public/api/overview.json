@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-18",
+  "updated": "2026-07-19",
   "stats": {
-    "moviesReleased": 1,
+    "moviesReleased": 3,
     "tvAiringThisWeek": 20,
     "albumsReleased": 25,
     "trending": 20
@@ -16,7 +16,7 @@
       "year": "2026",
       "releaseDate": "2026-07-17",
       "poster": "https://image.tmdb.org/t/p/w500/Aj0Uykxj0vhwVsyrRJka0aM3SP1.jpg",
-      "rating": 7,
+      "rating": 7.714,
       "genre": [
         "Adventure",
         "Action",
@@ -24,9 +24,45 @@
       ],
       "summary": "特洛伊战争结束后，伊萨卡国王奥德修斯踏上了返回家乡的艰险旅程。",
       "summaryEn": "Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, "
+    },
+    {
+      "tmdbId": 1473505,
+      "title": "夺命旅程",
+      "titleEn": "Kill Trip",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-07-17",
+      "poster": "https://image.tmdb.org/t/p/w500/qHEXW63p1NcuoyCGQHDroi4HV9V.jpg",
+      "rating": 5,
+      "genre": [
+        "Horror",
+        "Thriller"
+      ],
+      "summary": "一群朋友搭便车前往得克萨斯州的ACL音乐节，司机安静却充满磁性。但当人们开始神秘消失时，有一件事变得明确：并非所有人都能抵达奥斯汀。《杀途》是一部不遗余力的得克萨斯公路恐怖惊悚片，将一场无忧无虑的节日之旅变成了一场噩梦和某种截然不同的东西。",
+      "summaryEn": "On the way to a Texas music festival, a group of friends catches a ride with a magnetic van driver. But when people start vanishing, the real headliner becomes survival."
     }
   ],
   "comingSoon": [
+    {
+      "tmdbId": 969681,
+      "title": "蜘蛛侠：崭新之日",
+      "titleEn": "Spider-Man: Brand New Day",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-07-29",
+      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
+      "rating": 0,
+      "genre": [
+        "Sci-Fi",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "重建普通生活后，彼得一边在大学完成学业、一边从事兼职以维持生计，同时仍肩负着守护纽约街头的蜘蛛侠责任。然而，当一个神秘力量从内部腐蚀这座城市的安全与秩序，彼得被迫再次披上战衣。他必须在强大的敌人与昔日纽带之间找到平衡，并重新定义英雄的意义。",
+      "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
+      "daysUntil": 10
+    },
     {
       "tmdbId": 980431,
       "title": "安昂传奇：最后的气宗",
@@ -45,26 +81,7 @@
       ],
       "summary": "派拉蒙和尼克宣布“降世神通”系列开发三部新的电影，仍是动画形式。第一部由《降世神通：最后的气宗》导演Lauren Montgomery执导，《最后的气宗》主创Bryan Konietzko和Michael DiMartino担任制片人。",
       "summaryEn": "Avatar Aang, the world's last Airbender, learns of an ancient power that could save his culture from extinction. With the help of his friends, he embarks on a global quest to find it before it falls i",
-      "daysUntil": 6
-    },
-    {
-      "tmdbId": 969681,
-      "title": "蜘蛛侠：崭新之日",
-      "titleEn": "Spider-Man: Brand New Day",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-07-29",
-      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
-      "rating": 0,
-      "genre": [
-        "Sci-Fi",
-        "Action",
-        "Adventure"
-      ],
-      "summary": "重建普通生活后，彼得一边在大学完成学业、一边从事兼职以维持生计，同时仍肩负着守护纽约街头的蜘蛛侠责任。然而，当一个神秘力量从内部腐蚀这座城市的安全与秩序，彼得被迫再次披上战衣。他必须在强大的敌人与昔日纽带之间找到平衡，并重新定义英雄的意义。",
-      "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
-      "daysUntil": 11
+      "daysUntil": 5
     }
   ],
   "trending": [
@@ -77,7 +94,7 @@
       "year": "2026",
       "releaseDate": "2026-07-15",
       "poster": "https://image.tmdb.org/t/p/w500/Aj0Uykxj0vhwVsyrRJka0aM3SP1.jpg",
-      "rating": 7.077,
+      "rating": 7.721,
       "genre": [
         "Adventure",
         "Action",
@@ -97,7 +114,7 @@
       "year": "2026",
       "releaseDate": "2026-05-27",
       "poster": "https://image.tmdb.org/t/p/w500/7flxvNLk48fvJel8zHDGqMFvQ9C.jpg",
-      "rating": 7.016,
+      "rating": 7.038,
       "genre": [
         "Horror",
         "Mystery",
@@ -117,7 +134,7 @@
       "year": "2026",
       "releaseDate": "2026-05-13",
       "poster": "https://image.tmdb.org/t/p/w500/5kNrhOgyREvm62H0rG1tuSrzirR.jpg",
-      "rating": 8.248,
+      "rating": 8.2,
       "genre": [
         "Horror",
         "Thriller"
@@ -128,24 +145,46 @@
       "trend": "new"
     },
     {
-      "tmdbId": 1468683,
-      "title": "心跳为你停：直到永远",
-      "titleEn": "Heartstopper Forever",
+      "tmdbId": 1108427,
+      "title": "海洋奇缘：启航",
+      "titleEn": "Moana",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-07-14",
-      "poster": "https://image.tmdb.org/t/p/w500/7b6FOyJzF7rSl2lrR4ovzBveXQ2.jpg",
-      "rating": 5.2,
+      "releaseDate": "2026-07-08",
+      "poster": "https://image.tmdb.org/t/p/w500/9BnjnrfoZbeNjwXICd8Sax8zKeH.jpg",
+      "rating": 5.792,
       "genre": [
-        "Romance",
-        "Drama"
+        "Family",
+        "Fantasy",
+        "Comedy",
+        "Adventure"
       ],
-      "summary": "特鲁厄姆-希格斯的学生迎来新学年。随着尼克和查理的关系日渐深厚，两人也开始思考毕业后的未来。",
-      "summaryEn": "特鲁厄姆-希格斯的学生迎来新学年。随着尼克和查理的关系日渐深厚，两人也开始思考毕业后的未来。",
+      "summary": "海的召唤，从未停止。熟悉的旋律响起，属于“莫阿娜”的冒险，再次扬帆启航。",
+      "summaryEn": "Teenage Moana answers the Ocean's call and, for the first time, voyages beyond the reef of her island of Motunui with infamous demigod Maui on an unforgettable journey to restore prosperity to her peo",
+      "rank": 4,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 1280738,
+      "title": "火遮眼",
+      "titleEn": "The Furious",
+      "originalLanguage": "zh",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-06-10",
+      "poster": "https://image.tmdb.org/t/p/w500/k334z7zxOJlJvOsOwyRF6HClCvi.jpg",
+      "rating": 7.443,
+      "genre": [
+        "Action",
+        "Crime",
+        "Thriller"
+      ],
+      "summary": "女儿在街头被拐走，店主（谢苗 饰）探寻一个复杂的犯罪网络，不择手段将女儿救回来。他唯一的盟友是一名记者（乔•塔斯利姆 饰）。这两个来自不同背景的人物必须学会相互信任、合作，运用自己不为人知的过去所赋予的格斗技能。",
+      "summaryEn": "After a criminal network kidnaps Wang Wei's daughter and the corrupt police refuse to assist him, Wei sets out on his own to locate her. Navin, a tenacious journalist whose wife has mysteriously vanis",
       "rank": 5,
       "trend": "new"
     }
   ],
-  "brief": "Today: 1 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
+  "brief": "Today: 3 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
 }
