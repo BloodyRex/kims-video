@@ -17,7 +17,7 @@ jobs:
       - name: Trigger digest send via Worker API
         run: |
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
-            "https://api.bloodyrex.xyz/intelligence/send-digest" \
+            "https://api.bloodyrex.xyz/intelligence/send-digest?force=true" \
             -H "Authorization: Bearer ${{ secrets.DIGEST_SECRET }}" \
             -H "Content-Type: application/json")
           HTTP_CODE=$(echo "$RESPONSE" | tail -1)
