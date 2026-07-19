@@ -1791,7 +1791,9 @@ async function handleSendDigest(request, env) {
   const corsHeaders = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "POST, OPTIONS" };
   const auth = request.headers.get("Authorization");
   if (!auth || auth !== `Bearer ${env.DIGEST_SECRET}`) return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
-  const result = await sendDigestToAll(env);
+  const url = new URL(request.url);
+  const force = url.searchParams.get("force") === "true";
+  const result = await sendDigestToAll(env, force);
   return Response.json(result, { headers: corsHeaders });
 }
 
@@ -1810,7 +1812,7 @@ async function withTimeout(promise, ms, label) {
   }
 }
 
-async function sendDigestToAll(env) {
+async function sendDigestToAll(env, force) {
   if (!env.RESEND_API_KEY) return { ok: false, error: "Resend not configured" };
   if (!env.SUBSCRIBE_KV) return { ok: false, error: "KV not configured" };
 
@@ -1822,11 +1824,11 @@ async function sendDigestToAll(env) {
   const status = raw ? JSON.parse(raw) : null;
 
   // Backward compat: also check old lastDigestSent key
-  if (status?.status === "sent") {
+  if (!force && status?.status === "sent") {
     return { ok: true, sent: 0, skipped: "already sent today" };
   }
   const oldSent = await env.SUBSCRIBE_KV.get("lastDigestSent");
-  if (oldSent === today && !status) {
+  if (!force && oldSent === today && !status) {
     // Migrate old key to new format
     await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "sent", attemptCount: 1 }), { expirationTtl: 172800 });
     return { ok: true, sent: 0, skipped: "already sent today" };
