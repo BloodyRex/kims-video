@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-20",
+  "updated": "2026-07-21",
   "stats": {
-    "moviesReleased": 3,
+    "moviesReleased": 5,
     "tvAiringThisWeek": 20,
     "albumsReleased": 25,
     "trending": 20
@@ -16,7 +16,7 @@
       "year": "2026",
       "releaseDate": "2026-07-17",
       "poster": "https://image.tmdb.org/t/p/w500/Aj0Uykxj0vhwVsyrRJka0aM3SP1.jpg",
-      "rating": 7.7,
+      "rating": 7.824,
       "genre": [
         "Adventure",
         "Action",
@@ -26,24 +26,42 @@
       "summaryEn": "Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, "
     },
     {
-      "tmdbId": 1473505,
-      "title": "夺命旅程",
-      "titleEn": "Kill Trip",
+      "tmdbId": 1727780,
+      "title": "边界线",
+      "titleEn": "Borderline",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
       "releaseDate": "2026-07-17",
-      "poster": "https://image.tmdb.org/t/p/w500/qHEXW63p1NcuoyCGQHDroi4HV9V.jpg",
-      "rating": 5,
+      "poster": "https://image.tmdb.org/t/p/w500/sAA2mjpYJFAKydtzG4P4aHC4mZk.jpg",
+      "rating": 0,
       "genre": [
-        "Horror",
         "Thriller"
       ],
-      "summary": "一群朋友搭便车前往得克萨斯州的ACL音乐节，司机安静却充满磁性。但当人们开始神秘消失时，有一件事变得明确：并非所有人都能抵达奥斯汀。《杀途》是一部不遗余力的得克萨斯公路恐怖惊悚片，将一场无忧无虑的节日之旅变成了一场噩梦和某种截然不同的东西。",
-      "summaryEn": "On the way to a Texas music festival, a group of friends catches a ride with a magnetic van driver. But when people start vanishing, the real headliner becomes survival."
+      "summary": "一伙擅自行动的美国特工坚信自己是国家隐秘救星，他们绑架墨西哥黑帮成员，将这批人分散投放到美国各大城市。此举引发大规模犯罪骚乱，特工们刻意煽动本土排外偏见、左右选民立场；流血冲突持续升级，民主体系岌岌可危，执法部门必须争分夺秒，揭穿这场惊天阴谋。",
+      "summaryEn": "Convinced they are our secret saviors, rogue U.S. operatives abduct Mexican gang members and seed them across major American cities, unleashing criminal chaos, swaying voters by playing on nativist pr"
     }
   ],
   "comingSoon": [
+    {
+      "tmdbId": 969681,
+      "title": "蜘蛛侠：崭新之日",
+      "titleEn": "Spider-Man: Brand New Day",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-07-28",
+      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
+      "rating": 0,
+      "genre": [
+        "Sci-Fi",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "重建普通生活后，彼得一边在大学完成学业、一边从事兼职以维持生计，同时仍肩负着守护纽约街头的蜘蛛侠责任。然而，当一个神秘力量从内部腐蚀这座城市的安全与秩序，彼得被迫再次披上战衣。他必须在强大的敌人与昔日纽带之间找到平衡，并重新定义英雄的意义。",
+      "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
+      "daysUntil": 7
+    },
     {
       "tmdbId": 980431,
       "title": "安昂传奇：最后的气宗",
@@ -62,26 +80,7 @@
       ],
       "summary": "派拉蒙和尼克宣布“降世神通”系列开发三部新的电影，仍是动画形式。第一部由《降世神通：最后的气宗》导演Lauren Montgomery执导，《最后的气宗》主创Bryan Konietzko和Michael DiMartino担任制片人。",
       "summaryEn": "Avatar Aang, the world's last Airbender, learns of an ancient power that could save his culture from extinction. With the help of his friends, he embarks on a global quest to find it before it falls i",
-      "daysUntil": 4
-    },
-    {
-      "tmdbId": 969681,
-      "title": "蜘蛛侠：崭新之日",
-      "titleEn": "Spider-Man: Brand New Day",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-07-29",
-      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
-      "rating": 0,
-      "genre": [
-        "Sci-Fi",
-        "Action",
-        "Adventure"
-      ],
-      "summary": "重建普通生活后，彼得一边在大学完成学业、一边从事兼职以维持生计，同时仍肩负着守护纽约街头的蜘蛛侠责任。然而，当一个神秘力量从内部腐蚀这座城市的安全与秩序，彼得被迫再次披上战衣。他必须在强大的敌人与昔日纽带之间找到平衡，并重新定义英雄的意义。",
-      "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
-      "daysUntil": 9
+      "daysUntil": 3
     }
   ],
   "trending": [
@@ -94,7 +93,7 @@
       "year": "2026",
       "releaseDate": "2026-07-15",
       "poster": "https://image.tmdb.org/t/p/w500/Aj0Uykxj0vhwVsyrRJka0aM3SP1.jpg",
-      "rating": 7.735,
+      "rating": 7.818,
       "genre": [
         "Adventure",
         "Action",
@@ -114,7 +113,7 @@
       "year": "2026",
       "releaseDate": "2026-05-27",
       "poster": "https://image.tmdb.org/t/p/w500/7flxvNLk48fvJel8zHDGqMFvQ9C.jpg",
-      "rating": 7.049,
+      "rating": 7,
       "genre": [
         "Horror",
         "Mystery",
@@ -134,7 +133,7 @@
       "year": "2026",
       "releaseDate": "2026-05-13",
       "poster": "https://image.tmdb.org/t/p/w500/5kNrhOgyREvm62H0rG1tuSrzirR.jpg",
-      "rating": 8.248,
+      "rating": 8.25,
       "genre": [
         "Horror",
         "Thriller"
@@ -145,23 +144,21 @@
       "trend": "new"
     },
     {
-      "tmdbId": 1108427,
-      "title": "海洋奇缘：启航",
-      "titleEn": "Moana",
+      "tmdbId": 1273221,
+      "title": "惊声尖笑6",
+      "titleEn": "Scary Movie",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-07-08",
-      "poster": "https://image.tmdb.org/t/p/w500/8f4OJJrMtZcoB4h1BLyyZewd96X.jpg",
-      "rating": 5.853,
+      "releaseDate": "2026-06-03",
+      "poster": "https://image.tmdb.org/t/p/w500/lCt0tiCxlM4yhMSW3LOlpHUiQI4.jpg",
+      "rating": 6,
       "genre": [
-        "Family",
-        "Fantasy",
         "Comedy",
-        "Adventure"
+        "Horror"
       ],
-      "summary": "海的召唤，从未停止。熟悉的旋律响起，属于“莫阿娜”的冒险，再次扬帆启航。",
-      "summaryEn": "Teenage Moana answers the Ocean's call and, for the first time, voyages beyond the reef of her island of Motunui with infamous demigod Maui on an unforgettable journey to restore prosperity to her peo",
+      "summary": "在逃离那个似曾相识的面具杀手二十六年后，核心四人组再度成为猎杀目标，而这一次，所有恐怖电影IP都将无一幸免。",
+      "summaryEn": "Twenty-six years after outrunning a suspiciously familiar masked killer, the Core Four are back in the killer's crosshairs and no horror movie IP is safe.",
       "rank": 4,
       "trend": "new"
     },
@@ -174,7 +171,7 @@
       "year": "2026",
       "releaseDate": "2026-07-16",
       "poster": "https://image.tmdb.org/t/p/w500/pxrdN5dMQZzFdg1U0MGts3vlOzw.jpg",
-      "rating": 7.726,
+      "rating": 7.705,
       "genre": [
         "Fantasy",
         "Family",
@@ -186,5 +183,5 @@
       "trend": "new"
     }
   ],
-  "brief": "Today: 3 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
+  "brief": "Today: 5 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
 }
