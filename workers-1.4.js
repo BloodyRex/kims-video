@@ -592,7 +592,7 @@ async function intelEnrichWithAI(items, type, env) {
     const res = await fetch("https://api.deepseek.com/chat/completions", {
       method: "POST",
       headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: maxTokens, response_format: { type: "json_object" } }),
+      body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: maxTokens, response_format: { type: "json_object" } }),
     });
     if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
     const data = await res.json();
@@ -692,7 +692,7 @@ Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "ğŸ”¥ çƒ
       method: "POST",
       headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "deepseek-chat",
+        model: "deepseek-v4-flash",
         messages: [{ role: "user", content: prompt }],
         temperature: 0.7,
         max_tokens: 8000,
@@ -1240,7 +1240,7 @@ Top 3-5 trends. 3-5 highlights.`;
     const res = await fetch("https://api.deepseek.com/chat/completions", {
       method: "POST",
       headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 1500 }),
+      body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 1500 }),
     });
     if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
     const data = await res.json();
@@ -1286,7 +1286,7 @@ Movies:\n${JSON.stringify(candidates.map((m, i) => ({ index: i, title: m.title, 
     const res = await fetch("https://api.deepseek.com/chat/completions", {
       method: "POST",
       headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "deepseek-chat", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 2000 }),
+      body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 2000 }),
     });
     if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
     const data = await res.json();
@@ -2063,7 +2063,7 @@ export default {
         if (body.tmdbId && !body.prompt) { const d = await fetchTMDBDetails(body.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN, body.language); return Response.json({ content: d || {} }, { headers: corsHeaders }); }
         if (body.searchTitle) { const r = await fetchTMDBEnrichment(body.searchTitle, body.searchYear || "", env.TMDB_API_READ_ACCESS_TOKEN, body.language); return Response.json({ content: r || { tmdbId: null } }, { headers: corsHeaders }); }
         const msgs = []; if (body.systemInstruction) msgs.push({ role: "system", content: body.systemInstruction }); let up = body.prompt; if (body.responseSchema) up += "\n\nIMPORTANT:\nReturn ONLY valid JSON.\nNo markdown.\nNo code block.\nNo explanation.\n"; msgs.push({ role: "user", content: up });
-        const res = await fetch("https://api.deepseek.com/chat/completions", { method: "POST", headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" }, body: JSON.stringify({ model: "deepseek-chat", messages: msgs, temperature: 0.7 }) });
+        const res = await fetch("https://api.deepseek.com/chat/completions", { method: "POST", headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" }, body: JSON.stringify({ model: "deepseek-v4-flash", messages: msgs, temperature: 0.7 }) });
         const result = await res.json(); const raw = result?.choices?.[0]?.message?.content || "";
         const sp = (c) => { if (typeof c !== "string") return c; try { return JSON.parse(c.replace(/```json/g,"").replace(/```/g,"").trim()); } catch { return { raw, error: "parse_failed" }; } };
         const parsed = sp(raw); let list = []; if (Array.isArray(parsed?.recommendations)) list = parsed.recommendations; else if (parsed?.recommendations) list = [parsed.recommendations]; else if (parsed?.title) list = [parsed];
