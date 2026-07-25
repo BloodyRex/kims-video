@@ -4,11 +4,13 @@ jobs:
   clear-and-send:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Clear digest status
-        run: npx wrangler@3.90.0 kv key delete "digestStatus:2026-07-25" --namespace-id "27b767e03348423dbcd9382a925446b2" --remote
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: kv key delete "digestStatus:2026-07-25" --namespace-id "27b767e03348423dbcd9382a925446b2" --remote
 
       - name: Wait for KV propagation
         run: sleep 10
