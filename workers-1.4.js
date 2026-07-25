@@ -986,7 +986,35 @@ async function handleIntelMusicV2(env, request) {
       tags: c.genres || [],
     }));
 
-    const aiPicks = await intelEnrichAlbums(aiInput, env);
+    let aiPicks = await intelEnrichAlbums(aiInput, env);
+
+    // Fallback: if AI returns nothing, sort by listeners with percentile tags
+    if (!aiPicks?.length && aiInput.length) {
+      const sorted = [...aiInput].sort((a, b) => (a.listeners || 0) - (b.listeners || 0));
+      aiPicks = [];
+      for (let i = 0; i < sorted.length; i++) {
+        const a = sorted[i];
+        const pct = i / sorted.length;
+        let tag, tagEn, tagId, cat;
+        if (pct < 0.3) { tag = "🔥 热门趋势"; tagEn = "Trending Now"; tagId = "trending"; cat = "trending"; }
+        else if (pct < 0.6) { tag = "⭐ 编辑推荐"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor"; }
+        else if (pct < 0.85) {
+          tag = (a.artistStars || 0) < 3 ? "⭐ 编辑推荐" : "💎 隐藏宝石";
+          tagEn = (a.artistStars || 0) < 3 ? "Editor's Pick" : "Hidden Gem";
+          tagId = (a.artistStars || 0) < 3 ? "editor" : "hidden";
+          cat = (a.artistStars || 0) < 3 ? "editor" : "hidden-gem";
+        } else {
+          tag = "🌍 环球音乐"; tagEn = "Around the World"; tagId = "world"; cat = "world";
+        }
+        aiPicks.push({
+          ...a, artist: a.artist || "", title: a.title || "",
+          recommendationTag: tag, recommendationTagEn: tagEn, recommendationTagId: tagId, category: cat,
+          highlight: a.highlight || `New release from ${a.artist || "unknown"}`,
+          highlightEn: a.highlightEn || `New release from ${a.artist || "unknown"}`,
+          summary: a.summary || "", summaryEn: a.summaryEn || "",
+        });
+      }
+    }
 
     // Cover art: top 3 from Cover Art Archive
     for (const item of (aiPicks || []).slice(0, 3)) {

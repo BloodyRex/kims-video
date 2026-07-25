@@ -5,7 +5,7 @@ export const INTELLIGENCE_CONFIG = {
   minArtistListeners: 500,
   artistCheckLimit: 80,
   albumEnrichLimit: 40,
-  candidateLimitForAI: 40,
+  candidateLimitForAI: 18,
   finalCount: 20,
   chartTags: [
     "hip hop", "pop", "rock", "electronic",
