@@ -9,9 +9,12 @@ jobs:
           curl -s -X DELETE \
             "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/storage/kv/namespaces/27b767e03348423dbcd9382a925446b2/values/digestStatus:2026-07-25" \
             -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"
+          curl -s -X DELETE \
+            "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/storage/kv/namespaces/27b767e03348423dbcd9382a925446b2/values/lastDigestSent" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"
 
       - name: Wait for KV propagation
-        run: sleep 10
+        run: sleep 15
 
       - name: Trigger digest resend
         run: >-
