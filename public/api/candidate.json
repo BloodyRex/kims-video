@@ -19,11 +19,11 @@
       "artistPlaycount": 7007767,
       "albumListeners": 2129,
       "albumPlaycount": 30170,
-      "score": 74.73471868675728,
+      "score": 73.73471868675728,
       "scoreBreakdown": {
         "artist": 35.09384037956566,
         "album": 16.640878307191613,
-        "freshness": 23
+        "freshness": 22
       }
     },
     {
@@ -130,54 +130,11 @@
       "artistPlaycount": 174661,
       "albumListeners": 469,
       "albumPlaycount": 1501,
-      "score": 66.26832761803018,
+      "score": 65.26832761803018,
       "scoreBreakdown": {
         "artist": 29.91246340445477,
         "album": 13.355864213575417,
-        "freshness": 23
-      }
-    },
-    {
-      "id": "mb-22daa424-0371-42bc-bee8-a12c6cb7ce6c",
-      "mbid": "22daa424-0371-42bc-bee8-a12c6cb7ce6c",
-      "title": "This Is the One",
-      "artist": "Utada",
-      "releaseDate": "2026-06-24",
-      "year": "2026",
-      "type": "Album",
-      "country": "JP",
-      "genres": [
-        "流行",
-        "best albums of 2009",
-        "节奏蓝调",
-        "2009",
-        "utada"
-      ],
-      "genresEn": [
-        "pop",
-        "best albums of 2009",
-        "rnb",
-        "2009",
-        "utada"
-      ],
-      "lfmTags": [
-        "pop",
-        "best albums of 2009",
-        "rnb",
-        "2009",
-        "utada"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 245338,
-      "artistPlaycount": 8074460,
-      "albumListeners": 120764,
-      "albumPlaycount": 3905680,
-      "score": 61.341452917944906,
-      "scoreBreakdown": {
-        "artist": 35.931765470504054,
-        "album": 25.409687447440856,
-        "freshness": 0
+        "freshness": 22
       }
     },
     {
@@ -514,56 +471,6 @@
       }
     },
     {
-      "id": "mb-67098c37-f75e-4384-983c-4ce8ac5bf0bb",
-      "mbid": "67098c37-f75e-4384-983c-4ce8ac5bf0bb",
-      "title": "Time Will Tell",
-      "artist": "Devon Gilfillian",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 82279,
-      "artistPlaycount": 424338,
-      "albumListeners": 823,
-      "albumPlaycount": 4058,
-      "score": 49.34559254099293,
-      "scoreBreakdown": {
-        "artist": 32.76859336493158,
-        "album": 14.57699917606135,
-        "freshness": 2
-      }
-    },
-    {
-      "id": "mb-03283d25-b04f-445f-ab39-ab51d45919c1",
-      "mbid": "03283d25-b04f-445f-ab39-ab51d45919c1",
-      "title": "Elephant in the Room",
-      "artist": "Fai Laci",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 47366,
-      "artistPlaycount": 365938,
-      "albumListeners": 1604,
-      "albumPlaycount": 8163,
-      "score": 49.19579989071201,
-      "scoreBreakdown": {
-        "artist": 31.16977807097129,
-        "album": 16.026021819740723,
-        "freshness": 2
-      }
-    },
-    {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
       "mbid": "50568f3c-616c-4d19-a8f1-8151ecb6eb72",
       "title": "Von Abseits",
@@ -654,6 +561,56 @@
         "artist": 33.821733280075534,
         "album": 14.561110282662078,
         "freshness": 0
+      }
+    },
+    {
+      "id": "mb-67098c37-f75e-4384-983c-4ce8ac5bf0bb",
+      "mbid": "67098c37-f75e-4384-983c-4ce8ac5bf0bb",
+      "title": "Time Will Tell",
+      "artist": "Devon Gilfillian",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 82279,
+      "artistPlaycount": 424338,
+      "albumListeners": 823,
+      "albumPlaycount": 4058,
+      "score": 48.34559254099293,
+      "scoreBreakdown": {
+        "artist": 32.76859336493158,
+        "album": 14.57699917606135,
+        "freshness": 1
+      }
+    },
+    {
+      "id": "mb-03283d25-b04f-445f-ab39-ab51d45919c1",
+      "mbid": "03283d25-b04f-445f-ab39-ab51d45919c1",
+      "title": "Elephant in the Room",
+      "artist": "Fai Laci",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 47366,
+      "artistPlaycount": 365938,
+      "albumListeners": 1604,
+      "albumPlaycount": 8163,
+      "score": 48.19579989071201,
+      "scoreBreakdown": {
+        "artist": 31.16977807097129,
+        "album": 16.026021819740723,
+        "freshness": 1
       }
     },
     {
@@ -1043,6 +1000,31 @@
       }
     },
     {
+      "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
+      "mbid": "017c16c7-e4c5-488d-8bde-d2e41a15096f",
+      "title": "Nick Collection 2",
+      "artist": "Pop! not soda.",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 3578,
+      "artistPlaycount": 44875,
+      "albumListeners": 199,
+      "albumPlaycount": 2175,
+      "score": 35.185200956924234,
+      "scoreBreakdown": {
+        "artist": 23.690935574875695,
+        "album": 11.494265382048535,
+        "freshness": 0
+      }
+    },
+    {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
       "mbid": "8cad04bc-f71b-4bbd-a518-77399a2352ad",
       "title": "Miten asiat oikeesti on?",
@@ -1065,31 +1047,6 @@
         "artist": 23.622152670979414,
         "album": 11.439008649651129,
         "freshness": 0
-      }
-    },
-    {
-      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "title": "Truthsayer",
-      "artist": "Outshine",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2663,
-      "artistPlaycount": 22366,
-      "albumListeners": 103,
-      "albumPlaycount": 414,
-      "score": 34.89999389978547,
-      "scoreBreakdown": {
-        "artist": 22.835807776259607,
-        "album": 10.064186123525861,
-        "freshness": 2
       }
     },
     {
@@ -1136,6 +1093,31 @@
       }
     },
     {
+      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "title": "Truthsayer",
+      "artist": "Outshine",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 2663,
+      "artistPlaycount": 22366,
+      "albumListeners": 103,
+      "albumPlaycount": 414,
+      "score": 33.89999389978547,
+      "scoreBreakdown": {
+        "artist": 22.835807776259607,
+        "album": 10.064186123525861,
+        "freshness": 1
+      }
+    },
+    {
       "id": "mb-03b901b9-3497-4666-8815-c526a4216ff0",
       "mbid": "03b901b9-3497-4666-8815-c526a4216ff0",
       "title": "Satanic Chaos Legions",
@@ -1159,11 +1141,11 @@
       "artistPlaycount": 2221360,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 33.292391998006195,
+      "score": 32.292391998006195,
       "scoreBreakdown": {
         "artist": 31.29239199800619,
         "album": 0,
-        "freshness": 2
+        "freshness": 1
       }
     },
     {
@@ -1242,64 +1224,6 @@
       }
     },
     {
-      "id": "mb-a965713d-65d9-4f95-a6b3-a276bada8d00",
-      "mbid": "a965713d-65d9-4f95-a6b3-a276bada8d00",
-      "title": "Howl",
-      "artist": "Emily Magpie",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "All"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1763,
-      "artistPlaycount": 6822,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 23.64168208199548,
-      "scoreBreakdown": {
-        "artist": 21.64168208199548,
-        "album": 0,
-        "freshness": 2
-      }
-    },
-    {
-      "id": "mb-1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
-      "mbid": "1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
-      "title": "Back into the Womb",
-      "artist": "Sans Froid",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "UK",
-        "Progressive rock",
-        "england",
-        "art rock",
-        "United Kingdom"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1752,
-      "artistPlaycount": 16838,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 23.623560678880413,
-      "scoreBreakdown": {
-        "artist": 21.623560678880413,
-        "album": 0,
-        "freshness": 2
-      }
-    },
-    {
       "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
       "mbid": "ed578194-4aa6-4100-a951-b57d40adc5d9",
       "title": "Det Karolinska Arvet",
@@ -1328,6 +1252,64 @@
         "artist": 22.73739028378912,
         "album": 0,
         "freshness": 0
+      }
+    },
+    {
+      "id": "mb-a965713d-65d9-4f95-a6b3-a276bada8d00",
+      "mbid": "a965713d-65d9-4f95-a6b3-a276bada8d00",
+      "title": "Howl",
+      "artist": "Emily Magpie",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "All"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1763,
+      "artistPlaycount": 6822,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 22.64168208199548,
+      "scoreBreakdown": {
+        "artist": 21.64168208199548,
+        "album": 0,
+        "freshness": 1
+      }
+    },
+    {
+      "id": "mb-1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
+      "mbid": "1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
+      "title": "Back into the Womb",
+      "artist": "Sans Froid",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "UK",
+        "Progressive rock",
+        "england",
+        "art rock",
+        "United Kingdom"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1752,
+      "artistPlaycount": 16838,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 22.623560678880413,
+      "scoreBreakdown": {
+        "artist": 21.623560678880413,
+        "album": 0,
+        "freshness": 1
       }
     },
     {

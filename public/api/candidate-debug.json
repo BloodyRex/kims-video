@@ -26,7 +26,7 @@
   },
   "stats": {
     "mbRaw": 300,
-    "afterFilter": 179,
+    "afterFilter": 180,
     "artistsChecked": 72,
     "afterArtistFilter": 53,
     "albumEnriched": 40,
@@ -53,13 +53,13 @@
       "artistPlaycount": 7007767,
       "albumListeners": 2129,
       "albumPlaycount": 30170,
-      "score": 74.73471868675728,
+      "score": 73.73471868675728,
       "scoreBreakdown": {
         "artist": 35.09384037956566,
         "album": 16.640878307191613,
-        "freshness": 23
+        "freshness": 22
       },
-      "daysOld": 7
+      "daysOld": 8
     },
     {
       "id": "mb-c6358baf-1e01-4991-ab6e-cb5d794e222a",
@@ -103,7 +103,7 @@
         "album": 30,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-6f7853c8-e90a-4886-9535-0a14fa328903",
@@ -147,7 +147,7 @@
         "album": 29.547472588309212,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-b88f81f3-c024-46b0-8d1c-0ffa2d0afaa7",
@@ -167,57 +167,13 @@
       "artistPlaycount": 174661,
       "albumListeners": 469,
       "albumPlaycount": 1501,
-      "score": 66.26832761803018,
+      "score": 65.26832761803018,
       "scoreBreakdown": {
         "artist": 29.91246340445477,
         "album": 13.355864213575417,
-        "freshness": 23
+        "freshness": 22
       },
-      "daysOld": 7
-    },
-    {
-      "id": "mb-22daa424-0371-42bc-bee8-a12c6cb7ce6c",
-      "mbid": "22daa424-0371-42bc-bee8-a12c6cb7ce6c",
-      "title": "This Is the One",
-      "artist": "Utada",
-      "releaseDate": "2026-06-24",
-      "year": "2026",
-      "type": "Album",
-      "country": "JP",
-      "genres": [
-        "流行",
-        "best albums of 2009",
-        "节奏蓝调",
-        "2009",
-        "utada"
-      ],
-      "genresEn": [
-        "pop",
-        "best albums of 2009",
-        "rnb",
-        "2009",
-        "utada"
-      ],
-      "lfmTags": [
-        "pop",
-        "best albums of 2009",
-        "rnb",
-        "2009",
-        "utada"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 245338,
-      "artistPlaycount": 8074460,
-      "albumListeners": 120764,
-      "albumPlaycount": 3905680,
-      "score": 61.341452917944906,
-      "scoreBreakdown": {
-        "artist": 35.931765470504054,
-        "album": 25.409687447440856,
-        "freshness": 0
-      },
-      "daysOld": 30
+      "daysOld": 8
     },
     {
       "id": "mb-ca12bdf9-c25a-4d98-9188-86d41c71efbd",
@@ -261,7 +217,7 @@
         "album": 22.022629198868735,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
@@ -305,7 +261,7 @@
         "album": 24.721524849375413,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
@@ -349,7 +305,7 @@
         "album": 24.604554073122262,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
@@ -375,7 +331,7 @@
         "album": 18.713232949693683,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
@@ -419,7 +375,7 @@
         "album": 20.653758883825713,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
@@ -463,7 +419,7 @@
         "album": 18.10015947563149,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-678bbf03-22b8-4342-bf02-7f0a0dcb353d",
@@ -489,7 +445,7 @@
         "album": 14.742064828893003,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-aca30a57-12bb-4a41-af25-59457048a844",
@@ -533,7 +489,7 @@
         "album": 21.401981190300713,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-268d81bf-6af4-4bfd-b4ce-41a7e777c144",
@@ -559,59 +515,7 @@
         "album": 20.059331782638623,
         "freshness": 0
       },
-      "daysOld": 204
-    },
-    {
-      "id": "mb-67098c37-f75e-4384-983c-4ce8ac5bf0bb",
-      "mbid": "67098c37-f75e-4384-983c-4ce8ac5bf0bb",
-      "title": "Time Will Tell",
-      "artist": "Devon Gilfillian",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 82279,
-      "artistPlaycount": 424338,
-      "albumListeners": 823,
-      "albumPlaycount": 4058,
-      "score": 49.34559254099293,
-      "scoreBreakdown": {
-        "artist": 32.76859336493158,
-        "album": 14.57699917606135,
-        "freshness": 2
-      },
-      "daysOld": 28
-    },
-    {
-      "id": "mb-03283d25-b04f-445f-ab39-ab51d45919c1",
-      "mbid": "03283d25-b04f-445f-ab39-ab51d45919c1",
-      "title": "Elephant in the Room",
-      "artist": "Fai Laci",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 47366,
-      "artistPlaycount": 365938,
-      "albumListeners": 1604,
-      "albumPlaycount": 8163,
-      "score": 49.19579989071201,
-      "scoreBreakdown": {
-        "artist": 31.16977807097129,
-        "album": 16.026021819740723,
-        "freshness": 2
-      },
-      "daysOld": 28
+      "daysOld": 205
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -655,7 +559,7 @@
         "album": 20.42341748951625,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
@@ -681,7 +585,7 @@
         "album": 17.839247252865533,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
@@ -707,7 +611,59 @@
         "album": 14.561110282662078,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
+    },
+    {
+      "id": "mb-67098c37-f75e-4384-983c-4ce8ac5bf0bb",
+      "mbid": "67098c37-f75e-4384-983c-4ce8ac5bf0bb",
+      "title": "Time Will Tell",
+      "artist": "Devon Gilfillian",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 82279,
+      "artistPlaycount": 424338,
+      "albumListeners": 823,
+      "albumPlaycount": 4058,
+      "score": 48.34559254099293,
+      "scoreBreakdown": {
+        "artist": 32.76859336493158,
+        "album": 14.57699917606135,
+        "freshness": 1
+      },
+      "daysOld": 29
+    },
+    {
+      "id": "mb-03283d25-b04f-445f-ab39-ab51d45919c1",
+      "mbid": "03283d25-b04f-445f-ab39-ab51d45919c1",
+      "title": "Elephant in the Room",
+      "artist": "Fai Laci",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 47366,
+      "artistPlaycount": 365938,
+      "albumListeners": 1604,
+      "albumPlaycount": 8163,
+      "score": 48.19579989071201,
+      "scoreBreakdown": {
+        "artist": 31.16977807097129,
+        "album": 16.026021819740723,
+        "freshness": 1
+      },
+      "daysOld": 29
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -733,7 +689,7 @@
         "album": 15.7460955632769,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -759,7 +715,7 @@
         "album": 14.120629169582745,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-15e13404-810d-4918-880f-1d43ac51d1fe",
@@ -785,7 +741,7 @@
         "album": 15.78728384067113,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
@@ -811,7 +767,7 @@
         "album": 17.975827073951148,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -855,7 +811,7 @@
         "album": 12.164846454372029,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
@@ -881,7 +837,7 @@
         "album": 12.726535582329118,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
@@ -907,7 +863,7 @@
         "album": 11.672268755754653,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
@@ -933,7 +889,7 @@
         "album": 2.385606273598312,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-f8536d9f-b285-4ec7-add3-62d1d53ccd14",
@@ -959,7 +915,7 @@
         "album": 5.206963425791125,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
@@ -985,7 +941,7 @@
         "album": 15.773641037200779,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
@@ -1011,7 +967,7 @@
         "album": 12.01560260587909,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
@@ -1037,7 +993,7 @@
         "album": 9.225490200071285,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
@@ -1081,7 +1037,7 @@
         "album": 8.817139967814686,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-eed0703e-1587-4667-81df-c390c4f6a59a",
@@ -1107,7 +1063,33 @@
         "album": 6.611096473669597,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
+    },
+    {
+      "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
+      "mbid": "017c16c7-e4c5-488d-8bde-d2e41a15096f",
+      "title": "Nick Collection 2",
+      "artist": "Pop! not soda.",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 3578,
+      "artistPlaycount": 44875,
+      "albumListeners": 199,
+      "albumPlaycount": 2175,
+      "score": 35.185200956924234,
+      "scoreBreakdown": {
+        "artist": 23.690935574875695,
+        "album": 11.494265382048535,
+        "freshness": 0
+      },
+      "daysOld": 205
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
@@ -1133,33 +1115,7 @@
         "album": 11.439008649651129,
         "freshness": 0
       },
-      "daysOld": 204
-    },
-    {
-      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
-      "title": "Truthsayer",
-      "artist": "Outshine",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2663,
-      "artistPlaycount": 22366,
-      "albumListeners": 103,
-      "albumPlaycount": 414,
-      "score": 34.89999389978547,
-      "scoreBreakdown": {
-        "artist": 22.835807776259607,
-        "album": 10.064186123525861,
-        "freshness": 2
-      },
-      "daysOld": 28
+      "daysOld": 205
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
@@ -1203,7 +1159,33 @@
         "album": 9.256291743595376,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
+    },
+    {
+      "id": "mb-a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "mbid": "a58fee59-c0b6-441e-ada2-f4f58626866d",
+      "title": "Truthsayer",
+      "artist": "Outshine",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 2663,
+      "artistPlaycount": 22366,
+      "albumListeners": 103,
+      "albumPlaycount": 414,
+      "score": 33.89999389978547,
+      "scoreBreakdown": {
+        "artist": 22.835807776259607,
+        "album": 10.064186123525861,
+        "freshness": 1
+      },
+      "daysOld": 29
     },
     {
       "id": "mb-03b901b9-3497-4666-8815-c526a4216ff0",
@@ -1229,13 +1211,13 @@
       "artistPlaycount": 2221360,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 33.292391998006195,
+      "score": 32.292391998006195,
       "scoreBreakdown": {
         "artist": 31.29239199800619,
         "album": 0,
-        "freshness": 2
+        "freshness": 1
       },
-      "daysOld": 28
+      "daysOld": 29
     },
     {
       "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
@@ -1261,7 +1243,7 @@
         "album": 7.592569699389438,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
@@ -1287,7 +1269,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-338d60e1-ad46-44c3-a5fa-b2b2d4daa554",
@@ -1313,67 +1295,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
-    },
-    {
-      "id": "mb-a965713d-65d9-4f95-a6b3-a276bada8d00",
-      "mbid": "a965713d-65d9-4f95-a6b3-a276bada8d00",
-      "title": "Howl",
-      "artist": "Emily Magpie",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "All"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1763,
-      "artistPlaycount": 6822,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 23.64168208199548,
-      "scoreBreakdown": {
-        "artist": 21.64168208199548,
-        "album": 0,
-        "freshness": 2
-      },
-      "daysOld": 28
-    },
-    {
-      "id": "mb-1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
-      "mbid": "1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
-      "title": "Back into the Womb",
-      "artist": "Sans Froid",
-      "releaseDate": "2026-06-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "UK",
-        "Progressive rock",
-        "england",
-        "art rock",
-        "United Kingdom"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1752,
-      "artistPlaycount": 16838,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 23.623560678880413,
-      "scoreBreakdown": {
-        "artist": 21.623560678880413,
-        "album": 0,
-        "freshness": 2
-      },
-      "daysOld": 28
+      "daysOld": 205
     },
     {
       "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
@@ -1405,7 +1327,67 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
+    },
+    {
+      "id": "mb-a965713d-65d9-4f95-a6b3-a276bada8d00",
+      "mbid": "a965713d-65d9-4f95-a6b3-a276bada8d00",
+      "title": "Howl",
+      "artist": "Emily Magpie",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "All"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1763,
+      "artistPlaycount": 6822,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 22.64168208199548,
+      "scoreBreakdown": {
+        "artist": 21.64168208199548,
+        "album": 0,
+        "freshness": 1
+      },
+      "daysOld": 29
+    },
+    {
+      "id": "mb-1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
+      "mbid": "1134d61a-3c6f-4515-a28a-c8e280bbc3dd",
+      "title": "Back into the Womb",
+      "artist": "Sans Froid",
+      "releaseDate": "2026-06-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "UK",
+        "Progressive rock",
+        "england",
+        "art rock",
+        "United Kingdom"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1752,
+      "artistPlaycount": 16838,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 22.623560678880413,
+      "scoreBreakdown": {
+        "artist": 21.623560678880413,
+        "album": 0,
+        "freshness": 1
+      },
+      "daysOld": 29
     },
     {
       "id": "mb-f10db834-996c-4b1f-9563-98c7b9e80baa",
@@ -1431,7 +1413,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
@@ -1463,7 +1445,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-e178c01c-3f05-4070-9454-749687762747",
@@ -1495,7 +1477,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
@@ -1527,7 +1509,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
@@ -1559,7 +1541,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
@@ -1591,7 +1573,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
@@ -1620,7 +1602,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-dc113487-3606-48ce-976d-37748757097c",
@@ -1652,7 +1634,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-901435e9-1c31-4a69-9fe9-288b4d510d99",
@@ -1684,7 +1666,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "mb-4f123c9f-5775-4f3e-938c-6e4d90cd3944",
@@ -1710,7 +1692,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 204
+      "daysOld": 205
     },
     {
       "id": "chart-0",
