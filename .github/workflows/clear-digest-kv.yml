@@ -4,13 +4,11 @@ jobs:
   clear-and-send:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Clear digest status
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: kv key delete "digestStatus:2026-07-25" --namespace-id "27b767e03348423dbcd9382a925446b2" --remote
+      - name: Clear digest status via CF API
+        run: |
+          curl -s -X DELETE \
+            "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/storage/kv/namespaces/27b767e03348423dbcd9382a925446b2/values/digestStatus:2026-07-25" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"
 
       - name: Wait for KV propagation
         run: sleep 10
