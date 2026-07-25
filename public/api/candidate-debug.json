@@ -7,7 +7,7 @@
     "minArtistListeners": 500,
     "artistCheckLimit": 80,
     "albumEnrichLimit": 40,
-    "candidateLimitForAI": 60,
+    "candidateLimitForAI": 40,
     "finalCount": 20,
     "chartTags": [
       "hip hop",
@@ -26,13 +26,13 @@
   },
   "stats": {
     "mbRaw": 300,
-    "afterFilter": 177,
+    "afterFilter": 178,
     "artistsChecked": 72,
-    "afterArtistFilter": 53,
+    "afterArtistFilter": 52,
     "albumEnriched": 40,
     "chartItems": 357,
-    "totalCandidates": 410,
-    "sentToWorker": 60
+    "totalCandidates": 409,
+    "sentToWorker": 40
   },
   "candidates": [
     {
@@ -1066,32 +1066,6 @@
       "daysOld": 205
     },
     {
-      "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
-      "mbid": "017c16c7-e4c5-488d-8bde-d2e41a15096f",
-      "title": "Nick Collection 2",
-      "artist": "Pop! not soda.",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 3578,
-      "artistPlaycount": 44875,
-      "albumListeners": 199,
-      "albumPlaycount": 2175,
-      "score": 35.185200956924234,
-      "scoreBreakdown": {
-        "artist": 23.690935574875695,
-        "album": 11.494265382048535,
-        "freshness": 0
-      },
-      "daysOld": 205
-    },
-    {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
       "mbid": "8cad04bc-f71b-4bbd-a518-77399a2352ad",
       "title": "Miten asiat oikeesti on?",
@@ -1220,6 +1194,50 @@
       "daysOld": 29
     },
     {
+      "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
+      "mbid": "ed578194-4aa6-4100-a951-b57d40adc5d9",
+      "title": "Det Karolinska Arvet",
+      "artist": "Karolinerna",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
+      "genresEn": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
+      "lfmTags": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 2574,
+      "artistPlaycount": 93679,
+      "albumListeners": 50,
+      "albumPlaycount": 220,
+      "score": 31.232240305469215,
+      "scoreBreakdown": {
+        "artist": 22.73739028378912,
+        "album": 8.494850021680094,
+        "freshness": 0
+      },
+      "daysOld": 205
+    },
+    {
       "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
       "mbid": "9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
       "title": "On the Road",
@@ -1292,38 +1310,6 @@
       "score": 25.22268854081709,
       "scoreBreakdown": {
         "artist": 25.22268854081709,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 205
-    },
-    {
-      "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
-      "mbid": "ed578194-4aa6-4100-a951-b57d40adc5d9",
-      "title": "Det Karolinska Arvet",
-      "artist": "Karolinerna",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "viking rock",
-        "vikingarock",
-        "swedish",
-        "white power",
-        "Nordisk vikingarock"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2574,
-      "artistPlaycount": 93679,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 22.73739028378912,
-      "scoreBreakdown": {
-        "artist": 22.73739028378912,
         "album": 0,
         "freshness": 0
       },
