@@ -1,0 +1,25 @@
+name: Clear Digest KV and Resend
+
+on: workflow_dispatch
+
+jobs:
+  clear-and-send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clear digest status
+        run: |
+          npx wrangler@3.90.0 kv key delete \
+            --namespace-id "27b767e03348423dbcd9382a925446b2" \
+            --remote "digestStatus:2026-07-25"
+        env:
+          CLOUDFLARE_API_TOKEN: \${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: \${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Wait for propagation
+        run: sleep 10
+
+      - name: Trigger digest resend
+        run: |
+          curl -s -X POST "https://api.bloodyrex.xyz/intelligence/send-digest" \
+            -H "Authorization: Bearer \${{ secrets.DIGEST_SECRET }}" \
+            -H "Content-Type: application/json"
