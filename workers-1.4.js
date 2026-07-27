@@ -1277,7 +1277,7 @@ Top 3-5 trends. 3-5 highlights.`;
     return { date: today, ...parsed };
   } catch (e) {
     console.warn("Digest failed:", e.message);
-    return { date: today, headline: "", summary: "", topTrends: [], industryHighlights: [] };
+    return { date: today, headline: "", summary: "", error: e.message, topTrends: [], industryHighlights: [] };
   }
 }
 
