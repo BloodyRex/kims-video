@@ -1281,6 +1281,7 @@ Top 3-5 trends. 3-5 highlights.`;
     console.warn("Digest failed:", e.message);
     return { date: today, headline: "", summary: "", topTrends: [], industryHighlights: [] };
   }
+}
 
 // ── Hidden Gems ──
 async function handleIntelHiddenGems(env) {
