@@ -1281,7 +1281,58 @@ Top 3-5 trends. 3-5 highlights.`;
   }
 }
 
-// ── Hidden Gems ──
+// ── Debug Digest ──
+async function handleIntelDigestDebug(env) {
+  const token = env.TMDB_API_READ_ACCESS_TOKEN;
+  const today = intelToday();
+  const weekAgo = intelDaysAgo(7);
+
+  if (!env.DEEPSEEK_API_KEY) {
+    return { error: "No DEEPSEEK_API_KEY" };
+  }
+
+  try {
+    const [nowPlaying, upcoming, dayTrending, weekTrending] = await Promise.all([
+      intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
+      intelFetchTMDB(token, "/movie/upcoming"),
+      intelFetchTMDB(token, "/trending/all/day"),
+      intelFetchTMDB(token, "/trending/all/week"),
+    ]);
+    const todayMovies = nowPlaying.filter(m => m.release_date === today).length;
+    const weekMovies = nowPlaying.filter(m => m.release_date >= weekAgo).length;
+    const weekUpcoming = upcoming.filter(m => m.release_date && m.release_date >= today).slice(0, 5).map(m => m.title || m.name);
+
+    const prompt = `Today is ${today}. Summarize today's entertainment news in a digest.
+
+Stats: ${todayMovies} movies released today, ${weekMovies} new movies this week.
+Top trending today: ${dayTrending.slice(0, 5).map(m => m.title || m.name).join(", ")}.
+Top trending this week: ${weekTrending.slice(0, 8).map(m => m.title || m.name).join(", ")}.
+Upcoming: ${weekUpcoming.join(", ") || "none notable"}.
+
+Return JSON only:
+{
+  "headline": "One punchy headline in Chinese (max 30 chars)",
+  "headlineEn": "Same headline in English",
+  "summary": "One paragraph summary in Chinese (max 150 chars)",
+  "summaryEn": "Same summary in English",
+  "topTrends": [{ "rank": 1, "title": "...(in Chinese)", "titleEn": "...(same in English)", "category": "movie" }],
+  "industryHighlights": [{ "text": "short highlight in Chinese", "en": "same in English" }]
+}
+
+Top 3-5 trends. 3-5 highlights.`;
+
+    const res = await fetch("https://api.deepseek.com/chat/completions", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 1500 }),
+    });
+    const deepseekStatus = res.status;
+    const deepseekBody = await res.text().catch(() => "(no body)");
+    return { date: today, deepseekStatus, deepseekBody: deepseekBody.slice(0, 500), promptLength: prompt.length, todayMovies, weekMovies, dayTrendingSize: dayTrending.length, weekTrendingSize: weekTrending.length, weekUpcoming };
+  } catch (e) {
+    return { date: today, error: e.message, stack: e.stack?.slice(0, 200) };
+  }
+}
 async function handleIntelHiddenGems(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
@@ -2017,7 +2068,7 @@ export default {
           overview: handleIntelOverview, movies: handleIntelMovies, tv: handleIntelTV,
           music: handleIntelMusic, coming: handleIntelComing,
           weekly: handleIntelWeekly, "hidden-gems": handleIntelHiddenGems,
-          digest: handleIntelDigest, debug: handleIntelDebug,
+          digest: handleIntelDigest, debug: handleIntelDigestDebug,
         };
         try {
           const intelData = await intelHandlers[intelMatch[1]](env);
