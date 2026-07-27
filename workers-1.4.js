@@ -1327,8 +1327,17 @@ Top 3-5 trends. 3-5 highlights.`;
       body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 1500 }),
     });
     const deepseekStatus = res.status;
-    const deepseekBody = await res.text().catch(() => "(no body)");
-    return { date: today, deepseekStatus, deepseekBody: deepseekBody.slice(0, 500), promptLength: prompt.length, todayMovies, weekMovies, dayTrendingSize: dayTrending.length, weekTrendingSize: weekTrending.length, weekUpcoming };
+    const deepseekBodyRaw = await res.text().catch(() => "(no body)");
+    let deepseekBody = deepseekBodyRaw;
+    let deepseekFinish = "unknown";
+    try {
+      const parsed = JSON.parse(deepseekBodyRaw);
+      deepseekFinish = parsed?.choices?.[0]?.finish_reason || "no_finish_reason";
+      const contentLen = (parsed?.choices?.[0]?.message?.content || "").length;
+      return { date: today, deepseekStatus, finish_reason: deepseekFinish, contentLength: contentLen, deepseekBody: deepseekBodyRaw.slice(0, 300), promptLength: prompt.length, todayMovies, weekMovies, dayTrendingSize: dayTrending.length, weekTrendingSize: weekTrending.length, weekUpcoming };
+    } catch (e) {
+      return { date: today, deepseekStatus, finish_reason: deepseekFinish, parseError: e.message, deepseekBody: deepseekBodyRaw.slice(0, 500), promptLength: prompt.length, todayMovies, weekMovies };
+    }
   } catch (e) {
     return { date: today, error: e.message, stack: e.stack?.slice(0, 200) };
   }
