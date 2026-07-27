@@ -1271,8 +1271,10 @@ Top 3-5 trends. 3-5 highlights.`;
       body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 1500 }),
     });
     if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
-    const data = await res.json();
+    const bodyText = await res.text();
+    const data = JSON.parse(bodyText);
     const raw = data?.choices?.[0]?.message?.content || "";
+    if (!raw) throw new Error(`Empty content from DeepSeek. finish_reason=${data?.choices?.[0]?.finish_reason}`);
     const parsed = intelParseJSON(raw);
     return { date: today, ...parsed };
   } catch (e) {
