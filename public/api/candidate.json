@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-01",
+  "updated": "2026-08-02",
   "candidates": [
     {
       "id": "mb-c6358baf-1e01-4991-ab6e-cb5d794e222a",
@@ -33,10 +33,10 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3575996,
-      "artistPlaycount": 130075078,
-      "albumListeners": 1293399,
-      "albumPlaycount": 13582440,
+      "artistListeners": 3576329,
+      "artistPlaycount": 130082405,
+      "albumListeners": 1293570,
+      "albumPlaycount": 13583531,
       "score": 70,
       "scoreBreakdown": {
         "artist": 40,
@@ -76,14 +76,14 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 1390030,
-      "artistPlaycount": 24780075,
-      "albumListeners": 812348,
-      "albumPlaycount": 8031198,
-      "score": 69.54871057787454,
+      "artistListeners": 1390106,
+      "artistPlaycount": 24781684,
+      "albumListeners": 812411,
+      "albumPlaycount": 8031779,
+      "score": 69.5488789754792,
       "scoreBreakdown": {
         "artist": 40,
-        "album": 29.54871057787455,
+        "album": 29.5488789754792,
         "freshness": 0
       }
     },
@@ -101,15 +101,15 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 183890,
-      "artistPlaycount": 7017112,
-      "albumListeners": 2393,
-      "albumPlaycount": 35299,
-      "score": 67.9917675784027,
+      "artistListeners": 183906,
+      "artistPlaycount": 7017720,
+      "albumListeners": 2412,
+      "albumPlaycount": 35618,
+      "score": 67.00919250723604,
       "scoreBreakdown": {
-        "artist": 35.097054085335515,
-        "album": 16.894713493067187,
-        "freshness": 16
+        "artist": 35.09730598989547,
+        "album": 16.91188651734057,
+        "freshness": 15
       }
     },
     {
@@ -144,40 +144,15 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 511437,
-      "artistPlaycount": 22861908,
-      "albumListeners": 25484,
-      "albumPlaycount": 368446,
-      "score": 60.08995227496868,
+      "artistListeners": 511499,
+      "artistPlaycount": 22864473,
+      "albumListeners": 25496,
+      "albumPlaycount": 368807,
+      "score": 60.09132551224024,
       "scoreBreakdown": {
-        "artist": 38.05861429291866,
-        "album": 22.03133798205002,
+        "artist": 38.05896525991186,
+        "album": 22.03236025232838,
         "freshness": 0
-      }
-    },
-    {
-      "id": "mb-b88f81f3-c024-46b0-8d1c-0ffa2d0afaa7",
-      "mbid": "b88f81f3-c024-46b0-8d1c-0ffa2d0afaa7",
-      "title": "The Shieling – Companion Pieces",
-      "artist": "Fergus McCreadie",
-      "releaseDate": "2026-07-17",
-      "year": "2026",
-      "type": "EP",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 30736,
-      "artistPlaycount": 175336,
-      "albumListeners": 570,
-      "albumPlaycount": 1839,
-      "score": 59.69702326181324,
-      "scoreBreakdown": {
-        "artist": 29.917648983450785,
-        "album": 13.779374278362457,
-        "freshness": 16
       }
     },
     {
@@ -212,14 +187,14 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 158298,
-      "artistPlaycount": 1010583,
-      "albumListeners": 88016,
-      "albumPlaycount": 589509,
-      "score": 59.38597765701182,
+      "artistListeners": 158304,
+      "artistPlaycount": 1010704,
+      "albumListeners": 88022,
+      "albumPlaycount": 589580,
+      "score": 59.386235418899936,
       "scoreBreakdown": {
-        "artist": 34.663169518983366,
-        "album": 24.72280813802845,
+        "artist": 34.66327925789392,
+        "album": 24.722956161006017,
         "freshness": 0
       }
     },
@@ -255,15 +230,40 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 135037,
-      "artistPlaycount": 3618776,
-      "albumListeners": 83919,
-      "albumPlaycount": 1761409,
-      "score": 58.822320040565494,
+      "artistListeners": 135126,
+      "artistPlaycount": 3620431,
+      "albumListeners": 84001,
+      "albumPlaycount": 1762342,
+      "score": 58.8263484208155,
       "scoreBreakdown": {
-        "artist": 34.20301854029751,
-        "album": 24.61930150026798,
+        "artist": 34.20492613979795,
+        "album": 24.62142228101755,
         "freshness": 0
+      }
+    },
+    {
+      "id": "mb-b88f81f3-c024-46b0-8d1c-0ffa2d0afaa7",
+      "mbid": "b88f81f3-c024-46b0-8d1c-0ffa2d0afaa7",
+      "title": "The Shieling – Companion Pieces",
+      "artist": "Fergus McCreadie",
+      "releaseDate": "2026-07-17",
+      "year": "2026",
+      "type": "EP",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 30741,
+      "artistPlaycount": 175484,
+      "albumListeners": 578,
+      "albumPlaycount": 1860,
+      "score": 58.72775913161056,
+      "scoreBreakdown": {
+        "artist": 29.918119939507918,
+        "album": 13.809639192102646,
+        "freshness": 15
       }
     },
     {
@@ -280,13 +280,13 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 474656,
-      "artistPlaycount": 6392929,
+      "artistListeners": 474670,
+      "artistPlaycount": 6393165,
       "albumListeners": 5529,
       "albumPlaycount": 19411,
-      "score": 56.555759449993396,
+      "score": 56.555844845635455,
       "scoreBreakdown": {
-        "artist": 37.84252650029971,
+        "artist": 37.84261189594177,
         "album": 18.713232949693683,
         "freshness": 0
       }
@@ -323,14 +323,14 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 203878,
-      "artistPlaycount": 7769372,
-      "albumListeners": 13531,
-      "albumPlaycount": 203381,
-      "score": 56.052451900885245,
+      "artistListeners": 203882,
+      "artistPlaycount": 7769500,
+      "albumListeners": 13532,
+      "albumPlaycount": 203395,
+      "score": 56.05266918018551,
       "scoreBreakdown": {
-        "artist": 35.395802430671196,
-        "album": 20.65664947021405,
+        "artist": 35.395859234605794,
+        "album": 20.656809945579717,
         "freshness": 0
       }
     },
@@ -368,12 +368,12 @@
       "source": "musicbrainz",
       "artistListeners": 252170,
       "artistPlaycount": 1984384,
-      "albumListeners": 4252,
-      "albumPlaycount": 20905,
-      "score": 54.15425573552798,
+      "albumListeners": 4260,
+      "albumPlaycount": 20998,
+      "score": 54.15833745178527,
       "scoreBreakdown": {
         "artist": 36.01128945627168,
-        "album": 18.142966279256296,
+        "album": 18.147047995513592,
         "freshness": 0
       }
     },
@@ -435,7 +435,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 33542,
-      "artistPlaycount": 312082,
+      "artistPlaycount": 312090,
       "albumListeners": 19073,
       "albumPlaycount": 105404,
       "score": 51.572688074579816,
@@ -471,14 +471,14 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 86369,
-      "artistPlaycount": 3988652,
-      "albumListeners": 4984,
-      "albumPlaycount": 177663,
-      "score": 51.396942776696854,
+      "artistListeners": 86383,
+      "artistPlaycount": 3989869,
+      "albumListeners": 4988,
+      "albumPlaycount": 177770,
+      "score": 51.39915410810284,
       "scoreBreakdown": {
-        "artist": 32.909052608441286,
-        "album": 18.487890168255568,
+        "artist": 32.909521884070315,
+        "album": 18.489632224032526,
         "freshness": 0
       }
     },
@@ -496,14 +496,14 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 39289,
-      "artistPlaycount": 325273,
-      "albumListeners": 10383,
-      "albumPlaycount": 39971,
-      "score": 50.71008743745795,
+      "artistListeners": 39303,
+      "artistPlaycount": 325384,
+      "albumListeners": 10392,
+      "albumPlaycount": 40007,
+      "score": 50.713000366062616,
       "scoreBreakdown": {
-        "artist": 30.628473167389,
-        "album": 20.08161427006895,
+        "artist": 30.629504675737763,
+        "album": 20.083495690324856,
         "freshness": 0
       }
     },
@@ -539,14 +539,39 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 20520,
-      "artistPlaycount": 153786,
-      "albumListeners": 12156,
-      "albumPlaycount": 96925,
-      "score": 49.171802499971385,
+      "artistListeners": 20521,
+      "artistPlaycount": 153790,
+      "albumListeners": 12157,
+      "albumPlaycount": 96929,
+      "score": 49.17212221930403,
       "scoreBreakdown": {
-        "artist": 28.747849042931858,
-        "album": 20.423953457039527,
+        "artist": 28.74799013581686,
+        "album": 20.424132083487166,
+        "freshness": 0
+      }
+    },
+    {
+      "id": "mb-4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
+      "mbid": "4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
+      "title": "Labor of Love",
+      "artist": "Tinsley Ellis",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "US",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 92386,
+      "artistPlaycount": 762575,
+      "albumListeners": 1365,
+      "albumPlaycount": 5613,
+      "score": 48.77970435048628,
+      "scoreBreakdown": {
+        "artist": 33.104041093602405,
+        "album": 15.675663256883874,
         "freshness": 0
       }
     },
@@ -564,14 +589,14 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 39617,
-      "artistPlaycount": 331224,
-      "albumListeners": 3717,
-      "albumPlaycount": 36043,
-      "score": 48.50350670860318,
+      "artistListeners": 39623,
+      "artistPlaycount": 331302,
+      "albumListeners": 3719,
+      "albumPlaycount": 36081,
+      "score": 48.505113254770734,
       "scoreBreakdown": {
-        "artist": 30.652543903124556,
-        "album": 17.85096280547863,
+        "artist": 30.652982362975877,
+        "album": 17.85213089179486,
         "freshness": 0
       }
     },
@@ -589,57 +614,14 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 118427,
-      "artistPlaycount": 5422506,
-      "albumListeners": 822,
-      "albumPlaycount": 3681,
-      "score": 48.3973639399991,
+      "artistListeners": 118433,
+      "artistPlaycount": 5422719,
+      "albumListeners": 824,
+      "albumPlaycount": 3684,
+      "score": 48.402787594726675,
       "scoreBreakdown": {
-        "artist": 33.82300485229885,
-        "album": 14.574359087700254,
-        "freshness": 0
-      }
-    },
-    {
-      "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
-      "mbid": "f4a9a05b-c146-410e-8161-4d10af2f6bfa",
-      "title": "Unity",
-      "artist": "Pariah",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "NL",
-      "genres": [
-        "鞭挞金属",
-        "thrash",
-        "1997",
-        "回响贝斯",
-        "future garage"
-      ],
-      "genresEn": [
-        "thrash metal",
-        "thrash",
-        "1997",
-        "dubstep",
-        "future garage"
-      ],
-      "lfmTags": [
-        "thrash metal",
-        "thrash",
-        "1997",
-        "dubstep",
-        "future garage"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 112762,
-      "artistPlaycount": 888672,
-      "albumListeners": 531,
-      "albumPlaycount": 8565,
-      "score": 47.30655773953788,
-      "scoreBreakdown": {
-        "artist": 33.681085134130534,
-        "album": 13.625472605407346,
+        "artist": 33.82315153624109,
+        "album": 14.57963605848558,
         "freshness": 0
       }
     }
