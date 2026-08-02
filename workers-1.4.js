@@ -52,6 +52,59 @@ function intelGenreZH(tags) {
 }
 
 // ── TMDB helpers ──
+async function searchTMDBList(query, token, language) {
+  language = language || "zh-CN";
+  const clean = String(query || "").replace(/[《》「」『』【】]/g, "").trim();
+  if (!clean || clean.length < 2) return [];
+  const cacheKey = "suggest-" + clean + "-" + language;
+  return withCache(cacheKey, async () => {
+    const searchType = async (type) => {
+      const nameF = type === "movie" ? "title" : "name";
+      const dateF = type === "movie" ? "release_date" : "first_air_date";
+      const origF = type === "movie" ? "original_title" : "original_name";
+      const params = new URLSearchParams({ query: clean, include_adult: "false", language });
+      const res = await fetch(`https://api.themoviedb.org/3/search/${type}?${params}`, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } });
+      if (!res.ok) return [];
+      const d = await res.json();
+      return (d?.results || []).slice(0, 5);
+    };
+    const [mres, tres] = await Promise.all([searchType("movie"), searchType("tv")]);
+    const items = [];
+    const seen = new Set();
+    const push = (m, type) => {
+      const nameF = type === "movie" ? "title" : "name";
+      const dateF = type === "movie" ? "release_date" : "first_air_date";
+      const origF = type === "movie" ? "original_title" : "original_name";
+      const title = m[nameF] || "";
+      if (!title) return;
+      const year = (m[dateF] || "").slice(0, 4);
+      const dedupKey = title + "|" + year;
+      if (seen.has(dedupKey)) return;
+      seen.add(dedupKey);
+      const tLabel = type === "movie" ? (language.startsWith("zh") ? "电影" : "Movie") : (language.startsWith("zh") ? "剧集" : "TV Series");
+      items.push({ title, year, tmdbId: m.id || null, originalTitle: m[origF] || "", type: tLabel, director: "" });
+    };
+    for (const m of mres) push(m, "movie");
+    for (const m of tres) push(m, "tv");
+    const top = items.slice(0, 5);
+    await Promise.all(top.map(async (it) => {
+      if (!it.tmdbId) return;
+      const type = it.type === "电影" || it.type === "Movie" ? "movie" : "tv";
+      try {
+        const cr = await withCache(`${it.tmdbId}-${type}-credits-${language}`, async () => {
+          const c = await fetch(`https://api.themoviedb.org/3/${type}/${it.tmdbId}/credits?language=${language}`, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } });
+          return c.ok ? c.json() : { crew: [] };
+        });
+        if (cr?.crew) {
+          const d = cr.crew.find(c => c.job === "Director")?.name || "";
+          if (d) it.director = d;
+        }
+      } catch (e) {}
+    }));
+    return top;
+  }, 21600);
+}
+
 async function fetchTMDBEnrichment(title, year, token, language) { language = language || "zh-CN"; let r = await searchTMDB(title, year, "movie", token, language); if (r.poster || r.tmdbId) return r; return searchTMDB(title, year, "tv", token, language); }
 
 async function searchTMDB(title, year, type, token, language) {
@@ -2092,6 +2145,7 @@ export default {
       try {
         if (body.tmdbId && !body.prompt) { const d = await fetchTMDBDetails(body.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN, body.language); return Response.json({ content: d || {} }, { headers: corsHeaders }); }
         if (body.searchTitle) { const r = await fetchTMDBEnrichment(body.searchTitle, body.searchYear || "", env.TMDB_API_READ_ACCESS_TOKEN, body.language); return Response.json({ content: r || { tmdbId: null } }, { headers: corsHeaders }); }
+        if (body.searchQuery) { const sq = await searchTMDBList(body.searchQuery, env.TMDB_API_READ_ACCESS_TOKEN, body.language); return Response.json({ content: sq }, { headers: corsHeaders }); }
         const msgs = []; if (body.systemInstruction) msgs.push({ role: "system", content: body.systemInstruction }); let up = body.prompt; if (body.responseSchema) up += "\n\nIMPORTANT:\nReturn ONLY valid JSON.\nNo markdown.\nNo code block.\nNo explanation.\n"; msgs.push({ role: "user", content: up });
         const res = await fetch("https://api.deepseek.com/chat/completions", { method: "POST", headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" }, body: JSON.stringify({ model: "deepseek-v4-flash", messages: msgs, temperature: 0.7 }) });
         const result = await res.json(); const raw = result?.choices?.[0]?.message?.content || "";

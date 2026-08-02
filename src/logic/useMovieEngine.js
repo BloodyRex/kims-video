@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { generateAIContent, verifyMovieTmdbId, repairRecommendationFields } from "../services/api";
+import { generateAIContent, verifyMovieTmdbId, repairRecommendationFields, fetchMovieSuggestions } from "../services/api";
 import { parseJSON } from "../utils/parseJSON";
 import { saveResultsToCache, loadResultsFromCache } from "../utils/cache";
 import { updateUrl } from "../utils/url";
@@ -74,19 +74,25 @@ export function useMovieEngine() {
     setShowDropdown(true);
 
     try {
-      const responseText = await generateAIContent(
-        buildSearchPrompt(query, locale),
-        locale === "en"
-          ? "You are a movie database search API. Return real movie/TV titles matching the keywords as a JSON array."
-          : "你是一个影视数据库查询API，根据关键词联想匹配的真实影视作品名称，以JSON数组返回。",
-        searchSchema(locale),
-        locale
-      );
+      // ① TMDB 搜索优先（秒回，结果真实）
+      let list = await fetchMovieSuggestions(query, locale);
+
+      // ② 兜底：TMDB 搜不到时降级原 AI 联想，功能不退化
+      if (!list.length) {
+        const responseText = await generateAIContent(
+          buildSearchPrompt(query, locale),
+          locale === "en"
+            ? "You are a movie database search API. Return real movie/TV titles matching the keywords as a JSON array."
+            : "你是一个影视数据库查询API，根据关键词联想匹配的真实影视作品名称，以JSON数组返回。",
+          searchSchema(locale),
+          locale
+        );
+        const parsedData = parseJSON(responseText);
+        list = Array.isArray(parsedData) ? parsedData.filter((item) => item.title) : [];
+      }
 
       if (id !== searchIdRef.current) return;
 
-      const parsedData = parseJSON(responseText);
-      const list = Array.isArray(parsedData) ? parsedData.filter((item) => item.title) : [];
       setSuggestions(list);
     } catch (error) {
       if (id !== searchIdRef.current) return;

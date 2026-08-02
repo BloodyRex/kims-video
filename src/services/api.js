@@ -49,6 +49,24 @@ export const fetchMovieByTmdbId = async (tmdbId, locale = "zh") => {
   }
 };
 
+export const fetchMovieSuggestions = async (query, locale = "zh") => {
+  try {
+    const response = await fetch(API_BASE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        searchQuery: query,
+        language: locale === "en" ? "en-US" : "zh-CN",
+      }),
+    });
+    if (!response.ok) return [];
+    const data = await response.json();
+    return Array.isArray(data.content) ? data.content : [];
+  } catch (e) {
+    return [];
+  }
+};
+
 export const verifyMovieTmdbId = async (title, year, locale = "zh") => {
   try {
     const response = await fetch(API_BASE_URL, {
