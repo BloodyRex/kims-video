@@ -3,3 +3,6 @@ dist
 _backups/
 .env
 send-test-digest.mjs
+
+# wrangler local state
+.wrangler/
