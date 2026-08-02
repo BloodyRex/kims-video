@@ -2147,8 +2147,20 @@ export default {
         if (body.searchTitle) { const r = await fetchTMDBEnrichment(body.searchTitle, body.searchYear || "", env.TMDB_API_READ_ACCESS_TOKEN, body.language); return Response.json({ content: r || { tmdbId: null } }, { headers: corsHeaders }); }
         if (body.searchQuery) { const sq = await searchTMDBList(body.searchQuery, env.TMDB_API_READ_ACCESS_TOKEN, body.language); return Response.json({ content: sq }, { headers: corsHeaders }); }
         const msgs = []; if (body.systemInstruction) msgs.push({ role: "system", content: body.systemInstruction }); let up = body.prompt; if (body.responseSchema) up += "\n\nIMPORTANT:\nReturn ONLY valid JSON.\nNo markdown.\nNo code block.\nNo explanation.\n"; msgs.push({ role: "user", content: up });
-        const res = await fetch("https://api.deepseek.com/chat/completions", { method: "POST", headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" }, body: JSON.stringify({ model: "deepseek-v4-flash", messages: msgs, temperature: 0.7 }) });
-        const result = await res.json(); const raw = result?.choices?.[0]?.message?.content || "";
+        // DeepSeek call: max_tokens cap + JSON mode (object schemas) + 1 retry on empty/failed response
+        const dsBody = { model: "deepseek-v4-flash", messages: msgs, temperature: 0.7, max_tokens: 3000 };
+        if (body.responseSchema?.type === "object") dsBody.response_format = { type: "json_object" };
+        let raw = "", dResp = null;
+        for (let ai = 0; ai < 2; ai++) {
+          if (ai > 0) await new Promise(r => setTimeout(r, 1200));
+          dResp = await fetch("https://api.deepseek.com/chat/completions", { method: "POST", headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" }, body: JSON.stringify(dsBody) });
+          if (dResp.ok) {
+            const dr = await dResp.json();
+            raw = dr?.choices?.[0]?.message?.content || "";
+            if (raw) break;
+          }
+        }
+        if (!raw) return Response.json({ content: { raw: "", error: "empty_content" } }, { headers: corsHeaders });
         const sp = (c) => { if (typeof c !== "string") return c; try { return JSON.parse(c.replace(/```json/g,"").replace(/```/g,"").trim()); } catch { return { raw, error: "parse_failed" }; } };
         const parsed = sp(raw); let list = []; if (Array.isArray(parsed?.recommendations)) list = parsed.recommendations; else if (parsed?.recommendations) list = [parsed.recommendations]; else if (parsed?.title) list = [parsed];
         if (!list.length) return Response.json({ content: parsed }, { headers: corsHeaders });

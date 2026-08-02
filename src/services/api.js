@@ -7,28 +7,40 @@ export const generateAIContent = async (
   responseSchema = null,
   locale = "zh"
 ) => {
-  const response = await fetch(API_BASE_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      prompt,
-      systemInstruction,
-      responseSchema,
-      language: locale === "en" ? "en-US" : "zh-CN",
-    }),
-  });
+  // Retry once on network/API failure (DeepSeek is flaky); 120s timeout guard
+  for (let attempt = 0; attempt < 2; attempt++) {
+    if (attempt > 0) await new Promise((r) => setTimeout(r, 1500));
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 120000);
+      const response = await fetch(API_BASE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt,
+          systemInstruction,
+          responseSchema,
+          language: locale === "en" ? "en-US" : "zh-CN",
+        }),
+        signal: controller.signal,
+      });
+      clearTimeout(timer);
 
-  if (!response.ok) {
-    throw new Error(`API Error ${response.status}`);
+      if (!response.ok) {
+        throw new Error(`API Error ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      if (result.error) {
+        throw new Error(result.error);
+      }
+
+      return result.content;
+    } catch (e) {
+      if (attempt === 1) throw e;
+    }
   }
-
-  const result = await response.json();
-
-  if (result.error) {
-    throw new Error(result.error);
-  }
-
-  return result.content;
 };
 
 export const fetchMovieByTmdbId = async (tmdbId, locale = "zh") => {
