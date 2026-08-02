@@ -2148,7 +2148,7 @@ export default {
         if (body.searchQuery) { const sq = await searchTMDBList(body.searchQuery, env.TMDB_API_READ_ACCESS_TOKEN, body.language); return Response.json({ content: sq }, { headers: corsHeaders }); }
         const msgs = []; if (body.systemInstruction) msgs.push({ role: "system", content: body.systemInstruction }); let up = body.prompt; if (body.responseSchema) up += "\n\nIMPORTANT:\nReturn ONLY valid JSON.\nNo markdown.\nNo code block.\nNo explanation.\n"; msgs.push({ role: "user", content: up });
         // DeepSeek call: max_tokens cap + JSON mode (object schemas) + 1 retry on empty/failed response
-        const dsBody = { model: "deepseek-v4-flash", messages: msgs, temperature: 0.7, max_tokens: 3000 };
+        const dsBody = { model: "deepseek-v4-flash", messages: msgs, temperature: 0.7, max_tokens: 3000, thinking: { type: "disabled" } };
         if (body.responseSchema?.type === "object") dsBody.response_format = { type: "json_object" };
         let raw = "", dResp = null;
         for (let ai = 0; ai < 2; ai++) {
