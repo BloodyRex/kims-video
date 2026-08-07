@@ -22,6 +22,7 @@ function buildEntries() {
     { loc: `${SITE}/`, changefreq: "daily", priority: "1.0", lastmod: today },
     { loc: `${SITE}/discover/`, changefreq: "daily", priority: "0.9", lastmod: today },
     { loc: `${SITE}/intelligence`, changefreq: "daily", priority: "0.9", lastmod: today },
+    { loc: `${SITE}/wall/`, changefreq: "daily", priority: "0.8", lastmod: today },
   ];
 
   // Genre pages
