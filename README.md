@@ -1,6 +1,6 @@
 # Kim's Video — AI Entertainment Platform / AI 娱乐推荐平台
 
-**Three interconnected pages / 三大页面联动:** [Discover / 发现推荐](#-home--ai-movie-recommender--ai-电影推荐) → [Intelligence / 情报中心](#-intelligence--entertainment-data-hub--娱乐情报中心) → [Curated Picks / 精选合辑](#-curated-picks--community-discovery--社区发现)
+**Four interconnected pages / 四大页面联动:** [Discover / 发现推荐](#-home--ai-movie-recommender--ai-电影推荐) → [Intelligence / 情报中心](#-intelligence--entertainment-data-hub--娱乐情报中心) → [Wall / 影视墙](#-wall--cumulative-movie-wall--影视墙) → [Curated Picks / 精选合辑](#-curated-picks--community-discovery--社区发现)
 
 ![Tech Stack](https://img.shields.io/badge/React-18-61DAFB?logo=react)
 ![Tech Stack](https://img.shields.io/badge/Vite-6-646CFF?logo=vite)
@@ -13,16 +13,17 @@
 
 ---
 
-## Three Pages Overview / 三大页面总览
+## Four Pages Overview / 四大页面总览
 
-This platform consists of three interconnected pages, each serving a distinct role in the entertainment discovery ecosystem:
+This platform consists of four interconnected pages, each serving a distinct role in the entertainment discovery ecosystem:
 
-本平台由三个互相关联的页面组成，各自在娱乐发现生态中扮演不同角色：
+本平台由四个互相关联的页面组成，各自在娱乐发现生态中扮演不同角色：
 
 | Page / 页面 | Role / 角色 | Data Source / 数据来源 |
 |-------------|-------------|----------------------|
 | **Home / 首页** (Discover) | Personalized AI recommendation / 个性化 AI 推荐 | DeepSeek + TMDB (on-demand / 实时) |
 | **Intelligence / 情报** | Daily updated data hub / 每日更新数据中心 | Cloudflare Worker → TMDB/MusicBrainz, cached as static JSON |
+| **Wall / 影视墙** | Cumulative movie wall by release date / 按上线日期累积的电影墙 | `public/api/wall.json` (grows daily via pipeline) |
 | **Curated Picks / 精选合辑** | Community discovery & sharing / 社区发现与分享 | Pre-curated pairs in `src/data/discover.json` / 预配置推荐对 |
 
 **Data flow / 数据流转:** Cloudflare Worker fetches from TMDB + MusicBrainz → DeepSeek AI enriches → GitHub Actions commits daily snapshots → Worker sends daily digest email via Resend → Pages serves the SPA.
@@ -81,6 +82,25 @@ Users can subscribe to receive a daily digest email every morning at 08:00 Beiji
 
 ---
 
+## 🧱 Wall — Cumulative Movie Wall / 影视墙
+
+A growing wall of movies sorted by release date. Every newly collected film is appended automatically by the daily pipeline — no manual curation.
+
+按上线日期排布、持续累积的电影墙。每日 pipeline 自动收录新片，无需人工维护。
+
+- **Data / 数据:** `public/api/wall.json` — deduped by `tmdbId`, slim fields only (no summaries) / 按 `tmdbId` 去重，仅存精简字段（无摘要）
+- **Backfill / 回填:** `scripts/build-wall-backfill.js` rebuilds from git history snapshots (one-time) / 从 git 历史快照重建（一次性）
+- **Daily growth / 每日累积:** `fetch-intelligence-data.js` → `buildWall()` merges new releases from `movies.json` + `coming.json` / 合并当天新片
+- **Sorting / 排序:** releaseDate descending (newest first) / 按上线日期降序（最新在前）
+- **Pagination / 分页:** 24 cards per page / 每页 24 张
+- **Filters / 筛选:** status (released / upcoming) + genre tags (8 common + "other") / 状态（已上线/未上线）+ 类型标签（8 个常见 + 其他）
+
+**→ Bridges to: Home** (wall cards can later open the same TMDB detail view as the recommender)
+
+**→ 关联首页：** 影视墙卡片后续可复用推荐引擎的 TMDB 详情视图
+
+---
+
 ## 🎬 Curated Picks — Community Discovery / 社区发现
 
 A browsable gallery of pre-curated recommendation pairs organized by genre, theme, and mood. Each pair links directly back to the recommendation engine.
@@ -110,6 +130,9 @@ Browser (React 18 + Vite SPA)
   ├── Intelligence / 情报
   │     GET /intelligence/* → Worker → TMDB/MusicBrainz + DeepSeek
   │     Daily digest email → Worker → Resend → Subscribers
+  │
+  ├── Wall / 影视墙
+  │     GET /wall → public/api/wall.json (static, pipeline-accumulated) / 静态累积 JSON
   │
   └── Curated Picks / 精选合辑
         src/data/discover.json → genre-filtered pre-curated pairs / 分类预配置对

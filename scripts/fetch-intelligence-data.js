@@ -15,6 +15,8 @@ const API_DIR = join(__dirname, "..", "public", "api");
 
 const beijingDate = () => new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
 
+const hasChineseText = (text) => /[\u4e00-\u9fff]/.test(text || "");
+
 const WORKER_BASE = process.env.WORKER_BASE_URL || "https://api.bloodyrex.xyz";
 
 async function fetchJSON(endpoint) {
@@ -103,6 +105,94 @@ async function main() {
       // Don't set exit code — non-critical endpoint failure shouldn't block commit
     }
   }
+
+  // ── Wall: cumulative movie wall (persistent, grows daily) ──
+  function buildWall() {
+    const wallPath = join(API_DIR, "wall.json");
+    let wall = [];
+    if (existsSync(wallPath)) {
+      try {
+        wall = JSON.parse(readFileSync(wallPath, "utf8")).movies || [];
+      } catch {}
+    }
+    const seen = new Set(wall.map((m) => String(m.tmdbId)));
+    const today = beijingDate();
+    const sources = [];
+    let upgraded = 0;
+
+    for (const file of ["movies.json", "coming.json"]) {
+      let data;
+      try {
+        data = JSON.parse(readFileSync(join(API_DIR, file), "utf8"));
+      } catch {
+        continue; // endpoint failed this run — keep existing wall intact
+      }
+      if (file === "movies.json") {
+        for (const key of ["releasedToday", "releasedThisWeek", "upcoming", "nowPlaying"]) {
+          if (Array.isArray(data[key])) sources.push(...data[key]);
+        }
+      } else {
+        for (const key of ["next7Days", "next30Days"]) {
+          if (Array.isArray(data[key])) {
+            sources.push(...data[key].filter((it) => it.mediaType === "movie"));
+          }
+        }
+      }
+    }
+
+    let added = 0;
+    for (const it of sources) {
+      if (!it || it.tmdbId == null) continue;
+      const id = String(it.tmdbId);
+      if (seen.has(id)) {
+        // Upgrade to Chinese title when a later snapshot has one (keep firstSeen)
+        if (!hasChineseText(wall.find((m) => String(m.tmdbId) === id).title) && hasChineseText(it.title)) {
+          const idx = wall.findIndex((m) => String(m.tmdbId) === id);
+          wall[idx] = {
+            tmdbId: it.tmdbId,
+            title: it.title || it.name || "",
+            titleEn: it.titleEn || "",
+            year: it.year || "",
+            releaseDate: it.releaseDate || "",
+            poster: it.poster || "",
+            rating: it.rating || 0,
+            genre: Array.isArray(it.genre) ? it.genre : [],
+            firstSeen: wall[idx].firstSeen,
+          };
+          upgraded++;
+        }
+        continue;
+      }
+      seen.add(id);
+      wall.push({
+        tmdbId: it.tmdbId,
+        title: it.title || it.name || "",
+        titleEn: it.titleEn || "",
+        year: it.year || "",
+        releaseDate: it.releaseDate || "",
+        poster: it.poster || "",
+        rating: it.rating || 0,
+        genre: Array.isArray(it.genre) ? it.genre : [],
+        firstSeen: today,
+      });
+      added++;
+    }
+
+    if (added > 0 || upgraded > 0) {
+      wall.sort((a, b) => String(b.releaseDate || "").localeCompare(String(a.releaseDate || "")));
+      writeFileSync(
+        wallPath,
+        JSON.stringify({ updated: today, count: wall.length, movies: wall }, null, 2),
+        "utf8"
+      );
+      anyChange = true;
+      console.log(`OK wall.json — +${added} new, ${upgraded} title-upgraded, ${wall.length} total`);
+    } else {
+      console.log(`OK wall.json — unchanged (${wall.length} total)`);
+    }
+  }
+
+  buildWall();
 
   // ── Music Pipeline (separate, runs in Node.js, no Worker subrequest limits) ──
   console.log("\n[MUSIC] Starting pipeline...");

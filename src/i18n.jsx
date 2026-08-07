@@ -113,10 +113,19 @@ const messages = {
     "seo.footer.p2": "推荐结果并不依赖单一评分，而是综合叙事结构与观影体验进行匹配。",
     "seo.link.home": "返回首页",
 
+    // ---- WallPage ----
+    "wall.desc": "每日收录全球新片，按上线日期排布，累积成一面持续生长的电影墙。",
+    "wall.loading": "正在加载影视墙...",
+    "wall.error": "影视墙加载失败，请重试。",
+    "wall.empty": "暂无符合条件的影片",
+    "wall.prev": "← 上一页",
+    "wall.next": "下一页 →",
+
     // ---- Footer ----
     "footer.home": "主页搜索",
     "footer.discover": "社区精选",
     "footer.intel": "全球影音",
+    "footer.wall": "影视墙",
     "footer.contact": "联系我",
   },
   en: {
@@ -231,10 +240,19 @@ const messages = {
     "seo.footer.p2": "Recommendations are not based on a single rating, but combine narrative structure and viewing experience for matching.",
     "seo.link.home": "Back to Home",
 
+    // ---- WallPage ----
+    "wall.desc": "New films collected daily, arranged by release date — a wall that keeps growing.",
+    "wall.loading": "Loading the movie wall...",
+    "wall.error": "Failed to load the wall. Please retry.",
+    "wall.empty": "No films match your filters",
+    "wall.prev": "← PREV",
+    "wall.next": "NEXT →",
+
     // ---- Footer ----
     "footer.home": "Home",
     "footer.discover": "Discover",
     "footer.intel": "Intel",
+    "footer.wall": "Wall",
     "footer.contact": "Contact",
   },
 };

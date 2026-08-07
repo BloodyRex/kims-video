@@ -9,6 +9,7 @@ import SaveContent from "./components/SaveContent";
 import SplashPage from "./components/SplashPage";
 import DiscoverPage from "./components/DiscoverPage";
 import IntelligencePage from "./components/IntelligencePage";
+import WallPage from "./components/WallPage";
 import AdminPage from "./components/AdminPage";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "./services/api";
@@ -36,6 +37,7 @@ function App() {
           <Route path="/intelligence/coming" element={<IntelligencePage />} />
           <Route path="/intelligence/weekly" element={<IntelligencePage />} />
           <Route path="/intelligence/search" element={<IntelligencePage />} />
+          <Route path="/wall" element={<WallPage />} />
         </Routes>
         <ShareButtonWrapper />
       </LocaleProvider>
@@ -391,6 +393,8 @@ function AppContent() {
           <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t('footer.discover')}</Link>
           <span className="text-gray-600 mx-2">|</span>
           <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">{t('footer.intel')}</Link>
+          <span className="text-gray-600 mx-2">|</span>
+          <Link to="/wall" className="hover:text-[#ff00ff] transition-colors">{t('footer.wall')}</Link>
           <span className="text-gray-600 mx-2">|</span>
           <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">{t('footer.contact')}</a>
           <span className="text-gray-800 mx-1">·</span>
