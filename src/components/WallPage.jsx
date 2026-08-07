@@ -193,7 +193,7 @@ const WallPage = () => {
         <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
           {zh ? "🎬 影视墙" : "🎬 MOVIE WALL"}
         </h2>
-        <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed">{t('wall.desc')}</p>
+        <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">{t('wall.desc')}</p>
       </section>
 
       {loadError ? (
