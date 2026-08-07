@@ -160,11 +160,11 @@ export default function WallDetailView({ item, locale, onClose }) {
             {zh ? "在 TMDB 查看完整资料 ↗" : "View on TMDB ↗"}
           </a>
           <a href={imdbUrl} target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
+            className="flex items-center justify-center w-10 h-10 bg-[#F5C518] border-4 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
             title="Open in IMDb">
             <Icons.Imdb className="w-full h-full" />
           </a>
-          <TrailerButtons item={{ titleEn: item.titleEn || item.title, tmdbId: item.tmdbId }} locale={locale} />
+          <TrailerButtons item={{ titleEn: item.titleEn || item.title, tmdbId: item.tmdbId }} locale={locale} size="lg" />
         </div>
       </div>
 

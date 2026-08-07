@@ -79,7 +79,7 @@ function Tags({ tags, tagsEn, color = "#ff00ff", locale = "zh" }) {
 }
 
 // ── Trailer button component ──
-export function TrailerButtons({ item, locale }) {
+export function TrailerButtons({ item, locale, size = "sm" }) {
   const title = (item.titleEn || item.title || "");
   const tmdbId = item.tmdbId;
   const biliHref = `https://search.bilibili.com/all?keyword=${encodeURIComponent((title + " 预告片").trim())}`;
@@ -95,15 +95,20 @@ export function TrailerButtons({ item, locale }) {
   const ytHref = ytKey
     ? `https://www.youtube.com/watch?v=${ytKey}`
     : `https://www.youtube.com/results?search_query=${encodeURIComponent((title + " trailer").trim())}`;
+  // lg = large square with hard shadow, matching the TMDB text button (w-10 h-10 ≈ 40px)
+  const lg = size === "lg";
+  const baseCls = lg
+    ? "flex items-center justify-center w-10 h-10 border-4 border-black transition-colors flex-shrink-0 shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+    : "flex items-center justify-center w-6 h-6 border-2 border-black transition-colors flex-shrink-0";
   return (
     <>
       <a href={ytHref} target="_blank" rel="noopener noreferrer"
-        className="flex items-center justify-center w-6 h-6 bg-[#ff0000] border-2 border-black hover:bg-[#cc0000] transition-colors flex-shrink-0"
+        className={`${baseCls} bg-[#ff0000] hover:bg-[#cc0000]`}
         title={ytKey ? "观看YouTube预告片" : "在YouTube搜索预告片"}>
-        <Icons.Youtube />
+        <Icons.Youtube className={lg ? "w-6 h-6" : undefined} />
       </a>
       <a href={biliHref} target="_blank" rel="noopener noreferrer"
-        className="flex items-center justify-center w-6 h-6 bg-white border-2 border-black hover:bg-gray-100 transition-colors flex-shrink-0 overflow-hidden"
+        className={`${baseCls} bg-white hover:bg-gray-100 overflow-hidden`}
         title="在Bilibili搜索预告片">
         <Icons.Bilibili className="w-full h-full" />
       </a>
