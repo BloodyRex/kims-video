@@ -4,6 +4,7 @@ import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { GENRE_ZH } from "./Cards";
 import { setCanonical } from "../services/seo";
+import WallDetailView from "./WallDetailView";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -32,7 +33,7 @@ function buildPages(current, total) {
 }
 
 // ── Wall Card ──
-function WallCard({ movie, locale, todayStr, todayTs }) {
+function WallCard({ movie, locale, todayStr, todayTs, onOpen }) {
   const released = !movie.releaseDate || movie.releaseDate <= todayStr;
   const days = movie.releaseDate
     ? Math.ceil((Date.parse(movie.releaseDate + "T00:00:00Z") - todayTs) / 86400000)
@@ -40,7 +41,8 @@ function WallCard({ movie, locale, todayStr, todayTs }) {
   const zh = locale === "zh";
 
   return (
-    <div className="bg-white border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#ff00ff] transition-all group">
+    <div onClick={() => onOpen && onOpen(movie)}
+      className="bg-white border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#ff00ff] transition-all group cursor-pointer">
       <div className="relative overflow-hidden border-b-2 border-black">
         {movie.poster ? (
           <img
@@ -101,8 +103,14 @@ const WallPage = () => {
   const [statusFilter, setStatusFilter] = useState("all"); // all | released | upcoming
   const [genreFilter, setGenreFilter] = useState("all"); // all | <genre> | other
   const [page, setPage] = useState(1);
+  const [detailItem, setDetailItem] = useState(null); // open WallDetailView when set
 
   const { todayStr, todayTs } = useMemo(todayInfo, []);
+
+  // Scroll back to top when opening a detail view
+  useEffect(() => {
+    if (detailItem) window.scrollTo({ top: 0 });
+  }, [detailItem]);
 
   useEffect(() => {
     let cancelled = false;
@@ -211,6 +219,10 @@ const WallPage = () => {
         <div className="max-w-4xl mx-auto px-4 py-16 text-center">
           <p className="text-gray-500 text-xs font-bold pixel-font">{t('wall.loading')}</p>
         </div>
+      ) : detailItem ? (
+        <div className="max-w-4xl mx-auto px-4 max-sm:px-3">
+          <WallDetailView item={detailItem} locale={locale} onClose={() => setDetailItem(null)} />
+        </div>
       ) : (
         <>
           {/* Filter bar */}
@@ -240,7 +252,7 @@ const WallPage = () => {
             ) : (
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2">
                 {pageItems.map((m) => (
-                  <WallCard key={m.tmdbId} movie={m} locale={locale} todayStr={todayStr} todayTs={todayTs} />
+                  <WallCard key={m.tmdbId} movie={m} locale={locale} todayStr={todayStr} todayTs={todayTs} onOpen={setDetailItem} />
                 ))}
               </div>
             )}
