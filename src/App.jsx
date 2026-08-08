@@ -18,9 +18,12 @@ import { loadResultsFromCache } from "./utils/cache";
 import { updateUrl } from "./utils/url";
 import { updateSeo, updateStructuredData, resetSeo, injectStructuredData } from "./services/seo";
 import { useMovieEngine } from "./logic/useMovieEngine";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { LocaleProvider, useLocale } from "./i18n";
 import ShareButton from "./components/ShareButton";
+
+// Entry portal route — swap to "/" when the portal goes live (engine moves to /recommend)
+const ENTRY_ROUTE = "/recommend";
 
 function App() {
   return (
@@ -431,6 +434,9 @@ function AppContent() {
 
 function ShareButtonWrapper() {
   const { locale } = useLocale();
+  const { pathname } = useLocation();
+  // No floating buttons on the entry portal (clean full-bleed cards)
+  if (pathname === ENTRY_ROUTE) return null;
   return <ShareButton locale={locale} />;
 }
 
