@@ -194,6 +194,67 @@ async function main() {
 
   buildWall();
 
+  // ── Wall translate: AI-translate missing zh overviews into wall.json (batch, newest-first) ──
+  async function translateWall() {
+    const wallPath = join(API_DIR, "wall.json");
+    let wall = [];
+    try {
+      wall = JSON.parse(readFileSync(wallPath, "utf8")).movies || [];
+    } catch {
+      return;
+    }
+    const pending = wall
+      .filter((m) => !m.summary && !m.summarySkip)
+      .sort((a, b) => String(b.firstSeen || "").localeCompare(String(a.firstSeen || "")));
+    if (!pending.length) {
+      console.log("OK wall-translate — nothing pending");
+      return;
+    }
+    const LIMIT = 8; // daily cap — keeps token cost small (≈250 tokens/film)
+    const batch = pending.slice(0, LIMIT);
+    let translated = 0;
+    let noOverview = 0;
+    let failed = 0;
+    for (const m of batch) {
+      try {
+        const res = await fetch(`${WORKER_BASE}/intelligence/translate-overview`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ tmdbId: m.tmdbId }),
+        });
+        if (!res.ok) {
+          failed++;
+          continue;
+        }
+        const d = await res.json();
+        const c = d.content || {};
+        if (c.hasOverview === false) {
+          m.summarySkip = true; // no EN overview on TMDB — never retry
+          noOverview++;
+        } else if (c.translated) {
+          m.summary = c.translated;
+          translated++;
+        } else {
+          failed++; // DeepSeek hiccup — retried on a later run
+        }
+      } catch {
+        failed++;
+      }
+    }
+    if (translated > 0 || noOverview > 0) {
+      writeFileSync(
+        wallPath,
+        JSON.stringify({ updated: beijingDate(), count: wall.length, movies: wall }, null, 2),
+        "utf8"
+      );
+      anyChange = true;
+    }
+    console.log(
+      `OK wall-translate — +${translated} translated, ${noOverview} skipped (no EN overview), ${failed} failed, ${pending.length - batch.length} still pending`
+    );
+  }
+  await translateWall();
+
   // ── Music Pipeline (separate, runs in Node.js, no Worker subrequest limits) ──
   console.log("\n[MUSIC] Starting pipeline...");
   const musicStart = Date.now();

@@ -134,6 +134,32 @@ async function withCache(key, fetcher, ttl = 86400) { const c = caches.default; 
 
 async function fetchTMDBDetails(tmdbId, token, language) { language = language || "zh-CN"; let d = await fetchTMDBByType(tmdbId, "movie", token, language); if (d) return d; d = await fetchTMDBByType(tmdbId, "tv", token, language); return d || {}; }
 
+// Translate an English film overview to Simplified Chinese (used by wall.json backfill)
+async function translateText(text, env) {
+  if (!env.DEEPSEEK_API_KEY || !text) return "";
+  try {
+    const res = await fetch("https://api.deepseek.com/chat/completions", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "deepseek-v4-flash",
+        messages: [
+          { role: "system", content: "你是专业的影视内容本地化翻译。将英文电影简介翻译成简体中文，要求准确、通顺、符合中文电影简介的文风。只输出翻译结果本身，不要任何解释、引号、前后缀或多余格式。" },
+          { role: "user", content: text },
+        ],
+        temperature: 0.3,
+        max_tokens: 500,
+        thinking: { type: "disabled" },
+      }),
+    });
+    if (!res.ok) return "";
+    const data = await res.json();
+    return (data?.choices?.[0]?.message?.content || "").trim();
+  } catch {
+    return "";
+  }
+}
+
 async function fetchTMDBByType(tmdbId, type, token, language) { language = language || "zh-CN"; try { const h = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }; const det = await withCache(`${tmdbId}-${type}-${language}-details`, async () => { const r = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?language=${language}`, { headers: h }); return r.ok ? r.json() : null; }); if (!det) return null; const cr = await withCache(`${tmdbId}-${type}-${language}-credits`, async () => { const r = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/credits?language=${language}`, { headers: h }); return r.ok ? r.json() : { crew: [] }; }) || { crew: [] }; const director = cr.crew?.find(c => c.job === "Director")?.name || ""; const yr = det.release_date ? det.release_date.slice(0,4) : det.first_air_date ? det.first_air_date.slice(0,4) : ""; const tLabel = type === "movie" ? (language.startsWith("zh") ? "电影" : "Movie") : (language.startsWith("zh") ? "剧集" : "TV Series"); const cast = cr.cast?.slice(0,5).map(c => c.name) || []; let poster = det.poster_path ? `https://image.tmdb.org/t/p/w342${det.poster_path}` : null; if (poster) { const ep = await fetchEnglishPoster(tmdbId, type, token); if (ep) poster = ep; } return { director, year: yr, originalTitle: det.original_title || det.original_name || "", type: tLabel, title: det.title || det.name || "", imdb_id: det.imdb_id || "", poster, overview: det.overview || "", genres: (det.genres || []).map(g => g.name), vote_average: det.vote_average || null, runtime: det.runtime || null, cast }; } catch (e) { return null; } }
 
 // ── Discover API ──
@@ -2106,6 +2132,21 @@ export default {
     if (method === "POST") {
       // Admin: login
       if (path === "/admin/login") { let b; try { b = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); } if (!env.ADMIN_PASSWORD) return Response.json({ error: "Admin not configured" }, { headers: corsHeaders }); if (b.password !== env.ADMIN_PASSWORD) return Response.json({ error: "Invalid password" }, { headers: corsHeaders }); return Response.json({ token: createAdminToken(env.ADMIN_PASSWORD) }, { headers: corsHeaders }); }
+
+      // Wall backfill: translate EN overview to zh-CN (pipeline-fed, KV-cached TMDB read)
+      if (path === "/intelligence/translate-overview") {
+        let tb; try { tb = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
+        if (!tb.tmdbId) return Response.json({ error: "Missing tmdbId" }, { status: 400, headers: corsHeaders });
+        try {
+          const en = await fetchTMDBDetails(tb.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN, "en-US");
+          const overview = en?.overview || "";
+          if (!overview) return Response.json({ content: { translated: "", hasOverview: false } }, { headers: corsHeaders });
+          const translated = await translateText(overview, env);
+          return Response.json({ content: { translated, hasOverview: true } }, { headers: corsHeaders });
+        } catch (e) {
+          return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });
+        }
+      }
 
       // Discover upload
       const um = path.match(/^\/discover\/results\/(.+)\/upload$/);

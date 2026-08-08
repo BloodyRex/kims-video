@@ -146,10 +146,10 @@ export default function WallDetailView({ item, locale, onClose }) {
           </div>
         </div>
 
-        {/* Summary — lazy-loaded overview (zh/en per locale) */}
-        {enriched.overview && (
+        {/* Summary — pre-translated zh summary from wall.json (instant), else lazy overview */}
+        {(item.summary || enriched.overview) && (
           <div className="bg-[#f0f0f0] border-4 border-black p-4 mb-4">
-            <p className="text-black font-bold leading-relaxed text-sm sm:text-base">{enriched.overview}</p>
+            <p className="text-black font-bold leading-relaxed text-sm sm:text-base">{item.summary || enriched.overview}</p>
           </div>
         )}
 
