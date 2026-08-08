@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { adminLogin, adminFetchResults, adminDeleteResult, adminPatchResult } from "../services/adminApi";
+import { fetchMovieByTmdbId } from "../services/api";
 
 const CATEGORIES = ["科幻", "悬疑", "恐怖", "动画", "战争", "犯罪", "剧情", "奇幻"];
 
@@ -18,6 +19,27 @@ const AdminPage = () => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
+  const [posterMap, setPosterMap] = useState({});
+
+  // Lazy-load TMDB posters for cards without uploaded thumbnails (same pattern as DiscoverPage, zero LLM tokens)
+  useEffect(() => {
+    if (!results.length) return;
+    const ids = [...new Set(results.map(r => r.sourceMovies?.[0]?.tmdbId).filter(Boolean))];
+    if (!ids.length) return;
+    let cancelled = false;
+    (async () => {
+      const map = {};
+      for (let i = 0; i < ids.length; i += 5) {
+        const batch = ids.slice(i, i + 5);
+        await Promise.allSettled(batch.map(async id => {
+          const d = await fetchMovieByTmdbId(id, "zh");
+          if (d?.poster && !cancelled) map[id] = d.poster;
+        }));
+      }
+      if (!cancelled) setPosterMap(prev => ({ ...prev, ...map }));
+    })();
+    return () => { cancelled = true; };
+  }, [results]);
 
   // Fetch results on mount if logged in
   useEffect(() => {
@@ -143,13 +165,17 @@ const AdminPage = () => {
             const src1 = r.sourceMovies?.[0];
             return (
               <div key={r.id} className="bg-white text-black border-4 border-black p-4 flex flex-col sm:flex-row gap-4">
-                {/* Thumbnail */}
+                {/* Thumbnail / poster */}
                 <div className="flex-shrink-0">
-                  {r.thumbnail ? (
-                    <img src={r.thumbnail} alt="Poster" className="w-24 h-auto border-2 border-black object-cover" loading="lazy" />
-                  ) : (
-                    <div className="w-24 h-36 bg-gray-300 border-2 border-black flex items-center justify-center text-xs font-bold text-gray-500">{locale === "en" ? "NO IMG" : "无图"}</div>
-                  )}
+                  {(() => {
+                    const src = r.sourceMovies?.[0];
+                    const poster = r.thumbnail || (src?.tmdbId ? posterMap[src.tmdbId] : null);
+                    return poster ? (
+                      <img src={poster} alt="Poster" className="w-24 h-auto border-2 border-black object-cover" loading="lazy" />
+                    ) : (
+                      <div className="w-24 h-36 bg-gray-300 border-2 border-black flex items-center justify-center text-xs font-bold text-gray-500">{locale === "en" ? "NO IMG" : "无图"}</div>
+                    );
+                  })()}
                 </div>
 
                 {/* Info */}
