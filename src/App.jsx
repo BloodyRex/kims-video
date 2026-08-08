@@ -10,6 +10,7 @@ import SplashPage from "./components/SplashPage";
 import DiscoverPage from "./components/DiscoverPage";
 import IntelligencePage from "./components/IntelligencePage";
 import WallPage from "./components/WallPage";
+import EntryPage from "./components/EntryPage";
 import AdminPage from "./components/AdminPage";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "./services/api";
@@ -38,6 +39,8 @@ function App() {
           <Route path="/intelligence/weekly" element={<IntelligencePage />} />
           <Route path="/intelligence/search" element={<IntelligencePage />} />
           <Route path="/wall" element={<WallPage />} />
+          {/* Hidden test page: new 4-card entry portal (swap with "/" when it goes live) */}
+          <Route path="/recommend" element={<EntryPage />} />
         </Routes>
         <ShareButtonWrapper />
       </LocaleProvider>
