@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "workers-1.4.js"
+      - "wrangler.toml"
     branches: [main]
   workflow_dispatch:
 
