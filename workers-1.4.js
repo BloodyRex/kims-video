@@ -1598,7 +1598,7 @@ async function handleSubscribe(request, env) {
         await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html: result.html, date: result.date }), { expirationTtl: 86400 });
       }
       const personalHtml = digestHtml.replace(
-        "https://api.bloodyrex.xyz/intelligence/unsubscribe?email=",
+        /https:\/\/api\.bloodyrex\.xyz\/intelligence\/unsubscribe\?email=[^"'<>\s]*/g,
         `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(email)}`
       );
       await fetch("https://api.resend.com/emails", {
@@ -1649,7 +1649,14 @@ async function buildDigestHTML(env, now) {
   // ── Helpers ──
   const genreStr = (g) => Array.isArray(g) ? g.slice(0, 2).join(" / ") : (g || "");
   const safeSummary = (s) => (s || "").slice(0, 120);
-  const thumb = (url) => (url || "").replace("/w500/", "/w92/");
+  const thumb = (url) => {
+    if (!url) return "";
+    // Route through poster-proxy: TMDB image host is unreachable from CN networks
+    // (direct w92 URLs fail in email clients → all posters broken). Proxy keeps
+    // them loadable via api.bloodyrex.xyz (Cloudflare edge).
+    const small = url.replace("/w500/", "/w92/");
+    return `https://api.bloodyrex.xyz/poster-proxy?url=${encodeURIComponent(small)}`;
+  };
   const title = (text) => `<div style="display:flex;align-items:center;gap:6px;margin:12px 0 8px"><span style="font-size:16px;font-weight:bold;color:#ffff00;text-transform:uppercase">${text}</span></div>`;
   const divider = `<div style="border-top:2px dashed #333;margin:16px 0"></div>`;
   const card = (inner, borderColor) => `<div style="background:#000;border:2px solid ${borderColor};padding:10px;margin:6px 0">${inner}</div>`;
@@ -2012,7 +2019,7 @@ async function sendDigestToAll(env) {
       if (!raw) continue;
       const sub = JSON.parse(raw);
       const personalHtml = html.replace(
-        "https://api.bloodyrex.xyz/intelligence/unsubscribe?email=",
+        /https:\/\/api\.bloodyrex\.xyz\/intelligence\/unsubscribe\?email=[^"'<>\s]*/g,
         `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(sub.email)}`
       );
       // Per-email timeout (15s — Resend usually responds in <2s)
@@ -2076,8 +2083,8 @@ export default {
       const tm = path.match(/^\/discover\/thumbnail\/(.+)$/);
       if (tm && env.DISCOVER_R2) { try { const obj = await env.DISCOVER_R2.get(`thumbnails/${tm[1]}.png`); if (!obj) return new Response("Not found", { status: 404, headers: corsHeaders }); const h = new Headers(); obj.writeHttpMetadata(h); h.set("Access-Control-Allow-Origin", corsHeaders["Access-Control-Allow-Origin"]); h.set("Cache-Control", "public, max-age=86400"); return new Response(obj.body, { headers: h }); } catch (e) { return new Response("Error", { status: 500, headers: corsHeaders }); } }
 
-      // Poster proxy (TMDB + Cover Art Archive)
-      if (path === "/poster-proxy") { const iu = url.searchParams.get("url"); if (!iu) return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } }); if (!iu.startsWith("https://image.tmdb.org/") && !iu.startsWith("https://coverartarchive.org/")) return new Response("Forbidden", { status: 403, headers: { "Access-Control-Allow-Origin": "*" } }); try { const ir = await fetch(iu); const nh = new Headers(ir.headers); nh.set("Access-Control-Allow-Origin", "*"); nh.set("Cache-Control", "public, max-age=86400"); return new Response(ir.body, { status: ir.status, headers: nh }); } catch (e) { return new Response("Proxy error", { status: 502, headers: { "Access-Control-Allow-Origin": "*" } }); } }
+      // Poster proxy (TMDB + Cover Art Archive) — cached so email clients / repeat loads don't hit TMDB each time
+      if (path === "/poster-proxy") { const iu = url.searchParams.get("url"); if (!iu) return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } }); if (!iu.startsWith("https://image.tmdb.org/") && !iu.startsWith("https://coverartarchive.org/")) return new Response("Forbidden", { status: 403, headers: { "Access-Control-Allow-Origin": "*" } }); try { const cacheKey = new Request(`https://poster-cache/${encodeURIComponent(iu)}`); const cached = await caches.default.match(cacheKey); if (cached) return cached; const ir = await fetch(iu); const nh = new Headers(ir.headers); nh.set("Access-Control-Allow-Origin", "*"); nh.set("Cache-Control", "public, max-age=86400"); const resp = new Response(ir.body, { status: ir.status, headers: nh }); if (ir.ok) caches.default.put(cacheKey, resp.clone()); return resp; } catch (e) { return new Response("Proxy error", { status: 502, headers: { "Access-Control-Allow-Origin": "*" } }); } }
 
       // Admin: list results
       if (path === "/admin/results") { const err = requireAdmin(); if (err) return err; try { return Response.json(await handleAdminResults(env), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
