@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-10",
+  "updated": "2026-08-11",
   "config": {
     "releaseWindowDays": 30,
     "mbPages": 3,
@@ -28,10 +28,10 @@
     "mbRaw": 300,
     "afterFilter": 169,
     "artistsChecked": 73,
-    "afterArtistFilter": 54,
+    "afterArtistFilter": 53,
     "albumEnriched": 40,
     "chartItems": 357,
-    "totalCandidates": 411,
+    "totalCandidates": 410,
     "sentToWorker": 18
   },
   "candidates": [
@@ -67,17 +67,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3578457,
-      "artistPlaycount": 130136420,
-      "albumListeners": 1295000,
-      "albumPlaycount": 13593757,
+      "artistListeners": 3579129,
+      "artistPlaycount": 130153588,
+      "albumListeners": 1295177,
+      "albumPlaycount": 13595074,
       "score": 70,
       "scoreBreakdown": {
         "artist": 40,
         "album": 30,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-6f7853c8-e90a-4886-9535-0a14fa328903",
@@ -111,17 +111,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 1390685,
-      "artistPlaycount": 24794695,
-      "albumListeners": 812936,
-      "albumPlaycount": 8037329,
-      "score": 69.55028178122424,
+      "artistListeners": 1390855,
+      "artistPlaycount": 24798047,
+      "albumListeners": 813000,
+      "albumPlaycount": 8037967,
+      "score": 69.55045272797034,
       "scoreBreakdown": {
         "artist": 40,
-        "album": 29.550281781224243,
+        "album": 29.550452727970338,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-e4b88467-dd28-4072-b95a-bd380c4728cf",
@@ -137,17 +137,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 179498,
-      "artistPlaycount": 2147163,
-      "albumListeners": 1199,
-      "albumPlaycount": 4934,
-      "score": 66.42116000850524,
+      "artistListeners": 179503,
+      "artistPlaycount": 2147271,
+      "albumListeners": 1203,
+      "albumPlaycount": 4961,
+      "score": 65.42847287841442,
       "scoreBreakdown": {
-        "artist": 35.02706409301099,
-        "album": 15.394095915494244,
-        "freshness": 16
+        "artist": 35.027144741715205,
+        "album": 15.401328136699226,
+        "freshness": 15
       },
-      "daysOld": 14
+      "daysOld": 15
     },
     {
       "id": "mb-ca12bdf9-c25a-4d98-9188-86d41c71efbd",
@@ -181,17 +181,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 511920,
-      "artistPlaycount": 22882884,
-      "albumListeners": 25618,
-      "albumPlaycount": 371916,
-      "score": 60.104073420984136,
+      "artistListeners": 511972,
+      "artistPlaycount": 22885255,
+      "albumListeners": 25628,
+      "albumPlaycount": 372309,
+      "score": 60.105214975578455,
       "scoreBreakdown": {
-        "artist": 38.0613473144069,
-        "album": 22.04272610657723,
+        "artist": 38.06164139897934,
+        "album": 22.043573576599115,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
@@ -225,43 +225,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 158386,
-      "artistPlaycount": 1011711,
-      "albumListeners": 88089,
-      "albumPlaycount": 590307,
-      "score": 59.38938700547108,
+      "artistListeners": 158399,
+      "artistPlaycount": 1011805,
+      "albumListeners": 88099,
+      "albumPlaycount": 590374,
+      "score": 59.38987113068458,
       "scoreBreakdown": {
-        "artist": 34.664778606291904,
-        "album": 24.72460839917918,
+        "artist": 34.66501623657818,
+        "album": 24.724854894106397,
         "freshness": 0
       },
-      "daysOld": 220
-    },
-    {
-      "id": "mb-ae6447fd-ab57-4482-a694-4e2687358a69",
-      "mbid": "ae6447fd-ab57-4482-a694-4e2687358a69",
-      "title": "As It Is",
-      "artist": "As It Is",
-      "releaseDate": "2026-07-17",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 184048,
-      "artistPlaycount": 7024982,
-      "albumListeners": 2530,
-      "albumPlaycount": 38367,
-      "score": 59.11514328886089,
-      "scoreBreakdown": {
-        "artist": 35.0995406829818,
-        "album": 17.015602605879092,
-        "freshness": 7
-      },
-      "daysOld": 23
+      "daysOld": 221
     },
     {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
@@ -295,17 +269,43 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 135848,
-      "artistPlaycount": 3634590,
-      "albumListeners": 84671,
-      "albumPlaycount": 1769552,
-      "score": 58.85902843815154,
+      "artistListeners": 135946,
+      "artistPlaycount": 3636975,
+      "albumListeners": 84762,
+      "albumPlaycount": 1770539,
+      "score": 58.86344886886748,
       "scoreBreakdown": {
-        "artist": 34.220354993142486,
-        "album": 24.638673445009054,
+        "artist": 34.222442891137334,
+        "album": 24.641005977730146,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
+    },
+    {
+      "id": "mb-ae6447fd-ab57-4482-a694-4e2687358a69",
+      "mbid": "ae6447fd-ab57-4482-a694-4e2687358a69",
+      "title": "As It Is",
+      "artist": "As It Is",
+      "releaseDate": "2026-07-17",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 184067,
+      "artistPlaycount": 7025939,
+      "albumListeners": 2543,
+      "albumPlaycount": 38651,
+      "score": 58.1265713613004,
+      "scoreBreakdown": {
+        "artist": 35.099839560421856,
+        "album": 17.026731800878544,
+        "freshness": 6
+      },
+      "daysOld": 24
     },
     {
       "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
@@ -321,17 +321,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 474783,
-      "artistPlaycount": 6395205,
+      "artistListeners": 474791,
+      "artistPlaycount": 6395421,
       "albumListeners": 5529,
-      "albumPlaycount": 19411,
-      "score": 56.55653401826695,
+      "albumPlaycount": 19416,
+      "score": 56.55658280303226,
       "scoreBreakdown": {
-        "artist": 37.84330106857327,
+        "artist": 37.84334985333858,
         "album": 18.713232949693683,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
@@ -365,17 +365,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 203904,
-      "artistPlaycount": 7771534,
-      "albumListeners": 13543,
-      "albumPlaycount": 203563,
-      "score": 56.054746028652005,
+      "artistListeners": 203908,
+      "artistPlaycount": 7771651,
+      "albumListeners": 13544,
+      "albumPlaycount": 203575,
+      "score": 56.0549631585226,
       "scoreBreakdown": {
-        "artist": 35.39617163632666,
-        "album": 20.65857439232534,
+        "artist": 35.3962284330182,
+        "album": 20.658734725504395,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
@@ -409,17 +409,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 252333,
-      "artistPlaycount": 1986474,
-      "albumListeners": 4321,
-      "albumPlaycount": 21436,
-      "score": 54.19108167205815,
+      "artistListeners": 252354,
+      "artistPlaycount": 1986689,
+      "albumListeners": 4329,
+      "albumPlaycount": 21487,
+      "score": 54.19533921584736,
       "scoreBreakdown": {
-        "artist": 36.013160340502,
-        "album": 18.17792133155615,
+        "artist": 36.01340128678158,
+        "album": 18.181937929065782,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-678bbf03-22b8-4342-bf02-7f0a0dcb353d",
@@ -435,17 +435,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 390995,
-      "artistPlaycount": 4013315,
-      "albumListeners": 893,
-      "albumPlaycount": 7048,
-      "score": 52.035398652592605,
+      "artistListeners": 391026,
+      "artistPlaycount": 4013532,
+      "albumListeners": 894,
+      "albumPlaycount": 7054,
+      "score": 52.03805849633089,
       "scoreBreakdown": {
-        "artist": 37.281141358149874,
-        "album": 14.754257294442732,
+        "artist": 37.281370902351306,
+        "album": 14.756687593979589,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-aca30a57-12bb-4a41-af25-59457048a844",
@@ -480,16 +480,16 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 33545,
-      "artistPlaycount": 312140,
+      "artistPlaycount": 312143,
       "albumListeners": 19073,
-      "albumPlaycount": 105417,
+      "albumPlaycount": 105418,
       "score": 51.57294701862692,
       "scoreBreakdown": {
         "artist": 30.170851974745926,
         "album": 21.402095043880998,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-ee928bdc-8e78-4925-9563-b1cc9d193147",
@@ -517,43 +517,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 86515,
-      "artistPlaycount": 4002632,
-      "albumListeners": 5035,
-      "albumPlaycount": 179787,
-      "score": 51.42394012189839,
+      "artistListeners": 86528,
+      "artistPlaycount": 4004487,
+      "albumListeners": 5041,
+      "albumPlaycount": 179976,
+      "score": 51.42696125778745,
       "scoreBreakdown": {
-        "artist": 32.91394274745021,
-        "album": 18.509997374448183,
+        "artist": 32.914377770596694,
+        "album": 18.512583487190753,
         "freshness": 0
       },
-      "daysOld": 220
-    },
-    {
-      "id": "mb-b88f81f3-c024-46b0-8d1c-0ffa2d0afaa7",
-      "mbid": "b88f81f3-c024-46b0-8d1c-0ffa2d0afaa7",
-      "title": "The Shieling – Companion Pieces",
-      "artist": "Fergus McCreadie",
-      "releaseDate": "2026-07-17",
-      "year": "2026",
-      "type": "EP",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 30781,
-      "artistPlaycount": 175916,
-      "albumListeners": 621,
-      "albumPlaycount": 2081,
-      "score": 50.88734283353993,
-      "scoreBreakdown": {
-        "artist": 29.92188483265703,
-        "album": 13.9654580008829,
-        "freshness": 7
-      },
-      "daysOld": 23
+      "daysOld": 221
     },
     {
       "id": "mb-268d81bf-6af4-4bfd-b4ce-41a7e777c144",
@@ -569,17 +543,43 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 39383,
-      "artistPlaycount": 326068,
-      "albumListeners": 10456,
-      "albumPlaycount": 40260,
-      "score": 50.732219842489584,
+      "artistListeners": 39386,
+      "artistPlaycount": 326124,
+      "albumListeners": 10457,
+      "albumPlaycount": 40273,
+      "score": 50.73264805053438,
       "scoreBreakdown": {
-        "artist": 30.635391969627147,
-        "album": 20.096827872862438,
+        "artist": 30.635612510439962,
+        "album": 20.097035540094417,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
+    },
+    {
+      "id": "mb-b88f81f3-c024-46b0-8d1c-0ffa2d0afaa7",
+      "mbid": "b88f81f3-c024-46b0-8d1c-0ffa2d0afaa7",
+      "title": "The Shieling – Companion Pieces",
+      "artist": "Fergus McCreadie",
+      "releaseDate": "2026-07-17",
+      "year": "2026",
+      "type": "EP",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 30787,
+      "artistPlaycount": 175947,
+      "albumListeners": 627,
+      "albumPlaycount": 2096,
+      "score": 49.908786848769125,
+      "scoreBreakdown": {
+        "artist": 29.92244914461555,
+        "album": 13.98633770415358,
+        "freshness": 6
+      },
+      "daysOld": 24
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -614,16 +614,16 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 20522,
-      "artistPlaycount": 153806,
+      "artistPlaycount": 153807,
       "albumListeners": 12158,
-      "albumPlaycount": 96945,
+      "albumPlaycount": 96946,
       "score": 49.17244191706859,
       "scoreBreakdown": {
         "artist": 28.74813122182648,
         "album": 20.42431069524211,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
@@ -639,17 +639,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 92428,
-      "artistPlaycount": 762888,
-      "albumListeners": 1375,
-      "albumPlaycount": 5656,
-      "score": 48.796870528648284,
+      "artistListeners": 92435,
+      "artistPlaycount": 762922,
+      "albumListeners": 1376,
+      "albumPlaycount": 5662,
+      "score": 48.798668473212125,
       "scoreBreakdown": {
-        "artist": 33.10535703781687,
-        "album": 15.69151349083141,
+        "artist": 33.10557630371466,
+        "album": 15.693092169497461,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
@@ -665,17 +665,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 39653,
-      "artistPlaycount": 331889,
-      "albumListeners": 3743,
-      "albumPlaycount": 36524,
-      "score": 48.52127280236067,
+      "artistListeners": 39654,
+      "artistPlaycount": 332036,
+      "albumListeners": 3745,
+      "albumPlaycount": 36607,
+      "score": 48.522505791871254,
       "scoreBreakdown": {
-        "artist": 30.655173666788556,
-        "album": 17.86609913557211,
+        "artist": 30.655246681693825,
+        "album": 17.86725911017743,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
@@ -691,17 +691,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 118485,
-      "artistPlaycount": 5425060,
+      "artistListeners": 118488,
+      "artistPlaycount": 5425343,
       "albumListeners": 832,
       "albumPlaycount": 3726,
-      "score": 48.425039117329696,
+      "score": 48.425112424327864,
       "scoreBreakdown": {
-        "artist": 33.82442248587608,
+        "artist": 33.824495792874245,
         "album": 14.60061663145362,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
@@ -735,17 +735,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 112841,
-      "artistPlaycount": 889169,
+      "artistListeners": 112857,
+      "artistPlaycount": 889258,
       "albumListeners": 534,
       "albumPlaycount": 8598,
-      "score": 47.32081912667512,
+      "score": 47.321229628716026,
       "scoreBreakdown": {
-        "artist": 33.68311284153234,
+        "artist": 33.68352334357324,
         "album": 13.63770628514278,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -761,17 +761,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 43068,
-      "artistPlaycount": 1803720,
+      "artistListeners": 43074,
+      "artistPlaycount": 1803833,
       "albumListeners": 1423,
-      "albumPlaycount": 34265,
-      "score": 46.66038919629385,
+      "albumPlaycount": 34280,
+      "score": 46.66079252519971,
       "scoreBreakdown": {
-        "artist": 30.89436469587243,
+        "artist": 30.89476802477829,
         "album": 15.76602450042142,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -787,17 +787,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 75307,
-      "artistPlaycount": 804102,
+      "artistListeners": 75313,
+      "artistPlaycount": 804130,
       "albumListeners": 669,
-      "albumPlaycount": 12756,
-      "score": 46.63936623540756,
+      "albumPlaycount": 12760,
+      "score": 46.63959690569417,
       "scoreBreakdown": {
-        "artist": 32.51223564656844,
+        "artist": 32.512466316855054,
         "album": 14.127130588839117,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-15e13404-810d-4918-880f-1d43ac51d1fe",
@@ -813,17 +813,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 37308,
-      "artistPlaycount": 367421,
-      "albumListeners": 1460,
-      "albumPlaycount": 6533,
-      "score": 46.3004440661943,
+      "artistListeners": 37323,
+      "artistPlaycount": 367502,
+      "albumListeners": 1462,
+      "albumPlaycount": 6537,
+      "score": 46.304580495131496,
       "scoreBreakdown": {
-        "artist": 30.478679787272114,
-        "album": 15.821764278922185,
+        "artist": 30.479843632022288,
+        "album": 15.824736863109209,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
@@ -839,17 +839,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 7216,
-      "artistPlaycount": 31523,
-      "albumListeners": 4009,
-      "albumPlaycount": 21074,
-      "score": 43.73715711147851,
+      "artistListeners": 7218,
+      "artistPlaycount": 31533,
+      "albumListeners": 4011,
+      "albumPlaycount": 21082,
+      "score": 43.73904249473149,
       "scoreBreakdown": {
-        "artist": 25.721976830225902,
-        "album": 18.015180281252608,
+        "artist": 25.722779184823253,
+        "album": 18.016263309908236,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -884,7 +884,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 36773,
-      "artistPlaycount": 2068780,
+      "artistPlaycount": 2068969,
       "albumListeners": 271,
       "albumPlaycount": 4374,
       "score": 42.60170686604398,
@@ -893,7 +893,7 @@
         "album": 12.164846454372029,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
@@ -909,17 +909,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 21540,
-      "artistPlaycount": 65249,
+      "artistListeners": 21548,
+      "artistPlaycount": 65274,
       "albumListeners": 351,
       "albumPlaycount": 741,
-      "score": 41.61484024207554,
+      "score": 41.61591536148856,
       "scoreBreakdown": {
-        "artist": 28.88830465974642,
+        "artist": 28.889379779159444,
         "album": 12.726535582329118,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
@@ -935,17 +935,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 30644,
-      "artistPlaycount": 934294,
+      "artistListeners": 30645,
+      "artistPlaycount": 934298,
       "albumListeners": 217,
       "albumPlaycount": 2076,
-      "score": 41.59126836036023,
+      "score": 41.59136284049684,
       "scoreBreakdown": {
-        "artist": 29.908969691117587,
+        "artist": 29.909064171254194,
         "album": 11.682298669242648,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
@@ -961,17 +961,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 525333,
-      "artistPlaycount": 49850240,
+      "artistListeners": 525541,
+      "artistPlaycount": 49865215,
       "albumListeners": 3,
       "albumPlaycount": 66,
-      "score": 40.52183749270646,
+      "score": 40.52298362761785,
       "scoreBreakdown": {
-        "artist": 38.13623121910815,
+        "artist": 38.137377354019534,
         "album": 2.385606273598312,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-f8536d9f-b285-4ec7-add3-62d1d53ccd14",
@@ -987,17 +987,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 167029,
-      "artistPlaycount": 2217348,
+      "artistListeners": 167051,
+      "artistPlaycount": 2217619,
       "albumListeners": 13,
       "albumPlaycount": 105,
-      "score": 40.3883293015825,
+      "score": 40.388710626559174,
       "scoreBreakdown": {
-        "artist": 34.81861254004832,
+        "artist": 34.81899386502499,
         "album": 5.569716761534184,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
@@ -1013,17 +1013,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 4270,
-      "artistPlaycount": 108717,
-      "albumListeners": 1449,
-      "albumPlaycount": 22752,
-      "score": 40.0081944275227,
+      "artistListeners": 4271,
+      "artistPlaycount": 108781,
+      "albumListeners": 1450,
+      "albumPlaycount": 22778,
+      "score": 40.010370487353704,
       "scoreBreakdown": {
-        "artist": 24.202852500166827,
-        "album": 15.805341927355874,
+        "artist": 24.20353047617883,
+        "album": 15.806840011174874,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
@@ -1040,16 +1040,16 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 9657,
-      "artistPlaycount": 265477,
+      "artistPlaycount": 265482,
       "albumListeners": 254,
-      "albumPlaycount": 4352,
+      "albumPlaycount": 4354,
       "score": 38.58978345913486,
       "scoreBreakdown": {
         "artist": 26.56561487603517,
         "album": 12.024168583099689,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
@@ -1065,17 +1065,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 25066,
-      "artistPlaycount": 361196,
+      "artistListeners": 25067,
+      "artistPlaycount": 361218,
       "albumListeners": 70,
       "albumPlaycount": 382,
-      "score": 38.55272376895945,
+      "score": 38.552839273579025,
       "scoreBreakdown": {
-        "artist": 29.327233568888165,
+        "artist": 29.327349073507737,
         "album": 9.225490200071285,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
@@ -1110,16 +1110,16 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 25550,
-      "artistPlaycount": 136149,
+      "artistPlaycount": 136157,
       "albumListeners": 58,
-      "albumPlaycount": 729,
+      "albumPlaycount": 730,
       "score": 38.199745997619566,
       "scoreBreakdown": {
         "artist": 29.38260602980488,
         "album": 8.817139967814686,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-eed0703e-1587-4667-81df-c390c4f6a59a",
@@ -1136,7 +1136,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 47662,
-      "artistPlaycount": 134440,
+      "artistPlaycount": 134443,
       "albumListeners": 21,
       "albumPlaycount": 37,
       "score": 37.79891155582333,
@@ -1145,7 +1145,7 @@
         "album": 6.611096473669597,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
@@ -1161,17 +1161,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3610,
-      "artistPlaycount": 45200,
-      "albumListeners": 201,
-      "albumPlaycount": 2224,
-      "score": 35.232694966473495,
+      "artistListeners": 3616,
+      "artistPlaycount": 45219,
+      "albumListeners": 202,
+      "albumPlaycount": 2225,
+      "score": 35.24827965925529,
       "scoreBreakdown": {
-        "artist": 23.71671467937105,
-        "album": 11.515980287102444,
+        "artist": 23.721522812022172,
+        "album": 11.52675684723312,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
@@ -1188,7 +1188,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 3503,
-      "artistPlaycount": 53908,
+      "artistPlaycount": 53909,
       "albumListeners": 200,
       "albumPlaycount": 2116,
       "score": 35.13475089377119,
@@ -1197,7 +1197,7 @@
         "album": 11.505149978319906,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
@@ -1231,17 +1231,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 5571,
-      "artistPlaycount": 194331,
+      "artistListeners": 5572,
+      "artistPlaycount": 194346,
       "albumListeners": 72,
       "albumPlaycount": 606,
-      "score": 34.25955020521929,
+      "score": 34.260069867169186,
       "scoreBreakdown": {
-        "artist": 24.97288772306295,
+        "artist": 24.97340738501284,
         "album": 9.286662482156343,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-cb038ac1-0e50-4e55-b990-b28d016bc42b",
@@ -1263,17 +1263,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 62219,
-      "artistPlaycount": 787330,
+      "artistListeners": 62223,
+      "artistPlaycount": 787368,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 31.959486844897086,
+      "score": 31.959672974759798,
       "scoreBreakdown": {
-        "artist": 31.959486844897086,
+        "artist": 31.959672974759798,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
@@ -1289,17 +1289,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 23458,
-      "artistPlaycount": 1257066,
+      "artistListeners": 23459,
+      "artistPlaycount": 1257087,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 29.135273212991514,
+      "score": 29.135396635057997,
       "scoreBreakdown": {
-        "artist": 29.135273212991514,
+        "artist": 29.135396635057997,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-338d60e1-ad46-44c3-a5fa-b2b2d4daa554",
@@ -1315,17 +1315,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 6116,
-      "artistPlaycount": 79168,
+      "artistListeners": 6118,
+      "artistPlaycount": 79199,
       "albumListeners": 1,
-      "albumPlaycount": 9,
-      "score": 25.243116511601883,
+      "albumPlaycount": 19,
+      "score": 25.244063150991067,
       "scoreBreakdown": {
-        "artist": 25.243116511601883,
+        "artist": 25.244063150991067,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
@@ -1346,17 +1346,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3138,
-      "artistPlaycount": 20498,
+      "artistListeners": 3140,
+      "artistPlaycount": 20502,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 23.311019595006123,
+      "score": 23.3128643204881,
       "scoreBreakdown": {
-        "artist": 23.311019595006123,
+        "artist": 23.3128643204881,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
@@ -1379,7 +1379,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 2576,
-      "artistPlaycount": 93756,
+      "artistPlaycount": 93758,
       "albumListeners": 0,
       "albumPlaycount": 0,
       "score": 22.739639057918495,
@@ -1388,7 +1388,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-f7a6a3d6-ce69-41a2-9e89-a2924ab12407",
@@ -1411,7 +1411,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 2548,
-      "artistPlaycount": 32583,
+      "artistPlaycount": 32588,
       "albumListeners": 0,
       "albumPlaycount": 0,
       "score": 22.707996157755417,
@@ -1420,7 +1420,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-f10db834-996c-4b1f-9563-98c7b9e80baa",
@@ -1436,17 +1436,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 2439,
-      "artistPlaycount": 39915,
+      "artistListeners": 2440,
+      "artistPlaycount": 39960,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 22.58141200209154,
+      "score": 22.5825988422582,
       "scoreBreakdown": {
-        "artist": 22.58141200209154,
+        "artist": 22.5825988422582,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
@@ -1468,17 +1468,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 2375,
-      "artistPlaycount": 25698,
+      "artistListeners": 2376,
+      "artistPlaycount": 25699,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 22.504424093072572,
+      "score": 22.505642908727705,
       "scoreBreakdown": {
-        "artist": 22.504424093072572,
+        "artist": 22.505642908727705,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-e178c01c-3f05-4070-9454-749687762747",
@@ -1510,39 +1510,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
-    },
-    {
-      "id": "mb-23d0bcf0-0a08-4f77-8eb5-bfd36941e15e",
-      "mbid": "23d0bcf0-0a08-4f77-8eb5-bfd36941e15e",
-      "title": "Rakasa",
-      "artist": "Anudeep Dev",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "IN",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "Indian",
-        "india",
-        "telugu",
-        "Hyderabad",
-        "playback singer"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1665,
-      "artistPlaycount": 10623,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 21.476094918948924,
-      "scoreBreakdown": {
-        "artist": 21.476094918948924,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
@@ -1574,7 +1542,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
@@ -1606,7 +1574,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
@@ -1628,17 +1596,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 1082,
-      "artistPlaycount": 10181,
+      "artistListeners": 1085,
+      "artistPlaycount": 10186,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 20.228181738470337,
+      "score": 20.236198254563654,
       "scoreBreakdown": {
-        "artist": 20.228181738470337,
+        "artist": 20.236198254563654,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
@@ -1667,7 +1635,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-dc113487-3606-48ce-976d-37748757097c",
@@ -1690,7 +1658,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 857,
-      "artistPlaycount": 11967,
+      "artistPlaycount": 11968,
       "albumListeners": 0,
       "albumPlaycount": 0,
       "score": 19.553205479487985,
@@ -1699,7 +1667,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-901435e9-1c31-4a69-9fe9-288b4d510d99",
@@ -1731,7 +1699,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "mb-4f123c9f-5775-4f3e-938c-6e4d90cd3944",
@@ -1747,17 +1715,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 549,
-      "artistPlaycount": 6200,
+      "artistListeners": 551,
+      "artistPlaycount": 6211,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 18.263815629667278,
+      "score": 18.274343992345234,
       "scoreBreakdown": {
-        "artist": 18.263815629667278,
+        "artist": 18.274343992345234,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 220
+      "daysOld": 221
     },
     {
       "id": "chart-0",
