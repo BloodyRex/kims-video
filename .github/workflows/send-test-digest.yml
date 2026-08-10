@@ -1,0 +1,20 @@
+name: Send Test Digest Email
+
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: "收件邮箱"
+        required: false
+        default: "rexhr@yahoo.com"
+
+jobs:
+  send-test-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send test digest to single email
+        run: |
+          curl -s -X POST "https://api.bloodyrex.xyz/intelligence/send-test" \
+            -H "Authorization: Bearer ${{ secrets.DIGEST_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"email\":\"${{ github.event.inputs.email }}\"}"

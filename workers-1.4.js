@@ -2178,6 +2178,35 @@ export default {
         return handleSendDigest(request, env);
       }
 
+      // Send digest to ONE email (test/verification, authenticated)
+      if (path === "/intelligence/send-test") {
+        let tb; try { tb = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
+        const auth = request.headers.get("Authorization");
+        if (!auth || auth !== `Bearer ${env.DIGEST_SECRET}`) return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
+        if (!tb.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(tb.email)) return Response.json({ error: "Invalid email" }, { status: 400, headers: corsHeaders });
+        try {
+          const today = intelToday();
+          const result = await withTimeout(buildDigestHTML(env, today), 50000, "buildDigestHTML");
+          if (!result?.html) return Response.json({ error: "digest build failed" }, { status: 500, headers: corsHeaders });
+          const personalHtml = result.html.replace(
+            /https:\/\/api\.bloodyrex\.xyz\/intelligence\/unsubscribe\?email=[^"'<>\s]*/g,
+            `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(tb.email)}`
+          );
+          const r = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+              from: "Kim's Video <digest@bloodyrex.xyz>",
+              to: tb.email,
+              subject: `Kim's Video 每日影音情报 · ${result.date || today}（测试）`,
+              html: personalHtml,
+            }),
+          });
+          const data = await r.json();
+          return Response.json({ ok: r.ok, id: data?.id, error: data?.message || null }, { headers: corsHeaders });
+        } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); }
+      }
+
       // Unsubscribe (POST)
       if (path === "/intelligence/unsubscribe") {
         return handleUnsubscribe(request, env);
