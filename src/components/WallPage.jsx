@@ -206,21 +206,21 @@ const WallPage = () => {
           border: 2px solid transparent;
           background:
             linear-gradient(#fff, #fff) padding-box,
-            conic-gradient(from var(--wall-angle),
-              #ffb800 0deg, #ffb800 42deg,
-              rgba(255, 184, 0, 0.45) 75deg,
-              rgba(255, 184, 0, 0.1) 115deg,
-              transparent 160deg) border-box;
-          animation: wall-spin 2s linear infinite;
+            conic-gradient(from calc(var(--wall-angle) + 180deg),
+              transparent 0deg, transparent 200deg,
+              rgba(255, 184, 0, 0.15) 240deg, rgba(255, 184, 0, 0.15) 258deg,
+              rgba(255, 184, 0, 0.5) 284deg, rgba(255, 184, 0, 0.5) 300deg,
+              #ffb800 312deg, #ffb800 360deg) border-box;
+          animation: wall-spin 1.6s steps(8) infinite;
         }
         .community-btn.on {
           background:
             linear-gradient(#00ffff, #00ffff) padding-box,
-            conic-gradient(from var(--wall-angle),
-              #ffb800 0deg, #ffb800 42deg,
-              rgba(255, 184, 0, 0.45) 75deg,
-              rgba(255, 184, 0, 0.1) 115deg,
-              transparent 160deg) border-box;
+            conic-gradient(from calc(var(--wall-angle) + 180deg),
+              transparent 0deg, transparent 200deg,
+              rgba(255, 184, 0, 0.15) 240deg, rgba(255, 184, 0, 0.15) 258deg,
+              rgba(255, 184, 0, 0.5) 284deg, rgba(255, 184, 0, 0.5) 300deg,
+              #ffb800 312deg, #ffb800 360deg) border-box;
         }
         @keyframes wall-spin {
           to { --wall-angle: 360deg; }
