@@ -194,8 +194,9 @@ const WallPage = () => {
 
   return (
     <div className={`min-h-screen graffiti-bg text-black pb-32 wall-page locale-${locale}`}>
-      {/* Comet border for the "来自社区" button — ALWAYS animated (clockwise, solid head leading, fading tail).
-          Active state adds the cyan fill; the comet animation keeps running. */}
+      {/* Comet for the "来自社区" button — ALWAYS animated, clockwise.
+          Head = a droplet element riding the border (solid orange, pixel-stepped orbit);
+          trail = conic gradient fading behind it. Active adds cyan fill. */}
       <style>{`
         @property --wall-angle {
           syntax: "<angle>";
@@ -203,25 +204,55 @@ const WallPage = () => {
           inherits: false;
         }
         .community-btn {
+          position: relative;
           border: 2px solid transparent;
           background:
             linear-gradient(#fff, #fff) padding-box,
-            conic-gradient(from calc(var(--wall-angle) + 180deg),
-              transparent 0deg, transparent 200deg,
-              rgba(255, 184, 0, 0.15) 240deg, rgba(255, 184, 0, 0.15) 258deg,
-              rgba(255, 184, 0, 0.5) 284deg, rgba(255, 184, 0, 0.5) 300deg,
-              #ffb800 312deg, #ffb800 360deg) border-box;
-          animation: wall-spin 1.6s steps(8) infinite;
+            conic-gradient(from var(--wall-angle),
+              transparent 0deg, transparent 100deg,
+              rgba(255, 184, 0, 0.12) 140deg, rgba(255, 184, 0, 0.12) 155deg,
+              rgba(255, 184, 0, 0.45) 165deg, rgba(255, 184, 0, 0.45) 180deg,
+              transparent 220deg) border-box;
         }
         .community-btn.on {
           background:
             linear-gradient(#00ffff, #00ffff) padding-box,
-            conic-gradient(from calc(var(--wall-angle) + 180deg),
-              transparent 0deg, transparent 200deg,
-              rgba(255, 184, 0, 0.15) 240deg, rgba(255, 184, 0, 0.15) 258deg,
-              rgba(255, 184, 0, 0.5) 284deg, rgba(255, 184, 0, 0.5) 300deg,
-              #ffb800 312deg, #ffb800 360deg) border-box;
+            conic-gradient(from var(--wall-angle),
+              transparent 0deg, transparent 100deg,
+              rgba(255, 184, 0, 0.12) 140deg, rgba(255, 184, 0, 0.12) 155deg,
+              rgba(255, 184, 0, 0.45) 165deg, rgba(255, 184, 0, 0.45) 180deg,
+              transparent 220deg) border-box;
         }
+        .community-track {
+          position: absolute;
+          inset: -7px;
+          pointer-events: none;
+          z-index: 0;
+          animation: wall-spin 1.6s steps(8) infinite;
+        }
+        .community-comet {
+          position: absolute;
+          bottom: -6px;
+          left: 50%;
+          width: 13px;
+          height: 13px;
+          margin-left: -6.5px;
+          background: radial-gradient(circle at 35% 40%, #ffe08a, #ffb800 55%, #d99000);
+          border-radius: 50%;
+          box-shadow: 0 0 10px rgba(255, 184, 0, 0.95), 0 0 3px rgba(255, 184, 0, 0.9);
+        }
+        .community-comet::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 100%;
+          width: 14px;
+          height: 4px;
+          background: linear-gradient(to right, rgba(255, 184, 0, 0.85), rgba(255, 184, 0, 0));
+          border-radius: 2px;
+        }
+        .community-btn > span:not(.community-track) { position: relative; z-index: 1; }
         @keyframes wall-spin {
           to { --wall-angle: 360deg; }
         }
@@ -291,7 +322,10 @@ const WallPage = () => {
                   sourceFilter === "rec" ? "on text-black" : "text-black"
                 }`}
               >
-                {zh ? "来自社区" : "FROM COMMUNITY"}
+                <span className="community-track" aria-hidden="true">
+                  <span className="community-comet" />
+                </span>
+                <span>{zh ? "来自社区" : "FROM COMMUNITY"}</span>
               </button>
             </div>
           </div>
