@@ -16,6 +16,10 @@ const COMMON_GENRES = [
   "Horror", "Drama", "Animation", "Thriller",
 ];
 
+// Normalize genre to zh for filtering — wall.json mixes en (pipeline) and zh (community) genre values
+const normGenre = (g) => GENRE_ZH[g] || g;
+const COMMON_ZH = COMMON_GENRES.map(normGenre);
+
 const PAGE_SIZE = 24;
 
 const genreLabel = (g, locale) => (locale === "zh" ? GENRE_ZH[g] || g : g);
@@ -143,9 +147,10 @@ const WallPage = () => {
       if (statusFilter === "released" && m.releaseDate && m.releaseDate > todayStr) return false;
       if (statusFilter === "upcoming" && (!m.releaseDate || m.releaseDate <= todayStr)) return false;
       if (genreFilter === "other") {
-        if (m.genre.some((g) => COMMON_GENRES.includes(g))) return false;
+        if (m.genre.some((g) => COMMON_ZH.includes(normGenre(g)))) return false;
       } else if (genreFilter !== "all") {
-        if (!m.genre.includes(genreFilter)) return false;
+        const fz = normGenre(genreFilter);
+        if (!m.genre.some((g) => normGenre(g) === fz)) return false;
       }
       // Hidden source filter — capability kept for future UI (Rex 2026-08-08).
       // wall.json items may carry source: "rec" (user recommendation collection) or "pipeline" (default).
@@ -189,6 +194,28 @@ const WallPage = () => {
 
   return (
     <div className={`min-h-screen graffiti-bg text-black pb-32 wall-page locale-${locale}`}>
+      {/* Animated comet border for the "来自社区" active state (clockwise, pixel-stepped, orange-yellow) */}
+      <style>{`
+        @property --wall-angle {
+          syntax: "<angle>";
+          initial-value: 0deg;
+          inherits: false;
+        }
+        .community-btn-active {
+          border-color: transparent;
+          background:
+            linear-gradient(#fff, #fff) padding-box,
+            conic-gradient(from var(--wall-angle),
+              #ffb800 0deg, #ffb800 38deg,
+              rgba(255, 184, 0, 0.55) 80deg,
+              rgba(255, 184, 0, 0.12) 130deg,
+              transparent 180deg) border-box;
+          animation: wall-spin 1.6s steps(8) infinite;
+        }
+        @keyframes wall-spin {
+          to { --wall-angle: 360deg; }
+        }
+      `}</style>
       {/* Header — identical to the other three pages */}
       <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
         <Link to="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
@@ -246,11 +273,12 @@ const WallPage = () => {
               {COMMON_GENRES.map((g) => genreBtn(g, genreLabel(g, locale)))}
               {genreBtn("other", zh ? "其他" : "OTHER")}
               {/* Source filter: films collected from user recommendations / community (source: "rec").
-                  Card UI does NOT show this badge — cards keep showing only the genre tag. */}
+                  Card UI does NOT show this badge — cards keep showing only the genre tag.
+                  Active state: clockwise pixel-comet border (bright orange-yellow, fading tail). */}
               <button
                 onClick={() => setSourceFilter(sourceFilter === "rec" ? "all" : "rec")}
-                className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
-                  sourceFilter === "rec" ? "bg-[#00ffff] text-black" : "bg-white text-black hover:bg-gray-100"
+                className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
+                  sourceFilter === "rec" ? "community-btn-active bg-white text-black" : "border-black bg-white text-black hover:bg-gray-100"
                 }`}
               >
                 {zh ? "来自社区" : "FROM COMMUNITY"}
