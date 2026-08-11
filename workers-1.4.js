@@ -376,6 +376,21 @@ async function intelFetchPages(token, path, params = {}, pages = 4) {
   return all;
 }
 
+// ── Upcoming movies: 90-day discover window (2026-08-12) ──
+// Replaces /movie/upcoming (rolling 3-week list → only ~10 Chinese-titled candidates,
+// so the "即将上映" slot never changed day to day). discover/movie with a bounded
+// primary_release_date window yields 50+ candidates → intelSelectDiverse ranking
+// (composite score, hlFuture=14d) actually kicks in and the list shifts daily.
+async function intelFetchUpcomingMovies(token, pages = 10) {
+  const today = intelToday();
+  const plus90 = new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
+  return intelFetchPages(token, "/discover/movie", {
+    "primary_release_date.gte": today,
+    "primary_release_date.lte": plus90,
+    "sort_by": "popularity.desc",
+  }, pages);
+}
+
 // ── Region classification ──
 function classifyRegion(item) {
   const lang = (item.original_language || "en").toLowerCase();
@@ -848,7 +863,7 @@ async function handleIntelOverview(env) {
   // Fetch data directly with same page counts as category handlers (21 subrequests)
   const [nowPlaying, upcoming, trending, tvOnAir, todayMB] = await Promise.all([
     intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
-    intelFetchTMDB(token, "/movie/upcoming"),
+    intelFetchUpcomingMovies(token, 4),
     intelFetchTMDB(token, "/trending/movie/week"),
     intelFetchPages(token, "/tv/on_the_air", {}, 4),
     intelFetchMusicBrainz(today),
@@ -856,7 +871,8 @@ async function handleIntelOverview(env) {
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const cnFilter = (m) => hasChinese(m.title || m.name) && hasChinese(m.overview);
-  const titleCn = (m) => hasChinese(m.title || m.name);
+  // Upcoming: title OR overview Chinese (matches pipeline filterChineseContent standard)
+  const titleCn = (m) => hasChinese(m.title || m.name) || hasChinese(m.overview);
 
   // Movies: same cnFilter + diversity as handleIntelMovies
   const weekCandidates = nowPlaying
@@ -906,7 +922,7 @@ async function handleIntelMovies(env) {
 
   const [nowPlayingRaw, upcomingRaw] = await Promise.all([
     intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
-    intelFetchPages(token, "/movie/upcoming", {}, 4),
+    intelFetchUpcomingMovies(token, 10),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -921,8 +937,8 @@ async function handleIntelMovies(env) {
   const weekSelected = intelSelectDiverse(weekCandidates, 20, reserve, SCORE_OPTS.movie, today);
   const weekM = weekSelected.map(m => intelNormalizeMovie(m));
 
-  // Upcoming: release_date >= today, relaxed filter (title Chinese only), reduced reserve
-  const titleCn = (m) => hasChinese(m.title || m.name);
+  // Upcoming: release_date >= today, relaxed filter (title OR overview Chinese), reduced reserve
+  const titleCn = (m) => hasChinese(m.title || m.name) || hasChinese(m.overview);
   const weekIds = new Set(weekSelected.map(m => m.id));
   const upcomingCandidates = upcomingRaw
     .filter(m => m.release_date && m.release_date >= today)
@@ -1259,7 +1275,7 @@ async function handleIntelComing(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
 
-  const movieUpcoming = await intelFetchTMDB(token, "/movie/upcoming");
+  const movieUpcoming = await intelFetchUpcomingMovies(token, 10);
 
   const allItems = [];
 
