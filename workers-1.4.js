@@ -2089,44 +2089,6 @@ export default {
       // Admin: list results
       if (path === "/admin/results") { const err = requireAdmin(); if (err) return err; try { return Response.json(await handleAdminResults(env), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
 
-      // Wall collect: user-recommendation films reported from ResultsPage (fire-and-forget, zero LLM tokens)
-      if (path === "/wall/collect" && method === "POST") {
-        let cb; try { cb = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
-        const items = Array.isArray(cb.items) ? cb.items.filter((it) => it && it.tmdbId != null).slice(0, 60) : [];
-        if (!items.length || !env.DISCOVER_KV) return Response.json({ ok: true, added: 0, skipped: 0 }, { headers: corsHeaders });
-        const ip = request.headers.get("CF-Connecting-IP") || "unknown";
-        const rlKey = `wallrl:${ip}`;
-        const rl = parseInt(await env.DISCOVER_KV.get(rlKey).catch(() => null) || "0");
-        if (rl >= 120) return Response.json({ ok: false, error: "rate limited" }, { status: 429, headers: corsHeaders });
-        await env.DISCOVER_KV.put(rlKey, String(rl + items.length), { expirationTtl: 600 });
-        const today = intelToday();
-        let added = 0, skipped = 0;
-        for (const it of items) {
-          const id = String(it.tmdbId);
-          const key = `wallRec:${id}`;
-          if (await env.DISCOVER_KV.get(key).catch(() => null)) { skipped++; continue; }
-          try {
-            const det = await fetchTMDBDetails(parseInt(id), env.TMDB_API_READ_ACCESS_TOKEN, "zh-CN");
-            if (!det?.title) { skipped++; continue; }
-            const entry = {
-              tmdbId: parseInt(id),
-              title: det.title || it.title || "",
-              titleEn: det.originalTitle || it.title || "",
-              year: det.year || String(it.year || ""),
-              releaseDate: det.release_date || "",
-              poster: det.poster || "",
-              rating: det.vote_average ?? 0,
-              genre: Array.isArray(det.genres) ? det.genres : [],
-              source: "rec",
-              firstSeen: today,
-            };
-            await env.DISCOVER_KV.put(key, JSON.stringify(entry));
-            added++;
-          } catch { skipped++; }
-        }
-        return Response.json({ ok: true, added, skipped }, { headers: corsHeaders });
-      }
-
       // Wall recs list (pipeline reads to merge into wall.json)
       if (path === "/wall/recs") {
         if (!env.DISCOVER_KV) return Response.json({ items: [] }, { headers: corsHeaders });
@@ -2263,6 +2225,44 @@ export default {
       // Unsubscribe (POST)
       if (path === "/intelligence/unsubscribe") {
         return handleUnsubscribe(request, env);
+      }
+
+      // Wall collect: user-recommendation films reported from ResultsPage (fire-and-forget, zero LLM tokens)
+      if (path === "/wall/collect") {
+        let cb; try { cb = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
+        const items = Array.isArray(cb.items) ? cb.items.filter((it) => it && it.tmdbId != null).slice(0, 60) : [];
+        if (!items.length || !env.DISCOVER_KV) return Response.json({ ok: true, added: 0, skipped: 0 }, { headers: corsHeaders });
+        const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+        const rlKey = `wallrl:${ip}`;
+        const rl = parseInt(await env.DISCOVER_KV.get(rlKey).catch(() => null) || "0");
+        if (rl >= 120) return Response.json({ ok: false, error: "rate limited" }, { status: 429, headers: corsHeaders });
+        await env.DISCOVER_KV.put(rlKey, String(rl + items.length), { expirationTtl: 600 });
+        const today = intelToday();
+        let added = 0, skipped = 0;
+        for (const it of items) {
+          const id = String(it.tmdbId);
+          const key = `wallRec:${id}`;
+          if (await env.DISCOVER_KV.get(key).catch(() => null)) { skipped++; continue; }
+          try {
+            const det = await fetchTMDBDetails(parseInt(id), env.TMDB_API_READ_ACCESS_TOKEN, "zh-CN");
+            if (!det?.title) { skipped++; continue; }
+            const entry = {
+              tmdbId: parseInt(id),
+              title: det.title || it.title || "",
+              titleEn: det.originalTitle || it.title || "",
+              year: det.year || String(it.year || ""),
+              releaseDate: det.release_date || "",
+              poster: det.poster || "",
+              rating: det.vote_average ?? 0,
+              genre: Array.isArray(det.genres) ? det.genres : [],
+              source: "rec",
+              firstSeen: today,
+            };
+            await env.DISCOVER_KV.put(key, JSON.stringify(entry));
+            added++;
+          } catch { skipped++; }
+        }
+        return Response.json({ ok: true, added, skipped }, { headers: corsHeaders });
       }
 
       let body;
