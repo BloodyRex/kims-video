@@ -13,7 +13,7 @@ const LANG_BUTTON_STYLE = {
 // Common genre tags — everything else falls into the "其他 / OTHER" bucket
 const COMMON_GENRES = [
   "Action", "Sci-Fi", "Comedy", "Romance",
-  "Horror", "Drama", "Animation", "Thriller",
+  "Horror", "Drama", "Animation", "Thriller", "Documentary",
 ];
 
 // Normalize genre to zh for filtering — wall.json mixes en (pipeline) and zh (community) genre values
@@ -194,23 +194,33 @@ const WallPage = () => {
 
   return (
     <div className={`min-h-screen graffiti-bg text-black pb-32 wall-page locale-${locale}`}>
-      {/* Animated comet border for the "来自社区" active state (clockwise, pixel-stepped, orange-yellow) */}
+      {/* Comet border for the "来自社区" button — ALWAYS animated (clockwise, solid head leading, fading tail).
+          Active state adds the cyan fill; the comet animation keeps running. */}
       <style>{`
         @property --wall-angle {
           syntax: "<angle>";
           initial-value: 0deg;
           inherits: false;
         }
-        .community-btn-active {
-          border-color: transparent;
+        .community-btn {
+          border: 2px solid transparent;
           background:
             linear-gradient(#fff, #fff) padding-box,
             conic-gradient(from var(--wall-angle),
-              #ffb800 0deg, #ffb800 38deg,
-              rgba(255, 184, 0, 0.55) 80deg,
-              rgba(255, 184, 0, 0.12) 130deg,
-              transparent 180deg) border-box;
-          animation: wall-spin 1.6s steps(8) infinite;
+              #ffb800 0deg, #ffb800 42deg,
+              rgba(255, 184, 0, 0.45) 75deg,
+              rgba(255, 184, 0, 0.1) 115deg,
+              transparent 160deg) border-box;
+          animation: wall-spin 2s linear infinite;
+        }
+        .community-btn.on {
+          background:
+            linear-gradient(#00ffff, #00ffff) padding-box,
+            conic-gradient(from var(--wall-angle),
+              #ffb800 0deg, #ffb800 42deg,
+              rgba(255, 184, 0, 0.45) 75deg,
+              rgba(255, 184, 0, 0.1) 115deg,
+              transparent 160deg) border-box;
         }
         @keyframes wall-spin {
           to { --wall-angle: 360deg; }
@@ -274,11 +284,11 @@ const WallPage = () => {
               {genreBtn("other", zh ? "其他" : "OTHER")}
               {/* Source filter: films collected from user recommendations / community (source: "rec").
                   Card UI does NOT show this badge — cards keep showing only the genre tag.
-                  Active state: clockwise pixel-comet border (bright orange-yellow, fading tail). */}
+                  Always-on comet border (clockwise, solid head + fading tail); active adds cyan fill. */}
               <button
                 onClick={() => setSourceFilter(sourceFilter === "rec" ? "all" : "rec")}
-                className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
-                  sourceFilter === "rec" ? "community-btn-active bg-white text-black" : "border-black bg-white text-black hover:bg-gray-100"
+                className={`community-btn px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
+                  sourceFilter === "rec" ? "on text-black" : "text-black"
                 }`}
               >
                 {zh ? "来自社区" : "FROM COMMUNITY"}
