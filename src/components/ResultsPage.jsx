@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { posterAlt } from "../utils/posterAlt";
@@ -42,6 +42,22 @@ const ResultsPage = ({
   const [publishError, setPublishError] = useState("");
   const [showPosterGen, setShowPosterGen] = useState(false);
   const publishPosterRef = useRef(null);
+
+  // Report recommendation results to the Movie Wall (fire-and-forget, once per result set, zero LLM tokens)
+  const reportedRef = useRef(false);
+  useEffect(() => {
+    if (reportedRef.current) return;
+    const items = (recommendations || [])
+      .filter((r) => r && r.tmdbId != null)
+      .map((r) => ({ tmdbId: r.tmdbId, title: r.title || "", year: r.year || "" }));
+    if (!items.length) return;
+    reportedRef.current = true;
+    fetch("https://api.bloodyrex.xyz/wall/collect", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items }),
+    }).catch(() => {});
+  }, [recommendations]);
 
   const handlePublish = async () => {
     setPublishing(true);

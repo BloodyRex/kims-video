@@ -101,6 +101,8 @@ const WallPage = () => {
   const [data, setData] = useState(null);
   const [loadError, setLoadError] = useState(false);
   const [statusFilter, setStatusFilter] = useState("all"); // all | released | upcoming
+  // Hidden source filter (no UI yet — see filtered() comment). Kept for future "用户推荐" section.
+  const [sourceFilter, setSourceFilter] = useState("all"); // all | rec | pipeline
   const [genreFilter, setGenreFilter] = useState("all"); // all | <genre> | other
   const [page, setPage] = useState(1);
   const [detailItem, setDetailItem] = useState(null); // open WallDetailView when set
@@ -145,12 +147,16 @@ const WallPage = () => {
       } else if (genreFilter !== "all") {
         if (!m.genre.includes(genreFilter)) return false;
       }
+      // Hidden source filter — capability kept for future UI (Rex 2026-08-08).
+      // wall.json items may carry source: "rec" (user recommendation collection) or "pipeline" (default).
+      // To expose the filter later: add a control that calls setSourceFilter("rec"/"pipeline"/"all").
+      if (sourceFilter !== "all" && (m.source || "pipeline") !== sourceFilter) return false;
       return true;
     });
-  }, [data, statusFilter, genreFilter, todayStr]);
+  }, [data, statusFilter, genreFilter, sourceFilter, todayStr]);
 
   // Reset to page 1 whenever filters change
-  useEffect(() => { setPage(1); }, [statusFilter, genreFilter]);
+  useEffect(() => { setPage(1); }, [statusFilter, genreFilter, sourceFilter]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);

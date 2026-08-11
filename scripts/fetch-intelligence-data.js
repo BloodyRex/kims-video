@@ -107,7 +107,7 @@ async function main() {
   }
 
   // ── Wall: cumulative movie wall (persistent, grows daily) ──
-  function buildWall() {
+  async function buildWall() {
     const wallPath = join(API_DIR, "wall.json");
     let wall = [];
     if (existsSync(wallPath)) {
@@ -178,6 +178,35 @@ async function main() {
       added++;
     }
 
+    // Merge user-recommended films (collected from ResultsPage via /wall/collect → KV wallRec:*)
+    try {
+      const recsRes = await fetch(`${WORKER_BASE}/wall/recs`);
+      if (recsRes.ok) {
+        const recsData = await recsRes.json();
+        for (const r of recsData.items || []) {
+          if (!r?.tmdbId) continue;
+          const id = String(r.tmdbId);
+          if (seen.has(id)) continue;
+          seen.add(id);
+          wall.push({
+            tmdbId: r.tmdbId,
+            title: r.title || "",
+            titleEn: r.titleEn || "",
+            year: r.year || "",
+            releaseDate: r.releaseDate || "",
+            poster: r.poster || "",
+            rating: r.rating || 0,
+            genre: Array.isArray(r.genre) ? r.genre : [],
+            source: r.source || "rec",
+            firstSeen: r.firstSeen || today,
+          });
+          added++;
+        }
+      }
+    } catch (e) {
+      console.warn("wall-recs merge failed:", e.message);
+    }
+
     if (added > 0 || upgraded > 0) {
       wall.sort((a, b) => String(b.releaseDate || "").localeCompare(String(a.releaseDate || "")));
       writeFileSync(
@@ -192,7 +221,7 @@ async function main() {
     }
   }
 
-  buildWall();
+  await buildWall();
 
   // ── Wall translate: AI-translate missing zh overviews into wall.json (batch, newest-first) ──
   async function translateWall() {

@@ -160,7 +160,7 @@ async function translateText(text, env) {
   }
 }
 
-async function fetchTMDBByType(tmdbId, type, token, language) { language = language || "zh-CN"; try { const h = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }; const det = await withCache(`${tmdbId}-${type}-${language}-details`, async () => { const r = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?language=${language}`, { headers: h }); return r.ok ? r.json() : null; }); if (!det) return null; const cr = await withCache(`${tmdbId}-${type}-${language}-credits`, async () => { const r = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/credits?language=${language}`, { headers: h }); return r.ok ? r.json() : { crew: [] }; }) || { crew: [] }; const director = cr.crew?.find(c => c.job === "Director")?.name || ""; const yr = det.release_date ? det.release_date.slice(0,4) : det.first_air_date ? det.first_air_date.slice(0,4) : ""; const tLabel = type === "movie" ? (language.startsWith("zh") ? "电影" : "Movie") : (language.startsWith("zh") ? "剧集" : "TV Series"); const cast = cr.cast?.slice(0,5).map(c => c.name) || []; let poster = det.poster_path ? `https://image.tmdb.org/t/p/w342${det.poster_path}` : null; if (poster) { const ep = await fetchEnglishPoster(tmdbId, type, token); if (ep) poster = ep; } return { director, year: yr, originalTitle: det.original_title || det.original_name || "", type: tLabel, title: det.title || det.name || "", imdb_id: det.imdb_id || "", poster, overview: det.overview || "", genres: (det.genres || []).map(g => g.name), vote_average: det.vote_average || null, runtime: det.runtime || null, cast }; } catch (e) { return null; } }
+async function fetchTMDBByType(tmdbId, type, token, language) { language = language || "zh-CN"; try { const h = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }; const det = await withCache(`${tmdbId}-${type}-${language}-details`, async () => { const r = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?language=${language}`, { headers: h }); return r.ok ? r.json() : null; }); if (!det) return null; const cr = await withCache(`${tmdbId}-${type}-${language}-credits`, async () => { const r = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/credits?language=${language}`, { headers: h }); return r.ok ? r.json() : { crew: [] }; }) || { crew: [] }; const director = cr.crew?.find(c => c.job === "Director")?.name || ""; const yr = det.release_date ? det.release_date.slice(0,4) : det.first_air_date ? det.first_air_date.slice(0,4) : ""; const tLabel = type === "movie" ? (language.startsWith("zh") ? "电影" : "Movie") : (language.startsWith("zh") ? "剧集" : "TV Series"); const cast = cr.cast?.slice(0,5).map(c => c.name) || []; let poster = det.poster_path ? `https://image.tmdb.org/t/p/w342${det.poster_path}` : null; if (poster) { const ep = await fetchEnglishPoster(tmdbId, type, token); if (ep) poster = ep; } return { director, year: yr, originalTitle: det.original_title || det.original_name || "", type: tLabel, title: det.title || det.name || "", imdb_id: det.imdb_id || "", poster, overview: det.overview || "", genres: (det.genres || []).map(g => g.name), vote_average: det.vote_average || null, runtime: det.runtime || null, cast, release_date: det.release_date || det.first_air_date || "" }; } catch (e) { return null; } }
 
 // ── Discover API ──
 function genId() { return crypto.randomUUID(); } function nowISO() { return new Date().toISOString(); }
@@ -2088,6 +2088,59 @@ export default {
 
       // Admin: list results
       if (path === "/admin/results") { const err = requireAdmin(); if (err) return err; try { return Response.json(await handleAdminResults(env), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
+
+      // Wall collect: user-recommendation films reported from ResultsPage (fire-and-forget, zero LLM tokens)
+      if (path === "/wall/collect" && method === "POST") {
+        let cb; try { cb = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
+        const items = Array.isArray(cb.items) ? cb.items.filter((it) => it && it.tmdbId != null).slice(0, 60) : [];
+        if (!items.length || !env.DISCOVER_KV) return Response.json({ ok: true, added: 0, skipped: 0 }, { headers: corsHeaders });
+        const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+        const rlKey = `wallrl:${ip}`;
+        const rl = parseInt(await env.DISCOVER_KV.get(rlKey).catch(() => null) || "0");
+        if (rl >= 120) return Response.json({ ok: false, error: "rate limited" }, { status: 429, headers: corsHeaders });
+        await env.DISCOVER_KV.put(rlKey, String(rl + items.length), { expirationTtl: 600 });
+        const today = intelToday();
+        let added = 0, skipped = 0;
+        for (const it of items) {
+          const id = String(it.tmdbId);
+          const key = `wallRec:${id}`;
+          if (await env.DISCOVER_KV.get(key).catch(() => null)) { skipped++; continue; }
+          try {
+            const det = await fetchTMDBDetails(parseInt(id), env.TMDB_API_READ_ACCESS_TOKEN, "zh-CN");
+            if (!det?.title) { skipped++; continue; }
+            const entry = {
+              tmdbId: parseInt(id),
+              title: det.title || it.title || "",
+              titleEn: det.originalTitle || it.title || "",
+              year: det.year || String(it.year || ""),
+              releaseDate: det.release_date || "",
+              poster: det.poster || "",
+              rating: det.vote_average ?? 0,
+              genre: Array.isArray(det.genres) ? det.genres : [],
+              source: "rec",
+              firstSeen: today,
+            };
+            await env.DISCOVER_KV.put(key, JSON.stringify(entry));
+            added++;
+          } catch { skipped++; }
+        }
+        return Response.json({ ok: true, added, skipped }, { headers: corsHeaders });
+      }
+
+      // Wall recs list (pipeline reads to merge into wall.json)
+      if (path === "/wall/recs") {
+        if (!env.DISCOVER_KV) return Response.json({ items: [] }, { headers: corsHeaders });
+        const items = [];
+        let cursor;
+        do {
+          const page = await env.DISCOVER_KV.list({ prefix: "wallRec:", limit: 1000, cursor });
+          for (const k of page.keys) {
+            try { const v = await env.DISCOVER_KV.get(k.name, "json"); if (v?.tmdbId) items.push(v); } catch {}
+          }
+          cursor = page.cursor;
+        } while (cursor);
+        return Response.json({ items }, { headers: corsHeaders });
+      }
 
       // Discover list
       if (path === "/discover/results") { try { return Response.json(await handleDiscoverList(env, url), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message, results: [] }, { headers: corsHeaders }); } }
