@@ -245,6 +245,16 @@ const WallPage = () => {
               {genreBtn("all", zh ? "全部类型" : "ALL GENRES")}
               {COMMON_GENRES.map((g) => genreBtn(g, genreLabel(g, locale)))}
               {genreBtn("other", zh ? "其他" : "OTHER")}
+              {/* Source filter: films collected from user recommendations / community (source: "rec").
+                  Card UI does NOT show this badge — cards keep showing only the genre tag. */}
+              <button
+                onClick={() => setSourceFilter(sourceFilter === "rec" ? "all" : "rec")}
+                className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
+                  sourceFilter === "rec" ? "bg-[#00ffff] text-black" : "bg-white text-black hover:bg-gray-100"
+                }`}
+              >
+                {zh ? "来自社区" : "FROM COMMUNITY"}
+              </button>
             </div>
           </div>
 

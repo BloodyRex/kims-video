@@ -296,7 +296,7 @@ const DiscoverPage = () => {
 
       <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 text-center relative">
         <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font discover-title">{t('discover.title')}</h2>
-        <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed">{t('discover.desc')}</p>
+        <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">{t('discover.desc')}</p>
       </section>
 
       {/* ── Editor's Picks Carousel ── */}
