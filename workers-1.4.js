@@ -169,6 +169,38 @@ async function handleDiscoverList(env, url) { const genre = url.searchParams.get
 
 async function handleDiscoverCreate(env, body) { const { sourceMovies, recommendations, genre, contributorName } = body; if (!sourceMovies?.length || !recommendations?.length || !genre) return { error: "Missing fields" }; if (!Array.isArray(sourceMovies) || sourceMovies.length > 2) return { error: "sourceMovies: 1-2" }; if (!Array.isArray(recommendations) || recommendations.length > 5) return { error: "recommendations: max 5" }; if (!env.DISCOVER_KV) return { error: "KV not configured" }; const id = genId(); const doc = { id, createdAt: nowISO(), contributorName: (contributorName || "").trim().slice(0, 30) || "匿名用户", sourceMovies: sourceMovies.map(m => ({ title: m.title || "", titleEn: m.titleEn || "", year: m.year || "", tmdbId: m.tmdbId || null })), recommendations: recommendations.map(r => ({ tmdbId: r.tmdbId || null, title: r.title || "", titleEn: r.titleEn || "", year: r.year || "", director: r.director || "", type: r.type || "", reason: r.reason || "", matchedTags: r.matchedTags || [] })), genre, thumbnail: body.thumbnail || "", likes: 0 }; await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(doc)); return doc; }
 
+// Collect films into the wall KV (wallRec:{tmdbId}, source:"rec") — shared by /wall/collect and Discover submits
+async function collectWallRecs(env, items) {
+  if (!env?.DISCOVER_KV || !Array.isArray(items) || !items.length) return { added: 0, skipped: 0 };
+  const today = intelToday();
+  let added = 0, skipped = 0;
+  for (const it of items) {
+    if (!it || it.tmdbId == null) { skipped++; continue; }
+    const id = String(it.tmdbId);
+    const key = `wallRec:${id}`;
+    if (await env.DISCOVER_KV.get(key).catch(() => null)) { skipped++; continue; }
+    try {
+      const det = await fetchTMDBDetails(parseInt(id), env.TMDB_API_READ_ACCESS_TOKEN, "zh-CN");
+      if (!det?.title) { skipped++; continue; }
+      const entry = {
+        tmdbId: parseInt(id),
+        title: det.title || it.title || "",
+        titleEn: det.originalTitle || it.title || "",
+        year: det.year || String(it.year || ""),
+        releaseDate: det.release_date || "",
+        poster: det.poster || "",
+        rating: det.vote_average ?? 0,
+        genre: Array.isArray(det.genres) ? det.genres : [],
+        source: "rec",
+        firstSeen: today,
+      };
+      await env.DISCOVER_KV.put(key, JSON.stringify(entry));
+      added++;
+    } catch { skipped++; }
+  }
+  return { added, skipped };
+}
+
 async function handleDiscoverLike(env, id) { if (!env.DISCOVER_KV) return { error: "KV not configured" }; const raw = await env.DISCOVER_KV.get(`result:${id}`, "json"); if (!raw) return { error: "not_found" }; raw.likes = (raw.likes || 0) + 1; await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(raw)); return { id, likes: raw.likes }; }
 
 async function handleDiscoverUpload(env, body) { const { id, image } = body; if (!id || !image) return { error: "Missing id or image" }; if (!env.DISCOVER_R2) return { error: "R2 not configured" }; const base64 = image.replace(/^data:image\/\w+;base64,/, ""); const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0)); const key = `thumbnails/${id}.png`; await env.DISCOVER_R2.put(key, bytes, { httpMetadata: { contentType: "image/png", cacheControl: "public, max-age=86400" } }); const thumbnailUrl = `https://api.bloodyrex.xyz/discover/thumbnail/${id}`; const raw = await env.DISCOVER_KV.get(`result:${id}`, "json"); if (raw) { raw.thumbnail = thumbnailUrl; await env.DISCOVER_KV.put(`result:${id}`, JSON.stringify(raw)); } return { url: thumbnailUrl }; }
@@ -2237,31 +2269,7 @@ export default {
         const rl = parseInt(await env.DISCOVER_KV.get(rlKey).catch(() => null) || "0");
         if (rl >= 120) return Response.json({ ok: false, error: "rate limited" }, { status: 429, headers: corsHeaders });
         await env.DISCOVER_KV.put(rlKey, String(rl + items.length), { expirationTtl: 600 });
-        const today = intelToday();
-        let added = 0, skipped = 0;
-        for (const it of items) {
-          const id = String(it.tmdbId);
-          const key = `wallRec:${id}`;
-          if (await env.DISCOVER_KV.get(key).catch(() => null)) { skipped++; continue; }
-          try {
-            const det = await fetchTMDBDetails(parseInt(id), env.TMDB_API_READ_ACCESS_TOKEN, "zh-CN");
-            if (!det?.title) { skipped++; continue; }
-            const entry = {
-              tmdbId: parseInt(id),
-              title: det.title || it.title || "",
-              titleEn: det.originalTitle || it.title || "",
-              year: det.year || String(it.year || ""),
-              releaseDate: det.release_date || "",
-              poster: det.poster || "",
-              rating: det.vote_average ?? 0,
-              genre: Array.isArray(det.genres) ? det.genres : [],
-              source: "rec",
-              firstSeen: today,
-            };
-            await env.DISCOVER_KV.put(key, JSON.stringify(entry));
-            added++;
-          } catch { skipped++; }
-        }
+        const { added, skipped } = await collectWallRecs(env, items);
         return Response.json({ ok: true, added, skipped }, { headers: corsHeaders });
       }
 
@@ -2269,7 +2277,7 @@ export default {
       try { body = await request.json(); } catch (e) { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
 
       // Discover create
-      if (path === "/discover/results") { try { return Response.json(await handleDiscoverCreate(env, body), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
+      if (path === "/discover/results") { try { const doc = await handleDiscoverCreate(env, body); if (doc?.id) { const wallItems = [...doc.sourceMovies, ...doc.recommendations].filter(m => m.tmdbId).map(m => ({ tmdbId: m.tmdbId, title: m.title, year: m.year })); ctx.waitUntil(collectWallRecs(env, wallItems)); } return Response.json(doc, { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
 
       // TMDB / DeepSeek
       try {
