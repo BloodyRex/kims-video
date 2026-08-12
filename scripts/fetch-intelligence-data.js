@@ -124,6 +124,7 @@ async function main() {
     const today = beijingDate();
     const sources = [];
     let upgraded = 0;
+    const delta = []; // today's new additions → wall-delta.json (daily email section)
 
     for (const file of ["movies.json", "coming.json"]) {
       let data;
@@ -169,7 +170,7 @@ async function main() {
         continue;
       }
       seen.add(id);
-      wall.push({
+      const entry = {
         tmdbId: it.tmdbId,
         title: it.title || it.name || "",
         titleEn: it.titleEn || "",
@@ -179,7 +180,9 @@ async function main() {
         rating: it.rating || 0,
         genre: Array.isArray(it.genre) ? it.genre : [],
         firstSeen: today,
-      });
+      };
+      wall.push(entry);
+      delta.push(entry);
       added++;
     }
 
@@ -193,7 +196,7 @@ async function main() {
           const id = String(r.tmdbId);
           if (seen.has(id)) continue;
           seen.add(id);
-          wall.push({
+          const recEntry = {
             tmdbId: r.tmdbId,
             title: r.title || "",
             titleEn: r.titleEn || "",
@@ -204,7 +207,9 @@ async function main() {
             genre: Array.isArray(r.genre) ? r.genre : [],
             source: r.source || "rec",
             firstSeen: r.firstSeen || today,
-          });
+          };
+          wall.push(recEntry);
+          delta.push(recEntry);
           added++;
         }
       }
@@ -224,6 +229,16 @@ async function main() {
     } else {
       console.log(`OK wall.json — unchanged (${wall.length} total)`);
     }
+
+    // Wall delta: today's new additions — consumed by the daily email
+    // ("🏛️ 影视墙今日新增" section). Written every run so the file stays fresh.
+    writeFileSync(
+      join(API_DIR, "wall-delta.json"),
+      JSON.stringify({ updated: today, count: delta.length, movies: delta }, null, 2),
+      "utf8"
+    );
+    if (delta.length > 0) anyChange = true;
+    console.log(`OK wall-delta.json — ${delta.length} new today`);
   }
 
   await buildWall();

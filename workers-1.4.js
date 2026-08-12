@@ -1414,6 +1414,16 @@ Top 3-5 trends. 3-5 highlights.`;
     const raw = data?.choices?.[0]?.message?.content || "";
     if (!raw) throw new Error(`Empty content from DeepSeek. finish_reason=${data?.choices?.[0]?.finish_reason}`);
     const parsed = intelParseJSON(raw);
+    // Backend fallback: if the AI omitted topTrends, synthesize programmatically
+    // from today's trending (zero extra LLM cost) so the digest never ships empty tags
+    if (!Array.isArray(parsed.topTrends) || parsed.topTrends.length === 0) {
+      parsed.topTrends = dayTrending.slice(0, 5).map((m, i) => ({
+        rank: i + 1,
+        title: m.title || m.name || "",
+        titleEn: m.titleEn || m.title || m.name || "",
+        category: m.media_type === "tv" ? "tv" : "movie",
+      }));
+    }
     return { date: today, ...parsed };
   } catch (e) {
     console.warn("Digest failed:", e.message);
@@ -1687,11 +1697,13 @@ async function buildDigestHTML(env, now) {
     try { return await result.value.json(); } catch { return null; }
   };
 
-  const [digestR, overviewR, weeklyR, comingR, tvR, musicR, moviesR] = await Promise.allSettled([
+  const [digestR, overviewR, weeklyR, comingR, tvR, musicR, moviesR, trendingR, gemsR, wallDeltaR] = await Promise.allSettled([
     fetch(`${BASE}/digest.json`), fetch(`${BASE}/overview.json`),
     fetch(`${BASE}/weekly.json`), fetch(`${BASE}/coming.json`),
     fetch(`${BASE}/tv.json`), fetch(`${BASE}/music.json`),
     fetch(`${BASE}/movies.json`),
+    fetch(`${BASE}/trending.json`), fetch(`${BASE}/hidden-gems.json`),
+    fetch(`${BASE}/wall-delta.json`),
   ]);
 
   const dig = await safeJson(digestR) || {};
@@ -1701,6 +1713,9 @@ async function buildDigestHTML(env, now) {
   const tvData = await safeJson(tvR) || {};
   const musicData = await safeJson(musicR) || {};
   const moviesData = await safeJson(moviesR) || {};
+  const trendingData = await safeJson(trendingR) || {};
+  const gemsData = await safeJson(gemsR) || {};
+  const wallDeltaData = await safeJson(wallDeltaR) || {};
 
   const stats = overview.stats || {};
   const date = dig.date || overview.updated || now;
@@ -1723,7 +1738,18 @@ async function buildDigestHTML(env, now) {
   // ── Daily Digest section ──
   const headline = dig.headline || "";
   const summaryZh = dig.summary || "";
-  const trends = (dig.topTrends || []).slice(0, 5);
+  let trends = (dig.topTrends || []).slice(0, 5);
+  // Render-time fallback: if the stored digest has no topTrends (AI omitted them),
+  // derive tags from today's trending so the tags block is never empty
+  if (!trends.length) {
+    const tToday = (trendingData.today || {}).movies || [];
+    trends = tToday.slice(0, 5).map((m, i) => ({
+      rank: i + 1,
+      title: m.title || m.titleEn || "",
+      titleEn: m.titleEn || m.title || "",
+      category: "movie",
+    }));
+  }
   const trendsHtml = trends.length
     ? `<div style="margin:8px 0">${trends.map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:2px 7px;font-size:10px;font-weight:bold;margin:2px;text-transform:uppercase">${t.title}</span>`).join("")}</div>`
     : "";
@@ -1777,6 +1803,49 @@ async function buildDigestHTML(env, now) {
 </div>
 <div style="text-align:right;margin:4px 0">
   <a href="https://bloodyrex.xyz/intelligence/coming" style="font-size:11px;color:#ff00ff">查看全部排片 →</a>
+</div>`
+    : "";
+
+  // ── Today's Hot — from trending.json (daily, programmatic, zero LLM) ──
+  const tToday = trendingData.today || {};
+  const tAll = [...(tToday.movies || []), ...(tToday.tv || [])]
+    .sort((a, b) => (a.rank || 99) - (b.rank || 99))
+    .slice(0, 5);
+  const todayHotHtml = tAll.length
+    ? `<div style="background:#000;border:2px solid #ff00ff;padding:10px;margin:6px 0">
+  <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 6px">🔥 今日热搜</p>
+  <table style="width:100%;border-collapse:collapse">${tAll.map((m, i) => {
+    const isNew = m.trend === "new";
+    return `<tr><td style="padding:3px 6px;font-size:12px;color:#fff;width:20px;vertical-align:top;background:#111"><strong style="color:#ff00ff">${i + 1}.</strong></td><td style="padding:3px 6px;font-size:12px;color:#fff;background:#111">${m.title || m.titleEn || ""}${isNew ? ` <span style="font-size:9px;color:#000;background:#ff00ff;padding:1px 4px;font-weight:bold">NEW</span>` : ""}</td></tr>`;
+  }).join("")}</table>
+  <div style="text-align:right;margin:4px 0 0"><a href="https://bloodyrex.xyz/intelligence" style="font-size:10px;color:#ff00ff">查看完整热榜 →</a></div>
+</div>`
+    : "";
+
+  // ── Hidden Gems — daily AI picks (hidden-gems.json) ──
+  const gems = (gemsData.gems || []).slice(0, 3);
+  const gemsHtml = gems.length
+    ? gems.map(g => {
+      const gtags = (g.tags || []).slice(0, 3).map(t => `<span style="display:inline-block;background:#00ffff;color:#000;padding:1px 5px;font-size:9px;font-weight:bold;margin:2px 2px 0 0">${t}</span>`).join("");
+      return `<div style="background:#000;border:2px solid #00ffff;padding:8px;margin:6px 0">
+  <div style="font-size:13px;color:#00ffff;font-weight:bold">💎 ${g.title || ""}</div>
+  <div style="font-size:10px;color:#999;margin-top:2px">${g.rating ? `评分 ${g.rating}/10` : ""}${g.year ? ` · ${g.year}` : ""}</div>
+  ${g.whyWatch ? `<div style="font-size:11px;color:#ccc;margin-top:4px;line-height:1.5">${g.whyWatch}</div>` : ""}
+  ${gtags ? `<div style="margin-top:4px">${gtags}</div>` : ""}
+</div>`;
+    }).join("")
+    : "";
+
+  // ── Wall: today's new additions (wall-delta.json, from pipeline diff) ──
+  const wallNew = (wallDeltaData.movies || []).slice(0, 6);
+  const wallNewHtml = wallNew.length
+    ? `<div style="background:#000;border:2px solid #ffff00;padding:10px;margin:6px 0">
+  <p style="font-size:11px;color:#ffff00;font-weight:bold;text-transform:uppercase;margin:0 0 6px">🏛️ 影视墙今日新增 ${wallDeltaData.count || wallNew.length} 部</p>
+  <table style="width:100%;border-collapse:collapse">${wallNew.map(m => {
+    const g = genreStr(m.genre);
+    return `<tr><td style="padding:3px 6px;font-size:12px;color:#fff;background:#111">${m.title || m.titleEn || ""}</td><td style="padding:3px 6px;font-size:10px;color:#999;text-align:right;background:#111">${m.releaseDate || ""}${g ? ` · ${g}` : ""}</td></tr>`;
+  }).join("")}</table>
+  <div style="text-align:right;margin:4px 0 0"><a href="https://bloodyrex.xyz" style="font-size:10px;color:#ffff00">前往影视墙 →</a></div>
 </div>`
     : "";
 
@@ -1879,6 +1948,12 @@ async function buildDigestHTML(env, now) {
     ${summaryZh ? `<p style="font-size:12px;color:#ccc;line-height:1.6;margin:6px 0 0">${summaryZh}</p>` : ""}
     ${trendsHtml}
   </div>` : ""}
+
+  ${todayHotHtml ? `${divider}${todayHotHtml}` : ""}
+
+  ${gemsHtml ? `${divider}${gemsHtml}` : ""}
+
+  ${wallNewHtml ? `${divider}${wallNewHtml}` : ""}
 
   ${divider}
 
