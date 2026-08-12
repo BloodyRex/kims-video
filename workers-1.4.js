@@ -1448,13 +1448,25 @@ async function handleIntelHiddenGems(request, env) {
     try {
       const body = await request.json();
       if (body?.movies && body?.tv && env.DEEPSEEK_API_KEY) {
-        return await curateFromIntelligence(env, body.movies, body.tv);
+        const res = await curateFromIntelligence(env, body.movies, body.tv);
+        // TEMP DIAGNOSTIC
+        return {
+          ...res,
+          diag: {
+            path: "v2",
+            hasKey: !!env.DEEPSEEK_API_KEY,
+            movieKeys: Object.keys(body.movies || {}),
+            tvKeys: Object.keys(body.tv || {}),
+            movieRating7: (body.movies?.releasedThisWeek || []).filter(m => (m.rating || 0) >= 7).length,
+            tvRating7: (body.tv?.premieresThisWeek || []).filter(s => (s.rating || 0) >= 7).length,
+          },
+        };
       }
+      return { updated: intelToday(), gems: [], error: "missing body fields or key", diag: { path: "v2-guard", hasKey: !!env.DEEPSEEK_API_KEY } };
     } catch (e) {
-      console.warn("Hidden gems POST body failed:", e.message);
+      return { updated: intelToday(), gems: [], error: `body parse: ${e.message}`, diag: { path: "v2-parse-error" } };
     }
   }
-  // Legacy GET path (own now_playing fetch) — used by direct calls/debug
   return handleIntelHiddenGemsLegacy(env);
 }
 
