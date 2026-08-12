@@ -1,5 +1,82 @@
 {
-  "updated": "2026-08-12",
-  "count": 0,
-  "movies": []
+  "updated": "2026-08-13",
+  "count": 5,
+  "movies": [
+    {
+      "tmdbId": 17654,
+      "title": "第九区",
+      "titleEn": "District 9",
+      "year": "2009",
+      "releaseDate": "2009-08-05",
+      "poster": "https://image.tmdb.org/t/p/w342/tuGlQkqLxnodDSk6mp5c2wvxUEd.jpg",
+      "rating": 7.476,
+      "genre": [
+        "科幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-13"
+    },
+    {
+      "tmdbId": 381341,
+      "title": "完美陌生人",
+      "titleEn": "Perfetti sconosciuti",
+      "year": "2016",
+      "releaseDate": "2016-02-11",
+      "poster": "https://image.tmdb.org/t/p/w342/3wknM629Vryofb1HNo2YnLQnQyn.jpg",
+      "rating": 7.853,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-13"
+    },
+    {
+      "tmdbId": 445,
+      "title": "隐藏摄像机",
+      "titleEn": "Caché",
+      "year": "2005",
+      "releaseDate": "2005-10-05",
+      "poster": "https://image.tmdb.org/t/p/w342/vTzjRi0Uhy0tt3Rjw8SARZZJHlX.jpg",
+      "rating": 7.021,
+      "genre": [
+        "悬疑",
+        "剧情",
+        "惊悚"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-13"
+    },
+    {
+      "tmdbId": 582,
+      "title": "窃听风暴",
+      "titleEn": "Das Leben der Anderen",
+      "year": "2006",
+      "releaseDate": "2006-03-23",
+      "poster": "https://image.tmdb.org/t/p/w342/cVUDMnskSc01rdbyH0tLATTJUdP.jpg",
+      "rating": 8.038,
+      "genre": [
+        "剧情",
+        "惊悚"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-13"
+    },
+    {
+      "tmdbId": 63311,
+      "title": "吾栖之肤",
+      "titleEn": "La piel que habito",
+      "year": "2011",
+      "releaseDate": "2011-08-17",
+      "poster": "https://image.tmdb.org/t/p/w342/xa7uCwGYykrf8MMI8iF5dZvNlrG.jpg",
+      "rating": 7.482,
+      "genre": [
+        "剧情",
+        "恐怖",
+        "悬疑",
+        "惊悚"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-13"
+    }
+  ]
 }
