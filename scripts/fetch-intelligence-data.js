@@ -30,7 +30,9 @@ async function fetchJSON(endpoint) {
 }
 
 // Universal Chinese content filter
-function filterChineseContent(data) {
+// fileName context: movies.json → all movie items; tv.json → all TV items;
+// coming.json → items carry mediaType. Used to en-exempt TV (mirror Worker).
+function filterChineseContent(data, fileName = "") {
   if (!data || typeof data !== "object") return;
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   for (const key of Object.keys(data)) {
@@ -49,9 +51,14 @@ function filterChineseContent(data) {
       continue;
     }
     // Upcoming/next*: items haven't premiered yet, may lack Chinese title or overview
-    // Accept if EITHER title OR overview has Chinese characters
+    // Accept if EITHER title OR overview has Chinese characters; TV entries also pass if English
+    // (Worker already en-exempts TV — mirror that here so the pipeline doesn't re-kill EN shows)
     if (key === "upcoming" || key === "next7Days" || key === "next30Days") {
-      data[key] = val.filter(item => hasChinese(item.title || item.name) || hasChinese(item.summary || item.overview));
+      data[key] = val.filter(item => {
+        const isTV = fileName === "tv.json" || item.mediaType === "tv";
+        if (isTV && item.originalLanguage === "en") return true;
+        return hasChinese(item.title || item.name) || hasChinese(item.summary || item.overview);
+      });
       continue;
     }
     data[key] = val.filter(item => {
@@ -84,7 +91,7 @@ async function main() {
       let data = await fetchJSON(task.endpoint);
 
       // Universal filter: all content items must have Chinese title + summary
-      filterChineseContent(data);
+      filterChineseContent(data, task.file);
 
       // Check if data actually changed
       let oldData = null;

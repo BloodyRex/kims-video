@@ -992,12 +992,12 @@ async function handleIntelTV(env) {
   const today = intelToday();
   const weekAgo = intelDaysAgo(7);
   const ninetyDaysAgo = intelDaysAgo(90);
-  const thirtyDaysLater = new Date(Date.now() + 30 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
+  const ninetyDaysLater = new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
 
   const [onTheAir, trendingTV, discoverRaw] = await Promise.all([
     intelFetchPages(token, "/tv/on_the_air", {}, 4),
     intelFetchTMDB(token, "/trending/tv/week"),
-    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 5),
+    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, 5),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -1005,17 +1005,15 @@ async function handleIntelTV(env) {
   const titleCn = (s) => hasChinese(s.title || s.name);
   const reserve = { cn: 1, hmt: 1, jp: 1, kr: 1 };
 
-  // This week premieres: on_the_air + trending supplement, title-only filter, English auto-pass
+  // This week premieres: on_the_air + trending supplement, EN auto-pass, non-EN needs Chinese title
   const premiereFromOnAir = onTheAir
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
-    .filter(titleCn)
     .filter(intelRatingOk)
-    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 50);
+    .filter(s => s.original_language === "en" || (titleCn(s) && (s.popularity || 0) >= 50));
   const premiereFromTrending = trendingTV
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
     .filter(intelRatingOk)
-    .filter(titleCn)
-    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
+    .filter(s => s.original_language === "en" || (titleCn(s) && (s.popularity || 0) >= 5));
   const premiereMerged = [...premiereFromOnAir];
   const onAirPremIds = new Set(premiereFromOnAir.map(s => s.id));
   for (const s of premiereFromTrending) {
@@ -1026,19 +1024,19 @@ async function handleIntelTV(env) {
   const weekPremieres = premiereEnriched.map(s => intelNormalizeMovie(s, "tv"));
   const premiereIds = new Set(premiereSelected.map(s => s.id));
 
-  // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 30 days)
-  // Chinese filter: title OR overview must contain Chinese characters
+  // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 90 days)
+  // Chinese filter: EN auto-pass; non-EN must have Chinese title OR overview
   // Trending: intelRatingOk (keep unscored, exclude < 4), Discover: higher popularity threshold
   const upcomingFromTrending = trendingTV
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
     .filter(s => !premiereIds.has(s.id))
     .filter(intelRatingOk)
-    .filter(s => hasChinese(s.title || s.name) || hasChinese(s.overview))
+    .filter(s => s.original_language === "en" || (hasChinese(s.title || s.name) || hasChinese(s.overview)))
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
   const upcomingFromDiscover = discoverRaw
     .filter(s => !premiereIds.has(s.id))
-    .filter(s => hasChinese(s.title || s.name) || hasChinese(s.overview))
     .filter(intelRatingOk)
+    .filter(s => s.original_language === "en" || (hasChinese(s.title || s.name) || hasChinese(s.overview)))
     .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
   // Merge and dedup
   const upcomingMerged = [...upcomingFromTrending];
@@ -1274,6 +1272,7 @@ async function handleIntelWeekly(env) {
 async function handleIntelComing(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
+  const hasChinese = (text) => /[一-鿿]/.test(text || "");
 
   const movieUpcoming = await intelFetchUpcomingMovies(token, 10);
 
@@ -1288,13 +1287,17 @@ async function handleIntelComing(env) {
       allItems.push({ ...intelNormalizeMovie(m), mediaType: "movie", daysUntil: Math.max(0, days) });
     });
 
-  // TV — discover brand new shows premiering in the future (bilingual)
+  // TV — discover brand new shows premiering in the future (90d window, EN auto-pass)
   try {
-    const tvResults = await intelFetchTMDB(token, "/discover/tv", { "first_air_date.gte": today, "sort_by": "popularity.desc" });
-    tvResults.filter(intelRatingOk).forEach(s => {
-      const days = s.first_air_date ? Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000) : 999;
-      allItems.push({ ...intelNormalizeMovie(s, "tv"), mediaType: "tv", daysUntil: Math.max(0, days) });
-    });
+    const tvResults = await intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }), "sort_by": "popularity.desc" }, 5);
+    tvResults
+      .filter(intelRatingOk)
+      .filter(s => s.original_language === "en" || (hasChinese(s.title || s.name) || hasChinese(s.overview)))
+      .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5)
+      .forEach(s => {
+        const days = s.first_air_date ? Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000) : 999;
+        allItems.push({ ...intelNormalizeMovie(s, "tv"), mediaType: "tv", daysUntil: Math.max(0, days) });
+      });
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
   // Primary sort by daysUntil, secondary by composite score tiebreak
