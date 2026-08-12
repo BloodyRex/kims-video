@@ -25,13 +25,13 @@
     ]
   },
   "stats": {
-    "mbRaw": 200,
-    "afterFilter": 119,
-    "artistsChecked": 73,
-    "afterArtistFilter": 52,
+    "mbRaw": 300,
+    "afterFilter": 169,
+    "artistsChecked": 72,
+    "afterArtistFilter": 51,
     "albumEnriched": 40,
     "chartItems": 359,
-    "totalCandidates": 411,
+    "totalCandidates": 410,
     "sentToWorker": 18
   },
   "candidates": [
@@ -77,7 +77,7 @@
         "album": 30,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-6f7853c8-e90a-4886-9535-0a14fa328903",
@@ -121,51 +121,7 @@
         "album": 29.55062366125991,
         "freshness": 0
       },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-dd4d4d7f-52d6-4104-a434-31a9c480251a",
-      "mbid": "dd4d4d7f-52d6-4104-a434-31a9c480251a",
-      "title": "Back to the World",
-      "artist": "Curtis Mayfield",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [
-        "灵魂",
-        "放克",
-        "1973",
-        "70s",
-        "节奏蓝调"
-      ],
-      "genresEn": [
-        "soul",
-        "funk",
-        "1973",
-        "70s",
-        "rnb"
-      ],
-      "lfmTags": [
-        "soul",
-        "funk",
-        "1973",
-        "70s",
-        "rnb"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1491750,
-      "artistPlaycount": 21187623,
-      "albumListeners": 32881,
-      "albumPlaycount": 235760,
-      "score": 62.58472508568401,
-      "scoreBreakdown": {
-        "artist": 40,
-        "album": 22.58472508568401,
-        "freshness": 0
-      },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-ca12bdf9-c25a-4d98-9188-86d41c71efbd",
@@ -209,7 +165,7 @@
         "album": 22.04501351700886,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
@@ -253,77 +209,7 @@
         "album": 24.725101361055895,
         "freshness": 0
       },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-340d0d43-c27d-4f6a-b51a-8c5d85066dca",
-      "mbid": "340d0d43-c27d-4f6a-b51a-8c5d85066dca",
-      "title": "Devoid of Light",
-      "artist": "UADA",
-      "releaseDate": "2026-07-17",
-      "year": "2026",
-      "type": "Album",
-      "country": "DE",
-      "genres": [
-        "2016",
-        "黑金属",
-        "best of 2016",
-        "atmospheric black metal",
-        "melodic black metal"
-      ],
-      "genresEn": [
-        "2016",
-        "black metal",
-        "best of 2016",
-        "atmospheric black metal",
-        "melodic black metal"
-      ],
-      "lfmTags": [
-        "2016",
-        "black metal",
-        "best of 2016",
-        "atmospheric black metal",
-        "melodic black metal"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 60685,
-      "artistPlaycount": 1571481,
-      "albumListeners": 28976,
-      "albumPlaycount": 448076,
-      "score": 59.19740120669456,
-      "scoreBreakdown": {
-        "artist": 31.887209041844642,
-        "album": 22.310192164849916,
-        "freshness": 5
-      },
-      "daysOld": 25
-    },
-    {
-      "id": "mb-a12a70b8-fe14-40f2-a6b6-54be142d38c2",
-      "mbid": "a12a70b8-fe14-40f2-a6b6-54be142d38c2",
-      "title": "Snow, Vol. 8",
-      "artist": "Wun Two",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "EP",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 474807,
-      "artistPlaycount": 6395725,
-      "albumListeners": 16563,
-      "albumPlaycount": 47674,
-      "score": 58.93914242970226,
-      "scoreBreakdown": {
-        "artist": 37.84344742040326,
-        "album": 21.095695009299003,
-        "freshness": 0
-      },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
@@ -367,51 +253,59 @@
         "album": 24.64292651312634,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
-      "id": "mb-4e4ebe65-c385-42b5-836a-2234dc53dbcf",
-      "mbid": "4e4ebe65-c385-42b5-836a-2234dc53dbcf",
-      "title": "Mr. Rock Steady",
-      "artist": "Ken Boothe",
+      "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "mbid": "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "title": "Snow, Vol. 9",
+      "artist": "Wun Two",
       "releaseDate": "2026",
       "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [
-        "雷鬼",
-        "rocksteady",
-        "metrohadriani loves this music",
-        "my heart is gone riddim",
-        "rock steady"
-      ],
-      "genresEn": [
-        "reggae",
-        "rocksteady",
-        "metrohadriani loves this music",
-        "my heart is gone riddim",
-        "rock steady"
-      ],
-      "lfmTags": [
-        "reggae",
-        "rocksteady",
-        "metrohadriani loves this music",
-        "my heart is gone riddim",
-        "rock steady"
-      ],
+      "type": "EP",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 259033,
-      "artistPlaycount": 1972404,
-      "albumListeners": 10115,
-      "albumPlaycount": 60632,
-      "score": 56.11386340469757,
+      "artistListeners": 474807,
+      "artistPlaycount": 6395725,
+      "albumListeners": 5529,
+      "albumPlaycount": 19421,
+      "score": 56.55668037009694,
       "scoreBreakdown": {
-        "artist": 36.08903396916345,
-        "album": 20.02482943553412,
+        "artist": 37.84344742040326,
+        "album": 18.713232949693683,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
+    },
+    {
+      "id": "mb-ae6447fd-ab57-4482-a694-4e2687358a69",
+      "mbid": "ae6447fd-ab57-4482-a694-4e2687358a69",
+      "title": "As It Is",
+      "artist": "As It Is",
+      "releaseDate": "2026-07-17",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 184083,
+      "artistPlaycount": 7026709,
+      "albumListeners": 2553,
+      "albumPlaycount": 39059,
+      "score": 56.13534529678056,
+      "scoreBreakdown": {
+        "artist": 35.1000912227593,
+        "album": 17.03525407402125,
+        "freshness": 4
+      },
+      "daysOld": 26
     },
     {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
@@ -455,33 +349,51 @@
         "album": 20.659375939862965,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
-      "id": "mb-232e13a5-026b-4057-bb58-baec7a3ab40b",
-      "mbid": "232e13a5-026b-4057-bb58-baec7a3ab40b",
-      "title": "Future Soul",
-      "artist": "Tedeschi Trucks Band",
+      "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
+      "mbid": "dda01573-1be8-4f7a-b06f-9cc3d066f515",
+      "title": "Masekela",
+      "artist": "Hugh Masekela",
       "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
-      "country": "US",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
+      "country": "XW",
+      "genres": [
+        "jazz fusion",
+        "爵士",
+        "trumpet",
+        "世界音乐",
+        "africa"
+      ],
+      "genresEn": [
+        "jazz fusion",
+        "jazz",
+        "trumpet",
+        "world",
+        "africa"
+      ],
+      "lfmTags": [
+        "jazz fusion",
+        "jazz",
+        "trumpet",
+        "world",
+        "africa"
+      ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 202617,
-      "artistPlaycount": 3900548,
-      "albumListeners": 7630,
-      "albumPlaycount": 74331,
-      "score": 54.79046189503844,
+      "artistListeners": 252374,
+      "artistPlaycount": 1986896,
+      "albumListeners": 4343,
+      "albumPlaycount": 21546,
+      "score": 54.20257988759944,
       "scoreBreakdown": {
-        "artist": 35.37783920526404,
-        "album": 19.412622689774402,
+        "artist": 36.013630740788294,
+        "album": 18.188949146811144,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-678bbf03-22b8-4342-bf02-7f0a0dcb353d",
@@ -507,71 +419,103 @@
         "album": 14.756687593979589,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
-      "id": "mb-206ac1ea-d041-41ac-87ba-928a3187fd97",
-      "mbid": "206ac1ea-d041-41ac-87ba-928a3187fd97",
-      "title": "Fantasy",
-      "artist": "DJ Sabrina the Teenage DJ",
+      "id": "mb-aca30a57-12bb-4a41-af25-59457048a844",
+      "mbid": "aca30a57-12bb-4a41-af25-59457048a844",
+      "title": "Big Cock",
+      "artist": "King Kurt",
       "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
       "country": "GB",
       "genres": [
-        "浩室",
-        "2025",
-        "plunderphonics"
+        "psychobilly",
+        "rockabilly",
+        "king kurt",
+        "duane eddy",
+        "i feel good"
       ],
       "genresEn": [
-        "house",
-        "2025",
-        "plunderphonics"
+        "psychobilly",
+        "rockabilly",
+        "king kurt",
+        "duane eddy",
+        "i feel good"
       ],
       "lfmTags": [
-        "house",
-        "2025",
-        "plunderphonics"
+        "psychobilly",
+        "rockabilly",
+        "king kurt",
+        "duane eddy",
+        "i feel good"
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 86544,
-      "artistPlaycount": 4006590,
-      "albumListeners": 5048,
-      "albumPlaycount": 180204,
-      "score": 51.43050982516699,
+      "artistListeners": 33548,
+      "artistPlaycount": 312162,
+      "albumListeners": 19074,
+      "albumPlaycount": 105422,
+      "score": 51.57331978712823,
       "scoreBreakdown": {
-        "artist": 32.9149130939866,
-        "album": 18.51559673118039,
+        "artist": 30.171110895636147,
+        "album": 21.40220889149208,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
-      "id": "mb-69ad73c6-dc0f-402d-b85b-74cadb135f43",
-      "mbid": "69ad73c6-dc0f-402d-b85b-74cadb135f43",
-      "title": "Heiß/Kalt",
-      "artist": "Paula Carolina",
+      "id": "mb-da96498e-93c6-4adf-8c7f-2ed2eac4e461",
+      "mbid": "da96498e-93c6-4adf-8c7f-2ed2eac4e461",
+      "title": "snowfall",
+      "artist": "wüsh",
       "releaseDate": "2026",
       "year": "2026",
-      "type": "EP",
-      "country": "DE",
+      "type": "Album",
+      "country": "XW",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 48793,
-      "artistPlaycount": 887416,
-      "albumListeners": 5279,
-      "albumPlaycount": 45171,
-      "score": 49.868475117969396,
+      "artistListeners": 163062,
+      "artistPlaycount": 1074755,
+      "albumListeners": 1928,
+      "albumPlaycount": 5234,
+      "score": 51.17455357957543,
       "scoreBreakdown": {
-        "artist": 31.255716807964603,
-        "album": 18.612758310004793,
+        "artist": 34.74901843174137,
+        "album": 16.425535147834058,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
+    },
+    {
+      "id": "mb-268d81bf-6af4-4bfd-b4ce-41a7e777c144",
+      "mbid": "268d81bf-6af4-4bfd-b4ce-41a7e777c144",
+      "title": "Nothing Hurts Like Everything",
+      "artist": "Ourson",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "CA",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 39392,
+      "artistPlaycount": 326197,
+      "albumListeners": 10464,
+      "albumPlaycount": 40295,
+      "score": 50.734542196575774,
+      "scoreBreakdown": {
+        "artist": 30.636053541674816,
+        "album": 20.098488654900958,
+        "freshness": 0
+      },
+      "daysOld": 223
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -615,7 +559,59 @@
         "album": 20.42431069524211,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
+    },
+    {
+      "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
+      "mbid": "39b58fe5-9a4b-44b6-a42c-3791dc89115a",
+      "title": "Appalachia",
+      "artist": "Emily Scott Robinson",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "US",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 39655,
+      "artistPlaycount": 332066,
+      "albumListeners": 3745,
+      "albumPlaycount": 36629,
+      "score": 48.52257880493525,
+      "scoreBreakdown": {
+        "artist": 30.655319694757818,
+        "album": 17.86725911017743,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
+      "mbid": "4e05d16b-0198-4994-b1fe-78053c4c5055",
+      "title": "The Lighthouse Session II",
+      "artist": "Saturnus",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "DE",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 118495,
+      "artistPlaycount": 5425607,
+      "albumListeners": 832,
+      "albumPlaycount": 3730,
+      "score": 48.4252834667725,
+      "scoreBreakdown": {
+        "artist": 33.82466683531888,
+        "album": 14.60061663145362,
+        "freshness": 0
+      },
+      "daysOld": 223
     },
     {
       "id": "mb-b88f81f3-c024-46b0-8d1c-0ffa2d0afaa7",
@@ -635,39 +631,13 @@
       "artistPlaycount": 175982,
       "albumListeners": 632,
       "albumPlaycount": 2118,
-      "score": 48.926692760996524,
+      "score": 47.926692760996524,
       "scoreBreakdown": {
         "artist": 29.9231073695846,
         "album": 14.003585391411926,
-        "freshness": 5
+        "freshness": 4
       },
-      "daysOld": 25
-    },
-    {
-      "id": "mb-02df058b-1cf5-4449-bfae-1a7c741587c8",
-      "mbid": "02df058b-1cf5-4449-bfae-1a7c741587c8",
-      "title": "A Substitute For Light",
-      "artist": "Diorama",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "DE",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 76895,
-      "artistPlaycount": 4961750,
-      "albumListeners": 973,
-      "albumPlaycount": 19276,
-      "score": 47.51321820981366,
-      "scoreBreakdown": {
-        "artist": 32.5726540084719,
-        "album": 14.94056420134176,
-        "freshness": 0
-      },
-      "daysOld": 222
+      "daysOld": 26
     },
     {
       "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
@@ -711,7 +681,7 @@
         "album": 13.63770628514278,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -737,7 +707,7 @@
         "album": 15.76602450042142,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -763,13 +733,39 @@
         "album": 14.127130588839117,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
-      "id": "mb-f559dadc-24dc-4a55-b372-af62a40c1f30",
-      "mbid": "f559dadc-24dc-4a55-b372-af62a40c1f30",
-      "title": "Rockgrass Outlaws",
-      "artist": "Hayseed Dixie",
+      "id": "mb-15e13404-810d-4918-880f-1d43ac51d1fe",
+      "mbid": "15e13404-810d-4918-880f-1d43ac51d1fe",
+      "title": "aero",
+      "artist": "lofi cassette",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 37338,
+      "artistPlaycount": 367599,
+      "albumListeners": 1462,
+      "albumPlaycount": 6539,
+      "score": 46.30574387222997,
+      "scoreBreakdown": {
+        "artist": 30.481007009120763,
+        "album": 15.824736863109209,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
+      "mbid": "81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
+      "title": "(EN)LIGHTEN",
+      "artist": "Altrr",
       "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
@@ -779,69 +775,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 131173,
-      "artistPlaycount": 1906973,
-      "albumListeners": 202,
-      "albumPlaycount": 1119,
-      "score": 45.6457198553361,
+      "artistListeners": 7221,
+      "artistPlaycount": 31561,
+      "albumListeners": 4016,
+      "albumPlaycount": 21108,
+      "score": 43.74295082064943,
       "scoreBreakdown": {
-        "artist": 34.11896300810297,
-        "album": 11.52675684723312,
+        "artist": 25.723982299964618,
+        "album": 18.018968520684815,
         "freshness": 0
       },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-2c93a892-f035-487a-b3a0-bc27c9bf91f0",
-      "mbid": "2c93a892-f035-487a-b3a0-bc27c9bf91f0",
-      "title": "Expression of the Soul",
-      "artist": "Pabzzz",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "DE",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 86051,
-      "artistPlaycount": 323835,
-      "albumListeners": 167,
-      "albumPlaycount": 430,
-      "score": 44.01195516664316,
-      "scoreBreakdown": {
-        "artist": 32.898372810905244,
-        "album": 11.113582355737917,
-        "freshness": 0
-      },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-56584f95-2bd2-44d9-ad14-20734f34eec7",
-      "mbid": "56584f95-2bd2-44d9-ad14-20734f34eec7",
-      "title": "Ain’t No ’Bout‐a‐Doubt It",
-      "artist": "Graham Central Station",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 127972,
-      "artistPlaycount": 756142,
-      "albumListeners": 64,
-      "albumPlaycount": 857,
-      "score": 43.07833291883678,
-      "scoreBreakdown": {
-        "artist": 34.04743304891734,
-        "album": 9.030899869919436,
-        "freshness": 0
-      },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -885,7 +829,85 @@
         "album": 12.164846454372029,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
+    },
+    {
+      "id": "mb-bbcbeed1-d3b2-408e-b75a-bec94a24f89d",
+      "mbid": "bbcbeed1-d3b2-408e-b75a-bec94a24f89d",
+      "title": "Tempestade",
+      "artist": "Sara Correia",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "PT",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 14209,
+      "artistPlaycount": 140868,
+      "albumListeners": 757,
+      "albumPlaycount": 7143,
+      "score": 42.07923615921062,
+      "scoreBreakdown": {
+        "artist": 27.68375676171026,
+        "album": 14.395479397500363,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
+      "mbid": "00292388-ab95-4285-8846-120dcfd95b71",
+      "title": "Perspective",
+      "artist": "Coloured Rocks",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 21554,
+      "artistPlaycount": 65302,
+      "albumListeners": 351,
+      "albumPlaycount": 741,
+      "score": 41.61672143913639,
+      "scoreBreakdown": {
+        "artist": 28.890185856807275,
+        "album": 12.726535582329118,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
+      "mbid": "2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
+      "title": "Жёсткая неделька",
+      "artist": "СМЕХ",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 30647,
+      "artistPlaycount": 934316,
+      "albumListeners": 217,
+      "albumPlaycount": 2076,
+      "score": 41.591551791521255,
+      "scoreBreakdown": {
+        "artist": 29.909253122278603,
+        "album": 11.682298669242648,
+        "freshness": 0
+      },
+      "daysOld": 223
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
@@ -911,7 +933,85 @@
         "album": 2.385606273598312,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
+    },
+    {
+      "id": "mb-f8536d9f-b285-4ec7-add3-62d1d53ccd14",
+      "mbid": "f8536d9f-b285-4ec7-add3-62d1d53ccd14",
+      "title": "What if I break up with u?",
+      "artist": "Iliona",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 167066,
+      "artistPlaycount": 2217921,
+      "albumListeners": 13,
+      "albumPlaycount": 105,
+      "score": 40.388970592069576,
+      "scoreBreakdown": {
+        "artist": 34.819253830535395,
+        "album": 5.569716761534184,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
+      "mbid": "ee43185d-de89-4967-bd54-2c0af6179b8a",
+      "title": "Ristiriita",
+      "artist": "kukkatalo",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "FI",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 4271,
+      "artistPlaycount": 108862,
+      "albumListeners": 1452,
+      "albumPlaycount": 22818,
+      "score": 40.013363557999206,
+      "scoreBreakdown": {
+        "artist": 24.20353047617883,
+        "album": 15.809833081820376,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
+      "mbid": "8c5b6568-d616-4e00-b3b9-2117642ef141",
+      "title": "ADHD",
+      "artist": "Mucha",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "CZ",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 9657,
+      "artistPlaycount": 265501,
+      "albumListeners": 254,
+      "albumPlaycount": 4365,
+      "score": 38.58978345913486,
+      "scoreBreakdown": {
+        "artist": 26.56561487603517,
+        "album": 12.024168583099689,
+        "freshness": 0
+      },
+      "daysOld": 223
     },
     {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
@@ -937,7 +1037,7 @@
         "album": 9.256291743595376,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
@@ -981,85 +1081,33 @@
         "album": 8.817139967814686,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
-      "id": "mb-7a1a30ff-1d2c-4704-8f1e-80913aa5c802",
-      "mbid": "7a1a30ff-1d2c-4704-8f1e-80913aa5c802",
-      "title": "Tunji Oyelana & the Benders",
-      "artist": "Tunji Oyelana",
+      "id": "mb-eed0703e-1587-4667-81df-c390c4f6a59a",
+      "mbid": "eed0703e-1587-4667-81df-c390c4f6a59a",
+      "title": "Cyclades",
+      "artist": "Nicolas Kluzek",
       "releaseDate": "2026",
       "year": "2026",
-      "type": "Album",
+      "type": "EP",
       "country": "XW",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 14032,
-      "artistPlaycount": 48362,
-      "albumListeners": 123,
-      "albumPlaycount": 537,
-      "score": 38.09698939734342,
+      "artistListeners": 47663,
+      "artistPlaycount": 134449,
+      "albumListeners": 21,
+      "albumPlaycount": 37,
+      "score": 37.79897230162026,
       "scoreBreakdown": {
-        "artist": 27.647463840146433,
-        "album": 10.44952555719699,
+        "artist": 31.187875827950666,
+        "album": 6.611096473669597,
         "freshness": 0
       },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
-      "mbid": "5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
-      "title": "Naked Rat Dance",
-      "artist": "The Guilt",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "SE",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2376,
-      "artistPlaycount": 25710,
-      "albumListeners": 644,
-      "albumPlaycount": 3713,
-      "score": 36.55007224552676,
-      "scoreBreakdown": {
-        "artist": 22.505642908727705,
-        "album": 14.044429336799059,
-        "freshness": 0
-      },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-2421cfae-728c-43cf-b038-6e9c7abf2008",
-      "mbid": "2421cfae-728c-43cf-b038-6e9c7abf2008",
-      "title": "Kairos",
-      "artist": "O’Flynn",
-      "releaseDate": "2026-07-17",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2263,
-      "artistPlaycount": 6997,
-      "albumListeners": 46,
-      "albumPlaycount": 462,
-      "score": 35.67835285143939,
-      "scoreBreakdown": {
-        "artist": 22.364563693031524,
-        "album": 8.31378915840787,
-        "freshness": 5
-      },
-      "daysOld": 25
+      "daysOld": 223
     },
     {
       "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
@@ -1085,7 +1133,7 @@
         "album": 11.52675684723312,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
@@ -1111,51 +1159,7 @@
         "album": 11.515980287102444,
         "freshness": 0
       },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-2403d7d3-2151-424b-9228-51238150ec95",
-      "mbid": "2403d7d3-2151-424b-9228-51238150ec95",
-      "title": "Brutal Pueblo",
-      "artist": "Hundred Visions",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [
-        "burgerrecords",
-        "独立摇滚",
-        "摇滚",
-        "独立",
-        "american"
-      ],
-      "genresEn": [
-        "burgerrecords",
-        "indie rock",
-        "rock",
-        "indie",
-        "american"
-      ],
-      "lfmTags": [
-        "burgerrecords",
-        "indie rock",
-        "rock",
-        "indie",
-        "american"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2135,
-      "artistPlaycount": 13790,
-      "albumListeners": 272,
-      "albumPlaycount": 2269,
-      "score": 34.36883038257794,
-      "scoreBreakdown": {
-        "artist": 22.19598586240695,
-        "album": 12.172844520170994,
-        "freshness": 0
-      },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
@@ -1199,77 +1203,7 @@
         "album": 9.286662482156343,
         "freshness": 0
       },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-70f5f1ad-3016-4b0a-bd3a-2fc1f84f4186",
-      "mbid": "70f5f1ad-3016-4b0a-bd3a-2fc1f84f4186",
-      "title": "Flicker in the Rearview",
-      "artist": "L'Homme Absurde",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "RU",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1731,
-      "artistPlaycount": 18385,
-      "albumListeners": 89,
-      "albumPlaycount": 391,
-      "score": 31.33559715239386,
-      "scoreBreakdown": {
-        "artist": 21.588647119169295,
-        "album": 9.746950033224563,
-        "freshness": 0
-      },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-e178c01c-3f05-4070-9454-749687762747",
-      "mbid": "e178c01c-3f05-4070-9454-749687762747",
-      "title": "Fit For Use?",
-      "artist": "Blind System",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [
-        "punk rock",
-        "viking rock",
-        "swedish",
-        "vikingarock",
-        "摇滚"
-      ],
-      "genresEn": [
-        "punk rock",
-        "viking rock",
-        "swedish",
-        "vikingarock",
-        "rock"
-      ],
-      "lfmTags": [
-        "punk rock",
-        "viking rock",
-        "swedish",
-        "vikingarock",
-        "rock"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1891,
-      "artistPlaycount": 8588,
-      "albumListeners": 76,
-      "albumPlaycount": 359,
-      "score": 31.248678153704223,
-      "scoreBreakdown": {
-        "artist": 21.844610192300266,
-        "album": 9.404067961403957,
-        "freshness": 0
-      },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
@@ -1313,7 +1247,33 @@
         "album": 8.494850021680094,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
+    },
+    {
+      "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
+      "mbid": "9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
+      "title": "On the Road",
+      "artist": "Ah",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "LT",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 3143,
+      "artistPlaycount": 20508,
+      "albumListeners": 33,
+      "albumPlaycount": 449,
+      "score": 30.908198906173304,
+      "scoreBreakdown": {
+        "artist": 23.315629206783868,
+        "album": 7.592569699389438,
+        "freshness": 0
+      },
+      "daysOld": 223
     },
     {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
@@ -1339,130 +1299,39 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
-      "id": "mb-bff7678b-1603-4e53-b797-36a057b7f124",
-      "mbid": "bff7678b-1603-4e53-b797-36a057b7f124",
-      "title": "Rodeau Drive",
-      "artist": "Alex Froot",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "EP",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "hiphop",
-        "pop",
-        "alternative"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 5772,
-      "artistPlaycount": 15631,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 25.075508816143042,
-      "scoreBreakdown": {
-        "artist": 25.075508816143042,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-0d457350-bc9f-4ac9-9f54-6b38a53c9b14",
-      "mbid": "0d457350-bc9f-4ac9-9f54-6b38a53c9b14",
-      "title": "The Electric Oud Man Speaks",
-      "artist": "Mehmet Ali Sanlıkol",
+      "id": "mb-338d60e1-ad46-44c3-a5fa-b2b2d4daa554",
+      "mbid": "338d60e1-ad46-44c3-a5fa-b2b2d4daa554",
+      "title": "MEDABIRTH - The Beginning of a Star",
+      "artist": "MEDA",
       "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
-      "country": "US",
+      "country": "JP",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 2027,
-      "artistPlaycount": 12588,
+      "artistListeners": 6123,
+      "artistPlaycount": 79222,
       "albumListeners": 1,
-      "albumPlaycount": 3,
-      "score": 22.04569165795339,
+      "albumPlaycount": 19,
+      "score": 25.246428396238223,
       "scoreBreakdown": {
-        "artist": 22.04569165795339,
+        "artist": 25.246428396238223,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
-      "id": "mb-a7d7e6f3-756f-4c62-8b9b-3bd200595c56",
-      "mbid": "a7d7e6f3-756f-4c62-8b9b-3bd200595c56",
-      "title": "This Is My Brain",
-      "artist": "Pat and Sean Kelly",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "United States",
-        "american"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1515,
-      "artistPlaycount": 10470,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 21.202750885588827,
-      "scoreBreakdown": {
-        "artist": 21.202750885588827,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-7215f2e2-bf24-43bc-879e-f15cba29bd17",
-      "mbid": "7215f2e2-bf24-43bc-879e-f15cba29bd17",
-      "title": "Зверобой",
-      "artist": "Vintergata",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "RU",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "Symphonic Black Metal",
-        "metal",
-        "Russia",
-        "death metal",
-        "horror"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1200,
-      "artistPlaycount": 20241,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 20.52787497365083,
-      "scoreBreakdown": {
-        "artist": 20.52787497365083,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-d20de737-5948-4d9c-a2f2-8554f8014ffa",
-      "mbid": "d20de737-5948-4d9c-a2f2-8554f8014ffa",
-      "title": "Kolo",
-      "artist": "KITKA Women's Vocal Ensemble",
+      "id": "mb-f10db834-996c-4b1f-9563-98c7b9e80baa",
+      "mbid": "f10db834-996c-4b1f-9563-98c7b9e80baa",
+      "title": "We Are Together Again",
+      "artist": "Bonnie “Prince” Billy",
       "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
@@ -1472,17 +1341,81 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 1197,
-      "artistPlaycount": 5519,
+      "artistListeners": 2440,
+      "artistPlaycount": 39983,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 20.52062766937607,
+      "score": 22.5825988422582,
       "scoreBreakdown": {
-        "artist": 20.52062766937607,
+        "artist": 22.5825988422582,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
+    },
+    {
+      "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
+      "mbid": "5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
+      "title": "Naked Rat Dance",
+      "artist": "The Guilt",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "SE",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "punk",
+        "hardcore",
+        "swedish",
+        "alternative",
+        "singer songwriter"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 2376,
+      "artistPlaycount": 25710,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 22.505642908727705,
+      "scoreBreakdown": {
+        "artist": 22.505642908727705,
+        "album": 0,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-e178c01c-3f05-4070-9454-749687762747",
+      "mbid": "e178c01c-3f05-4070-9454-749687762747",
+      "title": "Fit For Use?",
+      "artist": "Blind System",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "viking rock",
+        "punk rock",
+        "swedish",
+        "vikingarock",
+        "hate"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1891,
+      "artistPlaycount": 8588,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 21.844610192300266,
+      "scoreBreakdown": {
+        "artist": 21.844610192300266,
+        "album": 0,
+        "freshness": 0
+      },
+      "daysOld": 223
     },
     {
       "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
@@ -1514,7 +1447,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
@@ -1546,7 +1479,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
@@ -1578,7 +1511,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
@@ -1607,39 +1540,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
-    },
-    {
-      "id": "mb-8ad1424b-31d4-481b-80b8-c93c804de5f1",
-      "mbid": "8ad1424b-31d4-481b-80b8-c93c804de5f1",
-      "title": "Таилища Русской Земли",
-      "artist": "Drakon",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "RU",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "black metal",
-        "metal",
-        "russian",
-        "death metal",
-        "russian metal"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 921,
-      "artistPlaycount": 7686,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 19.761730867978994,
-      "scoreBreakdown": {
-        "artist": 19.761730867978994,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-dc113487-3606-48ce-976d-37748757097c",
@@ -1671,7 +1572,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-1ec72f35-b40f-457b-ab09-21352382d03f",
@@ -1703,7 +1604,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-901435e9-1c31-4a69-9fe9-288b4d510d99",
@@ -1735,7 +1636,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "mb-4f123c9f-5775-4f3e-938c-6e4d90cd3944",
@@ -1761,7 +1662,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 222
+      "daysOld": 223
     },
     {
       "id": "chart-0",
