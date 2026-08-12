@@ -290,7 +290,7 @@ function ComingView({ locale, onViewDetail }) {
           <button key={t.id} onClick={() => setTypeTab(t.id)}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${typeTab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
-            <span className="ml-1 opacity-60">({Math.min(byType[t.id].length, 20)})</span>
+            <span className="ml-1 opacity-60">({Math.min(byType[t.id].length, 15)})</span>
           </button>
         ))}
       </div>
@@ -298,7 +298,7 @@ function ComingView({ locale, onViewDetail }) {
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
         <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
-          {current.slice(0, 20).map((item, i) =>
+          {current.slice(0, 15).map((item, i) =>
             typeTab === "movies" ? <MovieCard key={i} movie={item} locale={locale} onViewDetail={onViewDetail} />
             : typeTab === "tv" ? <TVCard key={i} show={item} locale={locale} onViewDetail={onViewDetail} />
             : <AlbumCard key={i} album={item} locale={locale} onViewDetail={(album) => onViewDetail?.(album, "album")} />
@@ -345,7 +345,7 @@ function WeeklyView({ locale, onViewDetail }) {
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
         <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
-          {current.slice(0, 20).map((item, i) => {
+          {current.slice(0, 15).map((item, i) => {
             const rank = item.rank || i + 1;
             return typeTab === "movies" ? <MovieCard key={i} movie={item} locale={locale} onViewDetail={onViewDetail} />
               : typeTab === "tv" ? <TVCard key={i} show={item} locale={locale} onViewDetail={onViewDetail} />

@@ -952,7 +952,7 @@ async function handleIntelMovies(env) {
     .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
     .filter(cnFilter)
     .filter(intelRatingOk);
-  const weekSelected = intelSelectDiverse(weekCandidates, 20, reserve, SCORE_OPTS.movie, today);
+  const weekSelected = intelSelectDiverse(weekCandidates, 15, reserve, SCORE_OPTS.movie, today);
   const weekM = weekSelected.map(m => intelNormalizeMovie(m));
 
   // Upcoming: release_date >= today, popularity floor 15, scored (pop + zh bonus), cap 15
@@ -975,12 +975,12 @@ async function handleIntelMovies(env) {
     .filter(cnFilter)
     .filter(m => (m.popularity || 0) >= 25)
     .filter(intelRatingOk);
-  const nowPlaying = intelSelectDiverse(nowPlayingCandidates, 20, reserve, SCORE_OPTS.movie, today)
+  const nowPlaying = intelSelectDiverse(nowPlayingCandidates, 15, reserve, SCORE_OPTS.movie, today)
     .map(m => intelNormalizeMovie(m));
 
   return {
     updated: today,
-    releasedThisWeek: weekM.slice(0, 20),
+    releasedThisWeek: weekM.slice(0, 15),
     upcoming,
     nowPlaying,
   };
@@ -1035,7 +1035,7 @@ async function handleIntelTV(env) {
   for (const s of premiereFromTrending) {
     if (!onAirPremIds.has(s.id)) premiereMerged.push(s);
   }
-  const premiereSelected = intelSelectDiverse(premiereMerged, 20, reserve, SCORE_OPTS.tv, today);
+  const premiereSelected = intelSelectDiverse(premiereMerged, 15, reserve, SCORE_OPTS.tv, today);
   const premiereEnriched = await intelFetchTVEpisodeDates(premiereSelected, token);
   const weekPremieres = premiereEnriched.map(s => intelNormalizeMovie(s, "tv"));
   const premiereIds = new Set(premiereSelected.map(s => s.id));
@@ -1056,17 +1056,18 @@ async function handleIntelTV(env) {
     if (!trendIds.has(s.id)) upcomingMerged.push(s);
   }
   const upcomingSelected = intelSelectScored(upcomingMerged, 8);
-  const upcomingEnriched = await intelFetchTVEpisodeDates(upcomingSelected, token);
-  const upcomingTV = upcomingEnriched.map(s => intelNormalizeMovie(s, "tv"));
+  // No episode-date enrichment for upcoming (saves 15 subrequests → keeps total < 50);
+  // upcoming cards show premiere date only, S/E info isn't needed pre-air.
+  const upcomingTV = upcomingSelected.map(s => intelNormalizeMovie(s, "tv"));
   const upcomingIds = new Set(upcomingSelected.map(s => s.id));
 
-  // Ongoing: exclude premieres + upcoming, enrich episode dates on final 20 only
+  // Ongoing: exclude premieres + upcoming, enrich episode dates on final 15 only
   const ongoingCandidates = onTheAir
     .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
     .filter(cnFilter)
     .filter(intelRatingOk)
     .filter(s => (s.popularity || 0) >= 80);
-  const ongoingSelected = intelSelectDiverse(ongoingCandidates, 20, reserve, SCORE_OPTS.tv, today);
+  const ongoingSelected = intelSelectDiverse(ongoingCandidates, 15, reserve, SCORE_OPTS.tv, today);
   const ongoingEnriched = await intelFetchTVEpisodeDates(ongoingSelected, token);
   const ongoingTV = ongoingEnriched
     .filter(s => {
@@ -1162,7 +1163,7 @@ async function handleIntelMusicV2(env, request) {
       }
     }
 
-    const result = { updated: today, picks: (aiPicks || []).slice(0, 20) };
+    const result = { updated: today, picks: (aiPicks || []).slice(0, 15) };
     return new Response(JSON.stringify(result), {
       headers: { "Content-Type": "application/json" },
     });
@@ -1243,7 +1244,7 @@ async function handleIntelMusic(env) {
 
     return {
       updated: today,
-      picks: aiPicks.slice(0, 20),
+      picks: aiPicks.slice(0, 15),
     };
   }, 21600);
 }
@@ -1269,7 +1270,7 @@ async function handleIntelWeekly(env) {
     .filter(cnFilter)
     .filter(intelRatingOk)
     .filter(s => (s.popularity || 0) >= 80);
-  const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today);
+  const tvSelected = intelSelectDiverse(tvCandidates, 15, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today);
   const tvWeekly = tvSelected.map((s, i) => ({ ...intelNormalizeMovie(s, "tv"), rank: i + 1, trend: "new" }));
 
   return {

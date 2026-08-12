@@ -67,7 +67,9 @@ async function main() {
   if (!existsSync(API_DIR)) mkdirSync(API_DIR, { recursive: true });
 
   const tasks = [
-    { endpoint: "/intelligence/overview", file: "overview.json" },
+    // Overview LAST: it reuses now_playing/upcoming/on_the_air data that movies/tv
+    // fetch first — running it after them hits their withCache entries (TTL 1h),
+    // dropping its subrequest count from ~55 (over the 50 limit → 500) to ~14.
     { endpoint: "/intelligence/movies", file: "movies.json" },
     { endpoint: "/intelligence/tv", file: "tv.json" },
     // Music is handled separately via pipeline (see below)
@@ -75,6 +77,7 @@ async function main() {
     { endpoint: "/intelligence/weekly", file: "weekly.json" },
     { endpoint: "/intelligence/hidden-gems", file: "hidden-gems.json" },
     { endpoint: "/intelligence/digest", file: "digest.json" },
+    { endpoint: "/intelligence/overview", file: "overview.json" },
   ];
 
   let anyChange = false;
