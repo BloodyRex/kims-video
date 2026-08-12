@@ -1373,13 +1373,22 @@ async function handleIntelDigest(env) {
     return { date: today, headline: "", summary: "", topTrends: [], industryHighlights: [] };
   }
 
+  let dayTrending = [];
+  const synthTrends = () => dayTrending.slice(0, 5).map((m, i) => ({
+    rank: i + 1,
+    title: m.title || m.name || "",
+    titleEn: m.titleEn || m.title || m.name || "",
+    category: m.media_type === "tv" ? "tv" : "movie",
+  }));
+
   try {
-    const [nowPlaying, upcoming, dayTrending, weekTrending] = await Promise.all([
+    const [nowPlaying, upcoming, _dayTrending, weekTrending] = await Promise.all([
       intelFetchTMDB(token, "/movie/now_playing", { region: "US" }),
       intelFetchTMDB(token, "/movie/upcoming"),
       intelFetchTMDB(token, "/trending/all/day"),
       intelFetchTMDB(token, "/trending/all/week"),
     ]);
+    dayTrending = _dayTrending || [];
     const todayMovies = nowPlaying.filter(m => m.release_date === today).length;
     const weekMovies = nowPlaying.filter(m => m.release_date >= weekAgo).length;
     const weekUpcoming = upcoming.filter(m => m.release_date && m.release_date >= today).slice(0, 5).map(m => m.title || m.name);
@@ -1403,31 +1412,33 @@ Return JSON only:
 
 Top 3-5 trends. 3-5 highlights.`;
 
-    const res = await fetch("https://api.deepseek.com/chat/completions", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 3000 }),
-    });
-    if (!res.ok) throw new Error(`DeepSeek: ${res.status}`);
-    const bodyText = await res.text();
-    const data = JSON.parse(bodyText);
-    const raw = data?.choices?.[0]?.message?.content || "";
-    if (!raw) throw new Error(`Empty content from DeepSeek. finish_reason=${data?.choices?.[0]?.finish_reason}`);
+    // One retry (DeepSeek occasionally 5xx/times out; music endpoint uses the same pattern)
+    let raw = "", dResp = null;
+    for (let ai = 0; ai < 2; ai++) {
+      if (ai > 0) await new Promise(r => setTimeout(r, 1200));
+      dResp = await fetch("https://api.deepseek.com/chat/completions", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 3000 }),
+      });
+      if (dResp.ok) {
+        const dr = await dResp.json();
+        raw = dr?.choices?.[0]?.message?.content || "";
+        if (raw) break;
+      }
+    }
+    if (!raw) throw new Error(`Empty content from DeepSeek`);
     const parsed = intelParseJSON(raw);
     // Backend fallback: if the AI omitted topTrends, synthesize programmatically
     // from today's trending (zero extra LLM cost) so the digest never ships empty tags
     if (!Array.isArray(parsed.topTrends) || parsed.topTrends.length === 0) {
-      parsed.topTrends = dayTrending.slice(0, 5).map((m, i) => ({
-        rank: i + 1,
-        title: m.title || m.name || "",
-        titleEn: m.titleEn || m.title || m.name || "",
-        category: m.media_type === "tv" ? "tv" : "movie",
-      }));
+      parsed.topTrends = synthTrends();
     }
     return { date: today, ...parsed };
   } catch (e) {
     console.warn("Digest failed:", e.message);
-    return { date: today, headline: "", summary: "", topTrends: [], industryHighlights: [] };
+    // Even on AI failure, ship programmatic topTrends so the digest never goes fully empty
+    return { date: today, headline: "", summary: "", topTrends: synthTrends(), industryHighlights: [] };
   }
 }
 
