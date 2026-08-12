@@ -884,9 +884,9 @@ async function handleIntelOverview(env) {
   // Fetch data directly with same page counts as category handlers (21 subrequests)
   const [nowPlaying, upcoming, trending, tvOnAir, todayMB] = await Promise.all([
     intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
-    intelFetchUpcomingMovies(token, 4),
+    intelFetchUpcomingMovies(token, 1),
     intelFetchTMDB(token, "/trending/movie/week"),
-    intelFetchPages(token, "/tv/on_the_air", {}, 4),
+    intelFetchPages(token, "/tv/on_the_air", {}, 2),
     intelFetchMusicBrainz(today),
   ]);
 
@@ -940,7 +940,7 @@ async function handleIntelMovies(env) {
 
   const [nowPlayingRaw, upcomingRaw] = await Promise.all([
     intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
-    intelFetchUpcomingMovies(token, 10),
+    intelFetchUpcomingMovies(token, 1),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -990,6 +990,8 @@ async function intelFetchTVEpisodeDates(shows, token) {
   if (!token) return shows || [];
   const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
   const results = await Promise.allSettled((shows || []).map(async (show) => {
+    // Skip re-fetch when the list endpoint already carried episode data (trending does)
+    if (show.last_episode_to_air || show.next_episode_to_air) return show;
     try {
       const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
       if (!r.ok) return show;
@@ -1011,9 +1013,9 @@ async function handleIntelTV(env) {
   const ninetyDaysLater = new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
 
   const [onTheAir, trendingTV, discoverRaw] = await Promise.all([
-    intelFetchPages(token, "/tv/on_the_air", {}, 4),
+    intelFetchPages(token, "/tv/on_the_air", {}, 2),
     intelFetchTMDB(token, "/trending/tv/week"),
-    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, 5),
+    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, 1),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -1255,7 +1257,7 @@ async function handleIntelWeekly(env) {
 
   const [movieTrending, tvOnAir] = await Promise.all([
     intelFetchTMDB(token, "/trending/movie/week"),
-    intelFetchPages(token, "/tv/on_the_air", {}, 4),
+    intelFetchPages(token, "/tv/on_the_air", {}, 2),
   ]);
 
   const normalizeItem = (item, rank) => {
@@ -1285,7 +1287,7 @@ async function handleIntelComing(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
 
-  const movieUpcoming = await intelFetchUpcomingMovies(token, 10);
+  const movieUpcoming = await intelFetchUpcomingMovies(token, 1);
 
   const allItems = [];
 
@@ -1298,7 +1300,7 @@ async function handleIntelComing(env) {
 
   // TV — discover brand new shows premiering in the future (90d window, scored: pop floor 8 + zh bonus)
   try {
-    const tvResults = await intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }), "sort_by": "popularity.desc" }, 5);
+    const tvResults = await intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }), "sort_by": "popularity.desc" }, 1);
     intelSelectScored(tvResults.filter(s => s.first_air_date && s.first_air_date >= today).filter(intelRatingOk), 8)
       .forEach(s => {
         const days = s.first_air_date ? Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000) : 999;
