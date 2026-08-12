@@ -2336,7 +2336,8 @@ export default {
 
       // Hidden gems v2 (Pipeline-fed: POST today's movies/tv intelligence)
       if (url.pathname === "/intelligence/hidden-gems") {
-        return handleIntelHiddenGems(request, env);
+        try { return await handleIntelHiddenGems(request, env); }
+        catch (e) { return Response.json({ error: `hidden-gems: ${e.message}` }, { status: 500, headers: corsHeaders }); }
       }
 
       // Subscribe
