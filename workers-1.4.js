@@ -1543,8 +1543,36 @@ ${JSON.stringify(tvCands.map((s, i) => ({ index: i, title: s.title, genre: s.gen
     return { updated: today, gems };
   } catch (e) {
     console.warn(`Hidden gems v2 failed: ${e.message} (raw ${(raw || "").length} chars)`);
-    // Surface the error in the payload so pipeline runs can see why gems is empty
-    return { updated: today, gems: [], error: `${e.message} (raw ${(raw || "").length} chars)` };
+    // Fallback: no AI — pick top-rated movies/TV programmatically so the email
+    // always has picks (zero LLM cost, no dependency on DeepSeek availability)
+    const pick = (pool, n, mediaType) => pool
+      .slice()
+      .sort((a, b) => (b.rating || 0) - (a.rating || 0))
+      .slice(0, n)
+      .map(src => ({
+        tmdbId: src.tmdbId || null,
+        title: src.title || "",
+        titleEn: src.titleEn || "",
+        poster: src.poster || "",
+        genre: src.genre || [],
+        summary: src.summary || "",
+        summaryEn: src.summaryEn || "",
+        rating: src.rating || 0,
+        year: src.year || "",
+        releaseDate: src.releaseDate || "",
+        mediaType,
+        season: mediaType === "tv" ? (src.season || null) : null,
+        episode: mediaType === "tv" ? (src.episode || null) : null,
+        whyWatch: "",
+        whyWatchEn: "",
+        aiScore: 0,
+        tags: [],
+        tagsEn: [],
+        audience: "",
+        audienceEn: "",
+      }));
+    const fbGems = [...pick(movieCands, 3, "movie"), ...pick(tvCands, 3, "tv")];
+    return { updated: today, gems: fbGems, fallback: true };
   }
 }
 
@@ -1903,7 +1931,7 @@ async function buildDigestHTML(env, now) {
     <td style="vertical-align:top">
       <div style="font-size:14px;color:#ff00ff;font-weight:bold">${g.title || ""}</div>
       <div style="font-size:11px;color:#999;margin-top:2px">评分 ${g.rating || 0}/10${g.year ? ` · ${g.year}` : ""}</div>
-      ${g.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${g.whyWatch}</div>` : ""}
+      ${g.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${g.whyWatch}</div>` : (g.summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${g.summary.slice(0, 80)}</div>` : "")}
       ${gtags ? `<div style="margin-top:4px">${gtags}</div>` : ""}
     </td>
   </tr></table>
@@ -1926,7 +1954,7 @@ async function buildDigestHTML(env, now) {
     <td style="vertical-align:top">
       <div style="font-size:14px;color:#00ffff;font-weight:bold">${s.title || ""}</div>
       <div style="font-size:11px;color:#999;margin-top:2px">${tag}${g} · 评分 ${s.rating || 0}/10</div>
-      ${s.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s.whyWatch}</div>` : ""}
+      ${s.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s.whyWatch}</div>` : (s.summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s.summary.slice(0, 80)}</div>` : "")}
       ${gtags ? `<div style="margin-top:4px">${gtags}</div>` : ""}
     </td>
   </tr></table>
