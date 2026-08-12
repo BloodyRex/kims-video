@@ -44,6 +44,9 @@ function filterChineseContent(data, fileName = "") {
     if (!("title" in sample || "name" in sample)) continue;
     // Don't filter music items (global content, Chinese not required)
     if (key === "music") continue;
+    // Digest topTrends are small tags (title only, no summary/overview) — never
+    // content-filter them, or every digest ships with empty trend tags
+    if (key === "topTrends") continue;
     // TV ongoing: also check latest season is within 6 months
     if (key === "ongoing") {
       const sixMonthsAgo = new Date(Date.now() - 180 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
