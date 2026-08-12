@@ -25,9 +25,9 @@
     ]
   },
   "stats": {
-    "mbRaw": 200,
-    "afterFilter": 110,
-    "artistsChecked": 72,
+    "mbRaw": 300,
+    "afterFilter": 168,
+    "artistsChecked": 73,
     "afterArtistFilter": 54,
     "albumEnriched": 40,
     "chartItems": 359,
@@ -111,8 +111,8 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 1391005,
-      "artistPlaycount": 24802241,
+      "artistListeners": 1390942,
+      "artistPlaycount": 24800121,
       "albumListeners": 813110,
       "albumPlaycount": 8039341,
       "score": 69.55074651125119,
@@ -181,13 +181,13 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 512098,
-      "artistPlaycount": 22890419,
+      "artistListeners": 512168,
+      "artistPlaycount": 22893514,
       "albumListeners": 25660,
       "albumPlaycount": 373050,
-      "score": 60.10863712485815,
+      "score": 60.10903286338415,
       "scoreBreakdown": {
-        "artist": 38.0623538646636,
+        "artist": 38.0627496031896,
         "album": 22.04628326019455,
         "freshness": 0
       },
@@ -225,13 +225,13 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 158411,
-      "artistPlaycount": 1011940,
+      "artistListeners": 158416,
+      "artistPlaycount": 1012068,
       "albumListeners": 88111,
       "albumPlaycount": 590496,
-      "score": 59.390386221391324,
+      "score": 59.390477605539346,
       "scoreBreakdown": {
-        "artist": 34.6652355703023,
+        "artist": 34.665326954450315,
         "album": 24.725150651089027,
         "freshness": 0
       },
@@ -282,32 +282,6 @@
       "daysOld": 223
     },
     {
-      "id": "mb-f4d88e18-f0f1-4e2d-bec9-33710733912b",
-      "mbid": "f4d88e18-f0f1-4e2d-bec9-33710733912b",
-      "title": "The Thread",
-      "artist": "Family Stereo",
-      "releaseDate": "2026-07-31",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 7739,
-      "artistPlaycount": 28600,
-      "albumListeners": 374,
-      "albumPlaycount": 2532,
-      "score": 56.788923655400396,
-      "scoreBreakdown": {
-        "artist": 25.924565644397994,
-        "album": 12.8643580110024,
-        "freshness": 18
-      },
-      "daysOld": 12
-    },
-    {
       "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
       "mbid": "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
       "title": "Snow, Vol. 9",
@@ -321,13 +295,13 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 474824,
-      "artistPlaycount": 6395912,
+      "artistListeners": 474807,
+      "artistPlaycount": 6395725,
       "albumListeners": 5529,
       "albumPlaycount": 19421,
-      "score": 56.55678403150077,
+      "score": 56.55668037009694,
       "scoreBreakdown": {
-        "artist": 37.843551081807085,
+        "artist": 37.84344742040326,
         "album": 18.713232949693683,
         "freshness": 0
       },
@@ -461,13 +435,13 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 391056,
-      "artistPlaycount": 4013746,
+      "artistListeners": 391080,
+      "artistPlaycount": 4013984,
       "albumListeners": 894,
       "albumPlaycount": 7060,
-      "score": 52.03828061855445,
+      "score": 52.03845830406472,
       "scoreBreakdown": {
-        "artist": 37.28159302457487,
+        "artist": 37.28177071008513,
         "album": 14.756687593979589,
         "freshness": 0
       },
@@ -728,6 +702,50 @@
         "freshness": 4
       },
       "daysOld": 26
+    },
+    {
+      "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
+      "mbid": "f4a9a05b-c146-410e-8161-4d10af2f6bfa",
+      "title": "Unity",
+      "artist": "Pariah",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "NL",
+      "genres": [
+        "鞭挞金属",
+        "thrash",
+        "1997",
+        "回响贝斯",
+        "rhythmic"
+      ],
+      "genresEn": [
+        "thrash metal",
+        "thrash",
+        "1997",
+        "dubstep",
+        "rhythmic"
+      ],
+      "lfmTags": [
+        "thrash metal",
+        "thrash",
+        "1997",
+        "dubstep",
+        "rhythmic"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 112879,
+      "artistPlaycount": 889400,
+      "albumListeners": 534,
+      "albumPlaycount": 8598,
+      "score": 47.321793974006226,
+      "scoreBreakdown": {
+        "artist": 33.68408768886344,
+        "album": 13.63770628514278,
+        "freshness": 0
+      },
+      "daysOld": 223
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -1008,32 +1026,6 @@
       "daysOld": 223
     },
     {
-      "id": "mb-457c4731-b031-48d8-beb5-d444406a117a",
-      "mbid": "457c4731-b031-48d8-beb5-d444406a117a",
-      "title": "1783",
-      "artist": "Aquakultre",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "CA",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 5236,
-      "artistPlaycount": 22755,
-      "albumListeners": 1069,
-      "albumPlaycount": 7555,
-      "score": 39.93821944523534,
-      "scoreBreakdown": {
-        "artist": 24.79333091919145,
-        "album": 15.144888526043887,
-        "freshness": 0
-      },
-      "daysOld": 223
-    },
-    {
       "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
       "mbid": "8c5b6568-d616-4e00-b3b9-2117642ef141",
       "title": "ADHD",
@@ -1047,13 +1039,13 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 9659,
-      "artistPlaycount": 265538,
+      "artistListeners": 9657,
+      "artistPlaycount": 265501,
       "albumListeners": 254,
       "albumPlaycount": 4365,
-      "score": 38.5903830235491,
+      "score": 38.58978345913486,
       "scoreBreakdown": {
-        "artist": 26.56621444044941,
+        "artist": 26.56561487603517,
         "album": 12.024168583099689,
         "freshness": 0
       },
@@ -1151,6 +1143,32 @@
       "scoreBreakdown": {
         "artist": 31.187875827950666,
         "album": 6.611096473669597,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
+      "mbid": "017c16c7-e4c5-488d-8bde-d2e41a15096f",
+      "title": "Nick Collection 2",
+      "artist": "Pop! not soda.",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 3622,
+      "artistPlaycount": 45237,
+      "albumListeners": 202,
+      "albumPlaycount": 2226,
+      "score": 35.253079820420055,
+      "scoreBreakdown": {
+        "artist": 23.72632297318693,
+        "album": 11.52675684723312,
         "freshness": 0
       },
       "daysOld": 223
