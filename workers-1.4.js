@@ -1442,8 +1442,112 @@ Top 3-5 trends. 3-5 highlights.`;
   }
 }
 
-// ── Hidden Gems ──
-async function handleIntelHiddenGems(env) {
+// ── Hidden Gems v2: curate from today's movies/tv intelligence (POST body) ──
+async function handleIntelHiddenGems(request, env) {
+  if (request && request.method === "POST") {
+    try {
+      const body = await request.json();
+      if (body?.movies && body?.tv && env.DEEPSEEK_API_KEY) {
+        return await curateFromIntelligence(env, body.movies, body.tv);
+      }
+    } catch (e) {
+      console.warn("Hidden gems POST body failed:", e.message);
+    }
+  }
+  // Legacy GET path (own now_playing fetch) — used by direct calls/debug
+  return handleIntelHiddenGemsLegacy(env);
+}
+
+async function curateFromIntelligence(env, moviesData, tvData) {
+  const today = intelToday();
+
+  // Candidate pools from today's intelligence (rating >= 7, deduped, capped)
+  const buildPool = (data, keys) => {
+    const seen = new Set();
+    const pool = [];
+    for (const key of keys) {
+      for (const it of (data[key] || [])) {
+        if (!it || it.tmdbId == null || seen.has(String(it.tmdbId))) continue;
+        if (!(it.rating || 0) || it.rating < 7) continue;
+        seen.add(String(it.tmdbId));
+        pool.push(it);
+      }
+    }
+    return pool.slice(0, 20);
+  };
+
+  const movieCands = buildPool(moviesData, ["releasedThisWeek", "nowPlaying", "upcoming"]);
+  const tvCands = buildPool(tvData, ["premieresThisWeek", "ongoing", "upcoming"]);
+
+  if (!movieCands.length && !tvCands.length) {
+    return { updated: today, gems: [] };
+  }
+
+  try {
+    const prompt = `You are a film & TV curator selecting Hidden Gems from today's intelligence feed. Movies and TV series below were just collected (high quality, some overlooked). Select 3-5 movies AND 3-5 TV series that deserve more attention. Prioritize quality, freshness, and uniqueness.
+
+For each selected item provide: "mediaType" ("movie" or "tv"), "index" (position in the corresponding list above), "why" (one-line Chinese recommendation), "whyEn" (English), "aiScore" (0-10), "tags" (3-5, in Chinese), "tagsEn" (same tags in English), "audience" (Chinese), "audienceEn" (English).
+
+Return JSON: { "gems": [{ "mediaType": "movie", "index": 0, "why": "...", "whyEn": "...", "aiScore": 8.5, "tags": [...], "tagsEn": [...], "audience": "...", "audienceEn": "..." }] }
+
+Movies (index 0-${movieCands.length - 1}):
+${JSON.stringify(movieCands.map((m, i) => ({ index: i, title: m.title, genre: m.genre, summary: m.summary, rating: m.rating, releaseDate: m.releaseDate })))}
+
+TV (index 0-${tvCands.length - 1}):
+${JSON.stringify(tvCands.map((s, i) => ({ index: i, title: s.title, genre: s.genre, summary: s.summary, rating: s.rating, season: s.season, episode: s.episode })))}`;
+
+    let raw = "", dResp = null;
+    for (let ai = 0; ai < 2; ai++) {
+      if (ai > 0) await new Promise(r => setTimeout(r, 1200));
+      dResp = await fetch("https://api.deepseek.com/chat/completions", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 2500 }),
+      });
+      if (dResp.ok) {
+        const dr = await dResp.json();
+        raw = dr?.choices?.[0]?.message?.content || "";
+        if (raw) break;
+      }
+    }
+    if (!raw) throw new Error(`Empty content from DeepSeek`);
+    const parsed = intelParseJSON(raw);
+    const gems = (parsed?.gems || []).map(g => {
+      const isTv = g.mediaType === "tv";
+      const src = isTv ? tvCands[g.index] : movieCands[g.index];
+      if (!src) return null;
+      return {
+        tmdbId: src.tmdbId || null,
+        title: src.title || "",
+        titleEn: src.titleEn || "",
+        poster: src.poster || "",
+        genre: src.genre || [],
+        summary: src.summary || "",
+        summaryEn: src.summaryEn || "",
+        rating: src.rating || 0,
+        year: src.year || "",
+        releaseDate: src.releaseDate || "",
+        mediaType: isTv ? "tv" : "movie",
+        season: isTv ? (src.season || null) : null,
+        episode: isTv ? (src.episode || null) : null,
+        whyWatch: g.why || "",
+        whyWatchEn: g.whyEn || "",
+        aiScore: g.aiScore || 0,
+        tags: g.tags || [],
+        tagsEn: g.tagsEn || [],
+        audience: g.audience || "",
+        audienceEn: g.audienceEn || "",
+      };
+    }).filter(Boolean);
+    return { updated: today, gems };
+  } catch (e) {
+    console.warn("Hidden gems v2 failed:", e.message);
+    return { updated: today, gems: [] };
+  }
+}
+
+// ── Hidden Gems (legacy: own now_playing fetch) ──
+async function handleIntelHiddenGemsLegacy(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
   const thirtyDaysAgo = intelDaysAgo(30);
@@ -1726,7 +1830,6 @@ async function buildDigestHTML(env, now) {
 
   // ── Helpers ──
   const genreStr = (g) => Array.isArray(g) ? g.slice(0, 2).join(" / ") : (g || "");
-  const safeSummary = (s) => (s || "").slice(0, 120);
   const thumb = (url) => {
     if (!url) return "";
     // Route through poster-proxy: TMDB image host is unreachable from CN networks
@@ -1785,8 +1888,9 @@ async function buildDigestHTML(env, now) {
 </div>`
     : "";
 
-  // ── Movie picks — daily AI-curated gems (hidden-gems.json, regenerated every run) ──
-  const moviePicks = (gemsData.gems || []).slice(0, 5);
+  // ── Movie picks — AI-curated from today's movie intelligence (gems, mediaType != tv) ──
+  const gemsAll = gemsData.gems || [];
+  const moviePicks = gemsAll.filter(g => g.mediaType !== "tv").slice(0, 5);
   const moviePicksHtml = moviePicks.length
     ? moviePicks.map(g => {
       const gtags = (g.tags || []).slice(0, 3).map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:1px 5px;font-size:9px;font-weight:bold;margin:2px 2px 0 0">${t}</span>`).join("");
@@ -1805,23 +1909,23 @@ async function buildDigestHTML(env, now) {
     }).join("")
     : "";
 
-  // ── TV Section (enhanced: premieresThisWeek with S/E + details) ──
-  const tvPicks = (tvData.premieresThisWeek || []).slice(0, 5);
+  // ── TV picks — AI-curated from today's TV intelligence (gems, mediaType = tv) ──
+  const tvPicks = gemsAll.filter(g => g.mediaType === "tv").slice(0, 5);
   const tvPicksHtml = tvPicks.length
     ? tvPicks.map(s => {
       const g = genreStr(s.genre);
-      const r = s.rating || 0;
       const se = s.season ? `S${s.season}${s.episode ? `E${s.episode}` : ""}` : "";
       const tag = se ? `${se} · ` : "";
-      const summary = safeSummary(s.summary);
+      const gtags = (s.tags || []).slice(0, 3).map(t => `<span style="display:inline-block;background:#00ffff;color:#000;padding:1px 5px;font-size:9px;font-weight:bold;margin:2px 2px 0 0">${t}</span>`).join("");
       const poster = thumb(s.poster);
       return `<div style="background:#000;border:2px solid #00ffff;padding:8px;margin:6px 0">
   <table style="width:100%"><tr>
     ${poster ? `<td style="width:46px;vertical-align:top;padding-right:8px"><img src="${poster}" alt="" style="width:46px;height:69px;border:1px solid #333;display:block"></td>` : ""}
     <td style="vertical-align:top">
       <div style="font-size:14px;color:#00ffff;font-weight:bold">${s.title || ""}</div>
-      <div style="font-size:11px;color:#999;margin-top:2px">${tag}${g} · ${r}/10</div>
-      ${summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${summary}</div>` : ""}
+      <div style="font-size:11px;color:#999;margin-top:2px">${tag}${g} · 评分 ${s.rating || 0}/10</div>
+      ${s.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s.whyWatch}</div>` : ""}
+      ${gtags ? `<div style="margin-top:4px">${gtags}</div>` : ""}
     </td>
   </tr></table>
 </div>`;
@@ -2154,7 +2258,10 @@ export default {
           digest: handleIntelDigest, debug: handleIntelDebug,
         };
         try {
-          const intelData = await intelHandlers[intelMatch[1]](env);
+          // hidden-gems needs the request (POST body carries today's movies/tv intelligence)
+          const intelData = intelMatch[1] === "hidden-gems"
+            ? await handleIntelHiddenGems(request, env)
+            : await intelHandlers[intelMatch[1]](env);
           return Response.json(intelData, { headers: corsHeaders });
         } catch (e) {
           return Response.json({ error: e.message }, { status: 500, headers: corsHeaders });

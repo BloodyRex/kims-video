@@ -19,9 +19,9 @@ const hasChineseText = (text) => /[\u4e00-\u9fff]/.test(text || "");
 
 const WORKER_BASE = process.env.WORKER_BASE_URL || "https://api.bloodyrex.xyz";
 
-async function fetchJSON(endpoint) {
+async function fetchJSON(endpoint, options) {
   const url = `${WORKER_BASE}${endpoint}`;
-  const res = await fetch(url);
+  const res = await fetch(url, options);
   if (!res.ok) {
     const body = await res.text().catch(() => "");
     throw new Error(`${endpoint}: ${res.status} — ${body.slice(0, 200)}`);
@@ -89,7 +89,20 @@ async function main() {
   for (const task of tasks) {
     const filePath = join(API_DIR, task.file);
     try {
-      let data = await fetchJSON(task.endpoint);
+      let data;
+      // Hidden gems: POST this run's movies/tv intelligence so the Worker curates
+      // from TODAY's data (CDN static files are still yesterday's at this point)
+      if (task.endpoint === "/intelligence/hidden-gems") {
+        const moviesToday = JSON.parse(readFileSync(join(API_DIR, "movies.json"), "utf8"));
+        const tvToday = JSON.parse(readFileSync(join(API_DIR, "tv.json"), "utf8"));
+        data = await fetchJSON(task.endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ movies: moviesToday, tv: tvToday }),
+        });
+      } else {
+        data = await fetchJSON(task.endpoint);
+      }
 
       // Universal filter: all content items must have Chinese title + summary
       filterChineseContent(data, task.file);
