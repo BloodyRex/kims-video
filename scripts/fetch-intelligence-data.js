@@ -50,15 +50,10 @@ function filterChineseContent(data, fileName = "") {
       data[key] = val.filter(item => !item.latestAirDate || item.latestAirDate >= sixMonthsAgo);
       continue;
     }
-    // Upcoming/next*: items haven't premiered yet, may lack Chinese title or overview
-    // Accept if EITHER title OR overview has Chinese characters; TV entries also pass if English
-    // (Worker already en-exempts TV — mirror that here so the pipeline doesn't re-kill EN shows)
+    // Upcoming/next*: scoring-based selection in the Worker (pop floor + zh bonus) already
+    // decided what belongs here — do NOT re-apply a hard Chinese filter, or hot non-zh
+    // titles (which qualify on popularity alone) get killed a second time.
     if (key === "upcoming" || key === "next7Days" || key === "next30Days") {
-      data[key] = val.filter(item => {
-        const isTV = fileName === "tv.json" || item.mediaType === "tv";
-        if (isTV && item.originalLanguage === "en") return true;
-        return hasChinese(item.title || item.name) || hasChinese(item.summary || item.overview);
-      });
       continue;
     }
     data[key] = val.filter(item => {

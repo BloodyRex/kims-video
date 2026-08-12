@@ -461,6 +461,27 @@ function intelSelectDiverse(items, count = 20, reserved = { zh: 2, ja: 1, ko: 1 
   return result.sort((a, b) => b.score - a.score).slice(0, count).map(s => s.item);
 }
 
+// ── Scored upcoming selection: popularity floor + Chinese bonus, top N (2026-08-12) ──
+// Replaces hard zh filtering for the upcoming slot. score = 0.6*S_pop + 0.4*S_zh.
+// Non-zh titles can still qualify on popularity alone (floor gates the pool).
+function intelSelectScored(items, floor, cap = 15) {
+  const qual = items.filter(m => (m.popularity || 0) >= floor);
+  if (!qual.length) return [];
+  const maxPop = Math.max(...qual.map(m => m.popularity || 0), 1);
+  const minPop = Math.min(...qual.map(m => m.popularity || 0), 0);
+  const popRange = Math.max(maxPop - minPop, 1);
+  const zhC = (t) => /[一-鿿]/.test(t || "");
+  const zhScore = (m) => (zhC(m.title || m.name) ? 50 : 0) + (zhC(m.overview) ? 50 : 0);
+  return qual
+    .map(m => ({
+      m,
+      score: (0.6 * Math.min(100, Math.max(0, ((m.popularity || 0) - minPop) / popRange * 100)) + 0.4 * zhScore(m)) / 100,
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, cap)
+    .map(x => x.m);
+}
+
 // ── MusicBrainz ──
 async function intelFetchAlbumCover(mbid) {
   const cacheKey = `cover-${mbid}`;
@@ -871,8 +892,6 @@ async function handleIntelOverview(env) {
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const cnFilter = (m) => hasChinese(m.title || m.name) && hasChinese(m.overview);
-  // Upcoming: title OR overview Chinese (matches pipeline filterChineseContent standard)
-  const titleCn = (m) => hasChinese(m.title || m.name) || hasChinese(m.overview);
 
   // Movies: same cnFilter + diversity as handleIntelMovies
   const weekCandidates = nowPlaying
@@ -886,12 +905,11 @@ async function handleIntelOverview(env) {
   const tvCandidates = tvOnAir.filter(cnFilter).filter(intelRatingOk);
   const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today);
 
-  // Upcoming movies: same title-only filter + reduced reserve as handleIntelMovies
+  // Upcoming movies: same scored selection as handleIntelMovies (pop floor 15, cap 15)
   const upcomingCandidates = upcoming
     .filter(m => m.release_date && m.release_date >= today)
-    .filter(titleCn)
     .filter(intelRatingOk);
-  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, {}, SCORE_OPTS.movie, today);
+  const upcomingSelected = intelSelectScored(upcomingCandidates, 15);
   const comingSoon = upcomingSelected.slice(0, 6).map(m => {
     const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
     return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
@@ -937,15 +955,13 @@ async function handleIntelMovies(env) {
   const weekSelected = intelSelectDiverse(weekCandidates, 20, reserve, SCORE_OPTS.movie, today);
   const weekM = weekSelected.map(m => intelNormalizeMovie(m));
 
-  // Upcoming: release_date >= today, relaxed filter (title OR overview Chinese), reduced reserve
-  const titleCn = (m) => hasChinese(m.title || m.name) || hasChinese(m.overview);
+  // Upcoming: release_date >= today, popularity floor 15, scored (pop + zh bonus), cap 15
   const weekIds = new Set(weekSelected.map(m => m.id));
   const upcomingCandidates = upcomingRaw
     .filter(m => m.release_date && m.release_date >= today)
     .filter(m => !weekIds.has(m.id))
-    .filter(titleCn)
     .filter(intelRatingOk);
-  const upcomingSelected = intelSelectDiverse(upcomingCandidates, 20, {}, SCORE_OPTS.movie, today);
+  const upcomingSelected = intelSelectScored(upcomingCandidates, 15);
   const upcoming = upcomingSelected.map(m => {
     const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
     return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
@@ -1025,26 +1041,21 @@ async function handleIntelTV(env) {
   const premiereIds = new Set(premiereSelected.map(s => s.id));
 
   // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 90 days)
-  // Chinese filter: EN auto-pass; non-EN must have Chinese title OR overview
-  // Trending: intelRatingOk (keep unscored, exclude < 4), Discover: higher popularity threshold
+  // Scored selection: popularity floor 8 + Chinese bonus (EN shows qualify on popularity alone), cap 15
   const upcomingFromTrending = trendingTV
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
     .filter(s => !premiereIds.has(s.id))
-    .filter(intelRatingOk)
-    .filter(s => s.original_language === "en" || (hasChinese(s.title || s.name) || hasChinese(s.overview)))
-    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
+    .filter(intelRatingOk);
   const upcomingFromDiscover = discoverRaw
     .filter(s => !premiereIds.has(s.id))
-    .filter(intelRatingOk)
-    .filter(s => s.original_language === "en" || (hasChinese(s.title || s.name) || hasChinese(s.overview)))
-    .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5);
+    .filter(intelRatingOk);
   // Merge and dedup
   const upcomingMerged = [...upcomingFromTrending];
   const trendIds = new Set(upcomingFromTrending.map(s => s.id));
   for (const s of upcomingFromDiscover) {
     if (!trendIds.has(s.id)) upcomingMerged.push(s);
   }
-  const upcomingSelected = intelSelectDiverse(upcomingMerged, 20, {}, SCORE_OPTS.tv, today);
+  const upcomingSelected = intelSelectScored(upcomingMerged, 8);
   const upcomingEnriched = await intelFetchTVEpisodeDates(upcomingSelected, token);
   const upcomingTV = upcomingEnriched.map(s => intelNormalizeMovie(s, "tv"));
   const upcomingIds = new Set(upcomingSelected.map(s => s.id));
@@ -1272,28 +1283,22 @@ async function handleIntelWeekly(env) {
 async function handleIntelComing(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
-  const hasChinese = (text) => /[一-鿿]/.test(text || "");
 
   const movieUpcoming = await intelFetchUpcomingMovies(token, 10);
 
   const allItems = [];
 
-  // Movies
-  movieUpcoming
-    .filter(m => m.release_date && m.release_date >= today)
-    .filter(intelRatingOk)
+  // Movies — scored selection (pop floor 15 + zh bonus), consistent with handleIntelMovies
+  intelSelectScored(movieUpcoming.filter(m => m.release_date && m.release_date >= today).filter(intelRatingOk), 15)
     .forEach(m => {
       const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
       allItems.push({ ...intelNormalizeMovie(m), mediaType: "movie", daysUntil: Math.max(0, days) });
     });
 
-  // TV — discover brand new shows premiering in the future (90d window, EN auto-pass)
+  // TV — discover brand new shows premiering in the future (90d window, scored: pop floor 8 + zh bonus)
   try {
     const tvResults = await intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }), "sort_by": "popularity.desc" }, 5);
-    tvResults
-      .filter(intelRatingOk)
-      .filter(s => s.original_language === "en" || (hasChinese(s.title || s.name) || hasChinese(s.overview)))
-      .filter(s => s.original_language === "en" || (s.popularity || 0) >= 5)
+    intelSelectScored(tvResults.filter(s => s.first_air_date && s.first_air_date >= today).filter(intelRatingOk), 8)
       .forEach(s => {
         const days = s.first_air_date ? Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000) : 999;
         allItems.push({ ...intelNormalizeMovie(s, "tv"), mediaType: "tv", daysUntil: Math.max(0, days) });
