@@ -2208,6 +2208,7 @@ async function sendDigestToAll(env) {
 // ── Main ──
 export default {
   async fetch(request, env, ctx) {
+    try {
     // KV warm-up: ensure consistent reads after cold start / deploy
     ctx.waitUntil(env.SUBSCRIBE_KV?.get("__warmup").catch(() => {}));
     const ALLOWED_ORIGINS = ["https://bloodyrex.xyz", "https://www.bloodyrex.xyz", "https://bloodyrex.github.io", "https://api.bloodyrex.xyz", "http://localhost:4173", "http://localhost:5173", "http://localhost:5174", "http://localhost:7850", "http://127.0.0.1:7850"];
@@ -2440,5 +2441,8 @@ export default {
     }
 
     return Response.json({ error: "Method not allowed" }, { status: 405, headers: corsHeaders });
+    } catch (e) {
+      return Response.json({ error: `top-level: ${e.message}`, stack: (e.stack || "").slice(0, 600) }, { status: 500, headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" } });
+    }
   },
 };
