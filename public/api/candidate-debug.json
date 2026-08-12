@@ -26,12 +26,12 @@
   },
   "stats": {
     "mbRaw": 300,
-    "afterFilter": 167,
-    "artistsChecked": 73,
-    "afterArtistFilter": 54,
+    "afterFilter": 168,
+    "artistsChecked": 72,
+    "afterArtistFilter": 51,
     "albumEnriched": 40,
     "chartItems": 359,
-    "totalCandidates": 413,
+    "totalCandidates": 410,
     "sentToWorker": 18
   },
   "candidates": [
@@ -67,8 +67,8 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3579427,
-      "artistPlaycount": 130161787,
+      "artistListeners": 3579770,
+      "artistPlaycount": 130170323,
       "albumListeners": 1295522,
       "albumPlaycount": 13597621,
       "score": 70,
@@ -122,32 +122,6 @@
         "freshness": 0
       },
       "daysOld": 223
-    },
-    {
-      "id": "mb-e4b88467-dd28-4072-b95a-bd380c4728cf",
-      "mbid": "e4b88467-dd28-4072-b95a-bd380c4728cf",
-      "title": "Static Charge",
-      "artist": "The Telescopes",
-      "releaseDate": "2026-07-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 179512,
-      "artistPlaycount": 2147441,
-      "albumListeners": 1207,
-      "albumPlaycount": 4994,
-      "score": 63.43582625420866,
-      "scoreBreakdown": {
-        "artist": 35.027289903721915,
-        "album": 15.408536350486745,
-        "freshness": 13
-      },
-      "daysOld": 17
     },
     {
       "id": "mb-ca12bdf9-c25a-4d98-9188-86d41c71efbd",
@@ -492,39 +466,27 @@
       "daysOld": 223
     },
     {
-      "id": "mb-ee928bdc-8e78-4925-9563-b1cc9d193147",
-      "mbid": "ee928bdc-8e78-4925-9563-b1cc9d193147",
-      "title": "Fantasy",
-      "artist": "DJ Sabrina the Teenage DJ",
+      "id": "mb-da96498e-93c6-4adf-8c7f-2ed2eac4e461",
+      "mbid": "da96498e-93c6-4adf-8c7f-2ed2eac4e461",
+      "title": "snowfall",
+      "artist": "wüsh",
       "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
-      "country": "GB",
-      "genres": [
-        "浩室",
-        "2025",
-        "plunderphonics"
-      ],
-      "genresEn": [
-        "house",
-        "2025",
-        "plunderphonics"
-      ],
-      "lfmTags": [
-        "house",
-        "2025",
-        "plunderphonics"
-      ],
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 86562,
-      "artistPlaycount": 4008807,
-      "albumListeners": 5053,
-      "albumPlaycount": 180385,
-      "score": 51.433261705705235,
+      "artistListeners": 163067,
+      "artistPlaycount": 1074789,
+      "albumListeners": 1928,
+      "albumPlaycount": 5234,
+      "score": 51.17464235722312,
       "scoreBreakdown": {
-        "artist": 32.91551521451409,
-        "album": 18.51774649119115,
+        "artist": 34.74910720938906,
+        "album": 16.425535147834058,
         "freshness": 0
       },
       "daysOld": 223
@@ -595,32 +557,6 @@
       "scoreBreakdown": {
         "artist": 28.74813122182648,
         "album": 20.42431069524211,
-        "freshness": 0
-      },
-      "daysOld": 223
-    },
-    {
-      "id": "mb-4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
-      "mbid": "4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
-      "title": "Labor of Love",
-      "artist": "Tinsley Ellis",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 92449,
-      "artistPlaycount": 762982,
-      "albumListeners": 1377,
-      "albumPlaycount": 5665,
-      "score": 48.80068448698498,
-      "scoreBreakdown": {
-        "artist": 33.10601478570036,
-        "album": 15.694669701284617,
         "freshness": 0
       },
       "daysOld": 223
@@ -891,6 +827,32 @@
       "scoreBreakdown": {
         "artist": 30.437175331758848,
         "album": 12.164846454372029,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-bbcbeed1-d3b2-408e-b75a-bec94a24f89d",
+      "mbid": "bbcbeed1-d3b2-408e-b75a-bec94a24f89d",
+      "title": "Tempestade",
+      "artist": "Sara Correia",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "PT",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 14209,
+      "artistPlaycount": 140888,
+      "albumListeners": 757,
+      "albumPlaycount": 7147,
+      "score": 42.07923615921062,
+      "scoreBreakdown": {
+        "artist": 27.68375676171026,
+        "album": 14.395479397500363,
         "freshness": 0
       },
       "daysOld": 223
@@ -1244,33 +1206,71 @@
       "daysOld": 223
     },
     {
-      "id": "mb-cb038ac1-0e50-4e55-b990-b28d016bc42b",
-      "mbid": "cb038ac1-0e50-4e55-b990-b28d016bc42b",
-      "title": "Tarot",
-      "artist": "Magenta",
+      "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
+      "mbid": "ed578194-4aa6-4100-a951-b57d40adc5d9",
+      "title": "Det Karolinska Arvet",
+      "artist": "Karolinerna",
       "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
-      "country": "GB",
-      "genres": [],
-      "genresEn": [],
+      "country": "XW",
+      "genres": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
+      "genresEn": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
       "lfmTags": [
-        "Progressive rock",
-        "female vocalists",
-        "symphonic prog",
-        "Gothic Rock",
-        "neo-progressive rock"
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 62230,
-      "artistPlaycount": 787487,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 31.9599986732298,
+      "artistListeners": 2577,
+      "artistPlaycount": 93817,
+      "albumListeners": 50,
+      "albumPlaycount": 224,
+      "score": 31.235612812019458,
       "scoreBreakdown": {
-        "artist": 31.9599986732298,
-        "album": 0,
+        "artist": 22.740762790339364,
+        "album": 8.494850021680094,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
+      "mbid": "9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
+      "title": "On the Road",
+      "artist": "Ah",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "LT",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 3146,
+      "artistPlaycount": 20511,
+      "albumListeners": 33,
+      "albumPlaycount": 449,
+      "score": 30.910961154637896,
+      "scoreBreakdown": {
+        "artist": 23.318391455248456,
+        "album": 7.592569699389438,
         "freshness": 0
       },
       "daysOld": 223
@@ -1322,101 +1322,6 @@
       "score": 25.246901213508156,
       "scoreBreakdown": {
         "artist": 25.246901213508156,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 223
-    },
-    {
-      "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
-      "mbid": "9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
-      "title": "On the Road",
-      "artist": "Ah",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "LT",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "j-pop",
-        "japanese",
-        "Neo Soul",
-        "female vocalists"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 3146,
-      "artistPlaycount": 20511,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 23.318391455248456,
-      "scoreBreakdown": {
-        "artist": 23.318391455248456,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 223
-    },
-    {
-      "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
-      "mbid": "ed578194-4aa6-4100-a951-b57d40adc5d9",
-      "title": "Det Karolinska Arvet",
-      "artist": "Karolinerna",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "viking rock",
-        "vikingarock",
-        "swedish",
-        "white power",
-        "liszaj radio"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2577,
-      "artistPlaycount": 93817,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 22.740762790339364,
-      "scoreBreakdown": {
-        "artist": 22.740762790339364,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 223
-    },
-    {
-      "id": "mb-f7a6a3d6-ce69-41a2-9e89-a2924ab12407",
-      "mbid": "f7a6a3d6-ce69-41a2-9e89-a2924ab12407",
-      "title": "In the Kingdom of North",
-      "artist": "Theosophy",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "RU",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "black metal",
-        "russian",
-        "Russian Black Metal",
-        "metal",
-        "Russia"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2549,
-      "artistPlaycount": 32614,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 22.709132236461784,
-      "scoreBreakdown": {
-        "artist": 22.709132236461784,
         "album": 0,
         "freshness": 0
       },
@@ -1507,38 +1412,6 @@
       "score": 21.844610192300266,
       "scoreBreakdown": {
         "artist": 21.844610192300266,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 223
-    },
-    {
-      "id": "mb-23d0bcf0-0a08-4f77-8eb5-bfd36941e15e",
-      "mbid": "23d0bcf0-0a08-4f77-8eb5-bfd36941e15e",
-      "title": "Rakasa",
-      "artist": "Anudeep Dev",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "IN",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "india",
-        "Indian",
-        "Hyderabad",
-        "telugu",
-        "playback singer"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1665,
-      "artistPlaycount": 10629,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 21.476094918948924,
-      "scoreBreakdown": {
-        "artist": 21.476094918948924,
         "album": 0,
         "freshness": 0
       },
@@ -1696,6 +1569,38 @@
       "score": 19.553205479487985,
       "scoreBreakdown": {
         "artist": 19.553205479487985,
+        "album": 0,
+        "freshness": 0
+      },
+      "daysOld": 223
+    },
+    {
+      "id": "mb-1ec72f35-b40f-457b-ab09-21352382d03f",
+      "mbid": "1ec72f35-b40f-457b-ab09-21352382d03f",
+      "title": "The Herald of the Lightning and the Sun",
+      "artist": "Solar Cross",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "US",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "black metal",
+        "raw black metal",
+        "USBM",
+        "american",
+        "spoken word"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 719,
+      "artistPlaycount": 10889,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 19.044859269219216,
+      "scoreBreakdown": {
+        "artist": 19.044859269219216,
         "album": 0,
         "freshness": 0
       },

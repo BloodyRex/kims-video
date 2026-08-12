@@ -1,16 +1,49 @@
 {
   "updated": "2026-08-13",
-  "count": 3,
+  "count": 5,
   "movies": [
     {
-      "tmdbId": 340666,
-      "title": "夜行动物",
-      "titleEn": "Nocturnal Animals",
-      "year": "2016",
-      "releaseDate": "2016-11-04",
-      "poster": "https://image.tmdb.org/t/p/w342/mdLDgQBD0va09npSQX5Zgo2evXM.jpg",
-      "rating": 7.406,
+      "tmdbId": 1124,
+      "title": "致命魔术",
+      "titleEn": "The Prestige",
+      "year": "2006",
+      "releaseDate": "2006-10-19",
+      "poster": "https://image.tmdb.org/t/p/w342/Ag2B2KHKQPukjH7WutmgnnSNurZ.jpg",
+      "rating": 8.211,
       "genre": [
+        "剧情",
+        "悬疑",
+        "科幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-13"
+    },
+    {
+      "tmdbId": 1427,
+      "title": "香水",
+      "titleEn": "Perfume: The Story of a Murderer",
+      "year": "2006",
+      "releaseDate": "2006-09-13",
+      "poster": "https://image.tmdb.org/t/p/w342/2wrFrUej8ri5EpjgIkjKTAnr686.jpg",
+      "rating": 7.373,
+      "genre": [
+        "犯罪",
+        "奇幻",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-13"
+    },
+    {
+      "tmdbId": 209764,
+      "title": "恐怖直播",
+      "titleEn": "더 테러 라이브",
+      "year": "2013",
+      "releaseDate": "2013-07-31",
+      "poster": "https://image.tmdb.org/t/p/w342/9VFBtfMRKh5Yfd8jQ4kPhhD441D.jpg",
+      "rating": 7.182,
+      "genre": [
+        "犯罪",
         "剧情",
         "惊悚"
       ],
@@ -18,31 +51,30 @@
       "firstSeen": "2026-08-13"
     },
     {
-      "tmdbId": 569547,
-      "title": "黑镜：潘达斯奈基",
-      "titleEn": "Black Mirror: Bandersnatch",
-      "year": "2018",
-      "releaseDate": "2018-12-28",
-      "poster": "https://image.tmdb.org/t/p/w342/fR0VZ0VE598zl1lrYf7IfBqEwQ2.jpg",
-      "rating": 6.759,
+      "tmdbId": 662,
+      "title": "堤",
+      "titleEn": "La Jetée",
+      "year": "1962",
+      "releaseDate": "1962-02-16",
+      "poster": "https://image.tmdb.org/t/p/w342/elGidsRHXkk8UyrtLbcMhaptDyp.jpg",
+      "rating": 7.867,
       "genre": [
-        "惊悚",
-        "科幻",
-        "悬疑"
+        "剧情",
+        "爱情",
+        "科幻"
       ],
       "source": "rec",
       "firstSeen": "2026-08-13"
     },
     {
-      "tmdbId": 78450,
-      "title": "恐怖份子",
-      "titleEn": "恐怖份子",
-      "year": "1986",
-      "releaseDate": "1986-12-19",
-      "poster": "https://image.tmdb.org/t/p/w342/7uX1PVn9Tob81hqwdzAjqPeaXZO.jpg",
-      "rating": 7.398,
+      "tmdbId": 807,
+      "title": "七宗罪",
+      "titleEn": "Se7en",
+      "year": "1995",
+      "releaseDate": "1995-09-22",
+      "poster": "https://image.tmdb.org/t/p/w342/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg",
+      "rating": 8.38,
       "genre": [
-        "剧情",
         "犯罪",
         "悬疑",
         "惊悚"
