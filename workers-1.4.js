@@ -1708,25 +1708,18 @@ async function buildDigestHTML(env, now) {
     try { return await result.value.json(); } catch { return null; }
   };
 
-  const [digestR, overviewR, weeklyR, comingR, tvR, musicR, moviesR, trendingR, gemsR, wallDeltaR] = await Promise.allSettled([
+  const [digestR, overviewR, tvR, musicR, moviesR, gemsR] = await Promise.allSettled([
     fetch(`${BASE}/digest.json`), fetch(`${BASE}/overview.json`),
-    fetch(`${BASE}/weekly.json`), fetch(`${BASE}/coming.json`),
     fetch(`${BASE}/tv.json`), fetch(`${BASE}/music.json`),
-    fetch(`${BASE}/movies.json`),
-    fetch(`${BASE}/trending.json`), fetch(`${BASE}/hidden-gems.json`),
-    fetch(`${BASE}/wall-delta.json`),
+    fetch(`${BASE}/movies.json`), fetch(`${BASE}/hidden-gems.json`),
   ]);
 
   const dig = await safeJson(digestR) || {};
   const overview = await safeJson(overviewR) || {};
-  const weekly = await safeJson(weeklyR) || {};
-  const coming = await safeJson(comingR) || {};
   const tvData = await safeJson(tvR) || {};
   const musicData = await safeJson(musicR) || {};
   const moviesData = await safeJson(moviesR) || {};
-  const trendingData = await safeJson(trendingR) || {};
   const gemsData = await safeJson(gemsR) || {};
-  const wallDeltaData = await safeJson(wallDeltaR) || {};
 
   const stats = overview.stats || {};
   const date = dig.date || overview.updated || now;
@@ -1749,34 +1742,9 @@ async function buildDigestHTML(env, now) {
   // ── Daily Digest section ──
   const headline = dig.headline || "";
   const summaryZh = dig.summary || "";
-  let trends = (dig.topTrends || []).slice(0, 5);
-  // Render-time fallback: if the stored digest has no topTrends (AI omitted them),
-  // derive tags from today's trending so the tags block is never empty
-  if (!trends.length) {
-    const tToday = (trendingData.today || {}).movies || [];
-    trends = tToday.slice(0, 5).map((m, i) => ({
-      rank: i + 1,
-      title: m.title || m.titleEn || "",
-      titleEn: m.titleEn || m.title || "",
-      category: "movie",
-    }));
-  }
+  const trends = (dig.topTrends || []).slice(0, 5);
   const trendsHtml = trends.length
     ? `<div style="margin:8px 0">${trends.map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:2px 7px;font-size:10px;font-weight:bold;margin:2px;text-transform:uppercase">${t.title}</span>`).join("")}</div>`
-    : "";
-
-  // ── Weekly Hot section ──
-  const hotMovies = (weekly.movies || []).slice(0, 3);
-  const hotTV = (weekly.tv || []).slice(0, 3);
-  const hotMoviesHtml = hotMovies.length
-    ? `<table style="width:100%;border-collapse:collapse">${hotMovies.map((m, i) =>
-      `<tr><td style="padding:3px 6px;font-size:13px;color:#fff;width:20px;vertical-align:top;background:#111"><strong style="color:#ff00ff">${i+1}.</strong></td><td style="padding:3px 6px;font-size:13px;color:#fff;background:#111">${m.title || ""}</td></tr>`
-    ).join("")}</table>`
-    : "";
-  const hotTVHtml = hotTV.length
-    ? `<table style="width:100%;border-collapse:collapse">${hotTV.map((s, i) =>
-      `<tr><td style="padding:3px 6px;font-size:13px;color:#fff;width:20px;vertical-align:top;background:#111"><strong style="color:#00ffff">${i+1}.</strong></td><td style="padding:3px 6px;font-size:13px;color:#fff;background:#111">${s.title || ""}${s.season ? ` <span style="font-size:10px;color:#999">S${s.season}${s.episode ? `E${s.episode}` : ""}</span>` : ""}</td></tr>`
-    ).join("")}</table>`
     : "";
 
   // ── Release Calendar — stacked, same sources as website, sorted, deduped ──
@@ -1817,64 +1785,20 @@ async function buildDigestHTML(env, now) {
 </div>`
     : "";
 
-  // ── Today's Hot — from trending.json (daily, programmatic, zero LLM) ──
-  const tToday = trendingData.today || {};
-  const tAll = [...(tToday.movies || []), ...(tToday.tv || [])]
-    .sort((a, b) => (a.rank || 99) - (b.rank || 99))
-    .slice(0, 5);
-  const todayHotHtml = tAll.length
-    ? `<div style="background:#000;border:2px solid #ff00ff;padding:10px;margin:6px 0">
-  <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 6px">🔥 今日热搜</p>
-  <table style="width:100%;border-collapse:collapse">${tAll.map((m, i) => {
-    const isNew = m.trend === "new";
-    return `<tr><td style="padding:3px 6px;font-size:12px;color:#fff;width:20px;vertical-align:top;background:#111"><strong style="color:#ff00ff">${i + 1}.</strong></td><td style="padding:3px 6px;font-size:12px;color:#fff;background:#111">${m.title || m.titleEn || ""}${isNew ? ` <span style="font-size:9px;color:#000;background:#ff00ff;padding:1px 4px;font-weight:bold">NEW</span>` : ""}</td></tr>`;
-  }).join("")}</table>
-  <div style="text-align:right;margin:4px 0 0"><a href="https://bloodyrex.xyz/intelligence" style="font-size:10px;color:#ff00ff">查看完整热榜 →</a></div>
-</div>`
-    : "";
-
-  // ── Hidden Gems — daily AI picks (hidden-gems.json) ──
-  const gems = (gemsData.gems || []).slice(0, 3);
-  const gemsHtml = gems.length
-    ? gems.map(g => {
-      const gtags = (g.tags || []).slice(0, 3).map(t => `<span style="display:inline-block;background:#00ffff;color:#000;padding:1px 5px;font-size:9px;font-weight:bold;margin:2px 2px 0 0">${t}</span>`).join("");
-      return `<div style="background:#000;border:2px solid #00ffff;padding:8px;margin:6px 0">
-  <div style="font-size:13px;color:#00ffff;font-weight:bold">💎 ${g.title || ""}</div>
-  <div style="font-size:10px;color:#999;margin-top:2px">${g.rating ? `评分 ${g.rating}/10` : ""}${g.year ? ` · ${g.year}` : ""}</div>
-  ${g.whyWatch ? `<div style="font-size:11px;color:#ccc;margin-top:4px;line-height:1.5">${g.whyWatch}</div>` : ""}
-  ${gtags ? `<div style="margin-top:4px">${gtags}</div>` : ""}
-</div>`;
-    }).join("")
-    : "";
-
-  // ── Wall: today's new additions (wall-delta.json, from pipeline diff) ──
-  const wallNew = (wallDeltaData.movies || []).slice(0, 6);
-  const wallNewHtml = wallNew.length
-    ? `<div style="background:#000;border:2px solid #ffff00;padding:10px;margin:6px 0">
-  <p style="font-size:11px;color:#ffff00;font-weight:bold;text-transform:uppercase;margin:0 0 6px">🏛️ 影视墙今日新增 ${wallDeltaData.count || wallNew.length} 部</p>
-  <table style="width:100%;border-collapse:collapse">${wallNew.map(m => {
-    const g = genreStr(m.genre);
-    return `<tr><td style="padding:3px 6px;font-size:12px;color:#fff;background:#111">${m.title || m.titleEn || ""}</td><td style="padding:3px 6px;font-size:10px;color:#999;text-align:right;background:#111">${m.releaseDate || ""}${g ? ` · ${g}` : ""}</td></tr>`;
-  }).join("")}</table>
-  <div style="text-align:right;margin:4px 0 0"><a href="https://bloodyrex.xyz" style="font-size:10px;color:#ffff00">前往影视墙 →</a></div>
-</div>`
-    : "";
-
-  // ── Editor's Picks (movies) ──
-  const editorsPicks = (overview.editorsPicks || []).slice(0, 2);
-  const editorsHtml = editorsPicks.length
-    ? editorsPicks.map(pick => {
-      const g = genreStr(pick.genre);
-      const r = pick.rating || 0;
-      const s = safeSummary(pick.summary);
-      const poster = thumb(pick.poster);
+  // ── Movie picks — daily AI-curated gems (hidden-gems.json, regenerated every run) ──
+  const moviePicks = (gemsData.gems || []).slice(0, 5);
+  const moviePicksHtml = moviePicks.length
+    ? moviePicks.map(g => {
+      const gtags = (g.tags || []).slice(0, 3).map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:1px 5px;font-size:9px;font-weight:bold;margin:2px 2px 0 0">${t}</span>`).join("");
+      const poster = thumb(g.poster);
       return `<div style="background:#000;border:2px solid #ff00ff;padding:8px;margin:6px 0">
   <table style="width:100%"><tr>
     ${poster ? `<td style="width:46px;vertical-align:top;padding-right:8px"><img src="${poster}" alt="" style="width:46px;height:69px;border:1px solid #333;display:block"></td>` : ""}
     <td style="vertical-align:top">
-      <div style="font-size:14px;color:#ffff00;font-weight:bold">${pick.title || ""}</div>
-      <div style="font-size:11px;color:#999;margin-top:2px">${g} · ${r}/10</div>
-      ${s ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s}</div>` : ""}
+      <div style="font-size:14px;color:#ff00ff;font-weight:bold">${g.title || ""}</div>
+      <div style="font-size:11px;color:#999;margin-top:2px">评分 ${g.rating || 0}/10${g.year ? ` · ${g.year}` : ""}</div>
+      ${g.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${g.whyWatch}</div>` : ""}
+      ${gtags ? `<div style="margin-top:4px">${gtags}</div>` : ""}
     </td>
   </tr></table>
 </div>`;
@@ -1882,7 +1806,7 @@ async function buildDigestHTML(env, now) {
     : "";
 
   // ── TV Section (enhanced: premieresThisWeek with S/E + details) ──
-  const tvPicks = (tvData.premieresThisWeek || []).slice(0, 3);
+  const tvPicks = (tvData.premieresThisWeek || []).slice(0, 5);
   const tvPicksHtml = tvPicks.length
     ? tvPicks.map(s => {
       const g = genreStr(s.genre);
@@ -1927,14 +1851,6 @@ async function buildDigestHTML(env, now) {
     }).join("")
     : "";
 
-  // ── Stats ──
-  const statsHtml = `<table style="width:100%;border-collapse:collapse;background:#111">
-    <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">🎬 电影上新</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.moviesReleased || 0}</td></tr>
-    <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">📺 剧集在播</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.tvAiringThisWeek || 0}</td></tr>
-    <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">💿 专辑发行</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${musicPicks.length || 0}</td></tr>
-    <tr><td style="padding:3px 8px;font-size:12px;color:#fff;background:#111">🔥 热榜变动</td><td style="padding:3px 8px;font-size:12px;color:#ffff00;font-weight:bold;text-align:right;background:#111">${stats.trending || 0}</td></tr>
-  </table>`;
-
   // ── Assemble full HTML ──
   const unsubUrl = `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=`;
 
@@ -1960,33 +1876,6 @@ async function buildDigestHTML(env, now) {
     ${trendsHtml}
   </div>` : ""}
 
-  ${todayHotHtml ? `${divider}${todayHotHtml}` : ""}
-
-  ${gemsHtml ? `${divider}${gemsHtml}` : ""}
-
-  ${wallNewHtml ? `${divider}${wallNewHtml}` : ""}
-
-  ${divider}
-
-  <!-- Weekly Hot -->
-  ${hotMoviesHtml || hotTVHtml ? `
-  ${title("🔥 本周热榜")}
-  <table style="width:100%"><tr>
-    <td style="vertical-align:top;padding-right:8px;width:50%;background:#111">
-      <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 电影 Top 3</p>
-      ${hotMoviesHtml || '<p style="font-size:11px;color:#666">暂无数据</p>'}
-    </td>
-    <td style="vertical-align:top;padding-left:8px;width:50%;background:#111">
-      <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 剧集 Top 3</p>
-      ${hotTVHtml || '<p style="font-size:11px;color:#666">暂无数据</p>'}
-    </td>
-  </tr></table>
-  <div style="text-align:right;margin:4px 0">
-    <a href="https://bloodyrex.xyz/intelligence/weekly" style="font-size:11px;color:#00ffff">查看完整热榜 →</a>
-  </div>` : ""}
-
-  ${divider}
-
   <!-- Release Calendar (Movies + TV) -->
   ${calendarHtml ? `
   ${title("📅 排片日历")}
@@ -1994,19 +1883,19 @@ async function buildDigestHTML(env, now) {
 
   ${calendarHtml ? divider : ""}
 
-  <!-- Editor's Picks (Movies) -->
-  ${editorsHtml ? `
-  ${title("🎬 本周电影精选")}
-  ${editorsHtml}
+  <!-- Movie Picks (daily AI-curated) -->
+  ${moviePicksHtml ? `
+  ${title("🎬 今日电影推荐")}
+  ${moviePicksHtml}
   <div style="text-align:right;margin:4px 0">
     <a href="https://bloodyrex.xyz/intelligence/movies" style="font-size:11px;color:#ff00ff">查看全部电影 →</a>
   </div>` : ""}
 
-  ${editorsHtml ? divider : ""}
+  ${moviePicksHtml ? divider : ""}
 
-  <!-- TV Section (enhanced: premieres with S/E + details) -->
+  <!-- TV Picks (premieres this week) -->
   ${tvPicksHtml ? `
-  ${title("📺 本周剧集精选")}
+  ${title("📺 今日剧集推荐")}
   ${tvPicksHtml}
   <div style="text-align:right;margin:4px 0">
     <a href="https://bloodyrex.xyz/intelligence/tv" style="font-size:11px;color:#00ffff">查看全部剧集 →</a>
@@ -2026,10 +1915,7 @@ async function buildDigestHTML(env, now) {
 
   ${musicHtml ? divider : ""}
 
-  <!-- Stats + CTA -->
-  <div style="background:#000;border:4px solid #ff00ff;padding:10px;margin:12px 0">
-    ${statsHtml}
-  </div>
+  <!-- CTA -->
   <div style="text-align:center;margin:16px 0">
     <a href="https://bloodyrex.xyz/intelligence" style="display:inline-block;background:#ffff00;color:#000;padding:12px 28px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase;letter-spacing:1px">查看完整情报</a>
   </div>
