@@ -1473,7 +1473,7 @@ async function curateFromIntelligence(env, moviesData, tvData) {
         pool.push(it);
       }
     }
-    return pool.slice(0, 20);
+    return pool.slice(0, 15);
   };
 
   const movieCands = buildPool(moviesData, ["releasedThisWeek", "nowPlaying", "upcoming"]);
@@ -1483,6 +1483,7 @@ async function curateFromIntelligence(env, moviesData, tvData) {
     return { updated: today, gems: [] };
   }
 
+  let raw = "", dResp = null;
   try {
     const prompt = `You are a film & TV curator selecting Hidden Gems from today's intelligence feed. Movies and TV series below were just collected (high quality, some overlooked). Select 3-5 movies AND 3-5 TV series that deserve more attention. Prioritize quality, freshness, and uniqueness.
 
@@ -1491,18 +1492,17 @@ For each selected item provide: "mediaType" ("movie" or "tv"), "index" (position
 Return JSON: { "gems": [{ "mediaType": "movie", "index": 0, "why": "...", "whyEn": "...", "aiScore": 8.5, "tags": [...], "tagsEn": [...], "audience": "...", "audienceEn": "..." }] }
 
 Movies (index 0-${movieCands.length - 1}):
-${JSON.stringify(movieCands.map((m, i) => ({ index: i, title: m.title, genre: m.genre, summary: m.summary, rating: m.rating, releaseDate: m.releaseDate })))}
+${JSON.stringify(movieCands.map((m, i) => ({ index: i, title: m.title, genre: m.genre, summary: (m.summary || "").slice(0, 100), rating: m.rating, releaseDate: m.releaseDate })))}
 
 TV (index 0-${tvCands.length - 1}):
-${JSON.stringify(tvCands.map((s, i) => ({ index: i, title: s.title, genre: s.genre, summary: s.summary, rating: s.rating, season: s.season, episode: s.episode })))}`;
+${JSON.stringify(tvCands.map((s, i) => ({ index: i, title: s.title, genre: s.genre, summary: (s.summary || "").slice(0, 100), rating: s.rating, season: s.season, episode: s.episode })))}`;
 
-    let raw = "", dResp = null;
     for (let ai = 0; ai < 2; ai++) {
       if (ai > 0) await new Promise(r => setTimeout(r, 1200));
       dResp = await fetch("https://api.deepseek.com/chat/completions", {
         method: "POST",
         headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 2500 }),
+        body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 4000 }),
       });
       if (dResp.ok) {
         const dr = await dResp.json();
@@ -1541,7 +1541,7 @@ ${JSON.stringify(tvCands.map((s, i) => ({ index: i, title: s.title, genre: s.gen
     }).filter(Boolean);
     return { updated: today, gems };
   } catch (e) {
-    console.warn("Hidden gems v2 failed:", e.message);
+    console.warn(`Hidden gems v2 failed: ${e.message} (raw ${(raw || "").length} chars)`);
     return { updated: today, gems: [] };
   }
 }
