@@ -1542,7 +1542,8 @@ ${JSON.stringify(tvCands.map((s, i) => ({ index: i, title: s.title, genre: s.gen
     return { updated: today, gems };
   } catch (e) {
     console.warn(`Hidden gems v2 failed: ${e.message} (raw ${(raw || "").length} chars)`);
-    return { updated: today, gems: [] };
+    // TEMP DIAGNOSTIC: surface the error in the payload so we can see it via the pipeline
+    return { updated: today, gems: [], error: `${e.message} (raw ${(raw || "").length} chars)` };
   }
 }
 
