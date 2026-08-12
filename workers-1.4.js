@@ -2334,6 +2334,11 @@ export default {
         return handleIntelMusicV2(env, request);
       }
 
+      // Hidden gems v2 (Pipeline-fed: POST today's movies/tv intelligence)
+      if (url.pathname === "/intelligence/hidden-gems") {
+        return handleIntelHiddenGems(request, env);
+      }
+
       // Subscribe
       if (path === "/intelligence/subscribe") {
         return handleSubscribe(request, env);
