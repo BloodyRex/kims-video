@@ -275,7 +275,7 @@ async function main() {
       console.log("OK wall-translate — nothing pending");
       return;
     }
-    const LIMIT = 8; // daily cap — keeps token cost small (≈250 tokens/film)
+    const LIMIT = 40; // daily cap — ≈250 tokens/film, 40/day clears backlog in ~2 weeks
     const batch = pending.slice(0, LIMIT);
     let translated = 0;
     let noOverview = 0;

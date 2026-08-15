@@ -90,7 +90,7 @@ A growing wall of movies sorted by release date. Every newly collected film is a
 
 按上线日期排布、持续累积的电影墙。每日 pipeline 自动收录新片，无需人工维护。
 
-- **Data / 数据:** `public/api/wall.json` — deduped by `tmdbId`, slim fields only (no summaries) / 按 `tmdbId` 去重，仅存精简字段（无摘要）
+- **Data / 数据:** `public/api/wall.json` — deduped by `tmdbId`, slim fields + zh `summary` backfilled by daily AI translation (lazy EN overview fallback in detail view) / 按 `tmdbId` 去重，精简字段 + 每日 AI 翻译写回中文简介（详情页英文懒加载兜底）
 - **Backfill / 回填:** `scripts/build-wall-backfill.js` rebuilds from git history snapshots (one-time) / 从 git 历史快照重建（一次性）
 - **Daily growth / 每日累积:** `fetch-intelligence-data.js` → `buildWall()` merges new releases from `movies.json` + `coming.json` / 合并当天新片
 - **Sorting / 排序:** releaseDate descending (newest first) / 按上线日期降序（最新在前）

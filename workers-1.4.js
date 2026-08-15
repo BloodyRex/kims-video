@@ -899,7 +899,7 @@ async function handleIntelOverview(env) {
     .filter(cnFilter)
     .filter(intelRatingOk);
   const weekSelected = intelSelectDiverse(weekCandidates, 20, { zh: 2, ja: 1, ko: 1 }, SCORE_OPTS.movie, today);
-  const moviesReleased = weekSelected.length;
+  const moviesReleased = weekCandidates.length;
 
   // TV: same cnFilter as handleIntelTV  (ongoing section)
   const tvCandidates = tvOnAir.filter(cnFilter).filter(intelRatingOk);
@@ -1087,7 +1087,7 @@ async function handleIntelTV(env) {
 }
 
 // ── Music V2 handler (Pipeline-fed: receives POST from GitHub Actions, calls DeepSeek) ──
-async function handleIntelMusicV2(env, request) {
+async function handleIntelMusicV2(request, env) {
   const today = intelToday();
 
   if (request.method !== "POST") {
@@ -2286,7 +2286,7 @@ export default {
 
       // Intelligence Music V2 (Pipeline-fed: POST candidates, returns AI-curated picks)
       if (url.pathname === "/intelligence/music/v2") {
-        return handleIntelMusicV2(env, request);
+        return handleIntelMusicV2(request, env);
       }
 
       // Hidden gems v2 (Pipeline-fed: POST today's movies/tv intelligence)
