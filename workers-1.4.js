@@ -1177,80 +1177,6 @@ async function handleIntelMusicV2(env, request) {
 }
 
 // @deprecated — Music data collection moved to Pipeline (handleIntelMusicV2)
-async function handleIntelMusic(env) {
-  const today = intelToday();
-  return withCache(`intel-music-v6-${today}`, async () => {
-    const twoWeekAgo = intelDaysAgo(14);
-
-    // Phase 1: Fetch MB releases this week, filter valid
-    const weekReleases = await intelFetchMusicBrainzRange(twoWeekAgo, today).catch(() => []);
-    let validReleases = weekReleases.filter(r => intelIsValidAlbum(r) && r.status !== "Bootleg");
-
-    // Phase 2: Filter by artist popularity (artist.getinfo, keep 4★+ = 10k+ listeners)
-    let picks = await intelFilterByArtistPopularity(validReleases, env);
-
-    // Phase 3: Always supplement with chart data for diversity (CJK, jazz, blues, classical, folk, etc.)
-    const chartAlbums = await intelFetchLastFMCharts(env);
-    for (const c of chartAlbums) {
-      const dup = picks.some(p =>
-        p.title.toLowerCase() === c.title.toLowerCase() &&
-        p.artist.toLowerCase() === c.artist.toLowerCase()
-      );
-      if (!dup) {
-        // Chart items: use real listeners if enriched, default 0 otherwise
-        const stars = c.listeners >= 100000 ? 5 : c.listeners >= 10000 ? 4 : 0;
-        picks.push({ ...c, artistListeners: c.listeners, artistStars: stars });
-      }
-      if (picks.length >= 100) break;
-    }
-
-    // Phase 4: AI diversity curation (select 20 from up to 80 candidates)
-    const topInput = picks.slice(0, 80);
-    let aiPicks = topInput.length ? await intelEnrichAlbums(topInput, env) : [];
-
-    // Phase 5: Fallback if AI fails
-    if (!aiPicks.length && topInput.length) {
-      const sorted = [...topInput].sort((a, b) => (b.listeners || 0) - (a.listeners || 0));
-      const total = Math.min(sorted.length, 20);
-      aiPicks = [];
-      for (let i = 0; i < total; i++) {
-        const a = sorted[i];
-        let tag, tagEn, tagId, cat;
-        const pct = i / total;
-        if (pct < 0.3) { tag = "🔥 热门趋势"; tagEn = "Trending Now"; tagId = "trending"; cat = "trending"; }
-        else if (pct < 0.6) { tag = "⭐ 编辑推荐"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor"; }
-        else if (pct < 0.85) {
-          tag = (a.artistStars || 0) < 3 ? "⭐ 编辑推荐" : "💎 隐藏宝石";
-          tagEn = (a.artistStars || 0) < 3 ? "Editor's Pick" : "Hidden Gem";
-          tagId = (a.artistStars || 0) < 3 ? "editor" : "hidden";
-          cat = (a.artistStars || 0) < 3 ? "editor" : "hidden-gem";
-        } else {
-          tag = "🌍 环球音乐"; tagEn = "Around the World"; tagId = "world"; cat = "world";
-        }
-        aiPicks.push({
-          ...a,
-          recommendationTag: tag, recommendationTagEn: tagEn, recommendationTagId: tagId, category: cat,
-          highlight: a.highlight || `New release from ${a.artist}`,
-          highlightEn: a.highlightEn || `New release from ${a.artist}`,
-          summary: a.summary || "", summaryEn: a.summaryEn || "",
-        });
-      }
-    }
-
-    // Fetch cover art for top 3 picks (direct fetch, 1 subreq each)
-    for (const item of (aiPicks.length ? aiPicks.slice(0, 3) : [])) {
-      if (item.mbid && !item.cover) {
-        try { const r = await fetch(`https://coverartarchive.org/release/${item.mbid}/front-250.jpg`); if (r.ok) item.cover = `https://coverartarchive.org/release/${item.mbid}/front-250.jpg`; } catch {}
-      }
-    }
-
-    return {
-      updated: today,
-      picks: aiPicks.slice(0, 15),
-    };
-  }, 21600);
-}
-
 async function handleIntelWeekly(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
@@ -2177,35 +2103,46 @@ async function sendDigestToAll(env) {
     await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html, date }), { expirationTtl: 172800 });
   }
 
+  // ── Send loop: batch via Resend /emails/batch (1 subrequest per 100 emails,
+  // vs 2-3 per email before) — keeps us far under the 50-subrequest cap as the
+  // subscriber list grows. Emails are the KV keys themselves ("sub:xxx@yyy"),
+  // so no per-email KV read is needed. Per-subscriber lastSentAt write removed
+  // (had no consumers). ──
   let sent = 0;
+  const BATCH_SIZE = 100;
+  const emails = [];
   for (const key of list.keys) {
-    try {
-      const raw = await env.SUBSCRIBE_KV.get(key.name);
-      if (!raw) continue;
-      const sub = JSON.parse(raw);
-      const personalHtml = html.replace(
+    const email = key.name.startsWith("sub:") ? key.name.slice(4) : key.name;
+    if (!email || !email.includes("@")) continue;
+    emails.push({
+      from: "Kim's Video <digest@bloodyrex.xyz>",
+      to: email,
+      subject: `Kim's Video 每日影音情报 · ${date}`,
+      html: html.replace(
         /https:\/\/api\.bloodyrex\.xyz\/intelligence\/unsubscribe\?email=[^"'<>\s]*/g,
-        `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(sub.email)}`
-      );
-      // Per-email timeout (15s — Resend usually responds in <2s)
-      await withTimeout(
-        fetch("https://api.resend.com/emails", {
+        `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(email)}`
+      ),
+    });
+  }
+  for (let i = 0; i < emails.length; i += BATCH_SIZE) {
+    const chunk = emails.slice(i, i + BATCH_SIZE);
+    try {
+      const br = await withTimeout(
+        fetch("https://api.resend.com/emails/batch", {
           method: "POST",
           headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-          body: JSON.stringify({
-            from: "Kim's Video <digest@bloodyrex.xyz>",
-            to: sub.email,
-            subject: `Kim's Video 每日影音情报 · ${date}`,
-            html: personalHtml,
-          }),
+          body: JSON.stringify(chunk),
         }),
-        15000,
-        `Resend send to ${sub.email}`
+        30000,
+        `Resend batch (${chunk.length} emails)`
       );
-      sub.lastSentAt = new Date().toISOString();
-      await env.SUBSCRIBE_KV.put(key.name, JSON.stringify(sub));
-      sent++;
-    } catch (e) { console.warn(`Send to ${key.name} failed:`, e.message); }
+      const bdata = await br.json().catch(() => ({}));
+      if (br.ok) {
+        sent += chunk.length;
+      } else {
+        console.warn("Resend batch failed:", br.status, JSON.stringify(bdata).slice(0, 300));
+      }
+    } catch (e) { console.warn("Resend batch error:", e.message); }
   }
 
   // Record status
@@ -2280,11 +2217,11 @@ export default {
       }
 
       // ── Intelligence API ──
-      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|music|coming|weekly|hidden-gems|digest|debug)$/);
+      const intelMatch = path.match(/^\/intelligence\/(overview|movies|tv|coming|weekly|hidden-gems|digest|debug)$/);
       if (intelMatch) {
         const intelHandlers = {
           overview: handleIntelOverview, movies: handleIntelMovies, tv: handleIntelTV,
-          music: handleIntelMusic, coming: handleIntelComing,
+          coming: handleIntelComing,
           weekly: handleIntelWeekly, "hidden-gems": handleIntelHiddenGems,
           digest: handleIntelDigest, debug: handleIntelDebug,
         };
