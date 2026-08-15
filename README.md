@@ -2,6 +2,8 @@
 
 **Four interconnected pages / 四大页面联动:** [Discover / 发现推荐](#-home--ai-movie-recommender--ai-电影推荐) → [Intelligence / 情报中心](#-intelligence--entertainment-data-hub--娱乐情报中心) → [Wall / 影视墙](#-wall--cumulative-movie-wall--影视墙) → [Curated Picks / 精选合辑](#-curated-picks--community-discovery--社区发现)
 
+> 📘 **For AI tools / 给 AI 工具的系统手册:** full system logic (algorithms, hidden features, endpoints, ops) in [docs/SYSTEM-MANUAL.md](docs/SYSTEM-MANUAL.md) — 完整系统运行逻辑（算法公式、隐藏功能、API 端点、运维）见 `docs/SYSTEM-MANUAL.md`
+
 ![Tech Stack](https://img.shields.io/badge/React-18-61DAFB?logo=react)
 ![Tech Stack](https://img.shields.io/badge/Vite-6-646CFF?logo=vite)
 ![Tech Stack](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss)
