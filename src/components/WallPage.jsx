@@ -109,7 +109,6 @@ const WallPage = () => {
   const [sourceFilter, setSourceFilter] = useState("all"); // all | rec | pipeline
   const [genreFilter, setGenreFilter] = useState("all"); // all | <genre> | other
   const [searchQuery, setSearchQuery] = useState(""); // film title search (zh + en)
-  const [composing, setComposing] = useState(false); // IME composition guard
   const [page, setPage] = useState(1);
   const [detailItem, setDetailItem] = useState(null); // open WallDetailView when set
 
@@ -159,9 +158,11 @@ const WallPage = () => {
       // To expose the filter later: add a control that calls setSourceFilter("rec"/"pipeline"/"all").
       if (sourceFilter !== "all" && (m.source || "pipeline") !== sourceFilter) return false;
       // Search: case-insensitive substring match on zh title + en title.
-      // Skip while IME is composing (text still enters the box; filtering waits
-      // for composition end so pinyin intermediate states don't flash empty).
-      const q = composing ? "" : searchQuery.trim().toLowerCase();
+      // React's default IME behavior drives onChange directly; strip zero-width
+      // chars (ZWSP/ZWNJ/ZWJ/BOM) defensively so invisible IME residue can't
+      // break matching. Pinyin intermediate states may briefly flash empty —
+      // standard instant-search behavior, resolved on composition end.
+      const q = searchQuery.trim().toLowerCase().replace(/[\u200B-\u200D\uFEFF]/g, "");
       if (q) {
         const hit = (m.title || "").toLowerCase().includes(q) || (m.titleEn || "").toLowerCase().includes(q);
         if (!hit) return false;
@@ -290,8 +291,6 @@ const WallPage = () => {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  onCompositionStart={() => setComposing(true)}
-                  onCompositionEnd={(e) => { setComposing(false); setSearchQuery(e.target.value); }}
                   placeholder={zh ? "搜索影片…" : "SEARCH…"}
                   className="w-40 sm:w-56 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#ff00ff] outline-none pixel-font placeholder:text-gray-400"
                 />
