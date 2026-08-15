@@ -158,8 +158,10 @@ const WallPage = () => {
       // wall.json items may carry source: "rec" (user recommendation collection) or "pipeline" (default).
       // To expose the filter later: add a control that calls setSourceFilter("rec"/"pipeline"/"all").
       if (sourceFilter !== "all" && (m.source || "pipeline") !== sourceFilter) return false;
-      // Search: case-insensitive substring match on zh title + en title
-      const q = searchQuery.trim().toLowerCase();
+      // Search: case-insensitive substring match on zh title + en title.
+      // Skip while IME is composing (text still enters the box; filtering waits
+      // for composition end so pinyin intermediate states don't flash empty).
+      const q = composing ? "" : searchQuery.trim().toLowerCase();
       if (q) {
         const hit = (m.title || "").toLowerCase().includes(q) || (m.titleEn || "").toLowerCase().includes(q);
         if (!hit) return false;
@@ -249,7 +251,7 @@ const WallPage = () => {
 
       {/* Title */}
       <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 text-center relative">
-        <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
+        <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
           {zh ? "🎬 影视墙" : "🎬 MOVIE WALL"}
         </h2>
         <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">{t('wall.desc')}</p>
@@ -287,11 +289,11 @@ const WallPage = () => {
                 <input
                   type="text"
                   value={searchQuery}
-                  onChange={(e) => { if (!composing) setSearchQuery(e.target.value); }}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   onCompositionStart={() => setComposing(true)}
                   onCompositionEnd={(e) => { setComposing(false); setSearchQuery(e.target.value); }}
                   placeholder={zh ? "搜索影片…" : "SEARCH…"}
-                  className="w-32 sm:w-44 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#ff00ff] outline-none pixel-font placeholder:text-gray-400"
+                  className="w-40 sm:w-56 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#ff00ff] outline-none pixel-font placeholder:text-gray-400"
                 />
                 {searchQuery && (
                   <button
