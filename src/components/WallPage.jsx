@@ -108,6 +108,8 @@ const WallPage = () => {
   // Hidden source filter (no UI yet — see filtered() comment). Kept for future "用户推荐" section.
   const [sourceFilter, setSourceFilter] = useState("all"); // all | rec | pipeline
   const [genreFilter, setGenreFilter] = useState("all"); // all | <genre> | other
+  const [searchQuery, setSearchQuery] = useState(""); // film title search (zh + en)
+  const [composing, setComposing] = useState(false); // IME composition guard
   const [page, setPage] = useState(1);
   const [detailItem, setDetailItem] = useState(null); // open WallDetailView when set
 
@@ -156,12 +158,18 @@ const WallPage = () => {
       // wall.json items may carry source: "rec" (user recommendation collection) or "pipeline" (default).
       // To expose the filter later: add a control that calls setSourceFilter("rec"/"pipeline"/"all").
       if (sourceFilter !== "all" && (m.source || "pipeline") !== sourceFilter) return false;
+      // Search: case-insensitive substring match on zh title + en title
+      const q = searchQuery.trim().toLowerCase();
+      if (q) {
+        const hit = (m.title || "").toLowerCase().includes(q) || (m.titleEn || "").toLowerCase().includes(q);
+        if (!hit) return false;
+      }
       return true;
     });
-  }, [data, statusFilter, genreFilter, sourceFilter, todayStr]);
+  }, [data, statusFilter, genreFilter, sourceFilter, searchQuery, todayStr]);
 
   // Reset to page 1 whenever filters change
-  useEffect(() => { setPage(1); }, [statusFilter, genreFilter, sourceFilter]);
+  useEffect(() => { setPage(1); }, [statusFilter, genreFilter, sourceFilter, searchQuery]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
@@ -274,6 +282,25 @@ const WallPage = () => {
               {statusBtn("all", zh ? "全部" : "ALL")}
               {statusBtn("released", zh ? "已上线" : "OUT NOW")}
               {statusBtn("upcoming", zh ? "未上线" : "UPCOMING")}
+              {/* Title search (zh + en), IME-safe */}
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => { if (!composing) setSearchQuery(e.target.value); }}
+                  onCompositionStart={() => setComposing(true)}
+                  onCompositionEnd={(e) => { setComposing(false); setSearchQuery(e.target.value); }}
+                  placeholder={zh ? "搜索影片…" : "SEARCH…"}
+                  className="w-32 sm:w-44 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#ff00ff] outline-none pixel-font placeholder:text-gray-400"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    aria-label={zh ? "清除搜索" : "Clear search"}
+                    className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[11px] font-black text-gray-500 hover:text-black leading-none"
+                  >×</button>
+                )}
+              </div>
               <span className="ml-auto text-[10px] sm:text-xs text-gray-400 font-bold pixel-font">
                 {zh ? `共 ${filtered.length} 部` : `${filtered.length} FILMS`}
               </span>
