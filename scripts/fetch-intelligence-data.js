@@ -318,7 +318,13 @@ async function main() {
       `OK wall-translate — +${translated} translated, ${noOverview} skipped (no EN overview), ${failed} failed, ${pending.length - batch.length} still pending`
     );
   }
-  await translateWall();
+  // ── Wall translate: MOVED TO LOCAL (scripts/translate-wall-local.js, Ollama +
+  // DeepSeek fallback). CI no longer spends DeepSeek tokens on translation;
+  // local script handles it with qwen3.5:9b and falls back to the Worker's
+  // translate-overview endpoint only when Ollama is down or fails. If the local
+  // script hasn't run, pending entries simply remain without zh summary —
+  // wall cards are unaffected. ──
+  // await translateWall(); // DISABLED 2026-08-16 — see above
 
   // ── Music Pipeline (separate, runs in Node.js, no Worker subrequest limits) ──
   console.log("\n[MUSIC] Starting pipeline...");
