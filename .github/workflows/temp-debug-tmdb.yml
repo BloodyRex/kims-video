@@ -1,0 +1,30 @@
+name: TEMP-Debug-TMDB-ReleaseDate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe TMDB now_playing release_date semantics
+        env:
+          TMDB_TOKEN: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: |
+          echo "=== A) now_playing?region=US&language=zh-CN (page1) ==="
+          curl -s "https://api.themoviedb.org/3/movie/now_playing?region=US&language=zh-CN&page=1" \
+            -H "Authorization: Bearer ${TMDB_TOKEN}" \
+            | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{const j=JSON.parse(d);for(const m of (j.results||[]).slice(0,20)){console.log(m.id+'|'+m.title+'|'+m.release_date)}})"
+
+          echo "=== B) now_playing no region (page1) ==="
+          curl -s "https://api.themoviedb.org/3/movie/now_playing?language=zh-CN&page=1" \
+            -H "Authorization: Bearer ${TMDB_TOKEN}" \
+            | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{const j=JSON.parse(d);for(const m of (j.results||[]).slice(0,20)){console.log(m.id+'|'+m.title+'|'+m.release_date)}})"
+
+          echo "=== C) specific movies' release_dates (1633056 八仙) ==="
+          for id in 1633056 1185806 1361969 1339175 1101383 1124142 1482938; do
+            echo "--- movie $id ---"
+            curl -s "https://api.themoviedb.org/3/movie/$id/release_dates" \
+              -H "Authorization: Bearer ${TMDB_TOKEN}" \
+              | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{const j=JSON.parse(d);const r=(j.results||[]).find(x=>x.iso_3166_1==='US');const cn=(j.results||[]).find(x=>x.iso_3166_1==='CN');const pick=(x)=>x?(x.release_dates||[]).map(z=>z.release_date).join(','):'none';console.log('US:',pick(r));console.log('CN:',pick(cn))})"
+          done
