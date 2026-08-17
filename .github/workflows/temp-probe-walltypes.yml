@@ -1,0 +1,62 @@
+name: TEMP-Probe-WallTypes
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout + check wall types
+        uses: actions/checkout@v4
+
+      - name: Probe all wall items' TMDB type
+        env:
+          TMDB_TOKEN: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            const wall = JSON.parse(fs.readFileSync('public/api/wall.json', 'utf8'));
+            const movies = wall.movies || [];
+            const ids = [...new Set(movies.map(m => m.tmdbId).filter(Boolean))];
+            console.log('total unique tmdbIds:', ids.length);
+            // 检查 movie 端点是否存在（404 = 是剧集）
+            let tvOnly = [];
+            let i = 0;
+            const BATCH = 50;
+            async function checkBatch(batch) {
+              const results = await Promise.all(batch.map(async (id) => {
+                try {
+                  const r = await fetch('https://api.themoviedb.org/3/movie/' + id + '?language=zh-CN', {
+                    headers: { Authorization: 'Bearer ' + process.env.TMDB_TOKEN }
+                  });
+                  if (r.status === 404) {
+                    // movie 404 → 检查 tv
+                    const t = await fetch('https://api.themoviedb.org/3/tv/' + id + '?language=zh-CN', {
+                      headers: { Authorization: 'Bearer ' + process.env.TMDB_TOKEN }
+                    });
+                    if (t.ok) {
+                      const j = await t.json();
+                      return { id, name: j.name || id, type: 'TV' };
+                    }
+                    return { id, name: String(id), type: 'NOT_FOUND' };
+                  }
+                  return null;
+                } catch { return null; }
+              }));
+              return results.filter(Boolean);
+            }
+            (async () => {
+              for (let s = 0; s < ids.length; s += BATCH) {
+                const batch = ids.slice(s, s + BATCH);
+                const found = await checkBatch(batch);
+                tvOnly.push(...found);
+                i += batch.length;
+                if (i % 200 === 0) console.log('checked', i);
+                await new Promise(r => setTimeout(r, 300));
+              }
+              console.log('=== TV-only (movie 404 + tv exists) ===');
+              for (const x of tvOnly) console.log(x.id + '\t' + x.name + '\t' + x.type);
+              console.log('TV-ONLY-COUNT:' + tvOnly.filter(x => x.type === 'TV').length);
+            })();
+          " | head -100
