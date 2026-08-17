@@ -915,6 +915,11 @@ async function handleIntelOverview(env) {
     return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
   });
 
+  // CN-first release date for editors picks too (same US-date semantics as movies)
+  const editorsPicks = (await Promise.all(
+    weekSelected.slice(0, 2).map(m => intelPickCnReleaseDate(intelNormalizeMovie(m), token))
+  )).filter(Boolean);
+
   return {
     updated: today,
     stats: {
@@ -923,7 +928,7 @@ async function handleIntelOverview(env) {
       albumsReleased: (todayMB || []).length,
       trending: (trending || []).length,
     },
-    editorsPicks: weekSelected.slice(0, 2).map(m => intelNormalizeMovie(m)),
+    editorsPicks,
     comingSoon,
     trending: (trending || []).filter(intelRatingOk).slice(0, 5).map((m, i) => ({
       ...intelNormalizeMovie(m), rank: i + 1, trend: "new"
@@ -953,7 +958,11 @@ async function handleIntelMovies(env) {
     .filter(cnFilter)
     .filter(intelRatingOk);
   const weekSelected = intelSelectDiverse(weekCandidates, 15, reserve, SCORE_OPTS.movie, today);
-  const weekM = weekSelected.map(m => intelNormalizeMovie(m));
+  // CN-first release date: now_playing?region=US returns US dates; fix to CN
+  // theatrical date when available (2026-08-17). 15 extra subrequests, cached 1 day.
+  const weekM = (await Promise.all(
+    weekSelected.map(m => intelPickCnReleaseDate(intelNormalizeMovie(m), token))
+  )).filter(Boolean);
 
   // Upcoming: release_date >= today, popularity floor 15, scored (pop + zh bonus), cap 15
   const weekIds = new Set(weekSelected.map(m => m.id));
@@ -1005,6 +1014,134 @@ async function intelFetchTVEpisodeDates(shows, token) {
   return results.map(r => r.status === "fulfilled" ? r.value : null).filter(Boolean);
 }
 
+// ── CN-first release date: pick earliest CN theatrical date, else US (2026-08-17) ──
+// now_playing?region=US returns the US release date, which for CN/GB/GR-premiered
+// films can be weeks later than the local premiere. Chinese UI should show the CN
+// theatrical date when one exists; US date is the fallback for non-CN releases.
+async function intelPickCnReleaseDate(movie, token) {
+  if (!movie?.tmdbId || !token) return movie;
+  try {
+    const rd = await withCache(`${movie.tmdbId}-releasedates`, async () => {
+      const r = await fetch(`https://api.themoviedb.org/3/movie/${movie.tmdbId}/release_dates`, {
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      });
+      return r.ok ? r.json() : null;
+    }, 86400);
+    const results = rd?.results || [];
+    const region = results.find(x => x.iso_3166_1 === "CN") || results.find(x => x.iso_3166_1 === "US");
+    if (!region) return movie;
+    // type: 1=Premiere, 2=Theatrical(limited), 3=Theatrical — earliest theatrical date
+    const theatrical = (region.release_dates || [])
+      .filter(d => [1, 2, 3].includes(d.type))
+      .sort((a, b) => a.release_date.localeCompare(b.release_date))[0];
+    if (theatrical?.release_date) movie.releaseDate = theatrical.release_date.slice(0, 10);
+  } catch (e) { console.warn("release-date fix fail:", movie.tmdbId, e.message); }
+  return movie;
+}
+
+// ── TVMAZE as primary TV source, TMDB as fallback (2026-08-18) ──
+// Chinese UI: TVMAZE schedules many international shows (incl. CN-dubbed/CN-licensed
+// titles) weeks before TMDB lists them. All TV candidates first come from TVMAZE
+// schedule/web; TMDB only supplies zh metadata + episode dates as a fallback.
+const TVMAZE_LANG_MAP = {
+  english: "en", mandarin: "zh", chinese: "zh", cantonese: "zh",
+  japanese: "ja", korean: "ko", spanish: "es", french: "fr",
+  german: "de", portuguese: "pt", russian: "ru", arabic: "ar",
+  hindi: "hi", tamil: "ta", telugu: "te", thai: "th", vietnamese: "vi",
+};
+
+// Fetch upcoming web-schedule entries from TVMAZE (free API, no key).
+async function intelFetchTVMazeWeb(days = 2) {
+  const today = new Date();
+  const dates = [];
+  for (let d = 0; d < days; d++) {
+    dates.push(new Date(today.getTime() + d * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }));
+  }
+  const results = await Promise.allSettled(dates.map(date =>
+    fetch(`https://api.tvmaze.com/schedule/web?date=${date}`)
+      .then(r => (r.ok ? r.json() : []))
+      .catch(() => [])
+  ));
+  const eps = [];
+  for (const r of results) if (r.status === "fulfilled" && Array.isArray(r.value)) eps.push(...r.value);
+  return eps;
+}
+
+// TVMAZE episode entry → TMDB-shaped candidate (usable by intelSelectDiverse/scored).
+function intelTVMazeToCandidate(ep) {
+  // schedule/web embeds the show under _embedded.show (ep.show is undefined there)
+  const s = ep?._embedded?.show || ep?.show || {};
+  const name = s.name || "";
+  const date = s.premiered || ep?.airdate || "";
+  const rating = s.rating?.average || 0;
+  const langRaw = (s.language || "en").toLowerCase();
+  const country = s.network?.country?.code || s.webChannel?.country?.code || "";
+  return {
+    id: s.id,
+    _tvmazeId: s.id,
+    name,
+    title: name,
+    original_language: TVMAZE_LANG_MAP[langRaw] || langRaw,
+    origin_country: country ? [country] : [],
+    first_air_date: date,
+    release_date: date,
+    vote_average: rating,
+    popularity: rating ? Math.round(rating * 10) : 50,
+    genre_ids: [],
+    overview: (s.summary || "").replace(/<[^>]+>/g, "").trim().slice(0, 200),
+    _overviewEn: (s.summary || "").replace(/<[^>]+>/g, "").trim().slice(0, 200),
+    _posterUrl: s.image?.medium || s.image?.original || "",
+    _genres: Array.isArray(s.genres) ? s.genres : [],
+    source: "tvmaze",
+    mediaType: "tv",
+  };
+}
+
+// TVMAZE candidate → final output shape (mirrors intelNormalizeMovie).
+function intelTVMazeToOutput(m) {
+  return {
+    tmdbId: m.tmdbId || null,
+    title: m.title,
+    titleEn: m.titleEn || m.title,
+    originalLanguage: m.original_language || "",
+    originCountry: m.origin_country || [],
+    year: (m.first_air_date || "").slice(0, 4),
+    releaseDate: m.first_air_date || "",
+    poster: m._posterUrl || "",
+    rating: m.vote_average || 0,
+    genre: m._genres || [],
+    summary: m.overview || "",
+    summaryEn: m._overviewEn || "",
+    source: "tvmaze",
+    mediaType: "tv",
+  };
+}
+
+// TMDB fallback: zh title/overview/poster + tmdbId for TVMAZE-only shows.
+async function intelTVMazeEnrich(candidate, token) {
+  if (!candidate || candidate.source !== "tvmaze" || !token) return candidate;
+  try {
+    const year = (candidate.first_air_date || "").slice(0, 4);
+    const hit = await searchTMDB(candidate.title, year, "tv", token, "zh-CN");
+    if (hit?.tmdbId) {
+      candidate.tmdbId = hit.tmdbId;
+      const d = await fetchTMDBDetails(hit.tmdbId, token, "zh-CN");
+      if (d?.name) candidate.title = d.name;
+      if (d?.overview) candidate.overview = d.overview;
+      if (d?.poster_path) candidate._posterUrl = `https://image.tmdb.org/t/p/w500${d.poster_path}`;
+      if (d?.vote_average) candidate.vote_average = d.vote_average;
+      if (Array.isArray(d?.genres)) candidate._genres = d.genres.map(g => g.name);
+    }
+  } catch (e) { console.warn("tvmaze enrich fail:", candidate.title, e.message); }
+  return candidate;
+}
+
+// Bound enrichment so TVMAZE subrequests stay inside the 50-request Worker limit.
+async function intelEnrichTVMazeBatch(candidates, token, max = 3) {
+  const limited = (candidates || []).slice(0, max);
+  return Promise.all(limited.map(s => intelTVMazeEnrich(s, token)));
+}
+
 async function handleIntelTV(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
@@ -1012,11 +1149,24 @@ async function handleIntelTV(env) {
   const ninetyDaysAgo = intelDaysAgo(90);
   const ninetyDaysLater = new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
 
-  const [onTheAir, trendingTV, discoverRaw] = await Promise.all([
+  const [onTheAir, trendingTV, discoverRaw, tvmazeEps] = await Promise.all([
     intelFetchPages(token, "/tv/on_the_air", {}, 2),
     intelFetchTMDB(token, "/trending/tv/week"),
     intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, 1),
+    intelFetchTVMazeWeb(2), // next 2 days of TVMAZE web schedule (free API)
   ]);
+
+  // TVMAZE → unified candidates (dedup by show id)
+  const tvmazeSeen = new Set();
+  const tvmazeShows = (tvmazeEps || [])
+    .map(ep => intelTVMazeToCandidate(ep))
+    .filter(s => {
+      if (!s._tvmazeId || tvmazeSeen.has(s._tvmazeId)) return false;
+      tvmazeSeen.add(s._tvmazeId);
+      return Boolean(s.first_air_date) && s.first_air_date >= weekAgo && s.first_air_date <= ninetyDaysLater;
+    });
+  const tvmazePremiere = tvmazeShows.filter(s => s.first_air_date >= weekAgo && s.first_air_date <= today);
+  const tvmazeUpcoming = tvmazeShows.filter(s => s.first_air_date > today && s.first_air_date <= ninetyDaysLater);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const cnFilter = (s) => hasChinese(s.title || s.name) && hasChinese(s.overview);
@@ -1037,10 +1187,20 @@ async function handleIntelTV(env) {
   for (const s of premiereFromTrending) {
     if (!onAirPremIds.has(s.id)) premiereMerged.push(s);
   }
+  // TVMAZE premiere candidates (EN titles OK — no zh filter required)
+  for (const s of tvmazePremiere) premiereMerged.push(s);
   const premiereSelected = intelSelectDiverse(premiereMerged, 15, reserve, SCORE_OPTS.tv, today);
-  const premiereEnriched = await intelFetchTVEpisodeDates(premiereSelected, token);
-  const weekPremieres = premiereEnriched.map(s => intelNormalizeMovie(s, "tv"));
-  const premiereIds = new Set(premiereSelected.map(s => s.id));
+  // TMDB episode enrichment only for TMDB-sourced shows (TVMAZE items lack tmdbId)
+  const premiereEnriched = await intelFetchTVEpisodeDates(premiereSelected.filter(s => s.source !== "tvmaze"), token);
+  // TVMAZE premieres: TMDB fallback for zh metadata (bounded to stay under subrequest limit)
+  const tvmazePicked = premiereSelected.filter(s => s.source === "tvmaze");
+  const tvmazePremiereEnriched = await intelEnrichTVMazeBatch(tvmazePicked, token, 3);
+  const weekPremieres = [
+    ...premiereEnriched.map(s => intelNormalizeMovie(s, "tv")),
+    ...tvmazePremiereEnriched.map(s => intelTVMazeToOutput(s)),
+  ];
+  // Only TMDB ids go into the exclusion set (TVMAZE ids are a different namespace)
+  const premiereIds = new Set(premiereSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
 
   // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 90 days)
   // Scored selection: popularity floor 8 + Chinese bonus (EN shows qualify on popularity alone), cap 15
@@ -1057,11 +1217,19 @@ async function handleIntelTV(env) {
   for (const s of upcomingFromDiscover) {
     if (!trendIds.has(s.id)) upcomingMerged.push(s);
   }
+  // TVMAZE upcoming candidates (EN titles OK, no zh filter)
+  for (const s of tvmazeUpcoming) upcomingMerged.push(s);
   const upcomingSelected = intelSelectScored(upcomingMerged, 8);
   // No episode-date enrichment for upcoming (saves 15 subrequests → keeps total < 50);
   // upcoming cards show premiere date only, S/E info isn't needed pre-air.
-  const upcomingTV = upcomingSelected.map(s => intelNormalizeMovie(s, "tv"));
-  const upcomingIds = new Set(upcomingSelected.map(s => s.id));
+  const tvmazeUpcomingPicked = upcomingSelected.filter(s => s.source === "tvmaze");
+  const tvmazeUpcomingEnriched = await intelEnrichTVMazeBatch(tvmazeUpcomingPicked, token, 3);
+  const upcomingTV = [
+    ...upcomingSelected.filter(s => s.source !== "tvmaze").map(s => intelNormalizeMovie(s, "tv")),
+    ...tvmazeUpcomingEnriched.map(s => intelTVMazeToOutput(s)),
+  ];
+  // Only TMDB ids go into the exclusion set (TVMAZE ids are a different namespace)
+  const upcomingIds = new Set(upcomingSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
 
   // Ongoing: exclude premieres + upcoming, enrich episode dates on final 15 only
   const ongoingCandidates = onTheAir

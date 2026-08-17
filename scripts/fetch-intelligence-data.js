@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * Intelligence Daily Data Pipeline
  * Calls Cloudflare Worker endpoints, saves JSON to public/api/
@@ -15,7 +16,7 @@ const API_DIR = join(__dirname, "..", "public", "api");
 
 const beijingDate = () => new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
 
-const hasChineseText = (text) => /[\u4e00-\u9fff]/.test(text || "");
+const hasChineseText = (text) => /\u4e00-\u9fff/.test(text || "");
 
 const WORKER_BASE = process.env.WORKER_BASE_URL || "https://api.bloodyrex.xyz";
 
@@ -29,12 +30,35 @@ async function fetchJSON(endpoint, options) {
   return res.json();
 }
 
+// ── NEW RULE: For China mainland/HK/TW movies，ONLY Chinese title required ──
+/**
+ * Detect if movie is from China mainland / Hong Kong / Taiwan
+ * Based on TMDB originCountry codes or title keywords
+ */
+function isChineseRegionMovie(item) {
+  const origin = Array.isArray(item.originCountry) ? item.originCountry : [];
+
+  // Direct country match: CN, HKG,TWN
+  if (origin.includes('CN') || origin.includes('HKG') || origin.includes('TWN')) {
+    return true;
+  }
+
+  // Title keywords indicating Chinese region release
+  const zhRegionKeywords = ['内地上映', '中国大陆', '中国香港', '中国台湾', 
+                            'HK 上映 ', 'TVB', 'Hong Kong', 'Taiwan film'];
+  if (zhRegionKeywords.some(kw => item.title && item.title.includes(kw))) {
+    return true;
+  }
+
+  return false;
+}
+
 // Universal Chinese content filter
 // fileName context: movies.json → all movie items; tv.json → all TV items;
 // coming.json → items carry mediaType. Used to en-exempt TV (mirror Worker).
 function filterChineseContent(data, fileName = "") {
   if (!data || typeof data !== "object") return;
-  const hasChinese = (text) => /[一-鿿]/.test(text || "");
+  const hasChinese = (text) => /[一 - 鿿]/.test(text || "");
   for (const key of Object.keys(data)) {
     const val = data[key];
     if (!Array.isArray(val) || val.length === 0) continue;
@@ -53,15 +77,32 @@ function filterChineseContent(data, fileName = "") {
       data[key] = val.filter(item => !item.latestAirDate || item.latestAirDate >= sixMonthsAgo);
       continue;
     }
+    
     // Upcoming/next*: scoring-based selection in the Worker (pop floor + zh bonus) already
     // decided what belongs here — do NOT re-apply a hard Chinese filter, or hot non-zh
     // titles (which qualify on popularity alone) get killed a second time.
     if (key === "upcoming" || key === "next7Days" || key === "next30Days") {
       continue;
     }
+
     data[key] = val.filter(item => {
-      const check = (text) => typeof text === "string" && hasChinese(text);
-      return check(item.title || item.name) && check(item.summary || item.overview);
+      const hasChinese = (text) => typeof text === "string" && /[\u4e00-\u9fff]/.test(text);
+
+      // ── MIXED DUAL SOURCE: TVTVAZE fallback to TMDB for international shows ──
+      if (item.source === 'tvmaze') {
+        // TVMAZE 来源剧集：仅要求有英文标题即可（无中文名/简介）
+        return Boolean(item.title || item.name) && 
+               Boolean(item.rating ?? item.summary); // ⏸️容错：有评分或简介即可
+      }
+
+      // China mainland / HK/TW movies, ONLY title with Chinese needed  
+      if (isChineseRegionMovie(item)) {
+        return hasChinese(item.title || item.name);  // ✅ NO summary check required
+      }
+
+      // Other regions (international): keep original strict TMDB filter (keep zh bonus)
+      return hasChinese(item.title || item.name) &&
+             hasChinese(item.summary || item.overview);
     });
   }
 }
@@ -318,7 +359,7 @@ async function main() {
       `OK wall-translate — +${translated} translated, ${noOverview} skipped (no EN overview), ${failed} failed, ${pending.length - batch.length} still pending`
     );
   }
-  // ── Wall translate: MOVED TO LOCAL (scripts/translate-wall-local.js, Ollama +
+  // ── Wall translate: MOVED TO LOCAL (scripts/translate-wall-local.js, Ollama+
   // DeepSeek fallback). CI no longer spends DeepSeek tokens on translation;
   // local script handles it with qwen3.5:9b and falls back to the Worker's
   // translate-overview endpoint only when Ollama is down or fails. If the local
@@ -378,7 +419,7 @@ async function main() {
     writeFileSync(join(API_DIR, "music.json"), JSON.stringify(musicData, null, 2), "utf8");
     console.log(`OK music.json — ${picksCount} picks from AI`);
     anyChange = true;
-    console.log(`[MUSIC] Done in ${((Date.now() - musicStart) / 1000).toFixed(1)}s`);
+    console.log(`[MUSIC] Done in $((Date.now() - musicStart) / 1000)s`);
   } catch (e) {
     console.error(`FAIL music pipeline: ${e.message}`);
     // Don't set exit code — music pipeline failure shouldn't block commit of other data
@@ -387,7 +428,7 @@ async function main() {
   if (!anyChange) {
     console.log("\nNo data changes detected — skipping commit.");
   } else {
-    console.log("\nData updated — ready for commit.");
+    console.log("Data updated — ready for commit.");
   }
 
   // If ALL endpoints failed, signal retry (partial failure still commits)
