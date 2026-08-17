@@ -1,0 +1,22 @@
+name: TEMP-Probe-WallRecs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe 3 wall items' TMDB type + dates
+        env:
+          TMDB_TOKEN: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: |
+          for id in 1112110 1424353 70796; do
+            echo "--- id $id ---"
+            echo -n "movie: "
+            curl -s "https://api.themoviedb.org/3/movie/$id?language=zh-CN" \
+              -H "Authorization: Bearer ${TMDB_TOKEN}" | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{const j=JSON.parse(d);console.log(JSON.stringify({title:j.title,release_date:j.release_date,status:j.status}))})"
+            echo -n "tv: "
+            curl -s "https://api.themoviedb.org/3/tv/$id?language=zh-CN" \
+              -H "Authorization: Bearer ${TMDB_TOKEN}" | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{const j=JSON.parse(d);console.log(JSON.stringify({name:j.name,first_air_date:j.first_air_date,status:j.status}))})"
+          done
