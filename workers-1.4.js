@@ -1031,14 +1031,12 @@ async function intelPickCnReleaseDate(movie, token) {
     const region = results.find(x => x.iso_3166_1 === "CN") || results.find(x => x.iso_3166_1 === "US");
     if (!region) return movie;
     // type: 1=Premiere(festival), 2=Theatrical(limited), 3=Theatrical.
-    // Prefer official theatrical (3) over limited (2) over festival premiere (1),
-    // taking the EARLIEST date within the best available type — a festival bow
-    // (e.g. Sundance 2025) is not a public release date and must not win.
-    const dates = (region.release_dates || []).filter(d => [1, 2, 3].includes(d.type));
-    const bestType = [3, 2, 1].find(t => dates.some(d => d.type === t));
-    const theatrical = bestType != null
-      ? dates.filter(d => d.type === bestType).sort((a, b) => a.release_date.localeCompare(b.release_date))[0]
-      : null;
+    // Skip festival premieres (type 1) entirely — e.g. a 2025 Sundance bow is
+    // not a public release date. Pick the EARLIEST of type 2/3 (mirrors TMDB
+    // page's primary release date, e.g. 八仙！ CN 07-10 limited before 07-18 wide).
+    const theatrical = (region.release_dates || [])
+      .filter(d => [2, 3].includes(d.type))
+      .sort((a, b) => a.release_date.localeCompare(b.release_date))[0];
     if (theatrical?.release_date) movie.releaseDate = theatrical.release_date.slice(0, 10);
   } catch (e) { console.warn("release-date fix fail:", movie.tmdbId, e.message); }
   return movie;
