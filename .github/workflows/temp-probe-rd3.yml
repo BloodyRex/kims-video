@@ -1,0 +1,18 @@
+name: TEMP-Probe-ReleaseDates3
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe release_dates for 3 wall items
+        env:
+          TMDB_TOKEN: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: |
+          for id in 1112110 1424353 70796; do
+            echo "--- id $id ---"
+            curl -s "https://api.themoviedb.org/3/movie/$id/release_dates" \
+              -H "Authorization: Bearer ${TMDB_TOKEN}" | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{const j=JSON.parse(d);for(const x of (j.results||[]).slice(0,5)){if(['US','CN','KR','GB'].includes(x.iso_3166_1))console.log(x.iso_3166_1+': '+(x.release_dates||[]).map(z=>z.type+'='+(z.release_date||'').slice(0,10)).join(', '))}})"
+          done
