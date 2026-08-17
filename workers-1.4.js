@@ -391,6 +391,20 @@ async function intelFetchUpcomingMovies(token, pages = 10) {
   }, pages);
 }
 
+// ── Released movies: past 90-day discover window (2026-08-18) ──
+// now_playing?region=US only covers US-theatrical titles; CN/JP/KR releases that
+// never played US theatres (e.g. 欢迎来龙餐馆, CN 08-08) fall through every bucket.
+// This pool fills the gap so recently-released non-US films reach nowPlaying.
+async function intelFetchReleasedMovies(token, pages = 3) {
+  const today = intelToday();
+  const minus90 = intelDaysAgo(90);
+  return intelFetchPages(token, "/discover/movie", {
+    "primary_release_date.gte": minus90,
+    "primary_release_date.lte": today,
+    "sort_by": "popularity.desc",
+  }, pages);
+}
+
 // ── Region classification ──
 function classifyRegion(item) {
   const lang = (item.original_language || "en").toLowerCase();
@@ -943,8 +957,9 @@ async function handleIntelMovies(env) {
   const weekAgo = intelDaysAgo(7);
   const ninetyDaysAgo = intelDaysAgo(90);
 
-  const [nowPlayingRaw, upcomingRaw] = await Promise.all([
+  const [nowPlayingRaw, releasedRaw, upcomingRaw] = await Promise.all([
     intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
+    intelFetchReleasedMovies(token, 3),
     intelFetchUpcomingMovies(token, 1),
   ]);
 
@@ -952,20 +967,35 @@ async function handleIntelMovies(env) {
   const cnFilter = (m) => hasChinese(m.title || m.name) && hasChinese(m.overview);
   const reserve = { zh: 2, ja: 1, ko: 1 };
 
-  // This week: now_playing released in past 7 days
-  const weekCandidates = nowPlayingRaw
-    .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
+  // ── Unified recent pool: US now_playing + past-90d discover (dedup by id) ──
+  // Covers US-theatrical titles AND non-US releases (CN/JP/KR) that never
+  // played US theatres but are still in theatrical rotation at home.
+  const recentMerged = [...nowPlayingRaw];
+  const recentIds = new Set(nowPlayingRaw.map(m => m.id));
+  for (const m of releasedRaw) {
+    if (!recentIds.has(m.id)) { recentIds.add(m.id); recentMerged.push(m); }
+  }
+
+  // ── This week: CN theatrical date in [weekAgo, today] ──
+  // US release_date is only a pre-filter (expanded by 3d on both sides because
+  // CN theatrical dates often lead/lag US by a few days); the definitive bucket
+  // decision uses the CN release date (intelPickCnReleaseDate, type 2/3).
+  const weekCandidates = recentMerged
+    .filter(m => m.release_date && m.release_date >= intelDaysAgo(10) && m.release_date <= today)
     .filter(cnFilter)
     .filter(intelRatingOk);
   const weekSelected = intelSelectDiverse(weekCandidates, 15, reserve, SCORE_OPTS.movie, today);
-  // CN-first release date: now_playing?region=US returns US dates; fix to CN
-  // theatrical date when available (2026-08-17). 15 extra subrequests, cached 1 day.
-  const weekM = (await Promise.all(
+  // CN-first release date (2026-08-17). Cached 1 day; subrequests stay bounded.
+  const weekNormalized = (await Promise.all(
     weekSelected.map(m => intelPickCnReleaseDate(intelNormalizeMovie(m), token))
   )).filter(Boolean);
+  // Bucket by CN date: [weekAgo, today] → this week; earlier → now playing
+  const weekM = weekNormalized.filter(m => m.releaseDate && m.releaseDate >= weekAgo && m.releaseDate <= today);
+  // Overflow: CN date in [ninetyDaysAgo, weekAgo) — still in theatrical rotation
+  const weekOverflow = weekNormalized.filter(m => m.releaseDate && m.releaseDate >= ninetyDaysAgo && m.releaseDate < weekAgo);
+  const weekIds = new Set(weekSelected.map(m => m.id));
 
   // Upcoming: release_date >= today, popularity floor 15, scored (pop + zh bonus), cap 15
-  const weekIds = new Set(weekSelected.map(m => m.id));
   const upcomingCandidates = upcomingRaw
     .filter(m => m.release_date && m.release_date >= today)
     .filter(m => !weekIds.has(m.id))
@@ -976,16 +1006,21 @@ async function handleIntelMovies(env) {
     return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
   });
 
-  // Now playing: exclude this week + upcoming, 90-day window
+  // Now playing: exclude this week + upcoming, 90-day window (CN date based)
   const upcomingIds = new Set(upcomingSelected.map(m => m.id));
-  const nowPlayingCandidates = nowPlayingRaw
+  const nowPlayingCandidates = recentMerged
     .filter(m => m.release_date && m.release_date >= ninetyDaysAgo)
     .filter(m => !weekIds.has(m.id) && !upcomingIds.has(m.id))
     .filter(cnFilter)
     .filter(m => (m.popularity || 0) >= 25)
     .filter(intelRatingOk);
-  const nowPlaying = intelSelectDiverse(nowPlayingCandidates, 15, reserve, SCORE_OPTS.movie, today)
-    .map(m => intelNormalizeMovie(m));
+  const nowPlayingSelected = intelSelectDiverse(nowPlayingCandidates, 15, reserve, SCORE_OPTS.movie, today);
+  const nowPlayingNormalized = (await Promise.all(
+    nowPlayingSelected.map(m => intelPickCnReleaseDate(intelNormalizeMovie(m), token))
+  )).filter(Boolean);
+  // CN-date bucket: [ninetyDaysAgo, weekAgo) → now playing; plus week overflow
+  const nowPlayingFromPool = nowPlayingNormalized.filter(m => m.releaseDate && m.releaseDate >= ninetyDaysAgo && m.releaseDate < weekAgo);
+  const nowPlaying = [...weekOverflow, ...nowPlayingFromPool].slice(0, 15);
 
   return {
     updated: today,
