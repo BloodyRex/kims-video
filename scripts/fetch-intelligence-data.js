@@ -183,6 +183,18 @@ async function main() {
     let upgraded = 0;
     const delta = []; // today's new additions → wall-delta.json (daily email section)
 
+    // Cleanup: remove previously-collected TV shows (wall is movies-only).
+    // Blacklist ids probed 2026-08-18 (movie 404 + tv 200); re-checked each run.
+    const WALL_TV_BLACKLIST = new Set([
+      154887, 121913, 99618, 106840, 82596, 105961, 97645, 96102, 92925,
+      91569, 64010, 61593, 114765, 3729, 4589, 4586, 16069, 1424353,
+    ]);
+    const preLen = wall.length;
+    wall = wall.filter((m) => !WALL_TV_BLACKLIST.has(Number(m.tmdbId)));
+    if (wall.length !== preLen) {
+      console.log(`OK wall.json — removed ${preLen - wall.length} TV shows (movies-only rule)`);
+    }
+
     for (const file of ["movies.json", "coming.json"]) {
       let data;
       try {
@@ -206,6 +218,8 @@ async function main() {
     let added = 0;
     for (const it of sources) {
       if (!it || it.tmdbId == null) continue;
+      // Wall is MOVIES ONLY — drop anything that isn't a film
+      if (it.mediaType && it.mediaType !== "movie") continue;
       const id = String(it.tmdbId);
       if (seen.has(id)) {
         // Upgrade to Chinese title when a later snapshot has one (keep firstSeen)
@@ -213,6 +227,7 @@ async function main() {
           const idx = wall.findIndex((m) => String(m.tmdbId) === id);
           wall[idx] = {
             tmdbId: it.tmdbId,
+            mediaType: "movie",
             title: it.title || it.name || "",
             titleEn: it.titleEn || "",
             year: it.year || "",
@@ -229,6 +244,7 @@ async function main() {
       seen.add(id);
       const entry = {
         tmdbId: it.tmdbId,
+        mediaType: "movie",
         title: it.title || it.name || "",
         titleEn: it.titleEn || "",
         year: it.year || "",
@@ -244,17 +260,21 @@ async function main() {
     }
 
     // Merge user-recommended films (collected from ResultsPage via /wall/collect → KV wallRec:*)
+    // Wall rule: MOVIES ONLY. TV shows are excluded here — they belong to a future 剧集墙.
+    // (WALL_TV_BLACKLIST declared above; probed via TMDB movie 404 + tv 200 on 2026-08-18)
     try {
       const recsRes = await fetch(`${WORKER_BASE}/wall/recs`);
       if (recsRes.ok) {
         const recsData = await recsRes.json();
         for (const r of recsData.items || []) {
           if (!r?.tmdbId) continue;
+          if (WALL_TV_BLACKLIST.has(Number(r.tmdbId))) continue; // TV → skip, not a film
           const id = String(r.tmdbId);
           if (seen.has(id)) continue;
           seen.add(id);
           const recEntry = {
             tmdbId: r.tmdbId,
+            mediaType: r.mediaType || "movie",
             title: r.title || "",
             titleEn: r.titleEn || "",
             year: r.year || "",

@@ -132,7 +132,15 @@ async function fetchEnglishPoster(tmdbId, type, token) { const d = await withCac
 
 async function withCache(key, fetcher, ttl = 86400) { const c = caches.default; const r = new Request(`https://tmdb-cache/${key}`); const h = await c.match(r); if (h) { console.log("[CACHE HIT]", key); return h.json(); } console.log("[CACHE MISS]", key); const d = await fetcher(); if (!d) return null; const resp = new Response(JSON.stringify(d), { headers: { "Content-Type": "application/json", "Cache-Control": `public, max-age=${ttl}` } }); c.put(r, resp.clone()); return d; }
 
-async function fetchTMDBDetails(tmdbId, token, language) { language = language || "zh-CN"; let d = await fetchTMDBByType(tmdbId, "movie", token, language); if (d) return d; d = await fetchTMDBByType(tmdbId, "tv", token, language); return d || {}; }
+async function fetchTMDBDetails(tmdbId, token, language, opts = {}) {
+  language = language || "zh-CN";
+  const movieOnly = !!opts.movieOnly; // wall collection: movies only — TV must NOT enter the wall
+  let d = await fetchTMDBByType(tmdbId, "movie", token, language);
+  if (d) return d;
+  if (movieOnly) return null; // movie lookup failed → it's a TV show (or invalid); never fall through to tv
+  d = await fetchTMDBByType(tmdbId, "tv", token, language);
+  return d || {};
+}
 
 // Translate an English film overview to Simplified Chinese (used by wall.json backfill)
 async function translateText(text, env) {
@@ -180,10 +188,12 @@ async function collectWallRecs(env, items) {
     const key = `wallRec:${id}`;
     if (await env.DISCOVER_KV.get(key).catch(() => null)) { skipped++; continue; }
     try {
-      const det = await fetchTMDBDetails(parseInt(id), env.TMDB_API_READ_ACCESS_TOKEN, "zh-CN");
+      // Wall is MOVIES ONLY — a TV-only tmdbId must not enter the wall.
+      const det = await fetchTMDBDetails(parseInt(id), env.TMDB_API_READ_ACCESS_TOKEN, "zh-CN", { movieOnly: true });
       if (!det?.title) { skipped++; continue; }
       const entry = {
         tmdbId: parseInt(id),
+        mediaType: "movie", // wall rule: cards must be films, TV goes to a future 剧集墙
         title: det.title || it.title || "",
         titleEn: det.originalTitle || it.title || "",
         year: det.year || String(it.year || ""),
@@ -1129,6 +1139,7 @@ function intelTVMazeToCandidate(ep) {
     overview: (s.summary || "").replace(/<[^>]+>/g, "").trim().slice(0, 200),
     _overviewEn: (s.summary || "").replace(/<[^>]+>/g, "").trim().slice(0, 200),
     _posterUrl: s.image?.medium || s.image?.original || "",
+    _tvmazePosterUrl: s.image?.medium || s.image?.original || "", // keep original for fallback
     _genres: Array.isArray(s.genres) ? s.genres : [],
     source: "tvmaze",
     mediaType: "tv",
@@ -1136,7 +1147,11 @@ function intelTVMazeToCandidate(ep) {
 }
 
 // TVMAZE candidate → final output shape (mirrors intelNormalizeMovie).
+// Poster fallback chain: TMDB (from enrich) → TVMAZE original → empty.
+// TVMAZE image URLs are absolute (https://static.tvmaze.com/...) — the frontend
+// posterUrl() helper passes non-TMDB absolute URLs through unchanged.
 function intelTVMazeToOutput(m) {
+  const poster = m._posterUrl || m._tvmazePosterUrl || "";
   return {
     tmdbId: m.tmdbId || null,
     title: m.title,
@@ -1145,7 +1160,7 @@ function intelTVMazeToOutput(m) {
     originCountry: m.origin_country || [],
     year: (m.first_air_date || "").slice(0, 4),
     releaseDate: m.first_air_date || "",
-    poster: m._posterUrl || "",
+    poster,
     rating: m.vote_average || 0,
     genre: m._genres || [],
     summary: m.overview || "",
@@ -1241,14 +1256,21 @@ async function handleIntelTV(env) {
   const premiereIds = new Set(premiereSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
 
   // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 90 days)
-  // Scored selection: popularity floor 8 + Chinese bonus (EN shows qualify on popularity alone), cap 15
+  // Scored selection: popularity floor 8 + Chinese bonus (EN shows qualify on popularity alone), cap 15.
+  // 2026-08-18: zh-first tweak — shows with NO Chinese title AND NO zh summary need a much higher
+  // popularity floor (30) so the Chinese UI isn't flooded with bare-English upcoming cards
+  // (Crew Girl / Neagley / The Dynasty / S.W.A.T. Exiles were showing title-only).
+  const hasZhTitle = (s) => hasChinese(s.title || s.name);
+  const hasZhSummary = (s) => hasChinese(s.overview);
   const upcomingFromTrending = trendingTV
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
     .filter(s => !premiereIds.has(s.id))
-    .filter(intelRatingOk);
+    .filter(intelRatingOk)
+    .filter(s => (hasZhTitle(s) || hasZhSummary(s)) ? true : (s.popularity || 0) >= 30);
   const upcomingFromDiscover = discoverRaw
     .filter(s => !premiereIds.has(s.id))
-    .filter(intelRatingOk);
+    .filter(intelRatingOk)
+    .filter(s => (hasZhTitle(s) || hasZhSummary(s)) ? true : (s.popularity || 0) >= 30);
   // Merge and dedup
   const upcomingMerged = [...upcomingFromTrending];
   const trendIds = new Set(upcomingFromTrending.map(s => s.id));
