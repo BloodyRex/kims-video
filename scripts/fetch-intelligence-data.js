@@ -274,19 +274,21 @@ async function main() {
       console.warn("wall-recs merge failed:", e.message);
     }
 
+    // Always re-sort + rewrite: sort must apply even on no-new-item runs
+    // (2026-08-18: date-less rec items were sinking to the bottom on the
+    // first run after the fix, but only when new items triggered a write).
+    // Date-descending; entries WITHOUT a releaseDate (e.g. user-recommended
+    // rec items that never got a TMDB date) sort by firstSeen instead, after
+    // dated items — not via "" localeCompare which sinks them below 1902 films.
+    wall.sort((a, b) => {
+      const da = a.releaseDate || "";
+      const db = b.releaseDate || "";
+      if (!da && !db) return String(b.firstSeen || "").localeCompare(String(a.firstSeen || ""));
+      if (!da) return 1; // a has no date → a after b
+      if (!db) return -1; // b has no date → b after a
+      return String(db).localeCompare(String(da));
+    });
     if (added > 0 || upgraded > 0) {
-      // Date-descending, but entries WITHOUT a releaseDate (e.g. user-recommended
-      // rec items that never got a TMDB date) must not sink to the very bottom
-      // via "" localeCompare — sort them by firstSeen instead, after dated items
-      // (2026-08-18: L / 大明王朝1566 / K1 HERO's 3.2 were trailing the 1902 wall).
-      wall.sort((a, b) => {
-        const da = a.releaseDate || "";
-        const db = b.releaseDate || "";
-        if (!da && !db) return String(b.firstSeen || "").localeCompare(String(a.firstSeen || ""));
-        if (!da) return 1; // a has no date → a after b
-        if (!db) return -1; // b has no date → b after a
-        return String(db).localeCompare(String(da));
-      });
       writeFileSync(
         wallPath,
         JSON.stringify({ updated: today, count: wall.length, movies: wall }, null, 2),
@@ -295,7 +297,14 @@ async function main() {
       anyChange = true;
       console.log(`OK wall.json — +${added} new, ${upgraded} title-upgraded, ${wall.length} total`);
     } else {
-      console.log(`OK wall.json — unchanged (${wall.length} total)`);
+      // No new items, but write anyway so the (fixed) sort order reaches the site
+      writeFileSync(
+        wallPath,
+        JSON.stringify({ updated: today, count: wall.length, movies: wall }, null, 2),
+        "utf8"
+      );
+      anyChange = true;
+      console.log(`OK wall.json — re-sorted (${wall.length} total)`);
     }
 
     // Wall delta: today's new additions — consumed by the daily email
