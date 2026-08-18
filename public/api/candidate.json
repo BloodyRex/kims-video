@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18",
+  "updated": "2026-08-19",
   "candidates": [
     {
       "id": "mb-c6358baf-1e01-4991-ab6e-cb5d794e222a",
@@ -35,8 +35,8 @@
       "source": "musicbrainz",
       "artistListeners": 3581359,
       "artistPlaycount": 130213265,
-      "albumListeners": 1296632,
-      "albumPlaycount": 13604911,
+      "albumListeners": 1296848,
+      "albumPlaycount": 13606351,
       "score": 70,
       "scoreBreakdown": {
         "artist": 40,
@@ -76,14 +76,14 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 1391353,
-      "artistPlaycount": 24812252,
-      "albumListeners": 813356,
-      "albumPlaycount": 8042700,
-      "score": 69.55140337369629,
+      "artistListeners": 1391422,
+      "artistPlaycount": 24814533,
+      "albumListeners": 813395,
+      "albumPlaycount": 8043326,
+      "score": 69.55150749218029,
       "scoreBreakdown": {
         "artist": 40,
-        "album": 29.55140337369629,
+        "album": 29.551507492180296,
         "freshness": 0
       }
     },
@@ -119,14 +119,14 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 512566,
-      "artistPlaycount": 22908909,
-      "albumListeners": 25734,
-      "albumPlaycount": 375161,
-      "score": 60.11753511499406,
+      "artistListeners": 512657,
+      "artistPlaycount": 22912116,
+      "albumListeners": 25752,
+      "albumPlaycount": 375748,
+      "score": 60.11956743012704,
       "scoreBreakdown": {
-        "artist": 38.06499863188048,
-        "album": 22.052536483113585,
+        "artist": 38.06551261173926,
+        "album": 22.054054818387783,
         "freshness": 0
       }
     },
@@ -162,14 +162,14 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 158466,
-      "artistPlaycount": 1012597,
-      "albumListeners": 88142,
-      "albumPlaycount": 590802,
-      "score": 59.39215514089285,
+      "artistListeners": 158480,
+      "artistPlaycount": 1012718,
+      "albumListeners": 88151,
+      "albumPlaycount": 590870,
+      "score": 59.392632633740256,
       "scoreBreakdown": {
-        "artist": 34.66624063732597,
-        "album": 24.725914503566877,
+        "artist": 34.66649641686993,
+        "album": 24.726136216870323,
         "freshness": 0
       }
     },
@@ -205,40 +205,15 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 136609,
-      "artistPlaycount": 3652071,
-      "albumListeners": 85323,
-      "albumPlaycount": 1778369,
-      "score": 58.89185933357777,
+      "artistListeners": 136708,
+      "artistPlaycount": 3654350,
+      "albumListeners": 85416,
+      "albumPlaycount": 1779422,
+      "score": 58.89632234685167,
       "scoreBreakdown": {
-        "artist": 34.236528748276115,
-        "album": 24.655330585301652,
+        "artist": 34.23862619827441,
+        "album": 24.65769614857726,
         "freshness": 0
-      }
-    },
-    {
-      "id": "mb-e4b88467-dd28-4072-b95a-bd380c4728cf",
-      "mbid": "e4b88467-dd28-4072-b95a-bd380c4728cf",
-      "title": "Static Charge",
-      "artist": "The Telescopes",
-      "releaseDate": "2026-07-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 179559,
-      "artistPlaycount": 2148062,
-      "albumListeners": 1218,
-      "albumPlaycount": 5070,
-      "score": 57.45628429524081,
-      "scoreBreakdown": {
-        "artist": 35.02804785375653,
-        "album": 15.42823644148428,
-        "freshness": 7
       }
     },
     {
@@ -255,13 +230,13 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 474894,
-      "artistPlaycount": 6397323,
+      "artistListeners": 474900,
+      "artistPlaycount": 6397532,
       "albumListeners": 5529,
       "albumPlaycount": 19421,
-      "score": 56.557210833474805,
+      "score": 56.557247413573805,
       "scoreBreakdown": {
-        "artist": 37.84397788378112,
+        "artist": 37.84401446388012,
         "album": 18.713232949693683,
         "freshness": 0
       }
@@ -298,14 +273,39 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 203937,
-      "artistPlaycount": 7773560,
-      "albumListeners": 13558,
-      "albumPlaycount": 203693,
-      "score": 56.05761832358157,
+      "artistListeners": 203946,
+      "artistPlaycount": 7773886,
+      "albumListeners": 13560,
+      "albumPlaycount": 203710,
+      "score": 56.05806639368086,
       "scoreBreakdown": {
-        "artist": 35.39664017571445,
-        "album": 20.66097814786712,
+        "artist": 35.39676794602564,
+        "album": 20.661298447655223,
+        "freshness": 0
+      }
+    },
+    {
+      "id": "mb-232e13a5-026b-4057-bb58-baec7a3ab40b",
+      "mbid": "232e13a5-026b-4057-bb58-baec7a3ab40b",
+      "title": "Future Soul",
+      "artist": "Tedeschi Trucks Band",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "US",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 202754,
+      "artistPlaycount": 3903785,
+      "albumListeners": 7677,
+      "albumPlaycount": 74955,
+      "score": 54.805753908882465,
+      "scoreBreakdown": {
+        "artist": 35.37979620584822,
+        "album": 19.42595770303424,
         "freshness": 0
       }
     },
@@ -341,14 +341,14 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 252490,
-      "artistPlaycount": 1988077,
-      "albumListeners": 4378,
-      "albumPlaycount": 21701,
-      "score": 54.22134000171036,
+      "artistListeners": 252505,
+      "artistPlaycount": 1988299,
+      "albumListeners": 4389,
+      "albumPlaycount": 21753,
+      "score": 54.22696111929329,
       "scoreBreakdown": {
-        "artist": 36.0149612155508,
-        "album": 18.206378786159565,
+        "artist": 36.01513321506843,
+        "album": 18.211827904224865,
         "freshness": 0
       }
     },
@@ -366,13 +366,13 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 391270,
-      "artistPlaycount": 4015167,
+      "artistListeners": 391296,
+      "artistPlaycount": 4015407,
       "albumListeners": 896,
-      "albumPlaycount": 7078,
-      "score": 52.04471705060399,
+      "albumPlaycount": 7079,
+      "score": 52.04490943747034,
       "scoreBreakdown": {
-        "artist": 37.28317700229337,
+        "artist": 37.283369389159716,
         "album": 14.761540048310625,
         "freshness": 0
       }
@@ -409,60 +409,23 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 33553,
-      "artistPlaycount": 312217,
+      "artistListeners": 33554,
+      "artistPlaycount": 312224,
       "albumListeners": 19075,
       "albumPlaycount": 105431,
-      "score": 51.573865112139295,
+      "score": 51.57395140109712,
       "scoreBreakdown": {
-        "artist": 30.171542379004705,
+        "artist": 30.17162866796253,
         "album": 21.40232273313459,
         "freshness": 0
       }
     },
     {
-      "id": "mb-ee928bdc-8e78-4925-9563-b1cc9d193147",
-      "mbid": "ee928bdc-8e78-4925-9563-b1cc9d193147",
-      "title": "Fantasy",
-      "artist": "DJ Sabrina the Teenage DJ",
+      "id": "mb-da96498e-93c6-4adf-8c7f-2ed2eac4e461",
+      "mbid": "da96498e-93c6-4adf-8c7f-2ed2eac4e461",
+      "title": "snowfall",
+      "artist": "wüsh",
       "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "GB",
-      "genres": [
-        "浩室",
-        "2025",
-        "plunderphonics"
-      ],
-      "genresEn": [
-        "house",
-        "2025",
-        "plunderphonics"
-      ],
-      "lfmTags": [
-        "house",
-        "2025",
-        "plunderphonics"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 86673,
-      "artistPlaycount": 4016322,
-      "albumListeners": 5074,
-      "albumPlaycount": 181500,
-      "score": 51.44597784106884,
-      "scoreBreakdown": {
-        "artist": 32.919225526640275,
-        "album": 18.526752314428563,
-        "freshness": 0
-      }
-    },
-    {
-      "id": "mb-f4d88e18-f0f1-4e2d-bec9-33710733912b",
-      "mbid": "f4d88e18-f0f1-4e2d-bec9-33710733912b",
-      "title": "The Thread",
-      "artist": "Family Stereo",
-      "releaseDate": "2026-07-31",
       "year": "2026",
       "type": "Album",
       "country": "XW",
@@ -471,15 +434,15 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 7792,
-      "artistPlaycount": 29053,
-      "albumListeners": 440,
-      "albumPlaycount": 2944,
-      "score": 51.16158967490133,
+      "artistListeners": 163092,
+      "artistPlaycount": 1074984,
+      "albumListeners": 1930,
+      "albumPlaycount": 5236,
+      "score": 51.1773376018385,
       "scoreBreakdown": {
-        "artist": 25.944326292470393,
-        "album": 13.217263382430936,
-        "freshness": 12
+        "artist": 34.74955105679963,
+        "album": 16.42778654503887,
+        "freshness": 0
       }
     },
     {
@@ -496,14 +459,14 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 39439,
-      "artistPlaycount": 326656,
-      "albumListeners": 10501,
-      "albumPlaycount": 40476,
-      "score": 50.745659256439836,
+      "artistListeners": 39448,
+      "artistPlaycount": 326742,
+      "albumListeners": 10508,
+      "albumPlaycount": 40514,
+      "score": 50.747766917390706,
       "scoreBreakdown": {
-        "artist": 30.63950596404132,
-        "album": 20.106153292398517,
+        "artist": 30.64016659682054,
+        "album": 20.107600320570164,
         "freshness": 0
       }
     },
@@ -551,31 +514,6 @@
       }
     },
     {
-      "id": "mb-4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
-      "mbid": "4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
-      "title": "Labor of Love",
-      "artist": "Tinsley Ellis",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 92471,
-      "artistPlaycount": 763197,
-      "albumListeners": 1382,
-      "albumPlaycount": 5678,
-      "score": 48.809243909871505,
-      "scoreBreakdown": {
-        "artist": 33.106703694680604,
-        "album": 15.7025402151909,
-        "freshness": 0
-      }
-    },
-    {
       "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
       "mbid": "39b58fe5-9a4b-44b6-a42c-3791dc89115a",
       "title": "Appalachia",
@@ -589,13 +527,13 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 39670,
-      "artistPlaycount": 332449,
+      "artistListeners": 39671,
+      "artistPlaycount": 332486,
       "albumListeners": 3753,
-      "albumPlaycount": 36836,
-      "score": 48.52830749189308,
+      "albumPlaycount": 36853,
+      "score": 48.52838047550928,
       "scoreBreakdown": {
-        "artist": 30.65641466982767,
+        "artist": 30.656487653443865,
         "album": 17.871892822065412,
         "freshness": 0
       }
@@ -614,14 +552,82 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 118541,
-      "artistPlaycount": 5427206,
+      "artistListeners": 118552,
+      "artistPlaycount": 5427508,
       "albumListeners": 833,
-      "albumPlaycount": 3745,
-      "score": 48.42901558425521,
+      "albumPlaycount": 3752,
+      "score": 48.42928424053802,
       "scoreBreakdown": {
-        "artist": 33.82579057722128,
+        "artist": 33.82605923350408,
         "album": 14.603225007033936,
+        "freshness": 0
+      }
+    },
+    {
+      "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
+      "mbid": "f4a9a05b-c146-410e-8161-4d10af2f6bfa",
+      "title": "Unity",
+      "artist": "Pariah",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "NL",
+      "genres": [
+        "鞭挞金属",
+        "thrash",
+        "1997",
+        "回响贝斯",
+        "rhythmic"
+      ],
+      "genresEn": [
+        "thrash metal",
+        "thrash",
+        "1997",
+        "dubstep",
+        "rhythmic"
+      ],
+      "lfmTags": [
+        "thrash metal",
+        "thrash",
+        "1997",
+        "dubstep",
+        "rhythmic"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 112950,
+      "artistPlaycount": 889923,
+      "albumListeners": 537,
+      "albumPlaycount": 8617,
+      "score": 47.33577966354032,
+      "scoreBreakdown": {
+        "artist": 33.68590823504255,
+        "album": 13.649871428497777,
+        "freshness": 0
+      }
+    },
+    {
+      "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
+      "mbid": "af4ece5b-3174-426d-ad92-45090ab35b5e",
+      "title": "Eingenordet",
+      "artist": "Versengold",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "DE",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 43098,
+      "artistPlaycount": 1804880,
+      "albumListeners": 1428,
+      "albumPlaycount": 34466,
+      "score": 46.67002181598039,
+      "scoreBreakdown": {
+        "artist": 30.896380778779612,
+        "album": 15.773641037200779,
         "freshness": 0
       }
     }

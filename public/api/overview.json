@@ -1,7 +1,7 @@
 {
-  "updated": "2026-08-18",
+  "updated": "2026-08-19",
   "stats": {
-    "moviesReleased": 8,
+    "moviesReleased": 9,
     "tvAiringThisWeek": 20,
     "albumsReleased": 25,
     "trending": 20
@@ -34,7 +34,7 @@
       "year": "2026",
       "releaseDate": "2026-07-25",
       "poster": "https://image.tmdb.org/t/p/w500/v5eNuyj8lj6YYrPBxQfebn7yI1v.jpg",
-      "rating": 7,
+      "rating": 7.016,
       "genre": [
         "Animation",
         "Adventure",
@@ -63,7 +63,43 @@
       ],
       "summary": "　　一位身患疾病的年轻美国女子在马略卡岛的夏日里度假时，与一位魅力十足的当地人意外坠入爱河，这让她不得不在追随内心、履行家庭责任以及按计划返回家园之间做出权衡。",
       "summaryEn": "Ry, a college student with a chronic illness escapes to Mallorca for the summer with her mother, where she unexpectedly falls for a local and begins to embrace living in the moment. But as her conditi",
-      "daysUntil": 8
+      "daysUntil": 7
+    },
+    {
+      "tmdbId": 1288445,
+      "title": "怒之杀",
+      "titleEn": "Mutiny",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-08-19",
+      "poster": "https://image.tmdb.org/t/p/w500/5E6hS9faru2CDOXLrHhIyOUfC7a.jpg",
+      "rating": 9,
+      "genre": [
+        "Action",
+        "Thriller"
+      ],
+      "summary": "在目睹亿万富翁老板遇害并被诬陷为凶手后，科尔·里德独自登上一艘货船，决心为老板复仇，却由此揭开了一个涉及国际层面的惊天阴谋。",
+      "summaryEn": "After witnessing his billionaire boss' murder and being framed for the crime, Cole Reed boards a cargo ship on a one-man crusade to avenge his boss' death only to discover an international conspiracy.",
+      "daysUntil": 0
+    },
+    {
+      "tmdbId": 1291595,
+      "title": "潜伏6：血域",
+      "titleEn": "Insidious: Out of the Further",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-08-19",
+      "poster": "https://image.tmdb.org/t/p/w500/zSqi655Ci8ym5mDz53NcdjYOiei.jpg",
+      "rating": 5.5,
+      "genre": [
+        "Horror",
+        "Thriller"
+      ],
+      "summary": "　　三名潜行者悄然入侵静谧的郊区，将一户新搬来的家庭困于灵薄狱的夹缝之中。他们原以为这只是场残酷的猎杀游戏，却在此撕裂了现实与异界的边界——一个令人战栗的真相逐渐浮现：深渊彼岸的“灵薄狱”，正从裂缝中不断渗入现实世界。",
+      "summaryEn": "Gemma, a young mother raising her daughter in the house she grew up in, discovers she can travel into The Further, where she possesses an ability to bring what lives there back to the real world.",
+      "daysUntil": 0
     },
     {
       "tmdbId": 1101412,
@@ -80,25 +116,7 @@
       ],
       "summary": "痛失姐妹汉特之后，杰克斯与汉特那无畏的好友露斯再度重聚。为了抚平内心的伤痛，两人结伴前往泰国著名的坤山山脉徒步疗伤。不料突如其来的山体滑坡将她们逼入绝境，两人被困在一段摇摇欲坠、高耸入云的3000英尺高空栈道上。面对死神的威胁，杰克斯必须直面内心深处的恐惧，在绝壁之上觅得一线生机。",
       "summaryEn": "On a perilous climb across Thailand's Mount Kwan, two climbers become trapped thousands of feet above the ground, where vertigo-inducing heights, sheer exposure, and impossible odds turn every moment ",
-      "daysUntil": 15
-    },
-    {
-      "tmdbId": 1288445,
-      "title": "怒之杀",
-      "titleEn": "Mutiny",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-08-19",
-      "poster": "https://image.tmdb.org/t/p/w500/5E6hS9faru2CDOXLrHhIyOUfC7a.jpg",
-      "rating": 0,
-      "genre": [
-        "Action",
-        "Thriller"
-      ],
-      "summary": "在目睹亿万富翁老板遇害并被诬陷为凶手后，科尔·里德独自登上一艘货船，决心为老板复仇，却由此揭开了一个涉及国际层面的惊天阴谋。",
-      "summaryEn": "After witnessing his billionaire boss' murder and being framed for the crime, Cole Reed boards a cargo ship on a one-man crusade to avenge his boss' death only to discover an international conspiracy.",
-      "daysUntil": 1
+      "daysUntil": 14
     },
     {
       "tmdbId": 1204680,
@@ -113,33 +131,35 @@
       "genre": [
         "Comedy",
         "Adventure",
-        "Family",
-        "Animation"
+        "Family"
       ],
       "summary": "　　故事讲述了乐一通经典角色歪心狼（Wile E. Coyote）在长期使用Acme公司的产品追捕BB鸟（Road Runner）失败并遭受身心创伤后，决定不再忍受。他聘请了一位倒霉的人类律师，向Acme公司提起诉讼，要求巨额赔偿。而Acme公司的首席律师则试图捍卫公司利益，双方在法庭上展开了一场荒诞又爆笑的对决。  影片改编自1990年《纽约客》的一篇同名文章。",
       "summaryEn": "After Acme products fail him one too many times in his dogged pursuit of the Roadrunner, Wile E. Coyote decides to hire a billboard lawyer to sue the Acme Corporation.",
-      "daysUntil": 2
-    },
-    {
-      "tmdbId": 1291595,
-      "title": "潜伏6：血域",
-      "titleEn": "Insidious: Out of the Further",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-08-19",
-      "poster": "https://image.tmdb.org/t/p/w500/zSqi655Ci8ym5mDz53NcdjYOiei.jpg",
-      "rating": 0,
-      "genre": [
-        "Horror",
-        "Thriller"
-      ],
-      "summary": "　　三名潜行者悄然入侵静谧的郊区，将一户新搬来的家庭困于灵薄狱的夹缝之中。他们原以为这只是场残酷的猎杀游戏，却在此撕裂了现实与异界的边界——一个令人战栗的真相逐渐浮现：深渊彼岸的“灵薄狱”，正从裂缝中不断渗入现实世界。",
-      "summaryEn": "Gemma, a young mother raising her daughter in the house she grew up in, discovers she can travel into The Further, where she possesses an ability to bring what lives there back to the real world.",
       "daysUntil": 1
     }
   ],
   "trending": [
+    {
+      "tmdbId": 1084244,
+      "title": "玩具总动员5",
+      "titleEn": "Toy Story 5",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-06-17",
+      "poster": "https://image.tmdb.org/t/p/w500/oo46YfPuMcV9t7KsTiaMVUVRjvJ.jpg",
+      "rating": 7.515,
+      "genre": [
+        "Animation",
+        "Family",
+        "Comedy",
+        "Adventure"
+      ],
+      "summary": "胡迪、巴斯光年、翠斯等“元老级”玩具将跟随小主人邦妮的成长脚步，共同迎接数字时代下的全新挑战。随着无所不能的科技产品逐渐走进童年世界，一批充满科技感的崭新角色也随之重磅亮相：青蛙造型的智能平板小荷、憨态可掬的导航玩具小不丢、活力十足的抓拍好手小拍侠，以及自带笑点的臭屁小机灵。当身边的同龄朋友们开始沉浸在科技玩具带来的“电子陪伴”中，而玩具伙伴们也迎来了前所未有的生存难题：在屏幕占据注意力的时代，玩",
+      "summaryEn": "When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang's jobs become exponentially harder when they have to go head to head with the all-new",
+      "rank": 1,
+      "trend": "new"
+    },
     {
       "tmdbId": 969681,
       "title": "蜘蛛侠：崭新之日",
@@ -149,7 +169,7 @@
       "year": "2026",
       "releaseDate": "2026-07-29",
       "poster": "https://image.tmdb.org/t/p/w500/7AjIupf0lxNKNq0p8z36jv5ZpiJ.jpg",
-      "rating": 7.877,
+      "rating": 7.88,
       "genre": [
         "Sci-Fi",
         "Action",
@@ -157,49 +177,7 @@
       ],
       "summary": "重建普通生活后，彼得一边在大学完成学业、一边从事兼职以维持生计，同时仍肩负着守护纽约街头的蜘蛛侠责任。然而，当一个神秘力量从内部腐蚀这座城市的安全与秩序，彼得被迫再次披上战衣。他必须在强大的敌人与昔日纽带之间找到平衡，并重新定义英雄的意义。",
       "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
-      "rank": 1,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1368337,
-      "title": "奥德赛",
-      "titleEn": "The Odyssey",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-07-15",
-      "poster": "https://image.tmdb.org/t/p/w500/Aj0Uykxj0vhwVsyrRJka0aM3SP1.jpg",
-      "rating": 7.993,
-      "genre": [
-        "Adventure",
-        "Action",
-        "Fantasy"
-      ],
-      "summary": "特洛伊战争之后，奥德修斯踏上返回伊萨卡的艰险归途，途中遭遇了诸如独眼巨人波吕斐摩斯、塞壬女妖和喀耳刻等神话生物。",
-      "summaryEn": "Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, ",
       "rank": 2,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1315772,
-      "title": "小黄人与大怪兽",
-      "titleEn": "Minions & Monsters",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-06-24",
-      "poster": "https://image.tmdb.org/t/p/w500/y4JWxHZ1dMisqbHhX7ytOAK3wwv.jpg",
-      "rating": 7.491,
-      "genre": [
-        "Adventure",
-        "Animation",
-        "Comedy",
-        "Family",
-        "Fantasy"
-      ],
-      "summary": "为了拍摄心中理想的怪兽电影，这群萌趣活宝四处物色演员，竟然真的集齐了各式怪兽，上演疯狂大乱斗！",
-      "summaryEn": "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to t",
-      "rank": 3,
       "trend": "new"
     },
     {
@@ -219,28 +197,51 @@
       ],
       "summary": "居住在花谷街的一对夫妻，察觉到社区里发生了一些细微的变化。当一场剧烈的雷暴袭来后，他们连同他们的孩子和邻居醒来发现自己竟被“传送回了史前时代”，身边被恐龙和其他野生生物包围。",
       "summaryEn": "After a mysterious cosmic event rips Oak Street from suburbia and transports their neighborhood to someplace unknown, the Platt family soon discovers that their very survival depends on them sticking ",
+      "rank": 3,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 1315772,
+      "title": "小黄人与大怪兽",
+      "titleEn": "Minions & Monsters",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-06-24",
+      "poster": "https://image.tmdb.org/t/p/w500/y4JWxHZ1dMisqbHhX7ytOAK3wwv.jpg",
+      "rating": 7.5,
+      "genre": [
+        "Adventure",
+        "Animation",
+        "Comedy",
+        "Family",
+        "Fantasy"
+      ],
+      "summary": "为了拍摄心中理想的怪兽电影，这群萌趣活宝四处物色演员，竟然真的集齐了各式怪兽，上演疯狂大乱斗！",
+      "summaryEn": "This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to t",
       "rank": 4,
       "trend": "new"
     },
     {
-      "tmdbId": 1339713,
-      "title": "痴迷",
-      "titleEn": "Obsession",
+      "tmdbId": 1368337,
+      "title": "奥德赛",
+      "titleEn": "The Odyssey",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-05-13",
-      "poster": "https://image.tmdb.org/t/p/w500/5kNrhOgyREvm62H0rG1tuSrzirR.jpg",
-      "rating": 8.225,
+      "releaseDate": "2026-07-15",
+      "poster": "https://image.tmdb.org/t/p/w500/Aj0Uykxj0vhwVsyrRJka0aM3SP1.jpg",
+      "rating": 7.994,
       "genre": [
-        "Horror",
-        "Thriller"
+        "Adventure",
+        "Action",
+        "Fantasy"
       ],
-      "summary": "在折断神秘的“心愿柳”以赢得暗恋对象的心之后，一个对爱情充满幻想的人如愿以偿地得到了自己想要的一切，但很快他发现，有些欲望需要付出黑暗而可怕的代价。",
-      "summaryEn": "After breaking the mysterious \"One Wish Willow\" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinis",
+      "summary": "特洛伊战争之后，奥德修斯踏上返回伊萨卡的艰险归途，途中遭遇了诸如独眼巨人波吕斐摩斯、塞壬女妖和喀耳刻等神话生物。",
+      "summaryEn": "Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, ",
       "rank": 5,
       "trend": "new"
     }
   ],
-  "brief": "Today: 8 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
+  "brief": "Today: 9 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
 }
