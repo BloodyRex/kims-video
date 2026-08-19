@@ -252,6 +252,36 @@ const NewHomePage = () => {
               currentYear={currentYear}
               locale={locale}
             />
+            {/* Entry buttons — 3 sub-page shortcuts (还原旧版底部按钮) */}
+            <div className="max-w-2xl mx-auto mt-6 mb-4 flex flex-col sm:flex-row gap-3 max-sm:mx-3">
+              <Link
+                to="/discover"
+                className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
+              >
+                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
+                  <span className="text-base">🎬</span>
+                  {locale === "zh" ? "社区精选合辑" : "CURATED PICKS"}
+                </span>
+              </Link>
+              <Link
+                to="/intelligence"
+                className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
+              >
+                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
+                  <span className="text-base">📊</span>
+                  {locale === "zh" ? "全球影音情报" : "INTELLIGENCE"}
+                </span>
+              </Link>
+              <Link
+                to="/wall"
+                className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
+              >
+                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
+                  <span className="text-base">🧱</span>
+                  {locale === "zh" ? "影视墙" : "MOVIE WALL"}
+                </span>
+              </Link>
+            </div>
           </>
         )}
 
