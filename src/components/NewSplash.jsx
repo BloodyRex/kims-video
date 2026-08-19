@@ -18,6 +18,8 @@ const CARDS = [
     descZh: "输入喜欢的电影，AI 为你精准推荐合口味的作品。",
     descEn: "Tell us what you love, get AI-matched picks.",
     bgImg: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80",
+    h: "/entry/ai-search-h.png",
+    v: "/entry/ai-search-v.png",
     badgeBg: "bg-[#ff00ff]",
     shadowColor: "#ff00ff",
     accent: "text-[#00ffff]",
@@ -32,6 +34,8 @@ const CARDS = [
     descZh: "编辑与社区精选的电影合辑、专题盘点。",
     descEn: "Hand-picked collections and editor's choices.",
     bgImg: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80",
+    h: "/entry/discover-h.png",
+    v: "/entry/discover-v.png",
     badgeBg: "bg-[#00ffff]",
     shadowColor: "#00ffff",
     accent: "text-[#ffff00]",
@@ -46,6 +50,8 @@ const CARDS = [
     descZh: "影讯、剧集、音乐与每周情报速览。",
     descEn: "Movie, TV & music news at a glance.",
     bgImg: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1200&q=80",
+    h: "/entry/intelligence-h.png",
+    v: "/entry/intelligence-v.png",
     badgeBg: "bg-[#ffff00]",
     shadowColor: "#ffff00",
     accent: "text-[#ff00ff]",
@@ -60,6 +66,8 @@ const CARDS = [
     descZh: "浏览你的电影收藏墙，按日期排布的影史长卷。",
     descEn: "Your film collection, arranged by release date.",
     bgImg: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1200&q=80",
+    h: "/entry/wall-h.png",
+    v: "/entry/wall-v.png",
     badgeBg: "bg-[#00dd00]",
     shadowColor: "#00dd00",
     accent: "text-[#00ffff]",
@@ -98,10 +106,20 @@ const NewSplash = ({ onEnterAI }) => {
         className="group relative h-[280px] md:h-[320px] border-8 border-black overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 bg-[#111]"
         style={{ boxShadow: `12px 12px 0 0 ${card.shadowColor}` }}
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-          style={{ backgroundImage: `url(${card.bgImg})` }}
-        ></div>
+        {/* Landscape (desktop) — 本地横屏图 */}
+        <img
+          src={card.h}
+          alt={card.title}
+          loading="lazy"
+          className="hidden md:block w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        {/* Portrait (mobile) — 本地竖屏图 */}
+        <img
+          src={card.v}
+          alt={card.title}
+          loading="lazy"
+          className="md:hidden w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
         <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#ffff00] transition-colors pointer-events-none z-10"></div>
 
