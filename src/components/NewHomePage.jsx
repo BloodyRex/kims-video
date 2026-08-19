@@ -8,6 +8,7 @@ import MovieDetail from "./MovieDetail";
 import SaveContent from "./SaveContent";
 import NewSplash from "./NewSplash";
 import NewInputPage from "./NewInputPage";
+import SplashPage from "./SplashPage";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "../services/api";
 import { loadResultsFromCache } from "../utils/cache";
@@ -247,6 +248,7 @@ const NewHomePage = () => {
               onGenerateQuestions={handleGenerateQuestions}
               onSelectMovie={selectMovie}
               onBack={goToSplash}
+              onShowInfo={() => setShowInfoModal(true)}
               currentYear={currentYear}
               locale={locale}
             />
@@ -307,14 +309,7 @@ const NewHomePage = () => {
       )}
 
       {showInfoModal && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center" style={{ backgroundColor: "rgba(0,0,0,0.85)" }} onClick={() => setShowInfoModal(false)}>
-          <div className="bg-[#111] border-4 border-[#ff00ff] max-w-2xl w-full mx-4 p-6" style={{ boxShadow: "12px 12px 0 0 #ffff00" }}>
-            <p className="text-white text-sm font-bold">{t("splash.desc")}</p>
-            <button onClick={() => setShowInfoModal(false)} className="mt-4 px-6 py-2 bg-[#ff00ff] text-white font-black border-2 border-black">
-              {locale === "zh" ? "知道了" : "Got it"}
-            </button>
-          </div>
-        </div>
+        <SplashPage isModal onClose={() => setShowInfoModal(false)} />
       )}
     </div>
   );

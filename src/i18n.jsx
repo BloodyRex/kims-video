@@ -21,6 +21,7 @@ const messages = {
     "app.info": "说明",
 
     // ---- InputPage ----
+    "input.back": "返回主导航",
     "input.primary_label": "主参考作品",
     "input.secondary_label": "附加参考作品 (可选)",
     "input.primary_placeholder": "例如：星际穿越",
@@ -148,6 +149,7 @@ const messages = {
     "app.info": "INFO",
 
     // ---- InputPage ----
+    "input.back": "Back to Home",
     "input.primary_label": "Primary Reference",
     "input.secondary_label": "Additional Reference (Optional)",
     "input.primary_placeholder": "e.g. Interstellar",
