@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocale } from "../i18n";
 import { Icons } from "./Icons";
@@ -13,10 +13,10 @@ const CARDS = [
     id: "ai-search",
     targetStep: "input",
     title: "AI Search",
-    subtitleZh: "AI 推荐",
-    subtitleEn: "AI Picks",
-    descZh: "输入喜欢的电影，AI 为你精准推荐合口味的作品。",
-    descEn: "Tell us what you love, get AI-matched picks.",
+    subtitleZh: "智能视听基因检索",
+    subtitleEn: "AI Genre Search",
+    descZh: "通过深度神经网络与庞大影视资料库交互，寻找您心目中的完美光影。",
+    descEn: "Interact with a deep neural network and a vast film archive to find your perfect movie.",
     bgImg: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80",
     badgeBg: "bg-[#ff00ff]",
     shadowColor: "#ff00ff",
@@ -68,8 +68,29 @@ const CARDS = [
 ];
 
 const NewSplash = ({ onEnterAI }) => {
-  const { locale } = useLocale();
+  const { locale, tArray } = useLocale();
   const zh = locale === "zh";
+  const quotes = tArray("loading.quotes");
+  const [quoteIdx, setQuoteIdx] = useState(0);
+
+  // 轮动句子（与 AI search 加载页一致，2.5~3.5s 随机切换）
+  useEffect(() => {
+    if (!quotes.length) return;
+    let timer;
+    const next = () => {
+      setQuoteIdx((prev) => {
+        if (quotes.length < 2) return prev;
+        let n = prev;
+        while (n === prev) n = Math.floor(Math.random() * quotes.length);
+        return n;
+      });
+      timer = setTimeout(next, 2500 + Math.random() * 1000);
+    };
+    timer = setTimeout(next, 2500 + Math.random() * 1000);
+    return () => clearTimeout(timer);
+  }, [quotes]);
+
+  const tagline = quotes.length ? quotes[quoteIdx] : "";
 
   const renderCard = (card, index) => {
     const inner = (
@@ -142,8 +163,11 @@ const NewSplash = ({ onEnterAI }) => {
         >
           KIM'S <span className="text-[#00ffff]">VIDEO ARCHIVE</span>
         </h2>
-        <p className="text-gray-400 text-xs md:text-sm font-bold bg-black inline-block px-3 py-1 border border-[#00ffff]">
-          {zh ? "四扇门，通往你想要的每一部电影。" : "Four doors. Every film you want, one click away."}
+        <p
+          key={quoteIdx}
+          className="text-gray-400 text-xs md:text-sm font-bold bg-black inline-block px-3 py-1 border border-[#00ffff] transition-opacity duration-500 animate-[fadeIn_0.5s_ease]"
+        >
+          {tagline || (zh ? "四扇门，通往你想要的每一部电影。" : "Four doors. Every film you want, one click away.")}
         </p>
       </div>
 

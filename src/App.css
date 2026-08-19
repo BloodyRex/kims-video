@@ -71,3 +71,9 @@ body {
   pointer-events: none;
   z-index: 0;
 }
+
+/* 新主页 tagline 轮动淡入 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
