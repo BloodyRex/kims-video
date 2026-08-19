@@ -1,0 +1,158 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { useLocale } from "../i18n";
+import { Icons } from "./Icons";
+
+/**
+ * NewSplash — 四宫格沉浸式开屏（2026-08 新主页设计）
+ * 移植自 kim_s_video_application.html 的 renderSplash。
+ * AI Search 卡片进入引擎（onEnterAI），其余三张链接到现有路由。
+ */
+const CARDS = [
+  {
+    id: "ai-search",
+    targetStep: "input",
+    title: "AI Search",
+    subtitleZh: "智能视听基因检索",
+    subtitleEn: "AI Genre Search",
+    descZh: "通过深度神经网络与庞大影视资料库交互，寻找您心目中的完美光影。",
+    descEn: "Interact with a deep neural network and a vast film archive to find your perfect movie.",
+    bgImg: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80",
+    badgeBg: "bg-[#ff00ff]",
+    shadowColor: "#ff00ff",
+    accent: "text-[#00ffff]",
+    to: null, // handled by onEnterAI
+  },
+  {
+    id: "discover",
+    targetStep: "discover",
+    title: "Discover",
+    subtitleZh: "深夜胶片室与灵感书桌",
+    subtitleEn: "Late-Night Film Vault",
+    descZh: "探索影评手记、经典文献与未公开导演笔记，发掘被时光掩埋的艺术档案。",
+    descEn: "Browse curated picks, essays and hidden film archives.",
+    bgImg: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80",
+    badgeBg: "bg-[#00ffff]",
+    shadowColor: "#00ffff",
+    accent: "text-[#ffff00]",
+    to: "/discover",
+  },
+  {
+    id: "intelligence",
+    targetStep: "intelligence",
+    title: "Intelligence",
+    subtitleZh: "黑市情报通缉板",
+    subtitleEn: "Intelligence Board",
+    descZh: "汇聚全球口碑两极分化的争议之作、邪典Cult片及高阶影迷秘密线索。",
+    descEn: "Controversial gems, cult films and insider intelligence.",
+    bgImg: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1200&q=80",
+    badgeBg: "bg-[#ffff00]",
+    shadowColor: "#ffff00",
+    accent: "text-[#ff00ff]",
+    to: "/intelligence",
+  },
+  {
+    id: "movie-wall",
+    targetStep: "wall",
+    title: "Movie Wall",
+    subtitleZh: "珍藏录像带陈列壁橱",
+    subtitleEn: "VHS Archive Wall",
+    descZh: "沉浸式浏览经典实体录像带珍藏。跨越世纪的视觉名作，一触即发。",
+    descEn: "Browse a century of cinema on the archive wall.",
+    bgImg: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1200&q=80",
+    badgeBg: "bg-[#00dd00]",
+    shadowColor: "#00dd00",
+    accent: "text-[#00ffff]",
+    to: "/wall",
+  },
+];
+
+const NewSplash = ({ onEnterAI }) => {
+  const { locale } = useLocale();
+  const zh = locale === "zh";
+
+  const renderCard = (card, index) => {
+    const inner = (
+      <div
+        className="group relative h-[280px] md:h-[320px] border-8 border-black overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 bg-[#111]"
+        style={{ boxShadow: `12px 12px 0 0 ${card.shadowColor}` }}
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+          style={{ backgroundImage: `url(${card.bgImg})` }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+        <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#ffff00] transition-colors pointer-events-none z-10"></div>
+
+        <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between z-20">
+          <div className="flex justify-between items-start">
+            <span className={`text-[10px] font-black px-3 py-1 text-black border-2 border-black pixel-font uppercase ${card.badgeBg}`}>
+              Archive Entry
+            </span>
+            <span className="text-white font-mono text-xs bg-black/80 px-2 py-1 border border-white/40">
+              SEC.0{index + 1}
+            </span>
+          </div>
+
+          <div>
+            <h3 className="text-3xl md:text-4xl font-black mb-1 uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#000]">
+              {card.title}
+            </h3>
+            <h4 className={`text-sm md:text-base font-bold mb-3 ${card.accent}`}>
+              {zh ? card.subtitleZh : card.subtitleEn}
+            </h4>
+            <p className="text-gray-300 text-xs md:text-sm font-medium line-clamp-2 bg-black/60 p-2.5 border-l-4 border-[#ff00ff]">
+              {zh ? card.descZh : card.descEn}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-between pt-2 border-t border-white/20">
+            <span className="text-xs font-bold text-[#ffff00] uppercase tracking-wider pixel-font group-hover:translate-x-2 transition-transform inline-flex items-center">
+              {zh ? "点击进入系统 >>" : "Enter System >>"}
+            </span>
+            <div className="w-8 h-8 bg-white text-black border-2 border-black flex items-center justify-center font-black group-hover:bg-[#ffff00] transition-colors">
+              <Icons.ChevronRight className="w-5 h-5" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
+    if (card.to) {
+      return (
+        <Link key={card.id} to={card.to} className="block">
+          {inner}
+        </Link>
+      );
+    }
+    return (
+      <div key={card.id} onClick={onEnterAI} className="block">
+        {inner}
+      </div>
+    );
+  };
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-8 min-h-[85vh] flex flex-col justify-center">
+      {/* 顶栏精简标题 */}
+      <div className="text-center mb-8">
+        <h2
+          className="text-2xl md:text-4xl font-black text-white tracking-wider uppercase pixel-font mb-2"
+          style={{ textShadow: "3px 3px 0 #ff00ff" }}
+        >
+          KIM'S <span className="text-[#00ffff]">VIDEO ARCHIVE</span>
+        </h2>
+        <p className="text-gray-400 text-xs md:text-sm font-bold bg-black inline-block px-3 py-1 border border-[#00ffff]">
+          {zh ? '"艺术高于法律，选择你的入口。"' : '"Art is above the law. Choose your gateway."'}
+        </p>
+      </div>
+
+      {/* 四张全景满铺卡片网格 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {CARDS.map((card, i) => renderCard(card, i))}
+      </div>
+    </div>
+  );
+};
+
+export default NewSplash;

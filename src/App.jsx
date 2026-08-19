@@ -11,6 +11,7 @@ import DiscoverPage from "./components/DiscoverPage";
 import IntelligencePage from "./components/IntelligencePage";
 import WallPage from "./components/WallPage";
 import EntryPage from "./components/EntryPage";
+import NewHomePage from "./components/NewHomePage";
 import AdminPage from "./components/AdminPage";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "./services/api";
@@ -22,7 +23,7 @@ import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-do
 import { LocaleProvider, useLocale } from "./i18n";
 import ShareButton from "./components/ShareButton";
 
-// Entry portal route — swap to "/" when the portal goes live (engine moves to /recommend)
+// Entry portal route — the classic engine home lives here now (new home owns "/")
 const ENTRY_ROUTE = "/recommend";
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
     <BrowserRouter>
       <LocaleProvider>
         <Routes>
-          <Route path="/" element={<AppContent />} />
+          <Route path="/" element={<NewHomePage />} />
           <Route path="/discover" element={<DiscoverPage />} />
           <Route path="/discover/genre/:slug" element={<DiscoverPage />} />
           <Route path="/admin" element={<AdminPage />} />
@@ -42,8 +43,10 @@ function App() {
           <Route path="/intelligence/weekly" element={<IntelligencePage />} />
           <Route path="/intelligence/search" element={<IntelligencePage />} />
           <Route path="/wall" element={<WallPage />} />
-          {/* Hidden test page: new 4-card entry portal (swap with "/" when it goes live) */}
-          <Route path="/recommend" element={<EntryPage />} />
+          {/* Legacy engine home (pre-new-home design) — kept at /recommend */}
+          <Route path="/recommend" element={<AppContent />} />
+          {/* Hidden test page: new 4-card entry portal */}
+          <Route path="/entry" element={<EntryPage />} />
         </Routes>
         <ShareButtonWrapper />
       </LocaleProvider>
