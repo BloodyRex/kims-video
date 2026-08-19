@@ -438,7 +438,7 @@ const DiscoverPage = () => {
       </div>
       <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
         <p>
-          <Link to="/" className="hover:text-[#ffff00] transition-colors">{t('footer.home')}</Link>
+          <Link to="/?search=1" className="hover:text-[#ffff00] transition-colors">{t('footer.home')}</Link>
           <span className="text-gray-600 mx-2">|</span>
           <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">{t('footer.intel')}</Link>
           <span className="text-gray-600 mx-2">|</span>

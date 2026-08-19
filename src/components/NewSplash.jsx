@@ -13,10 +13,10 @@ const CARDS = [
     id: "ai-search",
     targetStep: "input",
     title: "AI Search",
-    subtitleZh: "智能视听基因检索",
-    subtitleEn: "AI Genre Search",
-    descZh: "通过深度神经网络与庞大影视资料库交互，寻找您心目中的完美光影。",
-    descEn: "Interact with a deep neural network and a vast film archive to find your perfect movie.",
+    subtitleZh: "AI 推荐",
+    subtitleEn: "AI Picks",
+    descZh: "输入喜欢的电影，AI 为你精准推荐合口味的作品。",
+    descEn: "Tell us what you love, get AI-matched picks.",
     bgImg: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80",
     badgeBg: "bg-[#ff00ff]",
     shadowColor: "#ff00ff",
@@ -27,10 +27,10 @@ const CARDS = [
     id: "discover",
     targetStep: "discover",
     title: "Discover",
-    subtitleZh: "深夜胶片室与灵感书桌",
-    subtitleEn: "Late-Night Film Vault",
-    descZh: "探索影评手记、经典文献与未公开导演笔记，发掘被时光掩埋的艺术档案。",
-    descEn: "Browse curated picks, essays and hidden film archives.",
+    subtitleZh: "精选合辑",
+    subtitleEn: "Curated Picks",
+    descZh: "编辑与社区精选的电影合辑、专题盘点。",
+    descEn: "Hand-picked collections and editor's choices.",
     bgImg: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80",
     badgeBg: "bg-[#00ffff]",
     shadowColor: "#00ffff",
@@ -41,10 +41,10 @@ const CARDS = [
     id: "intelligence",
     targetStep: "intelligence",
     title: "Intelligence",
-    subtitleZh: "黑市情报通缉板",
-    subtitleEn: "Intelligence Board",
-    descZh: "汇聚全球口碑两极分化的争议之作、邪典Cult片及高阶影迷秘密线索。",
-    descEn: "Controversial gems, cult films and insider intelligence.",
+    subtitleZh: "情报中心",
+    subtitleEn: "Intel Center",
+    descZh: "影讯、剧集、音乐与每周情报速览。",
+    descEn: "Movie, TV & music news at a glance.",
     bgImg: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1200&q=80",
     badgeBg: "bg-[#ffff00]",
     shadowColor: "#ffff00",
@@ -55,10 +55,10 @@ const CARDS = [
     id: "movie-wall",
     targetStep: "wall",
     title: "Movie Wall",
-    subtitleZh: "珍藏录像带陈列壁橱",
-    subtitleEn: "VHS Archive Wall",
-    descZh: "沉浸式浏览经典实体录像带珍藏。跨越世纪的视觉名作，一触即发。",
-    descEn: "Browse a century of cinema on the archive wall.",
+    subtitleZh: "影视墙",
+    subtitleEn: "Movie Wall",
+    descZh: "浏览你的电影收藏墙，按日期排布的影史长卷。",
+    descEn: "Your film collection, arranged by release date.",
     bgImg: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1200&q=80",
     badgeBg: "bg-[#00dd00]",
     shadowColor: "#00dd00",
@@ -135,15 +135,15 @@ const NewSplash = ({ onEnterAI }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 min-h-[85vh] flex flex-col justify-center">
       {/* 顶栏精简标题 */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-12">
         <h2
-          className="text-2xl md:text-4xl font-black text-white tracking-wider uppercase pixel-font mb-2"
+          className="text-2xl md:text-4xl font-black text-white tracking-wider uppercase pixel-font mb-6"
           style={{ textShadow: "3px 3px 0 #ff00ff" }}
         >
           KIM'S <span className="text-[#00ffff]">VIDEO ARCHIVE</span>
         </h2>
         <p className="text-gray-400 text-xs md:text-sm font-bold bg-black inline-block px-3 py-1 border border-[#00ffff]">
-          {zh ? '"艺术高于法律，选择你的入口。"' : '"Art is above the law. Choose your gateway."'}
+          {zh ? "四扇门，通往你想要的每一部电影。" : "Four doors. Every film you want, one click away."}
         </p>
       </div>
 

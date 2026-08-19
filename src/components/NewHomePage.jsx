@@ -59,9 +59,15 @@ const NewHomePage = () => {
     setIsCapturing,
   } = useMovieEngine();
 
-  // 初始步骤：四宫格开屏（覆盖 engine 默认的 "input"）
+  // 初始步骤：四宫格开屏（覆盖 engine 默认的 "input"）；
+  // 带 ?search=1 时直达 AI search 输入页（footer"主页搜索"链接目标）
   useEffect(() => {
-    setStep("splash");
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("search") === "1") {
+      setStep("input");
+    } else {
+      setStep("splash");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

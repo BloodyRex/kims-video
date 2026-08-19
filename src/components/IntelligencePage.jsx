@@ -558,7 +558,7 @@ function IntelligencePage() {
         <p>
           <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t('footer.discover')}</Link>
           <span className="text-gray-600 mx-2">|</span>
-          <Link to="/" className="hover:text-[#00ffff] transition-colors">{t('footer.home')}</Link>
+          <Link to="/?search=1" className="hover:text-[#00ffff] transition-colors">{t('footer.home')}</Link>
           <span className="text-gray-600 mx-2">|</span>
           <Link to="/wall" className="hover:text-[#ff00ff] transition-colors">{t('footer.wall')}</Link>
           <span className="text-gray-600 mx-2">|</span>
