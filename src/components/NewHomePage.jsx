@@ -35,7 +35,7 @@ const NewHomePage = () => {
     showPrimaryDropdown, setShowPrimaryDropdown,
     showSecondaryDropdown, setShowSecondaryDropdown,
     questions, currentQIndex,
-    recommendations,
+    recommendations, setRecommendations,
     error, setError,
     replacingIndexes, isCapturing,
     showSaveLayout, setShowSaveLayout,
