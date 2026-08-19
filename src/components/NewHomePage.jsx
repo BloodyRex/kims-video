@@ -22,7 +22,7 @@ import { useLocale } from "../i18n";
  * 复用 useMovieEngine 全部逻辑；Discover/Intelligence/Wall 走现有路由。
  */
 const NewHomePage = () => {
-  const { t, locale } = useLocale();
+  const { t, locale, toggleLocale } = useLocale();
   const saveContainerRef = useRef(null);
   const [showInfoModal, setShowInfoModal] = useState(false);
 
@@ -316,6 +316,17 @@ const NewHomePage = () => {
           />
         )}
       </main>
+
+      {/* 语言切换按钮（与其他子页面一致） */}
+      <div className="fixed bottom-[116px] sm:bottom-[128px] right-3 sm:right-4 z-40">
+        <button
+          onClick={toggleLocale}
+          className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none"
+          style={{ fontFamily: "'Press Start 2P','Courier New',Courier,monospace" }}
+        >
+          {locale === "zh" ? "En" : "中"}
+        </button>
+      </div>
 
       {/* Footer (hidden on splash) */}
       {step !== "splash" && (
