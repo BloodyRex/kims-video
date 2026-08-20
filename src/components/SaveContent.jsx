@@ -54,11 +54,9 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
         >
           TARGETS ACQUIRED
         </h2>
-        <p className="bg-[#00ffff] text-black font-bold px-3 pt-0 pb-2 border-2 border-black inline-flex items-center mt-2 text-sm">
+        <p className="bg-[#00ffff] text-black font-bold px-3 py-1 border-2 border-black inline-flex items-center mt-2 text-sm">
           <span
             style={{
-              transform: "translateY(4px)",
-              display: "inline-block",
               fontFamily:
                 "-apple-system, 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif",
               letterSpacing: "0.12em",
@@ -161,39 +159,24 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
                   {/* 标签行 */}
                   <div className="flex items-center gap-2 mb-1">
                     <span
-                      className="text-xs font-black px-2 pt-0 pb-1.5 border-2 border-black inline-flex items-center"
+                      className="text-xs font-black px-2 py-1 border-2 border-black inline-flex items-center"
                       style={{
                         backgroundColor: badge.bg,
                         color: "#000",
-                        transform: "translateY(0px)",
+                        lineHeight: "1.4",
                       }}
                     >
-                      <span
-                        style={{
-                          transform: "translateY(4px)",
-                          display: "inline-block",
-                        }}
-                      >
-                        {badge.text}
-                      </span>
+                      {badge.text}
                     </span>
                     <span
-                      className="text-xs font-black px-2 pt-0 pb-1.5 bg-black text-white border-2 border-black inline-flex items-center"
+                      className="text-xs font-black px-2 py-1 bg-black text-white border-2 border-black inline-flex items-center"
                       style={{
                         fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
                         fontSize: "8px",
-                        lineHeight: "10px",
-                        transform: "translateY(0px)",
+                        lineHeight: "1.4",
                       }}
                     >
-                      <span
-                        style={{
-                          transform: "translateY(4px)",
-                          display: "inline-block",
-                        }}
-                      >
-                        {rec.year} | {rec.type}
-                      </span>
+                      {rec.year} | {rec.type}
                     </span>
                   </div>
                   {/* 标题 */}
@@ -212,10 +195,8 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
                   )}
                 </div>
                 {/* 推荐理由 */}
-                <div className="mt-1.5 pt-0 pb-0.5 px-2 bg-gray-100 border-[2px] border-black text-xs text-gray-800 leading-snug">
-                  <span style={{ transform: "translateY(2px)", display: "inline-block" }}>
-                    {rec.reason}
-                  </span>
+                <div className="mt-1.5 py-1 px-2 bg-gray-100 border-[2px] border-black text-xs text-gray-800 leading-snug">
+                  {rec.reason}
                 </div>
               </div>
 
@@ -255,7 +236,6 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
       >
         <span
           style={{
-            transform: "translateY(2px)",
             fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
             letterSpacing: "0.15em",
           }}
