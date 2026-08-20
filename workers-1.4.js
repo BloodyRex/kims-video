@@ -967,8 +967,13 @@ async function handleIntelMovies(env) {
   const weekAgo = intelDaysAgo(7);
   const ninetyDaysAgo = intelDaysAgo(90);
 
-  const [nowPlayingRaw, releasedRaw, upcomingRaw] = await Promise.all([
-    intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
+  const [nowPlayingRaw, cnPlayingRaw, releasedRaw, upcomingRaw] = await Promise.all([
+    // US theatrical: 2 pages (CN-first bucketing means US dates only pre-filter)
+    intelFetchPages(token, "/movie/now_playing", { region: "US" }, 2),
+    // CN theatrical: 2 pages — catches domestic Chinese hits (牛来, 欢迎来龙餐馆…)
+    // that never played US theatres but are in CN rotation. Required for the
+    // intelligence page to surface 国内新片 (2026-08-20, niu lai gap).
+    intelFetchPages(token, "/movie/now_playing", { region: "CN" }, 2),
     intelFetchReleasedMovies(token, 3),
     intelFetchUpcomingMovies(token, 1),
   ]);
@@ -982,6 +987,12 @@ async function handleIntelMovies(env) {
   // played US theatres but are still in theatrical rotation at home.
   const recentMerged = [...nowPlayingRaw];
   const recentIds = new Set(nowPlayingRaw.map(m => m.id));
+  // CN-theatrical ids: these get a relaxed popularity floor (domestic CN hits
+  // like 牛来 have low global popularity but are genuinely in CN theatres).
+  const cnPoolIds = new Set();
+  for (const m of cnPlayingRaw) {
+    if (!recentIds.has(m.id)) { recentIds.add(m.id); cnPoolIds.add(m.id); recentMerged.push(m); }
+  }
   for (const m of releasedRaw) {
     if (!recentIds.has(m.id)) { recentIds.add(m.id); recentMerged.push(m); }
   }
@@ -1022,8 +1033,10 @@ async function handleIntelMovies(env) {
     .filter(m => m.release_date && m.release_date >= ninetyDaysAgo)
     .filter(m => !weekIds.has(m.id) && !upcomingIds.has(m.id))
     .filter(cnFilter)
-    .filter(m => (m.popularity || 0) >= 25)
-    .filter(intelRatingOk);
+    // CN-theatrical entries (domestic hits like 牛来) have low global popularity
+    // and early sparse votes — relax both floors for them. Everything else keeps
+    // the 25/4.0 floors so slots aren't flooded with long-tail US titles.
+    .filter(m => cnPoolIds.has(m.id) ? (m.popularity || 0) >= 8 && (!m.vote_average || m.vote_average >= 2) : (m.popularity || 0) >= 25 && intelRatingOk(m));
   const nowPlayingSelected = intelSelectDiverse(nowPlayingCandidates, 15, reserve, SCORE_OPTS.movie, today);
   const nowPlayingNormalized = (await Promise.all(
     nowPlayingSelected.map(m => intelPickCnReleaseDate(intelNormalizeMovie(m), token))
