@@ -1,0 +1,63 @@
+name: TEMP-Probe-NiuLai
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe movie 1748007 across all candidate sources
+        env:
+          TMDB_TOKEN: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: |
+          node -e '
+          const t = process.env.TMDB_TOKEN;
+          const H = { Authorization: `Bearer ${t}`, "Content-Type": "application/json" };
+          (async () => {
+            const id = 1748007;
+
+            // 1. 基本信息 (zh + en)
+            for (const lang of ["zh-CN", "en-US"]) {
+              const r = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=${lang}`, { headers: H });
+              const j = await r.json();
+              console.log(`=== ${lang} ===`);
+              console.log(`title: ${j.title} | original: ${j.original_title} | release: ${j.release_date} | pop: ${j.popularity} | vote: ${j.vote_average} | status: ${j.status}`);
+              console.log(`overview: ${(j.overview || "").slice(0, 120)}`);
+            }
+
+            // 2. now_playing region=US 前 3 页
+            let foundUS = false;
+            for (let p = 1; p <= 3; p++) {
+              const r = await fetch(`https://api.themoviedb.org/3/movie/now_playing?region=US&page=${p}`, { headers: H });
+              const j = await r.json();
+              const hit = (j.results || []).find(m => m.id === id);
+              if (hit) { foundUS = true; console.log(`FOUND in now_playing US page ${p}: release_date=${hit.release_date}`); }
+            }
+            console.log("now_playing US:", foundUS ? "FOUND" : "NOT FOUND");
+
+            // 3. now_playing region=CN 前 3 页
+            let foundCN = false;
+            for (let p = 1; p <= 3; p++) {
+              const r = await fetch(`https://api.themoviedb.org/3/movie/now_playing?region=CN&page=${p}`, { headers: H });
+              const j = await r.json();
+              const hit = (j.results || []).find(m => m.id === id);
+              if (hit) { foundCN = true; console.log(`FOUND in now_playing CN page ${p}: release_date=${hit.release_date}`); }
+            }
+            console.log("now_playing CN:", foundCN ? "FOUND" : "NOT FOUND");
+
+            // 4. trending/week
+            const tr = await fetch(`https://api.themoviedb.org/3/trending/movie/week`, { headers: H });
+            const tj = await tr.json();
+            console.log("trending/week:", (tj.results || []).some(m => m.id === id) ? "FOUND" : "NOT FOUND");
+
+            // 5. release_dates
+            const rd = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates`, { headers: H });
+            const rdj = await rd.json();
+            for (const rel of (rdj.results || [])) {
+              if (["US", "CN", "HK", "TW"].includes(rel.iso_3166_1)) {
+                console.log(`release_dates ${rel.iso_3166_1}: ` + rel.release_dates.map(x => `type${x.type}=${x.release_date}`).join(", "));
+              }
+            }
+          })().catch(e => { console.error("ERR", e.message); process.exit(1); });
+          '
