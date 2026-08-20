@@ -979,7 +979,13 @@ async function handleIntelMovies(env) {
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
+  // Strict filter for US/global pool: BOTH title & overview must be Chinese.
   const cnFilter = (m) => hasChinese(m.title || m.name) && hasChinese(m.overview);
+  // CN-theatrical pool: list endpoint returns EN title/overview even for CN
+  // releases (probed 2026-08-20: 牛来 title="The Cow is Coming" zh-overview=false),
+  // so strict AND kills ALL of them. Relax to: title OR overview in Chinese.
+  // The detail fetch (intelPickCnReleaseDate) later restores the zh title.
+  const cnPoolFilter = (m) => hasChinese(m.title || m.name) || hasChinese(m.overview);
   const reserve = { zh: 2, ja: 1, ko: 1 };
 
   // ── Unified recent pool: US now_playing + past-90d discover (dedup by id) ──
@@ -1003,12 +1009,18 @@ async function handleIntelMovies(env) {
   // decision uses the CN release date (intelPickCnReleaseDate, type 2/3).
   const weekCandidates = recentMerged
     .filter(m => m.release_date && m.release_date >= intelDaysAgo(10) && m.release_date <= today)
-    .filter(cnFilter)
+    // CN-pool entries skip the zh filter entirely: region=CN list endpoint returns
+    // EN title/overview for every film (probed), so zh-filtering would kill all of
+    // them; the detail fetch below restores zh titles.
+    .filter(m => cnPoolIds.has(m.id) || cnFilter(m))
     .filter(intelRatingOk);
   const weekSelected = intelSelectDiverse(weekCandidates, 15, reserve, SCORE_OPTS.movie, today);
   // CN-first release date (2026-08-17). Cached 1 day; subrequests stay bounded.
+  // CN-pool entries: list date IS the CN date → only restore zh title/overview.
   const weekNormalized = (await Promise.all(
-    weekSelected.map(m => intelPickCnReleaseDate(intelNormalizeMovie(m), token))
+    weekSelected.map(m => cnPoolIds.has(m.id)
+      ? intelFetchZhDetails(intelNormalizeMovie(m), token)
+      : intelPickCnReleaseDate(intelNormalizeMovie(m), token))
   )).filter(Boolean);
   // Bucket by CN date: [weekAgo, today] → this week; earlier → now playing
   const weekM = weekNormalized.filter(m => m.releaseDate && m.releaseDate >= weekAgo && m.releaseDate <= today);
@@ -1032,14 +1044,17 @@ async function handleIntelMovies(env) {
   const nowPlayingCandidates = recentMerged
     .filter(m => m.release_date && m.release_date >= ninetyDaysAgo)
     .filter(m => !weekIds.has(m.id) && !upcomingIds.has(m.id))
-    .filter(cnFilter)
+    // CN-pool entries skip the zh filter (region=CN list returns EN everywhere)
+    .filter(m => cnPoolIds.has(m.id) || cnFilter(m))
     // CN-theatrical entries (domestic hits like 牛来) have low global popularity
     // and early sparse votes — relax both floors for them. Everything else keeps
     // the 25/4.0 floors so slots aren't flooded with long-tail US titles.
     .filter(m => cnPoolIds.has(m.id) ? (m.popularity || 0) >= 8 && (!m.vote_average || m.vote_average >= 2) : (m.popularity || 0) >= 25 && intelRatingOk(m));
   const nowPlayingSelected = intelSelectDiverse(nowPlayingCandidates, 15, reserve, SCORE_OPTS.movie, today);
   const nowPlayingNormalized = (await Promise.all(
-    nowPlayingSelected.map(m => intelPickCnReleaseDate(intelNormalizeMovie(m), token))
+    nowPlayingSelected.map(m => cnPoolIds.has(m.id)
+      ? intelFetchZhDetails(intelNormalizeMovie(m), token)
+      : intelPickCnReleaseDate(intelNormalizeMovie(m), token))
   )).filter(Boolean);
   // CN-date bucket: [ninetyDaysAgo, weekAgo) → now playing; plus week overflow
   const nowPlayingFromPool = nowPlayingNormalized.filter(m => m.releaseDate && m.releaseDate >= ninetyDaysAgo && m.releaseDate < weekAgo);
@@ -1097,6 +1112,30 @@ async function intelPickCnReleaseDate(movie, token) {
       .sort((a, b) => a.release_date.localeCompare(b.release_date))[0];
     if (theatrical?.release_date) movie.releaseDate = theatrical.release_date.slice(0, 10);
   } catch (e) { console.warn("release-date fix fail:", movie.tmdbId, e.message); }
+  return movie;
+}
+
+// ── zh-CN detail fetch: restore Chinese title/overview for CN-pool entries ──
+// now_playing?region=CN returns the EN title/overview for EVERY film (probed
+// 2026-08-20: 牛来 title="The Cow is Coming"), so CN-pool candidates carry no
+// Chinese text. The list's release_date IS the CN theatrical date, so this
+// replaces the release_dates correction for CN-pool entries (budget-neutral:
+// one detail call instead of one release_dates call).
+async function intelFetchZhDetails(movie, token) {
+  if (!movie?.tmdbId || !token) return movie;
+  try {
+    const det = await withCache(`${movie.tmdbId}-zh-details`, async () => {
+      const r = await fetch(`https://api.themoviedb.org/3/movie/${movie.tmdbId}?language=zh-CN`, {
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      });
+      return r.ok ? r.json() : null;
+    }, 86400);
+    if (det) {
+      if (det.title) movie.title = det.title;
+      if (det.overview) movie.overview = det.overview;
+      if (!movie.releaseDate && det.release_date) movie.releaseDate = det.release_date.slice(0, 10);
+    }
+  } catch (e) { console.warn("zh-details fail:", movie.tmdbId, e.message); }
   return movie;
 }
 
