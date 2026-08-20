@@ -23,7 +23,6 @@ const NewInputPage = ({
   error,
   onGenerateQuestions,
   onSelectMovie,
-  onBack,
   onShowInfo,
   currentYear,
   locale,
@@ -54,14 +53,6 @@ const NewInputPage = ({
     <div className="max-w-2xl mx-auto bg-white border-8 max-sm:border-4 border-black p-8 max-sm:p-4 shadow-[16px_16px_0_0_rgba(0,0,0,1)] max-sm:shadow-[8px_8px_0_0_rgba(0,0,0,1)] relative retro-container max-sm:mx-3">
       <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#ff00ff] rounded-full mix-blend-multiply filter blur-2xl opacity-50 pointer-events-none"></div>
       <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#00ffff] rounded-full mix-blend-multiply filter blur-2xl opacity-50 pointer-events-none"></div>
-
-      {/* 返回主导航（新主页新增，保留） */}
-      <button
-        onClick={onBack}
-        className="absolute top-3 left-3 max-sm:top-1 max-sm:left-1 z-20 bg-black text-white px-2 py-1 font-bold text-[10px] max-sm:text-[8px] border-2 border-[#ffff00] hover:bg-[#ffff00] hover:text-black transition-colors"
-      >
-        &lt;&lt; {t("input.back") || "返回主导航"}
-      </button>
 
       {/* ? 使用说明按钮（旧版 InputPage 细节，还原） */}
       <button

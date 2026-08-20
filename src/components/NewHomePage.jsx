@@ -247,7 +247,6 @@ const NewHomePage = () => {
               error={error}
               onGenerateQuestions={handleGenerateQuestions}
               onSelectMovie={selectMovie}
-              onBack={goToSplash}
               onShowInfo={() => setShowInfoModal(true)}
               currentYear={currentYear}
               locale={locale}
