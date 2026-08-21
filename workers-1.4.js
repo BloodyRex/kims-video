@@ -1151,12 +1151,11 @@ const TVMAZE_LANG_MAP = {
 };
 
 // Fetch upcoming web-schedule entries from TVMAZE (free API, no key).
-async function intelFetchTVMazeWeb(days = 2) {
+// `offsets` = day offsets from today (Beijing): premieres [0..3] (next 2-4 days),
+// upcoming sampling [7, 14] (probed once a day).
+async function intelFetchTVMazeWeb(offsets = [0, 1]) {
   const today = new Date();
-  const dates = [];
-  for (let d = 0; d < days; d++) {
-    dates.push(new Date(today.getTime() + d * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }));
-  }
+  const dates = offsets.map(d => new Date(today.getTime() + d * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }));
   const results = await Promise.allSettled(dates.map(date =>
     fetch(`https://api.tvmaze.com/schedule/web?date=${date}`)
       .then(r => (r.ok ? r.json() : []))
@@ -1193,6 +1192,9 @@ function intelTVMazeToCandidate(ep) {
     _posterUrl: s.image?.medium || s.image?.original || "",
     _tvmazePosterUrl: s.image?.medium || s.image?.original || "", // keep original for fallback
     _genres: Array.isArray(s.genres) ? s.genres : [],
+    // S/E from the schedule episode (season/episode numbers on the ep entry)
+    _season: ep?.season ?? null,
+    _episode: ep?.number ?? null,
     source: "tvmaze",
     mediaType: "tv",
   };
@@ -1200,8 +1202,8 @@ function intelTVMazeToCandidate(ep) {
 
 // TVMAZE candidate → final output shape (mirrors intelNormalizeMovie).
 // Poster fallback chain: TMDB (from enrich) → TVMAZE original → empty.
-// TVMAZE image URLs are absolute (https://static.tvmaze.com/...) — the frontend
-// posterUrl() helper passes non-TMDB absolute URLs through unchanged.
+// TVMAZE image URLs are absolute (https://static.tvmaze...), front-end posterUrl()
+// passes through absolute URLs untouched. S/E comes from the schedule episode.
 function intelTVMazeToOutput(m) {
   const poster = m._posterUrl || m._tvmazePosterUrl || "";
   return {
@@ -1217,6 +1219,8 @@ function intelTVMazeToOutput(m) {
     genre: m._genres || [],
     summary: m.overview || "",
     summaryEn: m._overviewEn || "",
+    season: m._season ?? null,
+    episode: m._episode ?? null,
     source: "tvmaze",
     mediaType: "tv",
   };
@@ -1231,11 +1235,18 @@ async function intelTVMazeEnrich(candidate, token) {
     if (hit?.tmdbId) {
       candidate.tmdbId = hit.tmdbId;
       const d = await fetchTMDBDetails(hit.tmdbId, token, "zh-CN");
+      const hasZh = (text) => /[一-鿿]/.test(text || "");
       if (d?.name) candidate.title = d.name;
       if (d?.overview) candidate.overview = d.overview;
       if (d?.poster_path) candidate._posterUrl = `https://image.tmdb.org/t/p/w500${d.poster_path}`;
       if (d?.vote_average) candidate.vote_average = d.vote_average;
       if (Array.isArray(d?.genres)) candidate._genres = d.genres.map(g => g.name);
+      // 2026-08-20: drop shows that end up with NEITHER a zh title NOR zh summary.
+      // TVMAZE has no zh data, so a TMDB hit that itself carries no Chinese text
+      // is unusable in the zh UI — kill it (at least title OR overview must be zh).
+      if (!hasZh(candidate.title) && !hasZh(candidate.overview)) {
+        candidate._drop = true;
+      }
     }
   } catch (e) { console.warn("tvmaze enrich fail:", candidate.title, e.message); }
   return candidate;
@@ -1244,7 +1255,8 @@ async function intelTVMazeEnrich(candidate, token) {
 // Bound enrichment so TVMAZE subrequests stay inside the 50-request Worker limit.
 async function intelEnrichTVMazeBatch(candidates, token, max = 3) {
   const limited = (candidates || []).slice(0, max);
-  return Promise.all(limited.map(s => intelTVMazeEnrich(s, token)));
+  return Promise.all(limited.map(s => intelTVMazeEnrich(s, token)))
+    .then(arr => arr.filter(s => s && !s._drop));
 }
 
 async function handleIntelTV(env) {
@@ -1253,53 +1265,55 @@ async function handleIntelTV(env) {
   const weekAgo = intelDaysAgo(7);
   const ninetyDaysAgo = intelDaysAgo(90);
   const ninetyDaysLater = new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
+  const thirtyDaysAgo = intelDaysAgo(30);
+  const hundredEightyDaysAgo = intelDaysAgo(180);
 
-  const [onTheAir, trendingTV, discoverRaw, tvmazeEps] = await Promise.all([
+  // ── Data sources (2026-08-20 v2: TVMAZE primary, TMDB supplements + zh) ──
+  // premieres: TVMAZE schedule next 2-4 days (真实首播日，国产剧先上 TVMAZE 场景直接覆盖)
+  // upcoming:  TVMAZE +7/+14 day samples + TMDB discover 未来 90 天
+  // ongoing:   TMDB on_the_air (TVMAZE has no "airing now" list endpoint)
+  const [onTheAir, discoverRaw, tvmazePremEps, tvmazeUpEps] = await Promise.all([
     intelFetchPages(token, "/tv/on_the_air", {}, 2),
-    intelFetchTMDB(token, "/trending/tv/week"),
     intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, 1),
-    intelFetchTVMazeWeb(2), // next 2 days of TVMAZE web schedule (free API)
+    intelFetchTVMazeWeb([0, 1, 2, 3]), // premieres: next 2-4 days
+    intelFetchTVMazeWeb([7, 14]),      // upcoming: +7/+14 day samples
   ]);
-
-  // TVMAZE → unified candidates (dedup by show id)
-  const tvmazeSeen = new Set();
-  const tvmazeShows = (tvmazeEps || [])
-    .map(ep => intelTVMazeToCandidate(ep))
-    .filter(s => {
-      if (!s._tvmazeId || tvmazeSeen.has(s._tvmazeId)) return false;
-      tvmazeSeen.add(s._tvmazeId);
-      return Boolean(s.first_air_date) && s.first_air_date >= weekAgo && s.first_air_date <= ninetyDaysLater;
-    });
-  const tvmazePremiere = tvmazeShows.filter(s => s.first_air_date >= weekAgo && s.first_air_date <= today);
-  const tvmazeUpcoming = tvmazeShows.filter(s => s.first_air_date > today && s.first_air_date <= ninetyDaysLater);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const cnFilter = (s) => hasChinese(s.title || s.name) && hasChinese(s.overview);
   const titleCn = (s) => hasChinese(s.title || s.name);
   const reserve = { cn: 1, hmt: 1, jp: 1, kr: 1 };
 
-  // This week premieres: on_the_air + trending supplement, EN auto-pass, non-EN needs Chinese title
+  // ── TVMAZE → unified candidates (dedup by show id, date-windowed) ──
+  const toTvmazeShows = (eps) => {
+    const seen = new Set();
+    return (eps || [])
+      .map(ep => intelTVMazeToCandidate(ep))
+      .filter(s => {
+        if (!s._tvmazeId || seen.has(s._tvmazeId)) return false;
+        seen.add(s._tvmazeId);
+        return Boolean(s.first_air_date) && s.first_air_date >= weekAgo && s.first_air_date <= ninetyDaysLater;
+      });
+  };
+  const tvmazePremiere = toTvmazeShows(tvmazePremEps).filter(s => s.first_air_date <= today);
+  const tvmazeUpcoming = toTvmazeShows(tvmazeUpEps).filter(s => s.first_air_date > today);
+
+  // ── This week premieres: TVMAZE primary + on_the_air supplement ──
   const premiereFromOnAir = onTheAir
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
     .filter(intelRatingOk)
     .filter(s => s.original_language === "en" || (titleCn(s) && (s.popularity || 0) >= 50));
-  const premiereFromTrending = trendingTV
-    .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
-    .filter(intelRatingOk)
-    .filter(s => s.original_language === "en" || (titleCn(s) && (s.popularity || 0) >= 5));
   const premiereMerged = [...premiereFromOnAir];
-  const onAirPremIds = new Set(premiereFromOnAir.map(s => s.id));
-  for (const s of premiereFromTrending) {
-    if (!onAirPremIds.has(s.id)) premiereMerged.push(s);
+  const premOnAirIds = new Set(premiereFromOnAir.map(s => s.id));
+  for (const s of tvmazePremiere) {
+    if (!premOnAirIds.has(s.id)) premiereMerged.push(s);
   }
-  // TVMAZE premiere candidates (EN titles OK — no zh filter required)
-  for (const s of tvmazePremiere) premiereMerged.push(s);
   const premiereSelected = intelSelectDiverse(premiereMerged, 15, reserve, SCORE_OPTS.tv, today);
-  // TMDB episode enrichment only for TMDB-sourced shows (TVMAZE items lack tmdbId)
+  // TMDB episode enrichment only for TMDB-sourced shows
   const premiereEnriched = await intelFetchTVEpisodeDates(premiereSelected.filter(s => s.source !== "tvmaze"), token);
-  // TVMAZE premieres: TMDB fallback for zh metadata (bounded to stay under subrequest limit)
+  // TVMAZE premieres: TMDB zh fallback (bounded; _drop kills no-zh shows)
   const tvmazePicked = premiereSelected.filter(s => s.source === "tvmaze");
-  const tvmazePremiereEnriched = await intelEnrichTVMazeBatch(tvmazePicked, token, 3);
+  const tvmazePremiereEnriched = await intelEnrichTVMazeBatch(tvmazePicked, token, 4);
   const weekPremieres = [
     ...premiereEnriched.map(s => intelNormalizeMovie(s, "tv")),
     ...tvmazePremiereEnriched.map(s => intelTVMazeToOutput(s)),
@@ -1307,49 +1321,61 @@ async function handleIntelTV(env) {
   // Only TMDB ids go into the exclusion set (TVMAZE ids are a different namespace)
   const premiereIds = new Set(premiereSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
 
-  // Upcoming: trending TV (popular recent buzz) + discover/tv (future premieres within 90 days)
-  // Scored selection: popularity floor 8 + Chinese bonus (EN shows qualify on popularity alone), cap 15.
-  // 2026-08-18: zh-first tweak — shows with NO Chinese title AND NO zh summary need a much higher
-  // popularity floor (30) so the Chinese UI isn't flooded with bare-English upcoming cards
-  // (Crew Girl / Neagley / The Dynasty / S.W.A.T. Exiles were showing title-only).
-  const hasZhTitle = (s) => hasChinese(s.title || s.name);
-  const hasZhSummary = (s) => hasChinese(s.overview);
-  const upcomingFromTrending = trendingTV
-    .filter(s => s.first_air_date && s.first_air_date >= weekAgo)
-    .filter(s => !premiereIds.has(s.id))
-    .filter(intelRatingOk)
-    .filter(s => (hasZhTitle(s) || hasZhSummary(s)) ? true : (s.popularity || 0) >= 30);
+  // ── Upcoming: TVMAZE +7/+14 samples + TMDB discover 未来 90 天 ──
+  // 2026-08-20 v2: no popularity dependency — unreleased shows have no pop.
+  // Score = date proximity (30d peak) + zh info + TVMAZE rating. Floor: none
+  // (no-rating is normal pre-air); zh-less shows are dropped later by enrich.
   const upcomingFromDiscover = discoverRaw
+    .filter(s => s.first_air_date && s.first_air_date > today)
     .filter(s => !premiereIds.has(s.id))
-    .filter(intelRatingOk)
-    .filter(s => (hasZhTitle(s) || hasZhSummary(s)) ? true : (s.popularity || 0) >= 30);
-  // Merge and dedup
-  const upcomingMerged = [...upcomingFromTrending];
-  const trendIds = new Set(upcomingFromTrending.map(s => s.id));
-  for (const s of upcomingFromDiscover) {
-    if (!trendIds.has(s.id)) upcomingMerged.push(s);
+    .filter(intelRatingOk);
+  const upcomingMerged = [...upcomingFromDiscover];
+  const discIds = new Set(upcomingFromDiscover.map(s => s.id));
+  for (const s of tvmazeUpcoming) {
+    if (!discIds.has(s.id)) upcomingMerged.push(s);
   }
-  // TVMAZE upcoming candidates (EN titles OK, no zh filter)
-  for (const s of tvmazeUpcoming) upcomingMerged.push(s);
-  const upcomingSelected = intelSelectScored(upcomingMerged, 8);
-  // No episode-date enrichment for upcoming (saves 15 subrequests → keeps total < 50);
-  // upcoming cards show premiere date only, S/E info isn't needed pre-air.
+  const scoreUpcoming = (s) => {
+    const daysUntil = Math.max(0, Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000));
+    const dateScore = daysUntil <= 30 ? 1 : Math.max(0, 1 - (daysUntil - 30) / 60); // 30d peak, decays to 0 by 90d
+    const zhScore = (titleCn(s) ? 0.5 : 0) + (hasChinese(s.overview) ? 0.5 : 0);
+    const ratingScore = s.vote_average ? Math.min(1, s.vote_average / 10) : 0.5; // neutral when no rating
+    return { s, score: 0.6 * dateScore + 0.2 * zhScore + 0.2 * ratingScore };
+  };
+  const upcomingSelected = upcomingMerged
+    .map(scoreUpcoming)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 8)
+    .map(x => x.s);
+  // No episode-date enrichment for upcoming (saves subrequests); S/E shown when TVMAZE carries it
   const tvmazeUpcomingPicked = upcomingSelected.filter(s => s.source === "tvmaze");
-  const tvmazeUpcomingEnriched = await intelEnrichTVMazeBatch(tvmazeUpcomingPicked, token, 3);
+  const tvmazeUpcomingEnriched = await intelEnrichTVMazeBatch(tvmazeUpcomingPicked, token, 2);
   const upcomingTV = [
     ...upcomingSelected.filter(s => s.source !== "tvmaze").map(s => intelNormalizeMovie(s, "tv")),
     ...tvmazeUpcomingEnriched.map(s => intelTVMazeToOutput(s)),
   ];
-  // Only TMDB ids go into the exclusion set (TVMAZE ids are a different namespace)
   const upcomingIds = new Set(upcomingSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
 
-  // Ongoing: exclude premieres + upcoming, enrich episode dates on final 15 only
+  // ── Ongoing: TMDB on_the_air, 2010 cutoff + recent-activity priority ──
+  // 2026-08-20 v2: 超长连载剧集从 2010 截断（first_air_date < 2010-01-01 全部淘汰），
+  // 一级优先 = 近一个月有播新集 OR 近 180 天首播；二级 = 其余 2010 后剧集。
   const ongoingCandidates = onTheAir
     .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
     .filter(cnFilter)
     .filter(intelRatingOk)
-    .filter(s => (s.popularity || 0) >= 80);
-  const ongoingSelected = intelSelectDiverse(ongoingCandidates, 15, reserve, SCORE_OPTS.tv, today);
+    .filter(s => (s.first_air_date || "") >= "2010-01-01") // 2010 cutoff
+    .filter(s => (s.popularity || 0) >= 30); // relaxed from 80 (2010 cutoff already trims)
+  // Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
+  const ongoingScored = ongoingCandidates.map(s => {
+    const lastAir = s.last_episode_to_air?.air_date || "";
+    const isRecent = (lastAir && lastAir >= thirtyDaysAgo) || ((s.first_air_date || "") >= hundredEightyDaysAgo);
+    return { s, recent: isRecent };
+  });
+  const ongoingTier1 = ongoingScored.filter(x => x.recent).map(x => x.s);
+  const ongoingTier2 = ongoingScored.filter(x => !x.recent).map(x => x.s);
+  const ongoingSelected = [
+    ...intelSelectDiverse(ongoingTier1, 10, reserve, SCORE_OPTS.tv, today),
+    ...intelSelectDiverse(ongoingTier2, 5, reserve, SCORE_OPTS.tv, today),
+  ].slice(0, 15);
   const ongoingEnriched = await intelFetchTVEpisodeDates(ongoingSelected, token);
   const ongoingTV = ongoingEnriched
     .filter(s => {
