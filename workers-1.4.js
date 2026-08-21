@@ -1502,15 +1502,41 @@ async function handleIntelWeekly(env) {
     return { ...intelNormalizeMovie(item, type), rank, trend: "new" };
   };
 
-  // TV: same cnFilter + popularity threshold + diverse scoring as handleIntelTV's ongoing
+  // TV: same rules as handleIntelTV v2 ongoing — 2010 cutoff + recent-activity
+  // priority + episode-date enrichment for S/E (2026-08-21).
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const cnFilter = (s) => hasChinese(s.title || s.name) && hasChinese(s.overview);
+  const weekAgo = intelDaysAgo(7);
+  const ninetyDaysAgo = intelDaysAgo(90);
+  const thirtyDaysAgo = intelDaysAgo(30);
+  const hundredEightyDaysAgo = intelDaysAgo(180);
   const tvCandidates = tvOnAir
     .filter(cnFilter)
     .filter(intelRatingOk)
-    .filter(s => (s.popularity || 0) >= 80);
-  const tvSelected = intelSelectDiverse(tvCandidates, 15, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today);
-  const tvWeekly = tvSelected.map((s, i) => ({ ...intelNormalizeMovie(s, "tv"), rank: i + 1, trend: "new" }));
+    // 2010 cutoff — NUMERIC year compare ("1989-12-17" >= "2010-01-01" is true
+    // lexicographically, so string compare lets Simpsons 1989 / Conan 1996 through)
+    .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
+    .filter(s => (s.popularity || 0) >= 30);
+  // Tier-1: recent activity (episode in last 30d OR premiered in last 180d)
+  const tvScored = tvCandidates.map(s => {
+    const lastAir = s.last_episode_to_air?.air_date || "";
+    const isRecent = (lastAir && lastAir >= thirtyDaysAgo) || ((s.first_air_date || "") >= hundredEightyDaysAgo);
+    return { s, recent: isRecent };
+  });
+  const tvTier1 = tvScored.filter(x => x.recent).map(x => x.s);
+  const tvTier2 = tvScored.filter(x => !x.recent).map(x => x.s);
+  const tvSelected = [
+    ...intelSelectDiverse(tvTier1, 10, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today),
+    ...intelSelectDiverse(tvTier2, 5, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today),
+  ].slice(0, 15);
+  // Episode-date enrichment for S/E (on_the_air list usually lacks episode data)
+  const tvEnriched = await intelFetchTVEpisodeDates(tvSelected, token);
+  const tvWeekly = tvEnriched
+    .filter(s => {
+      const lastAir = s.last_episode_to_air?.air_date;
+      return !lastAir || lastAir >= ninetyDaysAgo;
+    })
+    .map((s, i) => ({ ...intelNormalizeMovie(s, "tv"), rank: i + 1, trend: "new" }));
 
   return {
     updated: today,

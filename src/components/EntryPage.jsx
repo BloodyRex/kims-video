@@ -25,12 +25,12 @@ const CARDS = [
   {
     id: "discover", to: "/discover",
     h: "/entry/discover-h.png", v: "/entry/discover-v.png",
-    zh: "精选合辑", en: "DISCOVER",
+    zh: "精选合集", en: "DISCOVER",
   },
   {
     id: "intelligence", to: "/intelligence",
     h: "/entry/intelligence-h.png", v: "/entry/intelligence-v.png",
-    zh: "情报中心", en: "INTELLIGENCE",
+    zh: "全球影音", en: "INTELLIGENCE",
   },
   {
     id: "wall", to: "/wall",

@@ -124,7 +124,7 @@ const messages = {
 
     // ---- Footer ----
     "footer.home": "主页搜索",
-    "footer.discover": "社区精选",
+    "footer.discover": "精选合集",
     "footer.intel": "全球影音",
     "footer.wall": "影视墙",
     "footer.contact": "联系我",
