@@ -1232,21 +1232,23 @@ async function intelTVMazeEnrich(candidate, token) {
   try {
     const year = (candidate.first_air_date || "").slice(0, 4);
     const hit = await searchTMDB(candidate.title, year, "tv", token, "zh-CN");
-    if (hit?.tmdbId) {
-      candidate.tmdbId = hit.tmdbId;
-      const d = await fetchTMDBDetails(hit.tmdbId, token, "zh-CN");
-      const hasZh = (text) => /[一-鿿]/.test(text || "");
-      if (d?.name) candidate.title = d.name;
-      if (d?.overview) candidate.overview = d.overview;
-      if (d?.poster_path) candidate._posterUrl = `https://image.tmdb.org/t/p/w500${d.poster_path}`;
-      if (d?.vote_average) candidate.vote_average = d.vote_average;
-      if (Array.isArray(d?.genres)) candidate._genres = d.genres.map(g => g.name);
-      // 2026-08-20: drop shows that end up with NEITHER a zh title NOR zh summary.
-      // TVMAZE has no zh data, so a TMDB hit that itself carries no Chinese text
-      // is unusable in the zh UI — kill it (at least title OR overview must be zh).
-      if (!hasZh(candidate.title) && !hasZh(candidate.overview)) {
-        candidate._drop = true;
-      }
+    // 2026-08-20: no TMDB hit at all → no zh data possible → drop.
+    // (TVMAZE carries no Chinese metadata; a show that can't be found on TMDB
+    // can never get a zh title or summary, so it's unusable in the zh UI.)
+    if (!hit?.tmdbId) { candidate._drop = true; return candidate; }
+    candidate.tmdbId = hit.tmdbId;
+    const d = await fetchTMDBDetails(hit.tmdbId, token, "zh-CN");
+    const hasZh = (text) => /[一-鿿]/.test(text || "");
+    if (d?.name) candidate.title = d.name;
+    if (d?.overview) candidate.overview = d.overview;
+    if (d?.poster_path) candidate._posterUrl = `https://image.tmdb.org/t/p/w500${d.poster_path}`;
+    if (d?.vote_average) candidate.vote_average = d.vote_average;
+    if (Array.isArray(d?.genres)) candidate._genres = d.genres.map(g => g.name);
+    // 2026-08-20: drop shows that end up with NEITHER a zh title NOR zh summary.
+    // TVMAZE has no zh data, so a TMDB hit that itself carries no Chinese text
+    // is unusable in the zh UI — kill it (at least title OR overview must be zh).
+    if (!hasZh(candidate.title) && !hasZh(candidate.overview)) {
+      candidate._drop = true;
     }
   } catch (e) { console.warn("tvmaze enrich fail:", candidate.title, e.message); }
   return candidate;
@@ -1362,7 +1364,10 @@ async function handleIntelTV(env) {
     .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
     .filter(cnFilter)
     .filter(intelRatingOk)
-    .filter(s => (s.first_air_date || "") >= "2010-01-01") // 2010 cutoff
+    // 2010 cutoff — compare NUMERIC year, not string: "1989-12-17" >= "2010-01-01"
+    // is TRUE lexicographically ('9' > '0'), so string compare lets pre-2010
+    // long-runners (Simpsons 1989, Kamen Rider 1971…) slip through.
+    .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
     .filter(s => (s.popularity || 0) >= 30); // relaxed from 80 (2010 cutoff already trims)
   // Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
   const ongoingScored = ongoingCandidates.map(s => {
