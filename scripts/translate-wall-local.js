@@ -146,6 +146,14 @@ async function main() {
   let fallbackDeepseek = 0;
   let noOverview = 0;
   let failed = 0;
+  // 逐条写回 — 中途中断不丢已翻译进度 (2026-08-22: Ollama 40条需 1h+,
+  // 统一写回遇超时/中断会全部丢失)
+  const writeWall = () => {
+    wall.updated = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
+    wall.count = movies.length;
+    writeFileSync(WALL_PATH, JSON.stringify(wall, null, 2), "utf8");
+  };
+  let dirty = false;
 
   for (const m of batch) {
     const label = m.title || m.titleEn || m.tmdbId;
@@ -203,6 +211,8 @@ async function main() {
       m.summarySkip = true; // TMDB 无英文简介, 永久跳过
     }
     console.log(`  [${translatedLocal + fallbackDeepseek + noOverview + failed}/${batch.length}] ${String(label).slice(0, 24)} → ${result ? "ok" : skipNoOverview ? "skip(无原文)" : "FAIL"}`);
+    // 逐条落盘 (2026-08-22): 中断/超时只丢当前条, 已完成的进度保留
+    if (result || skipNoOverview) { writeWall(); dirty = true; }
     await sleep(500); // 温和限速, 避免打爆 Ollama/Worker
   }
 
