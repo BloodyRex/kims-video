@@ -97,6 +97,27 @@ async function deepseekFallback(tmdbId) {
   }
 }
 
+// ── EN source fetch via Worker mode="source" (ZERO DeepSeek tokens) ──
+// 2026-08-21: Ollama 无法凭空取 TMDB 原文, 之前无 summary 的条目全部被迫走
+// DeepSeek 兜底。现在 Worker 端点支持 mode="source" 只返回英文原文, 本地脚本
+// 取到原文后喂给 Ollama —— Ollama 承担翻译大头, DeepSeek 仅兜底失败。
+async function fetchSourceOverview(tmdbId) {
+  try {
+    const r = await fetch(`${WORKER_BASE}/intelligence/translate-overview`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tmdbId, mode: "source" }),
+    });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const d = await r.json();
+    const c = d?.content || null;
+    return c?.overviewEn?.trim() ? { overviewEn: c.overviewEn.trim(), hasOverview: true } : { overviewEn: "", hasOverview: false };
+  } catch (e) {
+    console.warn(`  取原文失败 (tmdbId=${tmdbId}): ${e.message}`);
+    return null;
+  }
+}
+
 // ── Main ──
 async function main() {
   if (!existsSync(WALL_PATH)) {
@@ -128,11 +149,30 @@ async function main() {
 
   for (const m of batch) {
     const label = m.title || m.titleEn || m.tmdbId;
-    // 已有英文 summary → 本地翻译; 空 summary → 必须走 DeepSeek (端点取 TMDB 原文)
-    const enText = m.summary?.trim() || "";
+    // 已有英文 summary → 直接本地翻译; 空 summary → 先取原文(零 token)再本地翻译;
+    // Ollama 失败/不可用 → DeepSeek 兜底 (2026-08-21: 原文获取走 mode="source")
+    let enText = m.summary?.trim() || "";
     let result = null;
     let skipNoOverview = false;
 
+    // 1. 无原文时先取 (零 DeepSeek 消耗)
+    if (!enText) {
+      const src = await fetchSourceOverview(m.tmdbId);
+      if (src === null) {
+        failed++; // 取原文接口挂了 — 稍后重试
+        console.log(`  [${translatedLocal + fallbackDeepseek + noOverview + failed}/${batch.length}] ${String(label).slice(0, 24)} → FAIL(取原文)`);
+        continue;
+      }
+      if (!src.hasOverview) {
+        skipNoOverview = true;
+        noOverview++;
+        console.log(`  [${translatedLocal + fallbackDeepseek + noOverview + failed}/${batch.length}] ${String(label).slice(0, 24)} → skip(无原文)`);
+        continue;
+      }
+      enText = src.overviewEn;
+    }
+
+    // 2. Ollama 本地翻译 (有原文即可, 不再要求 summary 预存在)
     if (enText && ollamaOk) {
       const t = await ollamaTranslate(enText);
       if (t) {
@@ -141,8 +181,8 @@ async function main() {
       }
     }
 
+    // 3. DeepSeek 兜底: 本地失败 / Ollama 不可用
     if (!result) {
-      // DeepSeek 兜底: 本地失败 / Ollama 不可用 / 空 summary 需要 TMDB 取源
       const fb = await deepseekFallback(m.tmdbId);
       if (fb) {
         if (fb.hasOverview && fb.translated) {

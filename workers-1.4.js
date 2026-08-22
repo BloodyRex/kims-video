@@ -2599,6 +2599,8 @@ export default {
       if (path === "/admin/login") { let b; try { b = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); } if (!env.ADMIN_PASSWORD) return Response.json({ error: "Admin not configured" }, { headers: corsHeaders }); if (b.password !== env.ADMIN_PASSWORD) return Response.json({ error: "Invalid password" }, { headers: corsHeaders }); return Response.json({ token: createAdminToken(env.ADMIN_PASSWORD) }, { headers: corsHeaders }); }
 
       // Wall backfill: translate EN overview to zh-CN (pipeline-fed, KV-cached TMDB read)
+      // mode="source" → return the EN overview only (ZERO DeepSeek tokens); used by
+      // translate-wall-local.js to feed Ollama locally. Default → translate (DeepSeek).
       if (path === "/intelligence/translate-overview") {
         let tb; try { tb = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
         if (!tb.tmdbId) return Response.json({ error: "Missing tmdbId" }, { status: 400, headers: corsHeaders });
@@ -2606,6 +2608,9 @@ export default {
           const en = await fetchTMDBDetails(tb.tmdbId, env.TMDB_API_READ_ACCESS_TOKEN, "en-US");
           const overview = en?.overview || "";
           if (!overview) return Response.json({ content: { translated: "", hasOverview: false } }, { headers: corsHeaders });
+          if (tb.mode === "source") {
+            return Response.json({ content: { overviewEn: overview, hasOverview: true } }, { headers: corsHeaders });
+          }
           const translated = await translateText(overview, env);
           return Response.json({ content: { translated, hasOverview: true } }, { headers: corsHeaders });
         } catch (e) {
