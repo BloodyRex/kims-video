@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
- * translate-wall-local — Local wall.json translation via Ollama (qwen3.5:9b),
- * with DeepSeek fallback through the Worker's /intelligence/translate-overview
- * endpoint (which also fetches the EN overview from TMDB for empty summaries).
+ * translate-wall-local — Local wall.json translation via Ollama
+ * (frob/qwen3.5-instruct:4b), with DeepSeek fallback through the Worker's
+ * /intelligence/translate-overview endpoint (which also fetches the EN
+ * overview from TMDB for empty summaries).
  *
  * 用法:
  *   node scripts/translate-wall-local.js [--limit N] [--no-push]
@@ -25,7 +26,7 @@ const API_DIR = join("public", "api");
 const WALL_PATH = arg("--wall-path", join(API_DIR, "wall.json")) || join(API_DIR, "wall.json");
 const WORKER_BASE = "https://api.bloodyrex.xyz";
 const OLLAMA_BASE = "http://localhost:11434";
-const MODEL = "qwen3.5:9b";
+const MODEL = "frob/qwen3.5-instruct:4b";
 const DEFAULT_LIMIT = 40;
 
 const hasZh = (s) => /[\u4e00-\u9fff]/.test(s || "");
