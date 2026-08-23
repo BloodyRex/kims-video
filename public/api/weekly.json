@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23",
+  "updated": "2026-08-24",
   "movies": [
     {
       "tmdbId": 1288445,
@@ -10,7 +10,7 @@
       "year": "2026",
       "releaseDate": "2026-08-19",
       "poster": "https://image.tmdb.org/t/p/w500/5E6hS9faru2CDOXLrHhIyOUfC7a.jpg",
-      "rating": 6.699,
+      "rating": 6.7,
       "genre": [
         "Action",
         "Thriller"
@@ -29,7 +29,7 @@
       "year": "2026",
       "releaseDate": "2026-06-17",
       "poster": "https://image.tmdb.org/t/p/w500/oo46YfPuMcV9t7KsTiaMVUVRjvJ.jpg",
-      "rating": 8.123,
+      "rating": 8.124,
       "genre": [
         "Animation",
         "Family",
@@ -70,7 +70,7 @@
       "year": "2026",
       "releaseDate": "2026-07-15",
       "poster": "https://image.tmdb.org/t/p/w500/Aj0Uykxj0vhwVsyrRJka0aM3SP1.jpg",
-      "rating": 7.999,
+      "rating": 8,
       "genre": [
         "Adventure",
         "Action",
@@ -90,7 +90,7 @@
       "year": "2026",
       "releaseDate": "2026-08-19",
       "poster": "https://image.tmdb.org/t/p/w500/zSqi655Ci8ym5mDz53NcdjYOiei.jpg",
-      "rating": 6.705,
+      "rating": 6.7,
       "genre": [
         "Horror",
         "Thriller"
@@ -109,7 +109,7 @@
       "year": "2026",
       "releaseDate": "2026-05-13",
       "poster": "https://image.tmdb.org/t/p/w500/5kNrhOgyREvm62H0rG1tuSrzirR.jpg",
-      "rating": 8.226,
+      "rating": 8.225,
       "genre": [
         "Horror",
         "Thriller"
@@ -150,7 +150,7 @@
       "year": "2026",
       "releaseDate": "2026-08-12",
       "poster": "https://image.tmdb.org/t/p/w500/2eXquFgtDqSyVmrcBwC9ZnzNw3d.jpg",
-      "rating": 6.402,
+      "rating": 6.4,
       "genre": [
         "Sci-Fi",
         "Mystery",
@@ -159,6 +159,26 @@
       "summary": "居住在花谷街的一对夫妻，察觉到社区里发生了一些细微的变化。当一场剧烈的雷暴袭来后，他们连同他们的孩子和邻居醒来发现自己竟被“传送回了史前时代”，身边被恐龙和其他野生生物包围。",
       "summaryEn": "After a mysterious cosmic event rips Oak Street from suburbia and transports their neighborhood to someplace unknown, the Platt family soon discovers that their very survival depends on them sticking ",
       "rank": 8,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 1083381,
+      "title": "后室",
+      "titleEn": "Backrooms",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-05-27",
+      "poster": "https://image.tmdb.org/t/p/w500/7flxvNLk48fvJel8zHDGqMFvQ9C.jpg",
+      "rating": 7.099,
+      "genre": [
+        "Horror",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "summary": "一位心理治疗师的病人，在一次诡异的事故中“切入”到了一个超越现实的奇异维度。为了带回病人，这位治疗师不得不亲自踏入那片无边无际、充满黄色壁纸和嗡嗡荧光灯响声的未知迷宫。",
+      "summaryEn": "A strange doorway appears in the basement of a furniture showroom.",
+      "rank": 9,
       "trend": "new"
     },
     {
@@ -178,26 +198,6 @@
       ],
       "summary": "来自三个截然不同宇宙的传奇英雄们，将被推向一场生死对决，并最终直面一股前所未见、足以撼动万物存亡的终极威胁。",
       "summaryEn": "Beloved heroes from three distinct universes are set on a deadly collision course and face an existential threat unlike anything they've ever encountered.",
-      "rank": 9,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1083381,
-      "title": "后室",
-      "titleEn": "Backrooms",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-05-27",
-      "poster": "https://image.tmdb.org/t/p/w500/7flxvNLk48fvJel8zHDGqMFvQ9C.jpg",
-      "rating": 7.1,
-      "genre": [
-        "Horror",
-        "Mystery",
-        "Sci-Fi"
-      ],
-      "summary": "一位心理治疗师的病人，在一次诡异的事故中“切入”到了一个超越现实的奇异维度。为了带回病人，这位治疗师不得不亲自踏入那片无边无际、充满黄色壁纸和嗡嗡荧光灯响声的未知迷宫。",
-      "summaryEn": "A strange doorway appears in the basement of a furniture showroom.",
       "rank": 10,
       "trend": "new"
     }

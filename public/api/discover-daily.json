@@ -1,12 +1,6 @@
 {
   "updated": "2026-08-24",
-  "stats": {
-    "moviesReleased": 10,
-    "tvAiringThisWeek": 20,
-    "albumsReleased": 25,
-    "trending": 20
-  },
-  "editorsPicks": [
+  "picks": [
     {
       "tmdbId": 1291595,
       "title": "潜伏6：血域",
@@ -81,45 +75,5 @@
       "summaryEn": "Avatar Aang, the world's last Airbender, learns of an ancient power that could save his culture from extinction. With the help of his friends, he embarks on a global quest to find it before it falls i",
       "pickCategory": "trending"
     }
-  ],
-  "comingSoon": [
-    {
-      "tmdbId": 1516698,
-      "title": "最后的日出",
-      "titleEn": "The Last Sunrise",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-08-26",
-      "poster": "https://image.tmdb.org/t/p/w500/pego3yEZ5SuGvRjESKAguL4Wu7M.jpg",
-      "rating": 0,
-      "genre": [
-        "Romance",
-        "Drama"
-      ],
-      "summary": "　　一位身患疾病的年轻美国女子在马略卡岛的夏日里度假时，与一位魅力十足的当地人意外坠入爱河，这让她不得不在追随内心、履行家庭责任以及按计划返回家园之间做出权衡。",
-      "summaryEn": "Ry, a college student with a chronic illness escapes to Mallorca for the summer with her mother, where she unexpectedly falls for a local and begins to embrace living in the moment. But as her conditi",
-      "daysUntil": 2
-    },
-    {
-      "tmdbId": 1384216,
-      "title": "末世行者",
-      "titleEn": "The Dog Stars",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-08-26",
-      "poster": "https://image.tmdb.org/t/p/w500/q2lN1pVMmVXEA0UpgdFupYwsPHg.jpg",
-      "rating": 7.3,
-      "genre": [
-        "Sci-Fi",
-        "Adventure",
-        "Thriller"
-      ],
-      "summary": "一场大流行病席卷全球后，人口锐减。在科罗拉多州的飞机库里，一名男子与他的狗和一位阴郁的枪手相伴过着孤寂的生活。当他驾驶着老旧的塞斯纳飞机时，无线电里突然传来神秘的信号，由此引发了一场追寻声音来源的探索之旅。",
-      "summaryEn": "After the world's population has been ravaged by a pandemic, a man lives a lonesome existence in a Colorado airplane hangar with his dog and a dour gunman he has befriended. When a mysterious transmis",
-      "daysUntil": 2
-    }
-  ],
-  "brief": "Today: 10 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
+  ]
 }

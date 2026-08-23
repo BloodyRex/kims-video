@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23",
+  "updated": "2026-08-24",
   "candidates": [
     {
       "id": "mb-c6358baf-1e01-4991-ab6e-cb5d794e222a",
@@ -285,31 +285,6 @@
       }
     },
     {
-      "id": "mb-232e13a5-026b-4057-bb58-baec7a3ab40b",
-      "mbid": "232e13a5-026b-4057-bb58-baec7a3ab40b",
-      "title": "Future Soul",
-      "artist": "Tedeschi Trucks Band",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fe/30/26/fe302635-cdcf-d96b-000a-a450e8afbc90/25CRGIM51640.rgb.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 202873,
-      "artistPlaycount": 3906217,
-      "albumListeners": 7713,
-      "albumPlaycount": 75332,
-      "score": 54.817611666235855,
-      "scoreBreakdown": {
-        "artist": 35.38149500942324,
-        "album": 19.436116656812615,
-        "freshness": 0
-      }
-    },
-    {
       "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
       "mbid": "dda01573-1be8-4f7a-b06f-9cc3d066f515",
       "title": "Masekela",
@@ -353,6 +328,31 @@
       }
     },
     {
+      "id": "mb-e4b88467-dd28-4072-b95a-bd380c4728cf",
+      "mbid": "e4b88467-dd28-4072-b95a-bd380c4728cf",
+      "title": "Static Charge",
+      "artist": "The Telescopes",
+      "releaseDate": "2026-07-26",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c5/b0/33/c5b03342-3d3c-8dcb-33d5-87f7aee53430/4015698668452.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 179595,
+      "artistPlaycount": 2148676,
+      "albumListeners": 1224,
+      "albumPlaycount": 5122,
+      "score": 52.467535366110155,
+      "scoreBreakdown": {
+        "artist": 35.028628277062445,
+        "album": 15.43890708904771,
+        "freshness": 2
+      }
+    },
+    {
       "id": "mb-678bbf03-22b8-4342-bf02-7f0a0dcb353d",
       "mbid": "678bbf03-22b8-4342-bf02-7f0a0dcb353d",
       "title": "The Great Adventure",
@@ -366,13 +366,13 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b7/a9/aa/b7a9aad0-ca1b-337e-4265-427313eb9204/7619978280128_3000.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 391374,
-      "artistPlaycount": 4016256,
+      "artistListeners": 391398,
+      "artistPlaycount": 4016545,
       "albumListeners": 898,
       "albumPlaycount": 7084,
-      "score": 52.050328156404746,
+      "score": 52.05050569754604,
       "scoreBreakdown": {
-        "artist": 37.28394647306823,
+        "artist": 37.284124014209524,
         "album": 14.766381683336522,
         "freshness": 0
       }
@@ -421,27 +421,39 @@
       }
     },
     {
-      "id": "mb-da96498e-93c6-4adf-8c7f-2ed2eac4e461",
-      "mbid": "da96498e-93c6-4adf-8c7f-2ed2eac4e461",
-      "title": "snowfall",
-      "artist": "wüsh",
+      "id": "mb-ee928bdc-8e78-4925-9563-b1cc9d193147",
+      "mbid": "ee928bdc-8e78-4925-9563-b1cc9d193147",
+      "title": "Fantasy",
+      "artist": "DJ Sabrina the Teenage DJ",
       "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/53/fe/66/53fe66f6-a250-0157-73dc-9e601855a5c2/cover.jpg/600x600bb.jpg",
+      "country": "GB",
+      "genres": [
+        "浩室",
+        "2025",
+        "plunderphonics"
+      ],
+      "genresEn": [
+        "house",
+        "2025",
+        "plunderphonics"
+      ],
+      "lfmTags": [
+        "house",
+        "2025",
+        "plunderphonics"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/74/dc/d0/74dcd09f-5ad1-1134-08be-025e32c0536d/199891175529_cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 163109,
-      "artistPlaycount": 1075188,
-      "albumListeners": 1932,
-      "albumPlaycount": 5246,
-      "score": 51.17988844457554,
+      "artistListeners": 86753,
+      "artistPlaycount": 4024412,
+      "albumListeners": 5086,
+      "albumPlaycount": 182755,
+      "score": 51.4537784594156,
       "scoreBreakdown": {
-        "artist": 34.749852834178164,
-        "album": 16.430035610397372,
+        "artist": 32.921896680217145,
+        "album": 18.531881779198454,
         "freshness": 0
       }
     },
@@ -510,6 +522,31 @@
       "scoreBreakdown": {
         "artist": 28.74841337322231,
         "album": 20.424667874683582,
+        "freshness": 0
+      }
+    },
+    {
+      "id": "mb-4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
+      "mbid": "4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
+      "title": "Labor of Love",
+      "artist": "Tinsley Ellis",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "US",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/48/bb/cc/48bbcc3c-e7d4-78ec-aa2a-dcb61601e36c/118397.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 92517,
+      "artistPlaycount": 763518,
+      "albumListeners": 1389,
+      "albumPlaycount": 5702,
+      "score": 48.821654839945566,
+      "scoreBreakdown": {
+        "artist": 33.10814361125749,
+        "album": 15.713511228688077,
         "freshness": 0
       }
     },
@@ -603,31 +640,6 @@
       "scoreBreakdown": {
         "artist": 33.68757392911625,
         "album": 13.653911378331946,
-        "freshness": 0
-      }
-    },
-    {
-      "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
-      "mbid": "af4ece5b-3174-426d-ad92-45090ab35b5e",
-      "title": "Eingenordet",
-      "artist": "Versengold",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "DE",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fa/0a/8b/fa0a8b6c-1b71-b94b-559d-0d8f0aa1d9e1/196873496658.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 43110,
-      "artistPlaycount": 1805570,
-      "albumListeners": 1434,
-      "albumPlaycount": 34629,
-      "score": 46.67993257568483,
-      "scoreBreakdown": {
-        "artist": 30.897186819025922,
-        "album": 15.782745756658906,
         "freshness": 0
       }
     }
