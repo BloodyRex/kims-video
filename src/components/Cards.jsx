@@ -79,14 +79,14 @@ function Tags({ tags, tagsEn, color = "#ff00ff", locale = "zh" }) {
 }
 
 // ── Trailer button component ──
-export function TrailerButtons({ item, locale, size = "sm" }) {
+export function TrailerButtons({ item, locale, size = "sm", forceType }) {
   const title = (item.titleEn || item.title || "");
   const tmdbId = item.tmdbId;
   const biliHref = `https://search.bilibili.com/all?keyword=${encodeURIComponent((title + " 预告片").trim())}`;
   const [ytKey, setYtKey] = React.useState(null);
   React.useEffect(() => {
     if (!tmdbId) return;
-    const mtype = item.type === "剧集" || item.type === "TV Series" || item.type === "tv" ? "tv" : "movie";
+    const mtype = forceType || (item.type === "剧集" || item.type === "TV Series" || item.type === "tv" ? "tv" : "movie");
     fetch(`https://api.bloodyrex.xyz/intelligence/trailer?tmdbId=${tmdbId}&type=${mtype}`)
       .then(r => r.json())
       .then(d => { if (d.key) setYtKey(d.key); })
@@ -717,19 +717,21 @@ export function CardList({ children }) {
 
 export function IntelDetailModal({ item, type, locale, onClose }) {
   if (!item) return null;
+  const zh = locale === "zh";
   const title = getTitle(item, locale);
   const isMusic = type === "music" || type === "album";
-  const typeLabel = type === "tv" ? (locale === "en" ? "TV SERIES" : "剧集")
-    : isMusic ? (locale === "en" ? "ALBUM" : "专辑")
-    : (locale === "en" ? "MOVIE" : "电影");
-  const tmdbPath = type === "tv" ? "tv" : "movie";
+  const isTV = type === "tv";
+  const tmdbPath = isTV ? "tv" : "movie";
   const tmdbUrl = `https://www.themoviedb.org/${tmdbPath}/${item.tmdbId}`;
   const mbUrl = item.mbid ? `https://musicbrainz.org/release/${item.mbid}` : "";
+  // Exact IMDb page when imdb_id is available (lazy-loaded), else fallback search
+  const imdbUrl = enriched.imdb_id
+    ? `https://www.imdb.com/title/${enriched.imdb_id}`
+    : `https://www.imdb.com/find?q=${encodeURIComponent(((item.titleEn || item.title) + " " + (item.year || "")).trim())}`;
   const genres = Array.isArray(item.genre) ? item.genre : (item.genre ? [item.genre] : []);
   const musicGenres = isMusic ? albumGenres(item) : [];
-  const musicGenresEn = isMusic ? albumGenresEn(item) : [];
 
-  // Lazy-load enriched details (director, runtime, cast) from Worker API
+  // Lazy-load enriched details (director, runtime, cast, imdb_id) from Worker API
   const [detailData, setDetailData] = useState(null);
   useEffect(() => {
     if (!item.tmdbId || isMusic) return;
@@ -739,14 +741,21 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
     });
     return () => { cancelled = true; };
   }, [item.tmdbId, isMusic, locale]);
-  const enriched = detailData || {};
+  var enriched = detailData || {};
+
+  // Countdown badge data (mirrors wall detail status chip)
+  const todayStr = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
+  const released = !item.releaseDate || item.releaseDate <= todayStr;
+  const daysToRelease = item.releaseDate
+    ? Math.ceil((Date.parse(item.releaseDate + "T00:00:00Z") - Date.parse(todayStr + "T00:00:00Z")) / 86400000)
+    : 0;
 
   return (
     <div>
-      {/* Bar */}
+      {/* Bar — identical to WallDetailView */}
       <div className="flex items-center justify-between bg-black border-4 border-[#ff00ff] px-4 sm:px-6 py-3 mb-6 shadow-[6px_6px_0_0_#ff00ff]">
         <span className="font-black pixel-font text-[#ff00ff] text-xs sm:text-sm flex-shrink-0">
-          {isMusic ? (locale === "en" ? "ALBUM DETAILS" : "专辑详情") : (locale === "en" ? "DETAILS" : "作品详情")}
+          {isMusic ? (zh ? "专辑详情" : "ALBUM DETAILS") : (zh ? "作品详情" : "DETAILS")}
         </span>
         <button onClick={onClose}
           className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center font-black text-xs sm:text-sm hover:bg-black hover:text-[#ff00ff] transition-colors pixel-font flex-shrink-0">
@@ -759,9 +768,9 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
         <div className="flex flex-col md:flex-row gap-6 max-sm:gap-4 mb-4">
           {/* Poster */}
           <div className="w-full md:w-48 flex-shrink-0">
-            {item.poster ? (
+            {item.poster || item.cover ? (
               <div className="border-4 border-black overflow-hidden shadow-[4px_4px_0_0_#000]">
-                <img src={posterUrl(item.poster)} alt={title} className="w-full h-auto object-cover" />
+                <img src={posterUrl(item.poster || item.cover)} alt={title} className="w-full h-auto object-cover" />
               </div>
             ) : (
               <div className="border-4 border-black bg-gray-800 text-white flex items-center justify-center h-64 text-xs pixel-font shadow-[4px_4px_0_0_#000]">
@@ -780,22 +789,31 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
               )}
               {isMusic && item.artist && <span className="text-gray-400 italic font-bold text-sm">{item.artist}</span>}
               <span className="bg-[#ff00ff] text-white px-2 py-1 font-black pixel-font text-xs border-2 border-white ml-auto leading-none">
-                {item.year || ""} | {isMusic ? (locale === "en" ? "ALBUM" : "专辑") : type === "tv" ? (locale === "en" ? "TV" : "剧集") : (locale === "en" ? "MOVIE" : "电影")}
+                {item.year || ""} | {typeLabel}
               </span>
             </div>
 
-            {/* Tags row */}
+            {/* Tags row: countdown/status + rating + director + runtime (wall order) */}
             <div className="flex flex-wrap gap-2 mb-4">
+              {!isMusic && (released ? (
+                <span className="bg-black text-[#00ff00] px-2 py-1 font-black text-xs border-2 border-black leading-none">
+                  {zh ? "已上线" : "OUT NOW"}
+                </span>
+              ) : (
+                <span className="bg-[#ffff00] text-black px-2 py-1 font-black text-xs border-2 border-black leading-none">
+                  {zh ? `${daysToRelease}天后上映` : `IN ${daysToRelease}D`}
+                </span>
+              ))}
               <StarRating score={item.rating} max={10} />
               <AIScoreBadge score={item.aiScore} confidence={item.confidence} />
               {!isMusic && enriched.director && (
                 <span className="bg-white text-black px-2 py-1 font-black text-xs border-2 border-black uppercase leading-none">
-                  🎬 {locale === "en" ? (enriched.directorEn || enriched.director) : enriched.director}
+                  🎬 {zh ? (enriched.directorEn || enriched.director) : enriched.director}
                 </span>
               )}
               {!isMusic && enriched.runtime && (
                 <span className="bg-black text-white px-2 py-1 font-black text-xs border-2 border-[#00ffff] pixel-font leading-none">
-                  ⏱ {locale === "en" ? `${enriched.runtime} min` : `${enriched.runtime}分钟`}
+                  ⏱ {zh ? `${enriched.runtime}分钟` : `${enriched.runtime} min`}
                 </span>
               )}
             </div>
@@ -803,12 +821,12 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
             {/* Genre badges */}
             {isMusic
               ? (musicGenres.length > 0
-                ? <div className="flex flex-wrap gap-2 mb-4">{musicGenres.map((t, i) => <span key={i} className="bg-black text-white px-2 py-1 font-black text-xs border-2 border-gray-600 pixel-font leading-none">{locale === "zh" ? (GENRE_ZH[t] || t) : t}</span>)}</div>
+                ? <div className="flex flex-wrap gap-2 mb-4">{musicGenres.map((tg, i) => <span key={i} className="bg-black text-white px-2 py-1 font-black text-xs border-2 border-gray-600 pixel-font leading-none">{zh ? (GENRE_ZH[tg] || tg) : tg}</span>)}</div>
                 : null)
               : genres.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
                 {genres.map((g, i) => (
-                  <span key={i} className="bg-black text-white px-2 py-1 font-black text-xs border-2 border-[#ff00ff] pixel-font leading-none">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
+                  <span key={i} className="bg-black text-white px-2 py-1 font-black text-xs border-2 border-[#ff00ff] pixel-font leading-none">{zh ? (GENRE_ZH[g] || g) : g}</span>
                 ))}
               </div>
             )}
@@ -825,15 +843,15 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
             {/* AI tags */}
             {!isMusic && item.tags && item.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
-                {item.tags.slice(0, 3).map((t, i) => (
+                {item.tags.slice(0, 3).map((tg, i) => (
                   <span key={i} className="px-2 py-1 font-black text-xs border-2 border-black pixel-font leading-none" style={{ backgroundColor: "#ffff00", color: "#000" }}>
-                    #{locale === "en" ? (item.tagsEn?.[i] || t) : t}
+                    #{zh ? tg : (item.tagsEn?.[i] || tg)}
                   </span>
                 ))}
               </div>
             )}
 
-            {/* Music recommendation tag (inline in info section) */}
+            {/* Music recommendation tag */}
             {isMusic && item.recommendationTag && (
               <div className="bg-black border-2 border-[#ffff00] p-3 mb-4">
                 <span className="text-xs text-[#ffff00] font-black pixel-font">
@@ -841,10 +859,17 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
                 </span>
               </div>
             )}
+
+            {/* Release date line */}
+            {!isMusic && item.releaseDate && (
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-gray-500 font-bold">
+                <span>{zh ? `上映日期：${item.releaseDate}` : `Release: ${item.releaseDate}`}</span>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Summary - full width below poster+info */}
+        {/* Summary — full width below poster+info */}
         {item.summary && (
           <div className="bg-[#f0f0f0] border-4 border-black p-4 mb-4">
             <p className="text-black font-bold leading-relaxed text-sm sm:text-base">
@@ -853,27 +878,94 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
           </div>
         )}
 
-        {/* TMDB / MusicBrainz link - below summary (matches discover page position) */}
-        {!isMusic && item.tmdbId && (
-          <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
-            className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font">
-            {locale === "en" ? "View on TMDB ↗" : "在 TMDB 查看完整资料 ↗"}
+        {/* Action buttons: TMDB(or MusicBrainz) + IMDb + YouTube + Bilibili —
+            four buttons, uniform lg sizing, same as WallDetailView */}
+        <div className="flex flex-wrap items-center gap-2">
+          {isMusic ? (
+            mbUrl ? (
+              <a href={mbUrl} target="_blank" rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font">
+                {zh ? "MusicBrainz 查看资料 ↗" : "View on MusicBrainz ↗"}
+              </a>
+            ) : null
+          ) : item.tmdbId ? (
+            <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
+              className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font">
+              {zh ? "在 TMDB 查看完整资料 ↗" : "View on TMDB ↗"}
+            </a>
+          ) : null}
+          <a href={imdbUrl} target="_blank" rel="noopener noreferrer"
+            className="flex items-center justify-center w-10 h-10 bg-[#F5C518] border-4 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+            title="Open in IMDb">
+            <Icons.Imdb className="w-full h-full" />
           </a>
-        )}
-        {isMusic && mbUrl && (
-          <a href={mbUrl} target="_blank" rel="noopener noreferrer"
-            className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font">
-            {locale === "en" ? "View on MusicBrainz ↗" : "MusicBrainz 查看资料 ↗"}
-          </a>
-        )}
+          <TrailerButtons item={{ ...item, type: typeLabel }} locale={locale} size="lg" forceType={isTV ? "tv" : "movie"} />
+        </div>
       </div>
 
-      {/* Back button */}
+      {/* Back button — 返回情报 kept per Rex */}
       <div className="flex justify-center gap-4 pt-6 pb-8">
         <button onClick={onClose}
           className="flex items-center text-white bg-black border-4 border-[#00ffff] px-6 py-3 uppercase font-bold hover:bg-[#00ffff] hover:text-black transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
           {locale === "en" ? "← Back" : "← 返回情报"}
         </button>
+      </div>
+    </div>
+  );
+}
+
+
+// ── Unified wall-style card (2026-08-24): one card shape for movies, TV and
+// albums across the Intelligence page. Same geometry as the Movie Wall card:
+// aspect-[2/3] poster area (album covers are square → object-contain on black),
+// rating badge bottom-right, title + date + genre bar below. No inline action
+// buttons — the whole card opens the detail view.
+export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", onClick }) {
+  const zh = locale === "zh";
+  const title = zh ? item.title : (item.titleEn || item.title);
+  const isMusic = !!(item.mbid || item.artist);
+  const rating = item.rating || 0;
+  const genres = Array.isArray(item.genre) ? item.genre : [];
+  return (
+    <div onClick={() => onClick && onClick(item)}
+      className="bg-white border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#ff00ff] transition-all group cursor-pointer">
+      <div className="relative overflow-hidden border-b-2 border-black bg-black">
+        {item.poster ? (
+          <img src={posterUrl(item.poster)} alt={title} className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+        ) : item.cover ? (
+          <img src={posterUrl(item.cover)} alt={title} className="w-full h-full aspect-[2/3] object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+        ) : (
+          <div className="w-full aspect-[2/3] bg-gray-800 flex items-center justify-center text-gray-500">
+            <Icons.Film className="w-8 h-8" />
+          </div>
+        )}
+        {badge && (
+          <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none"
+            style={{ backgroundColor: badgeColor, color: "#000" }}>
+            {badge}
+          </span>
+        )}
+        {rating > 0 && (
+          <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">
+            {rating.toFixed(1)}
+          </span>
+        )}
+      </div>
+      <div className="p-2 max-sm:p-1.5">
+        <h3 className="text-xs font-black truncate leading-tight" title={title}>{title}</h3>
+        {isMusic && item.artist && (
+          <p className="text-[9px] text-gray-500 font-bold truncate">{item.artist}</p>
+        )}
+        <div className="flex items-center justify-between mt-1 gap-1">
+          <span className="text-[9px] text-gray-600 font-bold truncate">{item.releaseDate || item.year || ""}</span>
+          {(genres.length > 0 || (isMusic && Array.isArray(item.tags) && item.tags.length > 0)) && (
+            <span className="text-[8px] px-1 bg-black text-white font-bold flex-shrink-0">
+              {zh
+                ? (genres[0] ? (GENRE_ZH[genres[0]] || genres[0]) : (item.tags?.[0] || ""))
+                : (genres[0] || item.tagsEn?.[0] || item.tags?.[0] || "")}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

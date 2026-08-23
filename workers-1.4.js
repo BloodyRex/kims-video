@@ -1023,6 +1023,37 @@ async function handleIntelOverview(env) {
     editorsPicksV2.map(m => intelPickCnReleaseDate(m, token))
   )).filter(Boolean);
 
+  // ── 剧集热榜 (Rex 2026-08-24): 总览编辑精选下方追加 6 张热度剧集卡 ──
+  // trending/tv/week was already fetched by the weekly endpoint earlier in the
+  // pipeline task order → this call hits its cache (≈0 subrequests). zh gate +
+  // daily rotation, same standards as the movie pools above.
+  const tvTrendingWeek = await intelFetchTMDB(token, "/trending/tv/week");
+  const weeklyHotTv = seededShuffle((tvTrendingWeek || [])
+    .filter(intelRatingOk)
+    .filter(s => ovZh(s)))
+    .slice(0, 6)
+    .map(s => ({ ...intelNormalizeMovie(s, "tv"), pickCategory: "tvhot" }));
+
+  // ── 即将上映剧集 (Rex 2026-08-24): 电影排片下方追加 6 张 ──
+  // Same discover call the tv handler makes → cache hit. Sorted by daysUntil
+  // (date-first, the section's whole point), zh-gated for the pipeline layer.
+  const ninetyDaysLaterOv = new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
+  const tvUpcomingRaw = await intelFetchPages(token, "/discover/tv",
+    { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLaterOv, "sort_by": "popularity.desc" }, 1);
+  const comingSoonTv = (tvUpcomingRaw || [])
+    .filter(s => s.first_air_date && s.first_air_date > today)
+    .filter(intelRatingOk)
+    .filter(s => ovZh(s))
+    .sort((a, b) => (a.first_air_date || "").localeCompare(b.first_air_date || ""))
+    .slice(0, 6)
+    .map(s => {
+      const days = Math.max(0, Math.ceil((new Date(s.first_air_date) - new Date(today + "T00:00:00")) / 86400000));
+      return { ...intelNormalizeMovie(s, "tv"), daysUntil: days };
+    });
+  // Same zh gate for the movie side — the pipeline filter was silently shrinking
+  // this list (only 3 of 6 survived on 08-23 data).
+  const comingSoonFinal = comingSoon.filter(m => ovZh(m));
+
   return {
     updated: today,
     stats: {
@@ -1032,7 +1063,9 @@ async function handleIntelOverview(env) {
       trending: (trending || []).length,
     },
     editorsPicks: editorsPicksFinal,
-    comingSoon,
+    weeklyHotTv,
+    comingSoon: comingSoonFinal,
+    comingSoonTv,
     brief: `Today: ${moviesReleased} movie(s) released, ${tvSelected.length} TV show(s) airing, ${(todayMB || []).length} new album(s).`,
   };
 }
@@ -1769,25 +1802,31 @@ async function handleIntelDigest(env) {
     const todayMovies = nowPlaying.filter(m => m.release_date === today).length;
     const weekMovies = nowPlaying.filter(m => m.release_date >= weekAgo).length;
     const weekUpcoming = upcoming.filter(m => m.release_date && m.release_date >= today).slice(0, 5).map(m => m.title || m.name);
+    // Rex 2026-08-24: the digest must cover BOTH movies and TV — trending/all
+    // payloads already carry tv entries (media_type), surface them explicitly.
+    const dayTrendingTv = dayTrending.filter(m => m.media_type === "tv").slice(0, 5);
+    const weekTrendingTv = weekTrending.filter(m => m.media_type === "tv").slice(0, 5);
 
-    const prompt = `Today is ${today}. Summarize today's entertainment news in a digest.
+    const prompt = `Today is ${today}. Summarize today's entertainment news in a digest covering BOTH movies and TV series.
 
 Stats: ${todayMovies} movies released today, ${weekMovies} new movies this week.
-Top trending today: ${dayTrending.slice(0, 5).map(m => m.title || m.name).join(", ")}.
-Top trending this week: ${weekTrending.slice(0, 8).map(m => m.title || m.name).join(", ")}.
+Top trending movies today: ${dayTrending.slice(0, 5).map(m => m.title || m.name).join(", ")}.
+Top trending TV today: ${dayTrendingTv.map(m => m.title || m.name).join(", ") || "none"}.
+Top trending movies this week: ${weekTrending.slice(0, 8).map(m => m.title || m.name).join(", ")}.
+Top trending TV this week: ${weekTrendingTv.map(m => m.title || m.name).join(", ") || "none"}.
 Upcoming: ${weekUpcoming.join(", ") || "none notable"}.
 
 Return JSON only:
 {
   "headline": "One punchy headline in Chinese (max 30 chars)",
   "headlineEn": "Same headline in English",
-  "summary": "One paragraph summary in Chinese (max 150 chars)",
+  "summary": "One paragraph summary in Chinese (max 150 chars), must mention both a movie and a TV highlight",
   "summaryEn": "Same summary in English",
   "topTrends": [{ "rank": 1, "title": "...(in Chinese)", "titleEn": "...(same in English)", "category": "movie" }],
   "industryHighlights": [{ "text": "short highlight in Chinese", "en": "same in English" }]
 }
 
-Top 3-5 trends. 3-5 highlights.`;
+Top 3-5 trends (mix movies and TV by heat). 3-5 highlights.`;
 
     // One retry (DeepSeek occasionally 5xx/times out; music endpoint uses the same pattern)
     let raw = "", dResp = null;

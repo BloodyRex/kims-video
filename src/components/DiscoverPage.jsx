@@ -174,17 +174,18 @@ function PairDetailOverlay({ pair, posterMap, metaMap, locale, onClose }) {
               </div>
             )}
             <p className="text-xs text-gray-600 leading-relaxed mt-2 flex-1">{zh ? pair.reason : pair.reasonEn}</p>
-            <div className="flex items-center gap-2 mt-3">
-              <Link to={`/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`}
-                className="flex items-center justify-center w-7 h-7 bg-black border-2 border-black hover:bg-gray-800 transition-colors" title={zh ? "详情" : "Details"}>
-                <Icons.Info className="w-4 h-4 text-white" />
-              </Link>
+            {/* Wall-style 4-button row: TMDB + IMDb + YouTube + Bilibili (uniform lg) */}
+            <div className="flex flex-wrap items-center gap-2 mt-3">
+              <a href={`https://www.themoviedb.org/movie/${pair.recommend.tmdbId}`} target="_blank" rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font">
+                {zh ? "在 TMDB 查看 ↗" : "View on TMDB ↗"}
+              </a>
               <a href={`https://www.imdb.com/find?q=${encodeURIComponent(((pair.recommend.titleEn || pair.recommend.title) + " " + (pair.recommend.year || "")).trim())}`}
                 target="_blank" rel="noopener noreferrer"
-                className="flex items-center justify-center w-7 h-7 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors overflow-hidden" title="IMDb">
+                className="flex items-center justify-center w-10 h-10 bg-[#F5C518] border-4 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none" title="Open in IMDb">
                 <Icons.Imdb className="w-full h-full" />
               </a>
-              <TrailerButtons item={pair.recommend} locale={locale} />
+              <TrailerButtons item={pair.recommend} locale={locale} size="lg" forceType="movie" />
             </div>
           </div>
         </div>
@@ -220,13 +221,20 @@ function DailyPickDetailOverlay({ pick, locale, onClose }) {
               </div>
             )}
             <p className="text-xs text-gray-600 leading-relaxed mt-2 line-clamp-4 flex-1">{zh ? pick.summary : (pick.summaryEn || pick.summary)}</p>
-            <div className="flex items-center gap-2 mt-3">
+            {/* Wall-style 4-button row: TMDB + IMDb + YouTube + Bilibili (uniform lg) */}
+            <div className="flex flex-wrap items-center gap-2 mt-3">
+              {pick.tmdbId && (
+                <a href={`https://www.themoviedb.org/movie/${pick.tmdbId}`} target="_blank" rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font">
+                  {zh ? "在 TMDB 查看 ↗" : "View on TMDB ↗"}
+                </a>
+              )}
               <a href={`https://www.imdb.com/find?q=${encodeURIComponent(((pick.titleEn || pick.title) + " " + (pick.year || "")).trim())}`}
                 target="_blank" rel="noopener noreferrer"
-                className="flex items-center justify-center w-7 h-7 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors overflow-hidden" title="IMDb">
+                className="flex items-center justify-center w-10 h-10 bg-[#F5C518] border-4 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none" title="Open in IMDb">
                 <Icons.Imdb className="w-full h-full" />
               </a>
-              <TrailerButtons item={{ title: pick.title, titleEn: pick.titleEn }} locale={locale} />
+              <TrailerButtons item={{ ...pick, type: "movie" }} locale={locale} size="lg" forceType="movie" />
             </div>
           </div>
         </div>
@@ -535,7 +543,7 @@ const DiscoverPage = () => {
       {/* Title */}
       <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 text-center relative">
         <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
-          {zh ? "🎬 发现" : "🎬 DISCOVER"}
+          {zh ? "🎬发现" : "🎬DISCOVER"}
         </h2>
         <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">{t('discover.desc')}</p>
       </section>
@@ -544,8 +552,8 @@ const DiscoverPage = () => {
       {dailyPicks.length > 0 && (
         <section className="mb-6">
           <div className="max-w-4xl mx-auto px-4 max-sm:px-3 mb-3">
-            <h3 className="inline-block px-4 py-1.5 text-sm sm:text-base font-black pixel-font uppercase tracking-widest bg-black text-[#ffff00] border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff]">
-              {zh ? "★ 今日编辑精选" : "★ TODAY'S EDITOR'S PICKS"}
+            <h3 className="inline-block px-4 py-1.5 text-sm sm:text-base font-black pixel-font uppercase tracking-widest bg-black text-[#ffff00] border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff] max-sm:text-xs">
+              {zh ? "★ 今日编辑精选" : <span className="sm:text-xs">★ Today's Editor's Picks</span>}
             </h3>
           </div>
           <div ref={scrollRef} className="max-w-4xl mx-auto px-4 max-sm:px-3">

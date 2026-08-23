@@ -179,11 +179,13 @@ const WallPage = () => {
   const pageItems = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
   const zh = locale === "zh";
 
+  // 2026-08-24: shrunk to match Discover page chips (text-[10px] sm:text-xs,
+  // border-2) — Rex flagged the size mismatch between wall and discover.
   const statusBtn = (id, label) => (
     <button
       key={id}
       onClick={() => setStatusFilter(id)}
-      className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${
+      className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
         statusFilter === id ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"
       }`}
     >
@@ -253,7 +255,7 @@ const WallPage = () => {
       {/* Title */}
       <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 text-center relative">
         <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
-          {zh ? "🎬 影视墙" : "🎬 MOVIE WALL"}
+          {zh ? "🎬影视墙" : "🎬MOVIE WALL"}
         </h2>
         <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">{t('wall.desc')}</p>
       </section>
