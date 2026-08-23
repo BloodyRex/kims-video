@@ -236,15 +236,22 @@ const TAG_FILTERS = [
 
 function MusicView({ locale, onViewDetail }) {
   const { data, loading, error } = useJsonData("/api/music.json");
-  const [tagFilter, setTagFilter] = useState("trending");
+  // Default "全部": mirrors movies/TV tabs' show-everything-first pattern;
+  // tag buttons become filters instead of the only way to see picks.
+  const [tagFilter, setTagFilter] = useState("all");
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
   const picks = data?.picks || [];
-  const current = picks.filter(a => a.recommendationTagId === tagFilter);
+  const current = tagFilter === "all" ? picks : picks.filter(a => a.recommendationTagId === tagFilter);
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "本周精选" : "This Week's Picks"} color="#ffff00" />
       <div className="flex gap-1.5 flex-wrap">
+        <button onClick={() => setTagFilter("all")}
+          className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${tagFilter === "all" ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
+          {locale === "zh" ? "全部" : "All"}
+          <span className="ml-1 opacity-60">({picks.length})</span>
+        </button>
         {TAG_FILTERS.map(f => (
           <button key={f.id} onClick={() => setTagFilter(f.id)}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${tagFilter === f.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>

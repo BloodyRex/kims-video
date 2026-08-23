@@ -218,6 +218,22 @@ async function fetchAlbumInfo(artist, album) {
   }
 }
 
+// ── iTunes Search cover art fallback (no API key; Cover Art Archive misses many
+// releases — live data 2026-08-22 showed 12/15 picks without a cover) ──
+async function fetchItunesCover(artist, album) {
+  try {
+    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(`${artist} ${album}`)}&entity=album&limit=1`;
+    const res = await fetch(url, { headers: { "User-Agent": "KimVideo-Pipeline/1.0" } });
+    if (!res.ok) return "";
+    const data = await res.json();
+    const art = data?.results?.[0]?.artworkUrl100;
+    // upgrade 100x100 thumbnail to 600x600
+    return art ? art.replace(/\/\d+x\d+bb\.jpg$/, "/600x600bb.jpg") : "";
+  } catch {
+    return "";
+  }
+}
+
 // ── Last.fm: fetch top albums by genre tag (charts) ──
 async function fetchCharts(config) {
   if (!process.env.LASTFM_API_KEY) return [];
@@ -373,6 +389,11 @@ export async function collectMusicCandidates(config) {
       c.lfmTags = info.tags;
       c.genres = info.tags.map(t => intelGenreZH([t])).filter(Boolean).slice(0, 5);
       c.genresEn = info.tags.slice(0, 5);
+    }
+    // Cover art fallback chain: MusicBrainz/CoverArtArchive → iTunes Search.
+    // (2026-08-23: 12/15 live picks had no cover — CAA misses most releases.)
+    if (!c.cover) {
+      c.cover = await fetchItunesCover(c.artist, c.title);
     }
     await sleep(300); // throttle
   }

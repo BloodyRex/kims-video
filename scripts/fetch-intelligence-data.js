@@ -116,8 +116,11 @@ async function main() {
     // dropping its subrequest count from ~55 (over the 50 limit → 500) to ~14.
     { endpoint: "/intelligence/movies", file: "movies.json" },
     { endpoint: "/intelligence/tv", file: "tv.json" },
+    // coming.json is NO LONGER fetched from the Worker (2026-08-23): it re-ran an
+    // independent selection whose TV picks diverged from tv.json.upcoming (7 of 8
+    // titles mismatched, live data 2026-08-22). Built locally below by merging the
+    // two files above — single source of truth, zero extra Worker subrequests.
     // Music is handled separately via pipeline (see below)
-    { endpoint: "/intelligence/coming", file: "coming.json" },
     { endpoint: "/intelligence/weekly", file: "weekly.json" },
     { endpoint: "/intelligence/hidden-gems", file: "hidden-gems.json" },
     { endpoint: "/intelligence/digest", file: "digest.json" },
@@ -166,6 +169,45 @@ async function main() {
       failCount++;
       // Don't set exit code — non-critical endpoint failure shouldn't block commit
     }
+  }
+
+  // ── Coming Soon: built locally from TODAY's movies.json + tv.json (2026-08-23) ──
+  // Replaces the old /intelligence/coming Worker call whose independent re-selection
+  // produced TV lists that contradicted tv.json.upcoming. Now: single source of
+  // truth — movies.upcoming ⊆ next30 always, TV side = tv.upcoming verbatim.
+  // mediaType tags are REQUIRED: the wall builder below filters
+  // coming.next7/next30 by `mediaType === "movie"`, and the Search view maps
+  // `_type` off it too.
+  try {
+    const moviesData = JSON.parse(readFileSync(join(API_DIR, "movies.json"), "utf8"));
+    const tvData = JSON.parse(readFileSync(join(API_DIR, "tv.json"), "utf8"));
+    const daysOf = (item) => {
+      if (typeof item.daysUntil === "number") return item.daysUntil;
+      const d = item.releaseDate || "";
+      return d ? Math.max(0, Math.ceil((new Date(d) - new Date(beijingDate() + "T00:00:00+08:00")) / 86400000)) : 999;
+    };
+    const allItems = [
+      ...(moviesData.upcoming || []).map(i => ({ ...i, mediaType: "movie", daysUntil: daysOf(i) })),
+      // explicit mediaType: tv.json.upcoming only carries it on source=tvmaze
+      // entries — TMDB-sourced shows would fall through the wall/search filters
+      ...(tvData.upcoming || []).map(i => ({ ...i, mediaType: "tv", daysUntil: daysOf(i) })),
+    ].filter(i => i.daysUntil !== null && i.daysUntil <= 999);
+    const comingData = {
+      updated: beijingDate(),
+      next7Days: allItems.filter(i => i.daysUntil <= 7),
+      next30Days: allItems.filter(i => i.daysUntil <= 30),
+    };
+    const comingPath = join(API_DIR, "coming.json");
+    let oldComing = null;
+    if (existsSync(comingPath)) { try { oldComing = JSON.parse(readFileSync(comingPath, "utf8")); } catch {} }
+    writeFileSync(comingPath, JSON.stringify(comingData, null, 2), "utf8");
+    const comingChanged = !oldComing || JSON.stringify(oldComing.next7Days || []) !== JSON.stringify(comingData.next7Days)
+      || JSON.stringify(oldComing.next30Days || []) !== JSON.stringify(comingData.next30Days);
+    if (comingChanged) anyChange = true;
+    console.log(`OK coming.json — local merge: ${comingData.next7Days.length} in 7d / ${comingData.next30Days.length} in 30d (${comingChanged ? "NEW DATA" : "unchanged"})`);
+  } catch (e) {
+    console.error(`FAIL coming.json (local build): ${e.message}`);
+    failCount++; // movies/tv missing is serious — counts toward the all-fail retry signal
   }
 
   // ── Wall: cumulative movie wall (persistent, grows daily) ──

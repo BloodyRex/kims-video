@@ -1351,9 +1351,15 @@ async function handleIntelTV(env) {
   // No episode-date enrichment for upcoming (saves subrequests); S/E shown when TVMAZE carries it
   const tvmazeUpcomingPicked = upcomingSelected.filter(s => s.source === "tvmaze");
   const tvmazeUpcomingEnriched = await intelEnrichTVMazeBatch(tvmazeUpcomingPicked, token, 2);
+  // daysUntil added 2026-08-23: movies.upcoming carries it; TV side was missing it
+  // so coming.json/email had to recompute and CountdownCard showed no countdown.
+  const tvDays = (s) => {
+    const d = s.first_air_date || "";
+    return d ? Math.max(0, Math.ceil((new Date(d) - new Date(today)) / 86400000)) : null;
+  };
   const upcomingTV = [
-    ...upcomingSelected.filter(s => s.source !== "tvmaze").map(s => intelNormalizeMovie(s, "tv")),
-    ...tvmazeUpcomingEnriched.map(s => intelTVMazeToOutput(s)),
+    ...upcomingSelected.filter(s => s.source !== "tvmaze").map(s => ({ ...intelNormalizeMovie(s, "tv"), daysUntil: tvDays(s) })),
+    ...tvmazeUpcomingEnriched.map(s => ({ ...intelTVMazeToOutput(s), daysUntil: tvDays(s) })),
   ];
   const upcomingIds = new Set(upcomingSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
 
@@ -1436,33 +1442,83 @@ async function handleIntelMusicV2(request, env) {
       tags: c.genres || [],
     }));
 
-    let aiPicks = await intelEnrichAlbums(aiInput, env);
+    // AI curation with one retry (same pattern as digest/hidden-gems — DeepSeek
+    // occasionally 5xx/times out; a single hiccup must not drop the whole board
+    // into fallback. 2 attempts, 1.2s gap.)
+    let aiPicks = null;
+    for (let attempt = 0; attempt < 2 && !aiPicks?.length; attempt++) {
+      if (attempt > 0) await new Promise(r => setTimeout(r, 1200));
+      aiPicks = await intelEnrichAlbums(aiInput, env);
+    }
 
-    // Fallback: if AI returns nothing, sort by listeners with percentile tags
-    if (!aiPicks?.length && aiInput.length) {
-      const sorted = [...aiInput].sort((a, b) => (a.listeners || 0) - (b.listeners || 0));
-      aiPicks = [];
-      for (let i = 0; i < sorted.length; i++) {
-        const a = sorted[i];
-        const pct = i / sorted.length;
+    // Fallback: programmatic percentile ranking when AI is unavailable.
+    // Fixed 2026-08-23: was ASCENDING listener sort → the LEAST-listened 30% got
+    // 🔥trending while the biggest artists were tagged 💎hidden AND cut by the
+    // final slice(0,15). Now DESCENDING (top listeners = trending), plus:
+    // - CJK quota: up to 4 mid/low-ranked CJK artists relabeled 🌍环球音乐
+    //   (programmatic version of the AI prompt's "CJK representation" rule)
+    // - aiScore from normalized listeners (6.0–10.0) so AIScoreBadge isn't empty
+    // - bilingual highlight/summary so the zh UI never shows EN-only filler
+    if ((!aiPicks || !aiPicks.length) && aiInput.length) {
+      const seenArtist = new Set();
+      const ranked = [...aiInput]
+        .sort((a, b) => (b.listeners || 0) - (a.listeners || 0))
+        .filter(a => {
+          const k = (a.artist || "").toLowerCase().trim();
+          if (!k || seenArtist.has(k)) return false;
+          seenArtist.add(k);
+          return true;
+        });
+      const n = ranked.length;
+      const maxL = Math.max(...ranked.map(x => x.listeners || 0), 1);
+      const minL = Math.min(...ranked.map(x => x.listeners || 0), 0);
+      const lRange = Math.max(maxL - minL, 1);
+      const hasCJK = (s) => /[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]/.test(s || "");
+      const zhStyle = (a) => {
+        for (const t of (a.lfmTags || []).slice(0, 5)) {
+          const zh = GENRE_ZH[String(t).toLowerCase().trim()];
+          if (zh) return zh;
+        }
+        return "";
+      };
+      aiPicks = ranked.map((a, i) => {
+        const pct = n > 1 ? i / (n - 1) : 0; // 0 = most listened … 1 = least
         let tag, tagEn, tagId, cat;
         if (pct < 0.3) { tag = "🔥 热门趋势"; tagEn = "Trending Now"; tagId = "trending"; cat = "trending"; }
         else if (pct < 0.6) { tag = "⭐ 编辑推荐"; tagEn = "Editor's Pick"; tagId = "editor"; cat = "editor"; }
         else if (pct < 0.85) {
-          tag = (a.artistStars || 0) < 3 ? "⭐ 编辑推荐" : "💎 隐藏宝石";
-          tagEn = (a.artistStars || 0) < 3 ? "Editor's Pick" : "Hidden Gem";
-          tagId = (a.artistStars || 0) < 3 ? "editor" : "hidden";
-          cat = (a.artistStars || 0) < 3 ? "editor" : "hidden-gem";
+          const editorLow = (a.artistStars || 0) < 3;
+          tag = editorLow ? "⭐ 编辑推荐" : "💎 隐藏宝石";
+          tagEn = editorLow ? "Editor's Pick" : "Hidden Gem";
+          tagId = editorLow ? "editor" : "hidden";
+          cat = editorLow ? "editor" : "hidden-gem";
         } else {
           tag = "🌍 环球音乐"; tagEn = "Around the World"; tagId = "world"; cat = "world";
         }
-        aiPicks.push({
-          ...a, artist: a.artist || "", title: a.title || "",
+        const styleZh = zhStyle(a);
+        const styleEn = (a.lfmTags || [])[0] || "";
+        const kListeners = Math.round((a.listeners || 0) / 1000);
+        return {
+          ...a,
+          artist: a.artist || "", title: a.title || "",
+          aiScore: Math.round((6 + ((a.listeners || 0) - minL) / lRange * 4) * 10) / 10,
           recommendationTag: tag, recommendationTagEn: tagEn, recommendationTagId: tagId, category: cat,
-          highlight: a.highlight || `New release from ${a.artist || "unknown"}`,
-          highlightEn: a.highlightEn || `New release from ${a.artist || "unknown"}`,
-          summary: a.summary || "", summaryEn: a.summaryEn || "",
-        });
+          highlight: a.highlight || `${styleZh || "新专辑"}发行 · ${kListeners}k 听众`,
+          highlightEn: a.highlightEn || `New ${styleEn || "release"} from ${a.artist || "unknown"}`,
+          summary: a.summary || (styleZh ? `${styleZh}风格新作，来自${a.artist || "未知艺人"}` : `${a.artist || "Unknown artist"} 的最新专辑作品`),
+          summaryEn: a.summaryEn || `Latest album from ${a.artist || "unknown artist"}`,
+        };
+      });
+      // CJK quota override AFTER percentile tagging: relabel up to 4 non-trending
+      // CJK artists as 🌍环球音乐 (they keep their rank; only the label moves).
+      let quotaUsed = 0;
+      for (const p of aiPicks) {
+        if (quotaUsed >= 4) break;
+        if (p.recommendationTagId !== "trending" && hasCJK(p.artist)) {
+          p.recommendationTag = "🌍 环球音乐"; p.recommendationTagEn = "Around the World";
+          p.recommendationTagId = "world"; p.category = "world";
+          quotaUsed++;
+        }
       }
     }
 
