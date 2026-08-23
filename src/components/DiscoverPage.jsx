@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import discoverData from "../data/discover.json";
 import { Icons } from "./Icons";
@@ -12,95 +12,180 @@ const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
 };
 
-const GENRE_COLORS = {
-  "科幻": "#ff00ff", "悬疑": "#00ffff", "恐怖": "#ff00ff",
-  "动画": "#ffff00", "战争": "#ff00ff", "犯罪": "#00ffff",
-  "剧情": "#ffff00", "奇幻": "#ff00ff",
-};
+// ── Wall-style organization (2026-08-23 redesign) ──
+// Same skeleton as WallPage: poster-card grid (3/4/6 cols) + filter bar
+// (genre chips + IME-safe search) + community comet-toggle + smart pagination.
+// Pinned top row = the day's 编辑精选 (6 cards from /api/overview.json,
+// ★编辑/💎宝藏/🔥热榜 — merged section curated in handleIntelOverview).
+// Content modes: default = curated library pairs (discover.json),
+// comet button = community submissions (KV). Status filter intentionally
+// omitted (Rex confirmed): library content is almost all released.
 
-const GENRE_SLUGS = {
-  "科幻": "sci-fi", "悬疑": "mystery", "恐怖": "horror",
-  "动画": "animation", "战争": "war", "犯罪": "crime",
-  "剧情": "drama", "奇幻": "fantasy",
-};
+const PAGE_SIZE = 24;
 
-function usePosters(tmdbIds) {
-  const [map, setMap] = useState({});
-  useEffect(() => {
-    const unique = [...new Set(tmdbIds)];
-    if (!unique.length) return;
-    let cancelled = false;
-    (async () => {
-      const result = {};
-      await Promise.allSettled(unique.map(async id => {
-        const data = await fetchMovieByTmdbId(id, "zh");
-        if (data?.poster && !cancelled) result[id] = data.poster;
-      }));
-      if (!cancelled) setMap(prev => ({ ...prev, ...result }));
-    })();
-    return () => { cancelled = true; };
-  }, [JSON.stringify([...new Set(tmdbIds)].sort())]);
-  return map;
+// Common genre chips — everything else falls into "其他 / OTHER" (same idea as the wall)
+const COMMON_GENRES = [
+  "Action", "Sci-Fi", "Comedy", "Romance",
+  "Horror", "Drama", "Animation", "Thriller", "Documentary",
+];
+const normGenre = (g) => GENRE_ZH[g] || g;
+const COMMON_ZH = COMMON_GENRES.map(normGenre);
+const genreLabel = (g, locale) => (locale === "zh" ? GENRE_ZH[g] || g : g);
+
+function todayInfo() {
+  const todayStr = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
+  return { todayStr, todayTs: Date.parse(todayStr + "T00:00:00Z") };
 }
 
-// ── Editor's Picks Card (MovieCard style) ──
-function EditorPickCard({ pair, posterMap, metaMap, locale, getTitle }) {
+function buildPages(current, total) {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const set = new Set([1, total, current - 1, current, current + 1]);
+  return [...set].filter((p) => p >= 1 && p <= total).sort((a, b) => a - b);
+}
+
+// ── Daily Pick Card (Wall-card style; pinned editor's-picks row) ──
+const PICK_CATS = {
+  editors: { zh: "★ 编辑精选", en: "★ EDITOR", bg: "#ff00ff", text: "#000" },
+  gem: { zh: "💎 隐藏宝藏", en: "💎 GEM", bg: "#00ffff", text: "#000" },
+  trending: { zh: "🔥 热榜趋势", en: "🔥 TRENDING", bg: "#ffff00", text: "#000" },
+};
+
+function DailyPickCard({ pick, locale, onOpen }) {
+  const cat = PICK_CATS[pick.pickCategory] || PICK_CATS.editors;
+  const zh = locale === "zh";
+  const title = zh ? pick.title : (pick.titleEn || pick.title);
+  return (
+    <div onClick={() => onOpen(pick)}
+      className="bg-white border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#ff00ff] transition-all group cursor-pointer">
+      <div className="relative overflow-hidden border-b-2 border-black">
+        {pick.poster ? (
+          <img src={pick.poster} alt={title} className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+        ) : (
+          <div className="w-full aspect-[2/3] bg-gray-800 flex items-center justify-center text-gray-500"><Icons.Film className="w-8 h-8" /></div>
+        )}
+        <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none"
+          style={{ backgroundColor: cat.bg, color: cat.text }}>
+          {zh ? cat.zh : cat.en}
+        </span>
+        {(pick.rating || 0) > 0 && (
+          <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">
+            {pick.rating.toFixed(1)}
+          </span>
+        )}
+      </div>
+      <div className="p-2 max-sm:p-1.5">
+        <h3 className="text-xs font-black truncate leading-tight" title={title}>{title}</h3>
+        {pick.titleEn && pick.titleEn !== title && (
+          <p className="text-[9px] text-gray-500 font-bold truncate">{pick.titleEn}</p>
+        )}
+        <div className="flex items-center justify-between mt-1 gap-1">
+          <span className="text-[9px] text-gray-600 font-bold truncate">{pick.releaseDate || pick.year || ""}</span>
+          {Array.isArray(pick.genre) && pick.genre.length > 0 && (
+            <span className="text-[8px] px-1 bg-black text-white font-bold flex-shrink-0">{pick.genre[0]}</span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Library Pair Card (Wall-card style; "推荐自" badge reveals source) ──
+function PairCard({ pair, posterMap, metaMap, locale, onOpen }) {
+  // Desktop: hovering the CARD reveals the source name next to the badge (CSS group-hover).
+  // Mobile: tapping the badge toggles it (no hover available).
+  const [showSrc, setShowSrc] = useState(false);
   const recPoster = posterMap[pair.recommend.tmdbId];
   const meta = metaMap[pair.recommend.tmdbId] || {};
-  const linkUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
-  const recTitle = getTitle(pair.recommend);
-  const srcTitle = getTitle(pair.source);
-  const titleEn = meta.originalTitle && meta.originalTitle !== pair.recommend.titleEn && meta.originalTitle !== pair.recommend.title ? meta.originalTitle : (pair.recommend.titleEn || "");
+  const zh = locale === "zh";
+  const recTitle = zh ? pair.recommend.title : (pair.recommend.titleEn || pair.recommend.title);
+  const srcTitle = zh ? pair.source.title : (pair.source.titleEn || pair.source.title);
   const genres = meta.genres || [];
-  const dateLabel = meta.releaseDate || pair.recommend.year || "";
 
   return (
-    <div className="flex-shrink-0 w-[240px] sm:w-[280px] lg:w-[320px] bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all" style={{ scrollSnapAlign: "start" }}>
-      {/* MovieCard-style header */}
-      <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
-        <span className="font-black pixel-font text-[#ff00ff] uppercase text-[9px] truncate">
-          {locale === "en" ? "If you like" : "如果你喜欢"} {srcTitle}
-        </span>
-        <span className="text-gray-400 text-[9px] flex-shrink-0">{dateLabel}</span>
-      </div>
-
-      {/* Body */}
-      <div className="flex gap-3 max-sm:gap-2 p-3 max-sm:p-2">
+    <div onClick={() => onOpen(pair)}
+      className="group bg-white border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#00ffff] transition-all cursor-pointer">
+      <div className="relative overflow-hidden border-b-2 border-black">
         {recPoster ? (
-          <img src={recPoster} alt={recTitle} className="w-20 max-sm:w-16 h-28 max-sm:h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+          <img src={recPoster} alt={recTitle} className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
         ) : (
-          <div className="w-20 max-sm:w-16 h-28 max-sm:h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0"><Icons.Film /></div>
+          <div className="w-full aspect-[2/3] bg-gray-800 flex items-center justify-center text-gray-500"><Icons.Film className="w-8 h-8" /></div>
         )}
-        <div className="flex-1 min-w-0 flex flex-col">
-          <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{recTitle}</h3>
-          {titleEn && (
-            <p className="text-xs text-gray-600 font-bold mb-1 truncate">{titleEn}</p>
-          )}
-          {meta.rating > 0 && (
-            <div className="flex items-center gap-2 mb-1">
-              <StarRating score={meta.rating} max={10} />
-            </div>
-          )}
+        {/* Rex spec: badge says 推荐自 — desktop hover shows the source title, mobile taps it */}
+        <span onClick={(e) => { e.stopPropagation(); setShowSrc(v => !v); }}
+          className="absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none bg-[#ffff00] text-black select-none">
+          {zh ? "推荐自" : "IF YOU LIKE"}
+        </span>
+        <span className={`absolute top-7 left-1.5 max-w-[85%] px-1.5 py-0.5 text-[9px] font-bold border-2 border-black leading-tight bg-black text-white truncate pointer-events-none transition-opacity duration-150 ${showSrc ? "opacity-100" : "opacity-0 sm:group-hover:opacity-100"}`}>
+          《{srcTitle}》
+        </span>
+        {(meta.rating || 0) > 0 && (
+          <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">
+            {meta.rating.toFixed(1)}
+          </span>
+        )}
+      </div>
+      <div className="p-2 max-sm:p-1.5">
+        <h3 className="text-xs font-black truncate leading-tight" title={recTitle}>{recTitle}</h3>
+        <div className="flex items-center justify-between mt-1 gap-1">
+          <span className="text-[9px] text-gray-600 font-bold truncate">{meta.releaseDate || pair.recommend.year || ""}</span>
           {genres.length > 0 && (
-            <div className="flex flex-wrap gap-1 mb-1">
-              {genres.map((g, i) => (
-                <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
-              ))}
-            </div>
+            <span className="text-[8px] px-1 bg-black text-white font-bold flex-shrink-0">
+              {genreLabel(genres[0], locale)}
+            </span>
           )}
-          <p className="text-[10px] max-sm:text-[9px] text-gray-500 leading-relaxed line-clamp-2 mb-1 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-          {/* Action buttons row */}
-          <div className="flex items-center gap-2 mt-1">
-            <Link to={linkUrl}
-              className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
-              title={locale === "en" ? "Details" : "详情"}>
-              <Icons.Info className="w-3.5 h-3.5 text-white" />
-            </Link>
-            <a href={`https://www.imdb.com/find?q=${encodeURIComponent(((pair.recommend.titleEn || pair.recommend.title) + " " + (meta.year || pair.recommend.year || "")).trim())}`}
-              target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
-              title="Open in IMDb"><Icons.Imdb className="w-full h-full" /></a>
-            <TrailerButtons item={pair.recommend} locale={locale} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Pair detail overlay (pair context moves here from the old wide cards) ──
+function PairDetailOverlay({ pair, posterMap, metaMap, locale, onClose }) {
+  const recPoster = posterMap[pair.recommend.tmdbId];
+  const meta = metaMap[pair.recommend.tmdbId] || {};
+  const zh = locale === "zh";
+  const recTitle = zh ? pair.recommend.title : (pair.recommend.titleEn || pair.recommend.title);
+  const srcTitle = zh ? pair.source.title : (pair.source.titleEn || pair.source.title);
+  const genres = meta.genres || [];
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={onClose}>
+      <div className="relative w-full max-w-md bg-white border-4 border-black shadow-[8px_8px_0_0_rgba(0,255,255,1)]" onClick={e => e.stopPropagation()}>
+        <button onClick={onClose}
+          className="absolute -top-3 -right-3 w-8 h-8 bg-[#ff00ff] border-2 border-black text-white font-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors z-10">×</button>
+        <div className="bg-black text-white px-4 py-2.5 text-xs">
+          <span className="font-black pixel-font uppercase text-[10px] text-[#ffff00]">
+            {zh ? <>如果你喜欢《{pair.source.title}》</> : <>If you like {srcTitle}</>}
+          </span>
+        </div>
+        <div className="flex gap-3 p-4 max-sm:p-3">
+          {recPoster ? (
+            <img src={recPoster} alt={recTitle} className="w-24 h-36 object-cover border-2 border-black flex-shrink-0" />
+          ) : (
+            <div className="w-24 h-36 bg-gray-800 border-2 border-black flex items-center justify-center text-gray-500"><Icons.Film /></div>
+          )}
+          <div className="flex-1 min-w-0 flex flex-col">
+            <h3 className="text-base font-black leading-tight">{recTitle}</h3>
+            {(meta.rating || 0) > 0 && <div className="mt-1"><StarRating score={meta.rating} max={10} /></div>}
+            {genres.length > 0 && (
+              <div className="flex flex-wrap gap-1 mt-1">
+                {genres.slice(0, 4).map((g, i) => (
+                  <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{genreLabel(g, locale)}</span>
+                ))}
+              </div>
+            )}
+            <p className="text-xs text-gray-600 leading-relaxed mt-2 flex-1">{zh ? pair.reason : pair.reasonEn}</p>
+            <div className="flex items-center gap-2 mt-3">
+              <Link to={`/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`}
+                className="flex items-center justify-center w-7 h-7 bg-black border-2 border-black hover:bg-gray-800 transition-colors" title={zh ? "详情" : "Details"}>
+                <Icons.Info className="w-4 h-4 text-white" />
+              </Link>
+              <a href={`https://www.imdb.com/find?q=${encodeURIComponent(((pair.recommend.titleEn || pair.recommend.title) + " " + (pair.recommend.year || "")).trim())}`}
+                target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center w-7 h-7 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors overflow-hidden" title="IMDb">
+                <Icons.Imdb className="w-full h-full" />
+              </a>
+              <TrailerButtons item={pair.recommend} locale={locale} />
+            </div>
           </div>
         </div>
       </div>
@@ -108,7 +193,49 @@ function EditorPickCard({ pair, posterMap, metaMap, locale, getTitle }) {
   );
 }
 
-// ── User Result Card ──
+// ── Daily pick detail overlay (single-movie version) ──
+function DailyPickDetailOverlay({ pick, locale, onClose }) {
+  const zh = locale === "zh";
+  const title = zh ? pick.title : (pick.titleEn || pick.title);
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={onClose}>
+      <div className="relative w-full max-w-md bg-white border-4 border-black shadow-[8px_8px_0_0_rgba(0,255,255,1)]" onClick={e => e.stopPropagation()}>
+        <button onClick={onClose}
+          className="absolute -top-3 -right-3 w-8 h-8 bg-[#ff00ff] border-2 border-black text-white font-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors z-10">×</button>
+        <div className="flex gap-3 p-4 max-sm:p-3">
+          {pick.poster ? (
+            <img src={pick.poster} alt={title} className="w-24 h-36 object-cover border-2 border-black flex-shrink-0" />
+          ) : (
+            <div className="w-24 h-36 bg-gray-800 border-2 border-black flex items-center justify-center text-gray-500"><Icons.Film /></div>
+          )}
+          <div className="flex-1 min-w-0 flex flex-col">
+            <h3 className="text-base font-black leading-tight">{title}</h3>
+            {pick.titleEn && pick.titleEn !== title && <p className="text-xs text-gray-600 font-bold">{pick.titleEn}</p>}
+            {(pick.rating || 0) > 0 && <div className="mt-1"><StarRating score={pick.rating} max={10} /></div>}
+            {Array.isArray(pick.genre) && pick.genre.length > 0 && (
+              <div className="flex flex-wrap gap-1 mt-1">
+                {pick.genre.slice(0, 4).map((g, i) => (
+                  <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{g}</span>
+                ))}
+              </div>
+            )}
+            <p className="text-xs text-gray-600 leading-relaxed mt-2 line-clamp-4 flex-1">{zh ? pick.summary : (pick.summaryEn || pick.summary)}</p>
+            <div className="flex items-center gap-2 mt-3">
+              <a href={`https://www.imdb.com/find?q=${encodeURIComponent(((pick.titleEn || pick.title) + " " + (pick.year || "")).trim())}`}
+                target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center w-7 h-7 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors overflow-hidden" title="IMDb">
+                <Icons.Imdb className="w-full h-full" />
+              </a>
+              <TrailerButtons item={{ title: pick.title, titleEn: pick.titleEn }} locale={locale} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── User Result Card (community; likes + poster modal kept) ──
 function UserResultCard({ result, posterMap, locale, onLike, onOpenPoster }) {
   const src = result.sourceMovies?.[0] || {};
   const likes = result.likes || 0;
@@ -132,17 +259,9 @@ function UserResultCard({ result, posterMap, locale, onLike, onOpenPoster }) {
     } catch (e) { console.error("Like failed:", e); }
   };
 
-  const handleCardClick = () => {
-    if (result.thumbnail) {
-      onOpenPoster(result.thumbnail);
-    }
-  };
-
   return (
-    <div
-      className={`bg-white border-4 max-sm:border-2 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] max-sm:shadow-[3px_3px_0_0_rgba(0,0,0,1)] transition-all ${result.thumbnail ? "hover:-translate-y-1 cursor-pointer" : ""}`}
-      onClick={handleCardClick}
-    >
+    <div className={`bg-white border-4 max-sm:border-2 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] max-sm:shadow-[3px_3px_0_0_rgba(0,0,0,1)] transition-all ${result.thumbnail ? "hover:-translate-y-1 cursor-pointer" : ""}`}
+      onClick={() => result.thumbnail && onOpenPoster(result.thumbnail)}>
       <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
         <span className="font-black pixel-font uppercase truncate">{src.title || ""}{src.year ? ` (${src.year})` : ""}</span>
         <span className="text-gray-400 font-bold truncate">{result.contributorName || (locale === "en" ? "Anonymous" : "匿名用户")}</span>
@@ -169,21 +288,14 @@ function UserResultCard({ result, posterMap, locale, onLike, onOpenPoster }) {
   );
 }
 
-// ── Poster Modal ──
+// ── Poster Modal (community thumbnail zoom) ──
 function PosterModal({ thumbnail, onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={onClose}>
       <div className="relative max-w-[90vw] max-h-[90vh]" onClick={e => e.stopPropagation()}>
-        <button
-          onClick={onClose}
-          className="absolute -top-3 -right-3 w-8 h-8 bg-[#ff00ff] border-2 border-black text-white font-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors z-10"
-        >×</button>
-        <img
-          src={thumbnail}
-          alt="Full recommendation poster"
-          className="max-w-full max-h-[85vh] border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)]"
-        />
-        <p className="text-center text-white text-xs mt-2 font-bold">{thumbnail.includes("bloodyrex") ? "" : "Click outside to close"}</p>
+        <button onClick={onClose}
+          className="absolute -top-3 -right-3 w-8 h-8 bg-[#ff00ff] border-2 border-black text-white font-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors z-10">×</button>
+        <img src={thumbnail} alt="Full recommendation poster" className="max-w-full max-h-[85vh] border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)]" />
       </div>
     </div>
   );
@@ -192,38 +304,44 @@ function PosterModal({ thumbnail, onClose }) {
 // ── Main DiscoverPage ──
 const DiscoverPage = () => {
   const { t, locale, toggleLocale } = useLocale();
+  const zh = locale === "zh";
   const [posterMap, setPosterMap] = useState({});
   const [metaMap, setMetaMap] = useState({});
+  const [dailyPicks, setDailyPicks] = useState([]);
   const [userResults, setUserResults] = useState([]);
   const [loadingResults, setLoadingResults] = useState(true);
-  const [activeTab, setActiveTab] = useState("editor");
+
+  // Wall-style controls
+  const [sourceMode, setSourceMode] = useState("editor"); // editor | community (comet toggle)
+  const [genreFilter, setGenreFilter] = useState("all");   // all | <genre> | other
+  const [searchQuery, setSearchQuery] = useState("");
+  const [page, setPage] = useState(1);
 
   const [modalThumbnail, setModalThumbnail] = useState(null);
+  const [detailPair, setDetailPair] = useState(null);
+  const [detailPick, setDetailPick] = useState(null);
   const scrollRef = useRef(null);
 
   const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
-  const getBracketed = (movie) => locale === "zh" ? `《${movie.title}》` : getTitle(movie);
-  const genreSlug = (name) => GENRE_SLUGS[name] || name;
-
-  const editorPickIds = new Set();
-  (discoverData.editorPicks || []).forEach(p => editorPickIds.add(`${p.source.tmdbId}-${p.recommend.tmdbId}`));
-
-  const totalPairs = discoverData.genres.reduce((s, g) => s + g.pairs.filter(p => !editorPickIds.has(p.source.tmdbId + "-" + p.recommend.tmdbId)).length, 0);
 
   useEffect(() => {
+    document.title = zh ? "发现 | AI 电影推荐社区 | Kim's Video" : "Discover | AI Movie Recommendations | Kim's Video";
+    setCanonical("https://bloodyrex.xyz/discover/");
+  }, [locale]);
+
+  // Posters + meta for the curated library (localStorage cache, 24h TTL)
+  useEffect(() => {
     const allIds = new Set();
-    (discoverData.editorPicks || []).forEach(p => { allIds.add(p.source.tmdbId); allIds.add(p.recommend.tmdbId); });
     discoverData.genres.forEach(g => g.pairs.forEach(p => { allIds.add(p.source.tmdbId); allIds.add(p.recommend.tmdbId); }));
     let cancelled = false;
     (async () => {
-      // Check localStorage cache first (24h TTL)
       try {
         const cached = localStorage.getItem("kims_discover_posters");
         const ts = localStorage.getItem("kims_discover_posters_ts");
         if (cached && ts && (Date.now() - parseInt(ts)) < 86400000) {
           const parsed = JSON.parse(cached);
           if (!cancelled) setPosterMap(parsed);
-          return;
+          // still fetch meta (ratings/genres) — small payload, needed for filters
         }
       } catch {}
       const map = {};
@@ -245,7 +363,7 @@ const DiscoverPage = () => {
         }));
       }
       if (!cancelled) {
-        setPosterMap(map);
+        setPosterMap(prev => ({ ...prev, ...map }));
         setMetaMap(meta);
         try { localStorage.setItem("kims_discover_posters", JSON.stringify(map)); localStorage.setItem("kims_discover_posters_ts", String(Date.now())); } catch {}
       }
@@ -253,6 +371,23 @@ const DiscoverPage = () => {
     return () => { cancelled = true; };
   }, []);
 
+  // Day's editor picks (fixed 6, ★/💎/🔥) — same data as Intelligence 总览.
+  // discover-daily.json is the pipeline mirror; overview.json works as fallback.
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        let d = await fetch("/api/discover-daily.json").then(r => (r.ok ? r.json() : null));
+        if (!d) d = await fetch("/api/overview.json").then(r => (r.ok ? r.json() : null));
+        if (!cancelled) setDailyPicks(d?.picks || d?.editorsPicks || []);
+      } catch {
+        if (!cancelled) setDailyPicks([]);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  // Community results
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -263,180 +398,288 @@ const DiscoverPage = () => {
     return () => { cancelled = true; };
   }, []);
 
-  const userRecTmdbIds = [];
-  userResults.forEach(r => r.recommendations?.forEach(rec => { if (rec.tmdbId) userRecTmdbIds.push(rec.tmdbId); }));
-  const userPosterMap = usePosters(userRecTmdbIds);
+  const userRecTmdbIds = useMemo(() => {
+    const ids = [];
+    userResults.forEach(r => r.recommendations?.forEach(rec => { if (rec.tmdbId) ids.push(rec.tmdbId); }));
+    return ids;
+  }, [userResults]);
 
-  const userByGenre = {};
-  for (const r of userResults) { const g = r.genre || "剧情"; if (!userByGenre[g]) userByGenre[g] = []; userByGenre[g].push(r); }
-  const totalUserCount = userResults.length;
-
-  const handleLikeUpdate = (id, newLikes) => {
-    setUserResults(prev => prev.map(r => r.id === id ? { ...r, likes: newLikes } : r));
-  };
-
+  const [userPosterMap, setUserPosterMap] = useState({});
   useEffect(() => {
-    document.title = locale === "zh" ? "AI 电影推荐发现页 | Discover 相似电影合集 | Kim's Video" : "AI Movie Discovery Hub | Curated Film Recommendations | Kim's Video";
-    setCanonical("https://bloodyrex.xyz/discover/");
-  }, [locale]);
+    const unique = [...new Set(userRecTmdbIds)];
+    if (!unique.length) return;
+    let cancelled = false;
+    (async () => {
+      const result = {};
+      await Promise.allSettled(unique.map(async id => {
+        const data = await fetchMovieByTmdbId(id, "zh");
+        if (data?.poster && !cancelled) result[id] = data.poster;
+      }));
+      if (!cancelled) setUserPosterMap(prev => ({ ...prev, ...result }));
+    })();
+    return () => { cancelled = true; };
+  }, [JSON.stringify([...new Set(userRecTmdbIds)].sort())]);
+
+  // ── Filtering (mirrors WallPage) ──
+  const allPairs = useMemo(() => discoverData.genres.flatMap(g => g.pairs), []);
+
+  const filteredPairs = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase().replace(/[\u200B-\u200D\uFEFF]/g, "");
+    return allPairs.filter((p) => {
+      // genre filter compares the RECOMMENDED film's genres (metaMap)
+      const genres = (metaMap[p.recommend.tmdbId]?.genres || []).map(normGenre);
+      if (genreFilter === "other") {
+        if (genres.some(g => COMMON_ZH.includes(g))) return false;
+      } else if (genreFilter !== "all") {
+        const fz = normGenre(genreFilter);
+        if (!genres.some(g => g === fz)) return false;
+      }
+      if (q) {
+        const hit =
+          (p.recommend.title || "").toLowerCase().includes(q) ||
+          (p.recommend.titleEn || "").toLowerCase().includes(q) ||
+          (p.source.title || "").toLowerCase().includes(q) ||
+          (p.source.titleEn || "").toLowerCase().includes(q);
+        if (!hit) return false;
+      }
+      return true;
+    });
+  }, [allPairs, metaMap, genreFilter, searchQuery]);
+
+  const filteredUserResults = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase().replace(/[\u200B-\u200D\uFEFF]/g, "");
+    return userResults.filter((r) => {
+      if (genreFilter !== "all") {
+        const fz = normGenre(genreFilter);
+        if ((r.genre || "剧情") !== fz) return false;
+      }
+      if (q) {
+        const hay = [
+          r.contributorName || "",
+          ...(r.recommendations || []).map(rec => rec.title || ""),
+        ].join(" ").toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [userResults, genreFilter, searchQuery]);
+
+  useEffect(() => { setPage(1); }, [genreFilter, searchQuery, sourceMode]);
+
+  const totalPages = Math.max(1, Math.ceil(
+    (sourceMode === "editor" ? filteredPairs.length : filteredUserResults.length) / PAGE_SIZE
+  ));
+  const safePage = Math.min(page, totalPages);
+  const pageItems = sourceMode === "editor"
+    ? filteredPairs.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE)
+    : filteredUserResults.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+  const genreBtn = (id, label) => (
+    <button key={id} onClick={() => setGenreFilter(id)}
+      className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
+        genreFilter === id ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"
+      }`}>
+      {label}
+    </button>
+  );
+
+  const itemCount = sourceMode === "editor" ? filteredPairs.length : filteredUserResults.length;
 
   return (
     <div className={`min-h-screen graffiti-bg text-black pb-32 discover-page locale-${locale}`}>
+      {/* Comet border for the 来自社区 toggle — identical treatment to the wall */}
+      <style>{`
+        @property --discover-angle {
+          syntax: "<angle>";
+          initial-value: 0deg;
+          inherits: false;
+        }
+        .community-btn {
+          border: 2px solid transparent;
+          background:
+            linear-gradient(#fff, #fff) padding-box,
+            conic-gradient(from calc(var(--discover-angle) + 180deg),
+              transparent 0deg, transparent 200deg,
+              rgba(255, 184, 0, 0.15) 240deg, rgba(255, 184, 0, 0.15) 258deg,
+              rgba(255, 184, 0, 0.5) 284deg, rgba(255, 184, 0, 0.5) 300deg,
+              #ffb800 312deg, #ffb800 360deg) border-box;
+          animation: discover-spin 1.6s steps(8) infinite;
+        }
+        .community-btn.on {
+          background:
+            linear-gradient(#00ffff, #00ffff) padding-box,
+            conic-gradient(from calc(var(--discover-angle) + 180deg),
+              transparent 0deg, transparent 200deg,
+              rgba(255, 184, 0, 0.15) 240deg, rgba(255, 184, 0, 0.15) 258deg,
+              rgba(255, 184, 0, 0.5) 284deg, rgba(255, 184, 0, 0.5) 300deg,
+              #ffb800 312deg, #ffb800 360deg) border-box;
+        }
+        @keyframes discover-spin {
+          to { --discover-angle: 360deg; }
+        }
+      `}</style>
+
+      {/* Header — identical to the other pages */}
       <header className="relative z-10 flex flex-col items-center py-4 mb-10 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
         <Link to="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
             <span className="text-black transform rotate-90"><Icons.Play /></span>
           </div>
-          <h1 className="text-lg sm:text-2xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap" style={{fontFamily:"'Press Start 2P','Courier New',Courier,monospace"}}>
+          <h1 className="text-lg sm:text-2xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap" style={LANG_BUTTON_STYLE}>
             KIM'S <span className="text-[#00ffff]">VIDEO</span>
           </h1>
         </Link>
         <p className="text-gray-500 text-[10px] max-sm:text-[9px] pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 
+      {/* Title */}
       <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 text-center relative">
-        <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font discover-title">{t('discover.title')}</h2>
+        <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
+          {zh ? "🎬 发现" : "🎬 DISCOVER"}
+        </h2>
         <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">{t('discover.desc')}</p>
       </section>
 
-      {/* ── Editor's Picks Carousel ── */}
-      <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 mb-6">
-        <h3 className="px-2 sm:px-0 text-base sm:text-lg font-black pixel-font text-[#ffff00] uppercase tracking-widest mb-3 bg-black inline-block px-4 py-1.5 border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff]">{locale === "en" ? "★ Editor's Picks" : "★ 编辑精选"}</h3>
-        <div ref={scrollRef} className="flex gap-3 overflow-x-auto pb-3 px-2 sm:px-0" style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
-          {(discoverData.editorPicks || []).map((pair, i) => (
-            <EditorPickCard key={i} pair={pair} posterMap={posterMap} metaMap={metaMap} locale={locale} getTitle={getTitle} />
-          ))}
-          <Link to="/" className="flex-shrink-0 min-w-[140px] sm:min-w-[160px] bg-[#ffff00] border-4 border-black flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-[#ffff40] transition-colors shadow-[6px_6px_0_0_rgba(0,0,0,1)]" style={{ scrollSnapAlign: "start" }}>
-            <span className="text-2xl">🎬</span>
-            <span className="text-sm font-black pixel-font uppercase">{locale === "en" ? "Start" : "开始"}</span>
-            <span className="text-xs text-gray-600">{locale === "en" ? " Get Picks" : " 获取推荐"}</span>
-          </Link>
-        </div>
-      </section>
+      {/* Pinned row: the day's editor picks (always on top, unaffected by filters) */}
+      {dailyPicks.length > 0 && (
+        <section className="mb-6">
+          <div className="max-w-4xl mx-auto px-4 max-sm:px-3 mb-3">
+            <h3 className="inline-block px-4 py-1.5 text-sm sm:text-base font-black pixel-font uppercase tracking-widest bg-black text-[#ffff00] border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff]">
+              {zh ? "★ 今日编辑精选" : "★ TODAY'S EDITOR'S PICKS"}
+            </h3>
+          </div>
+          <div ref={scrollRef} className="max-w-4xl mx-auto px-4 max-sm:px-3">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2">
+              {dailyPicks.map((p, i) => (
+                <DailyPickCard key={`${p.tmdbId}-${i}`} pick={p} locale={locale} onOpen={setDetailPick} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
-      {/* ── Tab switcher ── */}
-      <div className="max-w-4xl mx-auto px-4 max-sm:px-3 mb-6">
-        <div className="flex gap-3">
-          <button onClick={() => setActiveTab("editor")} className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${activeTab === "editor" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"}`}>{locale === "en" ? "★ Category" : "★ 分类推荐"}{totalPairs > 0 && <span className="ml-1.5 bg-black text-white text-[10px] px-1.5 py-0.5">{totalPairs}</span>}</button>
-          <button onClick={() => setActiveTab("community")} className={`px-4 py-2 text-sm font-black pixel-font uppercase border-4 border-black shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none transition-all ${activeTab === "community" ? "bg-[#ffff00] text-black" : "bg-white text-black hover:bg-gray-100"}`}>{locale === "en" ? "Community" : "社区发现"}{totalUserCount > 0 && <span className="ml-1.5 bg-black text-white text-[10px] px-1.5 py-0.5">{totalUserCount}</span>}</button>
+      {/* Filter bar — same layout as the wall */}
+      <div className="max-w-4xl mx-auto px-4 max-sm:px-3 mb-4">
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          {/* Search (IME-safe, mirrors wall) */}
+          <div className="relative">
+            <input type="text" value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={zh ? "搜索影片…" : "SEARCH…"}
+              className="w-40 sm:w-56 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#ff00ff] outline-none pixel-font placeholder:text-gray-400"
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery("")} aria-label={zh ? "清除搜索" : "Clear search"}
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[11px] font-black text-gray-500 hover:text-black leading-none">×</button>
+            )}
+          </div>
+          <span className="ml-auto text-[10px] sm:text-xs text-gray-400 font-bold pixel-font">
+            {sourceMode === "editor"
+              ? (zh ? `共 ${itemCount} 组推荐` : `${itemCount} PAIRS`)
+              : (zh ? `共 ${itemCount} 份发现` : `${itemCount} FINDS`)}
+          </span>
+        </div>
+        <div className="flex flex-wrap items-center gap-1.5">
+          {genreBtn("all", zh ? "全部类型" : "ALL GENRES")}
+          {COMMON_GENRES.map((g) => genreBtn(g, genreLabel(g, locale)))}
+          {genreBtn("other", zh ? "其他" : "OTHER")}
+          {/* Community comet toggle (same interaction as the wall's 来自社区) */}
+          <button
+            onClick={() => setSourceMode(sourceMode === "editor" ? "community" : "editor")}
+            className={`community-btn px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
+              sourceMode === "community" ? "on text-black" : "text-black"
+            }`}
+          >
+            {zh ? "来自社区" : "FROM COMMUNITY"}
+          </button>
         </div>
       </div>
 
-      {/* ── Content area ── */}
+      {/* Content grid */}
       <div className="max-w-4xl mx-auto px-4 max-sm:px-3">
-        {activeTab === "editor" ? (
-          discoverData.genres.map((genre) => {
-            const color = GENRE_COLORS[genre.name] || "#ff00ff";
-            const filtered = genre.pairs.filter(p => !editorPickIds.has(`${p.source.tmdbId}-${p.recommend.tmdbId}`));
-            if (filtered.length === 0) return null;
-
-            return (
-              <section key={genre.name} className="mb-12">
-                <h2 className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black" style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}>{locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}<span className="ml-2 text-sm opacity-75">({filtered.length})</span></h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {filtered.map((pair, idx) => {
-                    const recPoster = posterMap[pair.recommend.tmdbId];
-                    const meta = metaMap[pair.recommend.tmdbId] || {};
-                    const detailUrl = `/?from=${pair.source.tmdbId}&r=${pair.recommend.tmdbId}&s=${encodeURIComponent(pair.source.title)}&discover=1`;
-                    const titleEn = meta.originalTitle && meta.originalTitle !== pair.recommend.titleEn && meta.originalTitle !== pair.recommend.title ? meta.originalTitle : (pair.recommend.titleEn || "");
-                    const genres = meta.genres || [];
-                    const dateLabel = meta.releaseDate || pair.recommend.year || "";
-
-                    return (
-                      <div key={idx} className="bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all">
-                        <div className="bg-black text-white px-3 py-2 flex items-center justify-between gap-2 text-xs">
-                          <span className="font-black pixel-font uppercase text-[9px] truncate" style={{ color }}>
-                            {locale === "en" ? "If you like" : "如果你喜欢"} {getBracketed(pair.source)}
-                          </span>
-                          <span className="text-gray-400 text-[9px] flex-shrink-0">{dateLabel}</span>
-                        </div>
-                        <div className="flex gap-3 max-sm:gap-2 p-3 max-sm:p-2">
-                          {recPoster ? (
-                            <img src={recPoster} alt={getTitle(pair.recommend)} className="w-20 max-sm:w-16 h-28 max-sm:h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
-                          ) : (
-                            <div className="w-20 max-sm:w-16 h-28 max-sm:h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[10px] text-gray-500 font-bold flex-shrink-0"><Icons.Film /></div>
-                          )}
-                          <div className="flex-1 min-w-0 flex flex-col">
-                            <h3 className="text-sm font-black leading-tight mb-0.5 truncate">{getTitle(pair.recommend)}</h3>
-                            {titleEn && (
-                              <p className="text-xs text-gray-600 font-bold mb-1 truncate">{titleEn}</p>
-                            )}
-                            {meta.rating > 0 && (
-                              <div className="flex items-center gap-2 mb-1">
-                                <StarRating score={meta.rating} max={10} />
-                              </div>
-                            )}
-                            {genres.length > 0 && (
-                              <div className="flex flex-wrap gap-1 mb-1">
-                                {genres.map((g, i) => (
-                                  <span key={i} className="text-[8px] px-1 bg-black text-white font-bold">{locale === "zh" ? (GENRE_ZH[g] || g) : g}</span>
-                                ))}
-                              </div>
-                            )}
-                            <p className="text-[10px] max-sm:text-[9px] text-gray-500 leading-relaxed line-clamp-2 mb-1 flex-1">{locale === "en" ? pair.reasonEn : pair.reason}</p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <Link to={detailUrl}
-                                className="flex items-center justify-center w-6 h-6 bg-black border-2 border-black hover:bg-gray-800 transition-colors flex-shrink-0"
-                                title={locale === "en" ? "Details" : "详情"}>
-                                <Icons.Info className="w-3.5 h-3.5 text-white" />
-                              </Link>
-                              <a href={`https://www.imdb.com/find?q=${encodeURIComponent(((pair.recommend.titleEn || pair.recommend.title) + " " + (meta.year || pair.recommend.year || "")).trim())}`}
-                                target="_blank" rel="noopener noreferrer"
-                                className="flex items-center justify-center w-6 h-6 bg-[#F5C518] border-2 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden"
-                                title="Open in IMDb"><Icons.Imdb className="w-full h-full" /></a>
-                              <TrailerButtons item={pair.recommend} locale={locale} />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
-            );
-          })
+        {sourceMode === "editor" ? (
+          pageItems.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-4xl mb-3">🎬</p>
+              <p className="text-gray-400 text-sm font-bold">{zh ? "没有匹配的推荐" : "No matching picks"}</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2">
+              {pageItems.map((pair, idx) => (
+                <PairCard key={`${pair.source.tmdbId}-${pair.recommend.tmdbId}-${idx}`} pair={pair}
+                  posterMap={posterMap} metaMap={metaMap} locale={locale} onOpen={setDetailPair} />
+              ))}
+            </div>
+          )
         ) : (
           <>
-            {loadingResults && <p className="text-center text-gray-500 text-xs py-8">{locale === "en" ? "Loading community..." : "加载用户发现..."}</p>}
-            {!loadingResults && totalUserCount === 0 && (
+            {loadingResults && <p className="text-center text-gray-500 text-xs py-8">{zh ? "加载用户发现..." : "Loading community..."}</p>}
+            {!loadingResults && itemCount === 0 && (
               <div className="text-center py-12">
                 <p className="text-4xl mb-3">🎬</p>
-                <p className="text-gray-400 text-sm font-bold mb-2">{locale === "en" ? "No community picks yet" : "暂无用户发现"}</p>
-                <p className="text-gray-500 text-xs mb-4">{locale === "en" ? "Be the first to share!" : "成为第一个分享 AI 推荐结果的人！"}</p>
-                <Link to="/" className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all">{locale === "en" ? "Get Your Picks " : "获取你的推荐 "}</Link>
+                <p className="text-gray-400 text-sm font-bold mb-2">{zh ? "暂无用户发现" : "No community picks yet"}</p>
+                <p className="text-gray-500 text-xs mb-4">{zh ? "成为第一个分享 AI 推荐结果的人！" : "Be the first to share!"}</p>
+                <Link to="/" className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all">{zh ? "获取你的推荐" : "GET YOUR PICKS"}</Link>
               </div>
             )}
-            {!loadingResults && totalUserCount > 0 && discoverData.genres.map((genre) => {
-              const color = GENRE_COLORS[genre.name] || "#ff00ff";
-              const items = userByGenre[genre.name] || [];
-              if (items.length === 0) return null;
-              return (
-                <section key={genre.name} className="mb-12">
-                  <h2 className="text-xl sm:text-2xl font-black mb-6 pixel-font inline-block px-4 py-2 border-4 border-black" style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}>{locale === "en" ? (discoverData.genres.find(g => g.name === genre.name)?.nameEn || genre.name) : genre.name}<span className="ml-2 text-sm opacity-75">({items.length})</span></h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-sm:gap-2">{items.map(r => <UserResultCard key={r.id} result={r} posterMap={userPosterMap} locale={locale} onLike={handleLikeUpdate} onOpenPoster={(url) => setModalThumbnail(url)} />)}</div>
-                </section>
-              );
-            })}
+            {!loadingResults && itemCount > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-sm:gap-2">
+                {pageItems.map(r => (
+                  <UserResultCard key={r.id} result={r} posterMap={userPosterMap} locale={locale}
+                    onLike={(id, newLikes) => setUserResults(prev => prev.map(x => x.id === id ? { ...x, likes: newLikes } : x))}
+                    onOpenPoster={(url) => setModalThumbnail(url)} />
+                ))}
+              </div>
+            )}
           </>
         )}
       </div>
 
+      {/* Pagination — same pattern as the wall */}
+      {totalPages > 1 && (
+        <div className="max-w-4xl mx-auto px-4 pt-8 pb-4 flex items-center justify-center gap-1.5 flex-wrap">
+          <button onClick={() => setPage(Math.max(1, safePage - 1))} disabled={safePage <= 1}
+            className="px-3 py-1.5 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all disabled:opacity-30 disabled:active:translate-y-0 disabled:active:shadow-[2px_2px_0_0_#000] bg-white text-black hover:bg-gray-100">
+            {zh ? "← 上一页" : "← PREV"}
+          </button>
+          {buildPages(safePage, totalPages).map((p, i, arr) => (
+            <React.Fragment key={p}>
+              {i > 0 && p - arr[i - 1] > 1 && <span className="text-gray-500 text-xs font-black px-0.5">…</span>}
+              <button onClick={() => setPage(p)}
+                className={`w-8 h-8 text-xs font-black pixel-font border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
+                  p === safePage ? "bg-[#ffff00] text-black" : "bg-white text-black hover:bg-gray-100"
+                }`}>
+                {p}
+              </button>
+            </React.Fragment>
+          ))}
+          <button onClick={() => setPage(Math.min(totalPages, safePage + 1))} disabled={safePage >= totalPages}
+            className="px-3 py-1.5 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all disabled:opacity-30 disabled:active:translate-y-0 disabled:active:shadow-[2px_2px_0_0_#000] bg-white text-black hover:bg-gray-100">
+            {zh ? "下一页 →" : "NEXT →"}
+          </button>
+        </div>
+      )}
+
       <div className="max-w-4xl mx-auto px-4 max-sm:px-3 pt-8 pb-16 text-center">
-        <Link to="/" className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all">{locale === "en" ? "← Get Your Own AI Picks" : "← 获取属于你的 AI 推荐"}</Link>
+        <Link to="/" className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all">{zh ? "← 获取属于你的 AI 推荐" : "← GET YOUR OWN AI PICKS"}</Link>
       </div>
 
-      {/* ── Poster Modal ── */}
+      {/* Overlays */}
+      {detailPair && <PairDetailOverlay pair={detailPair} posterMap={posterMap} metaMap={metaMap} locale={locale} onClose={() => setDetailPair(null)} />}
+      {detailPick && <DailyPickDetailOverlay pick={detailPick} locale={locale} onClose={() => setDetailPick(null)} />}
       {modalThumbnail && <PosterModal thumbnail={modalThumbnail} onClose={() => setModalThumbnail(null)} />}
 
-      {/* Footer */}
+      {/* Lang floating button */}
       <div className="fixed bottom-[116px] sm:bottom-[128px] right-3 sm:right-4 z-40">
         <button onClick={toggleLocale}
           className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none"
-          style={{fontFamily:"'Press Start 2P','Courier New',Courier,monospace"}}>
-          {locale === "zh" ? "En" : "中"}
+          style={LANG_BUTTON_STYLE}>
+          {zh ? "En" : "中"}
         </button>
       </div>
-      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
+
+      {/* Footer — same layout as the other pages */}
+      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${zh ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
         <p>
           <Link to="/?search=1" className="hover:text-[#ffff00] transition-colors">{t('footer.home')}</Link>
           <span className="text-gray-600 mx-2">|</span>

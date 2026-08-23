@@ -939,9 +939,67 @@ async function handleIntelOverview(env) {
     return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
   });
 
-  // CN-first release date for editors picks too (same US-date semantics as movies)
-  const editorsPicks = (await Promise.all(
-    weekSelected.slice(0, 2).map(m => intelPickCnReleaseDate(intelNormalizeMovie(m), token))
+  // ── Editor's Picks v2 (2026-08-23): fixed 6 cards, daily rotation ──
+  // Rex: 总览的编辑精选 = 合并原「隐藏宝藏」「热榜趋势」，固定 6 张，每天有变化。
+  // Composition: ★编辑 ×2 (composite-scored this-week pool) +
+  //               💎宝藏 ×2 (released pool, rating≥7.5 + low relative popularity) +
+  //               🔥热榜 ×2 (top of trending/movie/week — trending already fetched).
+  // Daily rotation = deterministic shuffle seeded by Beijing date string: stable
+  // across same-day pipeline reruns, shifts across days. Pools that come up short
+  // backfill from other pools so the count is ALWAYS exactly 6.
+  const dailySeed = Number(today.replace(/-/g, "")); // e.g. 20260823
+  const seededShuffle = (arr) => {
+    const a = [...arr];
+    let s = dailySeed || 1;
+    for (let i = a.length - 1; i > 0; i--) {
+      s = (s * 1103515245 + 12345) % 2147483648; // LCG — deterministic
+      const j = s % (i + 1);
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+  // ⚠️ Pools here are RAW TMDB shapes (id / vote_average), not normalized —
+  // read fields defensively or the gem pool silently ends up empty.
+  const ovGid = (m) => String(m.tmdbId ?? m.id);
+  const ovRate = (m) => m.vote_average ?? m.rating ?? 0;
+  const popSorted = [...nowPlaying].sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+  const gemPool = nowPlaying.filter((m) => {
+    if (ovRate(m) < 7.5) return false;
+    // "hidden" = low popularity RELATIVE to the released pool (bottom 60%)
+    const rank = popSorted.findIndex((p) => ovGid(p) === ovGid(m));
+    return rank < 0 || rank >= Math.floor(popSorted.length * 0.4);
+  });
+  const weekIds6 = new Set(weekSelected.map(m => ovGid(m)));
+  const trendPool = (trending || []).filter(intelRatingOk)
+    .filter(t => !weekIds6.has(ovGid(t)));
+
+  const mkPick = (m, cat) => ({ ...intelNormalizeMovie(m), pickCategory: cat });
+
+  const picksStar = seededShuffle(weekSelected).slice(0, 2).map(m => mkPick(m, "editors"));
+  const picksGem = seededShuffle(gemPool)
+    .filter(m => !weekIds6.has(ovGid(m)))
+    .slice(0, 2).map(m => mkPick(m, "gem"));
+  const picksTrend = seededShuffle(trendPool).slice(0, 2).map(m => mkPick(m, "trending"));
+
+  // Backfill to always-6: fill shortfalls from remaining pools (round-robin),
+  // skipping anything already picked.
+  const pickedIds = new Set([...picksStar, ...picksGem, ...picksTrend].map(p => p.tmdbId));
+  const backfillPools = [
+    ...seededShuffle(weekSelected).map(m => mkPick(m, "editors")),
+    ...seededShuffle(gemPool).map(m => mkPick(m, "gem")),
+    ...seededShuffle(trendPool).map(m => mkPick(m, "trending")),
+  ];
+  const editorsPicksV2 = [...picksStar, ...picksGem, ...picksTrend];
+  for (const cand of backfillPools) {
+    if (editorsPicksV2.length >= 6) break;
+    if (pickedIds.has(cand.tmdbId)) continue;
+    pickedIds.add(cand.tmdbId);
+    editorsPicksV2.push(cand);
+  }
+  // CN-first release date correction on the final six (same semantics as before;
+  // cached 1 day so repeat runs don't refetch)
+  const editorsPicksFinal = (await Promise.all(
+    editorsPicksV2.map(m => intelPickCnReleaseDate(m, token))
   )).filter(Boolean);
 
   return {
@@ -952,11 +1010,8 @@ async function handleIntelOverview(env) {
       albumsReleased: (todayMB || []).length,
       trending: (trending || []).length,
     },
-    editorsPicks,
+    editorsPicks: editorsPicksFinal,
     comingSoon,
-    trending: (trending || []).filter(intelRatingOk).slice(0, 5).map((m, i) => ({
-      ...intelNormalizeMovie(m), rank: i + 1, trend: "new"
-    })),
     brief: `Today: ${moviesReleased} movie(s) released, ${tvSelected.length} TV show(s) airing, ${(todayMB || []).length} new album(s).`,
   };
 }

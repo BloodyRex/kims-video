@@ -205,6 +205,20 @@ async function main() {
       || JSON.stringify(oldComing.next30Days || []) !== JSON.stringify(comingData.next30Days);
     if (comingChanged) anyChange = true;
     console.log(`OK coming.json — local merge: ${comingData.next7Days.length} in 7d / ${comingData.next30Days.length} in 30d (${comingChanged ? "NEW DATA" : "unchanged"})`);
+
+    // ── discover-daily.json: mirror of overview.editorsPicks for the Discover page ──
+    // The Discover top row shows the same fixed-6 daily picks as Intelligence 总览.
+    // Written from the just-fetched overview payload so both pages always agree
+    // (DiscoverPage fetches /api/discover-daily.json; falls back to /api/overview.json
+    // client-side if this file is missing).
+    if (data?.editorsPicks?.length) {
+      writeFileSync(
+        join(API_DIR, "discover-daily.json"),
+        JSON.stringify({ updated: beijingDate(), picks: data.editorsPicks }, null, 2),
+        "utf8"
+      );
+      console.log(`OK discover-daily.json — ${data.editorsPicks.length} daily picks`);
+    }
   } catch (e) {
     console.error(`FAIL coming.json (local build): ${e.message}`);
     failCount++; // movies/tv missing is serious — counts toward the all-fail retry signal

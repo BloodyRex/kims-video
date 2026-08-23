@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
-import { MovieCard, TVCard, AlbumCard, CountdownCard, SpotlightCard, SectionHeader, CardGrid, IntelDetailModal } from "./Cards";
+import { MovieCard, TVCard, AlbumCard, CountdownCard, SpotlightCard, SectionHeader, CardGrid, IntelDetailModal, StarRating } from "./Cards";
 import SubscribeSection from "./SubscribeSection";
 import { setCanonical } from "../services/seo";
 
@@ -57,35 +57,17 @@ function LoadingSpinner({ locale }) {
 
 function OverviewView({ locale, onViewDetail }) {
   const { data, loading, error } = useJsonData("/api/overview.json");
-  const { data: hiddenGemsData } = useJsonData("/api/hidden-gems.json");
   const { data: digestData } = useJsonData("/api/digest.json");
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
   const stats = data?.stats || {};
-  const rawGems = hiddenGemsData?.gems || [];
 
-  // Dedup across sections: collect seen tmdbIds, filter later sections
-  const seenIds = new Set();
-  const editorsPicks = (data?.editorsPicks || []).filter(p => {
-    if (p.tmdbId && seenIds.has(p.tmdbId)) return false;
-    if (p.tmdbId) seenIds.add(p.tmdbId);
-    return true;
-  });
-  const hiddenGems = rawGems.filter(g => {
-    if (g.tmdbId && seenIds.has(g.tmdbId)) return false;
-    if (g.tmdbId) seenIds.add(g.tmdbId);
-    return true;
-  });
-  const comingSoon = (data?.comingSoon || []).filter(c => {
-    if (c.tmdbId && seenIds.has(c.tmdbId)) return false;
-    if (c.tmdbId) seenIds.add(c.tmdbId);
-    return true;
-  });
-  const trending = (data?.trending || []).filter(t => {
-    if (t.tmdbId && seenIds.has(t.tmdbId)) return false;
-    if (t.tmdbId) seenIds.add(t.tmdbId);
-    return true;
-  });
+  // Editor's Picks v2: overview.editorsPicks is the fixed-6 merged section
+  // (★编辑 + 💎宝藏 + 🔥热榜, daily rotation — built in handleIntelOverview).
+  // hidden-gems.json stays untouched (the daily email consumes it) and is no
+  // longer rendered here. Legacy files without pickCategory still render.
+  const editorsPicks = data?.editorsPicks || [];
+  const comingSoon = data?.comingSoon || [];
   const statCards = [
     { zh: "电影上映", en: "Movies Released", num: stats.moviesReleased ?? "--", color: "#ff00ff" },
     { zh: "剧集在播", en: "TV Airing", num: stats.tvAiringThisWeek ?? "--", color: "#00ffff" },
@@ -131,29 +113,57 @@ function OverviewView({ locale, onViewDetail }) {
         </section>
       )}
 
-      {(data?.editorsPicks || []).length > 0 && (
+      {(editorsPicks).length > 0 && (
         <section>
           <SectionHeader label={locale === "zh" ? "★ 编辑精选" : "★ Editor's Picks"} count={editorsPicks.length} color="#ff00ff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{editorsPicks.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{editorsPicks.map((p, i) => {
+            // v2 picks carry pickCategory (editors/gem/trending); legacy picks use SpotlightCard
+            if (p.pickCategory) {
+              const cats = {
+                editors: { label: locale === "zh" ? "★ 编辑精选" : "★ Editor's Pick", color: "#ff00ff" },
+                gem: { label: locale === "zh" ? "💎 隐藏宝藏" : "💎 Hidden Gem", color: "#00ffff" },
+                trending: { label: locale === "zh" ? "🔥 热榜趋势" : "🔥 Trending", color: "#ffff00" },
+              };
+              const cat = cats[p.pickCategory] || cats.editors;
+              return (
+                <div key={i} className="bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all cursor-pointer" onClick={() => onViewDetail(p)}>
+                  <div className="px-3 py-2 flex items-center justify-between gap-2 text-xs" style={{ backgroundColor: cat.color }}>
+                    <span className="font-black pixel-font uppercase text-[9px]">{cat.label}</span>
+                    <span className="text-[9px] opacity-70">{p.releaseDate || p.year || ""}</span>
+                  </div>
+                  <div className="flex gap-3 max-sm:gap-2 p-3 max-sm:p-2">
+                    {p.poster ? (
+                      <img src={p.poster} alt={p.title} className="w-20 max-sm:w-16 h-28 max-sm:h-24 object-cover border-2 border-black flex-shrink-0" loading="lazy" />
+                    ) : (
+                      <div className="w-20 max-sm:w-16 h-28 max-sm:h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-gray-500"><Icons.Film /></div>
+                    )}
+                    <div className="flex-1 min-w-0 flex flex-col">
+                      <h3 className="text-sm font-black leading-tight truncate">{locale === "en" ? (p.titleEn || p.title) : p.title}</h3>
+                      {p.titleEn && p.titleEn !== p.title && (
+                        <p className="text-xs text-gray-600 font-bold truncate">{p.titleEn}</p>
+                      )}
+                      {(p.rating || 0) > 0 && <div className="mb-1"><StarRating score={p.rating} max={10} /></div>}
+                      {Array.isArray(p.genre) && p.genre.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mb-1">
+                          {p.genre.slice(0, 3).map((g, gi) => (
+                            <span key={gi} className="text-[8px] px-1 bg-black text-white font-bold">{g}</span>
+                          ))}
+                        </div>
+                      )}
+                      <p className="text-[10px] text-gray-500 leading-relaxed line-clamp-2 flex-1">{p.summary}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+            return <SpotlightCard key={i} pick={p} locale={locale} onViewDetail={onViewDetail} />;
+          })}</CardGrid>
         </section>
       )}
-
-      {hiddenGems.length > 0 && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "◆ 隐藏宝藏" : "◆ Hidden Gems"} count={hiddenGems.length} color="#00ffff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{hiddenGems.map((p, i) => <SpotlightCard key={i} pick={p} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
-        </section>
-      )}
-      {(data?.comingSoon || []).length > 0 && (
+      {(comingSoon).length > 0 && (
         <section>
           <SectionHeader label={locale === "zh" ? "▶ 即将上映" : "▶ Coming Soon"} count={comingSoon.length} color="#ffff00" />
           <CardGrid cols="grid-cols-1 sm:grid-cols-2">{comingSoon.map((p, i) => <CountdownCard key={i} item={p} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
-        </section>
-      )}
-      {trending.length > 0 && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "↑ 热榜趋势" : "↑ Trending"} count={trending.length} color="#ff00ff" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2">{trending.map((p, i) => <MovieCard key={i} movie={p} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "movie")} />)}</CardGrid>
         </section>
       )}
     </div>
