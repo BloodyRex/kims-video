@@ -716,11 +716,27 @@ export function CardList({ children }) {
 // ── Intelligence Detail Modal ──
 
 export function IntelDetailModal({ item, type, locale, onClose }) {
+  // ⚠️ Hooks first, then early returns — and `enriched` must be declared before
+  // imdbUrl uses it. Violating either crashed the intelligence page (black
+  // screen) the moment a detail view opened (2026-08-24).
+  const [detailData, setDetailData] = useState(null);
+  useEffect(() => {
+    if (!item?.tmdbId) return;
+    const music = type === "music" || type === "album";
+    if (music) return;
+    let cancelled = false;
+    fetchMovieByTmdbId(item.tmdbId, locale).then(data => {
+      if (!cancelled && data) setDetailData(data);
+    });
+    return () => { cancelled = true; };
+  }, [item?.tmdbId, type, locale]);
+
   if (!item) return null;
   const zh = locale === "zh";
   const title = getTitle(item, locale);
   const isMusic = type === "music" || type === "album";
   const isTV = type === "tv";
+  const enriched = detailData || {};
   const tmdbPath = isTV ? "tv" : "movie";
   const tmdbUrl = `https://www.themoviedb.org/${tmdbPath}/${item.tmdbId}`;
   const mbUrl = item.mbid ? `https://musicbrainz.org/release/${item.mbid}` : "";
@@ -730,18 +746,6 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
     : `https://www.imdb.com/find?q=${encodeURIComponent(((item.titleEn || item.title) + " " + (item.year || "")).trim())}`;
   const genres = Array.isArray(item.genre) ? item.genre : (item.genre ? [item.genre] : []);
   const musicGenres = isMusic ? albumGenres(item) : [];
-
-  // Lazy-load enriched details (director, runtime, cast, imdb_id) from Worker API
-  const [detailData, setDetailData] = useState(null);
-  useEffect(() => {
-    if (!item.tmdbId || isMusic) return;
-    let cancelled = false;
-    fetchMovieByTmdbId(item.tmdbId, locale).then(data => {
-      if (!cancelled && data) setDetailData(data);
-    });
-    return () => { cancelled = true; };
-  }, [item.tmdbId, isMusic, locale]);
-  var enriched = detailData || {};
 
   // Countdown badge data (mirrors wall detail status chip)
   const todayStr = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });

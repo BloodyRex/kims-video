@@ -57,22 +57,23 @@ function OverviewView({ locale, onViewDetail }) {
   const { data, loading, error } = useJsonData("/api/overview.json");
   const { data: digestData } = useJsonData("/api/digest.json");
   const { data: musicData } = useJsonData("/api/music.json");
+  // ⚠️ ALL hooks MUST run on every render (before any early return) — putting
+  // this useMemo below the loading/error returns crashed the whole page
+  // (black screen, "Rendered fewer hooks than expected").
+  const musicSix = useMemo(() => {
+    return [...(musicData?.picks || [])]
+      .sort((a, b) => (b.listeners || 0) - (a.listeners || 0))
+      .slice(0, 6);
+  }, [musicData]);
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
   const stats = data?.stats || {};
 
   // Rex 2026-08-24: 本周热榜 + 即将上映 nav sections are GONE — their content
   // is merged here. 编辑精选 = 6 movies (overview) + 6 hot TV (weeklyHotTv) +
-  // 6 music (music.json picks by listeners, client-side: the pipeline writes
-  // music.json AFTER overview in the task order). 即将上映 = movie cards +
-  // upcoming TV cards (comingSoonTv).
+  // 6 music (music.json picks by listeners). 即将上映 = movies + upcoming TV.
   const editorMovies = data?.editorsPicks || [];
   const hotTv = data?.weeklyHotTv || [];
-  const musicSix = useMemo(() => {
-    return [...(musicData?.picks || [])]
-      .sort((a, b) => (b.listeners || 0) - (a.listeners || 0))
-      .slice(0, 6);
-  }, [musicData]);
   const comingMovies = data?.comingSoon || [];
   const comingTv = data?.comingSoonTv || [];
 
