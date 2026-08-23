@@ -208,16 +208,17 @@ async function main() {
 
     // ── discover-daily.json: mirror of overview.editorsPicks for the Discover page ──
     // The Discover top row shows the same fixed-6 daily picks as Intelligence 总览.
-    // Written from the just-fetched overview payload so both pages always agree
-    // (DiscoverPage fetches /api/discover-daily.json; falls back to /api/overview.json
-    // client-side if this file is missing).
-    if (data?.editorsPicks?.length) {
+    // Read from the JUST-WRITTEN overview.json (the fetch-loop's `data` variable is
+    // out of scope here — that bug silently skipped this file on 2026-08-23).
+    // DiscoverPage falls back to /api/overview.json client-side if missing.
+    const ovDaily = JSON.parse(readFileSync(join(API_DIR, "overview.json"), "utf8"));
+    if (ovDaily?.editorsPicks?.length) {
       writeFileSync(
         join(API_DIR, "discover-daily.json"),
-        JSON.stringify({ updated: beijingDate(), picks: data.editorsPicks }, null, 2),
+        JSON.stringify({ updated: beijingDate(), picks: ovDaily.editorsPicks }, null, 2),
         "utf8"
       );
-      console.log(`OK discover-daily.json — ${data.editorsPicks.length} daily picks`);
+      console.log(`OK discover-daily.json — ${ovDaily.editorsPicks.length} daily picks`);
     }
   } catch (e) {
     console.error(`FAIL coming.json (local build): ${e.message}`);

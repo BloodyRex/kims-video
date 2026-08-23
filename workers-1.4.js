@@ -970,7 +970,16 @@ async function handleIntelOverview(env) {
     return rank < 0 || rank >= Math.floor(popSorted.length * 0.4);
   });
   const weekIds6 = new Set(weekSelected.map(m => ovGid(m)));
+  // zh gate mirrors the pipeline's filterChineseContent (title AND overview in
+  // Chinese) — without it the pipeline filter layer kills one of our picks and
+  // the section ships with 5 cards (the dual-filter trap, hit 2026-08-23).
+  // trending items carry _overviewEn from intelFetchTMDB's bilingual fetch.
+  const ovZh = (m) => {
+    const t = m.title || m.name || "";
+    return /[一-鿿]/.test(t) && /[一-鿿]/.test(m.overview || "");
+  };
   const trendPool = (trending || []).filter(intelRatingOk)
+    .filter(t => ovZh(t))
     .filter(t => !weekIds6.has(ovGid(t)));
 
   const mkPick = (m, cat) => ({ ...intelNormalizeMovie(m), pickCategory: cat });
