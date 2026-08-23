@@ -963,8 +963,13 @@ async function handleIntelOverview(env) {
   const ovGid = (m) => String(m.tmdbId ?? m.id);
   const ovRate = (m) => m.vote_average ?? m.rating ?? 0;
   const popSorted = [...nowPlaying].sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+  // Same zh gate on the gem pool — non-zh gems would be killed by the pipeline's
+  // filterChineseContent AFTER the worker already counted them (2026-08-24:
+  // Barrio Triste / Cookie Queens dropped the section to 4 cards).
   const gemPool = nowPlaying.filter((m) => {
     if (ovRate(m) < 7.5) return false;
+    return ovZh(m);
+  }).filter((m) => {
     // "hidden" = low popularity RELATIVE to the released pool (bottom 60%)
     const rank = popSorted.findIndex((p) => ovGid(p) === ovGid(m));
     return rank < 0 || rank >= Math.floor(popSorted.length * 0.4);
