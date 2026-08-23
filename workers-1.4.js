@@ -906,13 +906,21 @@ async function handleIntelOverview(env) {
   const weekAgo = intelDaysAgo(7);
 
   // Fetch data directly with same page counts as category handlers (21 subrequests)
-  const [nowPlaying, upcoming, trending, tvOnAir, todayMB] = await Promise.all([
+  // MusicBrainz is wrapped in its own catch: a MB infra blip (525, hit
+  // 2026-08-24) must not 500 the WHOLE overview — stats lose one number,
+  // everything else still ships.
+  const [nowPlaying, upcoming, trending, tvOnAir] = await Promise.all([
     intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
     intelFetchUpcomingMovies(token, 1),
     intelFetchTMDB(token, "/trending/movie/week"),
     intelFetchPages(token, "/tv/on_the_air", {}, 2),
-    intelFetchMusicBrainz(today),
   ]);
+  let todayMB = [];
+  try {
+    todayMB = await intelFetchMusicBrainz(today) || [];
+  } catch (e) {
+    console.warn("MB fetch failed (stats only):", e.message);
+  }
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const cnFilter = (m) => hasChinese(m.title || m.name) && hasChinese(m.overview);
