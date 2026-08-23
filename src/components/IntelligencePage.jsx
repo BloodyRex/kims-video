@@ -270,25 +270,30 @@ function MusicView({ locale, onViewDetail }) {
 }
 
 // ── Coming Soon ──
+// Reads coming.json — the single source of truth the pipeline builds locally
+// from today's movies/tv.json upcoming (2026-08-23). Sorted by daysUntil so
+// the page reads as one timeline; capped at 12 per type for display.
+// Music removed: no free source carries reliable FUTURE album dates
+// (MusicBrainz next-60d probe 2026-08-23: only 9/160 valid releases had an
+// exact date, none with any heat signal) — listing already-released albums
+// under "即将" violated the section's definition. Music stays discoverable in
+// 本周精选 and 本周热榜 instead.
 function ComingView({ locale, onViewDetail }) {
-  const { data: moviesAll, loading: mL, error: mE } = useJsonData("/api/movies.json");
-  const { data: tvAll, loading: tL, error: tE } = useJsonData("/api/tv.json");
-  const { data: musicAll, loading: aL, error: aE } = useJsonData("/api/music.json");
-  const loading = mL || tL || aL;
-  const error = mE || tE || aE;
+  const { data, loading, error } = useJsonData("/api/coming.json");
   const [typeTab, setTypeTab] = useState("movies");
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
-  const moviesUpcoming = (moviesAll?.upcoming || []).map(i => ({ ...i, mediaType: "movie" }));
-  const tvUpcoming = (tvAll?.upcoming || []).map(i => ({ ...i, mediaType: "tv" }));
-  const musicUpcoming = (musicAll?.picks || []).map(i => ({ ...i, mediaType: "album" }));
-  const byType = { movies: moviesUpcoming, tv: tvUpcoming, music: musicUpcoming };
+  // next30Days ⊇ next7Days by construction — one list, deduped upstream.
+  const all = data?.next30Days || [];
+  const byType = {
+    movies: all.filter(i => i.mediaType !== "tv").sort((a, b) => (a.daysUntil ?? 999) - (b.daysUntil ?? 999)),
+    tv: all.filter(i => i.mediaType === "tv").sort((a, b) => (a.daysUntil ?? 999) - (b.daysUntil ?? 999)),
+  };
   const types = [
     { id: "movies", zh: "电影", en: "Movies" },
     { id: "tv", zh: "剧集", en: "TV" },
-    { id: "music", zh: "音乐", en: "Music" },
   ];
-  const current = byType[typeTab] || [];
+  const current = (byType[typeTab] || []).slice(0, 12);
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "即将上映" : "Coming Soon"} color="#ff00ff" />
@@ -297,7 +302,7 @@ function ComingView({ locale, onViewDetail }) {
           <button key={t.id} onClick={() => setTypeTab(t.id)}
             className={`px-3 py-1.5 text-[10px] font-black pixel-font uppercase border-2 border-black transition-colors ${typeTab === t.id ? "bg-black text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             {locale === "zh" ? t.zh : t.en}
-            <span className="ml-1 opacity-60">({Math.min(byType[t.id].length, 15)})</span>
+            <span className="ml-1 opacity-60">({Math.min(byType[t.id].length, 12)})</span>
           </button>
         ))}
       </div>
@@ -305,11 +310,10 @@ function ComingView({ locale, onViewDetail }) {
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
         <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
-          {current.slice(0, 15).map((item, i) =>
-            typeTab === "movies" ? <MovieCard key={i} movie={item} locale={locale} onViewDetail={onViewDetail} />
-            : typeTab === "tv" ? <TVCard key={i} show={item} locale={locale} onViewDetail={onViewDetail} />
-            : <AlbumCard key={i} album={item} locale={locale} onViewDetail={(album) => onViewDetail?.(album, "album")} />
-          )}
+          {current.map((item, i) => (
+            <CountdownCard key={`${item.tmdbId ?? i}-${i}`} item={item} locale={locale}
+              onViewDetail={() => onViewDetail(item, typeTab === "movies" ? "movie" : "tv")} />
+          ))}
         </CardGrid>
       )}
     </div>
@@ -321,11 +325,13 @@ function WeeklyView({ locale, onViewDetail }) {
   const { data, loading, error } = useJsonData("/api/weekly.json");
   const { data: musicData } = useJsonData("/api/music.json");
   const [typeTab, setTypeTab] = useState("movies");
-  // Music: trending + editor picks from music.json, sorted by heat
+  // Music heat = Last.fm listeners (2026-08-23). AI tags/aiScore are curation,
+  // not popularity — listener count is the only stable heat signal, and aiScore
+  // is empty on fallback days which silently broke the old sort.
   const musicPicks = useMemo(() => {
     return (musicData?.picks || [])
-      .filter(a => a.recommendationTagId === "trending" || a.recommendationTagId === "editor")
-      .sort((a, b) => (b.aiScore || 0) - (a.aiScore || 0))
+      .sort((a, b) => (b.listeners || 0) - (a.listeners || 0))
+      .slice(0, 10)
       .map((item, i) => ({ ...item, rank: i + 1, trend: "new" }));
   }, [musicData]);
   if (loading) return <LoadingSpinner locale={locale} />;

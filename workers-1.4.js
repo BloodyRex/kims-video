@@ -1546,58 +1546,40 @@ async function handleIntelMusicV2(request, env) {
 // @deprecated — Music data collection moved to Pipeline (handleIntelMusicV2)
 async function handleIntelWeekly(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
-  const today = intelToday();
 
-  const [movieTrending, tvOnAir] = await Promise.all([
+  // ── Weekly Hot v2 (2026-08-23): one heat signal per side ──
+  // Design intent (Rex): 本周热榜 = this week's hottest works, INCLUDING
+  // not-yet-released/aired ones. Both sides now use TMDB weekly trending —
+  // the real heat signal, which inherently contains unreleased titles
+  // surging in interest (the old TV chain couldn't see them at all).
+  // Retired here (still used by the 目录 pages): on_the_air sourcing,
+  // 2010 cutoff, pop floor 30, recent-activity tiers, cn/hmt/jp/kr quotas,
+  // strict cnFilter — directory-diversity machinery, wrong tool for a heat
+  // chart (and it made weekly.tv a 7/8 copy of ongoing).
+  const [movieTrending, tvTrending] = await Promise.all([
     intelFetchTMDB(token, "/trending/movie/week"),
-    intelFetchPages(token, "/tv/on_the_air", {}, 2),
+    intelFetchTMDB(token, "/trending/tv/week"),
   ]);
 
-  const normalizeItem = (item, rank) => {
-    const type = item.media_type === "tv" ? "tv" : "movie";
-    return { ...intelNormalizeMovie(item, type), rank, trend: "new" };
-  };
-
-  // TV: same rules as handleIntelTV v2 ongoing — 2010 cutoff + recent-activity
-  // priority + episode-date enrichment for S/E (2026-08-21).
-  const hasChinese = (text) => /[一-鿿]/.test(text || "");
-  const cnFilter = (s) => hasChinese(s.title || s.name) && hasChinese(s.overview);
-  const weekAgo = intelDaysAgo(7);
-  const ninetyDaysAgo = intelDaysAgo(90);
-  const thirtyDaysAgo = intelDaysAgo(30);
-  const hundredEightyDaysAgo = intelDaysAgo(180);
-  const tvCandidates = tvOnAir
-    .filter(cnFilter)
-    .filter(intelRatingOk)
-    // 2010 cutoff — NUMERIC year compare ("1989-12-17" >= "2010-01-01" is true
-    // lexicographically, so string compare lets Simpsons 1989 / Conan 1996 through)
-    .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
-    .filter(s => (s.popularity || 0) >= 30);
-  // Tier-1: recent activity (episode in last 30d OR premiered in last 180d)
-  const tvScored = tvCandidates.map(s => {
-    const lastAir = s.last_episode_to_air?.air_date || "";
-    const isRecent = (lastAir && lastAir >= thirtyDaysAgo) || ((s.first_air_date || "") >= hundredEightyDaysAgo);
-    return { s, recent: isRecent };
+  const normalizeItem = (item, type, rank) => ({
+    ...intelNormalizeMovie(item, type), rank, trend: "new",
   });
-  const tvTier1 = tvScored.filter(x => x.recent).map(x => x.s);
-  const tvTier2 = tvScored.filter(x => !x.recent).map(x => x.s);
-  const tvSelected = [
-    ...intelSelectDiverse(tvTier1, 10, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today),
-    ...intelSelectDiverse(tvTier2, 5, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today),
-  ].slice(0, 15);
-  // Episode-date enrichment for S/E (on_the_air list usually lacks episode data)
-  const tvEnriched = await intelFetchTVEpisodeDates(tvSelected, token);
-  const tvWeekly = tvEnriched
-    .filter(s => {
-      const lastAir = s.last_episode_to_air?.air_date;
-      return !lastAir || lastAir >= ninetyDaysAgo;
-    })
-    .map((s, i) => ({ ...intelNormalizeMovie(s, "tv"), rank: i + 1, trend: "new" }));
 
+  const movies = movieTrending.filter(intelRatingOk).slice(0, 10)
+    .map((m, i) => normalizeItem(m, "movie", i + 1));
+
+  // Trending payload usually carries episode data; intelFetchTVEpisodeDates
+  // skips items that already have it, so this only backfills the gaps.
+  const tvSelected = tvTrending.filter(intelRatingOk).slice(0, 10);
+  const tvEnriched = await intelFetchTVEpisodeDates(tvSelected, token);
+  const tv = tvEnriched.map((s, i) => normalizeItem(s, "tv", i + 1));
+
+  // Music: AI-curated tags are NOT a heat signal — WeeklyView ranks music.json
+  // picks by Last.fm listeners client-side (single source of truth, no dup data).
   return {
-    updated: today,
-    movies: movieTrending.filter(intelRatingOk).slice(0, 10).map((m, i) => normalizeItem(m, i + 1)),
-    tv: tvWeekly,
+    updated: intelToday(),
+    movies,
+    tv,
     music: [],
   };
 }
