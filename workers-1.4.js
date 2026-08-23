@@ -962,6 +962,13 @@ async function handleIntelOverview(env) {
   // read fields defensively or the gem pool silently ends up empty.
   const ovGid = (m) => String(m.tmdbId ?? m.id);
   const ovRate = (m) => m.vote_average ?? m.rating ?? 0;
+  // zh gate mirrors the pipeline's filterChineseContent (title AND overview in
+  // Chinese). Both pools need it: non-zh picks get killed by the pipeline
+  // filter layer AFTER the worker already counted them → short sections.
+  const ovZh = (m) => {
+    const t = m.title || m.name || "";
+    return /[一-鿿]/.test(t) && /[一-鿿]/.test(m.overview || "");
+  };
   const popSorted = [...nowPlaying].sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
   // Same zh gate on the gem pool — non-zh gems would be killed by the pipeline's
   // filterChineseContent AFTER the worker already counted them (2026-08-24:
@@ -975,14 +982,6 @@ async function handleIntelOverview(env) {
     return rank < 0 || rank >= Math.floor(popSorted.length * 0.4);
   });
   const weekIds6 = new Set(weekSelected.map(m => ovGid(m)));
-  // zh gate mirrors the pipeline's filterChineseContent (title AND overview in
-  // Chinese) — without it the pipeline filter layer kills one of our picks and
-  // the section ships with 5 cards (the dual-filter trap, hit 2026-08-23).
-  // trending items carry _overviewEn from intelFetchTMDB's bilingual fetch.
-  const ovZh = (m) => {
-    const t = m.title || m.name || "";
-    return /[一-鿿]/.test(t) && /[一-鿿]/.test(m.overview || "");
-  };
   const trendPool = (trending || []).filter(intelRatingOk)
     .filter(t => ovZh(t))
     .filter(t => !weekIds6.has(ovGid(t)));
