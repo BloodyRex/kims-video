@@ -120,43 +120,244 @@
       "pickCategory": "trending"
     }
   ],
-  "comingSoon": [
+  "weeklyHotTv": [
     {
-      "tmdbId": 1516698,
-      "title": "最后的日出",
-      "titleEn": "The Last Sunrise",
-      "originalLanguage": "en",
-      "originCountry": [],
+      "tmdbId": 303351,
+      "title": "极昼血祭",
+      "titleEn": "Blood Sacrifice",
+      "originalLanguage": "sv",
+      "originCountry": [
+        "SE"
+      ],
       "year": "2026",
-      "releaseDate": "2026-08-26",
-      "poster": "https://image.tmdb.org/t/p/w500/pego3yEZ5SuGvRjESKAguL4Wu7M.jpg",
-      "rating": 0,
+      "releaseDate": "2026-08-20",
+      "poster": "https://image.tmdb.org/t/p/w500/bPlCqGAMcgwhAA4xFKlkMX7N5Oz.jpg",
+      "rating": 5.4,
       "genre": [
-        "Romance",
+        "Drama",
+        "Crime",
+        "Mystery"
+      ],
+      "summary": "斯德哥尔摩夏日炎炎，似乎不曾悄然笼罩在黑暗之中。911接获一通报案电话，表示家中遭到入侵。两名警探获派前往事发地点：一栋位于群岛的避暑小屋，却发现屋内空无一人，至少肉眼所及，一片空无。隔天，两名警探的遗体被人发现，且犯案手法凶残。一连串骇人命案就此开展，且凶手似乎专挑警察下手。主导调查的警探为了破案，非得向身为退休警探的父亲求助。",
+      "summaryEn": "Following the brutal murder of two police officers, a tenacious detective reluctantly joins forces with his estranged ex-cop father to catch the killer.",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 278624,
+      "title": "幸运女神",
+      "titleEn": "Lucky",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-07-14",
+      "poster": "https://image.tmdb.org/t/p/w500/9gCX7hf1nDovg3E5WHRzxFdzOm1.jpg",
+      "rating": 7.193,
+      "genre": [
+        "Drama",
+        "Crime"
+      ],
+      "summary": "一宗涉及数百万美元的劫案搞砸后，骗徒幸儿被迫亡命天涯。在联邦调查局与冷血黑帮大佬的夹击下，幸儿必须为生存而战，设法逃出生天。",
+      "summaryEn": "When a multi-million-dollar heist goes sideways, con artist Lucky is forced to go on the run. Pursued by both the FBI and a ruthless crime boss, Lucky must fight for her life—and a way out.",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 94664,
+      "title": "无职转生～到了异世界就拿出真本事～",
+      "titleEn": "Mushoku Tensei: Jobless Reincarnation",
+      "originalLanguage": "ja",
+      "originCountry": [
+        "JP"
+      ],
+      "year": "2021",
+      "releaseDate": "2021-01-11",
+      "poster": "https://image.tmdb.org/t/p/w500/u7LWdKmEdEr6Ui3GZMsFGlKZQBd.jpg",
+      "rating": 8.4,
+      "genre": [
+        "Animation"
+      ],
+      "summary": "“我要在这个异世界拿出真本事！”34岁童贞且无职的家里蹲男子，在父母的葬礼当天被赶出家门后，在路上被一辆卡车所撞死。意识清醒后，他发现自己居然作为一个刚出生的婴儿转生到了剑与魔法的异世界！像废物一样活过了前世的男子，发誓要作为少年·鲁迪乌斯在异世界以认真的态度好好活下去！等待着鲁迪乌斯的是，与娇小魔术师、有着精灵长耳又很男孩子气的美少女、凶暴的傲娇大小姐以及其他性格各异的人们之间的邂逅，当然也还有",
+      "summaryEn": "When a 34-year-old underachiever gets run over by a truck, his story doesn't end there. Reincarnated in a new world as an infant, Rudy will seize every opportunity to live the life he's always wanted.",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 286709,
+      "title": "西区帮派",
+      "titleEn": "The Westies",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-07-12",
+      "poster": "https://image.tmdb.org/t/p/w500/lqHDXCfR3Fwb8aFZJzIwL5GX0fR.jpg",
+      "rating": 7.2,
+      "genre": [
+        "Drama",
+        "Crime"
+      ],
+      "summary": "西区帮派借雅各布・贾维茨会展中心的工程项目牟利，一边对抗意大利黑手党的施压，一边周旋于内部的权力倾轧。",
+      "summaryEn": "As the Javits Center construction project ignites a battle for profit in early 1980s Hell's Kitchen, a generational rift threatens the uneasy peace between violent Irish gang the Westies and the Mafia",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 291856,
+      "title": "重器",
+      "titleEn": "Forging Justice",
+      "originalLanguage": "zh",
+      "originCountry": [
+        "CN"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-08-10",
+      "poster": "https://image.tmdb.org/t/p/w500/43iXOUo8dw7KfllwOnuu8JSyqFt.jpg",
+      "rating": 8,
+      "genre": [
         "Drama"
       ],
-      "summary": "　　一位身患疾病的年轻美国女子在马略卡岛的夏日里度假时，与一位魅力十足的当地人意外坠入爱河，这让她不得不在追随内心、履行家庭责任以及按计划返回家园之间做出权衡。",
-      "summaryEn": "Ry, a college student with a chronic illness escapes to Mallorca for the summer with her mother, where she unexpectedly falls for a local and begins to embrace living in the moment. But as her conditi",
+      "summary": "以改革开放初期至1997年《刑诉法》《刑法》修订为背景，讲述陈一众、余高远、张丽慧、夏英杰等法学院毕业生在不同司法岗位上历经风雨、共同见证中国法治发展进程的故事，展现他们在时代浪潮中成长、抉择与命运交织的群像篇章。",
+      "summaryEn": "In the early years of China's reform and opening-up, five law school graduates—Chen Yizhong, Yu Gaoyuan, Lu Zeming, Xia Yingjie, and Zhang Lihui—embarked on diverse careers within the judicial system.",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 65942,
+      "title": "Re：从零开始的异世界生活",
+      "titleEn": "Re:ZERO -Starting Life in Another World-",
+      "originalLanguage": "ja",
+      "originCountry": [
+        "JP"
+      ],
+      "year": "2016",
+      "releaseDate": "2016-04-04",
+      "poster": "https://image.tmdb.org/t/p/w500/zTAJk1ERMticlZeXaKTq6UozgxC.jpg",
+      "rating": 8.1,
+      "genre": [
+        "Animation",
+        "Drama",
+        "Mystery"
+      ],
+      "summary": "在异世界陷入迷茫的普通高中生菜月昴，邂逅了一位银发的美少女。但想助她一臂之力的昴，却一次次地遭遇敌袭，背叛、暴力，甚至是死亡……“死亡回归”——无力的少年拥有的唯一能力，能将死后时间倒转回一开始。使用了这般力量，便会失去过去的回忆，可为了守护最重要的人们，昴必须抗争到底。“即使你忘却了我，我也不会遗忘你。”",
+      "summaryEn": "Natsuki Subaru, an ordinary high school  student, is on his way home from the convenience store when he finds  himself transported to another world. As he's lost and confused in a new  world where he ",
+      "pickCategory": "tvhot"
+    }
+  ],
+  "comingSoon": [],
+  "comingSoonTv": [
+    {
+      "tmdbId": 299952,
+      "title": "早春晴朗",
+      "titleEn": "The Early Spring",
+      "originalLanguage": "zh",
+      "originCountry": [
+        "CN"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-08-26",
+      "poster": "https://image.tmdb.org/t/p/w500/o4I2aVl0KsXKZt5djqUE0Z5YWhH.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "这是一段十年交锋，敬于才华，合于性格、久于平等的禁忌之恋。北漂伊始的尚之桃与极具天赋的“鬼才”栾念狭路相逢。热烈勇敢的尚之桃亦步亦趋地蜕变成长，撬碎了栾念世故坚硬的心防，互相吸引的二人在都市丛林中极限拉扯、分分合合。爱情，就是用光所有勇气，再无遗憾。爱，则是互相修复，共同成长。但情和爱之间，她选择生存。当她独当一面，他收敛锋芒，势均力敌的他们将会为彼此写下了新的结局……",
+      "summaryEn": "New to Beijing, Shang Zhitao crosses paths with Luan Nian, a true creative genius. Bold and open-hearted, she grows stronger step by step and gradually breaks through the defenses around Luan's guarde",
       "daysUntil": 2
     },
     {
-      "tmdbId": 1384216,
-      "title": "末世行者",
-      "titleEn": "The Dog Stars",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-08-26",
-      "poster": "https://image.tmdb.org/t/p/w500/q2lN1pVMmVXEA0UpgdFupYwsPHg.jpg",
-      "rating": 7.3,
-      "genre": [
-        "Sci-Fi",
-        "Adventure",
-        "Thriller"
+      "tmdbId": 305644,
+      "title": "四手联弹，两首奏鸣曲",
+      "titleEn": "Four Hands, Two Sonatas",
+      "originalLanguage": "ko",
+      "originCountry": [
+        "KR"
       ],
-      "summary": "一场大流行病席卷全球后，人口锐减。在科罗拉多州的飞机库里，一名男子与他的狗和一位阴郁的枪手相伴过着孤寂的生活。当他驾驶着老旧的塞斯纳飞机时，无线电里突然传来神秘的信号，由此引发了一场追寻声音来源的探索之旅。",
-      "summaryEn": "After the world's population has been ravaged by a pandemic, a man lives a lonesome existence in a Colorado airplane hangar with his dog and a dour gunman he has befriended. When a mysterious transmis",
-      "daysUntil": 2
+      "year": "2026",
+      "releaseDate": "2026-08-29",
+      "poster": "https://image.tmdb.org/t/p/w500/tVloyoVNxqan45NmzNtWysx8hMZ.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "讲述在艺术高中相遇的青春男女们之间的友情、爱情、竞争与成长故事。",
+      "summaryEn": "When two young pianists from completely different worlds meet at an elite music high school, the melodies of their lives become intimately intertwined.",
+      "daysUntil": 5
+    },
+    {
+      "tmdbId": 306630,
+      "title": "疯狂爱上你",
+      "titleEn": "You Maniac",
+      "originalLanguage": "th",
+      "originCountry": [
+        "TH"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-08-29",
+      "poster": "https://image.tmdb.org/t/p/w500/tydatk0tsuzPUuMRFQeY07qtU6O.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "Dean是一个品味高级、热爱派对且处处留情的帅气浪子，向来崇尚不婚主义、不愿与任何人绑定。然而，为了帮死党 Ten 追求 Pun，他不得不使出浑身解数去倒追性格孤傲、与世界格格不入的年轻艺术家 Moth —— 因为 Pun 正暗恋着 Moth。起初，Dean 只是抱着应付差事的心态，但 Moth 对他毫无兴趣的冷淡态度，反而彻底激发了他极强的好胜欲。这场荒诞的爱情博弈，究竟会如何演变成一场让人爱到",
+      "summaryEn": "When a carefree playboy meets the one man who refuses to fall for his charm, his competitive ego turns into an obsession he can't resist.",
+      "daysUntil": 5
+    },
+    {
+      "tmdbId": 284825,
+      "title": "狂热先生",
+      "titleEn": "Mr. Fanboy",
+      "originalLanguage": "th",
+      "originCountry": [
+        "TH"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-08-29",
+      "poster": "https://image.tmdb.org/t/p/w500/fdnP52XlEYj1tqA6iw17wSHnv5b.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "大学生Wan有一个狂热的爱好，跟随并拍摄了《后起之秀》第九。当Wan在他的偶像将出演的Y系列赛中获得支持角色的演员机会时，他遇到了第三名，这是一个尖锐的领导人和九船伙伴。两人立即发生冲突，但是当Wan通过试镜时，两人被迫一起工作。尽管他们彼此不喜欢，但在了解第三名后，Wan开始以不同的眼光看待他的竞争对手。他不知道自己怎么了，但是他发现自己越来越频繁地避开了众多的领导者的目光。除此之外，Wan开始",
+      "summaryEn": "Cast in a BL drama with his idol, devoted fanboy Wan finds his heart pulled in a shocking new direction by the idol's protective partner, Third.",
+      "daysUntil": 5
+    },
+    {
+      "tmdbId": 275102,
+      "title": "挑情丑闻",
+      "titleEn": "The Scandal",
+      "originalLanguage": "ko",
+      "originCountry": [
+        "KR"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-09-18",
+      "poster": "https://image.tmdb.org/t/p/w500/2HCtyLoOtYGZAtUNisNUJaqCobT.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "该剧以欲望本身被视为禁忌的朝鲜时代为背景，讲述了一群无惧严苛的儒家秩序、发起挑战，展开大胆爱情与诱惑赌局的人们，生动勾勒出一场扣人心弦、惊心动魄的故事。",
+      "summaryEn": "In Joseon, a secret proposal ignites hidden desires in a gifted noblewoman, a famed lover and an unsuspecting lady caught in their dangerous game.",
+      "daysUntil": 25
+    },
+    {
+      "tmdbId": 288673,
+      "title": "魔女嘉莉",
+      "titleEn": "Carrie",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-07",
+      "poster": "https://image.tmdb.org/t/p/w500/AsBZWp9VZfSY7HhZBADlaQtb9k4.jpg",
+      "rating": 0,
+      "genre": [
+        "Mystery",
+        "Drama"
+      ],
+      "summary": "父亲的突然离世迫使嘉莉进入到了残酷的公立高中，她不得不面对席卷社区的校园霸凌丑闻、社交媒体时代无情的压力和冷酷无情，以及伴随青春期而觉醒的神秘心灵感应能力。",
+      "summaryEn": "Misfit high-schooler Carrie White has spent her life in seclusion with her domineering mother. After her father's sudden death, Carrie finds herself contending with the challenges of attending public ",
+      "daysUntil": 44
     }
   ],
   "brief": "Today: 10 movie(s) released, 20 TV show(s) airing, 25 new album(s)."

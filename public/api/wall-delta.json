@@ -1,5 +1,37 @@
 {
   "updated": "2026-08-24",
-  "count": 0,
-  "movies": []
+  "count": 2,
+  "movies": [
+    {
+      "tmdbId": 316029,
+      "mediaType": "movie",
+      "title": "马戏之王",
+      "titleEn": "The Greatest Showman",
+      "year": "2017",
+      "releaseDate": "2017-12-20",
+      "poster": "https://image.tmdb.org/t/p/w342/b9CeobiihCx1uG1tpw8hXmpi7nm.jpg",
+      "rating": 7.854,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-24"
+    },
+    {
+      "tmdbId": 424694,
+      "mediaType": "movie",
+      "title": "波西米亚狂想曲",
+      "titleEn": "Bohemian Rhapsody",
+      "year": "2018",
+      "releaseDate": "2018-10-24",
+      "poster": "https://image.tmdb.org/t/p/w342/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg",
+      "rating": 7.953,
+      "genre": [
+        "音乐",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-24"
+    }
+  ]
 }

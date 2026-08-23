@@ -1,57 +1,61 @@
 {
   "date": "2026-08-24",
-  "headline": "《怒之杀》领跑热度，本周新片仅四部",
-  "headlineEn": "Rage Kill Leads Buzz; Only Four New Movies This Week",
-  "summary": "今日无新片上映，本周共4部新片。热搜由《怒之杀》领衔，《死神》《特别行动：母狮》《蜘蛛侠：崭新之日》《玩具总动员5》紧随其后。",
-  "summaryEn": "No new movies hit theaters today, with only four new releases this week. Rage Kill tops the trending chart, followed by Death, Special Ops: Lioness, Spider-Man: Brand New Day, and Toy Story 5.",
+  "headline": "今日电影零上映，剧集《死神》《母狮》霸榜",
+  "headlineEn": "Zero movie releases today; 'Bleach' and 'Lioness' dominate charts",
+  "summary": "今日0部新片上映，电影热度由《怒之杀》领跑；剧集《死神》登顶，《特别行动：母狮》紧随其后，本周4部新片待映，《最后的日出》已排期。",
+  "summaryEn": "No new movies today; 'Rage Kill' leads movie buzz, while TV top spot goes to 'Bleach' followed by 'Special Ops: Lioness'. Four new films arrive this week; 'The Last Sunrise' is upcoming.",
   "topTrends": [
     {
       "rank": 1,
+      "title": "死神",
+      "titleEn": "Bleach",
+      "category": "tv"
+    },
+    {
+      "rank": 2,
+      "title": "特别行动：母狮",
+      "titleEn": "Special Ops: Lioness",
+      "category": "tv"
+    },
+    {
+      "rank": 3,
       "title": "怒之杀",
       "titleEn": "Rage Kill",
       "category": "movie"
     },
     {
-      "rank": 2,
-      "title": "死神",
-      "titleEn": "Death",
-      "category": "movie"
-    },
-    {
-      "rank": 3,
-      "title": "特别行动：母狮",
-      "titleEn": "Special Ops: Lioness",
-      "category": "movie"
-    },
-    {
       "rank": 4,
-      "title": "蜘蛛侠：崭新之日",
-      "titleEn": "Spider-Man: Brand New Day",
-      "category": "movie"
+      "title": "绿灯军团",
+      "titleEn": "Green Lantern Corps",
+      "category": "tv"
     },
     {
       "rank": 5,
-      "title": "玩具总动员5",
-      "titleEn": "Toy Story 5",
+      "title": "蜘蛛侠：崭新之日",
+      "titleEn": "Spider-Man: Brand New Day",
       "category": "movie"
     }
   ],
   "industryHighlights": [
     {
-      "text": "今日院线零新片上映",
-      "en": "No new movies released in theaters today"
+      "text": "今日0部新片上映",
+      "en": "No new movies released today"
     },
     {
-      "text": "本周共4部新片入场",
-      "en": "Four new movies enter theaters this week"
+      "text": "本周共有4部新片上映",
+      "en": "4 new movies are released this week"
     },
     {
-      "text": "《最后的日出》即将上线",
-      "en": "The Last Sunrise is coming soon"
+      "text": "《怒之杀》领跑今日电影热度",
+      "en": "'Rage Kill' tops today's movie trending chart"
     },
     {
-      "text": "热搜榜由多部大片占据，头部效应明显",
-      "en": "Blockbusters dominate the trending chart, showing strong headliner effect"
+      "text": "《绿灯军团》领跑本周剧集热度",
+      "en": "'Green Lantern Corps' leads this week's TV trending"
+    },
+    {
+      "text": "《最后的日出》即将上映",
+      "en": "'The Last Sunrise' is upcoming"
     }
   ]
 }
