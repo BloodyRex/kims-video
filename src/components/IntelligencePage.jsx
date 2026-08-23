@@ -138,17 +138,20 @@ function OverviewView({ locale, onViewDetail }) {
               const b = pickBadges[p.pickCategory] || pickBadges.editors;
               return (
                 <WallStyleCard key={`m-${p.tmdbId}-${i}`} item={p} locale={locale} badge={b.label} badgeColor={b.color}
+                  subBadge={locale === "zh" ? "电影" : "MOVIE"} subBadgeColor="#ff00ff"
                   onClick={(item) => onViewDetail(item, "movie")} />
               );
             })}
             {hotTv.map((s, i) => (
               <WallStyleCard key={`tv-${s.tmdbId}-${i}`} item={s} locale={locale}
                 badge={locale === "zh" ? "🔥 剧集热榜" : "🔥 TV HOT"} badgeColor="#00ffff"
+                subBadge={locale === "zh" ? "剧集" : "TV"} subBadgeColor="#00ffff"
                 onClick={(item) => onViewDetail(item, "tv")} />
             ))}
             {musicSix.map((a, i) => (
               <WallStyleCard key={`mu-${a.mbid || a.title}-${i}`} item={a} locale={locale}
                 badge={locale === "zh" ? `🎵 ${a.recommendationTagId === "trending" ? "热门" : a.recommendationTagId === "hidden" ? "宝藏" : a.recommendationTagId === "world" ? "环球" : "推荐"}` : "🎵 MUSIC"} badgeColor="#ffff00"
+                subBadge={locale === "zh" ? "音乐" : "MUSIC"} subBadgeColor="#ffff00"
                 onClick={(item) => onViewDetail(item, "album")} />
             ))}
           </div>
@@ -161,11 +164,13 @@ function OverviewView({ locale, onViewDetail }) {
             {comingMovies.map((m, i) => (
               <WallStyleCard key={`cm-${m.tmdbId}-${i}`} item={m} locale={locale}
                 badge={typeof m.daysUntil === "number" ? `${Math.min(m.daysUntil, 99)}天` : undefined} badgeColor="#ff00ff"
+                subBadge={locale === "zh" ? "电影" : "MOVIE"} subBadgeColor="#ff00ff"
                 onClick={(item) => onViewDetail(item, "movie")} />
             ))}
             {comingTv.map((s, i) => (
               <WallStyleCard key={`ct-${s.tmdbId}-${i}`} item={s} locale={locale}
                 badge={typeof s.daysUntil === "number" ? `${Math.min(s.daysUntil, 99)}天` : undefined} badgeColor="#00ffff"
+                subBadge={locale === "zh" ? "剧集" : "TV"} subBadgeColor="#00ffff"
                 onClick={(item) => onViewDetail(item, "tv")} />
             ))}
           </div>
@@ -374,7 +379,7 @@ function SearchView({ locale, onViewDetail }) {
       {results.albums.length > 0 && (
         <section>
           <SectionHeader label={locale === "zh" ? "专辑" : "Albums"} count={results.albums.length} color="#ffff00" />
-          <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{results.albums.slice(0, 12).map((a, i) => <AlbumCard key={i} album={a} locale={locale} />)}</CardGrid>
+          <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{results.albums.slice(0, 12).map((a, i) => <AlbumCard key={i} album={a} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "album")} />)}</CardGrid>
         </section>
       )}
       {query.trim() && !searching && totalCount === 0 && (
@@ -400,6 +405,12 @@ function IntelligencePage() {
     setDetailItem(item);
     setDetailType(type || "movie");
   };
+
+  // Switching sidebar sections must exit any open detail view — otherwise the
+  // detail sticks around after the URL changes and looks like a dead page.
+  useEffect(() => {
+    setDetailItem(null);
+  }, [activeNav]);
 
   useEffect(() => {
     document.title = locale === "zh"
@@ -453,10 +464,10 @@ function IntelligencePage() {
             <IntelDetailModal item={detailItem} type={detailType} locale={locale} onClose={() => setDetailItem(null)} />
           ) : (
             <>
-              {activeNav === "overview" && <OverviewView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
-              {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item) => handleViewDetail(item, "movie")} />}
-              {activeNav === "tv" && <TVView locale={locale} onViewDetail={(item) => handleViewDetail(item, "tv")} />}
-              {activeNav === "music" && <MusicView locale={locale} onViewDetail={(item) => handleViewDetail(item, "music")} />}
+              {activeNav === "overview" && <OverviewView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
+              {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type || "movie")} />}
+              {activeNav === "tv" && <TVView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type || "tv")} />}
+              {activeNav === "music" && <MusicView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type || "album")} />}
               {activeNav === "search" && <SearchView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
             </>
           )}

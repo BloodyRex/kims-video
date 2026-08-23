@@ -694,7 +694,7 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
 export function SectionHeader({ label, count, color = "#ff00ff", className = "" }) {
   return (
     <h2
-      className={`text-lg sm:text-xl font-black mb-4 pixel-font inline-block px-4 py-1.5 border-4 border-black intel-title ${className}`}
+      className={`text-lg sm:text-xl font-black mb-4 pixel-font inline-block px-4 py-1.5 border-4 border-black intel-title max-sm:text-xs ${className}`}
       style={{ color: "#fff", backgroundColor: color, boxShadow: "6px 6px 0 0 #000", textShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}
     >
       {label}
@@ -736,6 +736,9 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
   const title = getTitle(item, locale);
   const isMusic = type === "music" || type === "album";
   const isTV = type === "tv";
+  // Type chip in the title bar + TrailerButtons lookup — declaration was lost in
+  // the earlier restore and crashed every detail view (ReferenceError → black screen)
+  const typeLabel = isMusic ? (zh ? "专辑" : "ALBUM") : isTV ? (zh ? "剧集" : "TV") : (zh ? "电影" : "MOVIE");
   const enriched = detailData || {};
   const tmdbPath = isTV ? "tv" : "movie";
   const tmdbUrl = `https://www.themoviedb.org/${tmdbPath}/${item.tmdbId}`;
@@ -924,7 +927,7 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
 // aspect-[2/3] poster area (album covers are square → object-contain on black),
 // rating badge bottom-right, title + date + genre bar below. No inline action
 // buttons — the whole card opens the detail view.
-export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", onClick }) {
+export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", subBadge, subBadgeColor = "#000000", onClick }) {
   const zh = locale === "zh";
   const title = zh ? item.title : (item.titleEn || item.title);
   const isMusic = !!(item.mbid || item.artist);
@@ -943,11 +946,21 @@ export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", onC
             <Icons.Film className="w-8 h-8" />
           </div>
         )}
-        {badge && (
-          <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none"
-            style={{ backgroundColor: badgeColor, color: "#000" }}>
-            {badge}
-          </span>
+        {(badge || subBadge) && (
+          <div className="absolute top-1.5 left-1.5 flex gap-1">
+            {badge && (
+              <span className="px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none"
+                style={{ backgroundColor: badgeColor, color: "#000" }}>
+                {badge}
+              </span>
+            )}
+            {subBadge && (
+              <span className="px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none"
+                style={{ backgroundColor: "#000000", color: subBadgeColor }}>
+                {subBadge}
+              </span>
+            )}
+          </div>
         )}
         {rating > 0 && (
           <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">
