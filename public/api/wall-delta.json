@@ -1,5 +1,73 @@
 {
-  "updated": "2026-08-24",
-  "count": 0,
-  "movies": []
+  "updated": "2026-08-25",
+  "count": 4,
+  "movies": [
+    {
+      "tmdbId": 1732625,
+      "mediaType": "movie",
+      "title": "乐高迪士尼公主：魔法大乱斗",
+      "titleEn": "LEGO Disney Princess: Magical Mayhem",
+      "year": "2026",
+      "releaseDate": "2026-08-21",
+      "poster": "https://image.tmdb.org/t/p/w500/xNA3Ub2MsAvbyg1GlDrrUQI2Kru.jpg",
+      "rating": 7.6,
+      "genre": [
+        "Animation",
+        "Fantasy",
+        "Comedy",
+        "Adventure"
+      ],
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 11553,
+      "mediaType": "movie",
+      "title": "千禧曼波",
+      "titleEn": "千禧曼波",
+      "year": "2001",
+      "releaseDate": "2001-10-31",
+      "poster": "https://image.tmdb.org/t/p/w342/wSc6tOp1yoAFbZqxG5XVGHcFvRN.jpg",
+      "rating": 7.012,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-24"
+    },
+    {
+      "tmdbId": 1948,
+      "mediaType": "movie",
+      "title": "怒火攻心",
+      "titleEn": "Crank",
+      "year": "2006",
+      "releaseDate": "2006-08-31",
+      "poster": "https://image.tmdb.org/t/p/w342/rsKmhnvzJezjwC1Ud2Hh37oNpdQ.jpg",
+      "rating": 6.7,
+      "genre": [
+        "动作",
+        "惊悚",
+        "犯罪"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 22494,
+      "mediaType": "movie",
+      "title": "有关时间旅行的热门问题",
+      "titleEn": "Frequently Asked Questions About Time Travel",
+      "year": "2009",
+      "releaseDate": "2009-04-24",
+      "poster": "https://image.tmdb.org/t/p/w342/r67KzlHkdiwe3fBWzImEkNOg1Y.jpg",
+      "rating": 6.872,
+      "genre": [
+        "喜剧",
+        "剧情",
+        "爱情",
+        "科幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    }
+  ]
 }
