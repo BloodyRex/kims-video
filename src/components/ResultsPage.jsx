@@ -120,9 +120,15 @@ const ResultsPage = ({
 
         const el = publishPosterRef.current;
         const imgs = el.querySelectorAll("img");
+        // 5s cap per image — a stalled poster must not freeze the publish flow
         await Promise.all(
           Array.from(imgs).map(img =>
-            img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })
+            img.complete ? Promise.resolve() : new Promise(r => {
+              const done = () => { img.onload = null; img.onerror = null; r(); };
+              const timer = setTimeout(done, 5000);
+              img.onload = () => { clearTimeout(timer); done(); };
+              img.onerror = () => { clearTimeout(timer); done(); };
+            })
           )
         );
         await new Promise(r => setTimeout(r, 150));
@@ -131,6 +137,12 @@ const ResultsPage = ({
           width: 800,
           height: el.scrollHeight,
           style: { "background-color": "#111111" },
+          // Skip embedding web fonts (Press Start 2P woff2 shards) — the browser
+          // has them cached for on-screen rendering; embedding re-fetches every
+          // shard via XHR and stalls the publish flow on slow networks.
+          disableEmbedFonts: true,
+          // 10s hard cap for any resource fetch inside dom-to-image
+          httpTimeout: 10000,
         });
 
         const imgEl = new Image();

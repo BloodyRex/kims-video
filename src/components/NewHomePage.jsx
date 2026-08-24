@@ -143,7 +143,13 @@ const NewHomePage = () => {
         const imgs = el.querySelectorAll("img");
         await Promise.all(
           Array.from(imgs).map((img) =>
-            img.complete ? Promise.resolve() : new Promise((r) => { img.onload = r; img.onerror = r; })
+            img.complete ? Promise.resolve() : new Promise((r) => {
+              // 5s cap per image — a stalled poster must not hang the save flow
+              const done = () => { img.onload = null; img.onerror = null; r(); };
+              const timer = setTimeout(done, 5000);
+              img.onload = () => { clearTimeout(timer); done(); };
+              img.onerror = () => { clearTimeout(timer); done(); };
+            })
           )
         );
         await new Promise((r) => setTimeout(r, 150));
@@ -152,6 +158,8 @@ const NewHomePage = () => {
           width: 800,
           height: el.scrollHeight,
           style: { "background-color": "#111111" },
+          disableEmbedFonts: true,
+          httpTimeout: 10000,
         });
 
         const img = new Image();
