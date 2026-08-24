@@ -35,12 +35,12 @@
   },
   "stats": {
     "mbRaw": 400,
-    "afterFilter": 208,
+    "afterFilter": 210,
     "artistsChecked": 75,
-    "afterArtistFilter": 54,
+    "afterArtistFilter": 55,
     "albumEnriched": 40,
     "chartItems": 359,
-    "totalCandidates": 413,
+    "totalCandidates": 414,
     "sentToWorker": 18
   },
   "candidates": [
@@ -859,6 +859,32 @@
       "daysOld": 235
     },
     {
+      "id": "mb-2d68fdaa-e89d-486f-8dac-6227256a8cc7",
+      "mbid": "2d68fdaa-e89d-486f-8dac-6227256a8cc7",
+      "title": "Urbanstyle Circus",
+      "artist": "MERRY",
+      "releaseDate": "2026-07-29",
+      "year": "2026",
+      "type": "Album",
+      "country": "JP",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4f/07/59/4f0759d4-5691-a2b8-7847-e56a784286a2/4529123134028.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 44608,
+      "artistPlaycount": 2508631,
+      "albumListeners": 155,
+      "albumPlaycount": 1376,
+      "score": 45.94774350473077,
+      "scoreBreakdown": {
+        "artist": 30.996085013879306,
+        "album": 10.951658490851457,
+        "freshness": 4
+      },
+      "daysOld": 26
+    },
+    {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
       "mbid": "81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
       "title": "(EN)LIGHTEN",
@@ -1271,32 +1297,6 @@
       "daysOld": 235
     },
     {
-      "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
-      "mbid": "8cad04bc-f71b-4bbd-a518-77399a2352ad",
-      "title": "Miten asiat oikeesti on?",
-      "artist": "Liisa Akimof",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "FI",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 3506,
-      "artistPlaycount": 54030,
-      "albumListeners": 203,
-      "albumPlaycount": 2136,
-      "score": 35.169559601284575,
-      "scoreBreakdown": {
-        "artist": 23.632079411718507,
-        "album": 11.537480189566065,
-        "freshness": 0
-      },
-      "daysOld": 235
-    },
-    {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
       "mbid": "49056c96-f203-4fbc-bdd6-ddd1ab08180b",
       "title": "Nordland",
@@ -1423,6 +1423,38 @@
         "freshness": 5
       },
       "daysOld": 25
+    },
+    {
+      "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
+      "mbid": "8cad04bc-f71b-4bbd-a518-77399a2352ad",
+      "title": "Miten asiat oikeesti on?",
+      "artist": "Liisa Akimof",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "FI",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "finnish",
+        "singer-songwriter",
+        "Soundtrack",
+        "80s",
+        "genius"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 3506,
+      "artistPlaycount": 54030,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 23.632079411718507,
+      "scoreBreakdown": {
+        "artist": 23.632079411718507,
+        "album": 0,
+        "freshness": 0
+      },
+      "daysOld": 235
     },
     {
       "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
