@@ -130,7 +130,12 @@ async function searchTMDB(title, year, type, token, language) {
 
 async function fetchEnglishPoster(tmdbId, type, token) { const d = await withCache(`${tmdbId}-${type}-poster`, async () => { const r = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/images?include_image_language=en,null`, { headers: { Authorization: `Bearer ${token}` } }); return r.ok ? r.json() : null; }); if (!d) return null; const p = d?.posters || []; const ep = p.find(x => x.iso_639_1 === "en") || p[0]; return ep ? `https://image.tmdb.org/t/p/w342${ep.file_path}` : null; }
 
-async function withCache(key, fetcher, ttl = 86400) { const c = caches.default; const r = new Request(`https://tmdb-cache/${key}`); const h = await c.match(r); if (h) { console.log("[CACHE HIT]", key); return h.json(); } console.log("[CACHE MISS]", key); const d = await fetcher(); if (!d) return null; const resp = new Response(JSON.stringify(d), { headers: { "Content-Type": "application/json", "Cache-Control": `public, max-age=${ttl}` } }); c.put(r, resp.clone()); return d; }
+async function withCache(key, fetcher, ttl = 86400) { const c = caches.default; const r = new Request(`https://tmdb-cache/${key}`); const h = await c.match(r); if (h) { console.log("[CACHE HIT]", key); return h.json(); } console.log("[CACHE MISS]", key); const d = await fetcher(); // Empty arrays are NOT valid results (2026-08-24): a subrequest-budget blowup
+  // mid-handler once cached on_the_air=[] for a full TTL, and the pipeline's
+  // US-edge colo kept serving that poisoned entry → 热播中 went blank site-wide
+  // while the Asia colo (manually warmed) looked fine. Treat [] as failure so
+  // the next caller re-fetches instead of inheriting the empty answer.
+  if (!d || (Array.isArray(d) && d.length === 0)) return null; const resp = new Response(JSON.stringify(d), { headers: { "Content-Type": "application/json", "Cache-Control": `public, max-age=${ttl}` } }); c.put(r, resp.clone()); return d; }
 
 async function fetchTMDBDetails(tmdbId, token, language, opts = {}) {
   language = language || "zh-CN";

@@ -156,14 +156,28 @@ async function main() {
       // Universal filter: all content items must have Chinese title + summary
       filterChineseContent(data, task.file);
 
-      // Check if data actually changed
+      // ── Sanity guard (2026-08-24): a poisoned edge-cache entry once served
+      // on_the_air=[] for hours, so tv.json landed with ongoing=0 and the
+      // 热播中 section went blank site-wide. If a section that is NEVER
+      // legitimately empty comes back empty, keep yesterday's file instead of
+      // publishing the hole. (withCache no longer caches [] — this is the
+      // belt-and-braces layer for data already in flight.)
       let oldData = null;
       if (existsSync(filePath)) {
         try {
           oldData = JSON.parse(readFileSync(filePath, "utf8"));
         } catch {}
       }
+      const neverEmptySections = { "tv.json": ["ongoing"] };
+      const guarded = neverEmptySections[task.file] || [];
+      for (const key of guarded) {
+        if (Array.isArray(data[key]) && data[key].length === 0 && Array.isArray(oldData?.[key]) && oldData[key].length > 0) {
+          console.warn(`⚠ GUARD ${task.file}: "${key}" came back EMPTY from the Worker (suspect poisoned/edge cache) — keeping yesterday's ${oldData[key].length} items`);
+          data[key] = oldData[key];
+        }
+      }
 
+      // Check if data actually changed
       writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
       const changed = !oldData || JSON.stringify(oldData.stats || oldData) !== JSON.stringify(data.stats || data);
       if (changed) anyChange = true;
