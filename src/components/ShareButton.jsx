@@ -76,7 +76,16 @@ function getPageTitle(locale, pathname) {
     return locale === "zh" ? "Kim's Video 每日影音情报" : "Kim's Video Daily Intelligence";
   }
   if (pathname.startsWith("/discover")) {
-    return locale === "zh" ? "Kim's Video 精选推荐" : "Kim's Video Curated Picks";
+    return locale === "zh" ? "Kim's Video 社区发现" : "Kim's Video Community Discover";
+  }
+  if (pathname.startsWith("/wall")) {
+    const isTv = new URLSearchParams(window.location.search).get("type") === "tv";
+    return locale === "zh"
+      ? (isTv ? "Kim's Video 剧集墙" : "Kim's Video 影视墙")
+      : (isTv ? "Kim's Video TV Wall" : "Kim's Video Movie Wall");
+  }
+  if (pathname === "/entry") {
+    return locale === "zh" ? "Kim's Video — 影视娱乐入口" : "Kim's Video — Entertainment Portal";
   }
   return "Kim's Video";
 }

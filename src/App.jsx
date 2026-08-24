@@ -438,8 +438,9 @@ function AppContent() {
 function ShareButtonWrapper() {
   const { locale } = useLocale();
   const { pathname } = useLocation();
-  // No floating buttons on the entry portal (clean full-bleed cards)
-  if (pathname === ENTRY_ROUTE) return null;
+  // No floating buttons on the entry portal(s) — clean full-bleed card pages.
+  // /entry = 4-card test portal; /recommend = legacy engine home.
+  if (pathname === ENTRY_ROUTE || pathname === "/entry") return null;
   return <ShareButton locale={locale} />;
 }
 
