@@ -1586,16 +1586,25 @@ async function handleIntelMusicV2(request, env) {
     }
 
     // ── World-music quota (Rex 2026-08-24): enforced AFTER the AI path too ──
-    // Regional bias now feeds JP/KR/CN artists into the pool, but the AI still
-    // labeled all of them trending/editor/hidden (live run: world=0 despite four
-    // KR acts in the picks). Same quota the fallback uses, applied to whatever
-    // path produced the picks: up to 4 non-trending CJK artists get 🌍环球音乐.
+    // Regional bias feeds JP/KR/CN releases into the pool, but two failures
+    // stacked: the AI labeled all of them trending/editor/hidden, AND the
+    // original hasCJK(artist) detector misses KR acts stored under Latin-script
+    // names (Red Velvet, SUMIN…). Signal = CJK chars in name OR MB release
+    // country ∈ {JP,KR,CN,TW,HK} OR regional genre tags (k-pop/j-pop/…).
+    const WORLD_REGION_COUNTRIES = new Set(["JP", "KR", "CN", "TW", "HK"]);
+    const WORLD_REGION_TAG_RE = /\b(k-pop|j-pop|c-pop|mandopop|cantopop|k-rock|j-rock|k-hip hop|k-indie|j-indie|city pop|korean|japanese|chinese|taiwanese|hong kong|shibuya-kei|anime|idol)\b/i;
+    const isWorldMaterial = (p) =>
+      /[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]/.test(p.artist || "")
+      || WORLD_REGION_COUNTRIES.has(String(p.country || "").toUpperCase())
+      || WORLD_REGION_TAG_RE.test((p.lfmTags || []).join(" "))
+      || WORLD_REGION_TAG_RE.test((p.tags || []).join(" "))
+      || WORLD_REGION_TAG_RE.test((p.genres || []).join(" "))
+      || WORLD_REGION_TAG_RE.test((p.genresEn || []).join(" "));
     const applyWorldQuota = (list, max = 4) => {
-      const hasCJK = (s) => /[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]/.test(s || "");
       let used = 0;
       for (const p of list || []) {
         if (used >= max) break;
-        if (!hasCJK(p.artist)) continue;
+        if (!isWorldMaterial(p)) continue;
         if (p.recommendationTagId === "trending" || p.recommendationTagId === "world") continue;
         p.recommendationTag = "🌍 环球音乐";
         p.recommendationTagEn = "Around the World";
@@ -1665,17 +1674,9 @@ async function handleIntelMusicV2(request, env) {
           summaryEn: a.summaryEn || `Latest album from ${a.artist || "unknown artist"}`,
         };
       });
-      // CJK quota override AFTER percentile tagging: relabel up to 4 non-trending
-      // CJK artists as 🌍环球音乐 (they keep their rank; only the label moves).
-      let quotaUsed = 0;
-      for (const p of aiPicks) {
-        if (quotaUsed >= 4) break;
-        if (p.recommendationTagId !== "trending" && hasCJK(p.artist)) {
-          p.recommendationTag = "🌍 环球音乐"; p.recommendationTagEn = "Around the World";
-          p.recommendationTagId = "world"; p.category = "world";
-          quotaUsed++;
-        }
-      }
+      // World quota override AFTER percentile tagging — same detector as the
+      // AI path above (CJK chars / MB country / regional genre tags).
+      applyWorldQuota(aiPicks);
     }
 
     // Cover art: top 3 from Cover Art Archive
