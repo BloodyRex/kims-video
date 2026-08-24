@@ -1,0 +1,17 @@
+name: Reset Admin Password (temporary)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Set ADMIN_PASSWORD secret on Cloudflare Worker
+        run: echo "${{ secrets.KIMS_ADMIN_PW_RESET }}" | npx wrangler@3.90.0 secret put ADMIN_PASSWORD --name kims-video
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
