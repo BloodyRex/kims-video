@@ -1,16 +1,80 @@
 {
   "updated": "2026-08-24",
-  "count": 2,
+  "count": 7,
   "movies": [
     {
-      "tmdbId": 316029,
+      "tmdbId": 11631,
       "mediaType": "movie",
-      "title": "马戏之王",
-      "titleEn": "The Greatest Showman",
-      "year": "2017",
-      "releaseDate": "2017-12-20",
-      "poster": "https://image.tmdb.org/t/p/w342/b9CeobiihCx1uG1tpw8hXmpi7nm.jpg",
-      "rating": 7.854,
+      "title": "妈妈咪呀",
+      "titleEn": "Mamma Mia!",
+      "year": "2008",
+      "releaseDate": "2008-07-03",
+      "poster": "https://image.tmdb.org/t/p/w342/xYLiCWmAMHJubx5jNZ7HuXKjAbV.jpg",
+      "rating": 6.964,
+      "genre": [
+        "喜剧",
+        "爱情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-24"
+    },
+    {
+      "tmdbId": 163761,
+      "mediaType": "movie",
+      "title": "花吃了那女孩",
+      "titleEn": "花吃了那女孩",
+      "year": "2008",
+      "releaseDate": "2008-09-12",
+      "poster": "https://image.tmdb.org/t/p/w342/vawhFSUCDFHdqjEGKYYRJGtUFue.jpg",
+      "rating": 4.237,
+      "genre": [
+        "剧情",
+        "爱情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-24"
+    },
+    {
+      "tmdbId": 2433,
+      "mediaType": "movie",
+      "title": "柳媚花娇",
+      "titleEn": "Les Demoiselles de Rochefort",
+      "year": "1967",
+      "releaseDate": "1967-03-08",
+      "poster": "https://image.tmdb.org/t/p/w342/jtxhyGaYhurH6KsjvP1jV3dDypz.jpg",
+      "rating": 7.7,
+      "genre": [
+        "爱情",
+        "喜剧",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-24"
+    },
+    {
+      "tmdbId": 407585,
+      "mediaType": "movie",
+      "title": "切肤之痛",
+      "titleEn": "Written On Skin",
+      "year": "2013",
+      "releaseDate": "2013-03-08",
+      "poster": "https://image.tmdb.org/t/p/w342/op3ISfeMsloANgvvuijbtCS0PBD.jpg",
+      "rating": 1,
+      "genre": [
+        "音乐"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-24"
+    },
+    {
+      "tmdbId": 581734,
+      "mediaType": "movie",
+      "title": "无依之地",
+      "titleEn": "Nomadland",
+      "year": "2021",
+      "releaseDate": "2021-01-29",
+      "poster": "https://image.tmdb.org/t/p/w342/8Vc5EOUEIF1EUXuX9eLFf7BvN3P.jpg",
+      "rating": 7.159,
       "genre": [
         "剧情"
       ],
@@ -18,16 +82,30 @@
       "firstSeen": "2026-08-24"
     },
     {
-      "tmdbId": 424694,
+      "tmdbId": 965150,
       "mediaType": "movie",
-      "title": "波西米亚狂想曲",
-      "titleEn": "Bohemian Rhapsody",
-      "year": "2018",
-      "releaseDate": "2018-10-24",
-      "poster": "https://image.tmdb.org/t/p/w342/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg",
-      "rating": 7.953,
+      "title": "晒后假日",
+      "titleEn": "Aftersun",
+      "year": "2022",
+      "releaseDate": "2022-10-21",
+      "poster": "https://image.tmdb.org/t/p/w342/evKz85EKouVbIr51zy5fOtpNRPg.jpg",
+      "rating": 7.649,
       "genre": [
-        "音乐",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-24"
+    },
+    {
+      "tmdbId": 99242,
+      "mediaType": "movie",
+      "title": "带我去远方",
+      "titleEn": "帶我去遠方",
+      "year": "2009",
+      "releaseDate": "2009-09-11",
+      "poster": "https://image.tmdb.org/t/p/w342/jnDUtYmGs8NyI5zjtzAf4RP8l7A.jpg",
+      "rating": 5.2,
+      "genre": [
         "剧情"
       ],
       "source": "rec",

@@ -22,19 +22,116 @@
       "j-pop",
       "mandopop",
       "latin"
-    ]
+    ],
+    "regionalBiasCountries": [
+      "JP",
+      "KR",
+      "CN",
+      "TW",
+      "HK"
+    ],
+    "regionalBiasPages": 1,
+    "regionalArtistReserve": 16
   },
   "stats": {
-    "mbRaw": 300,
-    "afterFilter": 165,
-    "artistsChecked": 74,
-    "afterArtistFilter": 54,
+    "mbRaw": 400,
+    "afterFilter": 209,
+    "artistsChecked": 75,
+    "afterArtistFilter": 55,
     "albumEnriched": 40,
     "chartItems": 359,
-    "totalCandidates": 413,
+    "totalCandidates": 414,
     "sentToWorker": 18
   },
   "candidates": [
+    {
+      "id": "mb-c45a9a09-acc2-4b37-a04d-0b9dbc654b22",
+      "mbid": "c45a9a09-acc2-4b37-a04d-0b9dbc654b22",
+      "title": "dinnermode",
+      "artist": "SUMIN",
+      "releaseDate": "2026-08-13",
+      "year": "2026",
+      "type": "Album",
+      "country": "KR",
+      "genres": [
+        "boogie",
+        "缓拍",
+        "neo-soul",
+        "hip hop soul",
+        "alternative rnb"
+      ],
+      "genresEn": [
+        "boogie",
+        "downtempo",
+        "neo-soul",
+        "hip hop soul",
+        "alternative rnb"
+      ],
+      "lfmTags": [
+        "boogie",
+        "downtempo",
+        "neo-soul",
+        "hip hop soul",
+        "alternative rnb"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/06/9a/6e/069a6ecf-166b-7f5d-f3b3-8a77d7c0d64d/191953564548.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 125276,
+      "artistPlaycount": 4223812,
+      "albumListeners": 4096,
+      "albumPlaycount": 76864,
+      "score": 71.04758559403706,
+      "scoreBreakdown": {
+        "artist": 33.98578585419819,
+        "album": 18.06179973983887,
+        "freshness": 19
+      },
+      "daysOld": 11
+    },
+    {
+      "id": "mb-905ab586-c0f1-478f-812f-aa3dcb430a91",
+      "mbid": "905ab586-c0f1-478f-812f-aa3dcb430a91",
+      "title": "<Hyper-Ego>",
+      "artist": "ARTMS",
+      "releaseDate": "2026-08-07",
+      "year": "2026",
+      "type": "EP",
+      "country": "KR",
+      "genres": [
+        "韩流",
+        "韩国音乐",
+        "kpop",
+        "loona",
+        "2026"
+      ],
+      "genresEn": [
+        "k-pop",
+        "korean",
+        "kpop",
+        "loona",
+        "2026"
+      ],
+      "lfmTags": [
+        "k-pop",
+        "korean",
+        "kpop",
+        "loona",
+        "2026"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7b/59/c5/7b59c503-16c1-2b8f-8724-85237a83d38c/8804775403491.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 265945,
+      "artistPlaycount": 29140717,
+      "albumListeners": 20105,
+      "albumPlaycount": 611771,
+      "score": 70.68179925129442,
+      "scoreBreakdown": {
+        "artist": 36.165278864099776,
+        "album": 21.516520387194646,
+        "freshness": 13
+      },
+      "daysOld": 17
+    },
     {
       "id": "mb-c6358baf-1e01-4991-ab6e-cb5d794e222a",
       "mbid": "c6358baf-1e01-4991-ab6e-cb5d794e222a",
@@ -67,8 +164,8 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3c/c2/0d/3cc20dcc-8f4e-f060-36dd-7de52a7ec8fe/12UMGIM14712.rgb.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 3582966,
-      "artistPlaycount": 130255043,
+      "artistListeners": 3583349,
+      "artistPlaycount": 130263509,
       "albumListeners": 1297812,
       "albumPlaycount": 13613277,
       "score": 70,
@@ -77,7 +174,7 @@
         "album": 30,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-6f7853c8-e90a-4886-9535-0a14fa328903",
@@ -121,7 +218,33 @@
         "album": 29.552553739251607,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
+    },
+    {
+      "id": "mb-d72aeb30-5786-442b-ae1f-420d320cc9ec",
+      "mbid": "d72aeb30-5786-442b-ae1f-420d320cc9ec",
+      "title": "Velvet Summer",
+      "artist": "Red Velvet",
+      "releaseDate": "2026-08-03",
+      "year": "2026",
+      "type": "EP",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9c/0f/10/9c0f107b-5c6a-eb24-c4f6-74661f5f19db/RV-DIGITAL_COVER.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 1487880,
+      "artistPlaycount": 256572772,
+      "albumListeners": 826,
+      "albumPlaycount": 17115,
+      "score": 63.58490023660191,
+      "scoreBreakdown": {
+        "artist": 40,
+        "album": 14.58490023660191,
+        "freshness": 9
+      },
+      "daysOld": 21
     },
     {
       "id": "mb-ca12bdf9-c25a-4d98-9188-86d41c71efbd",
@@ -155,17 +278,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/82/d0/02/82d002c7-7951-b1f7-a6b4-1e75a645b8f9/25UM1IM72906.rgb.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 512953,
-      "artistPlaycount": 22924400,
+      "artistListeners": 513028,
+      "artistPlaycount": 22927181,
       "albumListeners": 25831,
       "albumPlaycount": 377753,
-      "score": 60.12788992458956,
+      "score": 60.12831322139787,
       "scoreBreakdown": {
-        "artist": 38.0671838275063,
+        "artist": 38.067607124314605,
         "album": 22.060706097083262,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
@@ -209,7 +332,7 @@
         "album": 24.72692434755264,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
@@ -253,7 +376,33 @@
         "album": 24.671431510651907,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
+    },
+    {
+      "id": "mb-9d2523a8-fd80-4544-a11d-78f5c868445a",
+      "mbid": "9d2523a8-fd80-4544-a11d-78f5c868445a",
+      "title": "1126611",
+      "artist": "Shin In Ryu",
+      "releaseDate": "2026-08-12",
+      "year": "2026",
+      "type": "EP",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0a/c8/b3/0ac8b32c-6a35-71cb-9ce6-8b85635ae075/8800388636493_cover.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 20212,
+      "artistPlaycount": 232894,
+      "albumListeners": 230,
+      "albumPlaycount": 1252,
+      "score": 58.51270111052925,
+      "scoreBreakdown": {
+        "artist": 28.704061930441288,
+        "album": 11.808639180087965,
+        "freshness": 18
+      },
+      "daysOld": 12
     },
     {
       "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
@@ -279,7 +428,7 @@
         "album": 18.713232949693683,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
@@ -323,7 +472,7 @@
         "album": 20.6638591465481,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
@@ -367,30 +516,30 @@
         "album": 18.22956637516922,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
-      "id": "mb-e4b88467-dd28-4072-b95a-bd380c4728cf",
-      "mbid": "e4b88467-dd28-4072-b95a-bd380c4728cf",
-      "title": "Static Charge",
-      "artist": "The Telescopes",
-      "releaseDate": "2026-07-26",
+      "id": "mb-4737b139-e472-47b6-85df-81a9e47581fb",
+      "mbid": "4737b139-e472-47b6-85df-81a9e47581fb",
+      "title": "YOUNGEST",
+      "artist": "Young K",
+      "releaseDate": "2026-07-27",
       "year": "2026",
       "type": "Album",
-      "country": "XW",
+      "country": "KR",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c5/b0/33/c5b03342-3d3c-8dcb-33d5-87f7aee53430/4015698668452.jpg/600x600bb.jpg",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b1/04/96/b1049630-6600-5617-2f02-47c5a0fe69e7/8809928957272_Cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 179595,
-      "artistPlaycount": 2148676,
-      "albumListeners": 1224,
-      "albumPlaycount": 5122,
-      "score": 52.467535366110155,
+      "artistListeners": 91188,
+      "artistPlaycount": 3198571,
+      "albumListeners": 3139,
+      "albumPlaycount": 63966,
+      "score": 52.550207848885776,
       "scoreBreakdown": {
-        "artist": 35.028628277062445,
-        "album": 15.43890708904771,
+        "artist": 33.066251270385564,
+        "album": 17.483956578500212,
         "freshness": 2
       },
       "daysOld": 28
@@ -419,7 +568,7 @@
         "album": 14.766381683336522,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-aca30a57-12bb-4a41-af25-59457048a844",
@@ -463,71 +612,33 @@
         "album": 21.40232273313459,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
-      "id": "mb-ee928bdc-8e78-4925-9563-b1cc9d193147",
-      "mbid": "ee928bdc-8e78-4925-9563-b1cc9d193147",
-      "title": "Fantasy",
-      "artist": "DJ Sabrina the Teenage DJ",
+      "id": "mb-c0d31807-a8ee-4127-847b-19f28630871c",
+      "mbid": "c0d31807-a8ee-4127-847b-19f28630871c",
+      "title": "THE PROTÉGÉ",
+      "artist": "Gareth.T",
       "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
-      "country": "GB",
-      "genres": [
-        "浩室",
-        "2025",
-        "plunderphonics"
-      ],
-      "genresEn": [
-        "house",
-        "2025",
-        "plunderphonics"
-      ],
-      "lfmTags": [
-        "house",
-        "2025",
-        "plunderphonics"
-      ],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/74/dc/d0/74dcd09f-5ad1-1134-08be-025e32c0536d/199891175529_cover.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 86753,
-      "artistPlaycount": 4024412,
-      "albumListeners": 5086,
-      "albumPlaycount": 182755,
-      "score": 51.4537784594156,
-      "scoreBreakdown": {
-        "artist": 32.921896680217145,
-        "album": 18.531881779198454,
-        "freshness": 0
-      },
-      "daysOld": 234
-    },
-    {
-      "id": "mb-268d81bf-6af4-4bfd-b4ce-41a7e777c144",
-      "mbid": "268d81bf-6af4-4bfd-b4ce-41a7e777c144",
-      "title": "Nothing Hurts Like Everything",
-      "artist": "Ourson",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "CA",
+      "country": "HK",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/7d/4c/eb7d4c4b-7280-8cc7-59fc-cce786d22e65/5026854799131.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 39517,
-      "artistPlaycount": 327320,
-      "albumListeners": 10549,
-      "albumPlaycount": 40700,
-      "score": 50.761282908082435,
+      "artistListeners": 83328,
+      "artistPlaycount": 1966782,
+      "albumListeners": 3712,
+      "albumPlaycount": 77822,
+      "score": 50.653312892507856,
       "scoreBreakdown": {
-        "artist": 30.645226446437984,
-        "album": 20.116056461644447,
+        "artist": 32.805273054773735,
+        "album": 17.84803983773412,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -571,33 +682,7 @@
         "album": 20.424667874683582,
         "freshness": 0
       },
-      "daysOld": 234
-    },
-    {
-      "id": "mb-4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
-      "mbid": "4c88a86a-cc51-47f8-80b7-e6a8a387c72a",
-      "title": "Labor of Love",
-      "artist": "Tinsley Ellis",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/48/bb/cc/48bbcc3c-e7d4-78ec-aa2a-dcb61601e36c/118397.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 92517,
-      "artistPlaycount": 763518,
-      "albumListeners": 1389,
-      "albumPlaycount": 5702,
-      "score": 48.821654839945566,
-      "scoreBreakdown": {
-        "artist": 33.10814361125749,
-        "album": 15.713511228688077,
-        "freshness": 0
-      },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
@@ -623,7 +708,7 @@
         "album": 17.878824902683597,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
@@ -649,7 +734,7 @@
         "album": 14.61103138719508,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
@@ -693,7 +778,7 @@
         "album": 13.653911378331946,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -719,7 +804,7 @@
         "album": 15.782745756658906,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -745,33 +830,7 @@
         "album": 14.1432994826766,
         "freshness": 0
       },
-      "daysOld": 234
-    },
-    {
-      "id": "mb-f4d88e18-f0f1-4e2d-bec9-33710733912b",
-      "mbid": "f4d88e18-f0f1-4e2d-bec9-33710733912b",
-      "title": "The Thread",
-      "artist": "Family Stereo",
-      "releaseDate": "2026-07-31",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/b7/4d/ebb74d63-8c90-f110-fdfd-7f7a417d1845/cover.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 7866,
-      "artistPlaycount": 29571,
-      "albumListeners": 532,
-      "albumPlaycount": 3422,
-      "score": 46.60125110863343,
-      "scoreBreakdown": {
-        "artist": 25.971692947158186,
-        "album": 13.629558161475241,
-        "freshness": 7
-      },
-      "daysOld": 23
+      "daysOld": 235
     },
     {
       "id": "mb-15e13404-810d-4918-880f-1d43ac51d1fe",
@@ -797,7 +856,7 @@
         "album": 15.836586673740879,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
@@ -823,7 +882,39 @@
         "album": 18.045302749650432,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
+    },
+    {
+      "id": "mb-f9487af4-f5be-41f4-88a7-644b1aa0dd94",
+      "mbid": "f9487af4-f5be-41f4-88a7-644b1aa0dd94",
+      "title": "Heart Byte : LEGACY",
+      "artist": "HEART OF WOMAN",
+      "releaseDate": "2026-08-07",
+      "year": "2026",
+      "type": "Album",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "k-pop",
+        "Korean",
+        "pop",
+        "girl group",
+        "Kpop"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5d/e5/11/5de511e0-3401-daef-7b19-ecfbd51db492/cover_KM0024667_1.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 34814,
+      "artistPlaycount": 626194,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 43.27835949988551,
+      "scoreBreakdown": {
+        "artist": 30.278359499885514,
+        "album": 0,
+        "freshness": 13
+      },
+      "daysOld": 17
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -867,7 +958,7 @@
         "album": 12.164846454372029,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
@@ -893,33 +984,33 @@
         "album": 12.726535582329118,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
-      "id": "mb-2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
-      "mbid": "2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
-      "title": "Жёсткая неделька",
-      "artist": "СМЕХ",
-      "releaseDate": "2026",
+      "id": "mb-b1e5a339-4d56-4d74-a6e8-73987e330ff7",
+      "mbid": "b1e5a339-4d56-4d74-a6e8-73987e330ff7",
+      "title": "快樂的人在路上走",
+      "artist": "無妄合作社",
+      "releaseDate": "2026-08",
       "year": "2026",
-      "type": "Album",
-      "country": "XW",
+      "type": "EP",
+      "country": "TW",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 30653,
-      "artistPlaycount": 934483,
-      "albumListeners": 217,
-      "albumPlaycount": 2085,
-      "score": 41.592118570618524,
+      "artistListeners": 3972,
+      "artistPlaycount": 70655,
+      "albumListeners": 110,
+      "albumPlaycount": 670,
+      "score": 41.20035835794675,
       "scoreBreakdown": {
-        "artist": 29.90981990137588,
-        "album": 11.682298669242648,
-        "freshness": 0
+        "artist": 23.993394932155624,
+        "album": 10.206963425791125,
+        "freshness": 7
       },
-      "daysOld": 234
+      "daysOld": 23
     },
     {
       "id": "mb-f8536d9f-b285-4ec7-add3-62d1d53ccd14",
@@ -945,7 +1036,7 @@
         "album": 5.73064017839119,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
@@ -971,7 +1062,39 @@
         "album": 2.385606273598312,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
+    },
+    {
+      "id": "mb-997158af-bea8-48d8-b4c5-a214cbeddacf",
+      "mbid": "997158af-bea8-48d8-b4c5-a214cbeddacf",
+      "title": "Summer, I",
+      "artist": "정은지",
+      "releaseDate": "2026-08-11",
+      "year": "2026",
+      "type": "EP",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "k-pop",
+        "Korean",
+        "apink",
+        "female vocalists",
+        "Kpop"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 3295,
+      "artistPlaycount": 132459,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 40.45236945953353,
+      "scoreBreakdown": {
+        "artist": 23.452369459533525,
+        "album": 0,
+        "freshness": 17
+      },
+      "daysOld": 13
     },
     {
       "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
@@ -997,33 +1120,7 @@
         "album": 15.838063363637652,
         "freshness": 0
       },
-      "daysOld": 234
-    },
-    {
-      "id": "mb-457c4731-b031-48d8-beb5-d444406a117a",
-      "mbid": "457c4731-b031-48d8-beb5-d444406a117a",
-      "title": "1783",
-      "artist": "Aquakultre",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "CA",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 5247,
-      "artistPlaycount": 22860,
-      "albumListeners": 1075,
-      "albumPlaycount": 7646,
-      "score": 39.95644941591371,
-      "scoreBreakdown": {
-        "artist": 24.799407094655592,
-        "album": 15.157042321258121,
-        "freshness": 0
-      },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
@@ -1049,7 +1146,7 @@
         "album": 12.041199826559247,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
@@ -1075,7 +1172,7 @@
         "album": 9.256291743595376,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
@@ -1119,7 +1216,39 @@
         "album": 8.817139967814686,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
+    },
+    {
+      "id": "mb-3df5ec15-0729-4210-b52d-eb1915c487e8",
+      "mbid": "3df5ec15-0729-4210-b52d-eb1915c487e8",
+      "title": "가리온4",
+      "artist": "가리온",
+      "releaseDate": "2026-08-11",
+      "year": "2026",
+      "type": "Album",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "Korean",
+        "hip hop",
+        "Korean Hip-Hop",
+        "hiphop",
+        "rap"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1390,
+      "artistPlaycount": 62926,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 37.95343200169397,
+      "scoreBreakdown": {
+        "artist": 20.95343200169397,
+        "album": 0,
+        "freshness": 17
+      },
+      "daysOld": 13
     },
     {
       "id": "mb-eed0703e-1587-4667-81df-c390c4f6a59a",
@@ -1145,7 +1274,7 @@
         "album": 6.611096473669597,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
@@ -1159,7 +1288,7 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f8/e1/77/f8e17734-4908-0f60-585c-80a3b8522d87/artwork.jpg/600x600bb.jpg",
+      "cover": "",
       "source": "musicbrainz",
       "artistListeners": 3640,
       "artistPlaycount": 45370,
@@ -1171,7 +1300,7 @@
         "album": 11.548150837129494,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
@@ -1197,7 +1326,7 @@
         "album": 11.537480189566065,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
@@ -1241,39 +1370,7 @@
         "album": 9.286662482156343,
         "freshness": 0
       },
-      "daysOld": 234
-    },
-    {
-      "id": "mb-cb038ac1-0e50-4e55-b990-b28d016bc42b",
-      "mbid": "cb038ac1-0e50-4e55-b990-b28d016bc42b",
-      "title": "Tarot",
-      "artist": "Magenta",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "GB",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "Progressive rock",
-        "female vocalists",
-        "symphonic prog",
-        "Gothic Rock",
-        "neo-progressive rock"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 62272,
-      "artistPlaycount": 788028,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 31.96195209501493,
-      "scoreBreakdown": {
-        "artist": 31.96195209501493,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
@@ -1299,7 +1396,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-338d60e1-ad46-44c3-a5fa-b2b2d4daa554",
@@ -1325,7 +1422,39 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
+    },
+    {
+      "id": "mb-ef131c96-392a-4bdd-bd41-ae7a849c9397",
+      "mbid": "ef131c96-392a-4bdd-bd41-ae7a849c9397",
+      "title": "角林 The Antler Woods",
+      "artist": "話梅鹿",
+      "releaseDate": "2026-07-30",
+      "year": "2026",
+      "type": "Album",
+      "country": "HK",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "chinese",
+        "rock",
+        "post-rock",
+        "instrumental",
+        "math rock"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 687,
+      "artistPlaycount": 12986,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 23.91304491373034,
+      "scoreBreakdown": {
+        "artist": 18.91304491373034,
+        "album": 0,
+        "freshness": 5
+      },
+      "daysOld": 25
     },
     {
       "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
@@ -1356,7 +1485,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
@@ -1388,39 +1517,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
-    },
-    {
-      "id": "mb-f7a6a3d6-ce69-41a2-9e89-a2924ab12407",
-      "mbid": "f7a6a3d6-ce69-41a2-9e89-a2924ab12407",
-      "title": "In the Kingdom of North",
-      "artist": "Theosophy",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "RU",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "black metal",
-        "russian",
-        "Russian Black Metal",
-        "metal",
-        "Russia"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2553,
-      "artistPlaycount": 32722,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 22.713672098695,
-      "scoreBreakdown": {
-        "artist": 22.713672098695,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-f10db834-996c-4b1f-9563-98c7b9e80baa",
@@ -1446,7 +1543,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
@@ -1478,7 +1575,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-e178c01c-3f05-4070-9454-749687762747",
@@ -1510,39 +1607,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
-    },
-    {
-      "id": "mb-23d0bcf0-0a08-4f77-8eb5-bfd36941e15e",
-      "mbid": "23d0bcf0-0a08-4f77-8eb5-bfd36941e15e",
-      "title": "Rakasa",
-      "artist": "Anudeep Dev",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "IN",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "india",
-        "Indian",
-        "telugu",
-        "Hyderabad",
-        "playback singer"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1671,
-      "artistPlaycount": 10661,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 21.486509665955943,
-      "scoreBreakdown": {
-        "artist": 21.486509665955943,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
@@ -1574,7 +1639,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
@@ -1606,7 +1671,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
@@ -1638,7 +1703,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
@@ -1667,7 +1732,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-dc113487-3606-48ce-976d-37748757097c",
@@ -1699,7 +1764,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-901435e9-1c31-4a69-9fe9-288b4d510d99",
@@ -1731,7 +1796,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "mb-4f123c9f-5775-4f3e-938c-6e4d90cd3944",
@@ -1757,7 +1822,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 234
+      "daysOld": 235
     },
     {
       "id": "chart-0",
