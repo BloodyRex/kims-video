@@ -25,10 +25,14 @@ const PAGE_SIZE = 24;
 const genreLabel = (g, locale) => (locale === "zh" ? GENRE_ZH[g] || g : g);
 
 // Beijing date (YYYY-MM-DD) + midnight timestamp for day-diff math
-const todayInfo = () => {
+function todayInfo() {
   const todayStr = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
   return { todayStr, todayTs: Date.parse(todayStr + "T00:00:00Z") };
-};
+}
+
+function thirtyDaysAgoStr() {
+  return new Date(Date.now() - 30 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
+}
 
 function buildPages(current, total) {
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
@@ -99,9 +103,69 @@ function WallCard({ movie, locale, todayStr, todayTs, onOpen }) {
   );
 }
 
+// ── TV Wall Card (per-season) ──
+function TvWallCard({ show, locale, todayStr, onOpen }) {
+  const zh = locale === "zh";
+  const active = !!(show.latestAirDate && show.latestAirDate >= thirtyDaysAgoStr());
+  const statusDot = active
+    ? { cls: "bg-[#00ff00]", label: zh ? "追更中" : "AIRING" }
+    : { cls: "bg-[#ffff00]", label: zh ? "待回归" : "HIATUS" };
+  return (
+    <div onClick={() => onOpen && onOpen(show)}
+      className="bg-white border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#00ffff] transition-all group cursor-pointer">
+      <div className="relative overflow-hidden border-b-2 border-black bg-black">
+        {show.poster ? (
+          <img src={show.poster} alt={show.title}
+            className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy" />
+        ) : (
+          <div className="w-full aspect-[2/3] flex items-center justify-center text-gray-500">
+            <Icons.Tv className="w-8 h-8" />
+          </div>
+        )}
+        {/* Season badge — top-left, the per-season wall's signature */}
+        <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none bg-[#00ffff] text-black">
+          S{show.season}
+        </span>
+        {/* Activity dot + label — top-right */}
+        <span className="absolute top-1.5 right-1.5 flex items-center gap-1 px-1 py-0.5 text-[8px] font-black bg-black/80 border border-gray-700 leading-none">
+          <span className={`w-1.5 h-1.5 rounded-full ${statusDot.cls}`} />
+          <span className="text-white">{statusDot.label}</span>
+        </span>
+        {/* Rating badge */}
+        {show.rating > 0 && (
+          <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">
+            {show.rating.toFixed(1)}
+          </span>
+        )}
+      </div>
+      <div className="p-2 max-sm:p-1.5">
+        <h3 className="text-xs font-black truncate leading-tight" title={show.title}>{show.title}</h3>
+        <p className="text-[9px] text-gray-500 font-bold truncate">
+          {zh ? `更新至 S${show.season}E${show.episode ?? "?"}` : `S${show.season}E${show.episode ?? "?"}`}
+        </p>
+        <div className="flex items-center justify-between mt-1 gap-1">
+          <span className="text-[9px] text-gray-600 font-bold truncate">{show.latestAirDate || ""}</span>
+          {show.genre.length > 0 && (
+            <span className="text-[8px] px-1 bg-black text-white font-bold flex-shrink-0">
+              {genreLabel(show.genre[0], locale)}
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Main WallPage ──
 const WallPage = () => {
   const { t, locale, toggleLocale } = useLocale();
+  // Dual mode (2026-08-24): /wall = 🎬 movie wall (default), /wall?type=tv = 📺 TV wall.
+  // One page, two datasets — footer/nav links stay untouched, ?type=tv is shareable.
+  const [wallType, setWallType] = useState(() =>
+    new URLSearchParams(window.location.search).get("type") === "tv" ? "tv" : "movie"
+  );
+  const [tvData, setTvData] = useState(null);
   const [data, setData] = useState(null);
   const [loadError, setLoadError] = useState(false);
   const [statusFilter, setStatusFilter] = useState("all"); // all | released | upcoming
@@ -135,12 +199,40 @@ const WallPage = () => {
     return () => { cancelled = true; };
   }, []);
 
+  // TV wall dataset — lazy: only fetched when the user switches to 📺 mode
+  useEffect(() => {
+    if (wallType !== "tv" || tvData) return;
+    let cancelled = false;
+    fetch("/api/tvwall.json")
+      .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+      .then((d) => { if (!cancelled) setTvData(d); })
+      .catch(() => { if (!cancelled) setLoadError(true); });
+    return () => { cancelled = true; };
+  }, [wallType]);
+
   useEffect(() => {
     document.title = locale === "zh"
-      ? "影视墙 | Movie Wall | Kim's Video"
+      ? (wallType === "tv" ? "剧集墙 | TV Wall | Kim's Video" : "影视墙 | Movie Wall | Kim's Video")
       : "Movie Wall | Kim's Video";
     setCanonical("https://bloodyrex.xyz/wall/");
-  }, [locale]);
+  }, [locale, wallType]);
+
+  // TV wall items: latestAirDate is the axis. Status = 追更中(30d activity) /
+  // 待回归(older) — everything on this wall has aired by definition.
+  const tvFiltered = useMemo(() => {
+    if (!tvData) return [];
+    const items = tvData.shows || [];
+    return items.filter((s) => {
+      if (statusFilter === "upcoming") return false; // no un-aired shows on the TV wall
+      if (statusFilter === "released") {
+        const active = s.latestAirDate && s.latestAirDate >= thirtyDaysAgoStr();
+        if (!active) return false;
+      }
+      const q = searchQuery.trim().toLowerCase().replace(/[\u200B-\u200D\uFEFF]/g, "");
+      if (q && !((s.title || "").toLowerCase().includes(q) || (s.titleEn || "").toLowerCase().includes(q))) return false;
+      return true;
+    });
+  }, [tvData, statusFilter, searchQuery]);
 
   const filtered = useMemo(() => {
     if (!data) return [];
@@ -172,11 +264,11 @@ const WallPage = () => {
   }, [data, statusFilter, genreFilter, sourceFilter, searchQuery, todayStr]);
 
   // Reset to page 1 whenever filters change
-  useEffect(() => { setPage(1); }, [statusFilter, genreFilter, sourceFilter, searchQuery]);
+  useEffect(() => { setPage(1); }, [statusFilter, genreFilter, sourceFilter, searchQuery, wallType]);
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const totalPages = Math.max(1, Math.ceil((wallType === "tv" ? tvFiltered : filtered).length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
-  const pageItems = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const pageItems = (wallType === "tv" ? tvFiltered : filtered).slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
   const zh = locale === "zh";
 
   // 2026-08-24: shrunk to match Discover page chips (text-[10px] sm:text-xs,
@@ -252,12 +344,29 @@ const WallPage = () => {
         <p className="text-gray-500 text-[10px] max-sm:text-[9px] pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 
-      {/* Title */}
+      {/* Title + wall type switcher */}
       <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 text-center relative">
         <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
-          {zh ? "🎬影视墙" : "🎬MOVIE WALL"}
+          {wallType === "tv" ? (zh ? "📺剧集墙" : "📺TV WALL") : (zh ? "🎬影视墙" : "🎬MOVIE WALL")}
         </h2>
-        <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">{t('wall.desc')}</p>
+        <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">
+          {wallType === "tv"
+            ? (zh ? "按季追踪的剧集长卷——每季一张卡，按最新播出时间排布。" : "A per-season TV chronicle, arranged by latest air date.")
+            : t('wall.desc')}
+        </p>
+        {/* Wall switcher — 🎬 movies | 📺 TV; ?type=tv keeps the mode shareable */}
+        <div className="inline-flex mt-4 border-2 border-black shadow-[3px_3px_0_0_#000] bg-white">
+          <button
+            onClick={() => { setWallType("movie"); setPage(1); }}
+            className={`px-4 py-1.5 text-[10px] sm:text-xs font-black pixel-font uppercase transition-colors ${wallType === "movie" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"}`}>
+            🎬 {zh ? "电影墙" : "MOVIES"}
+          </button>
+          <button
+            onClick={() => { setWallType("tv"); setStatusFilter("all"); setPage(1); }}
+            className={`px-4 py-1.5 text-[10px] sm:text-xs font-black pixel-font uppercase border-l-2 border-black transition-colors ${wallType === "tv" ? "bg-[#00ffff] text-black" : "bg-white text-black hover:bg-gray-100"}`}>
+            📺 {zh ? "剧集墙" : "TV"}
+          </button>
+        </div>
       </section>
 
       {loadError ? (
@@ -279,6 +388,63 @@ const WallPage = () => {
         <div className="max-w-4xl mx-auto px-4 max-sm:px-3">
           <WallDetailView item={detailItem} locale={locale} onClose={() => setDetailItem(null)} />
         </div>
+      ) : wallType === "tv" ? (
+        <>
+          {/* TV filter bar — simplified: status (追更中) + search */}
+          <div className="max-w-4xl mx-auto px-4 max-sm:px-3 mb-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                onClick={() => setStatusFilter("all")}
+                className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${statusFilter === "all" && !searchQuery ? "bg-[#00ffff] text-black" : "bg-white text-black hover:bg-gray-100"}`}>
+                {zh ? "全部剧集" : "ALL"}
+              </button>
+              <button
+                onClick={() => setStatusFilter("released")}
+                className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${statusFilter === "released" ? "bg-[#00ffff] text-black" : "bg-white text-black hover:bg-gray-100"}`}>
+                🟢 {zh ? "追更中" : "AIRING"}
+              </button>
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={zh ? "搜索剧集…" : "SEARCH…"}
+                  className="w-40 sm:w-56 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#00ffff] outline-none pixel-font placeholder:text-gray-400"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    aria-label={zh ? "清除搜索" : "Clear search"}
+                    className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[11px] font-black text-gray-500 hover:text-black leading-none"
+                  >×</button>
+                )}
+              </div>
+              <span className="ml-auto text-[10px] sm:text-xs text-gray-400 font-bold pixel-font">
+                {zh ? `共 ${tvFiltered.length} 季` : `${tvFiltered.length} SEASONS`}
+              </span>
+            </div>
+          </div>
+
+          {/* TV wall grid — per-season cards, latestAirDate axis */}
+          <div className="max-w-4xl mx-auto px-4 max-sm:px-3">
+            {!tvData ? (
+              <div className="text-center py-16">
+                <p className="text-gray-500 text-xs font-bold pixel-font">{t('wall.loading')}</p>
+              </div>
+            ) : pageItems.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-4xl mb-3">📺</p>
+                <p className="text-gray-400 text-sm font-bold">{t('wall.empty')}</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2">
+                {pageItems.map((s) => (
+                  <TvWallCard key={`${s.tmdbId}:S${s.season}`} show={s} locale={locale} todayStr={todayStr} onOpen={setDetailItem} />
+                ))}
+              </div>
+            )}
+          </div>
+        </>
       ) : (
         <>
           {/* Filter bar */}

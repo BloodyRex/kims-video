@@ -22,6 +22,9 @@ function posterUrl(path) {
 export default function WallDetailView({ item, locale, onClose }) {
   const zh = locale === "zh";
   const [detailData, setDetailData] = useState(null);
+  // TV wall items carry `season` — the detail view adapts (TMDB /tv/ link,
+  // S/E line, creator instead of director) without a separate component.
+  const isTV = item.season != null;
 
   useEffect(() => {
     if (!item.tmdbId) return;
@@ -35,7 +38,7 @@ export default function WallDetailView({ item, locale, onClose }) {
 
   const title = zh ? item.title : item.titleEn || item.title;
   const genres = Array.isArray(item.genre) ? item.genre : [];
-  const tmdbUrl = `https://www.themoviedb.org/movie/${item.tmdbId}`;
+  const tmdbUrl = `https://www.themoviedb.org/${isTV ? "tv" : "movie"}/${item.tmdbId}`;
   // Exact IMDb page when imdb_id is available (new Worker field), else fallback search
   const imdbUrl = enriched.imdb_id
     ? `https://www.imdb.com/title/${enriched.imdb_id}`
@@ -86,13 +89,17 @@ export default function WallDetailView({ item, locale, onClose }) {
                 <span className="text-[#00ffff] italic font-bold">{item.titleEn}</span>
               )}
               <span className="bg-[#ff00ff] text-white px-2 py-1 font-black pixel-font text-xs border-2 border-white ml-auto leading-none">
-                {item.year || ""} | {zh ? "电影" : "MOVIE"}
+                {item.year || ""} | {isTV ? (zh ? "剧集" : "TV") : zh ? "电影" : "MOVIE"}
               </span>
             </div>
 
-            {/* Tags row: status + rating + director + runtime */}
+            {/* Tags row: status + rating + S/E (TV) or director + runtime (film) */}
             <div className="flex flex-wrap gap-2 mb-4">
-              {released ? (
+              {isTV ? (
+                <span className="bg-[#00ffff] text-black px-2 py-1 font-black text-xs border-2 border-black leading-none">
+                  {zh ? `本季更新至 S${item.season}E${item.episode ?? "?"}` : `LATEST S${item.season}E${item.episode ?? "?"}`}
+                </span>
+              ) : released ? (
                 <span className="bg-black text-[#00ff00] px-2 py-1 font-black text-xs border-2 border-black leading-none">
                   {zh ? "已上线" : "OUT NOW"}
                 </span>
@@ -102,7 +109,7 @@ export default function WallDetailView({ item, locale, onClose }) {
                 </span>
               )}
               <StarRating score={item.rating} max={10} />
-              {enriched.director && (
+              {!isTV && enriched.director && (
                 <span className="bg-white text-black px-2 py-1 font-black text-xs border-2 border-black uppercase leading-none">
                   🎬 {zh ? (enriched.directorEn || enriched.director) : enriched.director}
                 </span>
@@ -164,7 +171,9 @@ export default function WallDetailView({ item, locale, onClose }) {
             title="Open in IMDb">
             <Icons.Imdb className="w-full h-full" />
           </a>
-          <TrailerButtons item={{ titleEn: item.titleEn || item.title, tmdbId: item.tmdbId }} locale={locale} size="lg" />
+          <TrailerButtons
+            item={{ titleEn: item.titleEn || item.title, tmdbId: item.tmdbId }}
+            locale={locale} size="lg" forceType={isTV ? "tv" : "movie"} />
         </div>
       </div>
 

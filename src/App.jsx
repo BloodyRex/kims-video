@@ -348,7 +348,7 @@ function AppContent() {
               >
                 <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
                   <span className="text-base">🎬</span>
-                  {locale === "zh" ? "精选合集" : "CURATED PICKS"}
+                  {locale === "zh" ? "社区发现" : "CURATED PICKS"}
                 </span>
               </Link>
               <Link

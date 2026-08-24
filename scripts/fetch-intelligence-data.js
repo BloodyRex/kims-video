@@ -402,6 +402,108 @@ async function main() {
 
   await buildWall();
 
+  // ── TV Wall: per-season cumulative wall (2026-08-24, Rex approved) ──
+  // Mirrors buildWall's delta/dedup machinery but keyed on `tmdbId:S{season}`
+  // (one card PER SEASON), laid out by latestAirDate (recent activity) instead
+  // of series premiere date. Shows premiering before 2010 are excluded unless
+  // they arrive via user/community channels (source rec/community).
+  async function buildTvWall() {
+    const tvWallPath = join(API_DIR, "tvwall.json");
+    let tvwall = [];
+    try {
+      tvwall = JSON.parse(readFileSync(tvWallPath, "utf8")).shows || [];
+    } catch {}
+    const seen = new Set(tvwall.map((m) => `${m.tmdbId}:S${m.season ?? "?"}`));
+    const today = beijingDate();
+    const delta = [];
+    let added = 0;
+    let upgradedEps = 0;
+
+    // Sources: today's tv.json (premieres/ongoing) + weekly.json trending TV.
+    // upcoming entries only qualify once AIRED (daysUntil <= 0 / no daysUntil
+    // with an aired date) — un-aired shows belong to 即将播出, not the wall.
+    const sources = [];
+    const pushAll = (list, tag) => { for (const it of list || []) sources.push({ it, tag }); };
+    try {
+      const tvData = JSON.parse(readFileSync(join(API_DIR, "tv.json"), "utf8"));
+      pushAll(tvData.premieresThisWeek, "premieres");
+      pushAll(tvData.ongoing, "ongoing");
+      pushAll((tvData.upcoming || []).filter((s) => typeof s.daysUntil !== "number" || s.daysUntil <= 0), "upcoming-aired");
+    } catch {}
+    try {
+      const wk = JSON.parse(readFileSync(join(API_DIR, "weekly.json"), "utf8"));
+      pushAll(wk.tv, "trending");
+    } catch {}
+
+    for (const { it, tag } of sources) {
+      if (!it || it.tmdbId == null) continue;
+      const season = it.season != null ? Number(it.season) : null;
+      if (season == null) continue; // no season data → cannot place on a season wall yet
+      // Pre-2010 rule (Rex): skip old series unless community/user-collected
+      const premiereYear = Number(String(it.releaseDate || "").slice(0, 4));
+      const community = tag === "rec" || tag === "community" || it.source === "rec";
+      if (!community && premiereYear > 0 && premiereYear < 2010) continue;
+      const key = `${it.tmdbId}:S${season}`;
+      if (seen.has(key)) {
+        // Same-season episode progress: upgrade in place, NOT a new card
+        const idx = tvwall.findIndex((m) => `${m.tmdbId}:S${m.season}` === key);
+        if (idx >= 0 && String(it.latestAirDate || "") > String(tvwall[idx].latestAirDate || "")) {
+          tvwall[idx].episode = it.episode ?? tvwall[idx].episode;
+          tvwall[idx].latestAirDate = it.latestAirDate || tvwall[idx].latestAirDate;
+          upgradedEps++;
+        }
+        continue;
+      }
+      seen.add(key);
+      const entry = {
+        tmdbId: it.tmdbId,
+        season,
+        episode: it.episode ?? null,
+        latestAirDate: it.latestAirDate || "",
+        title: it.title || "",
+        titleEn: it.titleEn || "",
+        year: it.year || (it.releaseDate || "").slice(0, 4),
+        seriesFirstAirDate: it.releaseDate || "",
+        poster: it.poster || "",
+        rating: it.rating || 0,
+        genre: Array.isArray(it.genre) ? it.genre : [],
+        summary: it.summary || "",
+        source: community ? tag : tag.replace("-aired", ""),
+        firstSeen: today,
+      };
+      tvwall.push(entry);
+      delta.push(entry);
+      added++;
+    }
+
+    // Sort by latestAirDate desc (the wall's axis = recent activity); items
+    // without one sink to the end ordered by firstSeen.
+    tvwall.sort((a, b) => {
+      const da = a.latestAirDate || "";
+      const db = b.latestAirDate || "";
+      if (!da && !db) return String(b.firstSeen || "").localeCompare(String(a.firstSeen || ""));
+      if (!da) return 1;
+      if (!db) return -1;
+      return String(db).localeCompare(String(da));
+    });
+    writeFileSync(
+      tvWallPath,
+      JSON.stringify({ updated: today, count: tvwall.length, shows: tvwall }, null, 2),
+      "utf8"
+    );
+    anyChange = true;
+    console.log(`OK tvwall.json — +${added} new seasons, ${upgradedEps} ep-upgraded, ${tvwall.length} total`);
+
+    writeFileSync(
+      join(API_DIR, "tvwall-delta.json"),
+      JSON.stringify({ updated: today, count: delta.length, shows: delta }, null, 2),
+      "utf8"
+    );
+  }
+
+  await buildTvWall();
+
+
   // ── Wall translate: AI-translate missing zh overviews into wall.json (batch, newest-first) ──
   async function translateWall() {
     const wallPath = join(API_DIR, "wall.json");

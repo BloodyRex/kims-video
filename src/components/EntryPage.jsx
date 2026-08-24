@@ -25,7 +25,7 @@ const CARDS = [
   {
     id: "discover", to: "/discover",
     h: "/entry/discover-h.png", v: "/entry/discover-v.png",
-    zh: "精选合集", en: "DISCOVER",
+    zh: "社区发现", en: "DISCOVER",
   },
   {
     id: "intelligence", to: "/intelligence",

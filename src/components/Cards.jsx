@@ -742,7 +742,6 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
   const enriched = detailData || {};
   const tmdbPath = isTV ? "tv" : "movie";
   const tmdbUrl = `https://www.themoviedb.org/${tmdbPath}/${item.tmdbId}`;
-  const mbUrl = item.mbid ? `https://musicbrainz.org/release/${item.mbid}` : "";
   // Exact IMDb page when imdb_id is available (lazy-loaded), else fallback search
   const imdbUrl = enriched.imdb_id
     ? `https://www.imdb.com/title/${enriched.imdb_id}`
@@ -885,28 +884,46 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
           </div>
         )}
 
-        {/* Action buttons: TMDB(or MusicBrainz) + IMDb + YouTube + Bilibili —
-            four buttons, uniform lg sizing, same as WallDetailView */}
+        {/* Action buttons — music: Spotify/Apple Music/NetEase (legacy AlbumCard set);
+            film/TV: TMDB + IMDb + YouTube + Bilibili. Uniform lg sizing. */}
         <div className="flex flex-wrap items-center gap-2">
           {isMusic ? (
-            mbUrl ? (
-              <a href={mbUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font">
-                {zh ? "MusicBrainz 查看资料 ↗" : "View on MusicBrainz ↗"}
+            <>
+              <a href={`https://open.spotify.com/search/${encodeURIComponent(((item.artist || "") + " " + title).trim())}`}
+                target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 bg-white border-4 border-black hover:bg-gray-100 transition-colors flex-shrink-0 shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+                title="Open in Spotify">
+                <Icons.Spotify className="w-full h-full" />
               </a>
-            ) : null
-          ) : item.tmdbId ? (
-            <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font">
-              {zh ? "在 TMDB 查看完整资料 ↗" : "View on TMDB ↗"}
-            </a>
-          ) : null}
-          <a href={imdbUrl} target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-center w-10 h-10 bg-[#F5C518] border-4 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
-            title="Open in IMDb">
-            <Icons.Imdb className="w-full h-full" />
-          </a>
-          <TrailerButtons item={{ ...item, type: typeLabel }} locale={locale} size="lg" forceType={isTV ? "tv" : "movie"} />
+              <a href={`https://music.apple.com/us/search?term=${encodeURIComponent(((item.artist || "") + " " + title).trim())}`}
+                target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 bg-white border-4 border-black hover:bg-gray-100 transition-colors flex-shrink-0 overflow-hidden shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+                title="Open in Apple Music">
+                <Icons.AppleMusic className="w-full h-full" />
+              </a>
+              <a href={`https://music.163.com/#/search/m/?s=${encodeURIComponent(((item.artist || "") + " " + title).trim())}`}
+                target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 bg-[#C20C0C] border-4 border-black hover:bg-[#a00a0a] transition-colors flex-shrink-0 overflow-hidden shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+                title="Open in NetEase Cloud Music">
+                <Icons.NeteaseCloudMusic className="w-full h-full" />
+              </a>
+            </>
+          ) : (
+            <>
+              {item.tmdbId && (
+                <a href={tmdbUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-[#00dd00] hover:bg-[#00ff00] text-black border-4 border-black text-xs font-black uppercase transition-colors shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none pixel-font self-center">
+                  {zh ? "在 TMDB 查看完整资料 ↗" : "View on TMDB ↗"}
+                </a>
+              )}
+              <a href={imdbUrl} target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 bg-[#F5C518] border-4 border-black hover:bg-[#dbaa00] transition-colors flex-shrink-0 overflow-hidden shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+                title="Open in IMDb">
+                <Icons.Imdb className="w-full h-full" />
+              </a>
+              <TrailerButtons item={{ ...item, type: typeLabel }} locale={locale} size="lg" forceType={isTV ? "tv" : "movie"} />
+            </>
+          )}
         </div>
       </div>
 

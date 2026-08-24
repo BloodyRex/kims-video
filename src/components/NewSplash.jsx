@@ -29,7 +29,7 @@ const CARDS = [
     id: "discover",
     targetStep: "discover",
     title: "Discover",
-    subtitleZh: "精选合集",
+    subtitleZh: "社区发现",
     subtitleEn: "Curated Picks",
     descZh: "编辑与社区精选的电影合辑、专题盘点。",
     descEn: "Hand-picked collections and editor's choices.",

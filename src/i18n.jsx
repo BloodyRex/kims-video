@@ -124,7 +124,7 @@ const messages = {
 
     // ---- Footer ----
     "footer.home": "AI 推荐",
-    "footer.discover": "精选合集",
+    "footer.discover": "社区发现",
     "footer.intel": "全球影音",
     "footer.wall": "影视墙",
     "footer.contact": "联系我",
@@ -252,7 +252,7 @@ const messages = {
 
     // ---- Footer ----
     "footer.home": "AI Search",
-    "footer.discover": "Discover",
+    "footer.discover": "Community Discover",
     "footer.intel": "Intel",
     "footer.wall": "Wall",
     "footer.contact": "Contact",
