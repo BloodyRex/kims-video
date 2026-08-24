@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
-import { MovieCard, TVCard, AlbumCard, CountdownCard, SpotlightCard, SectionHeader, CardGrid, IntelDetailModal, StarRating, WallStyleCard } from "./Cards";
+import { CountdownCard, SpotlightCard, SectionHeader, CardGrid, IntelDetailModal, StarRating, WallStyleCard, albumGenres, GENRE_ZH } from "./Cards";
 import SubscribeSection from "./SubscribeSection";
 import { setCanonical } from "../services/seo";
 
@@ -205,7 +205,14 @@ function MoviesView({ locale, onViewDetail }) {
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
-        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((m, i) => <MovieCard key={i} movie={m} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
+        // Wall-style cards (2026-08-24): same geometry as the overview/wall grid
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2">
+          {current.map((m, i) => (
+            <WallStyleCard key={`${tab}-${m.tmdbId}-${i}`} item={m} locale={locale}
+              subBadge={locale === "zh" ? "电影" : "MOVIE"} subBadgeColor="#ff00ff"
+              onClick={(item) => onViewDetail(item, "movie")} />
+          ))}
+        </div>
       )}
     </div>
   );
@@ -223,6 +230,15 @@ function TVView({ locale, onViewDetail }) {
     { id: "ongoing", zh: "热播中", en: "Ongoing", key: "ongoing" },
   ];
   const current = data?.[tabs.find(t => t.id === tab)?.key] || [];
+  const zhLocale = locale === "zh";
+  // S/E ribbon only for AIRED shows with real data; un-aired (upcoming) stay clean
+  const seRibbon = (s) => (s.season != null && s.episode != null) ? `S${s.season}E${s.episode}` : undefined;
+  // Premiere info line — the TV section's signature field
+  const tvMeta = (s) => {
+    if (!s.releaseDate) return undefined;
+    const se = seRibbon(s);
+    return zhLocale ? `首播: ${s.releaseDate}${se ? "" : ""}` : `Premiered: ${s.releaseDate}`;
+  };
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "剧集情报" : "TV Intelligence"} color="#00ffff" />
@@ -238,7 +254,16 @@ function TVView({ locale, onViewDetail }) {
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
-        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((s, i) => <TVCard key={i} show={s} locale={locale} onViewDetail={onViewDetail} />)}</CardGrid>
+        // Wall-style cards; premiere date kept as metaLine, S/E as top-right ribbon
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2">
+          {current.map((s, i) => (
+            <WallStyleCard key={`${tab}-${s.tmdbId}-${i}`} item={s} locale={locale}
+              subBadge={zhLocale ? "剧集" : "TV"} subBadgeColor="#00ffff"
+              ribbon={seRibbon(s)} ribbonColor="#00ffff"
+              metaLine={tvMeta(s)}
+              onClick={(item) => onViewDetail(item, "tv")} />
+          ))}
+        </div>
       )}
     </div>
   );
@@ -261,6 +286,20 @@ function MusicView({ locale, onViewDetail }) {
   if (error) return <DataError locale={locale} />;
   const picks = data?.picks || [];
   const current = tagFilter === "all" ? picks : picks.filter(a => a.recommendationTagId === tagFilter);
+  const zhLocale = locale === "zh";
+  // Release info line (Rex): 「雷鬼发行 / 新专辑发行」style — first zh style tag
+  // + 发行; falls back to 新专辑发行 when the tag has no GENRE_ZH mapping
+  // (raw "jazz fusion发行" reads broken) or none exists. Year only, no full date.
+  const musicReleaseInfo = (a) => {
+    const styleZh = albumGenres(a)[0];
+    const mapped = styleZh ? GENRE_ZH[styleZh] : undefined;
+    return mapped ? `${mapped}发行` : "新专辑发行";
+  };
+  const listenersRibbon = (a) => {
+    const l = a.listeners || 0;
+    if (!l) return undefined;
+    return l >= 1000000 ? `${(l / 1000000).toFixed(1)}M` : l >= 1000 ? `${Math.round(l / 1000)}K` : String(l);
+  };
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "本周精选" : "This Week's Picks"} color="#ffff00" />
@@ -281,7 +320,16 @@ function MusicView({ locale, onViewDetail }) {
       {current.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">{locale === "zh" ? "暂无数据" : "No data yet"}</p>
       ) : (
-        <CardGrid cols="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">{current.map((a, i) => <AlbumCard key={a.mbid || i} album={a} locale={locale} onViewDetail={(item) => onViewDetail?.(item, "album")} />)}</CardGrid>
+        // Wall-style cards; release-info as metaLine, listeners as top-right ribbon
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2">
+          {current.map((a, i) => (
+            <WallStyleCard key={`${tagFilter}-${a.mbid || a.title}-${i}`} item={a} locale={locale}
+              subBadge={zhLocale ? "音乐" : "MUSIC"} subBadgeColor="#ffff00"
+              ribbon={listenersRibbon(a)} ribbonColor="#ffff00"
+              metaLine={musicReleaseInfo(a)}
+              onClick={(item) => onViewDetail(item, "album")} />
+          ))}
+        </div>
       )}
     </div>
   );

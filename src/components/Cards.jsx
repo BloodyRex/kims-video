@@ -23,13 +23,13 @@ export const GENRE_ZH = {
 };
 
 // For music items: get best available genre tags (AI -> Last.fm -> MB)
-function albumGenres(item) {
+export function albumGenres(item) {
   if (item.tags?.length) return item.tags;
   if (item.lfmTags?.length) return item.lfmTags.slice(0, 5);
   if (item.genre) return [item.genre];
   return [];
 }
-function albumGenresEn(item) {
+export function albumGenresEn(item) {
   if (item.tagsEn?.length) return item.tagsEn;
   if (item.lfmTags?.length) return item.lfmTags.slice(0, 5);
   return [];
@@ -927,7 +927,7 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
 // aspect-[2/3] poster area (album covers are square → object-contain on black),
 // rating badge bottom-right, title + date + genre bar below. No inline action
 // buttons — the whole card opens the detail view.
-export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", subBadge, subBadgeColor = "#000000", ribbon, ribbonColor = "#ff00ff", onClick }) {
+export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", subBadge, subBadgeColor = "#000000", ribbon, ribbonColor = "#ff00ff", metaLine, onClick }) {
   const zh = locale === "zh";
   const title = zh ? item.title : (item.titleEn || item.title);
   const isMusic = !!(item.mbid || item.artist);
@@ -979,6 +979,10 @@ export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", sub
         <h3 className="text-xs font-black truncate leading-tight" title={title}>{title}</h3>
         {isMusic && item.artist && (
           <p className="text-[9px] text-gray-500 font-bold truncate">{item.artist}</p>
+        )}
+        {/* Type-specific info line: TV premiere date / music release info */}
+        {metaLine && (
+          <p className="text-[9px] text-gray-600 font-bold truncate" title={typeof metaLine === "string" ? metaLine : undefined}>{metaLine}</p>
         )}
         <div className="flex items-center justify-between mt-1 gap-1">
           <span className="text-[9px] text-gray-600 font-bold truncate">{item.releaseDate || item.year || ""}</span>

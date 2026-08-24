@@ -1193,14 +1193,19 @@ async function intelFetchTVEpisodeDates(shows, token) {
   const results = await Promise.allSettled((shows || []).map(async (show) => {
     // Skip re-fetch when the list endpoint already carried episode data (trending does)
     if (show.last_episode_to_air || show.next_episode_to_air) return show;
-    try {
-      const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
-      if (!r.ok) return show;
-      const details = await r.json();
-      if (details?.last_episode_to_air || details?.next_episode_to_air) {
-        return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
-      }
-    } catch (e) { console.warn("TV enrich fail:", show.id, e.message); }
+    // Cached (1h): repeated pipeline runs / overview+tv same-run reuse don't
+    // re-spend the subrequest. Uncached detail fetches here were part of why
+    // the handler blew its subrequest budget and ongoing lost S/E entirely.
+    const details = await withCache(`tvep-${show.id}`, async () => {
+      try {
+        const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
+        if (!r.ok) return null;
+        return r.json();
+      } catch (e) { return null; }
+    }, 3600);
+    if (details?.last_episode_to_air || details?.next_episode_to_air) {
+      return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
+    }
     return show;
   }));
   return results.map(r => r.status === "fulfilled" ? r.value : null).filter(Boolean);
@@ -1393,11 +1398,14 @@ async function handleIntelTV(env) {
   // premieres: TVMAZE schedule next 2-4 days (真实首播日，国产剧先上 TVMAZE 场景直接覆盖)
   // upcoming:  TVMAZE +7/+14 day samples + TMDB discover 未来 90 天
   // ongoing:   TMDB on_the_air (TVMAZE has no "airing now" list endpoint)
-  const [onTheAir, discoverRaw, tvmazePremEps, tvmazeUpEps] = await Promise.all([
+  const [onTheAir, discoverRaw, tvmazePremEps, tvmazeUpEps, tvTrendingWeek] = await Promise.all([
     intelFetchPages(token, "/tv/on_the_air", {}, 2),
     intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, 1),
     intelFetchTVMazeWeb([0, 1, 2, 3]), // premieres: next 2-4 days
     intelFetchTVMazeWeb([7, 14]),      // upcoming: +7/+14 day samples
+    // trending/tv/week carries full episode objects (S/E source for hydration
+    // below); costs ~0 here because overview/weekly hit this same cache entry
+    intelFetchTMDB(token, "/trending/tv/week"),
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -1435,8 +1443,10 @@ async function handleIntelTV(env) {
     if (!premOnAirIds.has(s.id)) premiereMerged.push(s);
   }
   const premiereSelected = intelSelectDiverse(premiereMerged, 15, reserve, SCORE_OPTS.tv, today);
-  // TMDB episode enrichment only for TMDB-sourced shows
-  const premiereEnriched = await intelFetchTVEpisodeDates(premiereSelected.filter(s => s.source !== "tvmaze"), token);
+  // TMDB episode enrichment only for TMDB-sourced shows — trending hydration
+  // first (free S/E), then the paid detail backfill for what's left.
+  const premiereHydrated = await hydrateFromTrending(premiereSelected.filter(s => s.source !== "tvmaze"));
+  const premiereEnriched = await intelFetchTVEpisodeDates(premiereHydrated, token);
   // TVMAZE premieres: TMDB zh fallback (bounded; _drop kills no-zh shows)
   const tvmazePicked = premiereSelected.filter(s => s.source === "tvmaze");
   const tvmazePremiereEnriched = await intelEnrichTVMazeBatch(tvmazePicked, token, 4);
@@ -1495,6 +1505,26 @@ async function handleIntelTV(env) {
     .filter(s => typeof s.daysUntil === "number" && s.daysUntil <= 3)
     .sort((a, b) => (a.releaseDate || "").localeCompare(b.releaseDate || ""));
   const weekPremieresFinal = [...weekPremieres, ...imminent];
+
+  // ── S/E hydration from trending payload (2026-08-24) ──
+  // on_the_air list items carry NO episode data; the detail backfill below was
+  // getting squeezed out by the handler's subrequest budget, so ongoing shipped
+  // with zero S/E. trending/tv/week DOES carry full episode objects and its
+  // cache entry is already warm in this pipeline run → merge for free, then let
+  // intelFetchTVEpisodeDates handle only what trending doesn't know.
+  const hydrateFromTrending = async (items) => {
+    if (!items?.length) return items;
+    const trend = tvTrendingWeek || [];
+    if (!trend.length) return items;
+    return Promise.all(items.map(async (s) => {
+      if (s.source === "tvmaze") return s;
+      if (s.last_episode_to_air || s.next_episode_to_air) return s;
+      const t = trend.find(x => x.id === s.id);
+      if (!t) return s;
+      if (!(t.last_episode_to_air || t.next_episode_to_air)) return s;
+      return { ...s, last_episode_to_air: t.last_episode_to_air, next_episode_to_air: t.next_episode_to_air };
+    }));
+  };
   const upcomingIds = new Set(upcomingSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
 
   // ── Ongoing: TMDB on_the_air, 2010 cutoff + recent-activity priority ──
@@ -1521,7 +1551,9 @@ async function handleIntelTV(env) {
     ...intelSelectDiverse(ongoingTier1, 10, reserve, SCORE_OPTS.tv, today),
     ...intelSelectDiverse(ongoingTier2, 5, reserve, SCORE_OPTS.tv, today),
   ].slice(0, 15);
-  const ongoingEnriched = await intelFetchTVEpisodeDates(ongoingSelected, token);
+  // Hydrate S/E from trending (free) first, then paid detail backfill for the rest
+  const ongoingHydrated = await hydrateFromTrending(ongoingSelected);
+  const ongoingEnriched = await intelFetchTVEpisodeDates(ongoingHydrated, token);
   const ongoingTV = ongoingEnriched
     .filter(s => {
       const lastAir = s.last_episode_to_air?.air_date;
