@@ -937,15 +937,21 @@ async function handleIntelOverview(env) {
   const tvCandidates = tvOnAir.filter(cnFilter).filter(intelRatingOk);
   const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today);
 
-  // Upcoming movies: same scored selection as handleIntelMovies (pop floor 15, cap 15)
+  // ── Upcoming movies (P1-2 fix 2026-08-24): SAME scored selection as
+  // handleIntelMovies.upcoming — popularity floor 15 + zh bonus (0.4 weight),
+  // NO hard zh filter. The previous local ovZh hard gate shrank the list to 0/6
+  // (live data 2026-08-23) and contradicted movies.json.upcoming; the pipeline
+  // deliberately does NOT re-filter `upcoming` keys for this exact reason.
+  // Full cap 15 kept (= movies.upcoming cap) so the overview can take a
+  // date-first subset of the very same set.
   const upcomingCandidates = upcoming
     .filter(m => m.release_date && m.release_date >= today)
     .filter(intelRatingOk);
   const upcomingSelected = intelSelectScored(upcomingCandidates, 15);
-  const comingSoon = upcomingSelected.slice(0, 6).map(m => {
-    const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
-    return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
-  });
+  const comingSoon = upcomingSelected.map(m => ({
+    ...intelNormalizeMovie(m),
+    daysUntil: Math.max(0, Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000)),
+  }));
 
   // ── Editor's Picks v2 (2026-08-23): fixed 6 cards, daily rotation ──
   // Rex: 总览的编辑精选 = 合并原「隐藏宝藏」「热榜趋势」，固定 6 张，每天有变化。
@@ -1050,9 +1056,13 @@ async function handleIntelOverview(env) {
       const days = Math.max(0, Math.ceil((new Date(s.first_air_date) - new Date(today + "T00:00:00")) / 86400000));
       return { ...intelNormalizeMovie(s, "tv"), daysUntil: days };
     });
-  // Same zh gate for the movie side — the pipeline filter was silently shrinking
-  // this list (only 3 of 6 survived on 08-23 data).
-  const comingSoonFinal = comingSoon.filter(m => ovZh(m));
+  // ── 即将上映·电影 (P1-2 fix 2026-08-24) ──
+  // comingSoon is now the SAME scored set as movies.upcoming (zh bonus inside the
+  // score, no hard gate). Section takes the date-first slice — the section's
+  // whole point — instead of a zh-gate that emptied it (0/6 live on 08-23).
+  const comingSoonFinal = [...comingSoon]
+    .sort((a, b) => (a.daysUntil ?? 9999) - (b.daysUntil ?? 9999))
+    .slice(0, 6);
 
   return {
     updated: today,
@@ -1410,10 +1420,15 @@ async function handleIntelTV(env) {
   const tvmazeUpcoming = toTvmazeShows(tvmazeUpEps).filter(s => s.first_air_date > today);
 
   // ── This week premieres: TVMAZE primary + on_the_air supplement ──
+  // P1-3① (2026-08-24): TMDB supplements must be zh-VISIBLE — title OR overview
+  // in Chinese (zh-CN fetch already localizes most). The old `lang==="en" ||`
+  // pass-through admitted EN-only shows that all died at the pipeline's strict
+  // zh gate downstream → wasted episode-date enrichment subrequests on doomed
+  // items (live: premieres section was 1/15).
   const premiereFromOnAir = onTheAir
     .filter(s => s.first_air_date && s.first_air_date >= weekAgo && s.first_air_date <= today)
     .filter(intelRatingOk)
-    .filter(s => s.original_language === "en" || (titleCn(s) && (s.popularity || 0) >= 50));
+    .filter(s => hasChinese(s.title || s.name) || hasChinese(s.overview));
   const premiereMerged = [...premiereFromOnAir];
   const premOnAirIds = new Set(premiereFromOnAir.map(s => s.id));
   for (const s of tvmazePremiere) {
@@ -1470,6 +1485,16 @@ async function handleIntelTV(env) {
     ...upcomingSelected.filter(s => s.source !== "tvmaze").map(s => ({ ...intelNormalizeMovie(s, "tv"), daysUntil: tvDays(s) })),
     ...tvmazeUpcomingEnriched.map(s => ({ ...intelTVMazeToOutput(s), daysUntil: tvDays(s) })),
   ];
+
+  // ── P1-3③ (2026-08-24): imminent premieres fold into the premieres section ──
+  // TVMAZE's schedule is a continuum — a show airing in 0-3 days is, to a viewer,
+  // the same thing as one that premiered today. upcoming entries with
+  // daysUntil <= 3 are appended to premieresThisWeek (date-sorted) so the
+  // section stops being structurally near-empty (live: 1/15 on 08-23).
+  const imminent = upcomingTV
+    .filter(s => typeof s.daysUntil === "number" && s.daysUntil <= 3)
+    .sort((a, b) => (a.releaseDate || "").localeCompare(b.releaseDate || ""));
+  const weekPremieresFinal = [...weekPremieres, ...imminent];
   const upcomingIds = new Set(upcomingSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
 
   // ── Ongoing: TMDB on_the_air, 2010 cutoff + recent-activity priority ──
@@ -1506,7 +1531,7 @@ async function handleIntelTV(env) {
 
   return {
     updated: today,
-    premieresThisWeek: weekPremieres,
+    premieresThisWeek: weekPremieresFinal,
     upcoming: upcomingTV,
     ongoing: ongoingTV,
   };

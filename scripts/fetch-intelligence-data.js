@@ -78,10 +78,15 @@ function filterChineseContent(data, fileName = "") {
       continue;
     }
     
-    // Upcoming/next*: scoring-based selection in the Worker (pop floor + zh bonus) already
-    // decided what belongs here — do NOT re-apply a hard Chinese filter, or hot non-zh
-    // titles (which qualify on popularity alone) get killed a second time.
-    if (key === "upcoming" || key === "next7Days" || key === "next30Days") {
+    // Upcoming/next*/overview scored sections: scoring-based selection in the
+    // Worker (pop floor + zh bonus) already decided what belongs here — do NOT
+    // re-apply a hard Chinese filter, or hot non-zh titles (which qualify on
+    // popularity alone) get killed a second time.
+    // 2026-08-24 P1-2: overview.comingSoon joined this list — it IS
+    // movies.upcoming's scored set, but the unlisted hard gate emptied the
+    // overview 即将上映 movie row to 0/6 (live data). Same for weeklyHotTv.
+    if (key === "upcoming" || key === "next7Days" || key === "next30Days"
+      || key === "comingSoon" || key === "weeklyHotTv") {
       continue;
     }
 

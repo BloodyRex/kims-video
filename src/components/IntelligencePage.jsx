@@ -68,6 +68,7 @@ function OverviewView({ locale, onViewDetail }) {
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} />;
   const stats = data?.stats || {};
+  const zhLocale = locale === "zh";
 
   // Rex 2026-08-24: 本周热榜 + 即将上映 nav sections are GONE — their content
   // is merged here. 编辑精选 = 6 movies (overview) + 6 hot TV (weeklyHotTv) +
@@ -84,10 +85,12 @@ function OverviewView({ locale, onViewDetail }) {
     { zh: "热榜变动", en: "Trending", num: stats.trending ?? "--", color: "#ff00ff" },
   ];
   const wallGrid = "grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2";
-  const pickBadges = {
-    editors: { label: locale === "zh" ? "★ 编辑" : "★ EDITOR", color: "#ff00ff" },
-    gem: { label: locale === "zh" ? "💎 宝藏" : "💎 GEM", color: "#00ffff" },
-    trending: { label: locale === "zh" ? "🔥 热榜" : "🔥 HOT", color: "#ffff00" },
+  // Countdown ribbon label — CountdownCard's wording (今天/明天/N天后)
+  const countdownRibbon = (days) => {
+    if (typeof days !== "number") return undefined;
+    if (days === 0) return zhLocale ? "今天" : "TODAY";
+    if (days === 1) return zhLocale ? "明天" : "TOMORROW";
+    return zhLocale ? `${Math.min(days, 99)} 天后` : `${Math.min(days, 99)}D`;
   };
   const detailTypeOf = (pickCategory) => (pickCategory === "tvhot" ? "tv" : "movie");
 
@@ -134,24 +137,19 @@ function OverviewView({ locale, onViewDetail }) {
         <section>
           <SectionHeader label={locale === "zh" ? "★ 编辑精选" : "★ Editor's Picks"} count={editorMovies.length + hotTv.length + musicSix.length} color="#ff00ff" />
           <div className={wallGrid}>
-            {editorMovies.map((p, i) => {
-              const b = pickBadges[p.pickCategory] || pickBadges.editors;
-              return (
-                <WallStyleCard key={`m-${p.tmdbId}-${i}`} item={p} locale={locale} badge={b.label} badgeColor={b.color}
-                  subBadge={locale === "zh" ? "电影" : "MOVIE"} subBadgeColor="#ff00ff"
-                  onClick={(item) => onViewDetail(item, "movie")} />
-              );
-            })}
+            {editorMovies.map((p, i) => (
+              <WallStyleCard key={`m-${p.tmdbId}-${i}`} item={p} locale={locale}
+                subBadge={zhLocale ? "电影" : "MOVIE"} subBadgeColor="#ff00ff"
+                onClick={(item) => onViewDetail(item, "movie")} />
+            ))}
             {hotTv.map((s, i) => (
               <WallStyleCard key={`tv-${s.tmdbId}-${i}`} item={s} locale={locale}
-                badge={locale === "zh" ? "🔥 剧集热榜" : "🔥 TV HOT"} badgeColor="#00ffff"
-                subBadge={locale === "zh" ? "剧集" : "TV"} subBadgeColor="#00ffff"
+                subBadge={zhLocale ? "剧集" : "TV"} subBadgeColor="#00ffff"
                 onClick={(item) => onViewDetail(item, "tv")} />
             ))}
             {musicSix.map((a, i) => (
               <WallStyleCard key={`mu-${a.mbid || a.title}-${i}`} item={a} locale={locale}
-                badge={locale === "zh" ? `🎵 ${a.recommendationTagId === "trending" ? "热门" : a.recommendationTagId === "hidden" ? "宝藏" : a.recommendationTagId === "world" ? "环球" : "推荐"}` : "🎵 MUSIC"} badgeColor="#ffff00"
-                subBadge={locale === "zh" ? "音乐" : "MUSIC"} subBadgeColor="#ffff00"
+                subBadge={zhLocale ? "音乐" : "MUSIC"} subBadgeColor="#ffff00"
                 onClick={(item) => onViewDetail(item, "album")} />
             ))}
           </div>
@@ -163,14 +161,14 @@ function OverviewView({ locale, onViewDetail }) {
           <div className={wallGrid}>
             {comingMovies.map((m, i) => (
               <WallStyleCard key={`cm-${m.tmdbId}-${i}`} item={m} locale={locale}
-                badge={typeof m.daysUntil === "number" ? `${Math.min(m.daysUntil, 99)}天` : undefined} badgeColor="#ff00ff"
-                subBadge={locale === "zh" ? "电影" : "MOVIE"} subBadgeColor="#ff00ff"
+                ribbon={countdownRibbon(m.daysUntil)} ribbonColor="#ff00ff"
+                subBadge={zhLocale ? "电影" : "MOVIE"} subBadgeColor="#ff00ff"
                 onClick={(item) => onViewDetail(item, "movie")} />
             ))}
             {comingTv.map((s, i) => (
               <WallStyleCard key={`ct-${s.tmdbId}-${i}`} item={s} locale={locale}
-                badge={typeof s.daysUntil === "number" ? `${Math.min(s.daysUntil, 99)}天` : undefined} badgeColor="#00ffff"
-                subBadge={locale === "zh" ? "剧集" : "TV"} subBadgeColor="#00ffff"
+                ribbon={countdownRibbon(s.daysUntil)} ribbonColor="#00ffff"
+                subBadge={zhLocale ? "剧集" : "TV"} subBadgeColor="#00ffff"
                 onClick={(item) => onViewDetail(item, "tv")} />
             ))}
           </div>

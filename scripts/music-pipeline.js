@@ -61,10 +61,10 @@ async function fetchMBReleases(config) {
   const dateTo = today();
   const allReleases = [];
 
-  for (let page = 0; page < config.mbPages; page++) {
+  const fetchPage = async (query, page, regional) => {
     const offset = page * config.mbPageSize;
     const qp = new URLSearchParams({
-      query: `date:[${dateFrom} TO ${dateTo}]`,
+      query,
       fmt: "json",
       limit: String(config.mbPageSize),
       offset: String(offset),
@@ -79,7 +79,7 @@ async function fetchMBReleases(config) {
         });
         if (res.ok) { data = await res.json(); break; }
         if (res.status === 429) { await sleep(2000); continue; }
-        console.warn(`MB page ${page} fail: ${res.status}`);
+        console.warn(`MB page ${page}${regional ? " (regional)" : ""} fail: ${res.status}`);
         break;
       } catch (e) {
         console.warn(`MB page ${page} error:`, e.message);
@@ -87,24 +87,43 @@ async function fetchMBReleases(config) {
       }
     }
 
-    if (data?.releases?.length) {
-      const mapped = data.releases.map(r => ({
-        mbid: r.id,
-        title: r.title || "",
-        artist: (r["artist-credit"] || []).map(ac => ac.name || ac.artist?.name || "").join(", "),
-        releaseDate: r.date || "",
-        year: (r.date || "").slice(0, 4),
-        cover: "",
-        status: r.status || "",
-        country: r.country || "",
-        primaryType: r["release-group"]?.["primary-type"] || "",
-        secondaryTypes: r["release-group"]?.["secondary-types"] || [],
-        tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
-      }));
-      allReleases.push(...mapped);
-    }
+    if (!data?.releases?.length) return;
+    const mapped = data.releases.map(r => ({
+      mbid: r.id,
+      title: r.title || "",
+      artist: (r["artist-credit"] || []).map(ac => ac.name || ac.artist?.name || "").join(", "),
+      releaseDate: r.date || "",
+      year: (r.date || "").slice(0, 4),
+      cover: "",
+      status: r.status || "",
+      country: r.country || "",
+      primaryType: r["release-group"]?.["primary-type"] || "",
+      secondaryTypes: r["release-group"]?.["secondary-types"] || [],
+      tags: (r["release-group"]?.tags || []).map(t => t.name).slice(0, 5),
+      _regional: !!regional,
+    }));
+    allReleases.push(...mapped);
+  };
 
+  // Main pass: default relevance order (dominated by US/EU releases)
+  for (let page = 0; page < config.mbPages; page++) {
+    await fetchPage(`date:[${dateFrom} TO ${dateTo}]`, page, false);
     await sleep(1500); // MB rate limit: 1 req/s
+  }
+
+  // ── Regional bias (Rex 2026-08-24 环球音乐修复): default pass starves the
+  // 🌍world category — CJK quota had zero material (live 2026-08-23: world=0).
+  // Extra pages restricted to JP/KR/CN/TW/HK release countries feed regional
+  // albums into the same candidate pool; they still must clear the same
+  // validity/dedup/listener gates as everything else.
+  const regionCountries = config.regionalBiasCountries || [];
+  if (regionCountries.length) {
+    const regionQuery = `date:[${dateFrom} TO ${dateTo}] AND country:(${regionCountries.join(" OR ")})`;
+    for (let page = 0; page < (config.regionalBiasPages || 1); page++) {
+      await fetchPage(regionQuery, page, true);
+      await sleep(1500);
+    }
+    console.log(`[MB] Regional pass (+${regionCountries.join("/")}): total now ${allReleases.length}`);
   }
 
   return allReleases;
@@ -141,12 +160,13 @@ function scoreAndRankArtists(releases) {
   for (const r of releases) {
     const key = r.artist.toLowerCase().trim();
     if (!artistMap.has(key)) {
-      artistMap.set(key, { name: r.artist, releaseCount: 0, countries: new Set(), hasOfficial: false });
+      artistMap.set(key, { name: r.artist, releaseCount: 0, countries: new Set(), hasOfficial: false, _regional: false });
     }
     const a = artistMap.get(key);
     a.releaseCount++;
     if (r.country) a.countries.add(r.country);
     if (r.status === "Official") a.hasOfficial = true;
+    if (r._regional) a._regional = true;
   }
 
   const scored = [...artistMap.values()].map(a => {
@@ -322,8 +342,20 @@ export async function collectMusicCandidates(config) {
 
   // ── Phase 2: Score and rank artists → top N ──
   const rankedArtists = scoreAndRankArtists(deduped);
-  const topArtists = rankedArtists.slice(0, config.artistCheckLimit);
-  console.log(`[MB] Top artists to check: ${topArtists.length}`);
+  // Regional-bias guarantee: regional artists get a reserved slice of the
+  // Last.fm check budget, so JP/KR/CN releases reach the candidate pool even
+  // when the default relevance pass floods the top of the ranking.
+  const regionCountries = config.regionalBiasCountries || [];
+  const isRegionalArtist = (a) =>
+    regionCountries.some((cc) => a.countries.has(cc)) || a._regional;
+  const rankedMain = rankedArtists.filter((a) => !isRegionalArtist(a));
+  const rankedRegion = rankedArtists.filter(isRegionalArtist);
+  const mainSlots = Math.max(0, config.artistCheckLimit - config.regionalArtistReserve);
+  const topArtists = [
+    ...rankedMain.slice(0, mainSlots),
+    ...rankedRegion.slice(0, config.regionalArtistReserve || 0),
+  ];
+  console.log(`[MB] Top artists to check: ${topArtists.length} (main ${Math.min(rankedMain.length, mainSlots)} + regional ${Math.min(rankedRegion.length, config.regionalArtistReserve || 0)})`);
 
   // ── Phase 3: Fetch Last.fm artist info (batched) ──
   console.log("[LFM] Fetching artist info...");

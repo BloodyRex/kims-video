@@ -927,7 +927,7 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
 // aspect-[2/3] poster area (album covers are square → object-contain on black),
 // rating badge bottom-right, title + date + genre bar below. No inline action
 // buttons — the whole card opens the detail view.
-export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", subBadge, subBadgeColor = "#000000", onClick }) {
+export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", subBadge, subBadgeColor = "#000000", ribbon, ribbonColor = "#ff00ff", onClick }) {
   const zh = locale === "zh";
   const title = zh ? item.title : (item.titleEn || item.title);
   const isMusic = !!(item.mbid || item.artist);
@@ -960,6 +960,13 @@ export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", sub
                 {subBadge}
               </span>
             )}
+          </div>
+        )}
+        {/* Countdown ribbon — CountdownCard's top-right corner design */}
+        {ribbon && (
+          <div className="absolute top-0 right-0 px-2 py-1 border-l-4 border-b-4 border-black z-10"
+            style={{ backgroundColor: ribbonColor }}>
+            <span className="text-[9px] sm:text-[10px] font-black pixel-font text-black leading-none">{ribbon}</span>
           </div>
         )}
         {rating > 0 && (
