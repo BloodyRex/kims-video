@@ -1,5 +1,38 @@
 {
   "updated": "2026-08-24",
-  "count": 0,
-  "movies": []
+  "count": 2,
+  "movies": [
+    {
+      "tmdbId": 147,
+      "mediaType": "movie",
+      "title": "四百击",
+      "titleEn": "Les Quatre Cents Coups",
+      "year": "1959",
+      "releaseDate": "1959-06-03",
+      "poster": "https://image.tmdb.org/t/p/w342/12PuU23kkDLvTd0nb8hMlE3oShB.jpg",
+      "rating": 7.997,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-24"
+    },
+    {
+      "tmdbId": 412555,
+      "mediaType": "movie",
+      "title": "青春派",
+      "titleEn": "青春派",
+      "year": "2013",
+      "releaseDate": "2013-08-02",
+      "poster": "https://image.tmdb.org/t/p/w342/9tzD0dMzbcacCwLFp3yCkXR8xxX.jpg",
+      "rating": 6.548,
+      "genre": [
+        "喜剧",
+        "爱情",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-24"
+    }
+  ]
 }
