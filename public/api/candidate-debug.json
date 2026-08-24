@@ -34,8 +34,8 @@
     "regionalArtistReserve": 16
   },
   "stats": {
-    "mbRaw": 400,
-    "afterFilter": 211,
+    "mbRaw": 300,
+    "afterFilter": 156,
     "artistsChecked": 75,
     "afterArtistFilter": 55,
     "albumEnriched": 40,
@@ -615,6 +615,32 @@
       "daysOld": 235
     },
     {
+      "id": "mb-268d81bf-6af4-4bfd-b4ce-41a7e777c144",
+      "mbid": "268d81bf-6af4-4bfd-b4ce-41a7e777c144",
+      "title": "Nothing Hurts Like Everything",
+      "artist": "Ourson",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "CA",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 39517,
+      "artistPlaycount": 327320,
+      "albumListeners": 10549,
+      "albumPlaycount": 40700,
+      "score": 50.761282908082435,
+      "scoreBreakdown": {
+        "artist": 30.645226446437984,
+        "album": 20.116056461644447,
+        "freshness": 0
+      },
+      "daysOld": 235
+    },
+    {
       "id": "mb-c0d31807-a8ee-4127-847b-19f28630871c",
       "mbid": "c0d31807-a8ee-4127-847b-19f28630871c",
       "title": "THE PROTÉGÉ",
@@ -732,50 +758,6 @@
       "scoreBreakdown": {
         "artist": 33.82728008433895,
         "album": 14.61103138719508,
-        "freshness": 0
-      },
-      "daysOld": 235
-    },
-    {
-      "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
-      "mbid": "f4a9a05b-c146-410e-8161-4d10af2f6bfa",
-      "title": "Unity",
-      "artist": "Pariah",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "NL",
-      "genres": [
-        "鞭挞金属",
-        "thrash",
-        "1997",
-        "回响贝斯",
-        "rocking"
-      ],
-      "genresEn": [
-        "thrash metal",
-        "thrash",
-        "1997",
-        "dubstep",
-        "rocking"
-      ],
-      "lfmTags": [
-        "thrash metal",
-        "thrash",
-        "1997",
-        "dubstep",
-        "rocking"
-      ],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/78/ff/c7/78ffc7d1-9df3-cfde-1a92-c9033427e2f1/196626204936.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 113015,
-      "artistPlaycount": 890258,
-      "albumListeners": 538,
-      "albumPlaycount": 8620,
-      "score": 47.341485307448195,
-      "scoreBreakdown": {
-        "artist": 33.68757392911625,
-        "album": 13.653911378331946,
         "freshness": 0
       },
       "daysOld": 235
@@ -1008,6 +990,32 @@
       "scoreBreakdown": {
         "artist": 28.89702847098166,
         "album": 12.726535582329118,
+        "freshness": 0
+      },
+      "daysOld": 235
+    },
+    {
+      "id": "mb-2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
+      "mbid": "2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
+      "title": "Жёсткая неделька",
+      "artist": "СМЕХ",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 30653,
+      "artistPlaycount": 934483,
+      "albumListeners": 217,
+      "albumPlaycount": 2085,
+      "score": 41.592118570618524,
+      "scoreBreakdown": {
+        "artist": 29.90981990137588,
+        "album": 11.682298669242648,
         "freshness": 0
       },
       "daysOld": 235
@@ -1266,32 +1274,6 @@
       "scoreBreakdown": {
         "artist": 31.189272629633958,
         "album": 6.611096473669597,
-        "freshness": 0
-      },
-      "daysOld": 235
-    },
-    {
-      "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
-      "mbid": "017c16c7-e4c5-488d-8bde-d2e41a15096f",
-      "title": "Nick Collection 2",
-      "artist": "Pop! not soda.",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f8/e1/77/f8e17734-4908-0f60-585c-80a3b8522d87/artwork.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 3640,
-      "artistPlaycount": 45370,
-      "albumListeners": 204,
-      "albumPlaycount": 2234,
-      "score": 35.2888267281232,
-      "scoreBreakdown": {
-        "artist": 23.740675890993707,
-        "album": 11.548150837129494,
         "freshness": 0
       },
       "daysOld": 235
