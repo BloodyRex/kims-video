@@ -1413,6 +1413,28 @@ async function handleIntelTV(env) {
   const titleCn = (s) => hasChinese(s.title || s.name);
   const reserve = { cn: 1, hmt: 1, jp: 1, kr: 1 };
 
+  // ── S/E hydration from trending payload (2026-08-24) ──
+  // on_the_air list items carry NO episode data; the paid detail backfill was
+  // getting squeezed out by the handler's subrequest budget, so ongoing shipped
+  // with zero S/E. trending/tv/week DOES carry full episode objects and its
+  // cache entry is already warm in this pipeline run → merge for free, then let
+  // intelFetchTVEpisodeDates handle only what trending doesn't know.
+  // ⚠️ Defined BEFORE both use sites (premieres + ongoing) — a TDZ here 500'd
+  // the whole tv endpoint once already (2026-08-24).
+  const hydrateFromTrending = async (items) => {
+    if (!items?.length) return items;
+    const trend = tvTrendingWeek || [];
+    if (!trend.length) return items;
+    return Promise.all(items.map(async (s) => {
+      if (s.source === "tvmaze") return s;
+      if (s.last_episode_to_air || s.next_episode_to_air) return s;
+      const t = trend.find(x => x.id === s.id);
+      if (!t) return s;
+      if (!(t.last_episode_to_air || t.next_episode_to_air)) return s;
+      return { ...s, last_episode_to_air: t.last_episode_to_air, next_episode_to_air: t.next_episode_to_air };
+    }));
+  };
+
   // ── TVMAZE → unified candidates (dedup by show id, date-windowed) ──
   const toTvmazeShows = (eps) => {
     const seen = new Set();
@@ -1505,26 +1527,6 @@ async function handleIntelTV(env) {
     .filter(s => typeof s.daysUntil === "number" && s.daysUntil <= 3)
     .sort((a, b) => (a.releaseDate || "").localeCompare(b.releaseDate || ""));
   const weekPremieresFinal = [...weekPremieres, ...imminent];
-
-  // ── S/E hydration from trending payload (2026-08-24) ──
-  // on_the_air list items carry NO episode data; the detail backfill below was
-  // getting squeezed out by the handler's subrequest budget, so ongoing shipped
-  // with zero S/E. trending/tv/week DOES carry full episode objects and its
-  // cache entry is already warm in this pipeline run → merge for free, then let
-  // intelFetchTVEpisodeDates handle only what trending doesn't know.
-  const hydrateFromTrending = async (items) => {
-    if (!items?.length) return items;
-    const trend = tvTrendingWeek || [];
-    if (!trend.length) return items;
-    return Promise.all(items.map(async (s) => {
-      if (s.source === "tvmaze") return s;
-      if (s.last_episode_to_air || s.next_episode_to_air) return s;
-      const t = trend.find(x => x.id === s.id);
-      if (!t) return s;
-      if (!(t.last_episode_to_air || t.next_episode_to_air)) return s;
-      return { ...s, last_episode_to_air: t.last_episode_to_air, next_episode_to_air: t.next_episode_to_air };
-    }));
-  };
   const upcomingIds = new Set(upcomingSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
 
   // ── Ongoing: TMDB on_the_air, 2010 cutoff + recent-activity priority ──
