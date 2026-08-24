@@ -66,7 +66,6 @@ function LoadingSpinner({ locale }) {
 
 function OverviewView({ locale, onViewDetail }) {
   const { data, loading, error, retry } = useJsonData("/api/overview.json");
-  const { data: digestData } = useJsonData("/api/digest.json");
   const { data: musicData } = useJsonData("/api/music.json");
   // ⚠️ ALL hooks MUST run on every render (before any early return) — putting
   // this useMemo below the loading/error returns crashed the whole page
@@ -78,7 +77,6 @@ function OverviewView({ locale, onViewDetail }) {
   }, [musicData]);
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} onRetry={retry} />;
-  const stats = data?.stats || {};
   const zhLocale = locale === "zh";
 
   // Rex 2026-08-24: 本周热榜 + 即将上映 nav sections are GONE — their content
@@ -89,12 +87,6 @@ function OverviewView({ locale, onViewDetail }) {
   const comingMovies = data?.comingSoon || [];
   const comingTv = data?.comingSoonTv || [];
 
-  const statCards = [
-    { zh: "电影上映", en: "Movies Released", num: stats.moviesReleased ?? "--", color: "#ff00ff" },
-    { zh: "剧集在播", en: "TV Airing", num: stats.tvAiringThisWeek ?? "--", color: "#00ffff" },
-    { zh: "专辑发行", en: "Albums Released", num: stats.albumsReleased ?? "--", color: "#000000" },
-    { zh: "热榜变动", en: "Trending", num: stats.trending ?? "--", color: "#ff00ff" },
-  ];
   const wallGrid = "grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2";
   // Countdown ribbon label — CountdownCard's wording (今天/明天/N天后)
   const countdownRibbon = (days) => {
@@ -107,42 +99,7 @@ function OverviewView({ locale, onViewDetail }) {
 
   return (
     <div className="space-y-8">
-      <div className="bg-black border-4 border-[#ff00ff] p-4 sm:p-5 shadow-[8px_8px_0_0_rgba(0,255,255,0.5)]">
-        <h2 className="text-lg sm:text-2xl font-black text-white pixel-font mb-2">
-          {locale === "zh" ? "娱乐情报中心" : "Entertainment Intelligence"}
-        </h2>
-        <p className="text-sm text-gray-400">
-          {locale === "zh" ? "每日自动汇总全球最新影视音乐发行信息" : "Daily auto-aggregated global entertainment releases"}
-        </p>
-      </div>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {statCards.map((s, i) => (
-          <div key={i} className="bg-white border-4 border-black p-3 text-center shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
-            <div className="text-2xl sm:text-3xl font-black pixel-font" style={{ color: s.color }}>{s.num}</div>
-            <div className="text-[10px] sm:text-xs text-gray-500 mt-1">{locale === "zh" ? s.zh : s.en}</div>
-          </div>
-        ))}
-      </div>
-      {/* Daily Digest */}
-      {digestData?.headline && (
-        <section>
-          <SectionHeader label={locale === "zh" ? "☎ 每日摘要" : "☎ Daily Digest"} color="#ff00ff" />
-          <div className="bg-black border-4 border-[#ffff00] p-5 shadow-[6px_6px_0_0_rgba(0,255,255,0.3)]">
-            <h3 className="text-base font-black text-[#ffff00] mb-2">{locale === "en" ? (digestData.headlineEn || digestData.headline) : digestData.headline}</h3>
-            <p className="text-sm text-gray-200 leading-relaxed">{locale === "en" ? (digestData.summaryEn || digestData.summary) : digestData.summary}</p>
-            {digestData.topTrends?.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {digestData.topTrends.map((tr, i) => (
-                  <span key={i} className="text-[10px] px-2 py-0.5 bg-[#ff00ff] text-black font-black">#{locale === "en" ? (tr.titleEn || tr.title) : tr.title}</span>
-                ))}
-              </div>
-            )}
-            <p className="text-[10px] text-gray-500 mt-2 pixel-font">
-              {locale === "zh" ? "数据更新于 " : "Data updated "}{digestData.date || data?.updated || ""}
-            </p>
-          </div>
-        </section>
-      )}
+      {/* Rex 2026-08-25: 总览精简 — 移除「娱乐情报中心」横幅、统计卡与「每日摘要」框，直接从编辑精选开始 */}
 
       {(editorMovies.length > 0 || hotTv.length > 0 || musicSix.length > 0) && (
         <section>
