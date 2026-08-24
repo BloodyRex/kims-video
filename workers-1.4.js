@@ -1585,6 +1585,28 @@ async function handleIntelMusicV2(request, env) {
       aiPicks = await intelEnrichAlbums(aiInput, env);
     }
 
+    // ── World-music quota (Rex 2026-08-24): enforced AFTER the AI path too ──
+    // Regional bias now feeds JP/KR/CN artists into the pool, but the AI still
+    // labeled all of them trending/editor/hidden (live run: world=0 despite four
+    // KR acts in the picks). Same quota the fallback uses, applied to whatever
+    // path produced the picks: up to 4 non-trending CJK artists get 🌍环球音乐.
+    const applyWorldQuota = (list, max = 4) => {
+      const hasCJK = (s) => /[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]/.test(s || "");
+      let used = 0;
+      for (const p of list || []) {
+        if (used >= max) break;
+        if (!hasCJK(p.artist)) continue;
+        if (p.recommendationTagId === "trending" || p.recommendationTagId === "world") continue;
+        p.recommendationTag = "🌍 环球音乐";
+        p.recommendationTagEn = "Around the World";
+        p.recommendationTagId = "world";
+        p.category = "world";
+        used++;
+      }
+      return list;
+    };
+    if (aiPicks?.length) applyWorldQuota(aiPicks);
+
     // Fallback: programmatic percentile ranking when AI is unavailable.
     // Fixed 2026-08-23: was ASCENDING listener sort → the LEAST-listened 30% got
     // 🔥trending while the biggest artists were tagged 💎hidden AND cut by the
