@@ -35,12 +35,12 @@
   },
   "stats": {
     "mbRaw": 400,
-    "afterFilter": 209,
+    "afterFilter": 208,
     "artistsChecked": 75,
-    "afterArtistFilter": 55,
+    "afterArtistFilter": 54,
     "albumEnriched": 40,
     "chartItems": 359,
-    "totalCandidates": 414,
+    "totalCandidates": 413,
     "sentToWorker": 18
   },
   "candidates": [
@@ -998,7 +998,7 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c1/63/e3/c163e3b1-5c0e-1610-cfc1-798ba40578c9/4711720316802_new.jpg/600x600bb.jpg",
       "source": "musicbrainz",
       "artistListeners": 3972,
       "artistPlaycount": 70655,
@@ -1063,38 +1063,6 @@
         "freshness": 0
       },
       "daysOld": 235
-    },
-    {
-      "id": "mb-997158af-bea8-48d8-b4c5-a214cbeddacf",
-      "mbid": "997158af-bea8-48d8-b4c5-a214cbeddacf",
-      "title": "Summer, I",
-      "artist": "정은지",
-      "releaseDate": "2026-08-11",
-      "year": "2026",
-      "type": "EP",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "k-pop",
-        "Korean",
-        "apink",
-        "female vocalists",
-        "Kpop"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 3295,
-      "artistPlaycount": 132459,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 40.45236945953353,
-      "scoreBreakdown": {
-        "artist": 23.452369459533525,
-        "album": 0,
-        "freshness": 17
-      },
-      "daysOld": 13
     },
     {
       "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
@@ -1288,7 +1256,7 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f8/e1/77/f8e17734-4908-0f60-585c-80a3b8522d87/artwork.jpg/600x600bb.jpg",
       "source": "musicbrainz",
       "artistListeners": 3640,
       "artistPlaycount": 45370,
