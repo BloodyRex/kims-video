@@ -4,6 +4,7 @@ import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { CountdownCard, SpotlightCard, SectionHeader, CardGrid, IntelDetailModal, StarRating, WallStyleCard, albumGenres, GENRE_ZH } from "./Cards";
 import SubscribeSection from "./SubscribeSection";
+import DetailOverlay from "./DetailOverlay";
 import { setCanonical } from "../services/seo";
 
 const LANG_BUTTON_STYLE = {
@@ -23,6 +24,8 @@ function useJsonData(endpoint) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  // attempt: bump to re-run the effect (retry button)
+  const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
@@ -33,15 +36,23 @@ function useJsonData(endpoint) {
       .catch(() => { if (!cancelled) { setData(null); setError(true); } })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
-  }, [endpoint]);
-  return { data, loading, error };
+  }, [endpoint, attempt]);
+  return { data, loading, error, retry: () => setAttempt(a => a + 1) };
 }
 
-function DataError({ locale }) {
+function DataError({ locale, onRetry }) {
   return (
-    <p className="text-red-400 text-xs text-center py-8 pixel-font">
-      {locale === "zh" ? "数据加载失败，请稍后重试" : "Failed to load data. Please retry."}
-    </p>
+    <div className="text-center py-8">
+      <p className="text-red-400 text-xs pixel-font mb-4">
+        {locale === "zh" ? "数据加载失败，请稍后重试" : "Failed to load data. Please retry."}
+      </p>
+      <button
+        onClick={onRetry}
+        className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all"
+      >
+        {locale === "zh" ? "重试" : "RETRY"}
+      </button>
+    </div>
   );
 }
 
@@ -54,7 +65,7 @@ function LoadingSpinner({ locale }) {
 }
 
 function OverviewView({ locale, onViewDetail }) {
-  const { data, loading, error } = useJsonData("/api/overview.json");
+  const { data, loading, error, retry } = useJsonData("/api/overview.json");
   const { data: digestData } = useJsonData("/api/digest.json");
   const { data: musicData } = useJsonData("/api/music.json");
   // ⚠️ ALL hooks MUST run on every render (before any early return) — putting
@@ -66,7 +77,7 @@ function OverviewView({ locale, onViewDetail }) {
       .slice(0, 6);
   }, [musicData]);
   if (loading) return <LoadingSpinner locale={locale} />;
-  if (error) return <DataError locale={locale} />;
+  if (error) return <DataError locale={locale} onRetry={retry} />;
   const stats = data?.stats || {};
   const zhLocale = locale === "zh";
 
@@ -180,10 +191,10 @@ function OverviewView({ locale, onViewDetail }) {
 
 // ── Movies ──
 function MoviesView({ locale, onViewDetail }) {
-  const { data, loading, error } = useJsonData("/api/movies.json");
+  const { data, loading, error, retry } = useJsonData("/api/movies.json");
   const [tab, setTab] = useState("week");
   if (loading) return <LoadingSpinner locale={locale} />;
-  if (error) return <DataError locale={locale} />;
+  if (error) return <DataError locale={locale} onRetry={retry} />;
   const tabs = [
     { id: "week", zh: "本周上映", en: "This Week", key: "releasedThisWeek" },
     { id: "upcoming", zh: "即将上映", en: "Upcoming", key: "upcoming" },
@@ -220,10 +231,10 @@ function MoviesView({ locale, onViewDetail }) {
 
 // ── TV ──
 function TVView({ locale, onViewDetail }) {
-  const { data, loading, error } = useJsonData("/api/tv.json");
+  const { data, loading, error, retry } = useJsonData("/api/tv.json");
   const [tab, setTab] = useState("week");
   if (loading) return <LoadingSpinner locale={locale} />;
-  if (error) return <DataError locale={locale} />;
+  if (error) return <DataError locale={locale} onRetry={retry} />;
   const tabs = [
     { id: "week", zh: "本周首播", en: "This Week", key: "premieresThisWeek" },
     { id: "upcoming", zh: "即将播出", en: "Upcoming", key: "upcoming" },
@@ -278,12 +289,12 @@ const TAG_FILTERS = [
 ];
 
 function MusicView({ locale, onViewDetail }) {
-  const { data, loading, error } = useJsonData("/api/music.json");
+  const { data, loading, error, retry } = useJsonData("/api/music.json");
   // Default "全部": mirrors movies/TV tabs' show-everything-first pattern;
   // tag buttons become filters instead of the only way to see picks.
   const [tagFilter, setTagFilter] = useState("all");
   if (loading) return <LoadingSpinner locale={locale} />;
-  if (error) return <DataError locale={locale} />;
+  if (error) return <DataError locale={locale} onRetry={retry} />;
   const picks = data?.picks || [];
   const current = tagFilter === "all" ? picks : picks.filter(a => a.recommendationTagId === tagFilter);
   const zhLocale = locale === "zh";
@@ -344,10 +355,12 @@ function SearchView({ locale, onViewDetail }) {
   // Load all data once
   // Rex 2026-08-24: weekly/coming sections merged into overview — search now
   // indexes movies/tv/music files + overview's coming-soon lists.
-  const { data: movies } = useJsonData("/api/movies.json");
-  const { data: tv } = useJsonData("/api/tv.json");
-  const { data: music } = useJsonData("/api/music.json");
-  const { data: coming } = useJsonData("/api/coming.json");
+  const { data: movies, loading: moviesLoading, error: moviesError, retry } = useJsonData("/api/movies.json");
+  const { data: tv, loading: tvLoading, error: tvError } = useJsonData("/api/tv.json");
+  const { data: music, loading: musicLoading, error: musicError } = useJsonData("/api/music.json");
+  const { data: coming, loading: comingLoading, error: comingError } = useJsonData("/api/coming.json");
+  const anyLoading = moviesLoading || tvLoading || musicLoading || comingLoading;
+  const allFailed = moviesError && tvError && musicError && comingError;
 
   const allItems = useMemo(() => {
     const items = [];
@@ -395,6 +408,12 @@ function SearchView({ locale, onViewDetail }) {
   return (
     <div className="space-y-6">
       <SectionHeader label={locale === "zh" ? "搜索" : "Search"} color="#00ffff" />
+      {allFailed ? (
+        <DataError locale={locale} onRetry={retry} />
+      ) : anyLoading ? (
+        <LoadingSpinner locale={locale} />
+      ) : (
+        <>
       <div className="relative">
         <input
           type="text"
@@ -432,6 +451,8 @@ function SearchView({ locale, onViewDetail }) {
         <p className="text-gray-500 text-sm text-center py-12">
           {locale === "zh" ? "没有找到匹配结果" : "No results found"}
         </p>
+      )}
+        </>
       )}
     </div>
   );
@@ -504,20 +525,23 @@ function IntelligencePage() {
           </nav>
         </aside>
 
-        {/* Main content */}
+        {/* Main content — list stays mounted; detail renders as a full-screen
+            overlay above it (site-wide standard, 2026-08-24). Closing restores
+            scroll/tab/filter state with zero refetch. */}
         <main className="flex-1 p-4 sm:p-6 min-w-0">
-          {detailItem ? (
-            <IntelDetailModal item={detailItem} type={detailType} locale={locale} onClose={() => setDetailItem(null)} />
-          ) : (
-            <>
-              {activeNav === "overview" && <OverviewView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
-              {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type || "movie")} />}
-              {activeNav === "tv" && <TVView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type || "tv")} />}
-              {activeNav === "music" && <MusicView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type || "album")} />}
-              {activeNav === "search" && <SearchView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
-            </>
-          )}
+          <>
+            {activeNav === "overview" && <OverviewView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
+            {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type || "movie")} />}
+            {activeNav === "tv" && <TVView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type || "tv")} />}
+            {activeNav === "music" && <MusicView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type || "album")} />}
+            {activeNav === "search" && <SearchView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
+          </>
         </main>
+        {detailItem && (
+          <DetailOverlay onClose={() => setDetailItem(null)}>
+            <IntelDetailModal item={detailItem} type={detailType} locale={locale} onClose={() => setDetailItem(null)} />
+          </DetailOverlay>
+        )}
       </div>
 
       <SubscribeSection locale={locale} />

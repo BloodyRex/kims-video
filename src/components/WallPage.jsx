@@ -5,6 +5,7 @@ import { useLocale } from "../i18n";
 import { GENRE_ZH } from "./Cards";
 import { setCanonical } from "../services/seo";
 import WallDetailView from "./WallDetailView";
+import DetailOverlay from "./DetailOverlay";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -177,11 +178,6 @@ const WallPage = () => {
   const [detailItem, setDetailItem] = useState(null); // open WallDetailView when set
 
   const { todayStr, todayTs } = useMemo(todayInfo, []);
-
-  // Scroll back to top when opening a detail view
-  useEffect(() => {
-    if (detailItem) window.scrollTo({ top: 0 });
-  }, [detailItem]);
 
   useEffect(() => {
     let cancelled = false;
@@ -384,10 +380,6 @@ const WallPage = () => {
         <div className="max-w-4xl mx-auto px-4 py-16 text-center">
           <p className="text-gray-500 text-xs font-bold pixel-font">{t('wall.loading')}</p>
         </div>
-      ) : detailItem ? (
-        <div className="max-w-4xl mx-auto px-4 max-sm:px-3">
-          <WallDetailView item={detailItem} locale={locale} onClose={() => setDetailItem(null)} />
-        </div>
       ) : wallType === "tv" ? (
         <>
           {/* TV filter bar — simplified: status (追更中) + search */}
@@ -570,6 +562,14 @@ const WallPage = () => {
           <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
         </p>
       </footer>
+
+      {/* Detail overlay — full-screen above the wall (site-wide standard, 2026-08-24).
+          Closing restores scroll/filter state with zero refetch. */}
+      {detailItem && (
+        <DetailOverlay onClose={() => setDetailItem(null)}>
+          <WallDetailView item={detailItem} locale={locale} onClose={() => setDetailItem(null)} />
+        </DetailOverlay>
+      )}
     </div>
   );
 };
