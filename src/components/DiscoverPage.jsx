@@ -669,7 +669,7 @@ const DiscoverPage = () => {
       )}
 
       <div className="max-w-4xl mx-auto px-4 max-sm:px-3 pt-8 pb-16 text-center">
-        <Link to="/" className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all">{zh ? "← 获取属于你的 AI 推荐" : "← GET YOUR OWN AI PICKS"}</Link>
+        <Link to="/?search=1" className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all">{zh ? "← 获取属于你的 AI 推荐" : "← GET YOUR OWN AI PICKS"}</Link>
       </div>
 
       {/* Overlays */}

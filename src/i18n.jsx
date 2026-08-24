@@ -123,7 +123,7 @@ const messages = {
     "wall.next": "下一页 →",
 
     // ---- Footer ----
-    "footer.home": "主页搜索",
+    "footer.home": "AI 推荐",
     "footer.discover": "精选合集",
     "footer.intel": "全球影音",
     "footer.wall": "影视墙",
@@ -251,7 +251,7 @@ const messages = {
     "wall.next": "NEXT →",
 
     // ---- Footer ----
-    "footer.home": "Home",
+    "footer.home": "AI Search",
     "footer.discover": "Discover",
     "footer.intel": "Intel",
     "footer.wall": "Wall",

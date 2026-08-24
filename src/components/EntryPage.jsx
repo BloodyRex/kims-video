@@ -35,7 +35,7 @@ const CARDS = [
   {
     id: "wall", to: "/wall",
     h: "/entry/wall-h.png", v: "/entry/wall-v.png",
-    zh: "电影墙", en: "MOVIE WALL",
+    zh: "影视墙", en: "MOVIE WALL",
   },
 ];
 

@@ -61,7 +61,7 @@ const NewHomePage = () => {
   } = useMovieEngine();
 
   // 初始步骤：四宫格开屏（覆盖 engine 默认的 "input"）；
-  // 带 ?search=1 时直达 AI search 输入页（footer"主页搜索"链接目标）
+  // 带 ?search=1 时直达 AI search 输入页（footer"AI 推荐"链接目标）
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("search") === "1") {
