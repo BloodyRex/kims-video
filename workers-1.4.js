@@ -2151,6 +2151,14 @@ Movies:\n${JSON.stringify(candidates.map((m, i) => ({ index: i, title: m.title, 
 async function handleUnsubscribe(request, env) {
   const url = new URL(request.url);
   const email = url.searchParams.get("email") || "";
+  // Rex 2026-08-25: page language follows the subscriber record when readable
+  let unsubLocale = "zh";
+  try {
+    if (email && env.SUBSCRIBE_KV) {
+      const raw = await env.SUBSCRIBE_KV.get(`sub:${email}`);
+      if (raw && JSON.parse(raw)?.locale === "en") unsubLocale = "en";
+    }
+  } catch {}
 
   // POST: process unsubscribe
   if (request.method === "POST") {
@@ -2163,17 +2171,23 @@ async function handleUnsubscribe(request, env) {
       await env.SUBSCRIBE_KV.delete(`sub:${postEmail}`);
     }
     const html = `<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unsubscribed — Kim's Video</title></head>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${unsubLocale === "en" ? "Unsubscribed — Kim's Video" : "已取消订阅 — Kim's Video"}</title></head>
 <body style="margin:0;padding:0;background:#111;color:#eee;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh">
 <div style="text-align:center;max-width:400px;padding:30px">
   <div style="background:#ff00ff;padding:12px;text-align:center;border:4px solid #000;margin-bottom:20px">
     <h1 style="margin:0;font-size:16px;color:#000;text-transform:uppercase">KIM'S VIDEO</h1>
   </div>
+  ${unsubLocale === "en" ? `
+  <h2 style="color:#00ff00;font-size:18px">✅ Unsubscribed</h2>
+  <p style="color:#ccc;font-size:13px;line-height:1.5">You've been removed from the Kim's Video Daily Digest. You can resubscribe anytime at the website.</p>
+  <div style="text-align:center;margin-top:20px">
+    <a href="https://bloodyrex.xyz/intelligence" style="display:inline-block;background:#ffff00;color:#000;padding:10px 20px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase">Back to Kim's Video</a>
+  </div>` : `
   <h2 style="color:#00ff00;font-size:18px">✅ 已取消订阅</h2>
   <p style="color:#ccc;font-size:13px;line-height:1.5">您已成功取消 Kim's Video 每日影音情报摘要的订阅。如需再次订阅，可随时访问网站。</p>
   <div style="text-align:center;margin-top:20px">
     <a href="https://bloodyrex.xyz/intelligence" style="display:inline-block;background:#ffff00;color:#000;padding:10px 20px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase">返回 Kim's Video</a>
-  </div>
+  </div>`}
   <p style="font-size:10px;color:#666;margin-top:20px">Sent by Kim's Video · bloodyrex.xyz</p>
 </div></body></html>`;
     return new Response(html, { headers: { "Content-Type": "text/html;charset=utf-8" } });
@@ -2315,7 +2329,7 @@ async function handleSubscribe(request, env) {
         const result = await buildDigestHTML(env, today);
         digestHtml = result.html;
         whHeadline = result.headline || "";
-        await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html: result.html, date: result.date, headline: result.headline || "" }), { expirationTtl: 86400 });
+        await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html: result.html, htmlEn: result.htmlEn || "", date: result.date, headline: result.headline || "", headlineEn: result.headlineEn || "" }), { expirationTtl: 86400 });
       }
       const personalHtml = digestHtml.replace(
         /https:\/\/api\.bloodyrex\.xyz\/intelligence\/unsubscribe\?email=[^"'<>\s]*/g,
@@ -2338,31 +2352,46 @@ async function handleSubscribe(request, env) {
 }
 
 // ── Digest email builder: fetches rich data, returns ready-to-send HTML ──
-async function buildDigestHTML(env, now) {
-  now = now || intelToday();
+// Fetch all static JSON files — pre-fetched by daily pipeline, zero API cost.
+// Rex 2026-08-25: split out of buildDigestHTML so zh+en render from ONE fetch set
+// (8 fetches total, incl. wall-delta + tvwall-delta for the "new on the wall" section).
+async function fetchDigestData() {
   const BASE = "https://bloodyrex.xyz/api";
-
-  // Fetch all static JSON files — pre-fetched by daily pipeline, zero API cost
   const safeJson = async (result) => {
     if (result.status !== "fulfilled") return null;
     try { return await result.value.json(); } catch { return null; }
   };
 
-  const [digestR, overviewR, tvR, musicR, moviesR, gemsR] = await Promise.allSettled([
+  const [digestR, overviewR, tvR, musicR, moviesR, gemsR, wallDeltaR, tvWallDeltaR] = await Promise.allSettled([
     fetch(`${BASE}/digest.json`), fetch(`${BASE}/overview.json`),
     fetch(`${BASE}/tv.json`), fetch(`${BASE}/music.json`),
     fetch(`${BASE}/movies.json`), fetch(`${BASE}/hidden-gems.json`),
+    fetch(`${BASE}/wall-delta.json`), fetch(`${BASE}/tvwall-delta.json`),
   ]);
 
-  const dig = await safeJson(digestR) || {};
-  const overview = await safeJson(overviewR) || {};
-  const tvData = await safeJson(tvR) || {};
-  const musicData = await safeJson(musicR) || {};
-  const moviesData = await safeJson(moviesR) || {};
-  const gemsData = await safeJson(gemsR) || {};
+  return {
+    dig: (await safeJson(digestR)) || {},
+    overview: (await safeJson(overviewR)) || {},
+    tvData: (await safeJson(tvR)) || {},
+    musicData: (await safeJson(musicR)) || {},
+    moviesData: (await safeJson(moviesR)) || {},
+    gemsData: (await safeJson(gemsR)) || {},
+    wallDelta: (await safeJson(wallDeltaR)) || {},
+    tvWallDelta: (await safeJson(tvWallDeltaR)) || {},
+  };
+}
+
+// Render the digest for one locale ("zh" | "en"). Every data field falls back
+// zh→en or en→zh (headlineEn / whyWatchEn / tagsEn …) so a missing translated
+// string never blanks a section.
+function renderDigestHtml(d, now, locale) {
+  const en = locale === "en";
+  const L = (zhStr, enStr) => (en ? enStr : zhStr);
+  const pickTitle = (item) => (en ? (item.titleEn || item.title) : item.title);
+  const { dig, overview, tvData, musicData, moviesData, gemsData, wallDelta, tvWallDelta } = d;
 
   const stats = overview.stats || {};
-  const date = dig.date || overview.updated || now;
+  const date = d.dig.date || d.overview.updated || now;
 
   // ── Helpers ──
   const genreStr = (g) => Array.isArray(g) ? g.slice(0, 2).join(" / ") : (g || "");
@@ -2378,16 +2407,17 @@ async function buildDigestHTML(env, now) {
   const card = (inner, borderColor) => `<div style="background:#000;border:2px solid ${borderColor};padding:10px;margin:6px 0">${inner}</div>`;
 
   // ── Daily Digest section ──
-  const headline = dig.headline || "";
-  const summaryZh = dig.summary || "";
+  const headline = en ? (dig.headlineEn || dig.headline || "") : (dig.headline || "");
+  const summaryZh = en ? (dig.summaryEn || dig.summary || "") : (dig.summary || "");
   const trends = (dig.topTrends || []).slice(0, 5);
   const trendsHtml = trends.length
-    ? `<div style="margin:8px 0">${trends.map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:2px 7px;font-size:10px;font-weight:bold;margin:2px;text-transform:uppercase">${t.title}</span>`).join("")}</div>`
+    ? `<div style="margin:8px 0">${trends.map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:2px 7px;font-size:10px;font-weight:bold;margin:2px;text-transform:uppercase">${pickTitle(t)}</span>`).join("")}</div>`
     : "";
   // Industry highlights (from digest.json) — bullet list under the summary
-  const highlights = (dig.industryHighlights || []).slice(0, 4);
+  const highlightsRaw = (dig.industryHighlights || []).slice(0, 4);
+  const highlights = highlightsRaw.map(h => (en ? (h.en || h.text) : h.text));
   const highlightsHtml = highlights.length
-    ? `<ul style="margin:8px 0 0;padding-left:16px">${highlights.map(h => `<li style="font-size:11px;color:#aaa;line-height:1.6">${h.text}</li>`).join("")}</ul>`
+    ? `<ul style="margin:8px 0 0;padding-left:16px">${highlights.map(h => `<li style="font-size:11px;color:#aaa;line-height:1.6">${h}</li>`).join("")}</ul>`
     : "";
 
   // ── Release Calendar — stacked, same sources as website, sorted, deduped ──
@@ -2411,37 +2441,43 @@ async function buildDigestHTML(env, now) {
     .slice(0, 6);
   const calendarRow = (item) => {
     const d = item._days;
-    const label = d === 0 ? "今日" : d <= 3 ? `${d}天后` : `${d}天`;
+    const label = d === 0 ? L("今日", "TODAY") : d <= 3 ? (en ? `${d}D` : `${d}天后`) : (en ? `${d}D` : `${d}天`);
     const g = genreStr(item.genre);
-    return `<tr><td style="padding:2px 6px;font-size:10px;color:#ff00ff;white-space:nowrap;width:36px;background:#111">${label}</td><td style="padding:2px 6px;font-size:12px;color:#fff;background:#111">${item.title || ""}</td><td style="padding:2px 6px;font-size:10px;color:#999;text-align:right;background:#111">${g}</td></tr>`;
+    return `<tr><td style="padding:2px 6px;font-size:10px;color:#ff00ff;white-space:nowrap;width:36px;background:#111">${label}</td><td style="padding:2px 6px;font-size:12px;color:#fff;background:#111">${pickTitle(item) || ""}</td><td style="padding:2px 6px;font-size:10px;color:#999;text-align:right;background:#111">${g}</td></tr>`;
   };
   const calendarHtml = (movieCalendar.length || tvCalendar.length)
     ? `<div style="background:#000;border:2px dashed #444;padding:8px;margin:6px 0">
-  <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 电影排片</p>
-  <table style="width:100%;border-collapse:collapse">${movieCalendar.length ? movieCalendar.map(calendarRow).join("") : '<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">暂无</td></tr>'}</table>
+  <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 ${L("电影排片", "MOVIE CALENDAR")}</p>
+  <table style="width:100%;border-collapse:collapse">${movieCalendar.length ? movieCalendar.map(calendarRow).join("") : `<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">${L("暂无", "None")}</td></tr>`}</table>
   <div style="border-top:1px dashed #333;margin:8px 0"></div>
-  <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 剧集排片</p>
-  <table style="width:100%;border-collapse:collapse">${tvCalendar.length ? tvCalendar.map(calendarRow).join("") : '<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">暂无</td></tr>'}</table>
+  <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 ${L("剧集排片", "TV CALENDAR")}</p>
+  <table style="width:100%;border-collapse:collapse">${tvCalendar.length ? tvCalendar.map(calendarRow).join("") : `<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">${L("暂无", "None")}</td></tr>`}</table>
 </div>
 <div style="text-align:right;margin:4px 0">
-  <a href="https://bloodyrex.xyz/intelligence/coming?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ff00ff">查看全部排片 →</a>
+  <a href="https://bloodyrex.xyz/intelligence/coming?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ff00ff">${L("查看全部排片 →", "Full calendar →")}</a>
 </div>`
     : "";
+
+  // ── Wall additions — today's new movies/TV on the wall (delta files; section
+  // renders only when there IS an increment, so quiet days add zero length) ──
+  const wallNewMovies = (wallDelta.movies || []).slice(0, 4);
+  const wallNewShows = (tvWallDelta.shows || []).slice(0, 4);
+  const hasWallNews = wallNewMovies.length > 0 || wallNewShows.length > 0;
 
   // ── Movie picks — AI-curated from today's movie intelligence (gems, mediaType != tv) ──
   const gemsAll = gemsData.gems || [];
   const moviePicks = gemsAll.filter(g => g.mediaType !== "tv").slice(0, 5);
   const moviePicksHtml = moviePicks.length
     ? moviePicks.map(g => {
-      const gtags = (g.tags || []).slice(0, 3).map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:1px 5px;font-size:9px;font-weight:bold;margin:2px 2px 0 0">${t}</span>`).join("");
+      const gtags = ((en ? (g.tagsEn || g.tags) : g.tags) || []).slice(0, 3).map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:1px 5px;font-size:9px;font-weight:bold;margin:2px 2px 0 0">${t}</span>`).join("");
       const poster = thumb(g.poster);
       return `<div style="background:#000;border:2px solid #ff00ff;padding:8px;margin:6px 0">
   <table style="width:100%"><tr>
     ${poster ? `<td style="width:92px;vertical-align:top;padding-right:8px"><img src="${poster}" alt="" style="width:92px;height:138px;border:1px solid #333;display:block"></td>` : ""}
     <td style="vertical-align:top">
-      <div style="font-size:14px;color:#ff00ff;font-weight:bold"><a href="https://bloodyrex.xyz/?from=digest&r=${g.tmdbId}" style="color:#ff00ff;text-decoration:none">${g.title || ""}</a></div>
-      <div style="font-size:11px;color:#999;margin-top:2px">评分 ${g.rating || 0}/10${g.year ? ` · ${g.year}` : ""}</div>
-      ${g.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${g.whyWatch}</div>` : (g.summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${g.summary.slice(0, 80)}</div>` : "")}
+      <div style="font-size:14px;color:#ff00ff;font-weight:bold"><a href="https://bloodyrex.xyz/?from=digest&r=${g.tmdbId}" style="color:#ff00ff;text-decoration:none">${pickTitle(g) || ""}</a></div>
+      <div style="font-size:11px;color:#999;margin-top:2px">${L("评分", "Rated")} ${g.rating || 0}/10${g.year ? ` · ${g.year}` : ""}</div>
+      ${g.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${en ? (g.whyWatchEn || g.whyWatch) : g.whyWatch}</div>` : (g.summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${(en ? (g.summaryEn || g.summary) : g.summary).slice(0, 80)}</div>` : "")}
       ${gtags ? `<div style="margin-top:4px">${gtags}</div>` : ""}
     </td>
   </tr></table>
@@ -2456,15 +2492,15 @@ async function buildDigestHTML(env, now) {
       const g = genreStr(s.genre);
       const se = s.season ? `S${s.season}${s.episode ? `E${s.episode}` : ""}` : "";
       const tag = se ? `${se} · ` : "";
-      const gtags = (s.tags || []).slice(0, 3).map(t => `<span style="display:inline-block;background:#00ffff;color:#000;padding:1px 5px;font-size:9px;font-weight:bold;margin:2px 2px 0 0">${t}</span>`).join("");
+      const gtags = ((en ? (s.tagsEn || s.tags) : s.tags) || []).slice(0, 3).map(t => `<span style="display:inline-block;background:#00ffff;color:#000;padding:1px 5px;font-size:9px;font-weight:bold;margin:2px 2px 0 0">${t}</span>`).join("");
       const poster = thumb(s.poster);
       return `<div style="background:#000;border:2px solid #00ffff;padding:8px;margin:6px 0">
   <table style="width:100%"><tr>
     ${poster ? `<td style="width:92px;vertical-align:top;padding-right:8px"><img src="${poster}" alt="" style="width:92px;height:138px;border:1px solid #333;display:block"></td>` : ""}
     <td style="vertical-align:top">
-      <div style="font-size:14px;color:#00ffff;font-weight:bold"><a href="https://bloodyrex.xyz/?from=digest&r=${s.tmdbId}&type=tv" style="color:#00ffff;text-decoration:none">${s.title || ""}</a></div>
-      <div style="font-size:11px;color:#999;margin-top:2px">${tag}${g} · 评分 ${s.rating || 0}/10</div>
-      ${s.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s.whyWatch}</div>` : (s.summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s.summary.slice(0, 80)}</div>` : "")}
+      <div style="font-size:14px;color:#00ffff;font-weight:bold"><a href="https://bloodyrex.xyz/?from=digest&r=${s.tmdbId}&type=tv" style="color:#00ffff;text-decoration:none">${pickTitle(s) || ""}</a></div>
+      <div style="font-size:11px;color:#999;margin-top:2px">${tag}${g} · ${L("评分", "Rated")} ${s.rating || 0}/10</div>
+      ${s.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${en ? (s.whyWatchEn || s.whyWatch) : s.whyWatch}</div>` : (s.summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${(en ? (s.summaryEn || s.summary) : s.summary).slice(0, 80)}</div>` : "")}
       ${gtags ? `<div style="margin-top:4px">${gtags}</div>` : ""}
     </td>
   </tr></table>
@@ -2475,10 +2511,10 @@ async function buildDigestHTML(env, now) {
   // ── Music Section (enhanced: multi-category with highlights) ──
   const musicPicks = musicData.picks || [];
   const musicCategories = [
-    { id: "trending", label: "🔥 热门趋势", enLabel: "Trending", color: "#ff00ff" },
-    { id: "editor", label: "⭐ 编辑推荐", enLabel: "Editor's Pick", color: "#ffff00" },
-    { id: "hidden", label: "💎 隐藏宝石", enLabel: "Hidden Gem", color: "#00ffff" },
-    { id: "world", label: "🌍 环球音乐", enLabel: "World Music", color: "#00ff00" },
+    { id: "trending", label: L("🔥 热门趋势", "🔥 Trending"), color: "#ff00ff" },
+    { id: "editor", label: L("⭐ 编辑推荐", "⭐ Editor's Pick"), color: "#ffff00" },
+    { id: "hidden", label: L("💎 隐藏宝石", "💎 Hidden Gem"), color: "#00ffff" },
+    { id: "world", label: L("🌍 环球音乐", "🌍 World Music"), color: "#00ff00" },
   ];
   const musicHtml = musicPicks.length
     ? musicCategories.map(cat => {
@@ -2488,12 +2524,29 @@ async function buildDigestHTML(env, now) {
   <p style="font-size:11px;color:${cat.color};font-weight:bold;margin:0 0 4px;text-transform:uppercase">${cat.label}</p>
   ${items.map(a => {
     const hl = a.highlight ? ` — ${a.highlight}` : "";
-    const l = a.listeners ? ` · ${(a.listeners/1000).toFixed(0)}k 听众` : "";
+    const l = a.listeners ? ` · ${(a.listeners/1000).toFixed(0)}k ${L("听众", "listeners")}` : "";
     return `<div style="font-size:12px;color:#ccc;line-height:1.5;padding:2px 0"><strong style="color:#fff">${a.title || ""}</strong>${a.artist ? ` <span style="color:#999">${a.artist}</span>` : ""}${hl}</div>`;
   }).join("")}
 </div>`;
     }).join("")
     : "";
+
+  // ── Wall additions section (movies + TV, only when there's an increment) ──
+  const wallNewsHtml = !hasWallNews ? "" : `
+  ${title(L("🧱 影视墙今日新增", "🧱 NEW ON THE WALL"))}
+  <div style="background:#000;border:2px solid #00ff00;padding:10px;margin:6px 0">
+    ${wallNewMovies.length ? `<p style="font-size:11px;color:#00ff00;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 ${L("电影", "MOVIES")}</p>
+    <table style="width:100%;border-collapse:collapse">${wallNewMovies.map(m => `<tr><td style="padding:2px 4px;font-size:12px;color:#fff;background:#111"><a href="https://bloodyrex.xyz/wall?utm_source=digest&utm_medium=email&utm_campaign=daily" style="color:#fff;text-decoration:none">${pickTitle(m)}</a></td><td style="padding:2px 6px;font-size:10px;color:#999;text-align:right;background:#111;white-space:nowrap">${m.releaseDate || m.year || ""}</td></tr>`).join("")}</table>` : ""}
+    ${wallNewShows.length ? `${wallNewMovies.length ? '<div style="border-top:1px dashed #333;margin:8px 0"></div>' : ""}
+    <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 ${L("剧集", "TV")}</p>
+    <table style="width:100%;border-collapse:collapse">${wallNewShows.map(s => {
+      const se = s.season ? ` S${s.season}` : "";
+      return `<tr><td style="padding:2px 4px;font-size:12px;color:#fff;background:#111"><a href="https://bloodyrex.xyz/wall?type=tv&utm_source=digest&utm_medium=email&utm_campaign=daily" style="color:#fff;text-decoration:none">${pickTitle(s)}${se}</a></td><td style="padding:2px 6px;font-size:10px;color:#999;text-align:right;background:#111;white-space:nowrap">${s.latestAirDate || s.year || ""}</td></tr>`;
+    }).join("")}</table>` : ""}
+  </div>
+  <div style="text-align:right;margin:4px 0">
+    <a href="https://bloodyrex.xyz/wall?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#00ff00">${L("浏览完整影视墙 →", "Browse the full wall →")}</a>
+  </div>`;
 
   // ── Assemble full HTML ──
   const unsubUrl = `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=`;
@@ -2508,13 +2561,13 @@ async function buildDigestHTML(env, now) {
   <!-- Header -->
   <div style="background:#ff00ff;padding:14px;text-align:center;border:4px solid #000;margin-bottom:16px">
     <h1 style="margin:0;font-size:18px;color:#000;text-transform:uppercase;letter-spacing:2px">KIM'S VIDEO · ${now}</h1>
-    <p style="margin:4px 0 0;font-size:10px;color:#000;text-transform:uppercase;letter-spacing:1px">每日影音情报摘要${date && date !== now ? ` · 数据截至 ${date}` : ""}</p>
+    <p style="margin:4px 0 0;font-size:10px;color:#000;text-transform:uppercase;letter-spacing:1px">${L("每日影音情报摘要", "Daily Entertainment Digest")}${date && date !== now ? ` · ${L("数据截至", "data as of")} ${date}` : ""}</p>
   </div>
 
   <!-- Daily Digest -->
   ${headline || summaryZh ? `
   <div style="background:#000;border:4px solid #ffff00;padding:14px;margin-bottom:16px">
-    ${title("📰 每日摘要")}
+    ${title(L("📰 每日摘要", "📰 DAILY DIGEST"))}
     ${headline ? `<h2 style="margin:0;font-size:15px;color:#ffff00;line-height:1.4">${headline}</h2>` : ""}
     ${summaryZh ? `<p style="font-size:12px;color:#ccc;line-height:1.6;margin:6px 0 0">${summaryZh}</p>` : ""}
     ${highlightsHtml}
@@ -2523,52 +2576,57 @@ async function buildDigestHTML(env, now) {
 
   <!-- Release Calendar (Movies + TV) -->
   ${calendarHtml ? `
-  ${title("📅 排片日历")}
+  ${title(L("📅 排片日历", "📅 RELEASE CALENDAR"))}
   ${calendarHtml}` : ""}
 
   ${calendarHtml ? divider : ""}
 
   <!-- Movie Picks (daily AI-curated) -->
   ${moviePicksHtml ? `
-  ${title("🎬 今日电影推荐")}
+  ${title(L("🎬 今日电影推荐", "🎬 TODAY'S MOVIE PICKS"))}
   ${moviePicksHtml}
   <div style="text-align:right;margin:4px 0">
-    <a href="https://bloodyrex.xyz/intelligence/movies?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ff00ff">查看全部电影 →</a>
+    <a href="https://bloodyrex.xyz/intelligence/movies?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ff00ff">${L("查看全部电影 →", "All movies →")}</a>
   </div>` : ""}
 
   ${moviePicksHtml ? divider : ""}
 
   <!-- TV Picks (premieres this week) -->
   ${tvPicksHtml ? `
-  ${title("📺 今日剧集推荐")}
+  ${title(L("📺 今日剧集推荐", "📺 TODAY'S TV PICKS"))}
   ${tvPicksHtml}
   <div style="text-align:right;margin:4px 0">
-    <a href="https://bloodyrex.xyz/intelligence/tv?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#00ffff">查看全部剧集 →</a>
+    <a href="https://bloodyrex.xyz/intelligence/tv?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#00ffff">${L("查看全部剧集 →", "All TV →")}</a>
   </div>` : ""}
 
   ${tvPicksHtml ? divider : ""}
 
   <!-- Music Section (enhanced: multi-category with highlights) -->
   ${musicHtml ? `
-  ${title("💿 本周音乐精选")}
+  ${title(L("💿 本周音乐精选", "💿 THIS WEEK'S MUSIC"))}
   <div style="background:#000;border:2px solid #ffff00;padding:10px;margin:6px 0">
     ${musicHtml}
   </div>
   <div style="text-align:right;margin:4px 0">
-    <a href="https://bloodyrex.xyz/intelligence/music?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ffff00">查看全部专辑 →</a>
+    <a href="https://bloodyrex.xyz/intelligence/music?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ffff00">${L("查看全部专辑 →", "All albums →")}</a>
   </div>` : ""}
 
   ${musicHtml ? divider : ""}
 
+  <!-- New on the wall (only on days with additions) -->
+  ${wallNewsHtml}
+
+  ${wallNewsHtml ? divider : ""}
+
   <!-- CTA -->
   <div style="text-align:center;margin:16px 0">
-    <a href="https://bloodyrex.xyz/intelligence?utm_source=digest&utm_medium=email&utm_campaign=daily" style="display:inline-block;background:#ffff00;color:#000;padding:12px 28px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase;letter-spacing:1px">查看完整情报</a>
+    <a href="https://bloodyrex.xyz/intelligence?utm_source=digest&utm_medium=email&utm_campaign=daily" style="display:inline-block;background:#ffff00;color:#000;padding:12px 28px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase;letter-spacing:1px">${L("查看完整情报", "FULL INTELLIGENCE")}</a>
   </div>
 
   <!-- Footer -->
   <div style="border-top:2px dashed #333;margin:16px 0;padding-top:12px;text-align:center">
     <p style="font-size:10px;color:#666;margin:0 0 4px">
-      <a href="${unsubUrl}" style="color:#666;text-decoration:underline">取消订阅</a>
+      <a href="${unsubUrl}" style="color:#666;text-decoration:underline">${L("取消订阅", "Unsubscribe")}</a>
       <span style="color:#444"> · </span>
       <a href="https://bloodyrex.xyz" style="color:#666">bloodyrex.xyz</a>
     </p>
@@ -2577,7 +2635,24 @@ async function buildDigestHTML(env, now) {
 
 </div></body></html>`;
 
-  return { html, date, stats, headline: dig.headline || "" };
+  return { html, date, stats, headline: dig.headline || "", headlineEn: dig.headlineEn || dig.headline || "" };
+}
+
+// ── Public builder: one data fetch, render both locales ──
+// Returns { zh: {...}, en: {...} } plus shared date/headline fields.
+async function buildDigestHTML(env, now) {
+  now = now || intelToday();
+  const data = await withTimeout(fetchDigestData(), 45000, "fetchDigestData");
+  const zh = renderDigestHtml(data, now, "zh");
+  const enResult = renderDigestHtml(data, now, "en");
+  return {
+    html: zh.html,
+    htmlEn: enResult.html,
+    date: zh.date,
+    stats: zh.stats,
+    headline: zh.headline,
+    headlineEn: enResult.headline,
+  };
 }
 async function handleSendDigest(request, env) {
   const corsHeaders = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "POST, OPTIONS" };
@@ -2641,7 +2716,7 @@ async function sendDigestToAll(env) {
 
   // ── Build or retrieve cached digest (generated once per day) ──
 
-  let html, date, headline = "";
+  let html, htmlEn, date, headline = "", headlineEn = "";
   let rebuildCache = false;
   const cachedDigest = await env.SUBSCRIBE_KV.get(`digest:${today}`);
   if (cachedDigest) {
@@ -2657,8 +2732,10 @@ async function sendDigestToAll(env) {
     } catch {}
     if (!rebuildCache) {
       html = parsed.html;
+      htmlEn = parsed.htmlEn || parsed.html; // caches from before the bilingual build fall back to zh
       date = parsed.date;
       headline = parsed.headline || "";
+      headlineEn = parsed.headlineEn || parsed.headline || "";
     }
   }
   if (!html) {
@@ -2676,8 +2753,10 @@ async function sendDigestToAll(env) {
       return { ok: false, sent: 0, error: "digest build failed", attemptCount };
     }
     html = result.html;
+    htmlEn = result.htmlEn || result.html;
     date = result.date;
     headline = result.headline || "";
+    headlineEn = result.headlineEn || result.headline || "";
     // Sanity check: if overview returned all-zero stats, TMDB likely failed
     // Don't cache bad data; let retry rebuild fresh
     if (!result.stats?.moviesReleased && !result.stats?.tvAiringThisWeek) {
@@ -2687,30 +2766,47 @@ async function sendDigestToAll(env) {
       return { ok: false, sent: 0, error: "overview data empty (TMDB likely failed)", attemptCount };
     }
     // Cache digest content for 24h so all sends on the same day use identical content
-    await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html, date, headline }), { expirationTtl: 172800 });
+    await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html, htmlEn, date, headline, headlineEn }), { expirationTtl: 172800 });
   }
 
-  // ── Send loop: batch via Resend /emails/batch (1 subrequest per 100 emails,
-  // vs 2-3 per email before) — keeps us far under the 50-subrequest cap as the
-  // subscriber list grows. Emails are the KV keys themselves ("sub:xxx@yyy"),
-  // so no per-email KV read is needed. Per-subscriber lastSentAt write removed
-  // (had no consumers). ──
-  let sent = 0;
-  const BATCH_SIZE = 100;
-  const emails = [];
+  // ── Send loop: batch via Resend /emails/batch (1 subrequest per 100 emails).
+  // Rex 2026-08-25 bilingual: subscriber records store { locale } — group emails
+  // by language and send each group its HTML. KV GET per subscriber is capped at
+  // LOCALE_READ_CAP (free-plan subrequest budget is 50/invocation); past the cap
+  // we stop reading and default to zh so sends never fail on scale. ──
+  const LOCALE_READ_CAP = 35;
+  const zhEmails = [];
+  const enEmails = [];
+  let localeReads = 0;
   for (const key of list.keys) {
     const email = key.name.startsWith("sub:") ? key.name.slice(4) : key.name;
     if (!email || !email.includes("@")) continue;
-    emails.push({
-      from: "Kim's Video <digest@bloodyrex.xyz>",
-      to: email,
-      subject: headline ? `🎬 ${headline} · Kim's Video ${today}` : `Kim's Video 每日影音情报 · ${today}`,
-      html: html.replace(
-        /https:\/\/api\.bloodyrex\.xyz\/intelligence\/unsubscribe\?email=[^"'<>\s]*/g,
-        `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(email)}`
-      ),
-    });
+    let loc = "zh";
+    if (localeReads < LOCALE_READ_CAP) {
+      try {
+        const raw = await env.SUBSCRIBE_KV.get(key.name);
+        localeReads++;
+        const parsedSub = raw ? JSON.parse(raw) : null;
+        if (parsedSub?.locale === "en") loc = "en";
+      } catch {}
+    }
+    (loc === "en" ? enEmails : zhEmails).push(email);
   }
+  const buildEmail = (email, subjHeadline, bodyHtml) => ({
+    from: "Kim's Video <digest@bloodyrex.xyz>",
+    to: email,
+    subject: subjHeadline ? `🎬 ${subjHeadline} · Kim's Video ${today}` : `Kim's Video 每日影音情报 · ${today}`,
+    html: bodyHtml.replace(
+      /https:\/\/api\.bloodyrex\.xyz\/intelligence\/unsubscribe\?email=[^"'<>\s]*/g,
+      `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(email)}`
+    ),
+  });
+  const emails = [
+    ...zhEmails.map(e => buildEmail(e, headline, html)),
+    ...enEmails.map(e => buildEmail(e, headlineEn || headline, htmlEn)),
+  ];
+  let sent = 0;
+  const BATCH_SIZE = 100;
   for (let i = 0; i < emails.length; i += BATCH_SIZE) {
     const chunk = emails.slice(i, i + BATCH_SIZE);
     try {
@@ -2907,7 +3003,11 @@ export default {
           const today = intelToday();
           const result = await withTimeout(buildDigestHTML(env, today), 50000, "buildDigestHTML");
           if (!result?.html) return Response.json({ error: "digest build failed" }, { status: 500, headers: corsHeaders });
-          const personalHtml = result.html.replace(
+          // Rex 2026-08-25 bilingual test: body.locale picks the variant (default zh)
+          const isEn = tb.locale === "en";
+          const pickHtml = (isEn ? (result.htmlEn || result.html) : result.html);
+          const subjHeadline = isEn ? (result.headlineEn || result.headline) : result.headline;
+          const personalHtml = pickHtml.replace(
             /https:\/\/api\.bloodyrex\.xyz\/intelligence\/unsubscribe\?email=[^"'<>\s]*/g,
             `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(tb.email)}`
           );
@@ -2917,7 +3017,7 @@ export default {
             body: JSON.stringify({
               from: "Kim's Video <digest@bloodyrex.xyz>",
               to: tb.email,
-              subject: result.headline ? `🎬 ${result.headline} · Kim's Video ${today}（测试）` : `Kim's Video 每日影音情报 · ${today}（测试）`,
+              subject: subjHeadline ? `🎬 ${subjHeadline} · Kim's Video ${today}（测试）` : `Kim's Video 每日影音情报 · ${today}（测试）`,
               html: personalHtml,
             }),
           });
