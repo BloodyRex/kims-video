@@ -185,17 +185,18 @@ JSON-LD（WebSite + SearchAction + 详情页）、OG 标签、hreflang（zh/en/x
 
 MusicBrainz 近 30 天新发行（3 页×100）→ Last.fm 歌手热度过滤（listeners≥500，`intelFilterByArtistPopularity`）→ 候选 18 条 → POST `/intelligence/music/v2` AI 精选 15 条（4 分类：热门趋势/编辑推荐/隐藏宝石/环球音乐，带 highlight 与 listeners）。
 
-### 6.7 每日邮件 digest（buildDigestHTML，零 TMDB 调用）
+### 6.7 每日邮件 digest（fetchDigestData + renderDigestHtml，零 TMDB 调用）
 
-读 6 个静态 JSON（digest/overview/tv/music/movies/hidden-gems）渲染 5 板块：
+`fetchDigestData` 读 8 个静态 JSON（digest/overview/tv/music/movies/hidden-gems/wall-delta/tvwall-delta），一次取数；`renderDigestHtml(data, now, locale)` 按语言渲染（zh/en 各一份，字段缺失时 zh↔en 回退）。2026-08-25 起为双语版：
 
-1. **每日摘要**：DeepSeek 生成的 headline + summary + topTrends 标签（AI 未输出时后端用当日 trending 程序化兜底；DeepSeek 整体失败时 catch 仍返回程序化 topTrends）；
+1. **每日摘要**：headline(+En) + summary(+En) + industryHighlights 要点 bullet + topTrends 标签（AI 失败时程序化兜底）；
 2. **影视日历**：未来 30 天排片（电影 6 + 剧集 6，daysUntil 排序）；
-3. **今日电影推荐**：hidden-gems 中 mediaType≠tv 的前 5（海报 + 评分 + AI 推荐语 + 标签）；
-4. **今日剧集推荐**：hidden-gems 中 mediaType=tv 的前 5（含 S/E）；
-5. **音乐精选**：4 分类各 2 首。
+3. **今日电影推荐**：hidden-gems 中 mediaType≠tv 的前 5（92px 海报 + 评分 + whyWatch(+En) + tags(+En)，标题链 `/?from=digest&r={id}` 直达详情）；
+4. **今日剧集推荐**：mediaType=tv 的前 5（含 S/E，链接加 `&type=tv`）；
+5. **音乐精选**：4 分类各 2 首；
+6. **🧱 影视墙今日新增**（条件板块）：wall-delta 电影 + tvwall-delta 剧集各前 4，**仅当天有增量才渲染**。
 
-每板块底部"查看全部 →"链接跳对应情报页；海报一律经 poster-proxy。digest 端点 DeepSeek 调用含 1 次重试（2 次尝试，间隔 1.2s）。
+所有外链带 `utm_source=digest&utm_medium=email&utm_campaign=daily`；海报一律 poster-proxy（w185）；Header 显示发送日期（数据非当日时附"数据截至 X"）。**Subject = 当日头条**：`🎬 {headline} · Kim's Video {date}`。digest 端点 DeepSeek 调用含 1 次重试。
 
 ### 6.8 影视墙构建（buildWall，流水线内）
 
@@ -224,10 +225,11 @@ tasks 顺序（刻意设计）：**movies → tv → coming → weekly → hidde
 
 ## 8. 邮件系统
 
-- 订阅：情报页表单 → POST subscribe → KV 存 `sub:{email}` → 立即回发确认邮件 + 当日 digest（含个性化退订链接）。
-- 发送：`/intelligence/send-digest` 遍历 `sub:` 前缀全部 key，逐封发送（Resend），当日 KV 去重（digestStatus），失败自动重试（attemptCount）；digest HTML 按日期缓存 24h 保证同日一致。
-- 退订：邮件底部唯一链接 → Worker 渲染 HTML 退订页。
-- 新订阅者欢迎邮件复用 buildDigestHTML 同一模板。
+- 订阅：情报页/订阅区表单 → POST subscribe → KV 存 `sub:{email}`（含 `locale`，取自用户当前界面语言）→ 立即回发该语言的确认邮件 + 当日 digest（个性化退订链接）。
+- 发送（双语）：`/intelligence/send-digest` 遍历 `sub:` 前缀 key，逐个读 KV 取 locale 分组（**读取上限 35 个**——免费版 50 子请求预算保护，超限默认 zh），zh/en 两组分别批量经 Resend 发送；当日 KV 去重（digestStatus），缓存同时存 html + htmlEn + 双语 headline；digest HTML 按日期缓存 24h 保证同日一致。
+- 测试：`send-test` 支持请求体 `"locale":"en"` 指定语言预览。
+- 退订：邮件底部唯一链接 → Worker 渲染退订页（**页面语言跟随订阅记录 locale**）。
+- 新订阅者欢迎邮件复用同一模板（当前发中文版）。
 
 ---
 
