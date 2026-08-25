@@ -2305,14 +2305,17 @@ async function handleSubscribe(request, env) {
   if (env.RESEND_API_KEY && env.SUBSCRIBE_KV) {
     try {
       const today = intelToday();
-      let digestHtml;
+      let digestHtml, whHeadline = "";
       const cachedDigest = await env.SUBSCRIBE_KV.get(`digest:${today}`);
       if (cachedDigest) {
-        digestHtml = JSON.parse(cachedDigest).html;
+        const parsed = JSON.parse(cachedDigest);
+        digestHtml = parsed.html;
+        whHeadline = parsed.headline || "";
       } else {
         const result = await buildDigestHTML(env, today);
         digestHtml = result.html;
-        await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html: result.html, date: result.date }), { expirationTtl: 86400 });
+        whHeadline = result.headline || "";
+        await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html: result.html, date: result.date, headline: result.headline || "" }), { expirationTtl: 86400 });
       }
       const personalHtml = digestHtml.replace(
         /https:\/\/api\.bloodyrex\.xyz\/intelligence\/unsubscribe\?email=[^"'<>\s]*/g,
@@ -2324,7 +2327,7 @@ async function handleSubscribe(request, env) {
         body: JSON.stringify({
           from: "Kim's Video <digest@bloodyrex.xyz>",
           to: email,
-          subject: `Kim's Video 每日影音情报 · ${today}`,
+          subject: whHeadline ? `🎬 ${whHeadline} · Kim's Video ${today}` : `Kim's Video 每日影音情报 · ${today}`,
           html: personalHtml,
         }),
       });
@@ -2365,10 +2368,9 @@ async function buildDigestHTML(env, now) {
   const genreStr = (g) => Array.isArray(g) ? g.slice(0, 2).join(" / ") : (g || "");
   const thumb = (url) => {
     if (!url) return "";
-    // Route through poster-proxy: TMDB image host is unreachable from CN networks
-    // (direct w92 URLs fail in email clients → all posters broken). Proxy keeps
-    // them loadable via api.bloodyrex.xyz (Cloudflare edge).
-    const small = url.replace("/w500/", "/w92/");
+    // Route through poster-proxy: TMDB image host is unreachable from CN networks.
+    // w185 balances email size vs visual impact (46px→92px cards in 560px layout).
+    const small = url.replace("/w500/", "/w185/");
     return `https://api.bloodyrex.xyz/poster-proxy?url=${encodeURIComponent(small)}`;
   };
   const title = (text) => `<div style="display:flex;align-items:center;gap:6px;margin:12px 0 8px"><span style="font-size:16px;font-weight:bold;color:#ffff00;text-transform:uppercase">${text}</span></div>`;
@@ -2381,6 +2383,11 @@ async function buildDigestHTML(env, now) {
   const trends = (dig.topTrends || []).slice(0, 5);
   const trendsHtml = trends.length
     ? `<div style="margin:8px 0">${trends.map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:2px 7px;font-size:10px;font-weight:bold;margin:2px;text-transform:uppercase">${t.title}</span>`).join("")}</div>`
+    : "";
+  // Industry highlights (from digest.json) — bullet list under the summary
+  const highlights = (dig.industryHighlights || []).slice(0, 4);
+  const highlightsHtml = highlights.length
+    ? `<ul style="margin:8px 0 0;padding-left:16px">${highlights.map(h => `<li style="font-size:11px;color:#aaa;line-height:1.6">${h.text}</li>`).join("")}</ul>`
     : "";
 
   // ── Release Calendar — stacked, same sources as website, sorted, deduped ──
@@ -2417,7 +2424,7 @@ async function buildDigestHTML(env, now) {
   <table style="width:100%;border-collapse:collapse">${tvCalendar.length ? tvCalendar.map(calendarRow).join("") : '<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">暂无</td></tr>'}</table>
 </div>
 <div style="text-align:right;margin:4px 0">
-  <a href="https://bloodyrex.xyz/intelligence/coming" style="font-size:11px;color:#ff00ff">查看全部排片 →</a>
+  <a href="https://bloodyrex.xyz/intelligence/coming?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ff00ff">查看全部排片 →</a>
 </div>`
     : "";
 
@@ -2430,9 +2437,9 @@ async function buildDigestHTML(env, now) {
       const poster = thumb(g.poster);
       return `<div style="background:#000;border:2px solid #ff00ff;padding:8px;margin:6px 0">
   <table style="width:100%"><tr>
-    ${poster ? `<td style="width:46px;vertical-align:top;padding-right:8px"><img src="${poster}" alt="" style="width:46px;height:69px;border:1px solid #333;display:block"></td>` : ""}
+    ${poster ? `<td style="width:92px;vertical-align:top;padding-right:8px"><img src="${poster}" alt="" style="width:92px;height:138px;border:1px solid #333;display:block"></td>` : ""}
     <td style="vertical-align:top">
-      <div style="font-size:14px;color:#ff00ff;font-weight:bold">${g.title || ""}</div>
+      <div style="font-size:14px;color:#ff00ff;font-weight:bold"><a href="https://bloodyrex.xyz/?from=digest&r=${g.tmdbId}" style="color:#ff00ff;text-decoration:none">${g.title || ""}</a></div>
       <div style="font-size:11px;color:#999;margin-top:2px">评分 ${g.rating || 0}/10${g.year ? ` · ${g.year}` : ""}</div>
       ${g.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${g.whyWatch}</div>` : (g.summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${g.summary.slice(0, 80)}</div>` : "")}
       ${gtags ? `<div style="margin-top:4px">${gtags}</div>` : ""}
@@ -2453,9 +2460,9 @@ async function buildDigestHTML(env, now) {
       const poster = thumb(s.poster);
       return `<div style="background:#000;border:2px solid #00ffff;padding:8px;margin:6px 0">
   <table style="width:100%"><tr>
-    ${poster ? `<td style="width:46px;vertical-align:top;padding-right:8px"><img src="${poster}" alt="" style="width:46px;height:69px;border:1px solid #333;display:block"></td>` : ""}
+    ${poster ? `<td style="width:92px;vertical-align:top;padding-right:8px"><img src="${poster}" alt="" style="width:92px;height:138px;border:1px solid #333;display:block"></td>` : ""}
     <td style="vertical-align:top">
-      <div style="font-size:14px;color:#00ffff;font-weight:bold">${s.title || ""}</div>
+      <div style="font-size:14px;color:#00ffff;font-weight:bold"><a href="https://bloodyrex.xyz/?from=digest&r=${s.tmdbId}&type=tv" style="color:#00ffff;text-decoration:none">${s.title || ""}</a></div>
       <div style="font-size:11px;color:#999;margin-top:2px">${tag}${g} · 评分 ${s.rating || 0}/10</div>
       ${s.whyWatch ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s.whyWatch}</div>` : (s.summary ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.4">${s.summary.slice(0, 80)}</div>` : "")}
       ${gtags ? `<div style="margin-top:4px">${gtags}</div>` : ""}
@@ -2500,8 +2507,8 @@ async function buildDigestHTML(env, now) {
 
   <!-- Header -->
   <div style="background:#ff00ff;padding:14px;text-align:center;border:4px solid #000;margin-bottom:16px">
-    <h1 style="margin:0;font-size:18px;color:#000;text-transform:uppercase;letter-spacing:2px">KIM'S VIDEO · ${date}</h1>
-    <p style="margin:4px 0 0;font-size:10px;color:#000;text-transform:uppercase;letter-spacing:1px">每日影音情报摘要</p>
+    <h1 style="margin:0;font-size:18px;color:#000;text-transform:uppercase;letter-spacing:2px">KIM'S VIDEO · ${now}</h1>
+    <p style="margin:4px 0 0;font-size:10px;color:#000;text-transform:uppercase;letter-spacing:1px">每日影音情报摘要${date && date !== now ? ` · 数据截至 ${date}` : ""}</p>
   </div>
 
   <!-- Daily Digest -->
@@ -2510,6 +2517,7 @@ async function buildDigestHTML(env, now) {
     ${title("📰 每日摘要")}
     ${headline ? `<h2 style="margin:0;font-size:15px;color:#ffff00;line-height:1.4">${headline}</h2>` : ""}
     ${summaryZh ? `<p style="font-size:12px;color:#ccc;line-height:1.6;margin:6px 0 0">${summaryZh}</p>` : ""}
+    ${highlightsHtml}
     ${trendsHtml}
   </div>` : ""}
 
@@ -2525,7 +2533,7 @@ async function buildDigestHTML(env, now) {
   ${title("🎬 今日电影推荐")}
   ${moviePicksHtml}
   <div style="text-align:right;margin:4px 0">
-    <a href="https://bloodyrex.xyz/intelligence/movies" style="font-size:11px;color:#ff00ff">查看全部电影 →</a>
+    <a href="https://bloodyrex.xyz/intelligence/movies?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ff00ff">查看全部电影 →</a>
   </div>` : ""}
 
   ${moviePicksHtml ? divider : ""}
@@ -2535,7 +2543,7 @@ async function buildDigestHTML(env, now) {
   ${title("📺 今日剧集推荐")}
   ${tvPicksHtml}
   <div style="text-align:right;margin:4px 0">
-    <a href="https://bloodyrex.xyz/intelligence/tv" style="font-size:11px;color:#00ffff">查看全部剧集 →</a>
+    <a href="https://bloodyrex.xyz/intelligence/tv?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#00ffff">查看全部剧集 →</a>
   </div>` : ""}
 
   ${tvPicksHtml ? divider : ""}
@@ -2547,14 +2555,14 @@ async function buildDigestHTML(env, now) {
     ${musicHtml}
   </div>
   <div style="text-align:right;margin:4px 0">
-    <a href="https://bloodyrex.xyz/intelligence/music" style="font-size:11px;color:#ffff00">查看全部专辑 →</a>
+    <a href="https://bloodyrex.xyz/intelligence/music?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ffff00">查看全部专辑 →</a>
   </div>` : ""}
 
   ${musicHtml ? divider : ""}
 
   <!-- CTA -->
   <div style="text-align:center;margin:16px 0">
-    <a href="https://bloodyrex.xyz/intelligence" style="display:inline-block;background:#ffff00;color:#000;padding:12px 28px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase;letter-spacing:1px">查看完整情报</a>
+    <a href="https://bloodyrex.xyz/intelligence?utm_source=digest&utm_medium=email&utm_campaign=daily" style="display:inline-block;background:#ffff00;color:#000;padding:12px 28px;font-weight:bold;font-size:13px;border:4px solid #000;text-decoration:none;text-transform:uppercase;letter-spacing:1px">查看完整情报</a>
   </div>
 
   <!-- Footer -->
@@ -2569,7 +2577,7 @@ async function buildDigestHTML(env, now) {
 
 </div></body></html>`;
 
-  return { html, date, stats };
+  return { html, date, stats, headline: dig.headline || "" };
 }
 async function handleSendDigest(request, env) {
   const corsHeaders = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "POST, OPTIONS" };
@@ -2633,7 +2641,7 @@ async function sendDigestToAll(env) {
 
   // ── Build or retrieve cached digest (generated once per day) ──
 
-  let html, date;
+  let html, date, headline = "";
   let rebuildCache = false;
   const cachedDigest = await env.SUBSCRIBE_KV.get(`digest:${today}`);
   if (cachedDigest) {
@@ -2650,6 +2658,7 @@ async function sendDigestToAll(env) {
     if (!rebuildCache) {
       html = parsed.html;
       date = parsed.date;
+      headline = parsed.headline || "";
     }
   }
   if (!html) {
@@ -2668,6 +2677,7 @@ async function sendDigestToAll(env) {
     }
     html = result.html;
     date = result.date;
+    headline = result.headline || "";
     // Sanity check: if overview returned all-zero stats, TMDB likely failed
     // Don't cache bad data; let retry rebuild fresh
     if (!result.stats?.moviesReleased && !result.stats?.tvAiringThisWeek) {
@@ -2677,7 +2687,7 @@ async function sendDigestToAll(env) {
       return { ok: false, sent: 0, error: "overview data empty (TMDB likely failed)", attemptCount };
     }
     // Cache digest content for 24h so all sends on the same day use identical content
-    await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html, date }), { expirationTtl: 172800 });
+    await env.SUBSCRIBE_KV.put(`digest:${today}`, JSON.stringify({ html, date, headline }), { expirationTtl: 172800 });
   }
 
   // ── Send loop: batch via Resend /emails/batch (1 subrequest per 100 emails,
@@ -2694,7 +2704,7 @@ async function sendDigestToAll(env) {
     emails.push({
       from: "Kim's Video <digest@bloodyrex.xyz>",
       to: email,
-      subject: `Kim's Video 每日影音情报 · ${date}`,
+      subject: headline ? `🎬 ${headline} · Kim's Video ${today}` : `Kim's Video 每日影音情报 · ${today}`,
       html: html.replace(
         /https:\/\/api\.bloodyrex\.xyz\/intelligence\/unsubscribe\?email=[^"'<>\s]*/g,
         `https://api.bloodyrex.xyz/intelligence/unsubscribe?email=${encodeURIComponent(email)}`
@@ -2907,7 +2917,7 @@ export default {
             body: JSON.stringify({
               from: "Kim's Video <digest@bloodyrex.xyz>",
               to: tb.email,
-              subject: `Kim's Video 每日影音情报 · ${result.date || today}（测试）`,
+              subject: result.headline ? `🎬 ${result.headline} · Kim's Video ${today}（测试）` : `Kim's Video 每日影音情报 · ${today}（测试）`,
               html: personalHtml,
             }),
           });
