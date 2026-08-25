@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim's Video — AI Movie Recommender / 智能影视推荐</title>
+    <meta name="description" content="输入你喜欢的电影，AI 帮你发现冷门佳作、口碑争议片。基于 DeepSeek 与 TMDB 的智能影视推荐引擎。">
+    <meta name="keywords" content="电影推荐,AI推荐,影视推荐,冷门电影,Movie Recommender,AI movie picker">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Kim's Video — AI Movie Recommender">
+    <meta property="og:description" content="Tell us what you love, discover your next favorite film.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bloodyrex.xyz">
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Kim's Video",
+      "description": "AI-powered movie recommendation engine. Enter your favorite films and discover popular hits, hidden gems, and controversially-rated movies.",
+      "applicationCategory": "Multimedia",
+      "operatingSystem": "All",
+      "author": { "@type": "Person", "name": "Bloodyrex" },
+      "url": "https://bloodyrex.xyz"
+    }
+    </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React & ReactDOM -->
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <!-- Babel Standalone (JSX compiler in browser) -->
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.10/babel.min.js" crossorigin></script>
+    <!-- html2canvas (截图生成) -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" crossorigin></script>
+</head>
+<body class="bg-[#111]">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // ==========================================
+    // Kim's Video - DeepSeek API 配置中心
+    // ==========================================
+    const API_CONFIG = {
+      workerUrl: "https://api.bloodyrex.xyz/"
+    };
+
+    // TMDB 海报代理：绕过 image.tmdb.org CORS 限制，供 html2canvas 截图使用
+    const posterProxy = (url) => {
+      if (!url || !url.startsWith('https://image.tmdb.org/')) return url;
+      return `${API_CONFIG.workerUrl}poster-proxy?url=${encodeURIComponent(url)}`;
+    };
+
+    // Inline SVG Icons
+    const Icons = {
+      Film: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v18"/><path d="M17 3v18"/><path d="M3 7.5h4"/><path d="M3 12h18"/><path d="M3 16.5h4"/><path d="M17 7.5h4"/><path d="M17 16.5h4"/></svg>
+      ),
+      Search: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      ),
+      ChevronRight: ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m9 18 6-6-6-6"/></svg>
+      ),
+      Play: ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="6 3 20 12 6 21 6 3"/></svg>
+      ),
+      Loader2: ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`${className} animate-spin`}><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+      ),
+      RefreshCw: ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+      ),
+      Star: ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      ),
+      Info: ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      )
+    };
+
+    // 健壮 JSON 解析
+    const parseJSON = (text) => {
+      if (typeof text !== 'string') return text;
+      try {
+        return JSON.parse(text);
+      } catch (e) {
+        const match = text.match(/```json?\s*([\s\S]*?)\s*```/);
+        if (match && match[1]) {
+          try { return JSON.parse(match[1]); } catch (_) {}
+        }
+        const start = Math.max(text.indexOf('['), text.indexOf('{'));
+        const end   = Math.max(text.lastIndexOf(']'), text.lastIndexOf('}'));
+        if (start !== -1 && end > start) {
+          try { return JSON.parse(text.substring(start, end + 1)); } catch (_) {}
+        }
+        throw e;
+      }
+    };
+
+    // AI API 统一调用（Cloudflare Worker版）
+    const generateAIContent = async (
+      prompt,
+      systemInstruction,
+      responseSchema = null
+    ) => {
+      const response = await fetch(
+        API_CONFIG.workerUrl,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            prompt,
+            systemInstruction,
+            responseSchema
+          })
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `API Error ${response.status}`
+        );
+      }
+
+      const result = await response.json();
+
+      if (result.error) {
+        throw new Error(result.error);
+      }
+
+      return result.content;
+    };
+
+    function MovieRecommender() {
+      // 默认从开屏选择页开始 ('splash')
+      const [step, setStep]                     = useState('splash');
+      const [primaryMovie, setPrimaryMovie]     = useState({ title: '', year: '' });
+      const [secondaryMovie, setSecondaryMovie] = useState({ title: '', year: '' });
+
+      const [primarySuggestions, setPrimarySuggestions]     = useState([]);
+      const [secondarySuggestions, setSecondarySuggestions] = useState([]);
+      const [isSearchingPrimary, setIsSearchingPrimary]     = useState(false);
+      const [isSearchingSecondary, setIsSearchingSecondary] = useState(false);
+      const [showPrimaryDropdown, setShowPrimaryDropdown]   = useState(false);
+      const [showSecondaryDropdown, setShowSecondaryDropdown] = useState(false);
+
+      const [questions, setQuestions]         = useState([]);
+      const [currentQIndex, setCurrentQIndex] = useState(0);
+      const [userAnswers, setUserAnswers]     = useState([]);
+
+      const [recommendations, setRecommendations] = useState([]);
+      const [loadingMessage, setLoadingMessage]   = useState('');
+      const [error, setError]                     = useState('');
+
+      const [replacingIndexes, setReplacingIndexes] = useState({});
+      const [everShownTitles, setEverShownTitles] = useState([]);
+
+      const searchIdRef = useRef(0);
+      const [isCapturing, setIsCapturing] = useState(false);
+      const [showSaveLayout, setShowSaveLayout] = useState(false);
+      const saveContainerRef = useRef(null);
+
+      const currentYear = new Date().getFullYear();
+
+      const normalizeQuestion = (q) => ({
+        ...q,
+        text: q.text || q.question || ''
+      });
+
+      const repairRecommendationFields = async (rec) => {
+        const missingFields = [];
+        if (!rec.director) missingFields.push("director");
+        if (!rec.year) missingFields.push("year");
+        if (!rec.originalTitle) missingFields.push("originalTitle");
+        if (!rec.type) missingFields.push("type");
+
+        if (missingFields.length === 0) return rec;
+
+        const prompt = `
+请补全以下影视信息（必须基于真实常识，不允许编造明显错误）：
+
+影片：${rec.title}
+${rec.reason ? '背景描述：' + rec.reason : ''}
+${rec.year ? '年份：' + rec.year : ''}
+${rec.type ? '已知类型：' + rec.type : ''}
+
+缺失字段：${missingFields.join(",")}
+
+根据以上"背景描述"准确定位是哪一部作品，不要仅根据中文名联想。
+
+只输出严格JSON：
+{
+  "director": "",
+  "year": "",
+  "originalTitle": "",
+  "type": ""
+}
+`;
+
+        const responseText = await generateAIContent(
+          prompt,
+          "你是影视信息校对系统，只输出JSON。",
+          {
+            type: "object",
+            properties: {
+              director: { type: "string" },
+              year: { type: "string" },
+              originalTitle: { type: "string" },
+              type: { type: "string", description: "电影 或 剧集" }
+            }
+          }
+        );
+
+        const fixed = parseJSON(responseText);
+        const result = { ...rec };
+        if (fixed && typeof fixed === 'object') {
+          if (missingFields.includes('director') && fixed.director) result.director = fixed.director;
+          if (missingFields.includes('year') && fixed.year) result.year = fixed.year;
+          if (missingFields.includes('originalTitle') && fixed.originalTitle) result.originalTitle = fixed.originalTitle;
+          if (missingFields.includes('type') && fixed.type) result.type = fixed.type;
+        }
+        return result;
+      };
+
+      const searchMovie = async (query, type) => {
+        const isPrimary = type === 'primary';
+        const setSuggestions = isPrimary ? setPrimarySuggestions : setSecondarySuggestions;
+        const setIsSearching = isPrimary ? setIsSearchingPrimary : setIsSearchingSecondary;
+        const setShowDropdown = isPrimary ? setShowPrimaryDropdown : setShowSecondaryDropdown;
+
+        const id = ++searchIdRef.current;
+
+        if (!query || query.trim().length === 0) {
+          setSuggestions([]);
+          setShowDropdown(false);
+          return;
+        }
+        setIsSearching(true);
+        setShowDropdown(true);
+
+        const prompt = `搜索与 "${query}" 相关的真实影视作品。
+要求：
+- 根据关键词联想匹配的真实影视作品名称
+- 如果无法精确匹配，尝试输出标题中包含关键词的相似作品
+- 每项尽量提供首映年份和导演姓名
+- 有把握的字段才填，不确定的字段留空
+- 最多返回5条，按匹配度排序`;
+        const schema = {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              title:    { type: "string", description: "影视作品中文名" },
+              year:     { type: "string", description: "首映年份" },
+              director: { type: "string", description: "导演姓名" }
+            },
+            required: ["title", "year", "director"]
+          }
+        };
+
+        try {
+          const responseText = await generateAIContent(prompt, "你是一个影视数据库查询API，根据关键词联想匹配的真实影视作品名称，以JSON数组返回。", schema);
+          if (id !== searchIdRef.current) return;
+          const parsedData = parseJSON(responseText);
+          const list = Array.isArray(parsedData) ? parsedData.filter(item => item.title) : [];
+          setSuggestions(list);
+        } catch (error) {
+          if (id !== searchIdRef.current) return;
+          setSuggestions([]);
+        } finally {
+          setIsSearching(false);
+        }
+      };
+
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          if (primaryMovie.title && showPrimaryDropdown) {
+            searchMovie(primaryMovie.title, 'primary');
+          }
+        }, 800);
+        return () => clearTimeout(timer);
+      }, [primaryMovie.title, showPrimaryDropdown]);
+
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          if (secondaryMovie.title && showSecondaryDropdown) {
+            searchMovie(secondaryMovie.title, 'secondary');
+          }
+        }, 800);
+        return () => clearTimeout(timer);
+      }, [secondaryMovie.title, showSecondaryDropdown]);
+
+      const selectMovie = (movie, type) => {
+        if (type === 'primary') {
+          setPrimaryMovie({ title: movie.title, year: movie.year });
+          setShowPrimaryDropdown(false);
+        } else {
+          setSecondaryMovie({ title: movie.title, year: movie.year });
+          setShowSecondaryDropdown(false);
+        }
+      };
+
+      const handleGenerateQuestions = async () => {
+        if (!primaryMovie.title || !primaryMovie.year) {
+          setError("主参考影视作品的名称和首映年份为必填项！");
+          return;
+        }
+        if (primaryMovie.year < 1895 || primaryMovie.year > currentYear) {
+          setError("请输入有效的年份。");
+          return;
+        }
+
+        setError('');
+        setStep('loading_questions');
+        setLoadingMessage('"电影不死，它们只是在等待被寻找。"');
+
+        const prompt = `
+用户输入了以下喜欢的影视作品：
+主要参考：《${primaryMovie.title}》 (${primaryMovie.year})
+${secondaryMovie.title ? `次要参考：《${secondaryMovie.title}》 (${secondaryMovie.year})` : ''}
+
+请生成5~8个渐进式问题，以 JSON 格式输出：
+{
+  "questions": [
+    {
+      "text": "问题内容",
+      "type": "simple 或 deep",
+      "feature": "对应特征标识",
+      "options": ["选项1", "选项2", "无所谓"]
+    }
+  ],
+  "questionCount": 6
+}
+`;
+        const schema = {
+          type: "object",
+          properties: {
+            questions: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  text: { type: "string" },
+                  type: { type: "string" },
+                  feature: { type: "string" },
+                  options: { type: "array", items: { type: "string" } }
+                },
+                required: ["text", "type", "feature", "options"]
+              }
+            },
+            questionCount: { type: "number" }
+          },
+          required: ["questions", "questionCount"]
+        };
+
+        try {
+          const responseText = await generateAIContent(prompt, "你是一个专业的影视剧集推荐专家。", schema);
+          const parsedData = parseJSON(responseText);
+          if (Array.isArray(parsedData)) {
+            setQuestions(parsedData.slice(0, 8).map(normalizeQuestion));
+            setStep('qa');
+          } else if (parsedData.questions && parsedData.questions.length >= 3) {
+            const count = parsedData.questionCount || parsedData.questions.length;
+            setQuestions(parsedData.questions.slice(0, count).map(normalizeQuestion));
+            setStep('qa');
+          } else {
+            throw new Error("生成的问题数量不足或格式错误");
+          }
+        } catch (err) {
+          setError("生成问答失败，请重试。" + err.message);
+          setStep('input');
+        }
+      };
+
+      const handleAnswer = async (answerText) => {
+        const currentQuestion = questions[currentQIndex];
+        const newAnswers = [
+          ...userAnswers,
+          {
+            question: currentQuestion.text,
+            answer: answerText,
+            feature: currentQuestion.feature
+          }
+        ];
+        setUserAnswers(newAnswers);
+
+        if (currentQIndex < questions.length - 1) {
+          setCurrentQIndex(currentQIndex + 1);
+        } else {
+          await generateRecommendations(newAnswers);
+        }
+      };
+
+      const generateRecommendations = async (finalAnswers) => {
+        setStep('loading_results');
+        setLoadingMessage('正在检索稀有胶片库...');
+
+        const answersText = finalAnswers.map(a => `特征维度: ${a.feature}\n用户选择: ${a.answer}`).join('\n');
+
+        const prompt = `
+用户最初提供的参考影视作品：
+主要参考: 《${primaryMovie.title}》 (${primaryMovie.year}年)
+${secondaryMovie.title ? `次要参考: 《${secondaryMovie.title}》 (${secondaryMovie.year}年)` : ''}
+
+用户观影偏好问答：
+${answersText}
+
+请为该用户精准推荐恰好 5 部影视作品（前2部热门、中间2部冷门、第5部争议）。
+输出严格JSON：
+{
+  "recommendations": [
+    {
+      "title": "电影中文名",
+      "originalTitle": "电影原名或拼音",
+      "year": "首映年份",
+      "director": "导演姓名",
+      "type": "电影 或 剧集",
+      "reason": "详细的推荐理由",
+      "doubanKeyword": "用于豆瓣搜索的精准关键词"
+    }
+  ]
+}
+`;
+        const schema = {
+          type: "object",
+          properties: {
+            recommendations: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  title:         { type: "string" },
+                  originalTitle: { type: "string" },
+                  year:          { type: "string" },
+                  director:      { type: "string" },
+                  type:          { type: "string" },
+                  reason:        { type: "string" },
+                  doubanKeyword: { type: "string" }
+                },
+                required: ["title", "year", "director", "type", "reason", "doubanKeyword"]
+              }
+            }
+          },
+          required: ["recommendations"]
+        };
+
+        try {
+          const responseText = await generateAIContent(prompt, "你是一个极具洞察力的专业影视推荐达人。", schema);
+          const parsedData = parseJSON(responseText);
+          const list = parsedData?.recommendations || [];
+          if (!Array.isArray(list) || list.length === 0) throw new Error("未能生成推荐列表");
+
+          let recs = await Promise.all(list.map(r => repairRecommendationFields(r)));
+          const userMovieTitles = [primaryMovie.title, secondaryMovie.title].filter(Boolean);
+          let finalRecs = recs.filter(r => !userMovieTitles.includes(r.title));
+          const everShown = [...userMovieTitles, ...recs.map(r => r.title)];
+
+          setRecommendations(finalRecs);
+          setEverShownTitles(everShown);
+          setStep('results');
+        } catch (err) {
+          setError("生成推荐失败，请重试。" + err.message);
+          setStep('qa');
+          setCurrentQIndex(questions.length - 1);
+          setUserAnswers(userAnswers.slice(0, -1));
+        }
+      };
+
+      const replaceOneRecommendation = async (index) => {
+        if (replacingIndexes[index]) return;
+        try {
+          setReplacingIndexes(prev => ({ ...prev, [index]: true }));
+          const isNiche = index >= 2 && index <= 3;
+          const isControversial = index === 4;
+          const excludeList = everShownTitles.map(t => `《${t}》`).join('、');
+
+          const prompt = `
+请推荐一部新作品替换。已推荐过不能重复：${excludeList}
+属性：${isControversial ? '争议之选' : isNiche ? '冷门佳作' : '热门大作'}
+输出严格JSON：
+{
+  "recommendations": [
+    {
+      "title": "电影中文名",
+      "originalTitle": "电影原名或拼音",
+      "year": "首映年份",
+      "director": "导演姓名",
+      "type": "电影 或 剧集",
+      "reason": "详细推荐理由",
+      "doubanKeyword": "关键词"
+    }
+  ]
+}
+`;
+          const schema = {
+            type: "object",
+            properties: {
+              recommendations: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    title: { type: "string" },
+                    originalTitle: { type: "string" },
+                    year: { type: "string" },
+                    director: { type: "string" },
+                    type: { type: "string" },
+                    reason: { type: "string" },
+                    doubanKeyword: { type: "string" }
+                  },
+                  required: ["title", "year", "director", "type", "reason", "doubanKeyword"]
+                }
+              }
+            },
+            required: ["recommendations"]
+          };
+
+          const result = await generateAIContent(prompt, "你是一个严格的影视数据库查询API。只输出JSON。", schema);
+          const parsedData = parseJSON(result);
+          const rawRec = parsedData?.recommendations?.[0];
+          if (!rawRec || !rawRec.title) return;
+
+          const safeRec = await repairRecommendationFields({
+            title: rawRec.title,
+            originalTitle: rawRec.originalTitle || '',
+            year: String(rawRec.year || ''),
+            director: rawRec.director || '',
+            type: rawRec.type || '',
+            reason: rawRec.reason || '',
+            doubanKeyword: rawRec.doubanKeyword || rawRec.title
+          });
+
+          setRecommendations(prev => {
+            const updated = [...prev];
+            updated[index] = safeRec;
+            return updated;
+          });
+          setEverShownTitles(prev => [...prev, safeRec.title]);
+        } catch (err) {
+          console.error(err);
+        } finally {
+          setReplacingIndexes(prev => ({ ...prev, [index]: false }));
+        }
+      };
+
+      const resetApp = () => {
+        setStep('splash');
+        setPrimaryMovie({ title: '', year: '' });
+        setSecondaryMovie({ title: '', year: '' });
+        setQuestions([]);
+        setCurrentQIndex(0);
+        setUserAnswers([]);
+        setRecommendations([]);
+        setReplacingIndexes({});
+        setEverShownTitles([]);
+        setError('');
+      };
+
+      const handleSaveImage = async () => {
+        setShowSaveLayout(true);
+        setIsCapturing(true);
+      };
+
+      useEffect(() => {
+        if (!showSaveLayout || !saveContainerRef.current) return;
+        (async () => {
+          try {
+            const el = saveContainerRef.current;
+            const imgs = el.querySelectorAll('img');
+            await Promise.all(Array.from(imgs).map(img =>
+              img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })
+            ));
+            await new Promise(r => setTimeout(r, 150));
+            const canvas = await html2canvas(el, {
+              useCORS: true,
+              backgroundColor: '#111111',
+              scale: 2,
+              logging: false,
+              width: 800,
+              windowWidth: 800,
+            });
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = `kims-video-${primaryMovie.title}-recommendations.png`;
+            link.href = url;
+            link.click();
+            URL.revokeObjectURL(url);
+          } catch (err) {
+            setError('保存图片失败: ' + err.message);
+          } finally {
+            setShowSaveLayout(false);
+            setIsCapturing(false);
+          }
+        })();
+      }, [showSaveLayout]);
+
+      const handleShare = async () => {
+        const shareData = {
+          title: "Kim's Video",
+          text: `AI为我推荐了电影！来看看你的品味基因检测报告 →`,
+          url: 'https://bloodyrex.xyz'
+        };
+        if (navigator.share) {
+          try { await navigator.share(shareData); } catch (_) {}
+        } else {
+          try {
+            await navigator.clipboard.writeText('https://bloodyrex.xyz');
+            alert('链接已复制到剪贴板！');
+          } catch (_) {
+            prompt('复制以下链接分享：', 'https://bloodyrex.xyz');
+          }
+        }
+      };
+
+      // ── 四宫格沉浸式开屏界面 (Splash Screen) ──
+      const renderSplash = () => {
+        const cards = [
+          {
+            id: 'ai-search',
+            targetStep: 'input',
+            title: 'AI Search',
+            subtitle: '智能视听基因检索',
+            desc: '通过深度神经网络与庞大影视资料库交互，寻找您心目中的完美光影。',
+            bgImg: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80',
+            badgeBg: 'bg-[#ff00ff]',
+            shadowColor: '#ff00ff',
+            accent: 'text-[#00ffff]'
+          },
+          {
+            id: 'discover',
+            targetStep: 'discover',
+            title: 'Discover',
+            subtitle: '深夜胶片室与灵感书桌',
+            desc: '探索影评手记、经典文献与未公开导演笔记，发掘被时光掩埋的艺术档案。',
+            bgImg: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80',
+            badgeBg: 'bg-[#00ffff]',
+            shadowColor: '#00ffff',
+            accent: 'text-[#ffff00]'
+          },
+          {
+            id: 'intelligence',
+            targetStep: 'intelligence',
+            title: 'Intelligence',
+            subtitle: '黑市情报通缉板',
+            desc: '汇聚全球口碑两极分化的争议之作、邪典Cult片及高阶影迷秘密线索。',
+            bgImg: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1200&q=80',
+            badgeBg: 'bg-[#ffff00]',
+            shadowColor: '#ffff00',
+            accent: 'text-[#ff00ff]'
+          },
+          {
+            id: 'movie-wall',
+            targetStep: 'wall',
+            title: 'Movie Wall',
+            subtitle: '珍藏录像带陈列壁橱',
+            desc: '沉浸式浏览经典实体录像带珍藏。跨越世纪的视觉名作，一触即发。',
+            bgImg: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1200&q=80',
+            badgeBg: 'bg-[#00dd00]',
+            shadowColor: '#00dd00',
+            accent: 'text-[#00ffff]'
+          }
+        ];
+
+        return (
+          <div className="max-w-7xl mx-auto px-4 py-8 min-h-[85vh] flex flex-col justify-center">
+            {/* 顶栏精简标题 */}
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-4xl font-black text-white tracking-wider uppercase pixel-font mb-2" style={{ textShadow: '3px 3px 0 #ff00ff' }}>
+                KIM'S <span className="text-[#00ffff]">VIDEO ARCHIVE</span>
+              </h2>
+              <p className="text-gray-400 text-xs md:text-sm font-bold bg-black inline-block px-3 py-1 border border-[#00ffff]">
+                "Art is above the law. Choose your gateway."
+              </p>
+            </div>
+
+            {/* 四张全景满铺卡片网格 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {cards.map((card) => (
+                <div
+                  key={card.id}
+                  onClick={() => setStep(card.targetStep)}
+                  className="group relative h-[300px] md:h-[340px] border-8 border-black overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2"
+                  style={{ boxShadow: `12px 12px 0 0 ${card.shadowColor}` }}
+                >
+                  <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${card.bgImg})` }}></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#ffff00] transition-colors pointer-events-none z-10"></div>
+
+                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between z-20">
+                    <div className="flex justify-between items-start">
+                      <span className={`text-xs font-black px-3 py-1 text-black border-2 border-black pixel-font ${card.badgeBg}`}>
+                        ARCHIVE ENTRY
+                      </span>
+                      <span className="text-white font-mono text-xs bg-black/80 px-2 py-1 border border-white/40">
+                        SEC.0{cards.indexOf(card) + 1}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h3 className={`text-3xl md:text-4xl font-black mb-1 uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#000]`}>
+                        {card.title}
+                      </h3>
+                      <h4 className={`text-sm md:text-base font-bold mb-3 ${card.accent}`}>
+                        {card.subtitle}
+                      </h4>
+                      <p className="text-gray-300 text-xs md:text-sm font-medium line-clamp-2 bg-black/60 p-2.5 border-l-4 border-[#ff00ff]">
+                        {card.desc}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-2 border-t border-white/20">
+                      <span className="text-xs font-bold text-[#ffff00] uppercase tracking-wider pixel-font group-hover:translate-x-2 transition-transform inline-flex items-center">
+                        点击进入系统 &gt;&gt;
+                      </span>
+                      <div className="w-8 h-8 bg-white text-black border-2 border-black flex items-center justify-center font-black group-hover:bg-[#ffff00] transition-colors">
+                        <Icons.ChevronRight className="w-5 h-5" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      };
+
+      // ── 子页面：Discover ──
+      const renderDiscover = () => (
+        <div className="max-w-3xl mx-auto bg-white border-8 border-black p-8 shadow-[16px_16px_0_0_#00ffff]">
+          <div className="flex justify-between items-center mb-6 border-b-4 border-black pb-4">
+            <h2 className="text-2xl font-black uppercase pixel-font text-black">Discover Archive</h2>
+            <button onClick={() => setStep('splash')} className="bg-black text-white px-3 py-1 font-bold text-xs border-2 border-[#ff00ff] hover:bg-[#ff00ff] transition-colors">
+              返回主菜单
+            </button>
+          </div>
+          <p className="text-gray-800 font-bold mb-6">欢迎来到深夜胶片室与灵感书桌。在这里，您可以翻阅精选导演笔记、影史手记以及独立电影档案。</p>
+          <div className="space-y-4">
+            <div className="bg-gray-100 p-4 border-4 border-black">
+              <h3 className="font-black text-lg mb-1">《电影手册》特辑：重返 16mm 时代</h3>
+              <p className="text-xs text-gray-600 mb-2">作者: 档案管理员 | 更新于 2026-03</p>
+              <p className="text-sm text-gray-800">胶片不仅仅是记录工具，它是时间的化石。在数码时代，寻找那些带有划痕的原始画面，成为了每一位影迷的仪式感...</p>
+            </div>
+            <div className="bg-gray-100 p-4 border-4 border-black">
+              <h3 className="font-black text-lg mb-1">邪典电影（Cult Film）美学溯源</h3>
+              <p className="text-xs text-gray-600 mb-2">作者: Kim's Research | 更新于 2026-02</p>
+              <p className="text-sm text-gray-800">从《银翼杀手》到独立地下影像，非主流叙事如何解构宏大叙事与商业工业...</p>
+            </div>
+          </div>
+          <div className="mt-8">
+            <button onClick={() => setStep('input')} className="w-full py-3 bg-[#00ffff] text-black border-4 border-black font-black uppercase text-center shadow-[6px_6px_0_0_#000] hover:translate-y-1 transition-all">
+              直接前往 AI Search 智能推荐 &gt;&gt;
+            </button>
+          </div>
+        </div>
+      );
+
+      // ── 子页面：Intelligence ──
+      const renderIntelligence = () => (
+        <div className="max-w-3xl mx-auto bg-white border-8 border-black p-8 shadow-[16px_16px_0_0_#ffff00]">
+          <div className="flex justify-between items-center mb-6 border-b-4 border-black pb-4">
+            <h2 className="text-2xl font-black uppercase pixel-font text-black">Intelligence Board</h2>
+            <button onClick={() => setStep('splash')} className="bg-black text-white px-3 py-1 font-bold text-xs border-2 border-[#ff00ff] hover:bg-[#ff00ff] transition-colors">
+              返回主菜单
+            </button>
+          </div>
+          <p className="text-gray-800 font-bold mb-6">黑市情报通缉板：这里陈列着各大影评人与大众评分存在极端两极分化的争议作品、地下磁带与解密线索。</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-[#fff9e6] p-4 border-4 border-black shadow-[4px_4px_0_0_#000]">
+              <span className="text-xs bg-red-500 text-white font-black px-2 py-0.5 border border-black">争议度: 98%</span>
+              <h4 className="font-black text-lg mt-2">双重赔偿 (Double Indemnity)</h4>
+              <p className="text-xs text-gray-700 mt-1">黑色电影巅峰，道德灰色地带的极致试探。</p>
+            </div>
+            <div className="bg-[#e6f9ff] p-4 border-4 border-black shadow-[4px_4px_0_0_#000]">
+              <span className="text-xs bg-green-500 text-black font-black px-2 py-0.5 border border-black">地下寻宝</span>
+              <h4 className="font-black text-lg mt-2">巴黎，德克萨斯 (Paris, Texas)</h4>
+              <p className="text-xs text-gray-700 mt-1">维姆·文德斯的旷野悲歌与孤独美学。</p>
+            </div>
+          </div>
+          <div className="mt-8">
+            <button onClick={() => setStep('input')} className="w-full py-3 bg-[#ffff00] text-black border-4 border-black font-black uppercase text-center shadow-[6px_6px_0_0_#000] hover:translate-y-1 transition-all">
+              开始测试我的影视基因 &gt;&gt;
+            </button>
+          </div>
+        </div>
+      );
+
+      // ── 子页面：Movie Wall ──
+      const renderWall = () => (
+        <div className="max-w-4xl mx-auto bg-white border-8 border-black p-8 shadow-[16px_16px_0_0_#ff00ff]">
+          <div className="flex justify-between items-center mb-6 border-b-4 border-black pb-4">
+            <h2 className="text-2xl font-black uppercase pixel-font text-black">Movie Wall 陈列壁橱</h2>
+            <button onClick={() => setStep('splash')} className="bg-black text-white px-3 py-1 font-bold text-xs border-2 border-[#ff00ff] hover:bg-[#ff00ff] transition-colors">
+              返回主菜单
+            </button>
+          </div>
+          <p className="text-gray-800 font-bold mb-6">实体录像带珍藏陈列柜。点击任意卡片查看详细档案与 AI 关联推荐。</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {['Blade Runner', 'Repo Man', '2001: A Space Odyssey', 'Kim’s Archive'].map((title, i) => (
+              <div key={i} className="bg-black text-white p-4 border-4 border-black flex flex-col justify-between h-48 shadow-[6px_6px_0_0_#00ffff] hover:scale-105 transition-transform cursor-pointer" onClick={() => { setPrimaryMovie({ title: title, year: '1982' }); setStep('input'); }}>
+                <div>
+                  <span className="text-[10px] text-[#00ffff] pixel-font">VHS 0{i+1}</span>
+                  <h4 className="font-black text-sm mt-2">{title}</h4>
+                </div>
+                <div className="text-[10px] text-[#ffff00] uppercase font-bold">点击以此为基准检索 &gt;&gt;</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
+      // ── 输入页面 ──
+      const renderInput = () => (
+        <div className="max-w-2xl mx-auto bg-white border-8 border-black p-8 shadow-[16px_16px_0_0_rgba(0,0,0,1)] relative retro-container">
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#ff00ff] rounded-full mix-blend-multiply filter blur-2xl opacity-50 pointer-events-none"></div>
+          <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#00ffff] rounded-full mix-blend-multiply filter blur-2xl opacity-50 pointer-events-none"></div>
+
+          <div className="mb-8 text-center relative z-10 flex justify-between items-center">
+            <button onClick={() => setStep('splash')} className="bg-black text-white px-3 py-1 font-bold text-xs border-2 border-[#ffff00] hover:bg-[#ffff00] hover:text-black transition-colors">
+              &lt;&lt; 返回主导航
+            </button>
+            <h2 className="text-2xl font-black text-black uppercase whitespace-nowrap" style={{fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(0.8rem, 3vw, 1.2rem)"}}>
+              AI <span className="text-[#ff00ff]">SEARCH</span>
+            </h2>
+            <div className="w-16"></div>
+          </div>
+
+          {error && (
+            <div className="mb-6 p-4 bg-red-500 border-4 border-black text-white font-bold flex items-center shadow-[4px_4px_0_0_#000]">
+              <div className="w-6 h-6 mr-2 flex-shrink-0 text-black"><Icons.Info /></div>
+              <p className="pixel-font">{error}</p>
+            </div>
+          )}
+
+          <div className="space-y-6 relative z-10">
+            {/* 主参考作品 */}
+            <div className="bg-[#f0f0f0] p-5 border-4 border-black shadow-[6px_6px_0_0_#ff00ff]">
+              <label className="block text-black font-black mb-3 flex items-center uppercase pixel-font text-lg">
+                <span className="mr-2 text-[#ff00ff]"><Icons.Star /></span> 主参考作品 <span className="text-red-500 ml-1">*</span>
+              </label>
+              <div className="flex flex-col sm:flex-row gap-4 relative">
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    placeholder="例如：星际穿越"
+                    value={primaryMovie.title}
+                    onChange={(e) => {
+                      setPrimaryMovie({ ...primaryMovie, title: e.target.value });
+                      setShowPrimaryDropdown(true);
+                    }}
+                    onFocus={() => primaryMovie.title && setShowPrimaryDropdown(true)}
+                    onBlur={() => setTimeout(() => setShowPrimaryDropdown(false), 200)}
+                    className="w-full bg-white border-4 border-black px-4 py-3 text-black font-bold focus:outline-none focus:bg-[#ffff00] transition-colors"
+                  />
+                  {showPrimaryDropdown && primaryMovie.title && (
+                    <div className="absolute top-full left-0 w-full z-50 bg-white border-4 border-black shadow-[8px_8px_0_0_#000] mt-1 max-h-60 overflow-y-auto">
+                      {isSearchingPrimary ? (
+                        <div className="p-4 flex items-center text-gray-500 font-bold"><Icons.Loader2 className="w-5 h-5 mr-3" /> 正在从豆瓣影库调卷...</div>
+                      ) : Array.isArray(primarySuggestions) && primarySuggestions.length > 0 ? (
+                        primarySuggestions.map((s, i) => (
+                          <div
+                            key={i}
+                            onClick={() => selectMovie(s, 'primary')}
+                            className="p-4 border-b-2 border-gray-200 hover:bg-[#ff00ff] hover:text-white cursor-pointer transition-colors font-black flex flex-col sm:flex-row sm:justify-between sm:items-center"
+                          >
+                            <span className="text-lg truncate">{s.title}</span>
+                            <span className="text-sm opacity-90 whitespace-nowrap mt-1 sm:mt-0">（{s.year}，{s.director}）</span>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="p-4 text-gray-500 font-bold text-sm">未能匹配到结果，请尝试精确输入。</div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <input
+                  type="number"
+                  min="1895"
+                  max={currentYear}
+                  placeholder="年份"
+                  value={primaryMovie.year}
+                  onChange={(e) => setPrimaryMovie({ ...primaryMovie, year: e.target.value })}
+                  className="w-full sm:w-40 bg-white border-4 border-black px-4 py-3 text-black font-bold focus:outline-none focus:bg-[#ffff00] transition-colors"
+                />
+              </div>
+            </div>
+
+            {/* 附加参考作品 */}
+            <div className="bg-[#f0f0f0] p-5 border-4 border-black border-dashed shadow-[6px_6px_0_0_#00ffff]">
+              <label className="block text-gray-600 font-black mb-3 flex items-center uppercase pixel-font">
+                <span className="mr-2 text-[#00ffff]"><Icons.Film /></span> 附加参考作品 (可选)
+              </label>
+              <div className="flex flex-col sm:flex-row gap-4 relative">
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    placeholder="例如：银翼杀手2049"
+                    value={secondaryMovie.title}
+                    onChange={(e) => {
+                      setSecondaryMovie({ ...secondaryMovie, title: e.target.value });
+                      setShowSecondaryDropdown(true);
+                    }}
+                    onFocus={() => secondaryMovie.title && setShowSecondaryDropdown(true)}
+                    onBlur={() => setTimeout(() => setShowSecondaryDropdown(false), 200)}
+                    className="w-full bg-white border-4 border-black px-4 py-3 text-black font-bold focus:outline-none focus:bg-[#ffff00] transition-colors"
+                  />
+                  {showSecondaryDropdown && secondaryMovie.title && (
+                    <div className="absolute top-full left-0 w-full z-50 bg-white border-4 border-black shadow-[8px_8px_0_0_#000] mt-1 max-h-60 overflow-y-auto">
+                      {isSearchingSecondary ? (
+                        <div className="p-4 flex items-center text-gray-500 font-bold"><Icons.Loader2 className="w-5 h-5 mr-3" /> 正在从豆瓣影库调卷...</div>
+                      ) : Array.isArray(secondarySuggestions) && secondarySuggestions.length > 0 ? (
+                        secondarySuggestions.map((s, i) => (
+                          <div
+                            key={i}
+                            onClick={() => selectMovie(s, 'secondary')}
+                            className="p-4 border-b-2 border-gray-200 hover:bg-[#00ffff] hover:text-black cursor-pointer transition-colors font-black flex flex-col sm:flex-row sm:justify-between sm:items-center"
+                          >
+                            <span className="text-lg truncate">{s.title}</span>
+                            <span className="text-sm opacity-90 whitespace-nowrap mt-1 sm:mt-0">（{s.year}，{s.director}）</span>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="p-4 text-gray-500 font-bold text-sm">未能匹配到结果，请尝试精确输入。</div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <input
+                  type="number"
+                  min="1895"
+                  max={currentYear}
+                  placeholder="年份"
+                  value={secondaryMovie.year}
+                  onChange={(e) => setSecondaryMovie({ ...secondaryMovie, year: e.target.value })}
+                  className="w-full sm:w-40 bg-white border-4 border-black px-4 py-3 text-black font-bold focus:outline-none focus:bg-[#ffff00] transition-colors"
+                />
+              </div>
+            </div>
+
+            <button
+              onClick={handleGenerateQuestions}
+              className="w-full py-4 bg-[#ff00ff] hover:bg-[#ff40ff] text-white border-4 border-black font-black text-xl uppercase tracking-widest shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center group pixel-font"
+            >
+              开始剖析基因
+              <Icons.ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+            </button>
+          </div>
+        </div>
+      );
+
+      const renderLoading = () => (
+        <div className="flex flex-col items-center justify-center py-20 space-y-6">
+          <div className="relative w-24 h-24 flex items-center justify-center">
+            <div className="absolute inset-0 border-8 border-black bg-[#ff00ff] animate-pulse transform rotate-45"></div>
+            <div className="absolute inset-2 border-4 border-black bg-[#00ffff] animate-pulse delay-75 transform -rotate-12"></div>
+            <div className="relative z-10 text-black animate-bounce"><Icons.Film /></div>
+          </div>
+          <h3 className="text-2xl font-black text-black bg-[#ffff00] px-4 py-2 border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] uppercase tracking-wider pixel-font text-center max-w-xl leading-relaxed">
+            {loadingMessage}
+          </h3>
+          <p className="text-white bg-black px-3 py-1 border-2 border-[#ff00ff] pixel-font text-sm">LOADING.DAT ...</p>
+        </div>
+      );
+
+      const renderQA = () => {
+        const currentQ = questions[currentQIndex];
+        const progress = (currentQIndex / questions.length) * 100;
+        const isSimple = !currentQ.type || currentQ.type === 'simple';
+
+        const buildOptions = () => {
+          const defaults = isSimple
+            ? ["是", "无所谓", "否"]
+            : ["完全认同", "比较认同", "中立/无感", "不太认同", "完全不认同"];
+          const opts = (currentQ.options && currentQ.options.length > 0)
+            ? [...currentQ.options]
+            : defaults;
+          return opts.some(o => o === '无所谓') ? opts : [...opts, '无所谓'];
+        };
+        const displayLabels = buildOptions();
+        while (displayLabels.length < 3) displayLabels.push('无所谓');
+
+        const simpleOpts = [
+          { label: displayLabels[0], bg: "bg-[#00ff00]", hover: "hover:bg-[#40ff40]", icon: "✓" },
+          { label: displayLabels[1], bg: "bg-[#ffff00]", hover: "hover:bg-[#ffff40]", icon: "—" },
+          { label: displayLabels[2], bg: "bg-[#ff4444]", hover: "hover:bg-[#ff7777]", icon: "✗" }
+        ];
+
+        const deepColors = [
+          { bg: "bg-[#00ffff]", hover: "hover:bg-[#40ffff]" },
+          { bg: "bg-[#aaff00]", hover: "hover:bg-[#ccff40]" },
+          { bg: "bg-[#ffff00]", hover: "hover:bg-[#ffff40]" },
+          { bg: "bg-[#ffaa00]", hover: "hover:bg-[#ffcc40]" },
+          { bg: "bg-[#ff00ff]", hover: "hover:bg-[#ff40ff]" }
+        ];
+        const deepOpts = displayLabels.map((label, i) => ({ label, ...deepColors[i % deepColors.length] }));
+
+        return (
+          <div className="max-w-2xl mx-auto bg-white border-8 border-black p-8 shadow-[16px_16px_0_0_rgba(0,0,0,1)]">
+            <div className="flex justify-between items-center mb-6">
+              <span className="text-xs font-black bg-black text-white px-3 py-1 border-2 border-[#ff00ff] pixel-font">
+                QUESTION {currentQIndex + 1} / {questions.length}
+              </span>
+              <span className="text-sm font-bold text-gray-600 pixel-font">
+                {Math.round(progress)}% COMPLETED
+              </span>
+            </div>
+
+            <div className="w-full bg-gray-200 h-4 border-2 border-black mb-8 overflow-hidden">
+              <div className="bg-[#ff00ff] h-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
+            </div>
+
+            <h3 className="text-xl md:text-2xl font-black text-black mb-8 leading-relaxed">
+              {currentQ.text}
+            </h3>
+
+            {isSimple ? (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {simpleOpts.map((opt, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleAnswer(opt.label)}
+                    className={`${opt.bg} ${opt.hover} text-black font-black py-4 px-6 border-4 border-black shadow-[6px_6px_0_0_#000] hover:translate-y-1 hover:shadow-[2px_2px_0_0_#000] active:translate-y-2 active:shadow-none transition-all flex flex-col items-center justify-center text-lg pixel-font`}
+                  >
+                    <span className="text-2xl mb-1">{opt.icon}</span>
+                    <span>{opt.label}</span>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {deepOpts.map((opt, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleAnswer(opt.label)}
+                    className={`w-full text-left ${opt.bg} ${opt.hover} text-black font-black py-3 px-5 border-4 border-black shadow-[4px_4px_0_0_#000] hover:translate-x-1 transition-all flex items-center justify-between`}
+                  >
+                    <span className="text-base">{opt.label}</span>
+                    <Icons.ChevronRight className="w-5 h-5" />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      };
+
+      const renderResults = () => {
+        return (
+          <div className="max-w-4xl mx-auto space-y-8">
+            <div className="bg-white border-8 border-black p-6 md:p-8 shadow-[16px_16px_0_0_#ff00ff] flex flex-col md:flex-row justify-between items-center gap-6">
+              <div>
+                <span className="text-xs bg-black text-[#00ffff] px-3 py-1 font-bold border-2 border-black pixel-font">GENOME MAPPED</span>
+                <h2 className="text-3xl font-black text-black mt-2 uppercase pixel-font">您的定制视听光谱</h2>
+                <p className="text-gray-700 font-bold mt-1 text-sm">基准：{primaryMovie.title} {secondaryMovie.title ? `& ${secondaryMovie.title}` : ''}</p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  onClick={handleSaveImage}
+                  disabled={isCapturing}
+                  className="bg-[#00ffff] hover:bg-[#40ffff] text-black font-black px-5 py-3 border-4 border-black shadow-[6px_6px_0_0_#000] hover:translate-y-1 transition-all flex items-center pixel-font text-xs"
+                >
+                  {isCapturing ? <Icons.Loader2 className="w-4 h-4 mr-2" /> : null}
+                  📸 保存结果海报
+                </button>
+                <button
+                  onClick={handleShare}
+                  className="bg-[#ffff00] hover:bg-[#ffff40] text-black font-black px-5 py-3 border-4 border-black shadow-[6px_6px_0_0_#000] hover:translate-y-1 transition-all pixel-font text-xs"
+                >
+                  🔗 分享报告
+                </button>
+                <button
+                  onClick={resetApp}
+                  className="bg-black hover:bg-gray-800 text-white font-black px-5 py-3 border-4 border-black shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 transition-all pixel-font text-xs"
+                >
+                  🔄 重新检索
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6">
+              {recommendations.map((rec, idx) => {
+                const isNiche = idx >= 2 && idx <= 3;
+                const isControversial = idx === 4;
+                const badge = isControversial
+                  ? { text: '⚡ 争议之选', bg: 'bg-[#ff4444]', border: 'border-black' }
+                  : isNiche
+                  ? { text: '🕵️ 独家冷门', bg: 'bg-[#00dd00]', border: 'border-black' }
+                  : { text: '🔥 精选热门', bg: 'bg-[#ffff00]', border: 'border-black' };
+
+                return (
+                  <div key={idx} className="bg-white border-8 border-black flex flex-col md:flex-row items-stretch shadow-[12px_12px_0_0_#00ffff]">
+                    <div className="bg-black text-[#ff00ff] p-4 flex md:flex-col items-center justify-center font-black pixel-font text-xl md:w-16 border-b-4 md:border-b-0 md:border-r-4 border-black">
+                      0{idx + 1}
+                    </div>
+
+                    <div className="flex-1 p-6 flex flex-col justify-between">
+                      <div>
+                        <div className="flex flex-wrap items-center gap-3 mb-3">
+                          <span className={`text-xs font-black px-3 py-1 text-black border-2 border-black ${badge.bg}`}>
+                            {badge.text}
+                          </span>
+                          <span className="text-xs font-black px-3 py-1 bg-black text-white border-2 border-black">
+                            {rec.year} | {rec.type || '电影'}
+                          </span>
+                        </div>
+
+                        <h3 className="text-2xl md:text-3xl font-black text-black leading-tight mb-1">
+                          {rec.title}
+                        </h3>
+                        {rec.originalTitle && (
+                          <div className="text-sm font-bold text-[#ff00ff] mb-2">{rec.originalTitle}</div>
+                        )}
+                        {rec.director && (
+                          <div className="text-xs font-bold text-gray-500 mb-4">导演：{rec.director}</div>
+                        )}
+
+                        <div className="bg-gray-100 p-4 border-4 border-black text-gray-800 text-sm font-bold leading-relaxed mb-4">
+                          {rec.reason}
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap items-center justify-between pt-4 border-t-4 border-black gap-4">
+                        <a
+                          href={`https://search.douban.com/movie/subject_search?search_text=${encodeURIComponent(rec.doubanKeyword || rec.title)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-black text-black bg-[#ffff00] hover:bg-[#ffff40] px-4 py-2 border-2 border-black inline-flex items-center shadow-[4px_4px_0_0_#000] pixel-font"
+                        >
+                          🔍 豆瓣查询 &gt;&gt;
+                        </a>
+
+                        <button
+                          onClick={() => replaceOneRecommendation(idx)}
+                          disabled={replacingIndexes[idx]}
+                          className="text-xs font-black text-white bg-black hover:bg-gray-800 px-4 py-2 border-2 border-[#ff00ff] inline-flex items-center shadow-[4px_4px_0_0_#ff00ff] pixel-font"
+                        >
+                          {replacingIndexes[idx] ? <Icons.Loader2 className="w-4 h-4 mr-2" /> : <Icons.RefreshCw className="w-4 h-4 mr-2" />}
+                          换一部
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      };
+
+      const renderSaveContent = () => {
+        return (
+          <div
+            className="bg-[#111] text-black"
+            style={{
+              width: '800px',
+              padding: '40px',
+              fontFamily: "'Noto Sans SC', system-ui, sans-serif",
+              backgroundImage: 'radial-gradient(circle at 25% 35%, rgba(255, 0, 255, 0.25) 0%, transparent 50%), radial-gradient(circle at 75% 35%, rgba(0, 255, 255, 0.25) 0%, transparent 50%), radial-gradient(circle at 50% 75%, rgba(255, 255, 0, 0.2) 0%, transparent 55%)'
+            }}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center">
+                <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
+                  <Icons.Play className="text-black transform rotate-90" />
+                </div>
+                <h1 className="text-4xl font-black text-white pixel-font uppercase tracking-widest" style={{ textShadow: '4px 4px 0 #ff00ff' }}>
+                  KIM'S VIDEO
+                </h1>
+              </div>
+              <div className="text-right text-xs text-[#00ffff] pixel-font">
+                AI-POWERED MOVIE RECOMMENDER<br/>
+                bloodyrex.xyz
+              </div>
+            </div>
+
+            <div className="w-full h-[4px] bg-[#ff00ff] mb-8" />
+
+            <div className="mb-8">
+              <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '24px', color: 'white', textShadow: '3px 3px 0 #ff00ff', margin: 0 }}>
+                TARGETS ACQUIRED
+              </h2>
+              <div className="bg-[#00ffff] inline-block mt-3 px-4 py-1.5 border-[3px] border-black font-black">
+                <span style={{ fontFamily: "'Noto Sans SC', sans-serif", letterSpacing: '0.05em' }}>{`基于《${primaryMovie.title}》${secondaryMovie.title ? `和《${secondaryMovie.title}》` : ''} 基因突变匹配结果`}</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {recommendations.map((rec, idx) => {
+                const isNiche = idx >= 2 && idx <= 3;
+                const isControversial = idx === 4;
+                const badge = isControversial ? { text: '⚡ 争议之选', bg: '#ff4444' } : isNiche ? { text: '🕵️ 独家冷门', bg: '#00dd00' } : { text: '🔥 精选热门', bg: '#ffff00' };
+
+                return (
+                  <div key={`save-${idx}`} className="bg-white border-[3px] border-black flex items-stretch shadow-[8px_8px_0_0_#ffff00]">
+                    <div style={{ width: '45px', backgroundColor: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '18px', color: '#ff00ff', fontWeight: 'bold' }}>0{idx + 1}</span>
+                    </div>
+
+                    <div className="flex-1 p-4 flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-[10px] font-black px-2 py-0.5 border-2 border-black" style={{ backgroundColor: badge.bg }}>{badge.text}</span>
+                          <span className="text-[10px] font-black px-2 py-0.5 bg-black text-white border-2 border-black">{rec.year} | {rec.type}</span>
+                        </div>
+                        <div className="font-black text-xl text-black leading-tight">{rec.title}</div>
+                        {rec.originalTitle && <div className="text-sm text-[#ff00ff] font-bold">{rec.originalTitle}</div>}
+                        {rec.director && <div className="text-xs text-gray-500 font-bold mt-1">导演: {rec.director}</div>}
+                      </div>
+                      
+                      <div className="mt-3 bg-gray-100 p-2 border-[2px] border-gray-300 text-xs text-gray-700 leading-snug">
+                        {rec.reason}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-8 p-4 bg-black border-2 border-[#ff00ff] text-center">
+              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '10px', color: '#00ffff' }}>bloodyrex.xyz | KIM'S VIDEO — AI MOVIE RECOMMENDER</span>
+            </div>
+          </div>
+        );
+      };
+
+      return (
+        <div className="min-h-screen text-black selection:bg-[#ffff00] selection:text-black overflow-x-hidden py-6">
+          {step !== 'splash' && (
+            <header className="relative z-10 flex flex-col items-center py-4 mb-6 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
+              <div className="flex items-center justify-center cursor-pointer" onClick={() => setStep('splash')}>
+                <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
+                  <span className="text-black transform rotate-90"><Icons.Play /></span>
+                </div>
+                <h1 className="text-xl sm:text-3xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap">
+                  KIM'S <span className="text-[#00ffff]">VIDEO</span>
+                </h1>
+              </div>
+              <p className="text-gray-500 text-xs pixel-font mt-1 tracking-wider">"Art is above the law."</p>
+            </header>
+          )}
+
+          <main className="relative z-10 container mx-auto px-4 md:py-4">
+            {step === 'splash'             && renderSplash()}
+            {step === 'discover'           && renderDiscover()}
+            {step === 'intelligence'       && renderIntelligence()}
+            {step === 'wall'               && renderWall()}
+            {step === 'input'              && renderInput()}
+            {step === 'loading_questions'  && renderLoading()}
+            {step === 'qa'                 && renderQA()}
+            {step === 'loading_results'    && renderLoading()}
+            {step === 'results'            && renderResults()}
+          </main>
+
+          {step !== 'splash' && (
+            <footer className="mt-12 text-center py-4 bg-black border-t-4 border-[#ffff00] text-white text-xs pixel-font uppercase tracking-widest">
+              <p>TMDB API | <span className="tracking-[0.2em] font-black">推荐仅供参考</span> | BLOODYREX (C) 2026</p>
+            </footer>
+          )}
+
+          {showSaveLayout && (
+            <div ref={saveContainerRef} style={{ position: 'fixed', top: '-9999px', left: 0, width: '800px', zIndex: 9999 }}>
+              {renderSaveContent()}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    const styleEl = document.createElement('style');
+    styleEl.innerHTML = `
+      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+SC:wght@400;700;900&display=swap');
+      .pixel-font { font-family: 'Press Start 2P', 'Noto Sans SC', system-ui, sans-serif; }
+      .graffiti-bg {
+        background-color: #111;
+        background-image:
+          radial-gradient(circle at 15% 50%, rgba(255, 0, 255, 0.4) 0%, transparent 40%),
+          radial-gradient(circle at 85% 30%, rgba(0, 255, 255, 0.4) 0%, transparent 40%),
+          radial-gradient(circle at 50% 80%, rgba(255, 255, 0, 0.3) 0%, transparent 50%),
+          url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+        background-blend-mode: screen, screen, screen, normal;
+      }
+      body {
+        font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+      }
+      .retro-container {
+        overflow: visible !important;
+      }
+    `;
+    document.head.appendChild(styleEl);
+    document.body.classList.add('graffiti-bg');
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<MovieRecommender />);
+  </script>
+</body>
+</html>

@@ -73,6 +73,53 @@ const NewHomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Browser back/forward — keep step in sync with the URL (Rex 2026-08-25:
+  // previously the detail overlay stayed open when using the browser back button)
+  useEffect(() => {
+    const onPopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const sourceRaw = params.get("from");
+      const detailId = params.get("r");
+      // Only real numeric ids — non-numeric sources (email deep links) map to NaN
+      const sourceId = (sourceRaw?.split(",").filter(Boolean).map(Number).filter(Number.isFinite) || [])[0];
+
+      if (detailId && sourceId) {
+        setSourceTmdbId(sourceId);
+        setDetailMovieId(detailId);
+        setDetailData(null);
+        const cached = loadResultsFromCache(sourceId);
+        if (cached) {
+          setPrimaryMovie(cached.primaryMovie);
+          setRecommendations(cached.recommendations || []);
+        }
+        setStep("detail");
+        return;
+      }
+      if (sourceId) {
+        setSourceTmdbId(sourceId);
+        setDetailMovieId(null);
+        setDetailData(null);
+        const cached = loadResultsFromCache(sourceId);
+        if (cached) {
+          setPrimaryMovie(cached.primaryMovie);
+          setRecommendations(cached.recommendations || []);
+          resetSeo(locale);
+          setStep("results");
+        } else {
+          setStep("input");
+        }
+        return;
+      }
+      // Plain "/" — splash grid (or AI input when ?search=1)
+      setDetailMovieId(null);
+      setDetailData(null);
+      setSourceTmdbId(null);
+      setStep(params.get("search") === "1" ? "input" : "splash");
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [locale]);
+
   // search debounce
   useEffect(() => {
     const timer = setTimeout(() => {
