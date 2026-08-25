@@ -1,50 +1,422 @@
 {
-  "updated": "2026-08-25",
-  "count": 4,
+  "updated": "2026-08-26",
+  "count": 36,
   "movies": [
     {
-      "tmdbId": 1732625,
+      "tmdbId": 1483525,
       "mediaType": "movie",
-      "title": "乐高迪士尼公主：魔法大乱斗",
-      "titleEn": "LEGO Disney Princess: Magical Mayhem",
+      "title": "可能的爱情",
+      "titleEn": "Possible Love",
       "year": "2026",
-      "releaseDate": "2026-08-21",
-      "poster": "https://image.tmdb.org/t/p/w500/xNA3Ub2MsAvbyg1GlDrrUQI2Kru.jpg",
-      "rating": 7.6,
+      "releaseDate": "2026-09-23",
+      "poster": "https://image.tmdb.org/t/p/w500/fCjmdRjpaJdjmUkTFYWe62omR8j.jpg",
+      "rating": 0,
       "genre": [
-        "Animation",
-        "Fantasy",
-        "Comedy",
-        "Adventure"
+        "Drama"
       ],
+      "firstSeen": "2026-08-26"
+    },
+    {
+      "tmdbId": 1036875,
+      "mediaType": "movie",
+      "title": "露西的重启人生",
+      "titleEn": "What Will Lucy Do Next?",
+      "year": "2022",
+      "releaseDate": "2022-10-08",
+      "poster": "https://image.tmdb.org/t/p/w342/d1XGHl0vTgKZFpj19lExQ3UMgjE.jpg",
+      "rating": 0,
+      "genre": [
+        "剧情",
+        "喜剧"
+      ],
+      "source": "rec",
       "firstSeen": "2026-08-25"
     },
     {
-      "tmdbId": 11553,
+      "tmdbId": 11051,
       "mediaType": "movie",
-      "title": "千禧曼波",
-      "titleEn": "千禧曼波",
-      "year": "2001",
-      "releaseDate": "2001-10-31",
-      "poster": "https://image.tmdb.org/t/p/w342/wSc6tOp1yoAFbZqxG5XVGHcFvRN.jpg",
-      "rating": 7.012,
+      "title": "基督最后的诱惑",
+      "titleEn": "The Last Temptation of Christ",
+      "year": "1988",
+      "releaseDate": "1988-05-28",
+      "poster": "https://image.tmdb.org/t/p/w342/7L4qwrC1mipZXJfU5oRgQWChLv1.jpg",
+      "rating": 7.222,
       "genre": [
         "剧情"
       ],
       "source": "rec",
-      "firstSeen": "2026-08-24"
+      "firstSeen": "2026-08-25"
     },
     {
-      "tmdbId": 1948,
+      "tmdbId": 11656,
       "mediaType": "movie",
-      "title": "怒火攻心",
-      "titleEn": "Crank",
+      "title": "处女泉",
+      "titleEn": "Jungfrukällan",
+      "year": "1960",
+      "releaseDate": "1960-02-08",
+      "poster": "https://image.tmdb.org/t/p/w342/z70YM3Y4pNYZATMhFMKonngaeMC.jpg",
+      "rating": 7.853,
+      "genre": [
+        "剧情",
+        "历史"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-26"
+    },
+    {
+      "tmdbId": 14816,
+      "mediaType": "movie",
+      "title": "狗咬狗",
+      "titleEn": "狗咬狗",
       "year": "2006",
-      "releaseDate": "2006-08-31",
-      "poster": "https://image.tmdb.org/t/p/w342/rsKmhnvzJezjwC1Ud2Hh37oNpdQ.jpg",
-      "rating": 6.7,
+      "releaseDate": "2006-08-17",
+      "poster": "https://image.tmdb.org/t/p/w342/itNA7ItpFZBeMfdI6MV7O9tnaKi.jpg",
+      "rating": 6.566,
       "genre": [
         "动作",
+        "犯罪",
+        "惊悚"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 21334,
+      "mediaType": "movie",
+      "title": "小鞋子",
+      "titleEn": "بچه‌های آسمان",
+      "year": "1997",
+      "releaseDate": "1997-08-01",
+      "poster": "https://image.tmdb.org/t/p/w342/jWqh1CJWAEcxckMRrf6ARhIEh0R.jpg",
+      "rating": 7.884,
+      "genre": [
+        "剧情",
+        "家庭"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 26280,
+      "mediaType": "movie",
+      "title": "我杀了我妈妈",
+      "titleEn": "J'ai tué ma mère",
+      "year": "2009",
+      "releaseDate": "2009-06-05",
+      "poster": "https://image.tmdb.org/t/p/w342/nB6OuDdERS95aQtoxPExXxsW3Ov.jpg",
+      "rating": 7.442,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 267935,
+      "mediaType": "movie",
+      "title": "圆梦巨人",
+      "titleEn": "The BFG",
+      "year": "2016",
+      "releaseDate": "2016-06-01",
+      "poster": "https://image.tmdb.org/t/p/w342/w17Mc2x2olB5CtewznUFxgpvne0.jpg",
+      "rating": 6.286,
+      "genre": [
+        "冒险",
+        "家庭",
+        "奇幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 276624,
+      "mediaType": "movie",
+      "title": "请叫我英雄",
+      "titleEn": "アイアムアヒーロー",
+      "year": "2016",
+      "releaseDate": "2016-04-23",
+      "poster": "https://image.tmdb.org/t/p/w342/4RnmHtCLtbBHD9jagVlcSzJTWX6.jpg",
+      "rating": 7.446,
+      "genre": [
+        "动作",
+        "恐怖",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 294463,
+      "mediaType": "movie",
+      "title": "小楼的奇幻生活",
+      "titleEn": "Lou ! Journal infime",
+      "year": "2014",
+      "releaseDate": "2014-10-08",
+      "poster": "https://image.tmdb.org/t/p/w342/vy7ExMkFwICsE7GY3r8HnYCosUP.jpg",
+      "rating": 5.675,
+      "genre": [
+        "喜剧"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 314365,
+      "mediaType": "movie",
+      "title": "聚焦",
+      "titleEn": "Spotlight",
+      "year": "2015",
+      "releaseDate": "2015-11-06",
+      "poster": "https://image.tmdb.org/t/p/w342/8DPGG400FgaFWaqcv11n8mRd2NG.jpg",
+      "rating": 7.8,
+      "genre": [
+        "剧情",
+        "历史"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 345725,
+      "mediaType": "movie",
+      "title": "一个勺子",
+      "titleEn": "一个勺子",
+      "year": "2015",
+      "releaseDate": "2015-05-01",
+      "poster": "https://image.tmdb.org/t/p/w342/3lWrgkgbqS5VKhOg8HRINdtnLOd.jpg",
+      "rating": 7.3,
+      "genre": [
+        "冒险",
+        "剧情",
+        "喜剧"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 365045,
+      "mediaType": "movie",
+      "title": "海蒂和爷爷",
+      "titleEn": "Heidi",
+      "year": "2015",
+      "releaseDate": "2015-12-10",
+      "poster": "https://image.tmdb.org/t/p/w342/ue6L0x3C9V4c5kIiWnEIOPwtGhw.jpg",
+      "rating": 7.26,
+      "genre": [
+        "冒险",
+        "家庭",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 40156,
+      "mediaType": "movie",
+      "title": "神父同志",
+      "titleEn": "Priest",
+      "year": "1995",
+      "releaseDate": "1995-03-24",
+      "poster": "https://image.tmdb.org/t/p/w342/yCZ2eGJb78HzaYthNwVF8R0G6BG.jpg",
+      "rating": 6.306,
+      "genre": [
+        "剧情",
+        "爱情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 417745,
+      "mediaType": "movie",
+      "title": "呼吸正常",
+      "titleEn": "呼吸正常",
+      "year": "2016",
+      "releaseDate": "2016-04-18",
+      "poster": "https://image.tmdb.org/t/p/w342/m4ZbKTq9ZFAhlF9CGoecHxNyodu.jpg",
+      "rating": 4,
+      "genre": [
+        "剧情",
+        "喜剧"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 419430,
+      "mediaType": "movie",
+      "title": "逃出绝命镇",
+      "titleEn": "Get Out",
+      "year": "2017",
+      "releaseDate": "2017-02-24",
+      "poster": "https://image.tmdb.org/t/p/w342/tFXcEccSQMf3lfhfXKSU9iRBpa3.jpg",
+      "rating": 7.625,
+      "genre": [
+        "悬疑",
+        "惊悚",
+        "恐怖"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-26"
+    },
+    {
+      "tmdbId": 446354,
+      "mediaType": "movie",
+      "title": "华盛顿邮报",
+      "titleEn": "The Post",
+      "year": "2017",
+      "releaseDate": "2017-12-22",
+      "poster": "https://image.tmdb.org/t/p/w342/h4XG3g6uMMPIBPjAoQhC2QIMdkl.jpg",
+      "rating": 7.005,
+      "genre": [
+        "剧情",
+        "历史"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 458737,
+      "mediaType": "movie",
+      "title": "第一归正会",
+      "titleEn": "First Reformed",
+      "year": "2018",
+      "releaseDate": "2018-05-18",
+      "poster": "https://image.tmdb.org/t/p/w342/8HKA3Hwf8jQWy8TCYWr7C8Wft23.jpg",
+      "rating": 6.971,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-26"
+    },
+    {
+      "tmdbId": 4771,
+      "mediaType": "movie",
+      "title": "失踪宝贝",
+      "titleEn": "Gone Baby Gone",
+      "year": "2007",
+      "releaseDate": "2007-09-18",
+      "poster": "https://image.tmdb.org/t/p/w342/5BXDhjKZ4AL9VPxcygdG3oL60GP.jpg",
+      "rating": 7.304,
+      "genre": [
+        "犯罪",
+        "剧情",
+        "悬疑"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 478804,
+      "mediaType": "movie",
+      "title": "血观音",
+      "titleEn": "血觀音",
+      "year": "2017",
+      "releaseDate": "2017-11-24",
+      "poster": "https://image.tmdb.org/t/p/w342/rlhZfsmfNWKjp9yOsHV0TPUhDWu.jpg",
+      "rating": 7.071,
+      "genre": [
+        "惊悚",
+        "悬疑",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 499556,
+      "mediaType": "movie",
+      "title": "大象席地而坐",
+      "titleEn": "大象席地而坐",
+      "year": "2018",
+      "releaseDate": "2018-12-14",
+      "poster": "https://image.tmdb.org/t/p/w342/bJfkDnsY9z9ohWdyzyCAqYZxbnS.jpg",
+      "rating": 7.7,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 508,
+      "mediaType": "movie",
+      "title": "真爱至上",
+      "titleEn": "Love Actually",
+      "year": "2003",
+      "releaseDate": "2003-09-07",
+      "poster": "https://image.tmdb.org/t/p/w342/7QPeVsr9rcFU9Gl90yg0gTOTpVv.jpg",
+      "rating": 7.1,
+      "genre": [
+        "喜剧",
+        "爱情",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 524738,
+      "mediaType": "movie",
+      "title": "恶魔的请柬",
+      "titleEn": "Sebelum Iblis Menjemput",
+      "year": "2018",
+      "releaseDate": "2018-08-09",
+      "poster": "https://image.tmdb.org/t/p/w342/i3UqtKPPWmDX4514kWF8hluCbsk.jpg",
+      "rating": 6.209,
+      "genre": [
+        "恐怖",
+        "悬疑",
+        "惊悚"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-26"
+    },
+    {
+      "tmdbId": 537996,
+      "mediaType": "movie",
+      "title": "巴斯特·斯克鲁格斯的歌谣",
+      "titleEn": "The Ballad of Buster Scruggs",
+      "year": "2018",
+      "releaseDate": "2018-11-09",
+      "poster": "https://image.tmdb.org/t/p/w342/voxl654m7p36y8FLu8oQD7dfwwK.jpg",
+      "rating": 7.131,
+      "genre": [
+        "西部",
+        "喜剧",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 552178,
+      "mediaType": "movie",
+      "title": "黑水",
+      "titleEn": "Dark Waters",
+      "year": "2019",
+      "releaseDate": "2019-11-22",
+      "poster": "https://image.tmdb.org/t/p/w342/bzvzaHqKBSuGIIWhinTQPHvT0zf.jpg",
+      "rating": 7.525,
+      "genre": [
+        "剧情",
+        "惊悚"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 57361,
+      "mediaType": "movie",
+      "title": "黄海",
+      "titleEn": "황해",
+      "year": "2010",
+      "releaseDate": "2010-12-22",
+      "poster": "https://image.tmdb.org/t/p/w342/yPJMDxam5HP0DAc1rMk0aNRpSc5.jpg",
+      "rating": 7.343,
+      "genre": [
+        "剧情",
         "惊悚",
         "犯罪"
       ],
@@ -52,19 +424,168 @@
       "firstSeen": "2026-08-25"
     },
     {
-      "tmdbId": 22494,
+      "tmdbId": 72750,
       "mediaType": "movie",
-      "title": "有关时间旅行的热门问题",
-      "titleEn": "Frequently Asked Questions About Time Travel",
-      "year": "2009",
-      "releaseDate": "2009-04-24",
-      "poster": "https://image.tmdb.org/t/p/w342/r67KzlHkdiwe3fBWzImEkNOg1Y.jpg",
-      "rating": 6.872,
+      "title": "Brasilintime: Batucada com Discos",
+      "titleEn": "Brasilintime: Batucada com Discos",
+      "year": "2007",
+      "releaseDate": "2007-11-13",
+      "poster": "https://image.tmdb.org/t/p/w342/2tQdPTL8jDg21c6tCsaE0kxorLF.jpg",
+      "rating": 6.5,
       "genre": [
-        "喜剧",
+        "纪录",
+        "音乐"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 758891,
+      "mediaType": "movie",
+      "title": "你好，李焕英",
+      "titleEn": "你好，李焕英",
+      "year": "2021",
+      "releaseDate": "2021-02-12",
+      "poster": "https://image.tmdb.org/t/p/w342/9R1P1xkUSI9A37Z3cYuHVY98hKf.jpg",
+      "rating": 7.014,
+      "genre": [
         "剧情",
+        "喜剧",
+        "奇幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 763,
+      "mediaType": "movie",
+      "title": "群尸玩过界",
+      "titleEn": "Braindead",
+      "year": "1992",
+      "releaseDate": "1992-08-13",
+      "poster": "https://image.tmdb.org/t/p/w342/pa39D8TQs6aNw3hiUs4jLjHVUB0.jpg",
+      "rating": 7.385,
+      "genre": [
+        "恐怖",
+        "喜剧"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 76492,
+      "mediaType": "movie",
+      "title": "精灵旅社",
+      "titleEn": "Hotel Transylvania",
+      "year": "2012",
+      "releaseDate": "2012-09-20",
+      "poster": "https://image.tmdb.org/t/p/w342/eJGvzGrsfe2sqTUPv5IwLWXjVuR.jpg",
+      "rating": 6.968,
+      "genre": [
+        "动画",
+        "喜剧",
+        "家庭",
+        "奇幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 795811,
+      "mediaType": "movie",
+      "title": "偶然与想象",
+      "titleEn": "偶然と想像",
+      "year": "2021",
+      "releaseDate": "2021-04-11",
+      "poster": "https://image.tmdb.org/t/p/w342/z3xqVWOsetW6pSEgx1uiqXfzRet.jpg",
+      "rating": 7.215,
+      "genre": [
+        "剧情",
+        "爱情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 82654,
+      "mediaType": "movie",
+      "title": "温暖的尸体",
+      "titleEn": "Warm Bodies",
+      "year": "2013",
+      "releaseDate": "2013-01-31",
+      "poster": "https://image.tmdb.org/t/p/w342/pvVpl38YOBDOANb0pWbXFb8X3iZ.jpg",
+      "rating": 6.475,
+      "genre": [
+        "恐怖",
+        "喜剧",
         "爱情",
+        "动作",
         "科幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-25"
+    },
+    {
+      "tmdbId": 8416,
+      "mediaType": "movie",
+      "title": "同流者",
+      "titleEn": "Il conformista",
+      "year": "1971",
+      "releaseDate": "1971-01-29",
+      "poster": "https://image.tmdb.org/t/p/w342/nLJjFRqIJAK8qz0OKYnpKCblZNK.jpg",
+      "rating": 7.645,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-26"
+    },
+    {
+      "tmdbId": 9509,
+      "mediaType": "movie",
+      "title": "怒火救援",
+      "titleEn": "Man on Fire",
+      "year": "2004",
+      "releaseDate": "2004-04-23",
+      "poster": "https://image.tmdb.org/t/p/w342/grCGLCcTHv9TChibzOwzUpykcjB.jpg",
+      "rating": 7.465,
+      "genre": [
+        "动作",
+        "剧情",
+        "惊悚"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-26"
+    },
+    {
+      "tmdbId": 968,
+      "mediaType": "movie",
+      "title": "热天午后",
+      "titleEn": "Dog Day Afternoon",
+      "year": "1975",
+      "releaseDate": "1975-09-21",
+      "poster": "https://image.tmdb.org/t/p/w342/mavrhr0ig2aCRR8d48yaxtD5aMQ.jpg",
+      "rating": 7.854,
+      "genre": [
+        "犯罪",
+        "剧情",
+        "惊悚"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-08-26"
+    },
+    {
+      "tmdbId": 99755,
+      "mediaType": "movie",
+      "title": "沉默的真相",
+      "titleEn": "Lautlose Morde",
+      "year": "2010",
+      "releaseDate": "2010-10-07",
+      "poster": "https://image.tmdb.org/t/p/w342/icUXFVxu2HAcbbpwjD68mTbXZOR.jpg",
+      "rating": 5.8,
+      "genre": [
+        "犯罪",
+        "惊悚"
       ],
       "source": "rec",
       "firstSeen": "2026-08-25"
