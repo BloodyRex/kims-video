@@ -23,6 +23,16 @@
     }
   }
 
+  /* Rex 2026-08-25: wall EN chips must match discover EN chips — same override */
+  .wall-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)):where(:not([class*='tracking-wider'])):where(:not([class*='tracking-widest'])) {
+    font-size: 0.55rem !important;
+  }
+  @media (max-width: 640px) {
+    .wall-page.locale-en .pixel-font:where(:not(h1.pixel-font)):where(:not(h2.pixel-font)):where(:not([class*='tracking-wider'])):where(:not([class*='tracking-widest'])) {
+      font-size: 0.45rem !important;
+    }
+  }
+
   .discover-page.locale-en h2.pixel-font:not(.discover-title) {
     font-size: 0.875rem !important;
   }

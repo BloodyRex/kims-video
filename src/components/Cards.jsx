@@ -979,13 +979,13 @@ export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", sub
             )}
           </div>
         )}
-        {/* Countdown ribbon — CountdownCard's top-right corner design.
-            Rex 2026-08-25: smaller (8px, tighter padding) per feedback. */}
+        {/* Countdown ribbon — Rex 2026-08-25: unified to the wall card's status-badge
+            design (8px, tight padding), positioned top-RIGHT per feedback. */}
         {ribbon && (
-          <div className="absolute top-0 right-0 px-1.5 py-0.5 border-l-2 border-b-2 border-black z-10"
+          <span className="absolute top-1.5 right-1.5 px-1 py-0.5 text-[8px] font-black border border-black leading-none z-10"
             style={{ backgroundColor: ribbonColor }}>
-            <span className="text-[8px] sm:text-[9px] font-black pixel-font text-black leading-none">{ribbon}</span>
-          </div>
+            {ribbon}
+          </span>
         )}
         {rating > 0 && (
           <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">

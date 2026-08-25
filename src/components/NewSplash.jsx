@@ -12,7 +12,10 @@ const CARDS = [
   {
     id: "ai-search",
     targetStep: "input",
-    title: "AI Search",
+    // Rex 2026-08-25: titles now bilingual (were hardcoded EN — zh users saw
+    // English card titles that never switched with the language toggle)
+    titleZh: "AI 搜索",
+    titleEn: "AI Search",
     subtitleZh: "AI 推荐",
     subtitleEn: "AI Picks",
     descZh: "输入喜欢的电影，AI 为你精准推荐合口味的作品。",
@@ -28,7 +31,8 @@ const CARDS = [
   {
     id: "discover",
     targetStep: "discover",
-    title: "Discover",
+    titleZh: "社区发现",
+    titleEn: "Discover",
     subtitleZh: "社区发现",
     subtitleEn: "Curated Picks",
     descZh: "编辑与社区精选的电影合辑、专题盘点。",
@@ -44,7 +48,8 @@ const CARDS = [
   {
     id: "intelligence",
     targetStep: "intelligence",
-    title: "Intelligence",
+    titleZh: "全球影音",
+    titleEn: "Intelligence",
     subtitleZh: "全球影音",
     subtitleEn: "Intel Center",
     descZh: "影讯、剧集、音乐与每周情报速览。",
@@ -60,7 +65,8 @@ const CARDS = [
   {
     id: "movie-wall",
     targetStep: "wall",
-    title: "Movie Wall",
+    titleZh: "影视墙",
+    titleEn: "Movie Wall",
     subtitleZh: "影视墙",
     subtitleEn: "Movie Wall",
     descZh: "浏览你的电影收藏墙，按日期排布的影史长卷。",
@@ -124,10 +130,9 @@ const NewSplash = ({ onEnterAI }) => {
         <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#ffff00] transition-colors pointer-events-none z-10"></div>
 
         <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between z-20">
-          <div className="flex justify-between items-start">
-            <span className={`text-[10px] font-black px-3 py-1 text-black border-2 border-black pixel-font uppercase ${card.badgeBg}`}>
-              Archive Entry
-            </span>
+          <div className="flex justify-start items-start">
+            {/* Rex 2026-08-25: "ARCHIVE ENTRY" badge removed; the SEC.NN frame
+                moved here (top-left) as its replacement */}
             <span className="text-white font-mono text-xs bg-black/80 px-2 py-1 border border-white/40">
               SEC.0{index + 1}
             </span>
@@ -135,7 +140,7 @@ const NewSplash = ({ onEnterAI }) => {
 
           <div>
             <h3 className="text-3xl md:text-4xl font-black mb-1 uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#000]">
-              {card.title}
+              {zh ? card.titleZh : card.titleEn}
             </h3>
             <h4 className={`text-sm md:text-base font-bold mb-3 ${card.accent}`}>
               {zh ? card.subtitleZh : card.subtitleEn}
