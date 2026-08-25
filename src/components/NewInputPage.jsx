@@ -91,7 +91,7 @@ const NewInputPage = ({
       <div className="space-y-6 relative z-10">
         {/* 主参考作品 */}
         <div className="bg-[#f0f0f0] p-5 max-sm:p-3 border-4 max-sm:border-2 border-black shadow-[6px_6px_0_0_#ff00ff]">
-          <label className={`block text-black font-black mb-3 flex items-center uppercase pixel-font ${locale === "en" ? "text-base" : "text-lg max-sm:text-sm"}`}>
+          <label className={`block text-black font-black mb-3 flex items-center uppercase pixel-font ${locale === "en" ? "text-sm" : "text-lg max-sm:text-sm"}`}>
             <span className="mr-2 text-[#ff00ff]">
               <Icons.Star />
             </span>{" "}
@@ -171,7 +171,7 @@ const NewInputPage = ({
 
         {/* 附加参考作品 */}
         <div className="bg-[#f0f0f0] p-5 max-sm:p-3 border-4 max-sm:border-2 border-black border-dashed shadow-[6px_6px_0_0_#00ffff]">
-          <label className={`block text-gray-600 font-black mb-3 flex items-center uppercase pixel-font ${locale === "en" ? "text-sm" : ""}`}>
+          <label className={`block text-gray-600 font-black mb-3 flex items-center uppercase pixel-font ${locale === "en" ? "text-xs" : ""}`}>
             <span className="mr-2 text-[#00ffff]">
               <Icons.Film />
             </span>{" "}

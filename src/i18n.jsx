@@ -251,10 +251,12 @@ const messages = {
     "wall.next": "NEXT →",
 
     // ---- Footer ----
-    "footer.home": "AI Search",
-    "footer.discover": "Community Discover",
+    // EN labels mirror the four NewSplash grid-card titles (AI Picks / Curated Picks /
+    // Intel / Movie Wall) so footer and home page stay consistent; intel abbreviates.
+    "footer.home": "AI Picks",
+    "footer.discover": "Curated Picks",
     "footer.intel": "Intel",
-    "footer.wall": "Wall",
+    "footer.wall": "Movie Wall",
     "footer.contact": "Contact",
   },
 };

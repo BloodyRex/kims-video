@@ -7,6 +7,7 @@ import { fetchMovieByTmdbId } from "../services/api";
 import { fetchDiscoverResults, likeDiscoverResult } from "../services/discoverApi";
 import { setCanonical } from "../services/seo";
 import { TrailerButtons, StarRating, GENRE_ZH } from "./Cards";
+import SubscribeSection from "./SubscribeSection";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -552,8 +553,8 @@ const DiscoverPage = () => {
       {dailyPicks.length > 0 && (
         <section className="mb-6">
           <div className="max-w-4xl mx-auto px-4 max-sm:px-3 mb-3">
-            <h3 className="inline-block px-4 py-1.5 text-sm sm:text-base font-black pixel-font uppercase tracking-widest bg-black text-[#ffff00] border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff] max-sm:text-xs">
-              {zh ? "★ 今日编辑精选" : <span className="sm:text-xs">★ Today's Editor's Picks</span>}
+            <h3 className="inline-block px-4 py-1.5 text-xs sm:text-sm font-black pixel-font uppercase tracking-widest bg-black text-[#ffff00] border-2 border-[#ffff00] shadow-[4px_4px_0_0_#ff00ff] max-sm:text-[11px]">
+              {zh ? "★ 今日编辑精选" : "★ Today's Editor's Picks"}
             </h3>
           </div>
           <div ref={scrollRef} className="max-w-4xl mx-auto px-4 max-sm:px-3">
@@ -588,10 +589,8 @@ const DiscoverPage = () => {
           </span>
         </div>
         <div className="flex flex-wrap items-center gap-1.5">
-          {genreBtn("all", zh ? "全部类型" : "ALL GENRES")}
-          {COMMON_GENRES.map((g) => genreBtn(g, genreLabel(g, locale)))}
-          {genreBtn("other", zh ? "其他" : "OTHER")}
-          {/* Community comet toggle (same interaction as the wall's 来自社区) */}
+          {/* Community comet toggle (same interaction as the wall's 来自社区) —
+              Rex 2026-08-25: placed before ALL GENRES on both Discover and Wall */}
           <button
             onClick={() => setSourceMode(sourceMode === "editor" ? "community" : "editor")}
             className={`community-btn px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
@@ -600,6 +599,9 @@ const DiscoverPage = () => {
           >
             {zh ? "来自社区" : "FROM COMMUNITY"}
           </button>
+          {genreBtn("all", zh ? "全部类型" : "ALL GENRES")}
+          {COMMON_GENRES.map((g) => genreBtn(g, genreLabel(g, locale)))}
+          {genreBtn("other", zh ? "其他" : "OTHER")}
         </div>
       </div>
 
@@ -671,6 +673,9 @@ const DiscoverPage = () => {
       <div className="max-w-4xl mx-auto px-4 max-sm:px-3 pt-8 pb-16 text-center">
         <Link to="/?search=1" className="inline-block px-8 py-3 text-sm font-black pixel-font uppercase text-white bg-black border-4 border-[#ffff00] shadow-[6px_6px_0_0_#ff00ff] hover:translate-y-1 hover:shadow-[3px_3px_0_0_#ff00ff] transition-all">{zh ? "← 获取属于你的 AI 推荐" : "← GET YOUR OWN AI PICKS"}</Link>
       </div>
+
+      {/* Daily digest subscribe — same block as Intelligence (Rex 2026-08-25) */}
+      <SubscribeSection locale={locale} />
 
       {/* Overlays */}
       {detailPair && <PairDetailOverlay pair={detailPair} posterMap={posterMap} metaMap={metaMap} locale={locale} onClose={() => setDetailPair(null)} />}

@@ -6,6 +6,7 @@ import { GENRE_ZH } from "./Cards";
 import { setCanonical } from "../services/seo";
 import WallDetailView from "./WallDetailView";
 import DetailOverlay from "./DetailOverlay";
+import SubscribeSection from "./SubscribeSection";
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -65,9 +66,9 @@ function WallCard({ movie, locale, todayStr, todayTs, onOpen }) {
             <Icons.Film className="w-8 h-8" />
           </div>
         )}
-        {/* Status badge */}
+        {/* Status badge — Rex 2026-08-25: smaller (8px) so it doesn't crowd the poster */}
         <span
-          className={`absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none ${
+          className={`absolute top-1.5 left-1.5 px-1 py-0.5 text-[8px] font-black border border-black leading-none ${
             released ? "bg-black text-[#00ff00]" : "bg-[#ffff00] text-black"
           }`}
         >
@@ -341,9 +342,11 @@ const WallPage = () => {
       </header>
 
       {/* Title + wall type switcher */}
-      <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 text-center relative">
-        <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
-          {wallType === "tv" ? (zh ? "📺剧集墙" : "📺TV WALL") : (zh ? "🎬影视墙" : "🎬MOVIE WALL")}
+      <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 relative">
+        {/* Rex 2026-08-25: smaller EN title + left-shifted so emoji+text block reads centered
+            (emoji glyph adds visual width on the left; translate-x compensates) */}
+        <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font -translate-x-3 sm:-translate-x-4">
+          {wallType === "tv" ? (zh ? "📺 剧集墙" : "📺 TV WALL") : (zh ? "🎬 影视墙" : "🎬 MOVIE WALL")}
         </h2>
         <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">
           {wallType === "tv"
@@ -467,12 +470,10 @@ const WallPage = () => {
               </span>
             </div>
             <div className="flex flex-wrap items-center gap-1.5">
-              {genreBtn("all", zh ? "全部类型" : "ALL GENRES")}
-              {COMMON_GENRES.map((g) => genreBtn(g, genreLabel(g, locale)))}
-              {genreBtn("other", zh ? "其他" : "OTHER")}
               {/* Source filter: films collected from user recommendations / community (source: "rec").
                   Card UI does NOT show this badge — cards keep showing only the genre tag.
-                  Always-on comet border (clockwise, solid head + fading tail); active adds cyan fill. */}
+                  Always-on comet border (clockwise, solid head + fading tail).
+                  Rex 2026-08-25: placed before ALL GENRES, matching Discover. */}
               <button
                 onClick={() => setSourceFilter(sourceFilter === "rec" ? "all" : "rec")}
                 className={`community-btn px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
@@ -481,6 +482,9 @@ const WallPage = () => {
               >
                 {zh ? "来自社区" : "FROM COMMUNITY"}
               </button>
+              {genreBtn("all", zh ? "全部类型" : "ALL GENRES")}
+              {COMMON_GENRES.map((g) => genreBtn(g, genreLabel(g, locale)))}
+              {genreBtn("other", zh ? "其他" : "OTHER")}
             </div>
           </div>
 
@@ -536,6 +540,8 @@ const WallPage = () => {
           )}
         </>
       )}
+
+      <SubscribeSection locale={locale} />
 
       {/* Lang floating button — same as Discover/Intelligence */}
       <div className="fixed bottom-[116px] sm:bottom-[128px] right-3 sm:right-4 z-40">

@@ -89,10 +89,11 @@ function OverviewView({ locale, onViewDetail }) {
 
   const wallGrid = "grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2";
   // Countdown ribbon label — CountdownCard's wording (今天/明天/N天后)
+  // Rex 2026-08-25: EN tomorrow → "1D" (shorter ribbon), zh unchanged
   const countdownRibbon = (days) => {
     if (typeof days !== "number") return undefined;
     if (days === 0) return zhLocale ? "今天" : "TODAY";
-    if (days === 1) return zhLocale ? "明天" : "TOMORROW";
+    if (days === 1) return zhLocale ? "明天" : "1D";
     return zhLocale ? `${Math.min(days, 99)} 天后` : `${Math.min(days, 99)}D`;
   };
   const detailTypeOf = (pickCategory) => (pickCategory === "tvhot" ? "tv" : "movie");

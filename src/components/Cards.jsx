@@ -432,7 +432,7 @@ export function CountdownCard({ item, locale, onViewDetail }) {
     : days === 0
     ? (locale === "en" ? "TODAY" : "今天")
     : days === 1
-    ? (locale === "en" ? "TOMORROW" : "明天")
+    ? (locale === "en" ? "1D" : "明天")
     : locale === "en" ? `${days} DAYS` : `${days} 天后`;
   return (
     <CardShell className="relative overflow-hidden">
@@ -979,11 +979,12 @@ export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", sub
             )}
           </div>
         )}
-        {/* Countdown ribbon — CountdownCard's top-right corner design */}
+        {/* Countdown ribbon — CountdownCard's top-right corner design.
+            Rex 2026-08-25: smaller (8px, tighter padding) per feedback. */}
         {ribbon && (
-          <div className="absolute top-0 right-0 px-2 py-1 border-l-4 border-b-4 border-black z-10"
+          <div className="absolute top-0 right-0 px-1.5 py-0.5 border-l-2 border-b-2 border-black z-10"
             style={{ backgroundColor: ribbonColor }}>
-            <span className="text-[9px] sm:text-[10px] font-black pixel-font text-black leading-none">{ribbon}</span>
+            <span className="text-[8px] sm:text-[9px] font-black pixel-font text-black leading-none">{ribbon}</span>
           </div>
         )}
         {rating > 0 && (
