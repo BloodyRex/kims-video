@@ -9,6 +9,7 @@ import SaveContent from "./SaveContent";
 import NewSplash from "./NewSplash";
 import NewInputPage from "./NewInputPage";
 import SplashPage from "./SplashPage";
+import SubscribeSection from "./SubscribeSection";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "../services/api";
 import { loadResultsFromCache } from "../utils/cache";
@@ -323,6 +324,10 @@ const NewHomePage = () => {
           />
         )}
       </main>
+
+      {/* Daily digest subscribe — same block as the other pages (Rex 2026-08-25);
+          hidden on splash (full-bleed grid) */}
+      {step !== "splash" && <SubscribeSection locale={locale} />}
 
       {/* 语言切换按钮（与其他子页面一致） */}
       <div className="fixed bottom-[116px] sm:bottom-[128px] right-3 sm:right-4 z-40">

@@ -342,27 +342,28 @@ const WallPage = () => {
       </header>
 
       {/* Title + wall type switcher */}
-      <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 relative">
-        {/* Rex 2026-08-25: smaller EN title + left-shifted so emoji+text block reads centered
-            (emoji glyph adds visual width on the left; translate-x compensates) */}
-        <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font -translate-x-3 sm:-translate-x-4">
-          {wallType === "tv" ? (zh ? "📺 剧集墙" : "📺 TV WALL") : (zh ? "🎬 影视墙" : "🎬 MOVIE WALL")}
+      <section className="max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 pt-3 pb-4 text-center relative">
+        {/* Rex 2026-08-25: back to centered; zh keeps no space after emoji,
+            EN keeps a single space ("🎬 MOVIE WALL") */}
+        <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow-[3px_3px_0_#ff00ff] pixel-font">
+          {wallType === "tv" ? (zh ? "📺剧集墙" : "📺 TV WALL") : (zh ? "🎬影视墙" : "🎬 MOVIE WALL")}
         </h2>
         <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">
           {wallType === "tv"
             ? (zh ? "按季追踪的剧集长卷——每季一张卡，按最新播出时间排布。" : "A per-season TV chronicle, arranged by latest air date.")
             : t('wall.desc')}
         </p>
-        {/* Wall switcher — 🎬 movies | 📺 TV; ?type=tv keeps the mode shareable */}
+        {/* Wall switcher — 🎬 movies | 📺 TV; ?type=tv keeps the mode shareable.
+            Rex 2026-08-25: padding matched to Discover/Wall filter chips (px-2.5 py-1) */}
         <div className="inline-flex mt-4 border-2 border-black shadow-[3px_3px_0_0_#000] bg-white">
           <button
             onClick={() => { setWallType("movie"); setPage(1); }}
-            className={`px-4 py-1.5 text-[10px] sm:text-xs font-black pixel-font uppercase transition-colors ${wallType === "movie" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"}`}>
+            className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase transition-colors ${wallType === "movie" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"}`}>
             🎬 {zh ? "电影墙" : "MOVIES"}
           </button>
           <button
             onClick={() => { setWallType("tv"); setStatusFilter("all"); setPage(1); }}
-            className={`px-4 py-1.5 text-[10px] sm:text-xs font-black pixel-font uppercase border-l-2 border-black transition-colors ${wallType === "tv" ? "bg-[#00ffff] text-black" : "bg-white text-black hover:bg-gray-100"}`}>
+            className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-l-2 border-black transition-colors ${wallType === "tv" ? "bg-[#00ffff] text-black" : "bg-white text-black hover:bg-gray-100"}`}>
             📺 {zh ? "剧集墙" : "TV"}
           </button>
         </div>
