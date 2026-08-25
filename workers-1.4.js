@@ -2523,11 +2523,23 @@ function renderDigestHtml(d, now, locale) {
       return `<div style="margin:6px 0">
   <p style="font-size:11px;color:${cat.color};font-weight:bold;margin:0 0 4px;text-transform:uppercase">${cat.label}</p>
   ${items.map(a => {
-    // Rex 2026-08-25: music.json's AI highlight already embeds "· Nk 听众" —
-    // strip it and rebuild per-locale so EN gets "Nk listeners" (was: dead `${l}`
-    // var never interpolated, plus zh leaking into EN mails).
-    let hl = a.highlight ? ` — ${a.highlight}` : "";
-    hl = hl.replace(/\s*·\s*[\d.]+k\s*听众/g, "");
+    // Rex 2026-08-25 v2: EN must not leak zh — use highlightEn (minus its
+    // "from {artist}" tail, which duplicates the artist already shown);
+    // zh keeps its highlight with the embedded "· Nk 听众" stripped
+    // (listeners are rebuilt per-locale below).
+    let hl = "";
+    if (en) {
+      const src = a.highlightEn || a.summaryEn || "";
+      let s = src;
+      if (s && a.artist) {
+        const esc = String(a.artist).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        s = s.replace(new RegExp(`\\s+from\\s+${esc}\\s*$`, "i"), "");
+      }
+      hl = s ? ` — ${s}` : "";
+    } else {
+      hl = a.highlight ? ` — ${a.highlight}` : "";
+      hl = hl.replace(/\s*·\s*[\d.,]+k\s*听众/g, "");
+    }
     const l = a.listeners ? ` · ${(a.listeners/1000).toFixed(0)}k ${L("听众", "listeners")}` : "";
     return `<div style="font-size:12px;color:#ccc;line-height:1.5;padding:2px 0"><strong style="color:#fff">${a.title || ""}</strong>${a.artist ? ` <span style="color:#999">${a.artist}</span>` : ""}${hl}${l}</div>`;
   }).join("")}

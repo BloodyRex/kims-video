@@ -256,13 +256,20 @@ function MusicView({ locale, onViewDetail }) {
   const picks = data?.picks || [];
   const current = tagFilter === "all" ? picks : picks.filter(a => a.recommendationTagId === tagFilter);
   const zhLocale = locale === "zh";
-  // Release info line (Rex): 「雷鬼发行 / 新专辑发行」style — first zh style tag
-  // + 发行; falls back to 新专辑发行 when the tag has no GENRE_ZH mapping
-  // (raw "jazz fusion发行" reads broken) or none exists. Year only, no full date.
+  // Release info line (Rex 2026-08-25 v2): use the AI highlight's real release
+  // type (雷鬼发行 / 车库摇滚发行 …) instead of guessing from tags — the old tag-
+  // mapping approach almost always fell back to 新专辑发行, hiding the variety
+  // that's already in the data. EN mode derives the equivalent from highlightEn
+  // ("New reggae from X" → "New reggae"), falling back to "New Release".
   const musicReleaseInfo = (a) => {
-    const styleZh = albumGenres(a)[0];
-    const mapped = styleZh ? GENRE_ZH[styleZh] : undefined;
-    return mapped ? `${mapped}发行` : "新专辑发行";
+    if (!zhLocale) {
+      const srcEn = a.highlightEn || a.summaryEn || "";
+      const m = srcEn.match(/New ([a-z\- ]+?)(?: from|·|$)/i);
+      return m ? `New ${m[1].trim()}` : "New Release";
+    }
+    const hl = a.highlight || "";
+    const m = hl.match(/([\u4e00-\u9fffA-Za-z\-]+?)发行/);
+    return m ? `${m[1]}发行` : "新专辑发行";
   };
   const listenersRibbon = (a) => {
     const l = a.listeners || 0;
