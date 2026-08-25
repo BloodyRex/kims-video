@@ -141,6 +141,7 @@ function AppContent() {
         const cached = loadResultsFromCache(sourceId);
         if (cached) {
           setPrimaryMovie(cached.primaryMovie);
+          setRecommendations(cached.recommendations || []);
         } else if (sourceTitle) {
           setPrimaryMovie({ title: sourceTitle, year: "" });
         }
@@ -176,6 +177,7 @@ function AppContent() {
         const cached = loadResultsFromCache(sourceId);
         if (cached) {
           setPrimaryMovie(cached.primaryMovie);
+          setRecommendations(cached.recommendations || []);
         }
         setStep("detail");
       } else if (sourceId) {
@@ -185,6 +187,7 @@ function AppContent() {
         const cached = loadResultsFromCache(sourceId);
         if (cached) {
           setPrimaryMovie(cached.primaryMovie);
+          setRecommendations(cached.recommendations || []);
           resetSeo(locale);
           setStep("results");
           injectStructuredData(cached.primaryMovie);

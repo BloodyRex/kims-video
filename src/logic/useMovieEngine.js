@@ -423,7 +423,9 @@ export function useMovieEngine() {
     }
     resetSeo(locale);
     const fromParam = curParams.get("from");
-    const resultSourceIds = (fromParam?.split(",").filter(Boolean).map(Number) || []);
+    // Only keep real numeric ids — non-numeric sources (e.g. email deep links
+    // ?from=digest&r=123) would otherwise map to [NaN] and break the fallback
+    const resultSourceIds = (fromParam?.split(",").filter(Boolean).map(Number).filter(Number.isFinite) || []);
 
     const urlIds = resultSourceIds.length > 0 ? resultSourceIds : [sourceTmdbId].filter(Boolean);
     if (urlIds.length > 0) {
@@ -434,7 +436,15 @@ export function useMovieEngine() {
 
     setDetailMovieId(null);
     setDetailData(null);
-    setStep("results");
+    // Only stay on results when there is actual data — deep links without a
+    // generated session (email links, shared links on a fresh device) have no
+    // recommendations; sending them to results renders the empty state page.
+    if (recommendations?.length > 0) {
+      setStep("results");
+    } else {
+      setStep("input");
+      setPrimaryMovie({ title: "", year: "" });
+    }
   };
 
   const handleDetailShare = async () => {
