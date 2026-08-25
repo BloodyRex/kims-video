@@ -12,12 +12,10 @@ const CARDS = [
   {
     id: "ai-search",
     targetStep: "input",
-    // Rex 2026-08-25: titles now bilingual (were hardcoded EN — zh users saw
-    // English card titles that never switched with the language toggle)
-    titleZh: "AI 搜索",
-    titleEn: "AI Search",
+    // Rex 2026-08-25: fixed bilingual pairing — big EN title + small CN subtitle,
+    // identical in BOTH languages (does not switch with the language toggle)
+    title: "AI Search",
     subtitleZh: "AI 推荐",
-    subtitleEn: "AI Picks",
     descZh: "输入喜欢的电影，AI 为你精准推荐合口味的作品。",
     descEn: "Tell us what you love, get AI-matched picks.",
     bgImg: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80",
@@ -31,10 +29,8 @@ const CARDS = [
   {
     id: "discover",
     targetStep: "discover",
-    titleZh: "社区发现",
-    titleEn: "Discover",
+    title: "Discover",
     subtitleZh: "社区发现",
-    subtitleEn: "Curated Picks",
     descZh: "编辑与社区精选的电影合辑、专题盘点。",
     descEn: "Hand-picked collections and editor's choices.",
     bgImg: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80",
@@ -48,10 +44,8 @@ const CARDS = [
   {
     id: "intelligence",
     targetStep: "intelligence",
-    titleZh: "全球影音",
-    titleEn: "Intelligence",
+    title: "Intelligence",
     subtitleZh: "全球影音",
-    subtitleEn: "Intel Center",
     descZh: "影讯、剧集、音乐与每周情报速览。",
     descEn: "Movie, TV & music news at a glance.",
     bgImg: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1200&q=80",
@@ -65,10 +59,8 @@ const CARDS = [
   {
     id: "movie-wall",
     targetStep: "wall",
-    titleZh: "影视墙",
-    titleEn: "Movie Wall",
+    title: "Movie Wall",
     subtitleZh: "影视墙",
-    subtitleEn: "Movie Wall",
     descZh: "浏览你的电影收藏墙，按日期排布的影史长卷。",
     descEn: "Your film collection, arranged by release date.",
     bgImg: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1200&q=80",
@@ -139,11 +131,13 @@ const NewSplash = ({ onEnterAI }) => {
           </div>
 
           <div>
+            {/* Rex 2026-08-25: fixed bilingual pairing on every card, both languages:
+                big EN title over small CN subtitle — never switches with locale */}
             <h3 className="text-3xl md:text-4xl font-black mb-1 uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#000]">
-              {zh ? card.titleZh : card.titleEn}
+              {card.title}
             </h3>
             <h4 className={`text-sm md:text-base font-bold mb-3 ${card.accent}`}>
-              {zh ? card.subtitleZh : card.subtitleEn}
+              {card.subtitleZh}
             </h4>
             <p className="text-gray-300 text-xs md:text-sm font-medium line-clamp-2 bg-black/60 p-2.5 border-l-4 border-[#ff00ff]">
               {zh ? card.descZh : card.descEn}
