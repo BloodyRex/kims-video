@@ -34,13 +34,13 @@
     "regionalArtistReserve": 16
   },
   "stats": {
-    "mbRaw": 300,
-    "afterFilter": 153,
+    "mbRaw": 400,
+    "afterFilter": 208,
     "artistsChecked": 75,
-    "afterArtistFilter": 55,
+    "afterArtistFilter": 56,
     "albumEnriched": 40,
     "chartItems": 359,
-    "totalCandidates": 414,
+    "totalCandidates": 415,
     "sentToWorker": 18
   },
   "candidates": [
@@ -120,8 +120,8 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/41/19/3b/41193bb2-ffc4-043f-4ddd-128c272d8f82/mzi.qimpmkxb.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 1392156,
-      "artistPlaycount": 24831217,
+      "artistListeners": 1392262,
+      "artistPlaycount": 24833841,
       "albumListeners": 814027,
       "albumPlaycount": 8049941,
       "score": 69.5531940499776,
@@ -131,6 +131,50 @@
         "freshness": 0
       },
       "daysOld": 237
+    },
+    {
+      "id": "mb-c45a9a09-acc2-4b37-a04d-0b9dbc654b22",
+      "mbid": "c45a9a09-acc2-4b37-a04d-0b9dbc654b22",
+      "title": "dinnermode",
+      "artist": "SUMIN",
+      "releaseDate": "2026-08-13",
+      "year": "2026",
+      "type": "Album",
+      "country": "KR",
+      "genres": [
+        "boogie",
+        "缓拍",
+        "neo-soul",
+        "hip hop soul",
+        "alternative rnb"
+      ],
+      "genresEn": [
+        "boogie",
+        "downtempo",
+        "neo-soul",
+        "hip hop soul",
+        "alternative rnb"
+      ],
+      "lfmTags": [
+        "boogie",
+        "downtempo",
+        "neo-soul",
+        "hip hop soul",
+        "alternative rnb"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/06/9a/6e/069a6ecf-166b-7f5d-f3b3-8a77d7c0d64d/191953564548.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 125627,
+      "artistPlaycount": 4239011,
+      "albumListeners": 4732,
+      "albumPlaycount": 89081,
+      "score": 69.36911027211634,
+      "scoreBreakdown": {
+        "artist": 33.99388659233688,
+        "album": 18.375223679779463,
+        "freshness": 17
+      },
+      "daysOld": 13
     },
     {
       "id": "mb-905ab586-c0f1-478f-812f-aa3dcb430a91",
@@ -234,13 +278,13 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/82/d0/02/82d002c7-7951-b1f7-a6b4-1e75a645b8f9/25UM1IM72906.rgb.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 513152,
-      "artistPlaycount": 22932438,
+      "artistListeners": 513228,
+      "artistPlaycount": 22935885,
       "albumListeners": 25880,
       "albumPlaycount": 378894,
-      "score": 60.133128199305915,
+      "score": 60.13355697332314,
       "scoreBreakdown": {
-        "artist": 38.0683068393226,
+        "artist": 38.068735613339825,
         "album": 22.064821359983316,
         "freshness": 0
       },
@@ -372,7 +416,7 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0a/c8/b3/0ac8b32c-6a35-71cb-9ce6-8b85635ae075/8800388636493_cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
       "artistListeners": 20243,
       "artistPlaycount": 233399,
@@ -571,32 +615,6 @@
       "daysOld": 237
     },
     {
-      "id": "mb-268d81bf-6af4-4bfd-b4ce-41a7e777c144",
-      "mbid": "268d81bf-6af4-4bfd-b4ce-41a7e777c144",
-      "title": "Nothing Hurts Like Everything",
-      "artist": "Ourson",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "CA",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 39567,
-      "artistPlaycount": 327673,
-      "albumListeners": 10579,
-      "albumPlaycount": 40799,
-      "score": 50.77111057216832,
-      "scoreBreakdown": {
-        "artist": 30.648887486511573,
-        "album": 20.122223085656746,
-        "freshness": 0
-      },
-      "daysOld": 237
-    },
-    {
       "id": "mb-c0d31807-a8ee-4127-847b-19f28630871c",
       "mbid": "c0d31807-a8ee-4127-847b-19f28630871c",
       "title": "THE PROTÉGÉ",
@@ -740,6 +758,50 @@
       "scoreBreakdown": {
         "artist": 33.82784150290233,
         "album": 14.6136272899663,
+        "freshness": 0
+      },
+      "daysOld": 237
+    },
+    {
+      "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
+      "mbid": "f4a9a05b-c146-410e-8161-4d10af2f6bfa",
+      "title": "Unity",
+      "artist": "Pariah",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "NL",
+      "genres": [
+        "鞭挞金属",
+        "thrash",
+        "1997",
+        "回响贝斯",
+        "rocking"
+      ],
+      "genresEn": [
+        "thrash metal",
+        "thrash",
+        "1997",
+        "dubstep",
+        "rocking"
+      ],
+      "lfmTags": [
+        "thrash metal",
+        "thrash",
+        "1997",
+        "dubstep",
+        "rocking"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/78/ff/c7/78ffc7d1-9df3-cfde-1a92-c9033427e2f1/196626204936.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 113043,
+      "artistPlaycount": 890441,
+      "albumListeners": 541,
+      "albumPlaycount": 8624,
+      "score": 47.354277489196896,
+      "scoreBreakdown": {
+        "artist": 33.68829116366405,
+        "album": 13.665986325532847,
         "freshness": 0
       },
       "daysOld": 237
@@ -914,32 +976,6 @@
       "scoreBreakdown": {
         "artist": 28.899305753412538,
         "album": 12.726535582329118,
-        "freshness": 0
-      },
-      "daysOld": 237
-    },
-    {
-      "id": "mb-2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
-      "mbid": "2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
-      "title": "Жёсткая неделька",
-      "artist": "СМЕХ",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 30657,
-      "artistPlaycount": 934538,
-      "albumListeners": 217,
-      "albumPlaycount": 2090,
-      "score": 41.59249636171951,
-      "scoreBreakdown": {
-        "artist": 29.91019769247686,
-        "album": 11.682298669242648,
         "freshness": 0
       },
       "daysOld": 237
@@ -1267,26 +1303,26 @@
       "daysOld": 15
     },
     {
-      "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
-      "mbid": "8cad04bc-f71b-4bbd-a518-77399a2352ad",
-      "title": "Miten asiat oikeesti on?",
-      "artist": "Liisa Akimof",
+      "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
+      "mbid": "017c16c7-e4c5-488d-8bde-d2e41a15096f",
+      "title": "Nick Collection 2",
+      "artist": "Pop! not soda.",
       "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
-      "country": "FI",
+      "country": "XW",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/92/c2/78/92c27810-d35d-071d-343e-d0c088ca3386/artwork.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 3507,
-      "artistPlaycount": 54039,
+      "artistListeners": 3644,
+      "artistPlaycount": 45409,
       "albumListeners": 204,
-      "albumPlaycount": 2137,
-      "score": 35.18105594300617,
+      "albumPlaycount": 2235,
+      "score": 35.29200662580257,
       "scoreBreakdown": {
-        "artist": 23.63290510587668,
+        "artist": 23.743855788673073,
         "album": 11.548150837129494,
         "freshness": 0
       },
@@ -1383,6 +1419,38 @@
       "score": 25.25775475413905,
       "scoreBreakdown": {
         "artist": 25.25775475413905,
+        "album": 0,
+        "freshness": 0
+      },
+      "daysOld": 237
+    },
+    {
+      "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
+      "mbid": "8cad04bc-f71b-4bbd-a518-77399a2352ad",
+      "title": "Miten asiat oikeesti on?",
+      "artist": "Liisa Akimof",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "FI",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "finnish",
+        "singer-songwriter",
+        "Soundtrack",
+        "80s",
+        "finland"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 3507,
+      "artistPlaycount": 54039,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 23.63290510587668,
+      "scoreBreakdown": {
+        "artist": 23.63290510587668,
         "album": 0,
         "freshness": 0
       },
