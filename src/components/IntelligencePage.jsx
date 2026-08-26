@@ -67,6 +67,9 @@ function LoadingSpinner({ locale }) {
 function OverviewView({ locale, onViewDetail }) {
   const { data, loading, error, retry } = useJsonData("/api/overview.json");
   const { data: musicData } = useJsonData("/api/music.json");
+  // Rex 2026-08-27: 还原「每日摘要」框（40a0f22 精简时误删）— 由 AI 生成的
+  // headline + summary + topTrends，数据源 /api/digest.json（每日流水线刷新）
+  const { data: digestData } = useJsonData("/api/digest.json");
   // ⚠️ ALL hooks MUST run on every render (before any early return) — putting
   // this useMemo below the loading/error returns crashed the whole page
   // (black screen, "Rendered fewer hooks than expected").
@@ -99,8 +102,30 @@ function OverviewView({ locale, onViewDetail }) {
   const detailTypeOf = (pickCategory) => (pickCategory === "tvhot" ? "tv" : "movie");
 
   return (
-    <div className="space-y-8">
-      {/* Rex 2026-08-25: 总览精简 — 移除「娱乐情报中心」横幅、统计卡与「每日摘要」框，直接从编辑精选开始 */}
+      <div className="space-y-8">
+        {/* Daily Digest — 由 AI 生成的每日影视音乐简短总结（headline + summary + 趋势标签）。
+            Rex 2026-08-27: 从 40a0f22 还原（总览精简时被移除）。有 headline 才显示，
+            避免 AI 失败日出现空框；topTrends 标签随语言切换。 */}
+        {digestData?.headline && (
+          <section>
+            <SectionHeader label={locale === "zh" ? "☎ 每日摘要" : "☎ Daily Digest"} color="#ff00ff" />
+            <div className="bg-black border-4 border-[#ffff00] p-5 shadow-[6px_6px_0_0_rgba(0,255,255,0.3)]">
+              <h3 className="text-base font-black text-[#ffff00] mb-2">{locale === "en" ? (digestData.headlineEn || digestData.headline) : digestData.headline}</h3>
+              <p className="text-sm text-gray-200 leading-relaxed">{locale === "en" ? (digestData.summaryEn || digestData.summary) : digestData.summary}</p>
+              {digestData.topTrends?.length > 0 && (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {digestData.topTrends.map((tr, i) => (
+                    <span key={i} className="text-[10px] px-2 py-0.5 bg-[#ff00ff] text-black font-black">#{locale === "en" ? (tr.titleEn || tr.title) : tr.title}</span>
+                  ))}
+                </div>
+              )}
+              <p className="text-[10px] text-gray-500 mt-2 pixel-font">
+                {locale === "zh" ? "数据更新于 " : "Data updated "}{digestData.date || data?.updated || ""}
+              </p>
+            </div>
+          </section>
+        )}
+        {/* Rex 2026-08-25: 总览精简 — 移除「娱乐情报中心」横幅、统计卡与「每日摘要」框，直接从编辑精选开始 */}
 
       {(editorMovies.length > 0 || hotTv.length > 0 || musicSix.length > 0) && (
         <section>
