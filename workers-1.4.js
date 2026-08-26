@@ -1915,15 +1915,17 @@ Return JSON only:
 
 Top 3-5 trends (mix movies and TV by heat). 3-5 highlights.`;
 
-    // One retry (DeepSeek occasionally 5xx/times out; music endpoint uses the same pattern)
-    let raw = "", dResp = null;
-    for (let ai = 0; ai < 2; ai++) {
-      if (ai > 0) await new Promise(r => setTimeout(r, 1200));
-      dResp = await fetch("https://api.deepseek.com/chat/completions", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 3000 }),
-      });
+    // Retry up to 4 attempts (DeepSeek occasionally returns empty/5xx — live
+        // 2026-08-27: ~50% first-attempt success; 4 tries → ~94%). Music endpoint
+        // uses more attempts for the same reason.
+        let raw = "", dResp = null;
+        for (let ai = 0; ai < 4; ai++) {
+          if (ai > 0) await new Promise(r => setTimeout(r, 1200));
+          dResp = await fetch("https://api.deepseek.com/chat/completions", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+            body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 3000 }),
+          });
       if (dResp.ok) {
         const dr = await dResp.json();
         raw = dr?.choices?.[0]?.message?.content || "";

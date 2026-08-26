@@ -104,14 +104,22 @@ function OverviewView({ locale, onViewDetail }) {
   return (
       <div className="space-y-8">
         {/* Daily Digest — 由 AI 生成的每日影视音乐简短总结（headline + summary + 趋势标签）。
-            Rex 2026-08-27: 从 40a0f22 还原（总览精简时被移除）。有 headline 才显示，
-            避免 AI 失败日出现空框；topTrends 标签随语言切换。 */}
-        {digestData?.headline && (
-          <section>
-            <SectionHeader label={locale === "zh" ? "☎ 每日摘要" : "☎ Daily Digest"} color="#ff00ff" />
-            <div className="bg-black border-4 border-[#ffff00] p-5 shadow-[6px_6px_0_0_rgba(0,255,255,0.3)]">
-              <h3 className="text-base font-black text-[#ffff00] mb-2">{locale === "en" ? (digestData.headlineEn || digestData.headline) : digestData.headline}</h3>
-              <p className="text-sm text-gray-200 leading-relaxed">{locale === "en" ? (digestData.summaryEn || digestData.summary) : digestData.summary}</p>
+                  Rex 2026-08-27: 从 40a0f22 还原（总览精简时被移除）。AI 偶发失败时
+                  （headline 空但仍返回 topTrends）降级显示趋势标签，框永不消失。 */}
+              {(digestData?.headline || digestData?.topTrends?.length > 0) && (
+                <section>
+                  <SectionHeader label={locale === "zh" ? "☎ 每日摘要" : "☎ Daily Digest"} color="#ff00ff" />
+                  <div className="bg-black border-4 border-[#ffff00] p-5 shadow-[6px_6px_0_0_rgba(0,255,255,0.3)]">
+                    {digestData.headline ? (
+                      <>
+                        <h3 className="text-base font-black text-[#ffff00] mb-2">{locale === "en" ? (digestData.headlineEn || digestData.headline) : digestData.headline}</h3>
+                        <p className="text-sm text-gray-200 leading-relaxed">{locale === "en" ? (digestData.summaryEn || digestData.summary) : digestData.summary}</p>
+                      </>
+                    ) : (
+                      <p className="text-sm text-gray-400 leading-relaxed mb-2">
+                        {locale === "zh" ? "AI 总结生成中，先看看今日热点：" : "AI summary is being generated — top trends today:"}
+                      </p>
+                    )}
               {digestData.topTrends?.length > 0 && (
                 <div className="mt-3 flex flex-wrap gap-2">
                   {digestData.topTrends.map((tr, i) => (
