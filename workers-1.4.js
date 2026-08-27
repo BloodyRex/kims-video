@@ -291,7 +291,12 @@ function intelComputeScore(item, opts, today, batchMinPop, batchMaxPop) {
   }
 
   // ── S_date: non-axial decay (0-100) ──
-  const dateStr = item.release_date || item.first_air_date;
+    // TV 剧集优先用"最近一季"的播出日期 (last_episode_to_air.air_date) 计算新近度，
+    // 而非剧集首播日 —— 整季放出型剧（如《百年孤独》首播 2024-12）刚完结新季
+    // (8/26) 时 first_air 已过老，只有 last_episode 能反映"它现在正热"。这样
+    // 评分能真正体现"最新一季"，而不是被首播年份拖老。movie 无此字段，退回原逻辑。
+    const lastEp = item.last_episode_to_air?.air_date;
+    const dateStr = item.release_date || lastEp || item.first_air_date;
   let S_date = 0;
   if (dateStr) {
     const now = new Date(today + "T00:00:00");
