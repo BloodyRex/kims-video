@@ -1,5 +1,4 @@
-// TEMPORARY diagnostic #11 — verify the EXACT production filters on the new
-// streamer source don't over-include stale Netflix shows. Mirrors the code I wrote.
+// TEMPORARY diagnostic #12b — GENERAL multi-platform whole-season recovery.
 const B = "https://api.themoviedb.org/3";
 const AUTH = { Authorization: `Bearer ${process.env.TMDB_KEY}` };
 const get = async (path) => {
@@ -9,34 +8,36 @@ const get = async (path) => {
 };
 
 async function main() {
-  // Recompute cutoff via daysAgo
-  const d700 = new Date(); d700.setUTCDate(d700.getUTCDate() - 700); const cutoff = d700.toISOString().slice(0,10);
-  const q = await get(`/discover/tv?with_networks=213&first_air_date.gte=${cutoff}&sort_by=popularity.desc&page=1&language=zh-CN`);
-  const hasChinese = (t) => /[一-鿿]/.test(t || "");
-  const intelRatingOk = (m) => !m.vote_average || m.vote_average >= 4;
-  const res = (q.results || []);
-  console.log("raw Netflix pool (700d window):", res.length);
+  // Resolve candidate streamer network ids (varied guesses, keep only that resolve)
+  const cands = [213, 1029, 1024, 2552, 49, 130, 104, 3373, 5024, 273, 531, 453, 313, 66, 56, 60, 383, 3672, 430, 1732, 3020, 975, 328];
+  console.log("=== network id resolution ===");
+  const resolved = {};
+  for (const id of cands) {
+    try { const n = await get("/network/" + id); if (n.name) { resolved[id] = n.name; console.log(`  ${id} = ${n.name}`); } } catch (e) {}
+  }
 
-  // Apply production filters: premieres/upcoming excluded (null here), cnFilter relaxed to zh title+overview,
-  // 2010+, pop>=30, first_air>=cutoff
-  const pool = res.filter(s =>
-    Number((s.first_air_date || "").slice(0, 4)) >= 2010 &&
-    (s.popularity || 0) >= 30 &&
-    hasChinese(s.name) && hasChinese(s.overview) &&
-    intelRatingOk(s) &&
-    (s.first_air_date || "") >= cutoff
-  );
-  console.log("after production filters:", pool.length);
-  console.log("\n— Final ongoing-eligible Netflix pool —");
-  pool.forEach(s => console.log(`  ${s.name} | pop=${Math.round(s.popularity)} | first_air=${s.first_air_date} | zh=${hasChinese(s.name)}`));
+  // Known/suspected big global streamers by name
+  const streamerNames = ["netflix","disney","prime","apple tv","max","hbo","hulu","paramount","peacock","crunchyroll","amazon","apple"];
+  const streamers = Object.entries(resolved)
+    .filter(([id, n]) => streamerNames.some(s => n.toLowerCase().includes(s)))
+    .map(([id]) => Number(id));
+  console.log("\nselected global streamer ids:", streamers, streamers.map(id=>resolved[id]));
 
-  // How many of these would ACTUALLY be new (not already in on_the_air)? Fetch on_the_air ids.
-  const onAir = [];
-  for (let p = 1; p <= 2; p++) { const o = await get(`/tv/on_the_air?page=${p}`); onAir.push(...(o.results||[]).map(x=>x.id)); }
-  const onAirSet = new Set(onAir);
-  const news = pool.filter(s => !onAirSet.has(s.id));
-  console.log("\non_the_air size:", onAirSet.size, "| Netflix pool shows NOT in on_the_air (truly net-new):", news.length);
-  news.forEach(s => console.log(`    ➕ ${s.name} (pop ${Math.round(s.popularity)})`));
+  if (streamers.length) {
+    const nw = streamers.join(",");
+    for (const wind of [null, "2024-01-01"]) {
+      const params = `with_networks=${nw}${wind ? `&first_air_date.gte=${wind}` : ""}&sort_by=popularity.desc`;
+      const q = await get(`/discover/tv?${params}&page=1&language=zh-CN`);
+      const res = q.results || [];
+      const zh = res.filter(s=>/[\u4e00-\u9fff]/.test(s.name||""));
+      console.log(`\n[multi-streamer ${wind||"no-window"}] p1=${res.length} 207333?${res.some(x=>x.id===207333)?"YES":"no"} zh-title=${zh.length}`);
+      if (res.some(x=>x.id===207333)) {
+        const hit=res.find(x=>x.id===207333);
+        console.log("  207333 rank:", res.indexOf(hit)+1, "pop:", hit.popularity.toFixed(1));
+      }
+      // total pages
+      console.log("  total_pages:", q.total_pages);
+    }
+  }
 }
-
 main().catch(e => { console.error("FATAL", e.message); process.exit(1); });
