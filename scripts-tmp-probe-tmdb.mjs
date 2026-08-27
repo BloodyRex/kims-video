@@ -1,6 +1,5 @@
-// TEMPORARY diagnostic #9 — decisive: can with_networks (Netflix=213) + recency narrow to a
-// small pool that RELIABLY contains 207333? If so, 方案A = "recent Netflix (or all) whole-season
-// drops through a with_networks filter".
+// TEMPORARY diagnostic #10 — FINAL: with_networks funnel + zh + S/E for tvwall.
+// Verify 207333 exits cleanly and carries season/episode for the TV wall.
 const B = "https://api.themoviedb.org/3";
 const AUTH = { Authorization: `Bearer ${process.env.TMDB_KEY}` };
 const get = async (path) => {
@@ -8,44 +7,37 @@ const get = async (path) => {
   if (!r.ok) throw new Error(`${path} -> ${r.status}`);
   return r.json();
 };
-const hasChinese = (t) => /[一-鿿]/.test(t || "");
 
 async function main() {
-  // A) Netflix (213) shows with first_air in last ~18 months, popularity desc — is 207333 in?
-  for (const gte of ["2025-01-01", "2024-06-01"]) {
-    const hit = { found: false };
-    let poolSize = 0;
-    let firstRank = -1;
-    for (let p = 1; p <= 10; p++) {
-      const d = await get(`/discover/tv?with_networks=213&first_air_date.gte=${gte}&sort_by=popularity.desc&page=${p}`);
-      const res = d.results || [];
-      if (!res.length) break;
-      for (let i = 0; i < res.length; i++) { poolSize++; if (res[i].id === 207333 && !hit.found) { hit.found = true; hit.rank = (p-1)*20+i+1; hit.pop = res[i].popularity; } }
-      if (res[res.length-1].popularity < 30 && poolSize > 80) break;
-    }
-    console.log(`[Netflix first_air>=${gte}] pool=${poolSize} 207333=`, hit.found ? `YES rank=${hit.rank} pop=${hit.pop.toFixed(1)}` : "NO");
-  }
+  // 1) Fetch the with_networks recent-pool and show 207333's S/E + zh from DETAIL (list has none)
+  const detail = await get("/tv/207333?language=zh-CN");
+  console.log("=== 207333 detail (zh) ===");
+  console.log("  name:", detail.name);
+  console.log("  overview zh?:", /[一-鿿]/.test(detail.overview || ""));
+  console.log("  popularity:", detail.popularity, "| status:", detail.status);
+  console.log("  last_episode_to_air:", JSON.stringify({ season: detail.last_episode_to_air?.season_number, ep: detail.last_episode_to_air?.episode_number, air: detail.last_episode_to_air?.air_date, type: detail.last_episode_to_air?.episode_type }));
+  console.log("  next_episode_to_air:", JSON.stringify(detail.next_episode_to_air || null));
 
-  // B) Same but for ALL networks, first_air>=2024-06 — already know 207333 rank 55. Count pool size to ~55.
-  let pool = []; let hit2 = null;
-  for (let p = 1; p <= 5; p++) {
-    const d = await get(`/discover/tv?first_air_date.gte=2024-06-01&sort_by=popularity.desc&page=${p}`);
-    for (const s of d.results||[]) { pool.push(s); if (s.id===207333) hit2 = { rank: pool.length, pop: s.popularity }; }
+  // 2) The with_networks pool in zh — which of the top entries pass zh gate (title+overview)?
+  console.log("\n=== with_networks=213 first_air>=2024-06 p1 (zh) — zh gate audit ===");
+  const d = await get("/discover/tv?with_networks=213&first_air_date.gte=2024-06-01&sort_by=popularity.desc&page=1&language=zh-CN");
+  let pass = [];
+  for (const s of d.results || []) {
+    const zhT = /[一-鿿]/.test(s.name || "");
+    if (zhT) pass.push(`${s.name}(pop=${Math.round(s.popularity)})`);
   }
-  console.log(`\n[All networks first_air>=2024-06, 5pg] pool=${pool.length} 207333=`, hit2 ? `rank=${hit2.rank} pop=${hit2.pop.toFixed(1)}` : "NO");
+  console.log("  total in pool:", (d.results||[]).length, "| zh-title entries:", pass.length);
+  console.log("  zh-title:", JSON.stringify(pass));
+  console.log("  207333 in zh pool p1?", (d.results||[]).some(x=>x.id===207333), "at rank", (d.results||[]).findIndex(x=>x.id===207333)+1);
 
-  // C) The MOST reliable: does Netflix 2025+ popular include OTHER recently-dropped limited series?
-  //    Show composition of the Netflix window pool (name/pop/first_air) so we see what a
-  //    with_networks source would ADD to the ongoing row — meaningful curation, not noise.
-  console.log("\n--- Netflix first_air>=2025-01 top 20 (what 方案A would surface) ---");
-  let n = 0;
-  for (let p = 1; p <= 1 && n < 20; p++) {
-    const d = await get(`/discover/tv?with_networks=213&first_air_date.gte=2025-01-01&sort_by=popularity.desc&page=${p}`);
-    for (const s of (d.results||[]).slice(0, 20)) {
-      n++;
-      console.log(`  ${n}. ${s.name || s.original_name} | pop=${s.popularity?.toFixed?.(0)} | first_air=${s.first_air_date} | zh=${hasChinese(s.name) ? "Y" : "N"}`);
-    }
-  }
+  // 3) S/E via trending hydration? 207333 not in trending. Confirm the tvwall entry shape works
+  //    from last_episode data (which the worker's intelFetchTVEpisodeDates fetches).
+  console.log("\n  → tvwall entry would be: tmdbId=207333 season=", detail.last_episode_to_air?.season_number, "episode=", detail.last_episode_to_air?.episode_number, "latestAirDate=", detail.last_episode_to_air?.air_date);
+
+  // 4) Budget audit: what does adding 1 more discover call cost? Current handleIntelTV already
+  //    does 5 page-fetches (on_the_air×2, discover/tv×1, tvmaze×2 batches, trending×1) + detail S/E
+  //    backfill. One extra discover call = +1 subrequest. Fine.
+  console.log("\n  Budget: +1 discover page (equivalent to existing discover/tv call) = +1 subrequest. No issue.");
 }
 
 main().catch(e => { console.error("FATAL", e.message); process.exit(1); });
