@@ -1601,16 +1601,15 @@ async function handleIntelTV(env) {
   // 无需 detail 也能进 ongoing。因此只 detail 首播早于 300 天前的子集
   //（实测 ~21 部，预算 ~26+premieres<50 安全），且必含《百年孤独》。
   // detail 后用最新一季(last_episode_to_air.air_date)评分，而非整剧首播日。
-  const wsDropCutoff = intelDaysAgo(300);
-  const wsDropCandidates = trendRecovery.filter(s => (s.first_air_date || "") < wsDropCutoff);
-  const trendHydrated = await intelFetchTVEpisodeDates(wsDropCandidates, token); // detail 补最新季
+  // ⚠️ wsDrop detail 已在真实 Worker 因 50 子请求超限导致 ongoing 恒空回归，已移除。
 
-  // Merge on_the_air + 整季放出补充池(trendRecovery, 已补 latest-episode), dedup by id
-  const mergedIds = new Set(onTheAirCandidates.map(s => s.id));
-  const ongoingCandidates = [
-    ...onTheAirCandidates,
-    ...trendHydrated.filter(s => !mergedIds.has(s.id)),
-  ];
+  // Merge on_the_air + 整季放出补充池, dedup by id.
+  // 2026-08-27: wsDrop detail 补充池曾在真实 Worker 触发 50 子请求超限（24 部 detail +
+  // premieres/其他 handler 共享配额），导致 ongoing 恒空回归 → 已回滚。
+  // TMDB 无"按最新季"列表端点，整季放出剧(Ended, 如百年孤独)的最近季信号只能在
+  // detail 拿，而 50 预算下无法在"通用覆盖全池"同时保证含百年孤独(其 pop 45 太靠后)。
+  // 保留 intelComputeScore 的 lastEp 评分（新思路）；补充池 detail 暂禁用避免回归。
+  const ongoingCandidates = onTheAirCandidates;
 
 // Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
   const ongoingScored = ongoingCandidates.map(s => {
