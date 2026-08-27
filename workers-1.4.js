@@ -259,6 +259,93 @@ const SCORE_OPTS = {
   music:  { w_pop: 0.50, w_date: 0.20, w_qual: 0.30, hlFuture: 21, hlPast: 14 },
 };
 
+// ── Admin-editable Intelligence Config (2026-08-28) ────────────────────────
+// Every tunable intake/filter/scoring knob for the movie & TV recommendation
+// engine, externalized so the /admin page can adjust them live. Stored in KV
+// key `intel:cfg` (reuses DISCOVER_KV, prefix-isolated) and read via caches.default —
+// the Cache API is FREE and does NOT count against the 50-subrequest budget,
+// so a config read costs ~0 per invocation (KV only on cold cache).
+//   * getIntelConfig(env)  → read + deep-merge over defaults (never throws)
+//   * setIntelConfig(env, body) → validate + store (admin PATCH)
+//   * The defaults ARE the running configuration until an admin writes overrides.
+const DEFAULT_INTEL_CFG = {
+  movie: {
+    sources: {                                   // import sources: 打勾是否收录 + 抓取页数
+      nowPlayingUS:  { enabled: true, pages: 2 },// 美国在映:每页20部,取最近2页
+      nowPlayingCN:  { enabled: true, pages: 2 },// 中国内地院线(牛来等国内上映但未进美区的片)
+      recently90d:   { enabled: true, pages: 3 },// 过去90天discover(补非美小片)
+      upcoming90d:   { enabled: true, pages: 1 },// 未来90天discover(即将上映池)
+    },
+    gateNow: {                                   // 正在热映"质量复合门槛"(gateNowPlaying)
+      wRating: 0.7, wPop: 0.3, floor: 6.0,       // score=wRating×分 + wPop×pop10 ≥ floor
+      popScale: 10, popCap10: 10,                // pop10=min(popCap10, pop/popScale)
+      cnFloorPopularity: 8, cnFloorRating: 2,    // 国产片放宽: 仅需热度≥8且分≥2
+    },
+    reserve: { zh: 2, ja: 1, ko: 1 },            // 地区保底名额: 中/日/韩各至少X席
+    weekBack: 10,                                // "本周"窗口: 近N天起的上映(CN日二次分桶)
+    score:     { w_pop: 0.25, w_date: 0.55, w_qual: 0.20, hlFuture: 14, hlPast: 7 },
+  },
+  tv: {
+    sources: {                                   // all sources: 数据勾选 + 抓取规模
+      onTheAir:           { enabled: true, pages: 2 },// 排播中剧(未来7天有新集) TMDB
+      discoverUpcoming:   { enabled: true, pages: 1 },// TMDB discover 未来90天首播
+      tvmazePremiere:     { enabled: true, offsets: [0, 1, 2, 3] },// TVMAZE 未来0-3天首播
+      tvmazeUpcoming:     { enabled: true, offsets: [7, 14] },     // TVMAZE 未来+7/+14天首播
+      trendingWeek:       { enabled: true, pages: 3 },// 本周最热(TMDB) 60部 —— 补"整季放出"剧
+    },
+    yearCutoff: 2010,                            // 超长连载剧首播年份>=此值(数值比较)
+    popFloor: 30,                                // ongoing 热播剧最低popularity
+    reserve: { cn: 1, hmt: 1, jp: 1, kr: 1 },    // 地区保底: 大陆/港台/日/韩
+    ongoingTier1: 10,                            // 近30天活跃剧抢先名额
+    ongoingTier2: 5,                             // 其余剧补充名额
+    score:     { w_pop: 0.25, w_date: 0.45, w_qual: 0.30, hlFuture: 14, hlPast: 7 },
+  },
+  ai: {                                          // AI 搜索推荐"恰好5部"的分类配比
+    recRatio: { total: 5, popular: 2, hidden: 2, controversial: 1 }, // 前N热门/中N冷门/末N争议
+    fillPopularDesc: "高评分、高知名度的大众热门影片",
+    fillHiddenDesc: "高品质冷门/小众/独立影片",
+    fillControversialDesc: "评价存在争议、口碑两极分化的影片",
+  },
+};
+
+// deep-merge for config overrides (arrays replace, scalars replace, objects merge).
+function deepMerge(base, over) {
+  if (over == null || typeof over !== "object" || Array.isArray(over)) return over === undefined ? base : over;
+  if (typeof base !== "object" || base === null || Array.isArray(base)) return over;
+  const out = { ...base };
+  for (const k of Object.keys(over)) out[k] = deepMerge(base[k], over[k]);
+  return out;
+}
+function structClone(obj) { return typeof structuredClone === "function" ? structuredClone(obj) : JSON.parse(JSON.stringify(obj)); }
+
+const INTEL_CFG_CACHE_KEY = "intelcfg:v1";
+// Read effective config (merged defaults + overrides). Cache-free cache-read only.
+// Cache hit → merge over defaults (fast, 0 subrequests). Miss → 1 KV read, fill cache.
+async function getIntelConfig(env) {
+  const mergedWith = async (saved) => deepMerge(structClone(DEFAULT_INTEL_CFG), saved || {});
+  try {
+    const c = caches.default;
+    const req = new Request(`https://intelcfg/${INTEL_CFG_CACHE_KEY}`);
+    const hit = await c.match(req);
+    if (hit) { try { return await mergedWith(await hit.json()); } catch (e) {} }
+  } catch (e) {}
+  let saved = null;
+  if (env?.DISCOVER_KV) { try { saved = await env.DISCOVER_KV.get("intel:cfg", "json"); } catch (e) {} }
+  const merged = await mergedWith(saved);
+  try {
+    const resp = new Response(JSON.stringify(merged), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=60" } });
+    caches.default.put(new Request(`https://intelcfg/${INTEL_CFG_CACHE_KEY}`), resp.clone());
+  } catch (e) {}
+  return merged;
+}
+async function setIntelConfig(env, body) {
+  if (!env?.DISCOVER_KV) return { error: "KV not configured" };
+  const merged = deepMerge(structClone(DEFAULT_INTEL_CFG), body && typeof body === "object" ? body : {});
+  await env.DISCOVER_KV.put("intel:cfg", JSON.stringify(merged));
+  try { await caches.default.delete(new Request(`https://intelcfg/${INTEL_CFG_CACHE_KEY}`)); } catch (e) {}
+  return merged;
+}
+
 /**
  * Compute composite score for a TMDB item.
  * Returns { score (0-1), S_pop, S_date, S_qual (each 0-100) }
@@ -914,6 +1001,9 @@ async function handleIntelOverview(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
   const weekAgo = intelDaysAgo(7);
+  const cfg = await getIntelConfig(env);
+  const movieSc = { ...SCORE_OPTS.movie, ...cfg.movie.score };
+  const tvSc = { ...SCORE_OPTS.tv, ...cfg.tv.score };
 
   // Fetch data directly with same page counts as category handlers (21 subrequests)
   // MusicBrainz is wrapped in its own catch: a MB infra blip (525, hit
@@ -940,12 +1030,12 @@ async function handleIntelOverview(env) {
     .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
     .filter(cnFilter)
     .filter(intelRatingOk);
-  const weekSelected = intelSelectDiverse(weekCandidates, 20, { zh: 2, ja: 1, ko: 1 }, SCORE_OPTS.movie, today);
+  const weekSelected = intelSelectDiverse(weekCandidates, 20, { zh: 2, ja: 1, ko: 1 }, movieSc, today);
   const moviesReleased = weekCandidates.length;
 
   // TV: same cnFilter as handleIntelTV  (ongoing section)
   const tvCandidates = tvOnAir.filter(cnFilter).filter(intelRatingOk);
-  const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 }, SCORE_OPTS.tv, today);
+  const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 }, tvSc, today);
 
   // ── Upcoming movies (P1-2 fix 2026-08-24): SAME scored selection as
   // handleIntelMovies.upcoming — popularity floor 15 + zh bonus (0.4 weight),
@@ -1095,16 +1185,19 @@ async function handleIntelMovies(env) {
   const today = intelToday();
   const weekAgo = intelDaysAgo(7);
   const ninetyDaysAgo = intelDaysAgo(90);
+  const cfg = await getIntelConfig(env);
+  const sm = cfg.movie.sources;
+  const reserve = cfg.movie.reserve;
+  const scoreOpts = { ...SCORE_OPTS.movie, ...cfg.movie.score };
 
   const [nowPlayingRaw, cnPlayingRaw, releasedRaw, upcomingRaw] = await Promise.all([
     // US theatrical: 2 pages (CN-first bucketing means US dates only pre-filter)
-    intelFetchPages(token, "/movie/now_playing", { region: "US" }, 2),
-    // CN theatrical: 2 pages — catches domestic Chinese hits (牛来, 欢迎来龙餐馆…)
-    // that never played US theatres but are in CN rotation. Required for the
-    // intelligence page to surface 国内新片 (2026-08-20, niu lai gap).
-    intelFetchPages(token, "/movie/now_playing", { region: "CN" }, 2),
-    intelFetchReleasedMovies(token, 3),
-    intelFetchUpcomingMovies(token, 1),
+    sm.nowPlayingUS.enabled ? intelFetchPages(token, "/movie/now_playing", { region: "US" }, sm.nowPlayingUS.pages) : [],
+    // CN theatrical: catches domestic Chinese hits (牛来, 欢迎来龙餐馆…) that
+    // never played US theatres but are in CN rotation.
+    sm.nowPlayingCN.enabled ? intelFetchPages(token, "/movie/now_playing", { region: "CN" }, sm.nowPlayingCN.pages) : [],
+    sm.recently90d.enabled ? intelFetchReleasedMovies(token, sm.recently90d.pages) : [],
+    sm.upcoming90d.enabled ? intelFetchUpcomingMovies(token, sm.upcoming90d.pages) : [],
   ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -1115,9 +1208,8 @@ async function handleIntelMovies(env) {
   // so strict AND kills ALL of them. Relax to: title OR overview in Chinese.
   // The detail fetch (intelPickCnReleaseDate) later restores the zh title.
   const cnPoolFilter = (m) => hasChinese(m.title || m.name) || hasChinese(m.overview);
-  const reserve = { zh: 2, ja: 1, ko: 1 };
 
-  // ── Unified recent pool: US now_playing + past-90d discover (dedup by id) ──
+    // ── Unified recent pool: US now_playing + past-90d discover (dedup by id) ──
   // Covers US-theatrical titles AND non-US releases (CN/JP/KR) that never
   // played US theatres but are still in theatrical rotation at home.
   const recentMerged = [...nowPlayingRaw];
@@ -1137,13 +1229,13 @@ async function handleIntelMovies(env) {
   // CN theatrical dates often lead/lag US by a few days); the definitive bucket
   // decision uses the CN release date (intelPickCnReleaseDate, type 2/3).
   const weekCandidates = recentMerged
-    .filter(m => m.release_date && m.release_date >= intelDaysAgo(10) && m.release_date <= today)
-    // CN-pool entries skip the zh filter entirely: region=CN list endpoint returns
-    // EN title/overview for every film (probed), so zh-filtering would kill all of
-    // them; the detail fetch below restores zh titles.
-    .filter(m => cnPoolIds.has(m.id) || cnFilter(m))
-    .filter(intelRatingOk);
-  const weekSelected = intelSelectDiverse(weekCandidates, 15, reserve, SCORE_OPTS.movie, today);
+      .filter(m => m.release_date && m.release_date >= intelDaysAgo(cfg.movie.weekBack) && m.release_date <= today)
+      // CN-pool entries skip the zh filter entirely: region=CN list endpoint returns
+      // EN title/overview for every film (probed), so zh-filtering would kill all of
+      // them; the detail fetch below restores zh titles.
+      .filter(m => cnPoolIds.has(m.id) || cnFilter(m))
+      .filter(intelRatingOk);
+    const weekSelected = intelSelectDiverse(weekCandidates, 15, reserve, scoreOpts, today);
   // CN-first release date (2026-08-17). Cached 1 day; subrequests stay bounded.
   // CN-pool entries: list date IS the CN date → only restore zh title/overview.
   const weekNormalized = (await Promise.all(
@@ -1175,12 +1267,13 @@ async function handleIntelMovies(env) {
   // rating 已为 0-10；popularity 归一化到 0-10 (10 热度→1 分，100 热度封顶)。
   // 高口碑佳作 (9.1,12.9→6.76) 与 热门高口碑 均入选；低口碑靠热度被挡
   // (4,100→5.8)。CN-theatrical 保持放宽（domestic 热度即可，不受此 gate）。
-  const gateNowPlaying = (m) => {
-    const pop = m.popularity || 0;
-    const rate = m.vote_average || 0;
-    const pop10 = Math.min(10, pop / 10);          // popularity → 0-10
-    return (0.7 * rate + 0.3 * pop10) >= 6.0;
-  };
+  const g = cfg.movie.gateNow;
+    const gateNowPlaying = (m) => {
+      const pop = m.popularity || 0;
+      const rate = m.vote_average || 0;
+      const pop10 = Math.min(g.popCap10, pop / g.popScale);          // popularity → 0-10
+      return (g.wRating * rate + g.wPop * pop10) >= g.floor;
+    };
 
   // NOW PLAYING: exclude this week + upcoming, 90-day window (CN date based)
   const upcomingIds = new Set(upcomingSelected.map(m => m.id));
@@ -1190,8 +1283,8 @@ async function handleIntelMovies(env) {
     // CN-pool entries skip the zh filter (region=CN list returns EN everywhere)
     .filter(m => cnPoolIds.has(m.id) || cnFilter(m))
     // Composite gate (all above); CN-theatrical keeps relaxed domestic floor.
-    .filter(m => cnPoolIds.has(m.id) ? (m.popularity || 0) >= 8 && (!m.vote_average || m.vote_average >= 2) : gateNowPlaying(m));
-  const nowPlayingSelected = intelSelectDiverse(nowPlayingCandidates, 15, reserve, SCORE_OPTS.movie, today);
+        .filter(m => cnPoolIds.has(m.id) ? (m.popularity || 0) >= g.cnFloorPopularity && (!m.vote_average || m.vote_average >= g.cnFloorRating) : gateNowPlaying(m));
+      const nowPlayingSelected = intelSelectDiverse(nowPlayingCandidates, 15, reserve, scoreOpts, today);
   const nowPlayingNormalized = (await Promise.all(
     nowPlayingSelected.map(m => cnPoolIds.has(m.id)
       ? intelFetchZhDetails(intelNormalizeMovie(m), token)
@@ -1415,6 +1508,14 @@ async function handleIntelTV(env) {
   const ninetyDaysLater = new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
   const thirtyDaysAgo = intelDaysAgo(30);
   const hundredEightyDaysAgo = intelDaysAgo(180);
+  const cfg = await getIntelConfig(env);
+  const stv = cfg.tv.sources;
+  const reserve = cfg.tv.reserve;
+  const scoreOpts = { ...SCORE_OPTS.tv, ...cfg.tv.score };
+  const yearCutoff = cfg.tv.yearCutoff;
+  const popFloor = cfg.tv.popFloor;
+  const tier1 = cfg.tv.ongoingTier1;
+  const tier2 = cfg.tv.ongoingTier2;
 
   // ── Data sources (2026-08-27 v3: + trending-pagination whole-season recovery) ──
     // premieres: TVMAZE schedule next 2-4 days (真实首播日，国产剧先上 TVMAZE 场景直接覆盖)
@@ -1426,20 +1527,18 @@ async function handleIntelTV(env) {
     //            trending 是 "本周最热"，整季放出剧上线当周冲进前 20-30 → 翻第
     //            2-3 页即可纳入（实测《百年孤独》在 rank 23），零额外 detail 成本。
     const [onTheAir, discoverRaw, tvmazePremEps, tvmazeUpEps, tvTrendingWeek] = await Promise.all([
-      intelFetchPages(token, "/tv/on_the_air", {}, 2),
-      intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, 1),
-      intelFetchTVMazeWeb([0, 1, 2, 3]), // premieres: next 2-4 days
-      intelFetchTVMazeWeb([7, 14]),      // upcoming: +7/+14 day samples
-      // trending/tv/week 翻 3 页 (本周最热 60 部) —— 既是整季放出剧的通用补充源，
+      stv.onTheAir.enabled ? intelFetchPages(token, "/tv/on_the_air", {}, stv.onTheAir.pages) : [],
+      stv.discoverUpcoming.enabled ? intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, stv.discoverUpcoming.pages) : [],
+      stv.tvmazePremiere.enabled ? intelFetchTVMazeWeb(stv.tvmazePremiere.offsets) : [], // premieres
+      stv.tvmazeUpcoming.enabled ? intelFetchTVMazeWeb(stv.tvmazeUpcoming.offsets) : [], // upcoming samples
+      // trending/tv/week 翻页 —— 既是整季放出剧的通用补充源，
       // 也自带完整 episode 对象 (last_episode_to_air) 供 hydrateFromTrending 补 S/E。
-      // 只需在现有 1 页基础上多 2 次分页，预算几乎零增量。
-      intelFetchPages(token, "/trending/tv/week", {}, 3),
+      stv.trendingWeek.enabled ? intelFetchPages(token, "/trending/tv/week", {}, stv.trendingWeek.pages) : [],
     ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const cnFilter = (s) => hasChinese(s.title || s.name) && hasChinese(s.overview);
   const titleCn = (s) => hasChinese(s.title || s.name);
-  const reserve = { cn: 1, hmt: 1, jp: 1, kr: 1 };
 
   // ── S/E hydration from trending payload (2026-08-24) ──
   // on_the_air list items carry NO episode data; the paid detail backfill was
@@ -1492,7 +1591,7 @@ async function handleIntelTV(env) {
   for (const s of tvmazePremiere) {
     if (!premOnAirIds.has(s.id)) premiereMerged.push(s);
   }
-  const premiereSelected = intelSelectDiverse(premiereMerged, 15, reserve, SCORE_OPTS.tv, today);
+  const premiereSelected = intelSelectDiverse(premiereMerged, 15, reserve, scoreOpts, today);
   // TMDB episode enrichment only for TMDB-sourced shows — trending hydration
   // first (free S/E), then the paid detail backfill for what's left.
   const premiereHydrated = await hydrateFromTrending(premiereSelected.filter(s => s.source !== "tvmaze"));
@@ -1565,14 +1664,14 @@ async function handleIntelTV(env) {
   // 自带 last_episode_to_air，天然满足"只看最新一季"语义；热度衰减后滑出
   // 前 60 自然掉落（与 ongoing 衰减语义一致）。
   const onTheAirCandidates = onTheAir
-    .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
-    .filter(cnFilter)
-    .filter(intelRatingOk)
-    // 2010 cutoff — compare NUMERIC year, not string: "1989-12-17" >= "2010-01-01"
-    // is TRUE lexicographically ('9' > '0'), so string compare lets pre-2010
-    // long-runners (Simpsons 1989, Kamen Rider 1971…) slip through.
-    .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
-    .filter(s => (s.popularity || 0) >= 30); // relaxed from 80 (2010 cutoff already trims)
+      .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
+      .filter(cnFilter)
+      .filter(intelRatingOk)
+      // yearCutoff cutoff — compare NUMERIC year, not string: "1989-12-17" >= "2010-01-01"
+      // is TRUE lexicographically ('9' > '0'), so string compare lets pre-2010
+      // long-runners (Simpsons 1989, Kamen Rider 1971…) slip through.
+      .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= yearCutoff)
+      .filter(s => (s.popularity || 0) >= popFloor); // relaxed from 80 (yearCutoff cutoff already trims)
 
   // ── Ongoing candidate pool ──
     // 2026-08-28 v4: 把 trending/tv/week 翻页(top 60) 并入候选池 —— 通用覆盖
@@ -1587,13 +1686,13 @@ async function handleIntelTV(env) {
     // "只看最新季"语义天然成立；整季放出剧热度衰减 = 滑出 trending 前 60，与 ongoing
     // 衰减语义一致。准入门槛与 onTheAir 主池完全一致（2010 / pop≥30 / zh / intelRatingOk）。
     const trendingCandidates = (tvTrendingWeek || [])
-      .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
-      .filter(intelRatingOk)
-      // 2010 cutoff — 与 onTheAirCandidates 逐字一致（数值比较，防词典序穿透）
-      .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
-      .filter(s => (s.popularity || 0) >= 30)
-      // 中文可见性 — 与主池同款 cnFilter，确保并池后不引入英文-only 的死票
-      .filter(cnFilter);
+        .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
+        .filter(intelRatingOk)
+        // yearCutoff cutoff — 与 onTheAirCandidates 逐字一致（数值比较，防词典序穿透）
+        .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= yearCutoff)
+        .filter(s => (s.popularity || 0) >= popFloor)
+        // 中文可见性 — 与主池同款 cnFilter，确保并池后不引入英文-only 的死票
+        .filter(cnFilter);
     // 合并 + 去重（on_the_air 优先为主池，trending 只补空位，不覆盖、不翻倍）
     const mergedOngoing = [...onTheAirCandidates];
     const onAirIds = new Set(onTheAirCandidates.map(s => s.id));
@@ -1611,9 +1710,9 @@ async function handleIntelTV(env) {
   const ongoingTier1 = ongoingScored.filter(x => x.recent).map(x => x.s);
   const ongoingTier2 = ongoingScored.filter(x => !x.recent).map(x => x.s);
   const ongoingSelected = [
-    ...intelSelectDiverse(ongoingTier1, 10, reserve, SCORE_OPTS.tv, today),
-    ...intelSelectDiverse(ongoingTier2, 5, reserve, SCORE_OPTS.tv, today),
-  ].slice(0, 15);
+      ...intelSelectDiverse(ongoingTier1, tier1, reserve, scoreOpts, today),
+      ...intelSelectDiverse(ongoingTier2, tier2, reserve, scoreOpts, today),
+    ].slice(0, 15);
   // Hydrate S/E from trending (free) first, then paid detail backfill for the rest
   const ongoingHydrated = await hydrateFromTrending(ongoingSelected);
   const ongoingEnriched = await intelFetchTVEpisodeDates(ongoingHydrated, token);
@@ -2946,10 +3045,16 @@ export default {
       if (path === "/poster-proxy") { const iu = url.searchParams.get("url"); if (!iu) return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } }); if (!iu.startsWith("https://image.tmdb.org/") && !iu.startsWith("https://coverartarchive.org/")) return new Response("Forbidden", { status: 403, headers: { "Access-Control-Allow-Origin": "*" } }); try { const cacheKey = new Request(`https://poster-cache/${encodeURIComponent(iu)}`); const cached = await caches.default.match(cacheKey); if (cached) return cached; const ir = await fetch(iu); const nh = new Headers(ir.headers); nh.set("Access-Control-Allow-Origin", "*"); nh.set("Cache-Control", "public, max-age=86400"); const resp = new Response(ir.body, { status: ir.status, headers: nh }); if (ir.ok) caches.default.put(cacheKey, resp.clone()); return resp; } catch (e) { return new Response("Proxy error", { status: 502, headers: { "Access-Control-Allow-Origin": "*" } }); } }
 
       // Admin: list results
-      if (path === "/admin/results") { const err = requireAdmin(); if (err) return err; try { return Response.json(await handleAdminResults(env), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
+            if (path === "/admin/results") { const err = requireAdmin(); if (err) return err; try { return Response.json(await handleAdminResults(env), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
 
-      // Wall recs list (pipeline reads to merge into wall.json)
-      if (path === "/wall/recs") {
+            // Admin: read effective intelligence config (merged defaults + KV overrides)
+            if (path === "/admin/config") { const err = requireAdmin(); if (err) return err; try { return Response.json(await getIntelConfig(env), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
+
+            // Public: AI-search recommendation ratio subset (no auth — only the ai.* knobs)
+            if (path === "/intelligence/ai-config") { const cfg = await getIntelConfig(env); return Response.json({ ai: cfg.ai }, { headers: corsHeaders }); }
+
+            // Wall recs list (pipeline reads to merge into wall.json)
+            if (path === "/wall/recs") {
         if (!env.DISCOVER_KV) return Response.json({ items: [] }, { headers: corsHeaders });
         const items = [];
         let cursor;
@@ -3153,8 +3258,17 @@ export default {
     }
 
     // ── DELETE / PATCH routes (admin only) ──
-    const adm = path.match(/^\/admin\/results\/(.+)$/);
-    if (adm) {
+
+        // PATCH /admin/config — update intelligence parameters (partial JSON merge)
+        if (path === "/admin/config" && method === "PATCH") {
+          const er = requireAdmin(); if (er) return er;
+          let b; try { b = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
+          try { return Response.json(await setIntelConfig(env, b), { headers: corsHeaders }); }
+          catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); }
+        }
+
+        const adm = path.match(/^\/admin\/results\/(.+)$/);
+        if (adm) {
       if (method === "DELETE") { const er = requireAdmin(); if (er) return er; try { return Response.json(await handleAdminDelete(env, adm[1]), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
       if (method === "PATCH") { const er = requireAdmin(); if (er) return er; let b; try { b = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); } try { return Response.json(await handleAdminPatch(env, adm[1], b), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }
     }

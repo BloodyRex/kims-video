@@ -35,3 +35,23 @@ export async function adminPatchResult(token, id, genre) {
   });
   return r.json();
 }
+
+export async function adminFetchConfig(token) {
+  const r = await fetch(`${apiBaseUrl}/admin/config`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return r.json();
+}
+
+// Partial JSON merge: only the keys you send are updated; the rest keep defaults.
+export async function adminSaveConfig(token, patchBody) {
+  const r = await fetch(`${apiBaseUrl}/admin/config`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(patchBody),
+  });
+  return r.json();
+}

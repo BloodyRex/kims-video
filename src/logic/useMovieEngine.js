@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import { generateAIContent, verifyMovieTmdbId, repairRecommendationFields, fetchMovieSuggestions } from "../services/api";
+import { getAiConfig } from "../services/aiConfig";
 import { parseJSON } from "../utils/parseJSON";
 import { saveResultsToCache, loadResultsFromCache } from "../utils/cache";
 import { updateUrl } from "../utils/url";
@@ -187,12 +188,13 @@ export function useMovieEngine() {
       for (let attempt = 0; attempt < 2; attempt++) {
         if (attempt > 0) await new Promise((r) => setTimeout(r, 1500));
         try {
-          const responseText = await generateAIContent(
-            buildRecommendationPrompt(primaryMovie, secondaryMovie, answersText, locale),
-            locale === "en" ? "You are an insightful film recommendation expert." : "你是一个极具洞察力的专业影视推荐达人。",
-            recommendationSchema(locale),
-            locale
-          );
+                  const ai = await getAiConfig();
+                  const responseText = await generateAIContent(
+                    buildRecommendationPrompt(primaryMovie, secondaryMovie, answersText, locale, ai),
+                    locale === "en" ? "You are an insightful film recommendation expert." : "你是一个极具洞察力的专业影视推荐达人。",
+                    recommendationSchema(locale, ai),
+                    locale
+                  );
           const parsedData = parseJSON(responseText);
           const list = parsedData?.recommendations || [];
           if (!Array.isArray(list) || list.length === 0) throw new Error(locale === "en" ? "Failed to generate valid recommendations" : "未能生成有效的推荐列表");
@@ -217,11 +219,11 @@ export function useMovieEngine() {
           const everShown = [...everShownSet];
 
           if (finalRecs.length < 5) {
-            for (let i = finalRecs.length; i < 5; i++) {
-              const excludeStr = everShown.map((t) => `《${t}》`).join("、");
-              try {
-                const fillResult = await generateAIContent(
-                  buildFillPrompt(excludeStr, i, locale),
+                      for (let i = finalRecs.length; i < 5; i++) {
+                        const excludeStr = everShown.map((t) => `《${t}》`).join("、");
+                        try {
+                          const fillResult = await generateAIContent(
+                            buildFillPrompt(excludeStr, i, locale, ai),
                   locale === "en" ? "You are a strict movie database API. Output JSON only. No explanation. No fabrication." : "你是一个严格的影视数据库查询API。只输出JSON，不解释。不编造。",
                   fillSchema(locale),
                   locale

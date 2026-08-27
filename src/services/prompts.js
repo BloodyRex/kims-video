@@ -1,5 +1,25 @@
 import { API_BASE_URL } from "./config";
 
+// ── Admin-adjustable AI recommendation ratio (2026-08-28) ──
+// Default "5部" split = 2 popular / 2 hidden / 1 controversial. Admin can push a
+// different { total, popular, hidden, controversial } via /intelligence/ai-config;
+// callers pass it in as the `ai` arg ({ ratio, desc }) so these builders stay pure
+// (no module-load fetch). Values fall back to these defaults when unset.
+export const DEFAULT_AI_RATIO = { total: 5, popular: 2, hidden: 2, controversial: 1 };
+export const DEV_DESC = {
+  popular: "高评分、高知名度的大众热门",
+  hidden: "高品质冷门/小众/独立影片",
+  controversial: "评价存在争议、口碑两极分化的影片",
+};
+// Given a partial ratio, return a normalized { total, popular, hidden, controversial }.
+export function aiDivisions(ratio = {}) {
+  const popular = Math.max(0, parseInt(ratio.popular, 10) || DEFAULT_AI_RATIO.popular);
+  const hidden = Math.max(0, parseInt(ratio.hidden, 10) || DEFAULT_AI_RATIO.hidden);
+  const controversial = Math.max(0, parseInt(ratio.controversial, 10) || DEFAULT_AI_RATIO.controversial);
+  const total = Math.max(1, parseInt(ratio.total, 10) || DEFAULT_AI_RATIO.total);
+  return { total, popular, hidden, controversial };
+}
+
 export const searchSchema = (locale) => ({
   type: "array",
   items: {
@@ -294,63 +314,74 @@ ${secondaryMovie?.title ? twoMovieConfig : oneMovieConfig}
 问题必须针对输入影片本身。`;
 };
 
-export const recommendationSchema = (locale) => ({
-  type: "object",
-  properties: {
-    recommendations: {
-      type: "array",
-      description: locale === "en"
-        ? "Exactly 5 recommendations: first 2 popular, middle 2 hidden gems, last 1 controversial"
-        : "恰好5部推荐，前2部热门，中间2部冷门，最后1部争议",
-      items: {
-        type: "object",
-        properties: {
-          title: {
-            type: "string",
-            description: locale === "en" ? "Movie/TV title" : "影视作品中文名",
+export const recommendationSchema = (locale, ai = {}) => {
+  const d = aiDivisions(ai.ratio);
+  const desc = (key) => (ai.desc && ai.desc[key]) || DEV_DESC[key];
+  const range = (a, b) => (a === b ? a : `${a}-${b}`);
+  return {
+    type: "object",
+    properties: {
+      recommendations: {
+        type: "array",
+        description: locale === "en"
+          ? `Exactly ${d.total} recommendations: first ${range(1, d.popular)} popular, middle ${range(d.popular + 1, d.popular + d.hidden)} hidden gems, last ${range(d.popular + d.hidden + 1, d.total)} controversial`
+          : `恰好${d.total}部推荐，前${range(1, d.popular)}部${desc("popular")}，中间${range(d.popular + 1, d.popular + d.hidden)}部${desc("hidden")}，最后${range(d.popular + d.hidden + 1, d.total)}部${desc("controversial")}`,
+        items: {
+          type: "object",
+          properties: {
+            title: {
+              type: "string",
+              description: locale === "en" ? "Movie/TV title" : "影视作品中文名",
+            },
+            originalTitle: {
+              type: "string",
+              description: locale === "en" ? "Original title or romanization" : "影视作品原名或拼音",
+            },
+            year: {
+              type: "string",
+              description: locale === "en" ? "Release year" : "首映年份",
+            },
+            director: {
+              type: "string",
+              description: locale === "en" ? "Director name" : "导演姓名",
+            },
+            type: {
+              type: "string",
+              description: locale === "en" ? "Type: 'Movie' or 'TV Series'" : "类型，如 '电影', '剧集'",
+            },
+            reason: {
+              type: "string",
+              description: locale === "en"
+                ? "Detailed recommendation reason (max 100 words)"
+                : "详细的推荐理由（最长150字）",
+            },
+            matchedTags: {
+              type: "array",
+              items: { type: "string" },
+              description: locale === "en" ? "Matched taste tags (3-5 tags)" : "匹配的品味标签（3-5个）",
+            },
+            doubanKeyword: {
+              type: "string",
+              description: locale === "en"
+                ? "Precise keyword for search"
+                : "用于豆瓣搜索的精准关键词",
+            },
           },
-          originalTitle: {
-            type: "string",
-            description: locale === "en" ? "Original title or romanization" : "影视作品原名或拼音",
-          },
-          year: {
-            type: "string",
-            description: locale === "en" ? "Release year" : "首映年份",
-          },
-          director: {
-            type: "string",
-            description: locale === "en" ? "Director name" : "导演姓名",
-          },
-          type: {
-            type: "string",
-            description: locale === "en" ? "Type: 'Movie' or 'TV Series'" : "类型，如 '电影', '剧集'",
-          },
-          reason: {
-            type: "string",
-            description: locale === "en"
-              ? "Detailed recommendation reason (max 100 words)"
-              : "详细的推荐理由（最长150字）",
-          },
-          matchedTags: {
-            type: "array",
-            items: { type: "string" },
-            description: locale === "en" ? "Matched taste tags (3-5 tags)" : "匹配的品味标签（3-5个）",
-          },
-          doubanKeyword: {
-            type: "string",
-            description: locale === "en"
-              ? "Precise keyword for search"
-              : "用于豆瓣搜索的精准关键词",
-          },
+          required: ["title", "year", "director", "type", "reason", "matchedTags", "doubanKeyword"],
         },
-        required: ["title", "year", "director", "type", "reason", "matchedTags", "doubanKeyword"],
       },
     },
-  },
-  required: ["recommendations"],
-});
+    required: ["recommendations"],
+  };
+};
 
-export const buildRecommendationPrompt = (primaryMovie, secondaryMovie, answersText, locale = "zh") => {
+export const buildRecommendationPrompt = (primaryMovie, secondaryMovie, answersText, locale = "zh", ai = {}) => {
+  const d = aiDivisions(ai.ratio);
+  const range = (a, b) => (a === b ? String(a) : `${a}-${b}`);
+  const want = (a, b) => range(a, b === a ? a : b);
+  const popularEnd = d.popular;
+  const hiddenEnd = popularEnd + d.hidden;
+  const contEnd = hiddenEnd + d.controversial;
   if (locale === "en") {
     return `## LANGUAGE CONSTRAINT: ENGLISH ONLY
 
@@ -363,12 +394,12 @@ ${secondaryMovie?.title ? `Secondary: ${secondaryMovie.title} (${secondaryMovie.
 User preference Q&A results:
 ${answersText}
 
-Based on the above, recommend exactly 5 films/TV shows for this user. Output the recommendations directly, each with matching taste tags.
+Based on the above, recommend exactly ${d.total} films/TV shows for this user. Output the recommendations directly, each with matching taste tags.
 
 Division rules:
-- #1-2: High-rated, well-known popular hits
-- #3-4: Must be niche/indie/cult works that still match preferences
-- #5: Must be a controversial work (polarizing reviews)
+- #${want(1, popularEnd)}: High-rated, well-known popular hits
+- #${want(popularEnd + 1, hiddenEnd)}: Must be niche/indie/cult works that still match preferences
+- #${want(hiddenEnd + 1, d.total)}: Must be a controversial work (polarizing reviews)
 - Do NOT recommend ${primaryMovie.title}${secondaryMovie?.title ? ` or ${secondaryMovie.title}` : ""}
 
 Each reason max 100 words.
@@ -396,12 +427,12 @@ ${secondaryMovie?.title ? `次要参考：《${secondaryMovie.title}》(${second
 用户偏好问答结果：
 ${answersText}
 
-综合以上信息，为该用户推荐恰好 5 部影视作品。直接输出推荐结果，每部附带匹配的影视标签。
+综合以上信息，为该用户推荐恰好 ${d.total} 部影视作品。直接输出推荐结果，每部附带匹配的影视标签。
 
 分流规则：
-- 第 1-2 部：高评分、高知名度的大众热门
-- 第 3-4 部：同样满足偏好，但必须是冷门/小众/独立/邪典
-- 第 5 部：同样满足偏好，但评价存在争议（口碑两极分化）
+- 第 ${want(1, popularEnd)} 部：高评分、高知名度的大众热门
+- 第 ${want(popularEnd + 1, hiddenEnd)} 部：同样满足偏好，但必须是冷门/小众/独立/邪典
+- 第 ${want(hiddenEnd + 1, d.total)} 部：同样满足偏好，但评价存在争议（口碑两极分化）
 - 禁止推荐《${primaryMovie.title}》${secondaryMovie?.title ? `和《${secondaryMovie.title}》` : ""}
 
 推荐理由不要超过 150 字。
@@ -471,20 +502,26 @@ export const fillSchema = (locale) => ({
   required: ["recommendations"],
 });
 
-export const buildFillPrompt = (excludeStr, position, locale = "zh") => {
+export const buildFillPrompt = (excludeStr, position, locale = "zh", ai = {}) => {
+  const d = aiDivisions(ai.ratio);
+  const desc = (key) => (ai.desc && ai.desc[key]) || DEV_DESC[key];
+  const popularEnd = d.popular;
+  const hiddenEnd = popularEnd + d.hidden;
+  const bucket = position <= popularEnd ? "popular" : position <= hiddenEnd ? "hidden" : "controversial";
+
   const posDescEn =
-    position >= 4
-      ? "[Controversial work — polarizing reviews, big gap between critic and audience scores]"
-      : position >= 2
-      ? "[High-quality niche/indie work]"
-      : "[High-rated, well-known popular hit]";
+    bucket === "controversial"
+      ? `[Controversial work — polarizing reviews, big gap between critic and audience scores: ${desc("controversial")}]`
+      : bucket === "hidden"
+      ? "[High-quality niche/indie work: " + desc("hidden") + "]"
+      : "[High-rated, well-known popular hit: " + desc("popular") + "]";
 
   const posDescZh =
-    position >= 4
-      ? "【评价存在争议的影片——口碑两极分化、影评人与观众评分差异大】"
-      : position >= 2
-      ? "【高品质冷门/小众影片】"
-      : "【高评分、高知名度的大众热门影片】";
+    bucket === "controversial"
+      ? `【评价存在争议的影片——口碑两极分化、影评人与观众评分差异大：${desc("controversial")}】`
+      : bucket === "hidden"
+      ? `【高品质冷门/小众影片：${desc("hidden")}】`
+      : `【高评分、高知名度的大众热门影片：${desc("popular")}】`;
 
   if (locale === "en") {
     return `## LANGUAGE CONSTRAINT: ENGLISH ONLY

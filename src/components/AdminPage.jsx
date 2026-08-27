@@ -4,6 +4,7 @@ import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { adminLogin, adminFetchResults, adminDeleteResult, adminPatchResult } from "../services/adminApi";
 import { fetchMovieByTmdbId } from "../services/api";
+import IntelConfigPanel from "./IntelConfigPanel";
 
 const CATEGORIES = ["科幻", "悬疑", "恐怖", "动画", "战争", "犯罪", "剧情", "奇幻"];
 
@@ -20,6 +21,7 @@ const AdminPage = () => {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
   const [posterMap, setPosterMap] = useState({});
+  const [view, setView] = useState("cards"); // "cards" | "config"
 
   // Lazy-load TMDB posters for cards without uploaded thumbnails (same pattern as DiscoverPage, zero LLM tokens)
   useEffect(() => {
@@ -154,6 +156,26 @@ const AdminPage = () => {
       </header>
 
       <div className="max-w-4xl mx-auto px-4 py-6">
+        {/* Tab switch */}
+        <div className="flex gap-2 mb-5">
+          <button
+            onClick={() => setView("cards")}
+            className={`px-4 py-1.5 text-xs font-black border-2 border-black uppercase transition-colors ${view === "cards" ? "bg-[#ffff00] text-black" : "bg-gray-800 text-gray-300 hover:bg-gray-700"}`}
+          >
+            {locale === "en" ? "Cards" : "卡片管理"}
+          </button>
+          <button
+            onClick={() => setView("config")}
+            className={`px-4 py-1.5 text-xs font-black border-2 border-black uppercase transition-colors ${view === "config" ? "bg-[#00ffff] text-black" : "bg-gray-800 text-gray-300 hover:bg-gray-700"}`}
+          >
+            {locale === "en" ? "Engine Config" : "参数配置"}
+          </button>
+        </div>
+
+        {view === "config" ? (
+          <IntelConfigPanel token={token} locale={locale} />
+        ) : (
+        <>
         {error && <div className="bg-red-500 border-4 border-black p-3 text-white font-bold text-sm mb-4">{error}</div>}
 
         <div className="text-sm text-gray-400 mb-4">{results.length} {locale === "en" ? "cards" : "张卡片"}</div>
@@ -217,7 +239,9 @@ const AdminPage = () => {
             );
           })}
         </div>
-      </div>
+        </>
+        )}
+    </div>
     </div>
   );
 };
