@@ -1575,19 +1575,39 @@ async function handleIntelTV(env) {
     .filter(s => (s.popularity || 0) >= 30); // relaxed from 80 (2010 cutoff already trims)
 
   // ── Ongoing candidate pool ──
-  // 2026-08-27: 曾尝试用 "trending 中不在 on_the_air 的整季放出剧"(百年孤独等) 补充
-  // ongoing，但逐剧 detail(拿最新季 last_episode) 在真实 Worker 触发 50 子请求超限，
-  // 导致 ongoing 恒空回归 → 已回滚。TMDB 无按最新季过滤的列表端点，整季放出剧无法
-  // 在预算内通用覆盖。保留 on_the_air 主池；intelComputeScore 已按最新一季(last_episode
-  // to_air.air_date)评分 —— 即"把每季当独立作品"评分的新思路。
-  const ongoingCandidates = onTheAirCandidates;
+    // 2026-08-28 v4: 把 trending/tv/week 翻页(top 60) 并入候选池 —— 通用覆盖
+    // "整季放出/刚完结" 型剧集（如《百年孤独》S2：首播 2024-12 早已滑出收录窗口，且
+    // 一次性放出无排期 → 不在 on_the_air / upcoming，过去被整体漏掉）。数据源复用
+    // 本次 Promise.all 已抓取的 tvTrendingWeek（line 1436，3 页/60 部），且其条目自带
+    // 完整 last_episode_to_air S/E → 净新增子请求 = 0：
+    //   - hydrateFromTrending（line 1452）已按 id 把 trending 的 S/E 并进选中项；
+    //   - intelFetchTVEpisodeDates（line 1217）对已带 last/next_episode_to_air 的条目
+    //     直接跳过，trending 条目天生满足 → 不触发 tvep-{id} detail 回填。
+    // 评分层 intelComputeScore 早已按 last_episode_to_air.air_date 计算新近度（J:298），
+    // "只看最新季"语义天然成立；整季放出剧热度衰减 = 滑出 trending 前 60，与 ongoing
+    // 衰减语义一致。准入门槛与 onTheAir 主池完全一致（2010 / pop≥30 / zh / intelRatingOk）。
+    const trendingCandidates = (tvTrendingWeek || [])
+      .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
+      .filter(intelRatingOk)
+      // 2010 cutoff — 与 onTheAirCandidates 逐字一致（数值比较，防词典序穿透）
+      .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
+      .filter(s => (s.popularity || 0) >= 30)
+      // 中文可见性 — 与主池同款 cnFilter，确保并池后不引入英文-only 的死票
+      .filter(cnFilter);
+    // 合并 + 去重（on_the_air 优先为主池，trending 只补空位，不覆盖、不翻倍）
+    const mergedOngoing = [...onTheAirCandidates];
+    const onAirIds = new Set(onTheAirCandidates.map(s => s.id));
+    for (const s of trendingCandidates) {
+      if (!onAirIds.has(s.id)) mergedOngoing.push(s);
+    }
+    const ongoingCandidates = mergedOngoing;
 
-// Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
-  const ongoingScored = ongoingCandidates.map(s => {
-    const lastAir = s.last_episode_to_air?.air_date || "";
-    const isRecent = (lastAir && lastAir >= thirtyDaysAgo) || ((s.first_air_date || "") >= hundredEightyDaysAgo);
-    return { s, recent: isRecent };
-  });
+    // Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
+    const ongoingScored = ongoingCandidates.map(s => {
+      const lastAir = s.last_episode_to_air?.air_date || "";
+      const isRecent = (lastAir && lastAir >= thirtyDaysAgo) || ((s.first_air_date || "") >= hundredEightyDaysAgo);
+      return { s, recent: isRecent };
+    });
   const ongoingTier1 = ongoingScored.filter(x => x.recent).map(x => x.s);
   const ongoingTier2 = ongoingScored.filter(x => !x.recent).map(x => x.s);
   const ongoingSelected = [
