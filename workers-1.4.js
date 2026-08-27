@@ -1589,9 +1589,17 @@ async function handleIntelTV(env) {
     .filter(intelRatingOk)
     .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
     .filter(s => (s.popularity || 0) >= 30);
-  const trendHydrated = await intelFetchTVEpisodeDates(trendRecovery, token); // detail 补最新季
+  // 预算控制（50 子请求上限）：premieres 已消耗 detail 预算，trendRecovery 不能
+  // 全量 detail。只 detail 首播最老的 ~15 部——首播越老越可能是"整季放出/刚完结"
+  // 剧（百年孤独首播 2024-12 必在其中；on_the_air 已被排除，所以不会混入长寿周更剧
+  // 如瑞克/怪奇）。其余进池但用 first_air 评分（近期首播的周更剧 first_air 本就近，
+  // 评分不吃亏）。
+  const trendOldest15 = trendRecovery.slice()
+    .sort((a, b) => (a.first_air_date || "").localeCompare(b.first_air_date || ""))
+    .slice(0, 15);
+  const trendHydrated = await intelFetchTVEpisodeDates(trendOldest15, token); // detail 补最新季
 
-  // Merge on_the_air + 整季放出补充池(trendRecovery, 已补 latest-episode), dedup by id
+  // Merge on_the_air + 整季放出补充池(trendOldest15, 已补 latest-episode), dedup by id
   const mergedIds = new Set(onTheAirCandidates.map(s => s.id));
   const ongoingCandidates = [
     ...onTheAirCandidates,
