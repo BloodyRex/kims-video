@@ -44,11 +44,11 @@ async function main(){
   const trendCandidates=trend.filter(s=>cnFilter(s)&&intelRatingOk(s)&&Number((s.first_air_date||"").slice(0,4))>=2010&&((s.popularity||0)>=30));
   console.log("trendCandidates:",trendCandidates.length,"| has207333:",trendCandidates.some(s=>s.id===207333));
 
-  // EXACT handler: top-20 by pop detail backfill
-  const trendTop=trendCandidates.slice().sort((a,b)=>(b.popularity||0)-(a.popularity||0)).slice(0,20);
-  console.log("trendTop size:",trendTop.length,"| 207333 in top20?",trendTop.some(s=>s.id===207333));
+  // EXACT latest handler: top-20 by OLDEST first_air detail backfill
+  const trendOldest=trendCandidates.slice().sort((a,b)=>(a.first_air_date||"").localeCompare(b.first_air_date||"")).slice(0,20);
+  console.log("trendOldest size:",trendOldest.length,"| 207333 in oldest20?",trendOldest.some(s=>s.id===207333),"| oldest dates:",trendOldest.slice(0,5).map(s=>s.name+"@"+s.first_air_date).join(", "));
   const trendHydrated=[];
-  for(const s of trendTop){const det=await get(`/tv/${s.id}?language=zh-CN`);trendHydrated.push(det.last_episode_to_air?{...s,last_episode_to_air:det.last_episode_to_air}:s);}
+  for(const s of trendOldest){const det=await get(`/tv/${s.id}?language=zh-CN`);trendHydrated.push(det.last_episode_to_air?{...s,last_episode_to_air:det.last_episode_to_air}:s);}
   const th207=trendHydrated.find(s=>s.id===207333);
   console.log("trendHydrated:",trendHydrated.length,"| 207333 last_ep in detail:",th207?.last_episode_to_air?.air_date);
 
