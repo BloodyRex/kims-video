@@ -1891,44 +1891,6 @@ async function handleIntelDebug(env) {
   const thirtyDaysLater = new Date(Date.now() + 30 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
   const weekAgo = intelDaysAgo(7);
   const ninetyDaysAgo = intelDaysAgo(90);
-  // ── 2026-08-27 临时诊断：tv handler 内部真实状态 ──
-  try {
-    const dbg = await (async () => {
-      const onTheAir = await intelFetchPages(token, "/tv/on_the_air", {}, 2);
-      const tvTrendingWeek = await intelFetchPages(token, "/trending/tv/week", {}, 3);
-      const hz = (t) => /[一-鿿]/.test(t || "");
-      const cnF = (s) => hz(s.title || s.name) && hz(s.overview);
-      const rk = (m) => !m.vote_average || m.vote_average >= 4;
-      const onAirIds = new Set(onTheAir.map(s => s.id));
-      const trendRecovery = tvTrendingWeek
-        .filter(s => !onAirIds.has(s.id)).filter(cnF).filter(rk)
-        .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
-        .filter(s => (s.popularity || 0) >= 30);
-      const t300 = new Date(); t300.setUTCDate(t300.getUTCDate() - 300);
-      const c300 = t300.toISOString().slice(0, 10);
-      const wsDrop = trendRecovery.filter(s => (s.first_air_date || "") < c300);
-      const has207 = wsDrop.some(s => s.id === 207333);
-      // detail 207333 to confirm last_ep retrieve
-      let lastEp207 = null;
-      if (has207) {
-        const det = await fetch(`https://api.themoviedb.org/3/tv/207333?language=zh-CN`, { headers: { Authorization: `Bearer ${token}` } });
-        if (det.ok) { const j = await det.json(); lastEp207 = j.last_episode_to_air?.air_date; }
-      }
-      return {
-        trendTotal: tvTrendingWeek.length,
-        onTheAirCount: onTheAir.length,
-        trendRecoveryCnt: trendRecovery.length,
-        wsDropCnt: wsDrop.length,
-        has207InWsDrop: has207,
-        lastEp207,
-        wsDrop207RankByPop: (() => { const bp = wsDrop.slice().sort((a,b)=>(b.popularity||0)-(a.popularity||0)); const i = bp.findIndex(s=>s.id===207333); return i>=0 ? i+1 : -1; })(),
-      };
-    })();
-    return Response.json({ ok: true, tvDiag: dbg }, { headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" } });
-  } catch (e) {
-    return Response.json({ ok: false, err: e.message }, { headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" } });
-  }
-
   const [discover, onTheAir, trending, nowPlayingRaw, upcomingRaw] = await Promise.all([
     intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": thirtyDaysLater, "sort_by": "popularity.desc" }, 5),
     intelFetchPages(token, "/tv/on_the_air", {}, 4),
