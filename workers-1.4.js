@@ -1675,74 +1675,63 @@ async function handleIntelTV(env) {
       .filter(s => (s.popularity || 0) >= popFloor); // relaxed from 80 (yearCutoff cutoff already trims)
 
   // ── Ongoing candidate pool ──
-      // 2026-08-28 v4: 把 trending/tv/week 翻页(top 60) 并入候选池 —— 通用覆盖
-      // "整季放出/刚完结" 型剧集（如《百年孤独》S2：首播 2024-12 早已滑出收录窗口，且
-      // 一次性放出无排期 → 不在 on_the_air / upcoming，过去被整体漏掉）。数据源复用
-      // 本次 Promise.all 已抓取的 tvTrendingWeek（line 1436，3 页/60 部），且其条目自带
-      // 完整 last_episode_to_air S/E → 净新增子请求 = 0：
-      //   - hydrateFromTrending（line 1452）已按 id 把 trending 的 S/E 并进选中项；
-      //   - intelFetchTVEpisodeDates（line 1217）对已带 last/next_episode_to_air 的条目
-      //     直接跳过，trending 条目天生满足 → 不触发 tvep-{id} detail 回填。
-      // 评分层 intelComputeScore 早已按 last_episode_to_air.air_date 计算新近度（J:298），
-      // "只看最新季"语义天然成立；整季放出剧热度衰减 = 滑出 trending 前 60，与 ongoing
-      // 衰减语义一致。准入门槛与 onTheAir 主池完全一致（2010 / pop≥30 / zh / intelRatingOk）。
-      const trendingCandidates = (tvTrendingWeek || [])
-          .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
-          .filter(intelRatingOk)
-          // yearCutoff cutoff — 与 onTheAirCandidates 逐字一致（数值比较，防词典序穿透）
-          .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= yearCutoff)
-          .filter(s => (s.popularity || 0) >= popFloor)
-          // 中文可见性 — 与主池同款 cnFilter，确保并池后不引入英文-only 的死票
-          .filter(cnFilter);
-      // 合并 + 去重（on_the_air 优先为主池，trending 只补空位，不覆盖、不翻倍）
-      const mergedOngoing = [...onTheAirCandidates];
-      const onAirIds = new Set(onTheAirCandidates.map(s => s.id));
-      for (const s of trendingCandidates) {
-        if (!onAirIds.has(s.id)) mergedOngoing.push(s);
-      }
-      const ongoingCandidates = mergedOngoing;
+    // 2026-08-28 v4: trending/tv/week 翻页(top 60) 并入候选池 —— 通用覆盖"整季放出/刚完结"型剧。
+    // 复用本次 Promise.all 已抓取的 tvTrendingWeek（line 1436,3 页/60 部）。
+    const trendingCandidates = (tvTrendingWeek || [])
+      .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
+      .filter(intelRatingOk)
+      .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= yearCutoff)
+      .filter(s => (s.popularity || 0) >= popFloor)
+      .filter(cnFilter);
+    // 合并 + 去重（on_the_air 为主池,trending 补位）; _trendingOnly 标记整季放出型剧。
+    const onAirIds = new Set(onTheAirCandidates.map(s => s.id));
+    const mergedOngoing = [...onTheAirCandidates];
+    for (const s of trendingCandidates) {
+      if (!onAirIds.has(s.id)) { s._trendingOnly = true; mergedOngoing.push(s); }
+    }
+    const ongoingCandidates = mergedOngoing;
 
-      // Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
-      const ongoingScored = ongoingCandidates.map(s => {
-        const lastAir = s.last_episode_to_air?.air_date || "";
-        const isRecent = (lastAir && lastAir >= thirtyDaysAgo) || ((s.first_air_date || "") >= hundredEightyDaysAgo);
-        return { s, recent: isRecent };
-      });
+    // Tier-1 boost. 整季放出剧(trending-only) 无 list 级 S/E,但本周正热 → 视为 recent
+    // (recent 才进 tier1 拿到更多名额)。注入 release_date=today 让 S_date 按"本周热"算;
+    // 用 release_date 而非 last_episode 作假,否则 intelFetchTVEpisodeDates 会跳过 detail 回填。
+    const ongoingScored = ongoingCandidates.map(s => {
+      const isTrendingOnly = s._trendingOnly === true;
+      if (isTrendingOnly && !s.release_date) s.release_date = today;
+      const lastAir = s.last_episode_to_air?.air_date || "";
+      const isRecent = isTrendingOnly || (lastAir && lastAir >= thirtyDaysAgo) || ((s.first_air_date || "") >= hundredEightyDaysAgo);
+      return { s, recent: isRecent, trendingOnly: isTrendingOnly };
+    });
     const ongoingTier1 = ongoingScored.filter(x => x.recent).map(x => x.s);
     const ongoingTier2 = ongoingScored.filter(x => !x.recent).map(x => x.s);
     const ongoingSelected = [
-        ...intelSelectDiverse(ongoingTier1, tier1, reserve, scoreOpts, today),
-        ...intelSelectDiverse(ongoingTier2, tier2, reserve, scoreOpts, today),
-      ].slice(0, 15);
-    // Hydrate S/E from trending (free) first, then paid detail backfill ONLY for
-        // the first ONGOING_DETAIL_CAP entries lacking S/E. The paid detail fetch is
-        // the #1 budget killer (each ~1 subrequest; merging trending pushed the pool
-        // to full-15 and this + premieres' tvmaze enrich blew the 50 budget → ongoing
-        // silently emptied on real Worker, live 2026-08-28). Trending entries carry
-        // full episodes already so they never consume detail. Entries past the cap are
-        // still returned as-is (with whatever S/E trending gave them) — never dropped,
-        // so a tight budget can't empty the section.
-        const ONGOING_DETAIL_CAP = cfg.tv.ongoingDetailCap;
-            const ongoingHydrated = await hydrateFromTrending(ongoingSelected);
-        const needDetail = [];
-        const passThrough = [];
-        for (const s of ongoingHydrated) {
-          if (s.last_episode_to_air || s.next_episode_to_air) {
-            passThrough.push(s); // trending gave full episodes — no fetch needed
-          } else if (needDetail.length < ONGOING_DETAIL_CAP) {
-            needDetail.push(s);
-          } else {
-            passThrough.push(s); // capped — keep as-is, don't drop
-          }
-        }
-        const detailed = await intelFetchTVEpisodeDates(needDetail, token);
-        const ongoingEnriched = [...detailed, ...passThrough];
-        const ongoingTV = ongoingEnriched
-          .filter(s => {
-            const lastAir = s.last_episode_to_air?.air_date;
-            return !lastAir || lastAir >= ninetyDaysAgo;
-          })
-          .map(s => intelNormalizeMovie(s, "tv"));
+      ...intelSelectDiverse(ongoingTier1, tier1, reserve, scoreOpts, today),
+      ...intelSelectDiverse(ongoingTier2, tier2, reserve, scoreOpts, today),
+    ].slice(0, 15);
+    // Detail backfill (≤ cap, 预算保护): 冷缓存时 paid detail 是 50 子请求预算的头号杀手
+    // (trending 并池把池推向满 15,加上 premieres/tvmaze enrich 曾打爆 → ongoing 静默清空)。
+    // 优先给整季放出(trending-only) 剧回填真实 S/E,再补 on_the_air 无 S/E 条目。超 cap 的
+    // 保留原条目,绝不丢弃 → 预算紧也不会清空整段。
+    const ONGOING_DETAIL_CAP = cfg.tv.ongoingDetailCap;
+    const sortDetail = [...ongoingSelected].sort((a, b) => (b._trendingOnly === true) - (a._trendingOnly === true));
+    const needDetail = [];
+    const passThrough = [];
+    for (const s of sortDetail) {
+      if (s.last_episode_to_air || s.next_episode_to_air) {
+        passThrough.push(s); // already has S/E — no fetch
+      } else if (needDetail.length < ONGOING_DETAIL_CAP) {
+        needDetail.push(s);
+      } else {
+        passThrough.push(s); // capped — keep as-is, don't drop
+      }
+    }
+    const detailed = await intelFetchTVEpisodeDates(needDetail, token);
+    const ongoingEnriched = [...detailed, ...passThrough];
+    const ongoingTV = ongoingEnriched
+      .filter(s => {
+        const lastAir = s.last_episode_to_air?.air_date;
+        return !lastAir || lastAir >= ninetyDaysAgo;
+      })
+      .map(s => intelNormalizeMovie(s, "tv"));
 
     return {
       updated: today,
