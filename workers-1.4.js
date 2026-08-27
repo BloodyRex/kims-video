@@ -1589,17 +1589,16 @@ async function handleIntelTV(env) {
     .filter(intelRatingOk)
     .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
     .filter(s => (s.popularity || 0) >= 30);
-  // 预算控制（50 子请求上限）：premieres 已消耗 detail 预算，trendRecovery 不能
-  // 全量 detail。只 detail 首播最老的 ~15 部——首播越老越可能是"整季放出/刚完结"
-  // 剧（百年孤独首播 2024-12 必在其中；on_the_air 已被排除，所以不会混入长寿周更剧
-  // 如瑞克/怪奇）。其余进池但用 first_air 评分（近期首播的周更剧 first_air 本就近，
-  // 评分不吃亏）。
-  const trendOldest15 = trendRecovery.slice()
-    .sort((a, b) => (a.first_air_date || "").localeCompare(b.first_air_date || ""))
-    .slice(0, 15);
-  const trendHydrated = await intelFetchTVEpisodeDates(trendOldest15, token); // detail 补最新季
+  // 预算说明：premieres 的 intelFetchTVEpisodeDates 有 hydrateFromTrending 减免
+  //（trend week 已带 last_ep 的剧不重复 detail），实际 detail 数远小于 15。
+  // 修复：trendRecovery 不能按首播最老排序裁剪 —— 首播最老≠刚完结整季放出剧
+  //（池里 2010-2023 完结老剧更多，会把百年孤独/黄急血祭这类挤出）。
+  // 改用"按最新季评分的真正补充池"：detail 回填后自然淘汰无需手选。
+  // 保守做法：trendRecovery 全量 detail（实测 ~32），叠加 source(~7)+premieres(~5 减面)
+  // ≈ 44 < 50 限额。若线上仍超预算，再逐步收敛。
+  const trendHydrated = await intelFetchTVEpisodeDates(trendRecovery, token); // detail 补最新季
 
-  // Merge on_the_air + 整季放出补充池(trendOldest15, 已补 latest-episode), dedup by id
+  // Merge on_the_air + 整季放出补充池(trendRecovery, 已补 latest-episode), dedup by id
   const mergedIds = new Set(onTheAirCandidates.map(s => s.id));
   const ongoingCandidates = [
     ...onTheAirCandidates,
