@@ -70,6 +70,7 @@ const GROUPS = [
       { path: ["tv", "popFloor"], code: "tv.popFloor", label: "最低热度", labelEn: "min popularity", type: "number", min: 0, max: 200, step: 1, desc: "ongoing 热播剧的最低 popularity" },
       { path: ["tv", "ongoingTier1"], code: "tv.ongoingTier1", label: "近30天活跃名额", labelEn: "tier-1 quota", type: "number", min: 1, max: 15, step: 1, desc: "近30天有新集/近180天首播的剧优先入选的名额" },
       { path: ["tv", "ongoingTier2"], code: "tv.ongoingTier2", label: "其余剧名额", labelEn: "tier-2 quota", type: "number", min: 0, max: 15, step: 1, desc: "其余 2010+ 剧集合计补充名额" },
+      { path: ["tv", "ongoingDetailCap"], code: "tv.ongoingDetailCap", label: "热播剧详情回填上限", labelEn: "ongoing detail cap", type: "number", min: 0, max: 15, step: 1, desc: "ongoing 无S/E条目最多详情回填数。防止拉爆50子请求预算。0=全跳过（仅用trending自带S/E）" },
       { path: ["tv", "reserve", "cn"], code: "tv.reserve.cn", label: "大陆保底", labelEn: "cn quota", type: "number", min: 0, max: 15, step: 1, desc: "大陆剧保底席位" },
       { path: ["tv", "reserve", "hmt"], code: "tv.reserve.hmt", label: "港台保底", labelEn: "hmt quota", type: "number", min: 0, max: 15, step: 1, desc: "港台剧保底席位" },
       { path: ["tv", "reserve", "jp"], code: "tv.reserve.jp", label: "日本保底", labelEn: "jp quota", type: "number", min: 0, max: 15, step: 1, desc: "日本剧保底席位" },
