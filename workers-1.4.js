@@ -1576,9 +1576,12 @@ async function handleIntelTV(env) {
     // 只有 /tv/{id} detail 返回。若在 selection 前不补，S_date 会用 first_air_date
     // 评分（百年孤独首播 2024→0 分被埋），从而永远选不进 top15、连 detail 都轮不到。
     // 解法：对"整季放出型的趋势候选"(trendCandidates) 预先 detail 回填最新一季，
-    // 使百年孤独(S2E8 终映 8/26)能以真实新近度参与评分。趋势候选量小(~20)，
-    // 且配合 withCache(1h)，预算在 50 限额内。
-    const trendHydrated = await intelFetchTVEpisodeDates(trendCandidates, token);
+        // 使百年孤独(S2E8 终映 8/26)能以真实新近度参与评分。
+        // 预算控制：趋势候选按 popularity 降序只取前 20 做 detail 回填（百年孤独 pop 45
+        // 在该 top 内），其余候选仍进池但用 first_air 评分（反正难进前 15）。
+        // detail 需在 50 子请求限额内（叠加 premieres/其他 handler 消耗）。
+        const trendTop = trendCandidates.slice().sort((a, b) => (b.popularity || 0) - (a.popularity || 0)).slice(0, 20);
+        const trendHydrated = await intelFetchTVEpisodeDates(trendTop, token);
 
   const onTheAirCandidates = onTheAir
     .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
@@ -1590,11 +1593,15 @@ async function handleIntelTV(env) {
     .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
     .filter(s => (s.popularity || 0) >= 30); // relaxed from 80 (2010 cutoff already trims)
 
-  // Merge on_the_air + trending (本周最热, 已补 latest-episode), dedup by id
+  // Merge on_the_air + trending (本周最热), dedup by id.
+    // trend 候选用完整池；其中已被 detail 回填最新季的(top20)使用带 last_episode 版本，
+    // 未回填的保留列表版（评分用 first_air，天然难进前15，反正不会挤掉百年孤独）。
     const mergedIds = new Set(onTheAirCandidates.map(s => s.id));
+    const trendMap = new Map(trendHydrated.map(s => [s.id, s])); // top20 detail-filled
+    const trendFull = trendCandidates.map(s => trendMap.get(s.id) || s);
     const ongoingCandidates = [
       ...onTheAirCandidates,
-      ...trendHydrated.filter(s => !mergedIds.has(s.id)),
+      ...trendFull.filter(s => !mergedIds.has(s.id)),
     ];
   // Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
   const ongoingScored = ongoingCandidates.map(s => {
