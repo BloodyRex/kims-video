@@ -1,0 +1,34 @@
+name: Temp-Diag2-TrendingFields
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect trending item fields (does it carry last_episode_to_air?)
+        env:
+          TMDB: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: |
+          node -e '
+            const token = process.env.TMDB;
+            const h={headers:{Authorization:"Bearer "+token,"Content-Type":"application/json"}};
+            (async()=>{
+              const r=await fetch("https://api.themoviedb.org/3/trending/tv/week?language=zh-CN",h);
+              const d=await r.json();
+              const hit=d.results.find(s=>/孤独|One Hundred|Macondo/i.test(s.name+" "+(s.original_name||"")));
+              console.log("百年孤独 fields:");
+              console.log("  has last_episode_to_air:", !!hit.last_episode_to_air, hit.last_episode_to_air?JSON.stringify({s:hit.last_episode_to_air.season_number,e:hit.last_episode_to_air.episode_number,d:hit.last_episode_to_air.air_date}):"(none)");
+              console.log("  has next_episode_to_air:", !!hit.next_episode_to_air);
+              console.log("  first_air_date:", hit.first_air_date);
+              console.log("  genre_ids:", JSON.stringify(hit.genre_ids));
+              console.log("  origin_country:", JSON.stringify(hit.origin_country));
+              console.log("  popularity:", hit.popularity);
+              // count how many in top 15 have last_episode_to_air
+              const top=d.results.slice(0,25);
+              const withEp=top.filter(s=>s.last_episode_to_air||s.next_episode_to_air).length;
+              console.log("top25 has-ep:",withEp,"/",top.length);
+              console.log("top25 names:", top.map(s=>s.name).join(" | "));
+            })().catch(e=>{console.log("FATAL",e.message);process.exit(1)});
+          '
