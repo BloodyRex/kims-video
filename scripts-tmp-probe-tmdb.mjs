@@ -1,55 +1,51 @@
-// TEMPORARY diagnostic #4 — find a RELIABLE source that surfaces id 207333.
+// TEMPORARY diagnostic #5 — find a window that surfaces id 207333 among ENDED shows.
+// The show: first_air 2024-12, ended 2026-08. popularity 45.
 const B = "https://api.themoviedb.org/3";
 const AUTH = { Authorization: `Bearer ${process.env.TMDB_KEY}` };
 const get = async (path) => {
   const r = await fetch(`${B}${path}`, { headers: AUTH });
-  if (!r.ok) throw new Error(`${path} -> ${r.status}: ${await r.text().catch(()=> "")}`);
+  if (!r.ok) throw new Error(`${path} -> ${r.status}`);
   return r.json();
 };
-const intelToday = () => new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
-const intelDaysAgo = (n) => { const d = new Date(); d.setUTCDate(d.getUTCDate() - n); return d.toISOString().slice(0, 10); };
 
 async function main() {
-  const today = intelToday();
-  const todayUtc = new Date().toISOString().slice(0, 10);
-  const t30 = intelDaysAgo(30);
-  const t60 = intelDaysAgo(60);
+  const ID = 207333;
 
-  console.log("today(CST):", today, "today(UTC):", todayUtc);
-
-  async function probe(label, path) {
-    try {
-      const d = await get(path);
+  // A) All ENDED shows sorted by last-episode recency (air_date.desc) — do fresh endings float to top?
+  //    air_date desc = shows whose most recent episode is newest.
+  for (const sortBy of ["air_date.desc", "first_air_date.desc", "vote_average.desc", "popularity.desc"]) {
+    for (const status of [3]) { // 3 = Ended
+      const d = await get(`/discover/tv?sort_by=${sortBy}&with_status=${status}&page=1&air_date.gte=2026-01-01`);
       const res = d.results || [];
-      const hit = res.filter(x => x.id === 207333);
-      console.log(`[${label}] total_pages=${d.total_pages || "?"} results=${res.length} hit=`, hit.length ? JSON.stringify({ pop: hit[0].popularity, va: hit[0].vote_average }) : "NO");
-      return res;
-    } catch (e) { console.log(`[${label}] ERR ${e.message}`); return []; }
+      const hit = res.find(x => x.id === ID);
+      console.log(`[Ended, sort=${sortBy}, air_date>=2026] p1 hit?`, hit ? `YES pop=${hit.popularity}` : "NO", "| names:", res.slice(0, 8).map(x => x.name));
+    }
   }
 
-  // 1) Does air_date window match NEXT episode (future) rather than LAST aired?
-  await probe("discover/tv air_date 30d", `/discover/tv?air_date.gte=${t30}&air_date.lte=${today}&sort_by=popularity.desc&page=1&language=zh-CN`);
-  await probe("discover/tv air_date next7d", `/discover/tv?air_date.gte=${today}&air_date.lte=${todayUtc}&sort_by=popularity.desc&page=1`);
+  // B) popularity.desc, no status filter, page 1..20 — where does 207333 land?
+  //    (We already know 854 globally; check if air_date filter + first_air >= 2024 narrows it)
+  let found = null;
+  for (let p = 1; p <= 30; p++) {
+    const d = await get(`/discover/tv?first_air_date.gte=2024-06-01&sort_by=popularity.desc&page=${p}`);
+    const res = d.results || [];
+    for (let i = 0; i < res.length; i++) {
+      if (res[i].id === ID) { found = { page: p, rank: (p - 1) * 20 + i + 1, pop: res[i].popularity }; }
+    }
+    if (res.length < 20) break;
+  }
+  console.log("\n[first_air>=2024-06, pop desc] 207333:", found ? `page=${found.page} rank=${found.rank} pop=${found.pop}` : "NOT FOUND in 30 pages");
 
-  // 2) tv/popular (static popularity list)
-  for (let p = 1; p <= 5; p++) await probe(`tv/popular p${p}`, `/tv/popular?page=${p}`);
+  // C) The actual last-episode date — confirm the show's last episode 2026-08-26
+  const tv = await get("/tv/207333?language=zh-CN");
+  console.log("\nlast_episode_to_air:", JSON.stringify(tv.last_episode_to_air));
+  console.log("status:", tv.status, "| in_production:", tv.in_production, "| last_air_date:", tv.last_air_date);
 
-  // 3) trending/tv/week all 20
-  const tw = await probe("trending/tv/week", "/trending/tv/week");
-  console.log("   trending week full names:", tw.slice(0, 20).map(x => x.name));
-
-  // 4) discover/tv with status filters — status=3 (Ended)
-  await probe("discover/tv with_status=Ended top", "/discover/tv?sort_by=popularity.desc&with_status=3&page=1");
-
-  // 5) discover/tv first_air 2026 (new this year) pop desc — page 1-3
-  for (let p = 1; p <= 3; p++) await probe(`discover/tv first_air>=2026 p${p}`, `/discover/tv?first_air_date.gte=2026-01-01&sort_by=popularity.desc&page=${p}`);
-
-  // 6) The KEY experiment: without zh, does discover/tv air_date catch it in en-US?
-  await probe("discover/tv air_date 60d en", `/discover/tv?air_date.gte=${t60}&air_date.lte=${today}&sort_by=popularity.desc&page=1`);
-
-  // 7) Directly inspect what air_date.gte returns (first 8 names) to see if ENDED shows appear at all
-  const ad = await get(`/discover/tv?air_date.gte=${t30}&sort_by=popularity.desc&page=1`);
-  console.log("   air_date 30d window sample names:", (ad.results || []).slice(0, 12).map(x => `${x.name}(S${x.last_episode_to_air?.season_number ?? "?"})`));
+  // D) Does air_date filter work for shows whose LAST episode aired recently, REGARDLESS of next_episode?
+  //    Try a tighter window: air_date.gte with BOTH gte/lte today, sort by popularity, NO zh — page1... already done (NO).
+  //    Root-cause check: what does the air_date filter actually match? Look at a sample returned by air_date 30d:
+  //    those shows all have NEXT episodes upcoming (weekly shows). Confirms hypothesis: air_date = NEXT episode date.
+  console.log("\n→ Hypothesis confirm: air_date.gte matches NEXT episode (upcoming air dates), not last air date.");
+  console.log("  So an ENDED show (no next episode) NEVER matches air_date regardless of recent ending.");
 }
 
 main().catch(e => { console.error("FATAL", e.message); process.exit(1); });
