@@ -1594,9 +1594,16 @@ async function handleIntelTV(env) {
   // 修复：trendRecovery 不能按首播最老排序裁剪 —— 首播最老≠刚完结整季放出剧
   //（池里 2010-2023 完结老剧更多，会把百年孤独/黄急血祭这类挤出）。
   // 改用"按最新季评分的真正补充池"：detail 回填后自然淘汰无需手选。
-  // 保守做法：trendRecovery 全量 detail（实测 ~32），叠加 source(~7)+premieres(~5 减面)
-  // ≈ 44 < 50 限额。若线上仍超预算，再逐步收敛。
-  const trendHydrated = await intelFetchTVEpisodeDates(trendRecovery, token); // detail 补最新季
+  // ── 整季放出/刚完结 补充池（2026-08-27 定稿）──
+  // 关键洞察：首播 >300 天仍在 top-trending 的，几乎必是"整季放出剧刚完结冲上热度"
+  //（如《百年孤独》首播 2024-12-11 即 624 天前，S2E8 在 8/26 完结；且周更新剧都在
+  // on_the_air、first_air 近期）。首播近期的周更剧 first_air 本就近、评分不吃亏，
+  // 无需 detail 也能进 ongoing。因此只 detail 首播早于 300 天前的子集
+  //（实测 ~21 部，预算 ~26+premieres<50 安全），且必含《百年孤独》。
+  // detail 后用最新一季(last_episode_to_air.air_date)评分，而非整剧首播日。
+  const wsDropCutoff = intelDaysAgo(300);
+  const wsDropCandidates = trendRecovery.filter(s => (s.first_air_date || "") < wsDropCutoff);
+  const trendHydrated = await intelFetchTVEpisodeDates(wsDropCandidates, token); // detail 补最新季
 
   // Merge on_the_air + 整季放出补充池(trendRecovery, 已补 latest-episode), dedup by id
   const mergedIds = new Set(onTheAirCandidates.map(s => s.id));
