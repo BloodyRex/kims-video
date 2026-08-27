@@ -1163,17 +1163,29 @@ async function handleIntelMovies(env) {
     return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
   });
 
-  // Now playing: exclude this week + upcoming, 90-day window (CN date based)
+  // ── Now playing quality gate (2026-08-27, Rex): composite popularity+rating ──
+  // 原纯 popularity>=25 门槛忽略口碑，把高评分小众佳作（如 Hadestown:
+  // rate 9.1 / pop 12.9，音乐剧官摄）挡在墙外。改为加权复合分：
+  //   score = 0.7 * rating + 0.3 * pop10,  pop10 = min(10, popularity/10)
+  // rating 已为 0-10；popularity 归一化到 0-10 (10 热度→1 分，100 热度封顶)。
+  // 高口碑佳作 (9.1,12.9→6.76) 与 热门高口碑 均入选；低口碑靠热度被挡
+  // (4,100→5.8)。CN-theatrical 保持放宽（domestic 热度即可，不受此 gate）。
+  const gateNowPlaying = (m) => {
+    const pop = m.popularity || 0;
+    const rate = m.vote_average || 0;
+    const pop10 = Math.min(10, pop / 10);          // popularity → 0-10
+    return (0.7 * rate + 0.3 * pop10) >= 6.0;
+  };
+
+  // NOW PLAYING: exclude this week + upcoming, 90-day window (CN date based)
   const upcomingIds = new Set(upcomingSelected.map(m => m.id));
   const nowPlayingCandidates = recentMerged
     .filter(m => m.release_date && m.release_date >= ninetyDaysAgo)
     .filter(m => !weekIds.has(m.id) && !upcomingIds.has(m.id))
     // CN-pool entries skip the zh filter (region=CN list returns EN everywhere)
     .filter(m => cnPoolIds.has(m.id) || cnFilter(m))
-    // CN-theatrical entries (domestic hits like 牛来) have low global popularity
-    // and early sparse votes — relax both floors for them. Everything else keeps
-    // the 25/4.0 floors so slots aren't flooded with long-tail US titles.
-    .filter(m => cnPoolIds.has(m.id) ? (m.popularity || 0) >= 8 && (!m.vote_average || m.vote_average >= 2) : (m.popularity || 0) >= 25 && intelRatingOk(m));
+    // Composite gate (all above); CN-theatrical keeps relaxed domestic floor.
+    .filter(m => cnPoolIds.has(m.id) ? (m.popularity || 0) >= 8 && (!m.vote_average || m.vote_average >= 2) : gateNowPlaying(m));
   const nowPlayingSelected = intelSelectDiverse(nowPlayingCandidates, 15, reserve, SCORE_OPTS.movie, today);
   const nowPlayingNormalized = (await Promise.all(
     nowPlayingSelected.map(m => cnPoolIds.has(m.id)
@@ -1399,19 +1411,25 @@ async function handleIntelTV(env) {
   const thirtyDaysAgo = intelDaysAgo(30);
   const hundredEightyDaysAgo = intelDaysAgo(180);
 
-  // ── Data sources (2026-08-20 v2: TVMAZE primary, TMDB supplements + zh) ──
-  // premieres: TVMAZE schedule next 2-4 days (真实首播日，国产剧先上 TVMAZE 场景直接覆盖)
-  // upcoming:  TVMAZE +7/+14 day samples + TMDB discover 未来 90 天
-  // ongoing:   TMDB on_the_air (TVMAZE has no "airing now" list endpoint)
-  const [onTheAir, discoverRaw, tvmazePremEps, tvmazeUpEps, tvTrendingWeek] = await Promise.all([
-    intelFetchPages(token, "/tv/on_the_air", {}, 2),
-    intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, 1),
-    intelFetchTVMazeWeb([0, 1, 2, 3]), // premieres: next 2-4 days
-    intelFetchTVMazeWeb([7, 14]),      // upcoming: +7/+14 day samples
-    // trending/tv/week carries full episode objects (S/E source for hydration
-    // below); costs ~0 here because overview/weekly hit this same cache entry
-    intelFetchTMDB(token, "/trending/tv/week"),
-  ]);
+  // ── Data sources (2026-08-27 v3: + trending-pagination whole-season recovery) ──
+    // premieres: TVMAZE schedule next 2-4 days (真实首播日，国产剧先上 TVMAZE 场景直接覆盖)
+    // upcoming:  TVMAZE +7/+14 day samples + TMDB discover 未来 90 天
+    // ongoing:   TMDB on_the_air (TVMAZE has no "airing now" list endpoint) +
+    //            trending/tv/week 翻页 —— 通用地覆盖 "整季放出/刚完结" 型剧集
+    //            (不限平台)。with_networks 只收单个 id（多选返回 0），且全平台
+    //            热门池被超长寿剧稀释、捞不到 movie 45 的《百年孤独》；
+    //            trending 是 "本周最热"，整季放出剧上线当周冲进前 20-30 → 翻第
+    //            2-3 页即可纳入（实测《百年孤独》在 rank 23），零额外 detail 成本。
+    const [onTheAir, discoverRaw, tvmazePremEps, tvmazeUpEps, tvTrendingWeek] = await Promise.all([
+      intelFetchPages(token, "/tv/on_the_air", {}, 2),
+      intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, 1),
+      intelFetchTVMazeWeb([0, 1, 2, 3]), // premieres: next 2-4 days
+      intelFetchTVMazeWeb([7, 14]),      // upcoming: +7/+14 day samples
+      // trending/tv/week 翻 3 页 (本周最热 60 部) —— 既是整季放出剧的通用补充源，
+      // 也自带完整 episode 对象 (last_episode_to_air) 供 hydrateFromTrending 补 S/E。
+      // 只需在现有 1 页基础上多 2 次分页，预算几乎零增量。
+      intelFetchPages(token, "/trending/tv/week", {}, 3),
+    ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
   const cnFilter = (s) => hasChinese(s.title || s.name) && hasChinese(s.overview);
@@ -1534,10 +1552,21 @@ async function handleIntelTV(env) {
   const weekPremieresFinal = [...weekPremieres, ...imminent];
   const upcomingIds = new Set(upcomingSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
 
-  // ── Ongoing: TMDB on_the_air, 2010 cutoff + recent-activity priority ──
+  // ── Ongoing: TMDB on_the_air + trending-pagination recovery, 2010 cutoff ──
   // 2026-08-20 v2: 超长连载剧集从 2010 截断（first_air_date < 2010-01-01 全部淘汰），
   // 一级优先 = 近一个月有播新集 OR 近 180 天首播；二级 = 其余 2010 后剧集。
-  const ongoingCandidates = onTheAir
+  // 2026-08-27 v3: trending/tv/week 翻页(60部) 并入候选池 —— 通用覆盖
+  // "整季放出/刚完结" 型剧集（不限平台，with_networks 只接受单 id）。trending 条目
+  // 自带 last_episode_to_air，天然满足"只看最新一季"语义；热度衰减后滑出
+  // 前 60 自然掉落（与 ongoing 衰减语义一致）。
+  const trendCandidates = tvTrendingWeek
+    .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
+    .filter(cnFilter)
+    .filter(intelRatingOk)
+    .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
+    .filter(s => (s.popularity || 0) >= 30);
+
+  const onTheAirCandidates = onTheAir
     .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
     .filter(cnFilter)
     .filter(intelRatingOk)
@@ -1546,6 +1575,13 @@ async function handleIntelTV(env) {
     // long-runners (Simpsons 1989, Kamen Rider 1971…) slip through.
     .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
     .filter(s => (s.popularity || 0) >= 30); // relaxed from 80 (2010 cutoff already trims)
+
+  // Merge on_the_air + trending (本周最热), dedup by id
+  const mergedIds = new Set(onTheAirCandidates.map(s => s.id));
+  const ongoingCandidates = [
+    ...onTheAirCandidates,
+    ...trendCandidates.filter(s => !mergedIds.has(s.id)),
+  ];
   // Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
   const ongoingScored = ongoingCandidates.map(s => {
     const lastAir = s.last_episode_to_air?.air_date || "";
