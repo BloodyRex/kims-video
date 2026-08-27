@@ -1564,25 +1564,6 @@ async function handleIntelTV(env) {
   // "整季放出/刚完结" 型剧集（不限平台，with_networks 只接受单 id）。trending 条目
   // 自带 last_episode_to_air，天然满足"只看最新一季"语义；热度衰减后滑出
   // 前 60 自然掉落（与 ongoing 衰减语义一致）。
-  const trendCandidates = tvTrendingWeek
-      .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
-      .filter(cnFilter)
-      .filter(intelRatingOk)
-      .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
-      .filter(s => (s.popularity || 0) >= 30);
-
-    // ── 整季放出剧评分前置：trend 候选先补 last_episode（最新一季）再评分 ──
-    // TMDB 列表端点(discover/popular/trending)都不携带 last_episode_to_air，
-    // 只有 /tv/{id} detail 返回。若在 selection 前不补，S_date 会用 first_air_date
-    // 评分（百年孤独首播 2024→0 分被埋），从而永远选不进 top15、连 detail 都轮不到。
-    // 解法：对"整季放出型的趋势候选"(trendCandidates) 预先 detail 回填最新一季，
-        // 使百年孤独(S2E8 终映 8/26)能以真实新近度参与评分。
-        // 预算控制：趋势候选按 popularity 降序只取前 20 做 detail 回填（百年孤独 pop 45
-        // 在该 top 内），其余候选仍进池但用 first_air 评分（反正难进前 15）。
-        // detail 需在 50 子请求限额内（叠加 premieres/其他 handler 消耗）。
-        const trendTop = trendCandidates.slice().sort((a, b) => (b.popularity || 0) - (a.popularity || 0)).slice(0, 20);
-        const trendHydrated = await intelFetchTVEpisodeDates(trendTop, token);
-
   const onTheAirCandidates = onTheAir
     .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
     .filter(cnFilter)
@@ -1593,17 +1574,31 @@ async function handleIntelTV(env) {
     .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
     .filter(s => (s.popularity || 0) >= 30); // relaxed from 80 (2010 cutoff already trims)
 
-  // Merge on_the_air + trending (本周最热), dedup by id.
-    // trend 候选用完整池；其中已被 detail 回填最新季的(top20)使用带 last_episode 版本，
-    // 未回填的保留列表版（评分用 first_air，天然难进前15，反正不会挤掉百年孤独）。
-    const mergedIds = new Set(onTheAirCandidates.map(s => s.id));
-    const trendMap = new Map(trendHydrated.map(s => [s.id, s])); // top20 detail-filled
-    const trendFull = trendCandidates.map(s => trendMap.get(s.id) || s);
-    const ongoingCandidates = [
-      ...onTheAirCandidates,
-      ...trendFull.filter(s => !mergedIds.has(s.id)),
-    ];
-  // Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
+  // ── 整季放出/刚完结 补充池 (2026-08-27, 通用多平台) ──
+  // 周更剧都在 on_the_air；整季放出型(Netflix/Disney/Prime 等, status=Ended)不在
+  // on_the_air —— 这正是以往全链路缺席的那一类。通用补充源 =
+  //   trending/tv/week 翻页(本周最热) 中 「不在 on_the_air 的剧」。
+  // 池大小实测 ~33 → 可全量 detail 补 last_episode(最新一季) 而不超 50 子请求预算。
+  // detail 后用最新季(last_episode_to_air.air_date)评分 —— 而非剧集首播日 ——
+  // 这样《百年孤独》(首播 2024-12, S2E8 终映 8/26) 以真实新近度参与排序, 能进 ongoing.
+  const onAirIds = new Set(onTheAir.map(s => s.id));
+  const trendRecovery = tvTrendingWeek
+    .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
+    .filter(s => !onAirIds.has(s.id))          // 只在 on_the_air 之外的补充
+    .filter(cnFilter)
+    .filter(intelRatingOk)
+    .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
+    .filter(s => (s.popularity || 0) >= 30);
+  const trendHydrated = await intelFetchTVEpisodeDates(trendRecovery, token); // detail 补最新季
+
+  // Merge on_the_air + 整季放出补充池(trendRecovery, 已补 latest-episode), dedup by id
+  const mergedIds = new Set(onTheAirCandidates.map(s => s.id));
+  const ongoingCandidates = [
+    ...onTheAirCandidates,
+    ...trendHydrated.filter(s => !mergedIds.has(s.id)),
+  ];
+
+// Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
   const ongoingScored = ongoingCandidates.map(s => {
     const lastAir = s.last_episode_to_air?.air_date || "";
     const isRecent = (lastAir && lastAir >= thirtyDaysAgo) || ((s.first_air_date || "") >= hundredEightyDaysAgo);
