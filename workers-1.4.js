@@ -3109,4 +3109,11 @@ export default {
       return Response.json({ error: `top-level: ${e.message}`, stack: (e.stack || "").slice(0, 600) }, { status: 500, headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" } });
     }
   },
+
+  // ── Backup digest sender cron (06:35 Beijing; GH Actions 06:28 is primary) ──
+  // Idempotent via KV "digestStatus:YYYY-MM-DD" guard — skips if today already sent.
+  async scheduled(event, env, ctx) {
+    const result = await sendDigestToAll(env);
+    console.log("scheduled digest:", JSON.stringify(result));
+  },
 };

@@ -2,6 +2,11 @@ name = "kims-video"
 main = "workers-1.4.js"
 compatibility_date = "2024-12-01"
 
+# Backup digest sender: 06:35 Beijing = 22:35 UTC (GH Actions 06:28 is primary;
+# KV "digestStatus:YYYY-MM-DD" guard makes this idempotent — skips if already sent)
+[triggers]
+crons = ["35 22 * * *"]
+
 # KV Namespace for Discover community features
 # ID: from Cloudflare Dashboard → Workers & Pages → KV
 [[kv_namespaces]]
