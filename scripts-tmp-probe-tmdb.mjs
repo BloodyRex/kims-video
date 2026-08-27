@@ -1,5 +1,5 @@
-// TEMPORARY diagnostic #10 — FINAL: with_networks funnel + zh + S/E for tvwall.
-// Verify 207333 exits cleanly and carries season/episode for the TV wall.
+// TEMPORARY diagnostic #11 — verify the EXACT production filters on the new
+// streamer source don't over-include stale Netflix shows. Mirrors the code I wrote.
 const B = "https://api.themoviedb.org/3";
 const AUTH = { Authorization: `Bearer ${process.env.TMDB_KEY}` };
 const get = async (path) => {
@@ -9,35 +9,34 @@ const get = async (path) => {
 };
 
 async function main() {
-  // 1) Fetch the with_networks recent-pool and show 207333's S/E + zh from DETAIL (list has none)
-  const detail = await get("/tv/207333?language=zh-CN");
-  console.log("=== 207333 detail (zh) ===");
-  console.log("  name:", detail.name);
-  console.log("  overview zh?:", /[一-鿿]/.test(detail.overview || ""));
-  console.log("  popularity:", detail.popularity, "| status:", detail.status);
-  console.log("  last_episode_to_air:", JSON.stringify({ season: detail.last_episode_to_air?.season_number, ep: detail.last_episode_to_air?.episode_number, air: detail.last_episode_to_air?.air_date, type: detail.last_episode_to_air?.episode_type }));
-  console.log("  next_episode_to_air:", JSON.stringify(detail.next_episode_to_air || null));
+  // Recompute cutoff via daysAgo
+  const d700 = new Date(); d700.setUTCDate(d700.getUTCDate() - 700); const cutoff = d700.toISOString().slice(0,10);
+  const q = await get(`/discover/tv?with_networks=213&first_air_date.gte=${cutoff}&sort_by=popularity.desc&page=1&language=zh-CN`);
+  const hasChinese = (t) => /[一-鿿]/.test(t || "");
+  const intelRatingOk = (m) => !m.vote_average || m.vote_average >= 4;
+  const res = (q.results || []);
+  console.log("raw Netflix pool (700d window):", res.length);
 
-  // 2) The with_networks pool in zh — which of the top entries pass zh gate (title+overview)?
-  console.log("\n=== with_networks=213 first_air>=2024-06 p1 (zh) — zh gate audit ===");
-  const d = await get("/discover/tv?with_networks=213&first_air_date.gte=2024-06-01&sort_by=popularity.desc&page=1&language=zh-CN");
-  let pass = [];
-  for (const s of d.results || []) {
-    const zhT = /[一-鿿]/.test(s.name || "");
-    if (zhT) pass.push(`${s.name}(pop=${Math.round(s.popularity)})`);
-  }
-  console.log("  total in pool:", (d.results||[]).length, "| zh-title entries:", pass.length);
-  console.log("  zh-title:", JSON.stringify(pass));
-  console.log("  207333 in zh pool p1?", (d.results||[]).some(x=>x.id===207333), "at rank", (d.results||[]).findIndex(x=>x.id===207333)+1);
+  // Apply production filters: premieres/upcoming excluded (null here), cnFilter relaxed to zh title+overview,
+  // 2010+, pop>=30, first_air>=cutoff
+  const pool = res.filter(s =>
+    Number((s.first_air_date || "").slice(0, 4)) >= 2010 &&
+    (s.popularity || 0) >= 30 &&
+    hasChinese(s.name) && hasChinese(s.overview) &&
+    intelRatingOk(s) &&
+    (s.first_air_date || "") >= cutoff
+  );
+  console.log("after production filters:", pool.length);
+  console.log("\n— Final ongoing-eligible Netflix pool —");
+  pool.forEach(s => console.log(`  ${s.name} | pop=${Math.round(s.popularity)} | first_air=${s.first_air_date} | zh=${hasChinese(s.name)}`));
 
-  // 3) S/E via trending hydration? 207333 not in trending. Confirm the tvwall entry shape works
-  //    from last_episode data (which the worker's intelFetchTVEpisodeDates fetches).
-  console.log("\n  → tvwall entry would be: tmdbId=207333 season=", detail.last_episode_to_air?.season_number, "episode=", detail.last_episode_to_air?.episode_number, "latestAirDate=", detail.last_episode_to_air?.air_date);
-
-  // 4) Budget audit: what does adding 1 more discover call cost? Current handleIntelTV already
-  //    does 5 page-fetches (on_the_air×2, discover/tv×1, tvmaze×2 batches, trending×1) + detail S/E
-  //    backfill. One extra discover call = +1 subrequest. Fine.
-  console.log("\n  Budget: +1 discover page (equivalent to existing discover/tv call) = +1 subrequest. No issue.");
+  // How many of these would ACTUALLY be new (not already in on_the_air)? Fetch on_the_air ids.
+  const onAir = [];
+  for (let p = 1; p <= 2; p++) { const o = await get(`/tv/on_the_air?page=${p}`); onAir.push(...(o.results||[]).map(x=>x.id)); }
+  const onAirSet = new Set(onAir);
+  const news = pool.filter(s => !onAirSet.has(s.id));
+  console.log("\non_the_air size:", onAirSet.size, "| Netflix pool shows NOT in on_the_air (truly net-new):", news.length);
+  news.forEach(s => console.log(`    ➕ ${s.name} (pop ${Math.round(s.popularity)})`));
 }
 
 main().catch(e => { console.error("FATAL", e.message); process.exit(1); });
