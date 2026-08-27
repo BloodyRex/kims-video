@@ -1565,11 +1565,20 @@ async function handleIntelTV(env) {
   // 自带 last_episode_to_air，天然满足"只看最新一季"语义；热度衰减后滑出
   // 前 60 自然掉落（与 ongoing 衰减语义一致）。
   const trendCandidates = tvTrendingWeek
-    .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
-    .filter(cnFilter)
-    .filter(intelRatingOk)
-    .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
-    .filter(s => (s.popularity || 0) >= 30);
+      .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
+      .filter(cnFilter)
+      .filter(intelRatingOk)
+      .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
+      .filter(s => (s.popularity || 0) >= 30);
+
+    // ── 整季放出剧评分前置：trend 候选先补 last_episode（最新一季）再评分 ──
+    // TMDB 列表端点(discover/popular/trending)都不携带 last_episode_to_air，
+    // 只有 /tv/{id} detail 返回。若在 selection 前不补，S_date 会用 first_air_date
+    // 评分（百年孤独首播 2024→0 分被埋），从而永远选不进 top15、连 detail 都轮不到。
+    // 解法：对"整季放出型的趋势候选"(trendCandidates) 预先 detail 回填最新一季，
+    // 使百年孤独(S2E8 终映 8/26)能以真实新近度参与评分。趋势候选量小(~20)，
+    // 且配合 withCache(1h)，预算在 50 限额内。
+    const trendHydrated = await intelFetchTVEpisodeDates(trendCandidates, token);
 
   const onTheAirCandidates = onTheAir
     .filter(s => !premiereIds.has(s.id) && !upcomingIds.has(s.id))
@@ -1581,12 +1590,12 @@ async function handleIntelTV(env) {
     .filter(s => Number((s.first_air_date || "").slice(0, 4)) >= 2010)
     .filter(s => (s.popularity || 0) >= 30); // relaxed from 80 (2010 cutoff already trims)
 
-  // Merge on_the_air + trending (本周最热), dedup by id
-  const mergedIds = new Set(onTheAirCandidates.map(s => s.id));
-  const ongoingCandidates = [
-    ...onTheAirCandidates,
-    ...trendCandidates.filter(s => !mergedIds.has(s.id)),
-  ];
+  // Merge on_the_air + trending (本周最热, 已补 latest-episode), dedup by id
+    const mergedIds = new Set(onTheAirCandidates.map(s => s.id));
+    const ongoingCandidates = [
+      ...onTheAirCandidates,
+      ...trendHydrated.filter(s => !mergedIds.has(s.id)),
+    ];
   // Tier-1 boost: recent activity (new episode in last 30d OR premiered in last 180d)
   const ongoingScored = ongoingCandidates.map(s => {
     const lastAir = s.last_episode_to_air?.air_date || "";
