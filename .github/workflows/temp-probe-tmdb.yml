@@ -1,0 +1,14 @@
+name: TEMP-probe-tmdb-candidates
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Probe TMDB
+        env:
+          TMDB_KEY: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: node scripts-tmp-probe-tmdb.mjs
