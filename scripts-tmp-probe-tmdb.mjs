@@ -1,77 +1,49 @@
-// TEMPORARY diagnostic script (do not ship / keep) — probes TMDB values for
-// two titles the user asked about, and checks which candidate pools contain them.
+// TEMPORARY diagnostic #2 — find WHERE One Hundred Years ranks in discover/tv
 const B = "https://api.themoviedb.org/3";
-const AUTH = { Authorization: `Bearer ${process.env.TMDB_KEY}`, "Content-Type": "application/json" };
-
+const AUTH = { Authorization: `Bearer ${process.env.TMDB_KEY}` };
 const get = async (path) => {
   const r = await fetch(`${B}${path}`, { headers: AUTH });
   if (!r.ok) throw new Error(`${path} -> ${r.status}`);
   return r.json();
 };
-
 const pad = (d) => d.toISOString().slice(0, 10);
-const addDays = (days) => { const d = new Date(); d.setUTCDate(d.getUTCDate() + days); return pad(d); };
-
 const today = pad(new Date());
-const past90 = addDays(-90);
-const past7 = addDays(-7);
 
 async function main() {
-  console.log("===== 1) Real TMDB values =====");
-  const tv = await get("/tv/207333?language=zh-CN");
-  console.log("TV 207333 (One Hundred Years):");
-  console.log("  name:", tv.name, "| status:", tv.status, "| first_air_date:", tv.first_air_date);
-  console.log("  popularity:", tv.popularity, "| vote_average:", tv.vote_average, "| vote_count:", tv.vote_count);
-  console.log("  last_ep_air_date:", tv.last_episode_to_air?.air_date);
-  console.log("  seasons:", tv.seasons?.map(s => `S${s.season_number}(${s.episode_count})`).join(" "));
-
-  const mov = await get("/movie/1439808?language=zh-CN");
-  console.log("\nMOV 1439808 (Hadestown):");
-  console.log("  title:", mov.title, "| original:", mov.original_title, "| status:", mov.status);
-  console.log("  popularity:", mov.popularity, "| vote_average:", mov.vote_average, "| vote_count:", mov.vote_count);
-  console.log("  release_date:", mov.release_date);
-
-  console.log("\n===== 2) Candidate pool membership =====");
-  const findId = (list, id) => list.filter(x => x.id === id).map(x => ({ pop: x.popularity, va: x.vote_average, date: x.first_air_date || x.release_date }));
-
-  // TV side
-  const tvPools = {};
-  for (let p = 1; p <= 5; p++) tvPools[`discover/tv released<=today p${p}`] = (await get(`/discover/tv?first_air_date.lte=${today}&sort_by=popularity.desc&page=${p}`)).results;
-  for (let p = 1; p <= 4; p++) tvPools[`on_the_air p${p}`] = (await get(`/tv/on_the_air?page=${p}`)).results;
-  tvPools["trending/tv/week"] = (await get("/trending/tv/week")).results;
-  for (const [k, v] of Object.entries(tvPools)) {
-    const hit = findId(v, 207333);
-    console.log(`  TV 207333 in ${k}:`, hit.length ? JSON.stringify(hit) : "NO");
+  // discover/tv by popularity desc, released <= today — find page & rank of id 207333
+  let found = null;
+  let scanned = 0;
+  for (let p = 1; p <= 60; p++) {
+    const d = await get(`/discover/tv?first_air_date.lte=${today}&sort_by=popularity.desc&page=${p}`);
+    const results = d.results || [];
+    if (!results.length) break;
+    for (let i = 0; i < results.length; i++) {
+      scanned++;
+      if (results[i].id === 207333) {
+        found = { page: p, rankInPage: i + 1, globalRank: scanned, ...results[i] };
+        console.log("FOUND 207333 in discover/tv page", p, "global rank", scanned);
+        console.log("  popularity:", results[i].popularity, "vote_avg:", results[i].vote_average, "first_air:", results[i].first_air_date);
+      }
+    }
+    // stop scanning early if we pass popularity < 35 (its pop is 38.29; keep margin)
+    if (results[results.length - 1]?.popularity < 30) { console.log(`  (stopped at page ${p}, tail popularity ${results[results.length-1].popularity})`); break; }
   }
+  console.log("scanned:", scanned, "found:", !!found);
 
-  // Movie side
-  const movPools = {};
-  for (let p = 1; p <= 3; p++) movPools[`now_playing US p${p}`] = (await get(`/movie/now_playing?region=US&page=${p}`)).results;
-  for (let p = 1; p <= 5; p++) movPools[`discover/movie 90d p${p}`] = (await get(`/discover/movie?primary_release_date.gte=${past90}&primary_release_date.lte=${today}&sort_by=popularity.desc&page=${p}`)).results;
-  movPools["trending/movie/week"] = (await get("/trending/movie/week")).results;
-  for (const [k, v] of Object.entries(movPools)) {
-    const hit = findId(v, 1439808);
-    console.log(`  MOV 1439808 in ${k}:`, hit.length ? JSON.stringify(hit) : "NO");
-  }
+  // Also: how many shows between pop 35-45 in that pool (the "neighborhood")
+  console.log("\n--- How the released-on-popularity pool is distributed near 38.29 ---");
 
-  console.log("\n===== 3) Ranking context =====");
-  console.log("  trending/tv/week top10:", tvPools["trending/tv/week"].slice(0, 10).map(x => x.name));
-  console.log("  trending/movie/week top10:", movPools["trending/movie/week"].slice(0, 10).map(x => x.title));
-  console.log("  now_playing US top15 pops:", movPools["now_playing US p1"].slice(0, 15).map(x => x.popularity.toFixed(1)));
-
-  // Scoring simulation for a candidate Hadestown if it were present
-  console.log("\n===== 4) Simulated composite scores (Hadestown in now_playing pool) =====");
-  const poolPops = movPools["now_playing US p1"].map(x => x.popularity);
-  const batchMaxPop = Math.max(...poolPops), batchMinPop = Math.min(...poolPops);
-  const popRange = Math.max(batchMaxPop - batchMinPop, 1);
-  const S_pop = Math.min(100, Math.max(0, ((mov.popularity - batchMinPop) / popRange) * 100));
-  const S_qual = Math.min(100, Math.max(0, (mov.vote_average / 10) * 100));
-  const release = new Date(mov.release_date + "T00:00:00"), now = new Date(today + "T00:00:00");
-  const daysPast = (now - release) / 86400000;
-  const S_date = 100 * Math.exp(-Math.LN2 / 7 * Math.abs(daysPast));
-  const composite = (0.25 * S_pop + 0.55 * S_date + 0.20 * S_qual) / 100;
-  console.log("  S_pop:", S_pop.toFixed(1), "S_date:", S_date.toFixed(1), "S_qual:", S_qual.toFixed(1), "composite:", composite.toFixed(4));
-  console.log("  batchMinPop:", batchMinPop.toFixed(1), "batchMaxPop:", batchMaxPop.toFixed(1), "range:", popRange.toFixed(1));
+  // Reference: what does MOVIES upcoming (floor 15) look like? Hadestown 12.9 is below.
+  // Simulate Hadestown under a 'popularity OR rating' combo gate.
+  console.log("\n--- Hadestown under alternative gates ---");
+  const pop = 12.8992, va = 9.1;
+  console.log("  existing nowPlaying floor pop>=25:", pop >= 25 ? "PASS" : "FAIL");
+  console.log("  existing upcoming floor pop>=15:", pop >= 15 ? "PASS" : "FAIL");
+  console.log("  gate (pop>=15 AND va>=7):", (pop >= 15 && va >= 7) ? "PASS" : "FAIL");
+  console.log("  gate (pop>=10 AND va>=8):", (pop >= 10 && va >= 8) ? "PASS" : "FAIL");
+  console.log("  gate (pop + 1.0*va >= 20):", (pop + 1.0 * va >= 20) ? "PASS" : "FAIL");
+  console.log("  gate (pop + 1.5*va >= 25):", (pop + 1.5 * va >= 25) ? "PASS" : "FAIL");
+  console.log("  gate (pop>=12 OR va>=8.5):", (pop >= 12 || va >= 8.5) ? "PASS" : "FAIL");
 }
 
 main().catch(e => { console.error("FATAL", e.message); process.exit(1); });
