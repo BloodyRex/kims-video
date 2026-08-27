@@ -1924,9 +1924,9 @@ async function handleIntelDebug(env) {
         wsDrop207RankByPop: (() => { const bp = wsDrop.slice().sort((a,b)=>(b.popularity||0)-(a.popularity||0)); const i = bp.findIndex(s=>s.id===207333); return i>=0 ? i+1 : -1; })(),
       };
     })();
-    return Response.json({ ok: true, tvDiag: dbg }, { headers: corsHeaders });
+    return Response.json({ ok: true, tvDiag: dbg }, { headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" } });
   } catch (e) {
-    return Response.json({ ok: false, err: e.message }, { headers: corsHeaders });
+    return Response.json({ ok: false, err: e.message }, { headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" } });
   }
 
   const [discover, onTheAir, trending, nowPlayingRaw, upcomingRaw] = await Promise.all([
