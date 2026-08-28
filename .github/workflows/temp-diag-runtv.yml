@@ -1,0 +1,13 @@
+name: Temp-Diag-RunTV
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run handleIntelTV with detail diagnostics
+        env:
+          TMDB: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: node scripts/diag-runtv.mjs

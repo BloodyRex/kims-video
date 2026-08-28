@@ -1331,10 +1331,13 @@ async function intelFetchTVEpisodeDates(shows, token) {
       }
     } catch (e) {}
     let details = null;
+    let fetchStatus = "noop";
     try {
       const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
+      fetchStatus = String(r.status);
       details = r.ok ? await r.json() : null;
-    } catch (e) { details = null; }
+    } catch (e) { fetchStatus = "throw:" + e.message; details = null; }
+    if (globalThis.INTEL_DIAG === "1") console.log(`DIAG detail id=${show.id} name=${show.name} status=${fetchStatus} hasEp=${!!(details?.last_episode_to_air || details?.next_episode_to_air)} keys=${details ? Object.keys(details).length : 0}`);
     if (details?.last_episode_to_air || details?.next_episode_to_air) {
       // only persist episodes-bearing details so a bad read never poisons the cache
       try {
