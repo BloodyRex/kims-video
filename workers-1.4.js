@@ -299,6 +299,8 @@ const DEFAULT_INTEL_CFG = {
     ongoingTier1: 10,                            // 近30天活跃剧抢先名额
         ongoingTier2: 5,                             // 其余剧补充名额
         ongoingDetailCap: 8,                         // 热播剧 episode detail 回填上限(防50子请求超限)
+    detailBudget: 12,                            // premieres+ongoing 共享的 episode-detail 总预算(防50子请求超限)
+    upcomingScore: { wDate: 0.6, wZh: 0.1, wRating: 0.3 }, // 即将播出评分权重(日期/中文/评分) 三者需和=1
     score:     { w_pop: 0.25, w_date: 0.45, w_qual: 0.30, hlFuture: 14, hlPast: 7 },
   },
   ai: {                                          // AI 搜索推荐"恰好5部"的分类配比
@@ -1517,6 +1519,8 @@ async function handleIntelTV(env) {
   const popFloor = cfg.tv.popFloor;
   const tier1 = cfg.tv.ongoingTier1;
   const tier2 = cfg.tv.ongoingTier2;
+  const upcomingScore = cfg.tv.upcomingScore || { wDate: 0.6, wZh: 0.1, wRating: 0.3 };
+  const detailBudget = cfg.tv.detailBudget != null ? cfg.tv.detailBudget : 12;
 
   // ── Data sources (2026-08-27 v3: + trending-pagination whole-season recovery) ──
     // premieres: TVMAZE schedule next 2-4 days (真实首播日，国产剧先上 TVMAZE 场景直接覆盖)
@@ -1594,9 +1598,16 @@ async function handleIntelTV(env) {
   }
   const premiereSelected = intelSelectDiverse(premiereMerged, 15, reserve, scoreOpts, today);
   // TMDB episode enrichment only for TMDB-sourced shows — trending hydration
-  // first (free S/E), then the paid detail backfill for what's left.
+  // first (free S/E), then the paid detail backfill. Top-up is budget-capped:
+  // premiere + ongoing SHARE `detailBudget` (default 12) so neither starves the
+  // other nor blows the 50-subrequest ceiling. Fewer premieres get detail, but
+  // the SECTION still shows them — S/E is best-effort display, not a filter.
   const premiereHydrated = await hydrateFromTrending(premiereSelected.filter(s => s.source !== "tvmaze"));
-  const premiereEnriched = await intelFetchTVEpisodeDates(premiereHydrated, token);
+  // Count how many actually need a paid detail fetch (trending-hydrated ones
+  // already carry episodes and are skipped inside intelFetchTVEpisodeDates).
+  const premiereNeedsDetail = premiereHydrated.slice(0, detailBudget)
+    .filter(s => !(s.last_episode_to_air || s.next_episode_to_air)).length;
+  const premiereEnriched = await intelFetchTVEpisodeDates(premiereHydrated.slice(0, detailBudget), token);
   // TVMAZE premieres: TMDB zh fallback (bounded; _drop kills no-zh shows)
   const tvmazePicked = premiereSelected.filter(s => s.source === "tvmaze");
   const tvmazePremiereEnriched = await intelEnrichTVMazeBatch(tvmazePicked, token, 4);
@@ -1625,7 +1636,8 @@ async function handleIntelTV(env) {
     const dateScore = daysUntil <= 30 ? 1 : Math.max(0, 1 - (daysUntil - 30) / 60); // 30d peak, decays to 0 by 90d
     const zhScore = (titleCn(s) ? 0.5 : 0) + (hasChinese(s.overview) ? 0.5 : 0);
     const ratingScore = s.vote_average ? Math.min(1, s.vote_average / 10) : 0.5; // neutral when no rating
-    return { s, score: 0.6 * dateScore + 0.2 * zhScore + 0.2 * ratingScore };
+    // 权重可调 (2026-08-28): 中文系数降低、评分系数提高 → 减少东亚剧系统性偏多。
+    return { s, score: upcomingScore.wDate * dateScore + upcomingScore.wZh * zhScore + upcomingScore.wRating * ratingScore };
   };
   const upcomingSelected = upcomingMerged
     .map(scoreUpcoming)
@@ -1707,11 +1719,11 @@ async function handleIntelTV(env) {
       ...intelSelectDiverse(ongoingTier1, tier1, reserve, scoreOpts, today),
       ...intelSelectDiverse(ongoingTier2, tier2, reserve, scoreOpts, today),
     ].slice(0, 15);
-    // Detail backfill (≤ cap, 预算保护): 冷缓存时 paid detail 是 50 子请求预算的头号杀手
-    // (trending 并池把池推向满 15,加上 premieres/tvmaze enrich 曾打爆 → ongoing 静默清空)。
-    // 优先给整季放出(trending-only) 剧回填真实 S/E,再补 on_the_air 无 S/E 条目。超 cap 的
-    // 保留原条目,绝不丢弃 → 预算紧也不会清空整段。
-    const ONGOING_DETAIL_CAP = cfg.tv.ongoingDetailCap;
+    // Detail backfill (≤ cap, 预算保护): cold-cache paid detail is the #1 budget
+    // killer. premieres consumed up to premiereNeedsDetail fetches; ongoing gets
+    // the REMAINDER of the shared detailBudget (default 12), min 1. S/E is
+    // best-effort display: exceeding the cap never drops a show (passThrough).
+    const ONGOING_DETAIL_CAP = Math.max(1, detailBudget - (premiereNeedsDetail || 0));
     const sortDetail = [...ongoingSelected].sort((a, b) => (b._trendingOnly === true) - (a._trendingOnly === true));
     const needDetail = [];
     const passThrough = [];
@@ -1726,11 +1738,10 @@ async function handleIntelTV(env) {
     }
     const detailed = await intelFetchTVEpisodeDates(needDetail, token);
         const ongoingEnriched = [...detailed, ...passThrough];
+        // S/E is BEST-EFFORT DISPLAY, NOT a selection filter. We deliberately do
+        // NOT drop shows whose detail didn't fill an air date (e.g. airing paused,
+        // or beyond the detail cap) — every selected show stays in ongoing.
         const ongoingTV = ongoingEnriched
-      .filter(s => {
-        const lastAir = s.last_episode_to_air?.air_date;
-        return !lastAir || lastAir >= ninetyDaysAgo;
-      })
       .map(s => intelNormalizeMovie(s, "tv"));
 
     return {
