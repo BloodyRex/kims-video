@@ -1331,22 +1331,19 @@ async function intelFetchTVEpisodeDates(shows, token) {
       }
     } catch (e) {}
     let details = null;
-    let fetchStatus = "noop";
     try {
       const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
-      fetchStatus = String(r.status);
       details = r.ok ? await r.json() : null;
-    } catch (e) { fetchStatus = "throw:" + e.message; details = null; }
-    if (globalThis.INTEL_DIAG === "1") console.log(`DIAG detail id=${show.id} name=${show.name} status=${fetchStatus} hasEp=${!!(details?.last_episode_to_air || details?.next_episode_to_air)} keys=${details ? Object.keys(details).length : 0}`);
+    } catch (e) { details = null; }
     if (details?.last_episode_to_air || details?.next_episode_to_air) {
       // only persist episodes-bearing details so a bad read never poisons the cache
       try {
         const resp = new Response(JSON.stringify(details), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" } });
         c.put(new Request(`https://tmdb-cache/${cacheKey}`), resp.clone());
       } catch (e) {}
-      return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air, _diagStatus: fetchStatus, _diagEp: true };
+      return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
     }
-    return { ...show, _diagStatus: fetchStatus, _diagEp: !!(details?.last_episode_to_air || details?.next_episode_to_air) };
+    return show;
   }));
   return results.map(r => r.status === "fulfilled" ? r.value : null).filter(Boolean);
 }
@@ -1626,7 +1623,7 @@ async function handleIntelTV(env) {
   const premiereEnriched = premiereHydrated; // no intelFetchTVEpisodeDates — free
   // TVMAZE premieres: TMDB zh fallback (bounded; _drop kills no-zh shows)
   const tvmazePicked = premiereSelected.filter(s => s.source === "tvmaze");
-  const tvmazePremiereEnriched = await intelEnrichTVMazeBatch(tvmazePicked, token, 4);
+  const tvmazePremiereEnriched = await intelEnrichTVMazeBatch(tvmazePicked, token, 2);
   const defaultSE = (item) => ({ ...item, season: item.season != null ? item.season : 1, episode: item.episode != null ? item.episode : 1 });
   const weekPremieres = [
     ...premiereEnriched.map(s => defaultSE(intelNormalizeMovie(s, "tv"))),
@@ -1663,7 +1660,7 @@ async function handleIntelTV(env) {
     .map(x => x.s);
   // No episode-date enrichment for upcoming (saves subrequests); S/E shown when TVMAZE carries it
   const tvmazeUpcomingPicked = upcomingSelected.filter(s => s.source === "tvmaze");
-  const tvmazeUpcomingEnriched = await intelEnrichTVMazeBatch(tvmazeUpcomingPicked, token, 2);
+  const tvmazeUpcomingEnriched = await intelEnrichTVMazeBatch(tvmazeUpcomingPicked, token, 1);
   // daysUntil added 2026-08-23: movies.upcoming carries it; TV side was missing it
   // so coming.json/email had to recompute and CountdownCard showed no countdown.
   const tvDays = (s) => {
@@ -1766,17 +1763,6 @@ async function handleIntelTV(env) {
       premieresThisWeek: weekPremieresFinal,
       upcoming: upcomingTV,
       ongoing: ongoingTV,
-      _diag: {
-        onAirCand: (onTheAirCandidates || []).length,
-        trendCand: (trendingCandidates || []).length,
-        ongoingSel: (ongoingSelected || []).length,
-        needDetail: needDetail.length,
-        detailed: detailed.length,
-        detailedHasEp: detailed.filter(s => s.last_episode_to_air || s.next_episode_to_air).length,
-        detailedList: detailed.map(s => ({ t: s.title || s.name, ep: !!(s.last_episode_to_air || s.next_episode_to_air), status: s._diagStatus || "cachehit", hasEpRes: s._diagEp })),
-        ongoingOut: ongoingTV.length,
-        withSE: ongoingTV.filter(s => s.season != null).length,
-      },
     };
 }
 
