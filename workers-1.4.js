@@ -2989,10 +2989,8 @@ async function sendDigestToAll(env) {
   ];
   let sent = 0;
     const BATCH_SIZE = 100;
-    let diag = { listLen: list.keys.length, emailsLen: 0, batchStatus: [], batchErrors: [] };
     for (let i = 0; i < emails.length; i += BATCH_SIZE) {
       const chunk = emails.slice(i, i + BATCH_SIZE);
-      diag.emailsLen += chunk.length;
       try {
         const br = await withTimeout(
           fetch("https://api.resend.com/emails/batch", {
@@ -3004,13 +3002,12 @@ async function sendDigestToAll(env) {
           `Resend batch (${chunk.length} emails)`
         );
         const bdata = await br.json().catch(() => ({}));
-        diag.batchStatus.push({ status: br.status, body: JSON.stringify(bdata).slice(0, 200) });
         if (br.ok) {
           sent += chunk.length;
         } else {
           console.warn("Resend batch failed:", br.status, JSON.stringify(bdata).slice(0, 300));
         }
-      } catch (e) { diag.batchErrors.push({ err: e.message }); console.warn("Resend batch error:", e.message); }
+      } catch (e) { console.warn("Resend batch error:", e.message); }
     }
 
     // Record status
@@ -3021,10 +3018,10 @@ async function sendDigestToAll(env) {
   } else {
       // No emails sent — clear cached digest so next retry rebuilds fresh
       await env.SUBSCRIBE_KV.delete(`digest:${today}`);
-      await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "failed", attemptCount, diag }), { expirationTtl: 172800 });
+      await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "failed", attemptCount }), { expirationTtl: 172800 });
     }
 
-    return { ok: true, sent, diag };
+    return { ok: true, sent };
   }
 
 // ── Main ──
