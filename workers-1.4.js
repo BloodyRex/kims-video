@@ -1744,6 +1744,15 @@ async function handleIntelTV(env) {
       premieresThisWeek: weekPremieresFinal,
       upcoming: upcomingTV,
       ongoing: ongoingTV,
+      _diag: {
+        onAirCand: (onTheAirCandidates || []).length,
+        trendCand: (trendingCandidates || []).length,
+        ongoingSel: (ongoingSelected || []).length,
+        needDetail: needDetail.length,
+        detailed: detailed.length,
+        ongoingOut: ongoingTV.length,
+        withSE: ongoingTV.filter(s => s.season != null).length,
+      },
     };
 }
 
