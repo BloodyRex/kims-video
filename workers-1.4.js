@@ -1725,13 +1725,7 @@ async function handleIntelTV(env) {
       }
     }
     const detailed = await intelFetchTVEpisodeDates(needDetail, token);
-    const ongoingEnriched = [...detailed, ...passThrough];
-        // TEMP-DIAG: trace 百年 through ongoing
-        console.log("DIAG cands:", ongoingCandidates.length, "tier1:", ongoingTier1.length, "tier2:", ongoingTier2.length);
-        console.log("DIAG sel:", ongoingSelected.map(s => s.name + (s._trendingOnly ? "[to]" : "")).join(" | "));
-        if (ongoingCandidates.find(s => /百年/.test(s.name || ""))) console.log("DIAG 百年 IS candidate, to=", ongoingCandidates.find(s=>/百年/.test(s.name||""))._trendingOnly);
-        else console.log("DIAG 百年 NOT in candidates");
-        console.log("DIAG detail:", needDetail.map(s => s.name).join(" | "));
+        const ongoingEnriched = [...detailed, ...passThrough];
         const ongoingTV = ongoingEnriched
       .filter(s => {
         const lastAir = s.last_episode_to_air?.air_date;
