@@ -1,0 +1,27 @@
+name: Temp-Diag-DeleteSub
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: "subscriber email to delete (with or without sub: prefix)"
+        required: true
+        default: "test@example.com"
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Delete subscriber from KV
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set +e
+          EMAIL="${{ github.event.inputs.email }}"
+          KEY="sub:${EMAIL}"
+          echo "Attempting delete key: $KEY"
+          npx wrangler kv key delete --binding=SUBSCRIBE_KV "$KEY" --remote 2>&1 | head -10
+          echo "==VERIFY_ABSENT=="
+          npx wrangler kv key get --binding=SUBSCRIBE_KV "$KEY" --remote 2>&1 | head -5
+          echo "==DONE=="
