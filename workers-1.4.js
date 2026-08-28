@@ -1597,23 +1597,18 @@ async function handleIntelTV(env) {
     if (!premOnAirIds.has(s.id)) premiereMerged.push(s);
   }
   const premiereSelected = intelSelectDiverse(premiereMerged, 15, reserve, scoreOpts, today);
-  // TMDB episode enrichment only for TMDB-sourced shows — trending hydration
-  // first (free S/E), then the paid detail backfill. Top-up is budget-capped:
-  // premiere + ongoing SHARE `detailBudget` (default 12) so neither starves the
-  // other nor blows the 50-subrequest ceiling. Fewer premieres get detail, but
-  // the SECTION still shows them — S/E is best-effort display, not a filter.
+  // Premiere shows do NOT query episode detail (saves subrequests for ongoing).
+  // Their S/E defaults to S1E1 — a brand-new show's first episode IS season 1.
+  // (2026-08-28 Rex decision: premieres/upcoming always show S1E1, never detail.)
   const premiereHydrated = await hydrateFromTrending(premiereSelected.filter(s => s.source !== "tvmaze"));
-  // Count how many actually need a paid detail fetch (trending-hydrated ones
-  // already carry episodes and are skipped inside intelFetchTVEpisodeDates).
-  const premiereNeedsDetail = premiereHydrated.slice(0, detailBudget)
-    .filter(s => !(s.last_episode_to_air || s.next_episode_to_air)).length;
-  const premiereEnriched = await intelFetchTVEpisodeDates(premiereHydrated.slice(0, detailBudget), token);
+  const premiereEnriched = premiereHydrated; // no intelFetchTVEpisodeDates — free
   // TVMAZE premieres: TMDB zh fallback (bounded; _drop kills no-zh shows)
   const tvmazePicked = premiereSelected.filter(s => s.source === "tvmaze");
   const tvmazePremiereEnriched = await intelEnrichTVMazeBatch(tvmazePicked, token, 4);
+  const defaultSE = (item) => ({ ...item, season: item.season != null ? item.season : 1, episode: item.episode != null ? item.episode : 1 });
   const weekPremieres = [
-    ...premiereEnriched.map(s => intelNormalizeMovie(s, "tv")),
-    ...tvmazePremiereEnriched.map(s => intelTVMazeToOutput(s)),
+    ...premiereEnriched.map(s => defaultSE(intelNormalizeMovie(s, "tv"))),
+    ...tvmazePremiereEnriched.map(s => defaultSE(intelTVMazeToOutput(s))),
   ];
   // Only TMDB ids go into the exclusion set (TVMAZE ids are a different namespace)
   const premiereIds = new Set(premiereSelected.filter(s => s.source !== "tvmaze").map(s => s.id));
@@ -1654,8 +1649,8 @@ async function handleIntelTV(env) {
     return d ? Math.max(0, Math.ceil((new Date(d) - new Date(today)) / 86400000)) : null;
   };
   const upcomingTV = [
-    ...upcomingSelected.filter(s => s.source !== "tvmaze").map(s => ({ ...intelNormalizeMovie(s, "tv"), daysUntil: tvDays(s) })),
-    ...tvmazeUpcomingEnriched.map(s => ({ ...intelTVMazeToOutput(s), daysUntil: tvDays(s) })),
+    ...upcomingSelected.filter(s => s.source !== "tvmaze").map(s => defaultSE({ ...intelNormalizeMovie(s, "tv") , daysUntil: tvDays(s) })),
+    ...tvmazeUpcomingEnriched.map(s => defaultSE({ ...intelTVMazeToOutput(s), daysUntil: tvDays(s) })),
   ];
 
   // ── P1-3③ (2026-08-24): imminent premieres fold into the premieres section ──
@@ -1720,10 +1715,10 @@ async function handleIntelTV(env) {
       ...intelSelectDiverse(ongoingTier2, tier2, reserve, scoreOpts, today),
     ].slice(0, 15);
     // Detail backfill (≤ cap, 预算保护): cold-cache paid detail is the #1 budget
-    // killer. premieres consumed up to premiereNeedsDetail fetches; ongoing gets
-    // the REMAINDER of the shared detailBudget (default 12), min 1. S/E is
-    // best-effort display: exceeding the cap never drops a show (passThrough).
-    const ONGOING_DETAIL_CAP = Math.max(1, detailBudget - (premiereNeedsDetail || 0));
+    // killer. Premieres/upcoming NO LONGER fetch detail (they default to S1E1),
+    // so ALL of detailBudget goes to ongoing. S/E is best-effort display:
+    // exceeding the cap never drops a show (passThrough).
+    const ONGOING_DETAIL_CAP = Math.max(1, detailBudget);
     const sortDetail = [...ongoingSelected].sort((a, b) => (b._trendingOnly === true) - (a._trendingOnly === true));
     const needDetail = [];
     const passThrough = [];

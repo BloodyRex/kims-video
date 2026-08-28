@@ -109,6 +109,33 @@ const setPath = (o, p, v) => {
   return out;
 };
 
+// Collect every leaf path in cfg (e.g. ["movie","sources","nowPlayingUS","pages"]),
+// EXCLUDING those already surfaced by GROUPS (so a config field the admin panel
+// catalog doesn't know yet still shows up here instead of silently dropping on save).
+// dotPath = "movie.score.w_pop" for the row's code-name.
+function collectUncatalogedFields(cfg, groups) {
+  const cataloged = new Set();
+  const walk = (g) => { for (const f of g.fields) cataloged.add(f.path.join(".")); };
+  (groups || []).forEach(walk);
+
+  const out = [];
+  const walker = (obj, prefix) => {
+    if (obj == null || typeof obj !== "object") return;
+    for (const k of Object.keys(obj)) {
+      const v = obj[k];
+      const p = [...prefix, k];
+      const dot = p.join(".");
+      if (v && typeof v === "object" && !Array.isArray(v)) {
+        walker(v, p);
+      } else if (!cataloged.has(dot)) {
+        out.push({ path: p, dot, value: Array.isArray(v) ? v.join(",") : v });
+      }
+    }
+  };
+  walker(cfg, []);
+  return out;
+}
+
 const toNum = (v) => (v === "" ? null : Number(v));
 
 // Live formula renderers — produce a readable math string with the CURRENT
@@ -265,6 +292,40 @@ export default function IntelConfigPanel({ token, locale, onToast }) {
             : grp.formula && <FormulaBox kind={grp.formula} cfg={cfg} locale={locale} />}
         </div>
       ))}
+
+      {/* Auto-surfaced fields the catalog doesn't know yet (keeps worker-side config
+          additions adjustable WITHOUT editing this GROUPS catalog every time). */}
+      {(() => {
+        const extra = collectUncatalogedFields(cfg, GROUPS);
+        if (!extra.length) return null;
+        return (
+          <div className="bg-white text-black border-4 border-black p-4 mb-6 shadow-[8px_8px_0_0_rgba(255,0,255,1)]">
+            <h3 className="font-black uppercase text-sm mb-3 border-b-2 border-black pb-1">
+              {locale === "en" ? "Other engine params" : "其他引擎参数"}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+              {extra.map((f) => (
+                <div key={f.dot} className="flex items-center gap-2 min-w-0">
+                  <div className="flex-1 min-w-0">
+                    <div className="font-mono text-[11px] text-[#ff00ff] font-bold truncate">{f.dot}</div>
+                  </div>
+                  <div className="shrink-0 w-28">
+                    <input
+                      value={String(f.value ?? "")}
+                      onChange={(e) => {
+                        const raw = e.target.value;
+                        const num = raw.trim() === "" ? null : Number(raw);
+                        upd(f.path, Array.isArray(getPath(cfg, f.path)) ? raw.split(",").map(s=>parseInt(s.trim(),10)).filter(n=>!isNaN(n)) : (Number.isNaN(num) ? raw : num));
+                      }}
+                      className="w-full border-2 border-black px-2 py-1 text-xs font-bold text-right focus:outline-none focus:bg-[#ffff00]"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }
