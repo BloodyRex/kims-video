@@ -1319,7 +1319,7 @@ async function intelFetchTVEpisodeDates(shows, token) {
     // exactly what happened live (S/E filled in CI without shared cache, but stayed
     // empty on the real worker that trusts caches.default). Misses therefore re-fetch.
     const c = caches.default;
-    const cacheKey = `tvep-${show.id}`;
+    const cacheKey = `tvep-v2-${show.id}`; // v2: new key busts any polluted v1 cache entries
     try {
       const cached = await c.match(new Request(`https://tmdb-cache/${cacheKey}`));
       if (cached) {
