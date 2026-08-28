@@ -2988,41 +2988,44 @@ async function sendDigestToAll(env) {
     ...enEmails.map(e => buildEmail(e, headlineEn || headline, htmlEn)),
   ];
   let sent = 0;
-  const BATCH_SIZE = 100;
-  for (let i = 0; i < emails.length; i += BATCH_SIZE) {
-    const chunk = emails.slice(i, i + BATCH_SIZE);
-    try {
-      const br = await withTimeout(
-        fetch("https://api.resend.com/emails/batch", {
-          method: "POST",
-          headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-          body: JSON.stringify(chunk),
-        }),
-        30000,
-        `Resend batch (${chunk.length} emails)`
-      );
-      const bdata = await br.json().catch(() => ({}));
-      if (br.ok) {
-        sent += chunk.length;
-      } else {
-        console.warn("Resend batch failed:", br.status, JSON.stringify(bdata).slice(0, 300));
-      }
-    } catch (e) { console.warn("Resend batch error:", e.message); }
-  }
+    const BATCH_SIZE = 100;
+    let diag = { listLen: list.keys.length, emailsLen: 0, batchStatus: [], batchErrors: [] };
+    for (let i = 0; i < emails.length; i += BATCH_SIZE) {
+      const chunk = emails.slice(i, i + BATCH_SIZE);
+      diag.emailsLen += chunk.length;
+      try {
+        const br = await withTimeout(
+          fetch("https://api.resend.com/emails/batch", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+            body: JSON.stringify(chunk),
+          }),
+          30000,
+          `Resend batch (${chunk.length} emails)`
+        );
+        const bdata = await br.json().catch(() => ({}));
+        diag.batchStatus.push({ status: br.status, body: JSON.stringify(bdata).slice(0, 200) });
+        if (br.ok) {
+          sent += chunk.length;
+        } else {
+          console.warn("Resend batch failed:", br.status, JSON.stringify(bdata).slice(0, 300));
+        }
+      } catch (e) { diag.batchErrors.push({ err: e.message }); console.warn("Resend batch error:", e.message); }
+    }
 
-  // Record status
-  if (sent > 0) {
+    // Record status
+    if (sent > 0) {
     await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "sent", attemptCount }), { expirationTtl: 172800 });
     // Also write old key for backward compat during migration window
     await env.SUBSCRIBE_KV.put("lastDigestSent", today, { expirationTtl: 172800 });
   } else {
-    // No emails sent — clear cached digest so next retry rebuilds fresh
-    await env.SUBSCRIBE_KV.delete(`digest:${today}`);
-    await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "failed", attemptCount }), { expirationTtl: 172800 });
-  }
+      // No emails sent — clear cached digest so next retry rebuilds fresh
+      await env.SUBSCRIBE_KV.delete(`digest:${today}`);
+      await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "failed", attemptCount, diag }), { expirationTtl: 172800 });
+    }
 
-  return { ok: true, sent };
-}
+    return { ok: true, sent, diag };
+  }
 
 // ── Main ──
 export default {
