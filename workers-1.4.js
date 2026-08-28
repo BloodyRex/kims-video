@@ -1344,9 +1344,9 @@ async function intelFetchTVEpisodeDates(shows, token) {
         const resp = new Response(JSON.stringify(details), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" } });
         c.put(new Request(`https://tmdb-cache/${cacheKey}`), resp.clone());
       } catch (e) {}
-      return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
+      return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air, _diagStatus: fetchStatus, _diagEp: true };
     }
-    return show;
+    return { ...show, _diagStatus: fetchStatus, _diagEp: !!(details?.last_episode_to_air || details?.next_episode_to_air) };
   }));
   return results.map(r => r.status === "fulfilled" ? r.value : null).filter(Boolean);
 }
@@ -1773,7 +1773,7 @@ async function handleIntelTV(env) {
         needDetail: needDetail.length,
         detailed: detailed.length,
         detailedHasEp: detailed.filter(s => s.last_episode_to_air || s.next_episode_to_air).length,
-        detailedList: detailed.map(s => ({ t: s.title || s.name, ep: !!(s.last_episode_to_air || s.next_episode_to_air) })),
+        detailedList: detailed.map(s => ({ t: s.title || s.name, ep: !!(s.last_episode_to_air || s.next_episode_to_air), status: s._diagStatus || "cachehit", hasEpRes: s._diagEp })),
         ongoingOut: ongoingTV.length,
         withSE: ongoingTV.filter(s => s.season != null).length,
       },
