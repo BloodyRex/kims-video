@@ -1311,17 +1311,36 @@ async function intelFetchTVEpisodeDates(shows, token) {
   const results = await Promise.allSettled((shows || []).map(async (show) => {
     // Skip re-fetch when the list endpoint already carried episode data (trending does)
     if (show.last_episode_to_air || show.next_episode_to_air) return show;
-    // Cached (1h): repeated pipeline runs / overview+tv same-run reuse don't
-    // re-spend the subrequest. Uncached detail fetches here were part of why
-    // the handler blew its subrequest budget and ongoing lost S/E entirely.
-    const details = await withCache(`tvep-${show.id}`, async () => {
-      try {
-        const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
-        if (!r.ok) return null;
-        return r.json();
-      } catch (e) { return null; }
-    }, 3600);
+    // Episode-detail cache (1h) so repeated pipeline runs / same-run reuse don't
+    // re-spend the subrequest. CRITICAL (2026-08-28): only a detail that actually
+    // carries last/next_episode_to_air is written to the cache. A "no episode"
+    // detail (e.g. an error/limited tmdb response that still returned 200) would
+    // otherwise be cached for an hour and starve the section of S/E on every hit —
+    // exactly what happened live (S/E filled in CI without shared cache, but stayed
+    // empty on the real worker that trusts caches.default). Misses therefore re-fetch.
+    const c = caches.default;
+    const cacheKey = `tvep-${show.id}`;
+    try {
+      const cached = await c.match(new Request(`https://tmdb-cache/${cacheKey}`));
+      if (cached) {
+        const hit = await cached.json();
+        if (hit?.last_episode_to_air || hit?.next_episode_to_air) {
+          return { ...show, last_episode_to_air: hit.last_episode_to_air, next_episode_to_air: hit.next_episode_to_air };
+        }
+        // cached entry has no episodes → ignore it and re-fetch (don't trust stale)
+      }
+    } catch (e) {}
+    let details = null;
+    try {
+      const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
+      details = r.ok ? await r.json() : null;
+    } catch (e) { details = null; }
     if (details?.last_episode_to_air || details?.next_episode_to_air) {
+      // only persist episodes-bearing details so a bad read never poisons the cache
+      try {
+        const resp = new Response(JSON.stringify(details), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" } });
+        c.put(new Request(`https://tmdb-cache/${cacheKey}`), resp.clone());
+      } catch (e) {}
       return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
     }
     return show;
