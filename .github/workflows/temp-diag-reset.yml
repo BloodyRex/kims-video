@@ -1,0 +1,19 @@
+name: Temp-Diag-ResetStatus
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reset today's digest status so retry can run
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set +e
+          npx wrangler kv key delete --binding=SUBSCRIBE_KV "digestStatus:2026-08-28" --remote 2>&1 | head -5
+          echo "==VERIFY=="
+          npx wrangler kv key get --binding=SUBSCRIBE_KV "digestStatus:2026-08-28" --remote 2>&1 | head -3
+          echo "==DONE=="
