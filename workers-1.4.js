@@ -1751,6 +1751,7 @@ async function handleIntelTV(env) {
         needDetail: needDetail.length,
         detailed: detailed.length,
         detailedHasEp: detailed.filter(s => s.last_episode_to_air || s.next_episode_to_air).length,
+        detailedList: detailed.map(s => ({ t: s.title || s.name, ep: !!(s.last_episode_to_air || s.next_episode_to_air) })),
         ongoingOut: ongoingTV.length,
         withSE: ongoingTV.filter(s => s.season != null).length,
       },
