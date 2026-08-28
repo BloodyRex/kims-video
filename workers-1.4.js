@@ -281,7 +281,7 @@ const DEFAULT_INTEL_CFG = {
       popScale: 10, popCap10: 10,                // pop10=min(popCap10, pop/popScale)
       cnFloorPopularity: 8, cnFloorRating: 2,    // 国产片放宽: 仅需热度≥8且分≥2
     },
-    reserve: { zh: 2, ja: 1, ko: 1 },            // 地区保底名额: 中/日/韩各至少X席
+    reserve: { zh: 0, ja: 0, ko: 0 },            // 地区保底名额: 全部关闭(2026-08-28 Rex决策)
     weekBack: 10,                                // "本周"窗口: 近N天起的上映(CN日二次分桶)
     score:     { w_pop: 0.25, w_date: 0.55, w_qual: 0.20, hlFuture: 14, hlPast: 7 },
   },
@@ -295,7 +295,7 @@ const DEFAULT_INTEL_CFG = {
     },
     yearCutoff: 2010,                            // 超长连载剧首播年份>=此值(数值比较)
     popFloor: 30,                                // ongoing 热播剧最低popularity
-    reserve: { cn: 1, hmt: 1, jp: 1, kr: 1 },    // 地区保底: 大陆/港台/日/韩
+    reserve: { cn: 0, hmt: 0, jp: 0, kr: 0 },    // 地区保底: 全部关闭(2026-08-28 Rex决策)
     ongoingTier1: 10,                            // 近30天活跃剧抢先名额
         ongoingTier2: 5,                             // 其余剧补充名额
         ongoingDetailCap: 8,                         // 热播剧 episode detail 回填上限(防50子请求超限)
@@ -530,7 +530,7 @@ function classifyRegion(item) {
 }
 
 // ── Diverse selection: guarantee regional representation + genre diversity ──
-function intelSelectDiverse(items, count = 20, reserved = { zh: 2, ja: 1, ko: 1 }, opts = null, today = null) {
+function intelSelectDiverse(items, count = 20, reserved = { zh: 0, ja: 0, ko: 0 }, opts = null, today = null) {
   if (items.length <= count) return items;
 
   const maxPop = Math.max(...items.map(m => m.popularity || 0), 0);
@@ -1033,12 +1033,12 @@ async function handleIntelOverview(env) {
     .filter(m => m.release_date && m.release_date >= weekAgo && m.release_date <= today)
     .filter(cnFilter)
     .filter(intelRatingOk);
-  const weekSelected = intelSelectDiverse(weekCandidates, 20, { zh: 2, ja: 1, ko: 1 }, movieSc, today);
+  const weekSelected = intelSelectDiverse(weekCandidates, 20, { zh: 0, ja: 0, ko: 0 }, movieSc, today);
   const moviesReleased = weekCandidates.length;
 
   // TV: same cnFilter as handleIntelTV  (ongoing section)
   const tvCandidates = tvOnAir.filter(cnFilter).filter(intelRatingOk);
-  const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 1, hmt: 1, jp: 1, kr: 1 }, tvSc, today);
+  const tvSelected = intelSelectDiverse(tvCandidates, 20, { cn: 0, hmt: 0, jp: 0, kr: 0 }, tvSc, today);
 
   // ── Upcoming movies (P1-2 fix 2026-08-24): SAME scored selection as
   // handleIntelMovies.upcoming — popularity floor 15 + zh bonus (0.4 weight),

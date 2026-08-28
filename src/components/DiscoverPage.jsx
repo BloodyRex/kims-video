@@ -321,7 +321,7 @@ const DiscoverPage = () => {
   const [loadingResults, setLoadingResults] = useState(true);
 
   // Wall-style controls
-  const [sourceMode, setSourceMode] = useState("editor"); // editor | community (comet toggle)
+  const [sourceMode, setSourceMode] = useState("community"); // editor | community (comet toggle) — default community (2026-08-28 Rex决策)
   const [genreFilter, setGenreFilter] = useState("all");   // all | <genre> | other
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
