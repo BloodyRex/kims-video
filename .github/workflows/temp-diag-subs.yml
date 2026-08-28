@@ -1,0 +1,18 @@
+name: Temp-Diag-Subscribers
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: List all subscribers and their values
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set +e
+          echo "==ALL_SUBS=="
+          npx wrangler kv key list --binding=SUBSCRIBE_KV --prefix="sub:" --remote 2>&1 | grep -aoE '"name": "[^"]+"' | sed -E 's/"name": "//; s/"$//' | sort
+          echo "==ALL_DONE=="
