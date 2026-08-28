@@ -1750,6 +1750,7 @@ async function handleIntelTV(env) {
         ongoingSel: (ongoingSelected || []).length,
         needDetail: needDetail.length,
         detailed: detailed.length,
+        detailedHasEp: detailed.filter(s => s.last_episode_to_air || s.next_episode_to_air).length,
         ongoingOut: ongoingTV.length,
         withSE: ongoingTV.filter(s => s.season != null).length,
       },
