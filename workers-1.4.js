@@ -1734,37 +1734,39 @@ async function handleIntelTV(env) {
       ...intelSelectDiverse(ongoingTier2, tier2, reserve, scoreOpts, today),
     ].slice(0, 15);
     // Detail backfill (≤ cap, 预算保护): cold-cache paid detail is the #1 budget
-    // killer. Premieres/upcoming NO LONGER fetch detail (they default to S1E1),
-    // so ALL of detailBudget goes to ongoing. S/E is best-effort display:
-    // exceeding the cap never drops a show (passThrough).
-    const ONGOING_DETAIL_CAP = Math.max(1, detailBudget);
-    const sortDetail = [...ongoingSelected].sort((a, b) => (b._trendingOnly === true) - (a._trendingOnly === true));
-    const needDetail = [];
-    const passThrough = [];
-    for (const s of sortDetail) {
-      if (s.last_episode_to_air || s.next_episode_to_air) {
-        passThrough.push(s); // already has S/E — no fetch
-      } else if (needDetail.length < ONGOING_DETAIL_CAP) {
-        needDetail.push(s);
-      } else {
-        passThrough.push(s); // capped — keep as-is, don't drop
-      }
-    }
-    const detailed = await intelFetchTVEpisodeDates(needDetail, token);
+        // killer. Premieres/upcoming NO LONGER fetch detail (they default to S1E1),
+        // so ALL of detailBudget goes to ongoing. S/E is best-effort display:
+        // exceeding the cap never drops a show (passThrough).
+        // 2026-08-31: hydrateFromTrending is DEAD — trending/tv/week list payloads
+        // carry NO last/next_episode_to_air (live-verified 3 pages all empty), so the
+        // ONLY S/E source for on_the_air/trending shows is the paid detail backfill.
+        // Raise coverage from detailBudget (12) to ALL selected shows so the pool-tail
+        // (previously 13-15th) stop shipping as S?E?. Still budget-guarded: list
+        // fetches ~23 + tvep detail ≤15 ≈ 38 cold, safely under the 50-subrequest cap.
+        const sortDetail = [...ongoingSelected].sort((a, b) => (b._trendingOnly === true) - (a._trendingOnly === true));
+        const needDetail = [];
+        const passThrough = [];
+        for (const s of sortDetail) {
+          if (s.last_episode_to_air || s.next_episode_to_air) {
+            passThrough.push(s); // already has S/E — no fetch
+          } else {
+            needDetail.push(s); // cover ALL selected — even beyond detailBudget
+          }
+        }
+        const detailed = await intelFetchTVEpisodeDates(needDetail, token);
         const ongoingEnriched = [...detailed, ...passThrough];
         // S/E is BEST-EFFORT DISPLAY, NOT a selection filter. We deliberately do
         // NOT drop shows whose detail didn't fill an air date (e.g. airing paused,
         // or beyond the detail cap) — every selected show stays in ongoing.
-        const ongoingTV = ongoingEnriched
-      .map(s => intelNormalizeMovie(s, "tv"));
+        const ongoingTV = ongoingEnriched.map(s => intelNormalizeMovie(s, "tv"));
 
-    return {
-      updated: today,
-      premieresThisWeek: weekPremieresFinal,
-      upcoming: upcomingTV,
-      ongoing: ongoingTV,
-    };
-}
+        return {
+          updated: today,
+          premieresThisWeek: weekPremieresFinal,
+          upcoming: upcomingTV,
+          ongoing: ongoingTV,
+        };
+    }
 
 // ── Music V2 handler (Pipeline-fed: receives POST from GitHub Actions, calls DeepSeek) ──
 async function handleIntelMusicV2(request, env) {
