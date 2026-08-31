@@ -1,0 +1,20 @@
+name: TMP diag tvSE detail
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check TMDB detail for ongoing shows
+        env:
+          TMDB: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: node scripts/diag-noSE.mjs
+      - name: Check TMDB trending payload + live worker
+        env:
+          TMDB: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: node scripts/diag-tv-root.mjs
