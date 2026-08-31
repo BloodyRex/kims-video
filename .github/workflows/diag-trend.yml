@@ -1,0 +1,16 @@
+name: TMP diag trending fetch content
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Inspect worker trending fetch
+        env:
+          TMDB: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+        run: node scripts/diag-trend.mjs
