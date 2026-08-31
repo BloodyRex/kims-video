@@ -234,7 +234,13 @@ function TVView({ locale, onViewDetail }) {
   const current = data?.[tabs.find(t => t.id === tab)?.key] || [];
   const zhLocale = locale === "zh";
   // S/E ribbon only for AIRED shows with real data; un-aired (upcoming) stay clean
-  const seRibbon = (s) => (s.season != null && s.episode != null) ? `S${s.season}E${s.episode}` : undefined;
+    // 2026-08-31 (Rex A/C): fall back to a friendly "持续更新" placeholder when the
+    // engine couldn't fill S/E (best-effort backfill — a show may legitimately be
+    // airing paused / mid-season break), instead of rendering a bare blank corner.
+    const seRibbon = (s) => {
+      if (s.season != null && s.episode != null) return `S${s.season}E${s.episode}`;
+      return zhLocale ? "更新中" : "ONGOING";
+    };
   // Premiere info line — the TV section's signature field
   const tvMeta = (s) => {
     if (!s.releaseDate) return undefined;
