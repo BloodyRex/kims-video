@@ -1,4 +1,4 @@
-name: TMP diag solitude chain
+name: TMP diag solitude chain2
 on:
   workflow_dispatch:
 
@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Reproduce full trending filter chain
+      - name: Reproduce chain survivors
         env:
           TMDB: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
-        run: node scripts/diag-sol-chain.mjs
+        run: node scripts/diag-sol-chain2.mjs
