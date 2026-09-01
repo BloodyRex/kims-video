@@ -2216,13 +2216,14 @@ ${JSON.stringify(movieCands.map((m, i) => ({ index: i, title: m.title, genre: m.
 TV (index 0-${tvCands.length - 1}):
 ${JSON.stringify(tvCands.map((s, i) => ({ index: i, title: s.title, genre: s.genre, summary: (s.summary || "").slice(0, 100), rating: s.rating, season: s.season, episode: s.episode })))}`;
 
-    // Hard timeout (20s) so a slow/hung DeepSeek call falls back fast instead
-    // of burning CPU time and tripping Cloudflare's execution limit, which
-    // (2026-09-01) sent 3 consecutive days to the programmatic fallback.
+    // Hard timeout (40s) as a safety net — a truly hung DeepSeek call must not
+    // run forever, but a NORMAL call legitimately takes ~25-35s (measured), so
+    // 20s was too tight and forced every call to fallback. 40s lets the AI
+    // succeed while still capping pathological hangs below Worker limits.
     for (let ai = 0; ai < 2; ai++) {
       if (ai > 0) await new Promise(r => setTimeout(r, 1200));
       const ac = new AbortController();
-      const t = setTimeout(() => ac.abort(), 20000);
+      const t = setTimeout(() => ac.abort(), 40000);
       try {
         dResp = await fetch("https://api.deepseek.com/chat/completions", {
           method: "POST",
