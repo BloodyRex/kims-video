@@ -1,5 +1,56 @@
 {
-  "updated": "2026-09-01",
-  "count": 0,
-  "movies": []
+  "updated": "2026-09-02",
+  "count": 3,
+  "movies": [
+    {
+      "tmdbId": 1471168,
+      "mediaType": "movie",
+      "title": "巴雷达：灭门凶案",
+      "titleEn": "Barreda",
+      "year": "2026",
+      "releaseDate": "2026-08-28",
+      "poster": "https://image.tmdb.org/t/p/w500/a25CyXmPJx6SrVFA9yirJTL9iAH.jpg",
+      "rating": 6.774,
+      "genre": [
+        "Drama",
+        "Crime",
+        "History"
+      ],
+      "firstSeen": "2026-09-02"
+    },
+    {
+      "tmdbId": 1294189,
+      "mediaType": "movie",
+      "title": "猫鼬",
+      "titleEn": "The Mongoose",
+      "year": "2026",
+      "releaseDate": "2026-10-30",
+      "poster": "https://image.tmdb.org/t/p/w500/m1vBxr5hLklqgMZQogEEsexzyEQ.jpg",
+      "rating": 0,
+      "genre": [
+        "Action",
+        "Thriller"
+      ],
+      "firstSeen": "2026-09-02"
+    },
+    {
+      "tmdbId": 1560520,
+      "mediaType": "movie",
+      "title": "蝙蝠侠：骑士陨落 第一部：骑士陨落",
+      "titleEn": "Batman: Knightfall Part 1: Knightfall",
+      "year": "2026",
+      "releaseDate": "2026-06-23",
+      "poster": "https://image.tmdb.org/t/p/w500/nN0MbX8D5HlTYztl3PDXkiQQLzf.jpg",
+      "rating": 9.048,
+      "genre": [
+        "Animation",
+        "Action",
+        "Adventure",
+        "Sci-Fi",
+        "Crime",
+        "Drama"
+      ],
+      "firstSeen": "2026-09-02"
+    }
+  ]
 }
