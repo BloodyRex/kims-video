@@ -1768,21 +1768,28 @@ async function handleIntelTV(env) {
         const ongoingTV = ongoingEnriched.map(s => intelNormalizeMovie(s, "tv"));
 
         // TMP diagnostic (2026-08-31): surface why S/E is empty on live worker.
-        // _diag shows needDetail count vs how many actually got last/next filled.
-        const diagFilled = detailed.filter(s => s.last_episode_to_air || s.next_episode_to_air).length;
-        const diagInfo = {
-          needDetail: needDetail.length,
-          passThrough: passThrough.length,
-          detailedFilled: diagFilled,
-          detailedUntouched: detailed.length - diagFilled,
-          // how many of passThrough already had list-level ep
-          passThroughWithSE: passThrough.filter(s => s.last_episode_to_air || s.next_episode_to_air).length,
-        };
-        // attach fill source per item (fix: normalized uses tmdbId)
-                ongoingTV.forEach((s) => {
-                  const raw = [...needDetail, ...passThrough].find(x => Number(x.id) === Number(s.tmdbId));
-                  if (raw) s._diag = raw.last_episode_to_air || raw.next_episode_to_air ? "detail/cache" : "unfilled";
-                });
+                // _diag shows needDetail count vs how many actually got last/next filled.
+                const diagFilled = detailed.filter(s => s.last_episode_to_air || s.next_episode_to_air).length;
+                // collect per-show failure reason from the RAW detail results (pre-normalize)
+                const reasons = {};
+                for (const s of needDetail) {
+                  if (s.last_episode_to_air || s.next_episode_to_air) continue;
+                  const rCode = s._diagReason || "no-reason";
+                  reasons[rCode] = (reasons[rCode] || 0) + 1;
+                }
+                const diagInfo = {
+                  needDetail: needDetail.length,
+                  passThrough: passThrough.length,
+                  detailedFilled: diagFilled,
+                  detailedUntouched: detailed.length - diagFilled,
+                  passThroughWithSE: passThrough.filter(s => s.last_episode_to_air || s.next_episode_to_air).length,
+                  unfilledReasons: reasons,
+                };
+                // attach fill source per item (fix: normalized uses tmdbId)
+                        ongoingTV.forEach((s) => {
+                          const raw = [...needDetail, ...passThrough].find(x => Number(x.id) === Number(s.tmdbId));
+                          if (raw) s._diag = raw.last_episode_to_air || raw.next_episode_to_air ? "detail/cache" : (raw._diagReason || "unfilled");
+                        });
 
         return {
           updated: today,
