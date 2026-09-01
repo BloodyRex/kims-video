@@ -1760,11 +1760,29 @@ async function handleIntelTV(env) {
         // or beyond the detail cap) — every selected show stays in ongoing.
         const ongoingTV = ongoingEnriched.map(s => intelNormalizeMovie(s, "tv"));
 
+        // TMP diagnostic (2026-08-31): surface why S/E is empty on live worker.
+        // _diag shows needDetail count vs how many actually got last/next filled.
+        const diagFilled = detailed.filter(s => s.last_episode_to_air || s.next_episode_to_air).length;
+        const diagInfo = {
+          needDetail: needDetail.length,
+          passThrough: passThrough.length,
+          detailedFilled: diagFilled,
+          detailedUntouched: detailed.length - diagFilled,
+          // how many of passThrough already had list-level ep
+          passThroughWithSE: passThrough.filter(s => s.last_episode_to_air || s.next_episode_to_air).length,
+        };
+        // attach fill source per item
+        ongoingTV.forEach((s) => {
+          const raw = [...needDetail, ...passThrough].find(x => (x.id === s.tmdbId || x.tmdbId === s.tmdbId));
+          if (raw) s._diag = raw.last_episode_to_air || raw.next_episode_to_air ? "detail/cache" : "unfilled";
+        });
+
         return {
           updated: today,
           premieresThisWeek: weekPremieresFinal,
           upcoming: upcomingTV,
           ongoing: ongoingTV,
+          _diag: diagInfo,
         };
     }
 
