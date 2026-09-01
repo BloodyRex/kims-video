@@ -2216,13 +2216,23 @@ ${JSON.stringify(movieCands.map((m, i) => ({ index: i, title: m.title, genre: m.
 TV (index 0-${tvCands.length - 1}):
 ${JSON.stringify(tvCands.map((s, i) => ({ index: i, title: s.title, genre: s.genre, summary: (s.summary || "").slice(0, 100), rating: s.rating, season: s.season, episode: s.episode })))}`;
 
+    // Hard timeout (20s) so a slow/hung DeepSeek call falls back fast instead
+    // of burning CPU time and tripping Cloudflare's execution limit, which
+    // (2026-09-01) sent 3 consecutive days to the programmatic fallback.
     for (let ai = 0; ai < 2; ai++) {
       if (ai > 0) await new Promise(r => setTimeout(r, 1200));
-      dResp = await fetch("https://api.deepseek.com/chat/completions", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 4000 }),
-      });
+      const ac = new AbortController();
+      const t = setTimeout(() => ac.abort(), 20000);
+      try {
+        dResp = await fetch("https://api.deepseek.com/chat/completions", {
+          method: "POST",
+          signal: ac.signal,
+          headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 4000 }),
+        });
+      } finally {
+        clearTimeout(t);
+      }
       if (dResp.ok) {
         const dr = await dResp.json();
         raw = dr?.choices?.[0]?.message?.content || "";
@@ -2261,13 +2271,33 @@ ${JSON.stringify(tvCands.map((s, i) => ({ index: i, title: s.title, genre: s.gen
     return { updated: today, gems };
   } catch (e) {
     console.warn(`Hidden gems v2 failed: ${e.message} (raw ${(raw || "").length} chars)`);
-    // Fallback: no AI — pick top-rated movies/TV programmatically so the email
-    // always has picks (zero LLM cost, no dependency on DeepSeek availability)
-    const pick = (pool, n, mediaType) => pool
-      .slice()
-      .sort((a, b) => (b.rating || 0) - (a.rating || 0))
-      .slice(0, n)
-      .map(src => ({
+    // Fallback: no AI — pick programmatically so the email always ships picks.
+    // Bias strongly toward FRESH releases (reflects the latest heat) while a
+    // day-seeded shuffle varies the picks day to day so the head never repeats
+    // 3 days running (it was stuck on 欢迎来龙餐馆 2026-08-30→09-01 because a
+    // fixed rating-sort made the top-rated title always win).
+    const freshness = (src) => {
+      const d = src.releaseDate || src.release_date || "";
+      const t = Date.parse(d);
+      return t ? t : 0; // 0 sorts to the tail
+    };
+    const daySeed = (today) => {
+      const h = String(today || "").replace(/[^0-9]/g, "");
+      let x = Number(h.slice(-6) || "1");
+      return () => { x = (x * 1103515245 + 12345) % 2147483648; return x / 2147483648; };
+    };
+    const pick = (pool, n, mediaType) => {
+      const out = pool
+        .slice()
+        .filter(src => freshness(src))
+        .sort((a, b) => freshness(b) - freshness(a)) // newest first
+        .slice(0, Math.max(n + 4, 10));               // shuffle within a fresh window
+      const rnd = daySeed(today);
+      for (let i = out.length - 1; i > 0; i--) {
+        const j = Math.floor(rnd() * (i + 1));
+        [out[i], out[j]] = [out[j], out[i]];
+      }
+      return out.slice(0, n).map(src => ({
         tmdbId: src.tmdbId || null,
         title: src.title || "",
         titleEn: src.titleEn || "",
@@ -2289,6 +2319,7 @@ ${JSON.stringify(tvCands.map((s, i) => ({ index: i, title: s.title, genre: s.gen
         audience: "",
         audienceEn: "",
       }));
+    };
     const fbGems = [...pick(movieCands, 3, "movie"), ...pick(tvCands, 3, "tv")];
     return { updated: today, gems: fbGems, fallback: true };
   }
