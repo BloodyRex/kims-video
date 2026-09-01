@@ -414,17 +414,42 @@ const DiscoverPage = () => {
   }, [userResults]);
 
   const [userPosterMap, setUserPosterMap] = useState({});
+  const USER_POSTER_KEY = "kims_discover_user_posters";
+  const USER_POSTER_TS = "kims_discover_user_posters_ts";
+  const USER_POSTER_TTL = 86400000; // 24h — same policy as curated library
   useEffect(() => {
     const unique = [...new Set(userRecTmdbIds)];
     if (!unique.length) return;
     let cancelled = false;
     (async () => {
+      // Reuse cached posters (24h TTL) — community cards otherwise refetch
+      // every visit. Mirror the curated-library cache (kims_discover_posters).
+      let cache = {};
+      try {
+        const c = localStorage.getItem(USER_POSTER_KEY);
+        const ts = localStorage.getItem(USER_POSTER_TS);
+        if (c && ts && (Date.now() - parseInt(ts)) < USER_POSTER_TTL) cache = JSON.parse(c) || {};
+      } catch {}
+      const fresh = {}; // live-fetched this visit
       const result = {};
-      await Promise.allSettled(unique.map(async id => {
-        const data = await fetchMovieByTmdbId(id, "zh");
-        if (data?.poster && !cancelled) result[id] = data.poster;
-      }));
+      // Cache hits render immediately; only miss ids hit the network.
+      unique.forEach(id => { if (cache[String(id)]) result[id] = cache[String(id)]; });
+      const miss = unique.filter(id => !cache[String(id)]);
       if (!cancelled) setUserPosterMap(prev => ({ ...prev, ...result }));
+      for (let i = 0; i < miss.length; i += 5) {
+        const batch = miss.slice(i, i + 5);
+        await Promise.allSettled(batch.map(async id => {
+          const data = await fetchMovieByTmdbId(id, "zh");
+          if (data?.poster && !cancelled) { result[id] = data.poster; fresh[id] = data.poster; }
+        }));
+        if (!cancelled) setUserPosterMap(prev => ({ ...prev, ...result }));
+      }
+      if (!cancelled && Object.keys(fresh).length) {
+        try {
+          localStorage.setItem(USER_POSTER_KEY, JSON.stringify({ ...cache, ...fresh }));
+          localStorage.setItem(USER_POSTER_TS, String(Date.now()));
+        } catch {}
+      }
     })();
     return () => { cancelled = true; };
   }, [JSON.stringify([...new Set(userRecTmdbIds)].sort())]);
