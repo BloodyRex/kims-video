@@ -433,9 +433,15 @@ function intelNormalizeMovie(m, type) {
   return item;
 }
 
-async function intelFetchTMDB(token, path, params, lang) {
+async function intelFetchTMDB(token, path, params, lang, opts = {}) {
   params = params || {};
   lang = lang || "zh-CN";
+  // opts.en=false → skip the parallel en-US fetch (saves 1 subrequest/page).
+  // handleIntelTV list scraping uses this to free budget for episode-detail
+  // backfill (S/E), which was hitting Cloudflare's 50-subrequest ceiling.
+  // en metadata (_titleEn/_overviewEn) is a nice-to-have for the EN UI; the
+  // list cards fall back to original_name/overview, which is acceptable.
+  const wantEn = opts.en !== false;
   const buildUrl = (language) => {
     const url = new URL(`https://api.themoviedb.org/3${path}`);
     Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
@@ -445,6 +451,11 @@ async function intelFetchTMDB(token, path, params, lang) {
   const zhUrl = buildUrl(lang);
   const cacheKey = "intel2-" + btoa(zhUrl.toString()).replace(/[=+/]/g, "");
   const data = await withCache(cacheKey, async () => {
+    if (!wantEn) {
+      const zhRes = await fetch(zhUrl, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } });
+      if (!zhRes.ok) throw new Error(`TMDB ${path}: ${zhRes.status}`);
+      return (await zhRes.json()).results || [];
+    }
     const [zhRes, enRes] = await Promise.all([
       fetch(zhUrl, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }),
       fetch(buildUrl("en-US"), { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }),
@@ -470,11 +481,11 @@ async function intelFetchTMDB(token, path, params, lang) {
 }
 
 // ── Multi-page TMDB fetch ──
-async function intelFetchPages(token, path, params = {}, pages = 4) {
+async function intelFetchPages(token, path, params = {}, pages = 4, opts = {}) {
   const all = [];
   const seen = new Set();
   for (let p = 1; p <= pages; p++) {
-    const page = await intelFetchTMDB(token, path, { ...params, page: p });
+    const page = await intelFetchTMDB(token, path, { ...params, page: p }, undefined, opts);
     if (!page || page.length === 0) break;
     for (const item of page) {
       if (!seen.has(item.id)) {
@@ -1308,57 +1319,61 @@ async function handleIntelMovies(env) {
 async function intelFetchTVEpisodeDates(shows, token) {
   if (!token) return shows || [];
   const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
-  const results = await Promise.allSettled((shows || []).map(async (show) => {
-    // Skip re-fetch when the list endpoint already carried episode data (trending does)
-    if (show.last_episode_to_air || show.next_episode_to_air) return show;
-    // Episode-detail cache (1h) so repeated pipeline runs / same-run reuse don't
-    // re-spend the subrequest. CRITICAL (2026-08-28): only a detail that actually
-    // carries last/next_episode_to_air is written to the cache. A "no episode"
-    // detail (e.g. an error/limited tmdb response that still returned 200) would
-    // otherwise be cached for an hour and starve the section of S/E on every hit —
-    // exactly what happened live (S/E filled in CI without shared cache, but stayed
-    // empty on the real worker that trusts caches.default). Misses therefore re-fetch.
-    const c = caches.default;
-    const cacheKey = `tvep-v2-${show.id}`; // v2: new key busts any polluted v1 cache entries
-    try {
-      const cached = await c.match(new Request(`https://tmdb-cache/${cacheKey}`));
-      if (cached) {
-        const hit = await cached.json();
-        if (hit?.last_episode_to_air || hit?.next_episode_to_air) {
-          return { ...show, last_episode_to_air: hit.last_episode_to_air, next_episode_to_air: hit.next_episode_to_air };
+  // A (2026-09-01): fetch detail in small concurrent batches + stop early on
+  // subrequest-budget exhaustion, instead of Promise.all over ALL shows at once.
+  // One-shot Promise.all(15) blew Cloudflare's 50-subrequest ceiling mid-loop and
+  // left every detail unfilled (live diag: "Too many subrequests" on the tail).
+  // Batching (≤3 concurrent) + early abort means the higher-priority shows (which
+  // are first in the list) always get their S/E even under budget pressure, and a
+  // budget blow-up no longer wipes the whole section.
+  const CONCURRENCY = 3;
+  const list = (shows || []);
+  const results = new Array(list.length).fill(null);
+  let aborted = false;
+  let cursor = 0;
+  const worker = async () => {
+    while (!aborted) {
+      const idx = cursor++;
+      if (idx >= list.length) return;
+      const show = list[idx];
+      // Skip re-fetch when the list endpoint already carried episode data
+      if (show.last_episode_to_air || show.next_episode_to_air) { results[idx] = show; continue; }
+      const c = caches.default;
+      const cacheKey = `tvep-v2-${show.id}`;
+      try {
+        const cached = await c.match(new Request(`https://tmdb-cache/${cacheKey}`));
+        if (cached) {
+          const hit = await cached.json();
+          if (hit?.last_episode_to_air || hit?.next_episode_to_air) {
+            results[idx] = { ...show, last_episode_to_air: hit.last_episode_to_air, next_episode_to_air: hit.next_episode_to_air };
+            continue;
+          }
         }
-        // cached entry has no episodes → ignore it and re-fetch (don't trust stale)
+      } catch (e) {}
+      let details = null;
+      try {
+        const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
+        if (r.ok) { details = await r.json(); }
+      } catch (e) {
+        const msg = (e?.message || "") || "";
+        if (/subrequest/i.test(msg)) { aborted = true; results[idx] = show; continue; } // budget gone — stop, don't wipe rest
+        details = null;
       }
-    } catch (e) {}
-    let details = null;
-        // TMP diag (2026-08-31): capture the fetch outcome to explain unfilled S/E.
-        let _diagReason = "";
+      if (details?.last_episode_to_air || details?.next_episode_to_air) {
         try {
-          const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
-          if (!r.ok) { _diagReason = `http ${r.status}`; }
-          else { details = await r.json(); }
-        } catch (e) { _diagReason = "fetch-throw: " + (e?.message || "").slice(0, 40); details = null; }
-        if (details?.last_episode_to_air || details?.next_episode_to_air) {
-          // only persist episodes-bearing details so a bad read never poisons the cache
-          try {
-            const resp = new Response(JSON.stringify(details), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" } });
-            c.put(new Request(`https://tmdb-cache/${cacheKey}`), resp.clone());
-          } catch (e) {}
-          return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
-        }
-        // no episodes in detail (or fetch failed): surface WHY for diag
-        if (!details && !_diagReason) _diagReason = "no detail json";
-        if (details && !details.last_episode_to_air) _diagReason = "detail-ok-no-ep";
-        try { if (show._diagReason === undefined) show._diagReason = _diagReason; } catch (e) {}
-        return show;
-  }));
-  return results.map(r => r.status === "fulfilled" ? r.value : null).filter(Boolean);
+          const resp = new Response(JSON.stringify(details), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" } });
+          c.put(new Request(`https://tmdb-cache/${cacheKey}`), resp.clone());
+        } catch (e) {}
+        results[idx] = { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
+      } else {
+        results[idx] = show;
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, list.length || 1) }, worker));
+  return results.filter(Boolean);
 }
 
-// ── CN-first release date: pick earliest CN theatrical date, else US (2026-08-17) ──
-// now_playing?region=US returns the US release date, which for CN/GB/GR-premiered
-// films can be weeks later than the local premiere. Chinese UI should show the CN
-// theatrical date when one exists; US date is the fallback for non-CN releases.
 async function intelPickCnReleaseDate(movie, token) {
   if (!movie?.tmdbId || !token) return movie;
   try {
@@ -1558,13 +1573,13 @@ async function handleIntelTV(env) {
     //            trending 是 "本周最热"，整季放出剧上线当周冲进前 20-30 → 翻第
     //            2-3 页即可纳入（实测《百年孤独》在 rank 23），零额外 detail 成本。
     const [onTheAir, discoverRaw, tvmazePremEps, tvmazeUpEps, tvTrendingWeek] = await Promise.all([
-      stv.onTheAir.enabled ? intelFetchPages(token, "/tv/on_the_air", {}, stv.onTheAir.pages) : [],
-      stv.discoverUpcoming.enabled ? intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, stv.discoverUpcoming.pages) : [],
+      stv.onTheAir.enabled ? intelFetchPages(token, "/tv/on_the_air", {}, stv.onTheAir.pages, { en: false }) : [],
+      stv.discoverUpcoming.enabled ? intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLater, "sort_by": "popularity.desc" }, stv.discoverUpcoming.pages, { en: false }) : [],
       stv.tvmazePremiere.enabled ? intelFetchTVMazeWeb(stv.tvmazePremiere.offsets) : [], // premieres
       stv.tvmazeUpcoming.enabled ? intelFetchTVMazeWeb(stv.tvmazeUpcoming.offsets) : [], // upcoming samples
       // trending/tv/week 翻页 —— 既是整季放出剧的通用补充源，
       // 也自带完整 episode 对象 (last_episode_to_air) 供 hydrateFromTrending 补 S/E。
-      stv.trendingWeek.enabled ? intelFetchPages(token, "/trending/tv/week", {}, stv.trendingWeek.pages) : [],
+      stv.trendingWeek.enabled ? intelFetchPages(token, "/trending/tv/week", {}, stv.trendingWeek.pages, { en: false }) : [],
     ]);
 
   const hasChinese = (text) => /[一-鿿]/.test(text || "");
@@ -1767,36 +1782,11 @@ async function handleIntelTV(env) {
         // or beyond the detail cap) — every selected show stays in ongoing.
         const ongoingTV = ongoingEnriched.map(s => intelNormalizeMovie(s, "tv"));
 
-        // TMP diagnostic (2026-08-31): surface why S/E is empty on live worker.
-                // _diag shows needDetail count vs how many actually got last/next filled.
-                const diagFilled = detailed.filter(s => s.last_episode_to_air || s.next_episode_to_air).length;
-                // collect per-show failure reason from the RAW detail results (pre-normalize)
-                const reasons = {};
-                for (const s of needDetail) {
-                  if (s.last_episode_to_air || s.next_episode_to_air) continue;
-                  const rCode = s._diagReason || "no-reason";
-                  reasons[rCode] = (reasons[rCode] || 0) + 1;
-                }
-                const diagInfo = {
-                  needDetail: needDetail.length,
-                  passThrough: passThrough.length,
-                  detailedFilled: diagFilled,
-                  detailedUntouched: detailed.length - diagFilled,
-                  passThroughWithSE: passThrough.filter(s => s.last_episode_to_air || s.next_episode_to_air).length,
-                  unfilledReasons: reasons,
-                };
-                // attach fill source per item (fix: normalized uses tmdbId)
-                        ongoingTV.forEach((s) => {
-                          const raw = [...needDetail, ...passThrough].find(x => Number(x.id) === Number(s.tmdbId));
-                          if (raw) s._diag = raw.last_episode_to_air || raw.next_episode_to_air ? "detail/cache" : (raw._diagReason || "unfilled");
-                        });
-
         return {
           updated: today,
           premieresThisWeek: weekPremieresFinal,
           upcoming: upcomingTV,
           ongoing: ongoingTV,
-          _diag: diagInfo,
         };
     }
 
