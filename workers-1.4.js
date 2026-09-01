@@ -1331,19 +1331,26 @@ async function intelFetchTVEpisodeDates(shows, token) {
       }
     } catch (e) {}
     let details = null;
-    try {
-      const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
-      details = r.ok ? await r.json() : null;
-    } catch (e) { details = null; }
-    if (details?.last_episode_to_air || details?.next_episode_to_air) {
-      // only persist episodes-bearing details so a bad read never poisons the cache
-      try {
-        const resp = new Response(JSON.stringify(details), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" } });
-        c.put(new Request(`https://tmdb-cache/${cacheKey}`), resp.clone());
-      } catch (e) {}
-      return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
-    }
-    return show;
+        // TMP diag (2026-08-31): capture the fetch outcome to explain unfilled S/E.
+        let _diagReason = "";
+        try {
+          const r = await fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=zh-CN`, { headers });
+          if (!r.ok) { _diagReason = `http ${r.status}`; }
+          else { details = await r.json(); }
+        } catch (e) { _diagReason = "fetch-throw: " + (e?.message || "").slice(0, 40); details = null; }
+        if (details?.last_episode_to_air || details?.next_episode_to_air) {
+          // only persist episodes-bearing details so a bad read never poisons the cache
+          try {
+            const resp = new Response(JSON.stringify(details), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" } });
+            c.put(new Request(`https://tmdb-cache/${cacheKey}`), resp.clone());
+          } catch (e) {}
+          return { ...show, last_episode_to_air: details.last_episode_to_air, next_episode_to_air: details.next_episode_to_air };
+        }
+        // no episodes in detail (or fetch failed): surface WHY for diag
+        if (!details && !_diagReason) _diagReason = "no detail json";
+        if (details && !details.last_episode_to_air) _diagReason = "detail-ok-no-ep";
+        try { if (show._diagReason === undefined) show._diagReason = _diagReason; } catch (e) {}
+        return show;
   }));
   return results.map(r => r.status === "fulfilled" ? r.value : null).filter(Boolean);
 }
@@ -1771,11 +1778,11 @@ async function handleIntelTV(env) {
           // how many of passThrough already had list-level ep
           passThroughWithSE: passThrough.filter(s => s.last_episode_to_air || s.next_episode_to_air).length,
         };
-        // attach fill source per item
-        ongoingTV.forEach((s) => {
-          const raw = [...needDetail, ...passThrough].find(x => (x.id === s.tmdbId || x.tmdbId === s.tmdbId));
-          if (raw) s._diag = raw.last_episode_to_air || raw.next_episode_to_air ? "detail/cache" : "unfilled";
-        });
+        // attach fill source per item (fix: normalized uses tmdbId)
+                ongoingTV.forEach((s) => {
+                  const raw = [...needDetail, ...passThrough].find(x => Number(x.id) === Number(s.tmdbId));
+                  if (raw) s._diag = raw.last_episode_to_air || raw.next_episode_to_air ? "detail/cache" : "unfilled";
+                });
 
         return {
           updated: today,
