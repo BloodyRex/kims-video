@@ -43,6 +43,34 @@ function getTitle(item, locale) {
   return locale === "en" ? (item.titleEn || item.title) : (item.title || item.titleEn || "");
 }
 
+// ── Rating color tiers (2026-09-02, Rex): score badge background by tier.
+// ≥9 gold (top-tier, gets the comet animated border), 8-9 cyan, 6-8 green, <6 red.
+// Only color + border change — sizing/position stay identical to the old badge.
+export function ratingColor(score) {
+  if (score >= 9) return "#ffd700";   // top tier — gold + comet border
+  if (score >= 8) return "#00cfff";   // excellent — cyan
+  if (score >= 6) return "#00ff87";   // good — green
+  return "#ff4d4d";                    // below 6 — red
+}
+
+// Rating badge with tier color + (≥9) comet animated border, matching the
+// "来自社区" button's conic-gradient comet effect. Identical size/position to
+// the original badge (absolute bottom-right, 9px, px-1.5 py-0.5, 2px border).
+export function RatingBadge({ score }) {
+  if (!(score > 0)) return null;
+  const bg = ratingColor(score);
+  const comet = score >= 9;
+  return (
+    <span
+      className={"absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black text-white leading-none " +
+        (comet ? "rating-comet" : "border-2 border-black")}
+      style={!comet ? { backgroundColor: bg } : undefined}
+    >
+      {score.toFixed(1)}
+    </span>
+  );
+}
+
 export function StarRating({ score, max = 10 }) {
   const pct = Math.min(Math.max((score || 0) / max, 0), 1);
   const stars = Math.round(pct * 5);
@@ -987,11 +1015,7 @@ export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", sub
             {ribbon}
           </span>
         )}
-        {rating > 0 && (
-          <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">
-            {rating.toFixed(1)}
-          </span>
-        )}
+        <RatingBadge score={rating} />
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={title}>{title}</h3>

@@ -82,6 +82,29 @@ body {
   z-index: 0;
 }
 
+/* Rating badge comet border (≥9 tier) — same conic-gradient comet treatment as
+   the "来自社区" button, gold fill. Only the border animates; badge size/position
+   are unchanged from the plain tier badge. */
+@property --rating-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.rating-comet {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#ffd700, #ffd700) padding-box,
+    conic-gradient(from calc(var(--rating-angle) + 180deg),
+      transparent 0deg, transparent 200deg,
+      rgba(255, 184, 0, 0.15) 240deg, rgba(255, 184, 0, 0.15) 258deg,
+      rgba(255, 184, 0, 0.5) 284deg, rgba(255, 184, 0, 0.5) 300deg,
+      #ffb800 312deg, #ffb800 360deg) border-box;
+  animation: rating-spin 1.6s steps(8) infinite;
+}
+@keyframes rating-spin {
+  to { --rating-angle: 360deg; }
+}
+
 /* 新主页 tagline 轮动淡入 */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(4px); }

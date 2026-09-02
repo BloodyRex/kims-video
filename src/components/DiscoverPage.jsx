@@ -6,7 +6,7 @@ import { useLocale } from "../i18n";
 import { fetchMovieByTmdbId } from "../services/api";
 import { fetchDiscoverResults, likeDiscoverResult } from "../services/discoverApi";
 import { setCanonical } from "../services/seo";
-import { TrailerButtons, StarRating, GENRE_ZH } from "./Cards";
+import { TrailerButtons, StarRating, RatingBadge, GENRE_ZH } from "./Cards";
 import SubscribeSection from "./SubscribeSection";
 
 const LANG_BUTTON_STYLE = {
@@ -68,11 +68,7 @@ function DailyPickCard({ pick, locale, onOpen }) {
           style={{ backgroundColor: cat.bg, color: cat.text }}>
           {zh ? cat.zh : cat.en}
         </span>
-        {(pick.rating || 0) > 0 && (
-          <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">
-            {pick.rating.toFixed(1)}
-          </span>
-        )}
+        <RatingBadge score={pick.rating} />
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={title}>{title}</h3>
@@ -119,11 +115,7 @@ function PairCard({ pair, posterMap, metaMap, locale, onOpen }) {
         <span className={`absolute top-7 left-1.5 max-w-[85%] px-1.5 py-0.5 text-[9px] font-bold border-2 border-black leading-tight bg-black text-white truncate pointer-events-none transition-opacity duration-150 ${showSrc ? "opacity-100" : "opacity-0 sm:group-hover:opacity-100"}`}>
           《{srcTitle}》
         </span>
-        {(meta.rating || 0) > 0 && (
-          <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">
-            {meta.rating.toFixed(1)}
-          </span>
-        )}
+        <RatingBadge score={meta.rating} />
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={recTitle}>{recTitle}</h3>

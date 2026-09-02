@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
-import { GENRE_ZH } from "./Cards";
+import { GENRE_ZH, RatingBadge } from "./Cards";
 import { setCanonical } from "../services/seo";
 import WallDetailView from "./WallDetailView";
 import DetailOverlay from "./DetailOverlay";
@@ -77,11 +77,7 @@ function WallCard({ movie, locale, todayStr, todayTs, onOpen }) {
             : (zh ? `${days}天后上映` : `IN ${days}D`)}
         </span>
         {/* Rating badge */}
-        {movie.rating > 0 && (
-          <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">
-            {movie.rating.toFixed(1)}
-          </span>
-        )}
+        <RatingBadge score={movie.rating} />
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={movie.title}>
@@ -135,11 +131,7 @@ function TvWallCard({ show, locale, todayStr, onOpen }) {
           <span className="text-white">{statusDot.label}</span>
         </span>
         {/* Rating badge */}
-        {show.rating > 0 && (
-          <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black bg-[#ff00ff] text-white border-2 border-black leading-none">
-            {show.rating.toFixed(1)}
-          </span>
-        )}
+        <RatingBadge score={show.rating} />
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={show.title}>{show.title}</h3>
