@@ -1101,8 +1101,31 @@ async function handleIntelOverview(env) {
   // Same zh gate on the gem pool — non-zh gems would be killed by the pipeline's
   // filterChineseContent AFTER the worker already counted them (2026-08-24:
   // Barrio Triste / Cookie Queens dropped the section to 4 cards).
+  // ── Gem cooldown (2026-09-02, Rex: 神秘肌肤 2005 re-release topped 编辑精选
+  // 6 straight days 08-28→09-02). A re-release is legitimately in now_playing
+  // (low heat + high rating = perfect "hidden gem"), but should not headline
+  // every day. Exclude gems selected in the last N days (default 7) so picks
+  // rotate. KV-backed (DISCOVER_KV), key intel:gemCool:{tmdbId}=lastPickedDate.
+  const gemCooldownDays = 7;
+  let gemCoolSet = new Set();
+  if (env?.DISCOVER_KV) {
+    try {
+      const coolKeys = await env.DISCOVER_KV.list({ prefix: "intel:gemCool:", limit: 200 });
+      const now = Date.now();
+      const cutoff = now - gemCooldownDays * 86400000;
+      const fresh = [];
+      for (const k of coolKeys.keys) {
+        const raw = await env.DISCOVER_KV.get(k.name, "json");
+        const dt = raw?.date ? Date.parse(raw.date) : 0;
+        if (dt >= cutoff) fresh.push(k.name);
+        else await env.DISCOVER_KV.delete(k.name).catch(() => {});
+      }
+      gemCoolSet = new Set(fresh.map(k => k.replace("intel:gemCool:", "")));
+    } catch (e) { console.warn("gem cooldown read failed:", e.message); }
+  }
   const gemPool = nowPlaying.filter((m) => {
     if (ovRate(m) < 7.5) return false;
+    if (gemCoolSet.has(ovGid(m))) return false; // recently picked — rotate out
     return ovZh(m);
   }).filter((m) => {
     // "hidden" = low popularity RELATIVE to the released pool (bottom 60%)
@@ -1142,6 +1165,17 @@ async function handleIntelOverview(env) {
   const editorsPicksFinal = (await Promise.all(
     editorsPicksV2.map(m => intelPickCnReleaseDate(m, token))
   )).filter(Boolean);
+  // ── Gem cooldown write: record today's picked gems so they rotate out for
+  // the next gemCooldownDays. Only gem-category picks get cooled (star/trending
+  // are heat-driven and self-rotating). Best-effort: a KV failure must not 500.
+  if (env?.DISCOVER_KV) {
+    try {
+      const pickedGems = editorsPicksFinal.filter(m => m.pickCategory === "gem");
+      for (const g of pickedGems) {
+        await env.DISCOVER_KV.put(`intel:gemCool:${ovGid(g)}`, JSON.stringify({ date: today }), { expirationTtl: gemCooldownDays * 86400 });
+      }
+    } catch (e) { console.warn("gem cooldown write failed:", e.message); }
+  }
 
   // ── 剧集热榜 (Rex 2026-08-24): 总览编辑精选下方追加 6 张热度剧集卡 ──
   // trending/tv/week was already fetched by the weekly endpoint earlier in the
