@@ -135,9 +135,11 @@ function TvWallCard({ show, locale, todayStr, onOpen }) {
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={show.title}>{show.title}</h3>
-        <p className="text-[9px] text-gray-500 font-bold truncate">
-          {zh ? `更新至 S${show.season}E${show.episode ?? "?"}` : `S${show.season}E${show.episode ?? "?"}`}
-        </p>
+        {/* Season already shown in the top-left S badge (per-season wall signature);
+            below shows the English title, matching the movie wall card — no dup */}
+        {show.titleEn && (
+          <p className="text-[9px] text-gray-500 font-bold truncate">{show.titleEn}</p>
+        )}
         <div className="flex items-center justify-between mt-1 gap-1">
           <span className="text-[9px] text-gray-600 font-bold truncate">{show.latestAirDate || ""}</span>
           {show.genre.length > 0 && (
@@ -208,15 +210,17 @@ const WallPage = () => {
 
   // TV wall items: latestAirDate is the axis. Status = 追更中(30d activity) /
   // 待回归(older) — everything on this wall has aired by definition.
+  // (2026-09-02 Rex): added "待回归"(hiatus) as a first-class filter tier —
+  // before, only 全部+AIRING existed, so the 14 inactive shows were never
+  // viewable on page 1 (newest-first sorted them all to later pages) and the
+  // AIRING filter "did nothing" visually.
+  const isActive = (s) => !!s.latestAirDate && s.latestAirDate >= thirtyDaysAgoStr();
   const tvFiltered = useMemo(() => {
     if (!tvData) return [];
     const items = tvData.shows || [];
     return items.filter((s) => {
-      if (statusFilter === "upcoming") return false; // no un-aired shows on the TV wall
-      if (statusFilter === "released") {
-        const active = s.latestAirDate && s.latestAirDate >= thirtyDaysAgoStr();
-        if (!active) return false;
-      }
+      if (statusFilter === "released" && !isActive(s)) return false; // only 追更中
+      if (statusFilter === "hiatus" && isActive(s)) return false;    // only 待回归
       const q = searchQuery.trim().toLowerCase().replace(/[\u200B-\u200D\uFEFF]/g, "");
       if (q && !((s.title || "").toLowerCase().includes(q) || (s.titleEn || "").toLowerCase().includes(q))) return false;
       return true;
@@ -390,6 +394,11 @@ const WallPage = () => {
                 onClick={() => setStatusFilter("released")}
                 className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${statusFilter === "released" ? "bg-[#00ffff] text-black" : "bg-white text-black hover:bg-gray-100"}`}>
                 🟢 {zh ? "追更中" : "AIRING"}
+              </button>
+              <button
+                onClick={() => setStatusFilter("hiatus")}
+                className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${statusFilter === "hiatus" ? "bg-[#ffff00] text-black" : "bg-white text-black hover:bg-gray-100"}`}>
+                🟡 {zh ? "待回归" : "HIATUS"}
               </button>
               <div className="relative">
                 <input
