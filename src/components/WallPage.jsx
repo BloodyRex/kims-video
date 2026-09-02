@@ -104,10 +104,15 @@ function WallCard({ movie, locale, todayStr, todayTs, onOpen }) {
 // ── TV Wall Card (per-season) ──
 function TvWallCard({ show, locale, todayStr, onOpen }) {
   const zh = locale === "zh";
+  const isUpcoming = typeof show.daysUntil === "number";
   const active = !!(show.latestAirDate && show.latestAirDate >= thirtyDaysAgoStr());
-  const statusDot = active
-    ? { cls: "bg-[#00ff00]", label: zh ? "追更中" : "AIRING" }
-    : { cls: "bg-[#ffff00]", label: zh ? "待回归" : "HIATUS" };
+  // Upcoming (未上映) from intelligence tv.json gets its own status; otherwise
+  // active = 追更中, else 待回归.
+  const statusDot = isUpcoming
+    ? { cls: "bg-[#ff00ff]", label: zh ? "即将上映" : "UPCOMING" }
+    : active
+      ? { cls: "bg-[#00ff00]", label: zh ? "追更中" : "AIRING" }
+      : { cls: "bg-[#ffff00]", label: zh ? "待回归" : "HIATUS" };
   return (
     <div onClick={() => onOpen && onOpen(show)}
       className="bg-white border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#00ffff] transition-all group cursor-pointer">
@@ -121,9 +126,11 @@ function TvWallCard({ show, locale, todayStr, onOpen }) {
             <Icons.Tv className="w-8 h-8" />
           </div>
         )}
-        {/* Season badge — top-left, the per-season wall's signature */}
+        {/* Season badge — top-left, the per-season wall's signature.
+            Now shows S{season}E{episode} (was S{season} only) — matches the S/E
+            info in the card detail view (2026-09-02 Rex). */}
         <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none bg-[#00ffff] text-black">
-          S{show.season}
+          {isUpcoming ? `S${show.season}` : `S${show.season}${show.episode ? `E${show.episode}` : ""}`}
         </span>
         {/* Activity dot + label — top-right */}
         <span className="absolute top-1.5 right-1.5 flex items-center gap-1 px-1 py-0.5 text-[8px] font-black bg-black/80 border border-gray-700 leading-none">
@@ -141,7 +148,9 @@ function TvWallCard({ show, locale, todayStr, onOpen }) {
           <p className="text-[9px] text-gray-500 font-bold truncate">{show.titleEn}</p>
         )}
         <div className="flex items-center justify-between mt-1 gap-1">
-          <span className="text-[9px] text-gray-600 font-bold truncate">{show.latestAirDate || ""}</span>
+          <span className="text-[9px] text-gray-600 font-bold truncate">
+            {isUpcoming ? (show.releaseDate || `${show.daysUntil}天内`) : (show.latestAirDate || "")}
+          </span>
           {show.genre.length > 0 && (
             <span className="text-[8px] px-1 bg-black text-white font-bold flex-shrink-0">
               {genreLabel(show.genre[0], locale)}
@@ -162,6 +171,7 @@ const WallPage = () => {
     new URLSearchParams(window.location.search).get("type") === "tv" ? "tv" : "movie"
   );
   const [tvData, setTvData] = useState(null);
+  const [tvUpcoming, setTvUpcoming] = useState([]); // 即将上映 TV from intelligence tv.json
   const [data, setData] = useState(null);
   const [loadError, setLoadError] = useState(false);
   const [statusFilter, setStatusFilter] = useState("all"); // all | released | upcoming
@@ -198,6 +208,12 @@ const WallPage = () => {
       .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
       .then((d) => { if (!cancelled) setTvData(d); })
       .catch(() => { if (!cancelled) setLoadError(true); });
+    // 即将上映 TV (same source as the intelligence 即将播出 tab) — for the
+    // upcoming filter tier (2026-09-02 Rex).
+    fetch("/api/tv.json")
+      .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+      .then((d) => { if (!cancelled) setTvUpcoming(d.upcoming || []); })
+      .catch(() => {});
     return () => { cancelled = true; };
   }, [wallType]);
 
@@ -216,6 +232,13 @@ const WallPage = () => {
   // AIRING filter "did nothing" visually.
   const isActive = (s) => !!s.latestAirDate && s.latestAirDate >= thirtyDaysAgoStr();
   const tvFiltered = useMemo(() => {
+    // 即将上映 (upcoming) comes from intelligence tv.json — its own data source.
+    if (statusFilter === "upcoming") {
+      const q = searchQuery.trim().toLowerCase().replace(/[\u200B-\u200D\uFEFF]/g, "");
+      return (tvUpcoming || []).filter(s =>
+        !q || ((s.title || "").toLowerCase().includes(q) || (s.titleEn || "").toLowerCase().includes(q))
+      );
+    }
     if (!tvData) return [];
     const items = tvData.shows || [];
     return items.filter((s) => {
@@ -225,7 +248,7 @@ const WallPage = () => {
       if (q && !((s.title || "").toLowerCase().includes(q) || (s.titleEn || "").toLowerCase().includes(q))) return false;
       return true;
     });
-  }, [tvData, statusFilter, searchQuery]);
+  }, [tvData, tvUpcoming, statusFilter, searchQuery]);
 
   const filtered = useMemo(() => {
     if (!data) return [];
@@ -399,6 +422,11 @@ const WallPage = () => {
                 onClick={() => setStatusFilter("hiatus")}
                 className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${statusFilter === "hiatus" ? "bg-[#ffff00] text-black" : "bg-white text-black hover:bg-gray-100"}`}>
                 🟡 {zh ? "待回归" : "HIATUS"}
+              </button>
+              <button
+                onClick={() => setStatusFilter("upcoming")}
+                className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${statusFilter === "upcoming" ? "bg-[#ff00ff] text-white" : "bg-white text-black hover:bg-gray-100"}`}>
+                🔮 {zh ? "即将上映" : "UPCOMING"}
               </button>
               <div className="relative">
                 <input
