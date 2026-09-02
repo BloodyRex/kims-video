@@ -102,13 +102,19 @@ function WallCard({ movie, locale, todayStr, todayTs, onOpen }) {
 }
 
 // ── TV Wall Card (per-season) ──
-function TvWallCard({ show, locale, todayStr, onOpen }) {
+function TvWallCard({ show, locale, todayStr, todayTs, onOpen }) {
   const zh = locale === "zh";
-  const isUpcoming = typeof show.daysUntil === "number";
+  // Upcoming (未上映) comes from intelligence tv.json — shown with a live
+  // countdown BEFORE release, then flashing back to normal S/E once aired.
+  // (2026-09-02 Rex: countdown same as the movie wall card.)
+  const days = show.releaseDate
+    ? Math.ceil((Date.parse(show.releaseDate + "T00:00:00Z") - todayTs) / 86400000)
+    : 0;
+  const isPreAiring = days > 0; // still to premiere → countdown
   const active = !!(show.latestAirDate && show.latestAirDate >= thirtyDaysAgoStr());
-  // Upcoming (未上映) from intelligence tv.json gets its own status; otherwise
-  // active = 追更中, else 待回归.
-  const statusDot = isUpcoming
+  // Pre-aired shows get the UPCOMING treatment; aired shows collapse to the
+  // normal 追更中/AIRING vs 待回归/HIATUS states (S/E restored).
+  const statusDot = isPreAiring
     ? { cls: "bg-[#ff00ff]", label: zh ? "即将上映" : "UPCOMING" }
     : active
       ? { cls: "bg-[#00ff00]", label: zh ? "追更中" : "AIRING" }
@@ -126,12 +132,18 @@ function TvWallCard({ show, locale, todayStr, onOpen }) {
             <Icons.Tv className="w-8 h-8" />
           </div>
         )}
-        {/* Season badge — top-left, the per-season wall's signature.
-            Now shows S{season}E{episode} (was S{season} only) — matches the S/E
-            info in the card detail view (2026-09-02 Rex). */}
+        {/* Season badge — top-left, the per-season wall's signature. Before
+            premiere shows S{season} only (with the countdown ribbon below);
+            once aired it shows S{season}E{episode} matching the detail view. */}
         <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none bg-[#00ffff] text-black">
-          {isUpcoming ? `S${show.season}` : `S${show.season}${show.episode ? `E${show.episode}` : ""}`}
+          {isPreAiring ? `S${show.season}` : `S${show.season}${show.episode ? `E${show.episode}` : ""}`}
         </span>
+        {/* Premiere countdown ribbon — pre-airing only, same as the movie card */}
+        {isPreAiring && (
+          <span className="absolute top-7 left-1.5 px-1 py-0.5 text-[8px] font-black border border-black leading-none bg-[#ff00ff] text-white">
+            {zh ? `${days}天后上映` : `IN ${days}D`}
+          </span>
+        )}
         {/* Activity dot + label — top-right */}
         <span className="absolute top-1.5 right-1.5 flex items-center gap-1 px-1 py-0.5 text-[8px] font-black bg-black/80 border border-gray-700 leading-none">
           <span className={`w-1.5 h-1.5 rounded-full ${statusDot.cls}`} />
@@ -149,7 +161,7 @@ function TvWallCard({ show, locale, todayStr, onOpen }) {
         )}
         <div className="flex items-center justify-between mt-1 gap-1">
           <span className="text-[9px] text-gray-600 font-bold truncate">
-            {isUpcoming ? (show.releaseDate || `${show.daysUntil}天内`) : (show.latestAirDate || "")}
+            {isPreAiring ? show.releaseDate : (show.latestAirDate || "")}
           </span>
           {show.genre.length > 0 && (
             <span className="text-[8px] px-1 bg-black text-white font-bold flex-shrink-0">
@@ -464,7 +476,7 @@ const WallPage = () => {
             ) : (
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-sm:gap-2">
                 {pageItems.map((s) => (
-                  <TvWallCard key={`${s.tmdbId}:S${s.season}`} show={s} locale={locale} todayStr={todayStr} onOpen={setDetailItem} />
+                  <TvWallCard key={`${s.tmdbId}:S${s.season}`} show={s} locale={locale} todayStr={todayStr} todayTs={todayTs} onOpen={setDetailItem} />
                 ))}
               </div>
             )}
