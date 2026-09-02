@@ -176,6 +176,20 @@ async function main() {
           data[key] = oldData[key];
         }
       }
+      // ── Shrinkage guard (2026-09-02): a COLD-cache Worker call can trip the
+      // 50-subrequest budget and truncate ongoing (shipped 15 → 5 on 09-02, with
+      // holes in S/E). Unlike a hard 0, this is a partial ablation that slipped
+      // through the empty-guard above and got cemented into git/CDN all day.
+      // When ongoing shrinks by >50% vs yesterday (yesterday healthy >= 12),
+      // keep yesterday's fuller set — better a slightly-stale full list than a
+      // half-empty one.
+      if (task.file === "tv.json" && Array.isArray(oldData?.ongoing) && oldData.ongoing.length >= 12) {
+        const fresh = Array.isArray(data.ongoing) ? data.ongoing.length : 0;
+        if (fresh < oldData.ongoing.length * 0.5) {
+          console.warn(`⚠ GUARD ${task.file}: ongoing shrank ${oldData.ongoing.length} → ${fresh} (>50%, suspect cold-cache budget truncation) — keeping yesterday's ${oldData.ongoing.length} items`);
+          data.ongoing = oldData.ongoing;
+        }
+      }
 
       // Check if data actually changed
       writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
