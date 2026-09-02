@@ -2131,20 +2131,30 @@ Top 3-5 trends (mix movies and TV by heat). 3-5 highlights.`;
     // Retry up to 4 attempts (DeepSeek occasionally returns empty/5xx — live
         // 2026-08-27: ~50% first-attempt success; 4 tries → ~94%). Music endpoint
         // uses more attempts for the same reason.
+        // Hard timeout (40s) per attempt so a hung DeepSeek call can't drag the
+        // digest past Cloudflare's execution limit and ship empty headline/summary
+        // (was blank 2026-08-28 → 09-02).
         let raw = "", dResp = null;
         for (let ai = 0; ai < 4; ai++) {
           if (ai > 0) await new Promise(r => setTimeout(r, 1200));
-          dResp = await fetch("https://api.deepseek.com/chat/completions", {
-            method: "POST",
-            headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
-            body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 3000 }),
-          });
-      if (dResp.ok) {
-        const dr = await dResp.json();
-        raw = dr?.choices?.[0]?.message?.content || "";
-        if (raw) break;
-      }
-    }
+          const ac = new AbortController();
+          const tt = setTimeout(() => ac.abort(), 40000);
+          try {
+            dResp = await fetch("https://api.deepseek.com/chat/completions", {
+              method: "POST",
+              signal: ac.signal,
+              headers: { Authorization: `Bearer ${env.DEEPSEEK_API_KEY}`, "Content-Type": "application/json" },
+              body: JSON.stringify({ model: "deepseek-v4-flash", messages: [{ role: "user", content: prompt }], temperature: 0.7, max_tokens: 3000 }),
+            });
+          } finally {
+            clearTimeout(tt);
+          }
+          if (dResp.ok) {
+            const dr = await dResp.json();
+            raw = dr?.choices?.[0]?.message?.content || "";
+            if (raw) break;
+          }
+        }
     if (!raw) throw new Error(`Empty content from DeepSeek`);
     const parsed = intelParseJSON(raw);
     // Backend fallback: if the AI omitted topTrends, synthesize programmatically

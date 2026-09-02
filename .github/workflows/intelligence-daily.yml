@@ -41,6 +41,12 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           MUSICBRAINZ_USER_AGENT: "BloodyRex-Intelligence/1.0 (rexhr@yahoo.com)"
 
+      - name: Regenerate AI digest if blank (CI-side, no CF limit)
+        run: node scripts/regenerate-digest-ai.mjs
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek-v4-flash' }}
+
       - name: Commit and push (with retry)
         run: |
           git config user.name "github-actions[bot]"
