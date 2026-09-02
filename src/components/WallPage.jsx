@@ -132,16 +132,15 @@ function TvWallCard({ show, locale, todayStr, todayTs, onOpen }) {
             <Icons.Tv className="w-8 h-8" />
           </div>
         )}
-        {/* Season badge — top-left, the per-season wall's signature. Before
-            premiere shows S{season} only (with the countdown ribbon below);
-            once aired it shows S{season}E{episode} matching the detail view. */}
-        <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none bg-[#00ffff] text-black">
-          {isPreAiring ? `S${show.season}` : `S${show.season}${show.episode ? `E${show.episode}` : ""}`}
-        </span>
-        {/* Premiere countdown ribbon — pre-airing only, same as the movie card */}
-        {isPreAiring && (
-          <span className="absolute top-7 left-1.5 px-1 py-0.5 text-[8px] font-black border border-black leading-none bg-[#ff00ff] text-white">
+        {/* Top-left corner: pre-airing shows the countdown INSTEAD of a season
+            badge (no misleading S1); once aired it's the S{season}E{episode} badge. */}
+        {isPreAiring ? (
+          <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[8px] font-black border-2 border-black leading-none bg-[#ff00ff] text-white">
             {zh ? `${days}天后上映` : `IN ${days}D`}
+          </span>
+        ) : (
+          <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 text-[9px] font-black border-2 border-black leading-none bg-[#00ffff] text-black">
+            S{show.season}{show.episode ? `E${show.episode}` : ""}
           </span>
         )}
         {/* Activity dot + label — top-right */}
@@ -244,21 +243,20 @@ const WallPage = () => {
   // AIRING filter "did nothing" visually.
   const isActive = (s) => !!s.latestAirDate && s.latestAirDate >= thirtyDaysAgoStr();
   const tvFiltered = useMemo(() => {
-    // 即将上映 (upcoming) comes from intelligence tv.json — its own data source.
-    if (statusFilter === "upcoming") {
-      const q = searchQuery.trim().toLowerCase().replace(/[\u200B-\u200D\uFEFF]/g, "");
-      return (tvUpcoming || []).filter(s =>
-        !q || ((s.title || "").toLowerCase().includes(q) || (s.titleEn || "").toLowerCase().includes(q))
-      );
-    }
-    if (!tvData) return [];
-    const items = tvData.shows || [];
-    return items.filter((s) => {
+    const q = searchQuery.trim().toLowerCase().replace(/[\u200B-\u200D\uFEFF]/g, "");
+    const matches = (s) =>
+      !q || ((s.title || "").toLowerCase().includes(q) || (s.titleEn || "").toLowerCase().includes(q));
+    const airing = tvData ? (tvData.shows || []) : [];
+    // 即将上映 (upcoming) from intelligence tv.json.
+    const upcoming = tvUpcoming || [];
+    if (statusFilter === "upcoming") return upcoming.filter(matches);
+    // ALL: 即将上映 first (same as movie wall — unreleased on top), then aired.
+    if (statusFilter === "all") return [...upcoming.filter(matches), ...airing.filter(matches)];
+    // released / hiatus: only aired shows.
+    return airing.filter((s) => {
       if (statusFilter === "released" && !isActive(s)) return false; // only 追更中
       if (statusFilter === "hiatus" && isActive(s)) return false;    // only 待回归
-      const q = searchQuery.trim().toLowerCase().replace(/[\u200B-\u200D\uFEFF]/g, "");
-      if (q && !((s.title || "").toLowerCase().includes(q) || (s.titleEn || "").toLowerCase().includes(q))) return false;
-      return true;
+      return matches(s);
     });
   }, [tvData, tvUpcoming, statusFilter, searchQuery]);
 
