@@ -506,6 +506,10 @@ const WallPage = () => {
             )}
           </div>
 
+
+        </>
+      )}
+
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="max-w-4xl mx-auto px-4 pt-8 pb-4 flex items-center justify-center gap-1.5 flex-wrap">
@@ -540,8 +544,7 @@ const WallPage = () => {
               </button>
             </div>
           )}
-        </>
-      )}
+
 
       <SubscribeSection locale={locale} />
 
