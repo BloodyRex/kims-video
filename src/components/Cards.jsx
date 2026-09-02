@@ -60,10 +60,13 @@ export function RatingBadge({ score }) {
   if (!(score > 0)) return null;
   const bg = ratingColor(score);
   const comet = score >= 9;
+  // Light tier backgrounds (cyan 8-9, green 6-8) get dark text for contrast on
+  // the small 9px badge; gold (≥9, comet) and red (<6) keep white on dark.
+  const dark = score >= 6 && score < 9;
   return (
     <span
-      className={"absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black text-white leading-none " +
-        (comet ? "rating-comet" : "border-2 border-black")}
+      className={"absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-black leading-none " +
+        (comet ? "rating-comet text-black" : (dark ? "text-black" : "text-white") + " border-2 border-black")}
       style={!comet ? { backgroundColor: bg } : undefined}
     >
       {score.toFixed(1)}
