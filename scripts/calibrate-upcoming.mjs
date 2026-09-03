@@ -53,8 +53,9 @@ function score(s, w, unratedNeutral) {
 function pick(cands, w, unratedNeutral, tie = "pop") {
   const rows = cands.map(c => {
     const o = score(c, w, unratedNeutral);
-    const v = w.wDate * o.dateScore + w.wZh * o.zhScore + w.wRating * o.ratingScore;
-    return { c, o, v };
+    let v = w.wDate * o.dateScore + (w.wZh || 0) * o.zhScore + (w.wRating || 0) * o.ratingScore;
+    if (w.wPop) v += w.wPop * popN(c);
+    return { c, o, v, popN: popN(c) };
   });
   // tie="score": current worker behavior (pure score, unstable order → insertion order on ties)
   // tie="pop": deterministic — on equal score, higher popularity wins (keeps potential hits over cold junk)
@@ -75,11 +76,18 @@ console.log(`P1 pool size = ${pool1.length}  |  P3 pool size = ${pool3.length}, 
 
 const A0 = { wDate: 0.6, wZh: 0.1, wRating: 0.3 };
 const A1 = { wDate: 0.5, wZh: 0.05, wRating: 0.45 };
+const A3 = { wDate: 0.50, wPop: 0.30, wZh: 0.10, wRating: 0.10 };
+
+// popScore: pool-min-max normalized popularity (B's S_pop as a SOFT term, no hard floor)
+const pmax = Math.max(...gatedAll.map(s => s.popularity || 0));
+const pmin = Math.min(...gatedAll.map(s => s.popularity || 0));
+const popN = (s) => (pmax === pmin) ? 0.5 : ((s.popularity || 0) - pmin) / (pmax - pmin);
 
 fmt("P1 · A0 current", pick(pool1, A0, 0.5));
 fmt("P3 · A0 current (insertion order)", pick(pool3, A0, 0.5, "score"));
 fmt("P3 · A0 + pop tiebreak", pick(pool3, A0, 0.5, "pop"));
 fmt("P3 · A1 + pop tiebreak", pick(pool3, A1, 0.3, "pop"));
+fmt("P3 · A3 (pop weighted .30, soft)", pick(pool3, A3, 0.3, "score"));
 
 // turnover: does tiebreak change the pick once the pool is rich?
 const p3a0 = pick(pool3, A0, 0.5, "score").map(r => r.c.id);
