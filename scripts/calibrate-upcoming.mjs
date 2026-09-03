@@ -50,12 +50,17 @@ function score(s, w, unratedNeutral) {
   const ratingScore = s.vote_average ? Math.min(1, s.vote_average / 10) : (unratedNeutral ?? 0.5);
   return { d, dateScore, zhScore, ratingScore, pop: s.popularity || 0 };
 }
-function pick(cands, w, unratedNeutral) {
-  return cands.map(c => {
+function pick(cands, w, unratedNeutral, tie = "pop") {
+  const rows = cands.map(c => {
     const o = score(c, w, unratedNeutral);
     const v = w.wDate * o.dateScore + w.wZh * o.zhScore + w.wRating * o.ratingScore;
     return { c, o, v };
-  }).sort((a, b) => b.v - a.v).slice(0, 8);
+  });
+  // tie="score": current worker behavior (pure score, unstable order → insertion order on ties)
+  // tie="pop": deterministic — on equal score, higher popularity wins (keeps potential hits over cold junk)
+  if (tie === "pop") rows.sort((a, b) => (b.v - a.v) || (b.o.pop - a.o.pop));
+  else rows.sort((a, b) => b.v - a.v);
+  return rows.slice(0, 8);
 }
 function fmt(tag, rows) {
   console.log(`\n### ${tag}  (top 8)`);
@@ -72,13 +77,16 @@ const A0 = { wDate: 0.6, wZh: 0.1, wRating: 0.3 };
 const A1 = { wDate: 0.5, wZh: 0.05, wRating: 0.45 };
 
 fmt("P1 · A0 current", pick(pool1, A0, 0.5));
-fmt("P3 · A0 current", pick(pool3, A0, 0.5));
-fmt("P3 · A1 rebalance", pick(pool3, A1, 0.3));
+fmt("P3 · A0 current (insertion order)", pick(pool3, A0, 0.5, "score"));
+fmt("P3 · A0 + pop tiebreak", pick(pool3, A0, 0.5, "pop"));
+fmt("P3 · A1 + pop tiebreak", pick(pool3, A1, 0.3, "pop"));
 
-// turnover: does rebalance change the pick once the pool is rich?
-const p3a0 = pick(pool3, A0, 0.5).map(r => r.c.id);
-const p3a1 = pick(pool3, A1, 0.3).map(r => r.c.id);
-console.log("\n=== ①+A ROADMAP (P3, top-8) ===");
-console.log(`A0 keeps: ${p3a0.map(id => pool3.find(c => c.id === id)?.nameZh || id).join(" | ")}`);
-console.log(`A1 keeps: ${p3a1.map(id => pool3.find(c => c.id === id)?.nameZh || id).join(" | ")}`);
-console.log(`A0-only: ${p3a0.filter(id => !p3a1.includes(id)).length}  A1-only: ${p3a1.filter(id => !p3a0.includes(id)).length}`);
+// turnover: does tiebreak change the pick once the pool is rich?
+const p3a0 = pick(pool3, A0, 0.5, "score").map(r => r.c.id);
+const p3tb = pick(pool3, A0, 0.5, "pop").map(r => r.c.id);
+console.log("\n=== ①+TIE ROADMAP (P3) ===");
+const nameOf = (id) => pool3.find(c => c.id === id)?.name ?? id;
+console.log(`insn keeps: ${p3a0.map(nameOf).join(" | ")}`);
+console.log(`tie  keeps: ${p3tb.map(nameOf).join(" | ")}`);
+console.log(`insn→dropped: ${p3a0.filter(id => !p3tb.includes(id)).map(nameOf).join(" | ") || "none"}`);
+console.log(`tie→added:    ${p3tb.filter(id => !p3a0.includes(id)).map(nameOf).join(" | ") || "none"}`);
