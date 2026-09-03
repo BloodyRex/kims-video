@@ -86,6 +86,16 @@ const GROUPS = [
     ],
   },
   {
+    title: "评分可信度 · 贝叶斯加权（电影+剧集共用）", titleEn: "Credibility · Bayesian weighting (shared)",
+    formula: "credibility",
+    fields: [
+      { path: ["credibility", "minVotes"], code: "credibility.minVotes", label: "最小票数阈值 m", labelEn: "min votes m", type: "number", min: 1, max: 200, step: 1, desc: "IMDb 贝叶斯加权：票数≥m 时加权分≈原评分；票数→0 时加权分→中性基准 C。实测定标 20" },
+      { path: ["credibility", "meanRating"], code: "credibility.meanRating", label: "中性基准分 C", labelEn: "mean rating C", type: "number", min: 0, max: 10, step: 0.5, desc: "票数极低时加权分被拉向的锚点。实测定标 6.0（与 gateNow 门槛一致）。例：1票9.0 → 123→61" },
+      { path: ["credibility", "cnMinVotes"], code: "credibility.cnMinVotes", label: "国产/华语最小票数", labelEn: "CN min votes", type: "number", min: 1, max: 200, step: 1, desc: "国产/华语池的 m。实测(2026-09-03)国产池中位数95反而高于非国产，故默认与全局一致，不额外放宽" },
+      { path: ["credibility", "minVoteCountHard"], code: "credibility.minVoteCountHard", label: "启用硬下限", labelEn: "hard vote floor", type: "checkbox", desc: "默认关。开启后票数<m 的条目直接剔除（贝叶斯加权已自然压尾，仅当需要硬切时开启；国产用 cnMinVotes）" },
+    ],
+  },
+  {
     title: "AI 推荐 · 5部分类配比", titleEn: "AI search · 5-slot ratio",
     fields: [
       { path: ["ai", "recRatio", "total"], code: "ai.recRatio.total", label: "推荐总数", labelEn: "total", type: "number", min: 1, max: 10, step: 1, desc: "AI 搜索一次返回的推荐条目总数（默认5）" },
@@ -156,6 +166,7 @@ function FormulaBox({ kind, cfg, locale }) {
       { zh: `门槛分 = ${wR} × 评分 + ${wP} × min(${cap}, 热度 / ${scale})`, en: `gate = ${wR}·rating + ${wP}·min(${cap}, popularity/${scale})` },
       { zh: `入选条件：门槛分 ≥ ${floor}`, en: `admitted when gate ≥ ${floor}` },
       { zh: `国产片放宽：热度 ≥ ${cnPop} 且 评分 ≥ ${cnRate}`, en: `CN relax: popularity ≥ ${cnPop} and rating ≥ ${cnRate}` },
+      { zh: `「评分」= 贝叶斯加权分 R加权（见下「评分可信度」组）`, en: `\"rating\" = Bayesian-weighted R_adj (see Credibility group)` },
     ];
   } else if (kind === "scoreMovie") {
     const s = cfg?.movie?.score || {};
@@ -167,6 +178,7 @@ function FormulaBox({ kind, cfg, locale }) {
     lines = [
       { zh: `排名分 = (${wP}·S热度 + ${wD}·S新近 + ${wQ}·S口碑) / 100`, en: `rank = (${wP}·S_pop + ${wD}·S_date + ${wQ}·S_qual)/100` },
       { zh: `S新近：未来半衰期${hlF}天 / 过去${hlP}天，指数衰减`, en: `S_date: half-life ${hlF}d future / ${hlP}d past` },
+      { zh: `S口碑 = 贝叶斯加权分 R加权（见「评分可信度」组）`, en: `S_qual = Bayesian R_adj (Credibility group)` },
     ];
   } else if (kind === "scoreTv") {
     const s = cfg?.tv?.score || {};
@@ -178,6 +190,7 @@ function FormulaBox({ kind, cfg, locale }) {
     lines = [
       { zh: `排名分 = (${wP}·S热度 + ${wD}·S新近 + ${wQ}·S口碑) / 100`, en: `rank = (${wP}·S_pop + ${wD}·S_date + ${wQ}·S_qual)/100` },
       { zh: `S新近：用最近一季播出日，未来${hlF}天 / 过去${hlP}天半衰期`, en: `S_date: from latest season, ${hlF}d / ${hlP}d half-life` },
+      { zh: `S口碑 = 贝叶斯加权分 R加权（见「评分可信度」组）`, en: `S_qual = Bayesian R_adj (Credibility group)` },
     ];
   } else if (kind === "scoreUpcoming") {
     const s = cfg?.tv?.upcomingScore || {};
@@ -187,6 +200,17 @@ function FormulaBox({ kind, cfg, locale }) {
     lines = [
       { zh: `首播分 = ${wD}·日期近近 + ${wZ}·中文 + ${wR}·评分`, en: `upcoming = ${wD}·dateScore + ${wZ}·zh + ${wR}·rating` },
       { zh: `中文权重越高 → 越偏东亚剧；评分权重越高 → 越偏口碑`, en: `higher zh weight favors EA shows; higher rating favors reviews` },
+    ];
+  } else if (kind === "credibility") {
+    const m = fmt(num(["credibility","minVotes"],20));
+    const C = fmt(num(["credibility","meanRating"],6.0));
+    const cn = fmt(num(["credibility","cnMinVotes"],20));
+    const hard = getPath(cfg, ["credibility","minVoteCountHard"]) ? "ON" : "OFF";
+    lines = [
+      { zh: `R加权 = (v/(v+${m}))×评分 + (${m}/(v+${m}))×${C}`, en: `R_adj = (v/(v+${m}))·rating + (${m}/(v+${m}))·${C}` },
+      { zh: `v=票数。高票→≈原评分；低票→被拉向 ${C}（1票9.0 → 123；1000票8.1 → 81）`, en: `high v → ≈rating; low v → pulled to ${C}` },
+      { zh: `硬下限：${hard}（国产用 ${cn}）`, en: `hard floor: ${hard} (CN ${cn})` },
+      { zh: `作用于：电影复合门槛、S_qual 口碑分（电影+剧集）`, en: `applied to: movie gate, S_qual (movie+TV)` },
     ];
   } else return null;
   return (

@@ -248,6 +248,23 @@ function intelMapGenres(ids) { return (ids || []).map(id => INTEL_GENRE_IDS[id])
 function intelToday() { return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }); }
 function intelDaysAgo(n) { return new Date(Date.now() - n * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }); }
 function intelRatingOk(m) { return !m.vote_average || m.vote_average >= 4; }
+
+// ── 评分可信度：IMDb 贝叶斯加权 (2026-09-03) ──
+// R加权 = (v/(v+m))×R + (m/(v+m))×C
+//   R=TMDB vote_average, v=vote_count, m=minVotes, C=meanRating
+// 票数≥m → R加权≈R（可信）；票数→0 → R加权→C（被拉沉，刷分/个位数票高分失效）。
+// cred: { minVotes, meanRating }。返回0-10分（与 vote_average 同刻度）。
+function intelCredibleRating(item, cred) {
+  const v = item && item.vote_count ? item.vote_count : 0;
+  const R = item && item.vote_average ? item.vote_average : 0;
+  if (R <= 0) return 0;                                   // 无评分 → 0（上游原始可靠挡）
+  const m = (cred && cred.minVotes) || 20;
+  const C = (cred && cred.meanRating) != null ? cred.meanRating : 6.0;
+  if (v <= 0) return C;                                   // 有评分无票数 → 按中性基准（不硬砍）
+  const w = v / (v + m);
+  return w * R + (1 - w) * C;
+}
+
 const INTEL_TAG_CATEGORY = { trending: "trending", editor: "editor", hidden: "hidden-gem", world: "world" };
 function intelParseJSON(raw) { return JSON.parse(raw.replace(/```json/g, "").replace(/```/g, "").trim()); }
 
@@ -309,6 +326,19 @@ const DEFAULT_INTEL_CFG = {
     fillHiddenDesc: "高品质冷门/小众/独立影片",
     fillControversialDesc: "评价存在争议、口碑两极分化的影片",
   },
+  // ── 评分可信度 (2026-09-03 Rex 决策，IMDb 贝叶斯加权) ──
+  // 主方案：把"评分人数"纳入评分本身——票数越少的分越不可信，被拉向中性基准 C。
+  //   R加权 = (v/(v+m))×R + (m/(v+m))×C   (R=TMDB评分, v=vote_count, m=minVotes, C=meanRating)
+  // 已上映/已开播的普通来源用加权分；upcoming/premiere/TVMAZE 天然无票，不适用，跳过。
+  // 可选硬下限 minVoteCountHard 默认关：开启后对普通来源 .filter(v>=minVotes)，
+  // 但默认用贝叶斯加权自然压尾更稳妥，不误伤上映首周新片。
+  credibility: {
+    minVotes: 20,            // m：最小票数阈值（普通来源；CN池用 cnMinVotes）
+    meanRating: 6.0,         // C：中性基准分，票数→0 时 R加权→C
+    cnMinVotes: 20,          // 国产/华语池阈值。实测(2026-09-03)国产池中位数95反而高于非CN(24)，
+                             // 故默认与全局一致、不额外放宽；留作可调应对未来数据分布变化
+    minVoteCountHard: false, // 可选硬下限，默认关（贝叶斯加权已足够，硬砍易误伤新片）
+  },
 };
 
 // deep-merge for config overrides (arrays replace, scalars replace, objects merge).
@@ -366,12 +396,15 @@ function intelComputeScore(item, opts, today, batchMinPop, batchMaxPop) {
   const popRange = Math.max(batchMaxPop - batchMinPop, 1);
   const S_pop = Math.min(100, Math.max(0, ((pop - batchMinPop) / popRange) * 100));
 
-  // ── S_qual: quality from vote_average (0-100) ──
+  // ── S_qual: quality from credible rating (0-100) ──
+  // 用 IMDb 贝叶斯加权分（R加权）替代裸 vote_average：个位数票的高分被拉向 C，
+  // 高票高分才可信。cred 来自 opts.cred（admin 可调）。无票/无分仍走基线。
   let S_qual;
   const rawQual = item.vote_average;
   if (rawQual != null && rawQual > 0) {
-    // TMDB 0-10 scale → 0-100
-    S_qual = Math.min(100, Math.max(0, (rawQual / 10) * 100));
+    // TMDB 0-10 评分 → 贝叶斯加权 → 0-100
+    const credR = intelCredibleRating(item, opts && opts.cred);
+    S_qual = Math.min(100, Math.max(0, (credR / 10) * 100));
   } else if ((item.vote_count || 0) > 0) {
     // Has votes but result is 0 or unrated → neutral baseline
     S_qual = 50;
@@ -1016,8 +1049,8 @@ async function handleIntelOverview(env) {
   const today = intelToday();
   const weekAgo = intelDaysAgo(7);
   const cfg = await getIntelConfig(env);
-  const movieSc = { ...SCORE_OPTS.movie, ...cfg.movie.score };
-  const tvSc = { ...SCORE_OPTS.tv, ...cfg.tv.score };
+  const movieSc = { ...SCORE_OPTS.movie, ...cfg.movie.score, cred: cfg.credibility };
+  const tvSc = { ...SCORE_OPTS.tv, ...cfg.tv.score, cred: cfg.credibility };
 
   // Fetch data directly with same page counts as category handlers (21 subrequests)
   // MusicBrainz is wrapped in its own catch: a MB infra blip (525, hit
@@ -1236,7 +1269,7 @@ async function handleIntelMovies(env) {
   const cfg = await getIntelConfig(env);
   const sm = cfg.movie.sources;
   const reserve = cfg.movie.reserve;
-  const scoreOpts = { ...SCORE_OPTS.movie, ...cfg.movie.score };
+  const scoreOpts = { ...SCORE_OPTS.movie, ...cfg.movie.score, cred: cfg.credibility };
 
   const [nowPlayingRaw, cnPlayingRaw, releasedRaw, upcomingRaw] = await Promise.all([
     // US theatrical: 2 pages (CN-first bucketing means US dates only pre-filter)
@@ -1316,11 +1349,21 @@ async function handleIntelMovies(env) {
   // 高口碑佳作 (9.1,12.9→6.76) 与 热门高口碑 均入选；低口碑靠热度被挡
   // (4,100→5.8)。CN-theatrical 保持放宽（domestic 热度即可，不受此 gate）。
   const g = cfg.movie.gateNow;
+  const cred = cfg.credibility || {};
     const gateNowPlaying = (m) => {
       const pop = m.popularity || 0;
-      const rate = m.vote_average || 0;
+      // 用贝叶斯加权分 R加权 替代裸 vote_average：个位数票高分 (如 3票9.8) 被拉向 C，
+      // 过不了 floor；高票高分才可信。见 intelCredibleRating。
+      const rate = intelCredibleRating(m, { minVotes: cred.minVotes, meanRating: cred.meanRating }) || m.vote_average || 0;
       const pop10 = Math.min(g.popCap10, pop / g.popScale);          // popularity → 0-10
       return (g.wRating * rate + g.wPop * pop10) >= g.floor;
+    };
+    // 可选硬下限（默认关）：普通来源票数 < 门槛直接剔除。CN 用放宽值。
+    const hardFloor = (m) => {
+      if (!cred.minVoteCountHard) return true;
+      const v = m.vote_count || 0;
+      const t = cnPoolIds.has(m.id) ? (cred.cnMinVotes != null ? cred.cnMinVotes : 5) : cred.minVotes;
+      return v >= t;
     };
 
   // NOW PLAYING: exclude this week + upcoming, 90-day window (CN date based)
@@ -1331,7 +1374,8 @@ async function handleIntelMovies(env) {
     // CN-pool entries skip the zh filter (region=CN list returns EN everywhere)
     .filter(m => cnPoolIds.has(m.id) || cnFilter(m))
     // Composite gate (all above); CN-theatrical keeps relaxed domestic floor.
-        .filter(m => cnPoolIds.has(m.id) ? (m.popularity || 0) >= g.cnFloorPopularity && (!m.vote_average || m.vote_average >= g.cnFloorRating) : gateNowPlaying(m));
+        .filter(m => cnPoolIds.has(m.id) ? (m.popularity || 0) >= g.cnFloorPopularity && (!m.vote_average || m.vote_average >= g.cnFloorRating) : gateNowPlaying(m))
+    .filter(hardFloor);
       const nowPlayingSelected = intelSelectDiverse(nowPlayingCandidates, 15, reserve, scoreOpts, today);
   const nowPlayingNormalized = (await Promise.all(
     nowPlayingSelected.map(m => cnPoolIds.has(m.id)
@@ -1589,7 +1633,7 @@ async function handleIntelTV(env) {
   const cfg = await getIntelConfig(env);
   const stv = cfg.tv.sources;
   const reserve = cfg.tv.reserve;
-  const scoreOpts = { ...SCORE_OPTS.tv, ...cfg.tv.score };
+  const scoreOpts = { ...SCORE_OPTS.tv, ...cfg.tv.score, cred: cfg.credibility };
   const yearCutoff = cfg.tv.yearCutoff;
   const popFloor = cfg.tv.popFloor;
   const tier1 = cfg.tv.ongoingTier1;
@@ -1767,9 +1811,16 @@ async function handleIntelTV(env) {
       .filter(cnFilter);
     // 合并 + 去重（on_the_air 为主池,trending 补位）; _trendingOnly 标记整季放出型剧。
     const onAirIds = new Set(onTheAirCandidates.map(s => s.id));
-    const mergedOngoing = [...onTheAirCandidates];
+    let mergedOngoing = [...onTheAirCandidates];
     for (const s of trendingCandidates) {
       if (!onAirIds.has(s.id)) { s._trendingOnly = true; mergedOngoing.push(s); }
+    }
+    // 可选硬下限（默认关）：国产/华语放宽，其余用全局 minVotes。贝叶斯加权已自然压尾，
+    // 此过滤仅当 minVoteCountHard=true 时生效。
+    if (cfg.credibility && cfg.credibility.minVoteCountHard) {
+      const tGlobal = cfg.credibility.minVotes;
+      const tCn = (cfg.credibility.cnMinVotes != null) ? cfg.credibility.cnMinVotes : 5;
+      mergedOngoing = mergedOngoing.filter(s => (s.vote_count || 0) >= (cnFilter(s) ? tCn : tGlobal));
     }
     const ongoingCandidates = mergedOngoing;
 
