@@ -35,7 +35,7 @@
   },
   "stats": {
     "mbRaw": 400,
-    "afterFilter": 218,
+    "afterFilter": 214,
     "artistsChecked": 75,
     "afterArtistFilter": 54,
     "albumEnriched": 40,
@@ -44,6 +44,32 @@
     "sentToWorker": 18
   },
   "candidates": [
+    {
+      "id": "mb-6b42a64d-9ccd-475b-b2f9-cc818dca60f2",
+      "mbid": "6b42a64d-9ccd-475b-b2f9-cc818dca60f2",
+      "title": "PHASE I : Soft Violence",
+      "artist": "TAEMIN",
+      "releaseDate": "2026-08-31",
+      "year": "2026",
+      "type": "Album",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/72/eb/9e/72eb9efa-2454-a4a6-74ae-c4ef47444846/8800388639357_cover.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 652684,
+      "artistPlaycount": 54262506,
+      "albumListeners": 54,
+      "albumPlaycount": 616,
+      "score": 74.42665524219521,
+      "scoreBreakdown": {
+        "artist": 38.764686443080365,
+        "album": 8.661968799114844,
+        "freshness": 27
+      },
+      "daysOld": 3
+    },
     {
       "id": "mb-c6358baf-1e01-4991-ab6e-cb5d794e222a",
       "mbid": "c6358baf-1e01-4991-ab6e-cb5d794e222a",
@@ -86,7 +112,7 @@
         "album": 30,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-6f7853c8-e90a-4886-9535-0a14fa328903",
@@ -130,51 +156,7 @@
         "album": 29.554447445151155,
         "freshness": 0
       },
-      "daysOld": 244
-    },
-    {
-      "id": "mb-c45a9a09-acc2-4b37-a04d-0b9dbc654b22",
-      "mbid": "c45a9a09-acc2-4b37-a04d-0b9dbc654b22",
-      "title": "dinnermode",
-      "artist": "SUMIN",
-      "releaseDate": "2026-08-13",
-      "year": "2026",
-      "type": "Album",
-      "country": "KR",
-      "genres": [
-        "boogie",
-        "缓拍",
-        "neo-soul",
-        "hip hop soul",
-        "alternative rnb"
-      ],
-      "genresEn": [
-        "boogie",
-        "downtempo",
-        "neo-soul",
-        "hip hop soul",
-        "alternative rnb"
-      ],
-      "lfmTags": [
-        "boogie",
-        "downtempo",
-        "neo-soul",
-        "hip hop soul",
-        "alternative rnb"
-      ],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/06/9a/6e/069a6ecf-166b-7f5d-f3b3-8a77d7c0d64d/191953564548.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 126141,
-      "artistPlaycount": 4265145,
-      "albumListeners": 5647,
-      "albumPlaycount": 108753,
-      "score": 62.76479740268272,
-      "scoreBreakdown": {
-        "artist": 34.005708463998324,
-        "album": 18.759088938684396,
-        "freshness": 10
-      },
-      "daysOld": 20
+      "daysOld": 245
     },
     {
       "id": "mb-905ab586-c0f1-478f-812f-aa3dcb430a91",
@@ -212,13 +194,13 @@
       "artistPlaycount": 29366049,
       "albumListeners": 22875,
       "albumPlaycount": 736852,
-      "score": 61.97741590955394,
+      "score": 60.97741590955394,
       "scoreBreakdown": {
         "artist": 36.18061039586151,
         "album": 21.79680551369243,
-        "freshness": 4
+        "freshness": 3
       },
-      "daysOld": 26
+      "daysOld": 27
     },
     {
       "id": "mb-ca12bdf9-c25a-4d98-9188-86d41c71efbd",
@@ -262,7 +244,7 @@
         "album": 22.0713561404829,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
@@ -306,7 +288,7 @@
         "album": 24.729016431690287,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
@@ -350,7 +332,7 @@
         "album": 24.694624055007385,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
@@ -376,7 +358,7 @@
         "album": 18.71362565652349,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
@@ -420,33 +402,7 @@
         "album": 20.66673632793122,
         "freshness": 0
       },
-      "daysOld": 244
-    },
-    {
-      "id": "mb-d72aeb30-5786-442b-ae1f-420d320cc9ec",
-      "mbid": "d72aeb30-5786-442b-ae1f-420d320cc9ec",
-      "title": "Velvet Summer",
-      "artist": "Red Velvet",
-      "releaseDate": "2026-08-03",
-      "year": "2026",
-      "type": "EP",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9c/0f/10/9c0f107b-5c6a-eb24-c4f6-74661f5f19db/RV-DIGITAL_COVER.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 1493173,
-      "artistPlaycount": 257135493,
-      "albumListeners": 949,
-      "albumPlaycount": 19613,
-      "score": 54.88633106213646,
-      "scoreBreakdown": {
-        "artist": 40,
-        "album": 14.886331062136463,
-        "freshness": 0
-      },
-      "daysOld": 30
+      "daysOld": 245
     },
     {
       "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
@@ -490,7 +446,7 @@
         "album": 18.25978034766537,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-678bbf03-22b8-4342-bf02-7f0a0dcb353d",
@@ -516,7 +472,7 @@
         "album": 14.776032687709709,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-aca30a57-12bb-4a41-af25-59457048a844",
@@ -560,33 +516,7 @@
         "album": 21.40255039851638,
         "freshness": 0
       },
-      "daysOld": 244
-    },
-    {
-      "id": "mb-cdbacf0e-3278-446f-9c2d-6d0057490a33",
-      "mbid": "cdbacf0e-3278-446f-9c2d-6d0057490a33",
-      "title": "梓渝",
-      "artist": "梓渝",
-      "releaseDate": "2026-08-24",
-      "year": "2026",
-      "type": "Album",
-      "country": "CN",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/23/db/9a/23db9a63-3e24-0eca-2bc2-5ab2f707701a/cover.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 9387,
-      "artistPlaycount": 640910,
-      "albumListeners": 5,
-      "albumPlaycount": 590,
-      "score": 50.9783621407858,
-      "scoreBreakdown": {
-        "artist": 26.483512119105704,
-        "album": 3.4948500216800946,
-        "freshness": 21
-      },
-      "daysOld": 9
+      "daysOld": 245
     },
     {
       "id": "mb-c0d31807-a8ee-4127-847b-19f28630871c",
@@ -612,33 +542,33 @@
         "album": 17.868997911078704,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
-      "id": "mb-9d2523a8-fd80-4544-a11d-78f5c868445a",
-      "mbid": "9d2523a8-fd80-4544-a11d-78f5c868445a",
-      "title": "1126611",
-      "artist": "Shin In Ryu",
-      "releaseDate": "2026-08-12",
+      "id": "mb-cdbacf0e-3278-446f-9c2d-6d0057490a33",
+      "mbid": "cdbacf0e-3278-446f-9c2d-6d0057490a33",
+      "title": "梓渝",
+      "artist": "梓渝",
+      "releaseDate": "2026-08-24",
       "year": "2026",
-      "type": "EP",
-      "country": "KR",
+      "type": "Album",
+      "country": "CN",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0a/c8/b3/0ac8b32c-6a35-71cb-9ce6-8b85635ae075/8800388636493_cover.jpg/600x600bb.jpg",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/23/db/9a/23db9a63-3e24-0eca-2bc2-5ab2f707701a/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 20306,
-      "artistPlaycount": 234072,
-      "albumListeners": 301,
-      "albumPlaycount": 1719,
-      "score": 50.11032835695667,
+      "artistListeners": 9387,
+      "artistPlaycount": 640910,
+      "albumListeners": 5,
+      "albumPlaycount": 590,
+      "score": 49.9783621407858,
       "scoreBreakdown": {
-        "artist": 28.717495878987457,
-        "album": 12.392832477969215,
-        "freshness": 9
+        "artist": 26.483512119105704,
+        "album": 3.4948500216800946,
+        "freshness": 20
       },
-      "daysOld": 21
+      "daysOld": 10
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -682,7 +612,33 @@
         "album": 20.425739060634523,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
+    },
+    {
+      "id": "mb-9d2523a8-fd80-4544-a11d-78f5c868445a",
+      "mbid": "9d2523a8-fd80-4544-a11d-78f5c868445a",
+      "title": "1126611",
+      "artist": "Shin In Ryu",
+      "releaseDate": "2026-08-12",
+      "year": "2026",
+      "type": "EP",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0a/c8/b3/0ac8b32c-6a35-71cb-9ce6-8b85635ae075/8800388636493_cover.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 20306,
+      "artistPlaycount": 234072,
+      "albumListeners": 301,
+      "albumPlaycount": 1719,
+      "score": 49.11032835695667,
+      "scoreBreakdown": {
+        "artist": 28.717495878987457,
+        "album": 12.392832477969215,
+        "freshness": 8
+      },
+      "daysOld": 22
     },
     {
       "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
@@ -708,7 +664,7 @@
         "album": 17.89319604984036,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
@@ -734,7 +690,7 @@
         "album": 14.621396430309408,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
@@ -778,39 +734,7 @@
         "album": 13.665986325532847,
         "freshness": 0
       },
-      "daysOld": 244
-    },
-    {
-      "id": "mb-61ae72aa-afcb-4418-a5c5-249f097dc236",
-      "mbid": "61ae72aa-afcb-4418-a5c5-249f097dc236",
-      "title": "靈魂的回聲",
-      "artist": "回聲樂團",
-      "releaseDate": "2026-08-28",
-      "year": "2026",
-      "type": "Album",
-      "country": "TW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "taiwan",
-        "rock",
-        "indie",
-        "male vocalist",
-        "band"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2060,
-      "artistPlaycount": 88195,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 47.092448135794356,
-      "scoreBreakdown": {
-        "artist": 22.092448135794353,
-        "album": 0,
-        "freshness": 25
-      },
-      "daysOld": 5
+      "daysOld": 245
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -836,7 +760,7 @@
         "album": 15.793319904069946,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -862,7 +786,7 @@
         "album": 14.152943343425722,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-15e13404-810d-4918-880f-1d43ac51d1fe",
@@ -888,7 +812,39 @@
         "album": 15.846902476559746,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
+    },
+    {
+      "id": "mb-61ae72aa-afcb-4418-a5c5-249f097dc236",
+      "mbid": "61ae72aa-afcb-4418-a5c5-249f097dc236",
+      "title": "靈魂的回聲",
+      "artist": "回聲樂團",
+      "releaseDate": "2026-08-28",
+      "year": "2026",
+      "type": "Album",
+      "country": "TW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "taiwan",
+        "rock",
+        "indie",
+        "male vocalist",
+        "band"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 2060,
+      "artistPlaycount": 88195,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 46.092448135794356,
+      "scoreBreakdown": {
+        "artist": 22.092448135794353,
+        "album": 0,
+        "freshness": 24
+      },
+      "daysOld": 6
     },
     {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
@@ -914,7 +870,7 @@
         "album": 18.068680706309358,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -958,7 +914,7 @@
         "album": 12.164846454372029,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
@@ -984,7 +940,7 @@
         "album": 12.726535582329118,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
@@ -1010,7 +966,7 @@
         "album": 3.0102999566398116,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-f8536d9f-b285-4ec7-add3-62d1d53ccd14",
@@ -1036,7 +992,7 @@
         "album": 5.73064017839119,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
@@ -1062,7 +1018,7 @@
         "album": 15.86593134206137,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
@@ -1088,7 +1044,7 @@
         "album": 12.06649882040626,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
@@ -1114,7 +1070,7 @@
         "album": 9.256291743595376,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
@@ -1158,7 +1114,7 @@
         "album": 8.817139967814686,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-eed0703e-1587-4667-81df-c390c4f6a59a",
@@ -1184,7 +1140,33 @@
         "album": 6.611096473669597,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
+    },
+    {
+      "id": "mb-997158af-bea8-48d8-b4c5-a214cbeddacf",
+      "mbid": "997158af-bea8-48d8-b4c5-a214cbeddacf",
+      "title": "Summer, I",
+      "artist": "정은지",
+      "releaseDate": "2026-08-11",
+      "year": "2026",
+      "type": "EP",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 3299,
+      "artistPlaycount": 132563,
+      "albumListeners": 18,
+      "albumPlaycount": 206,
+      "score": 36.732244629152156,
+      "scoreBreakdown": {
+        "artist": 23.455882103635627,
+        "album": 6.2763625255165305,
+        "freshness": 7
+      },
+      "daysOld": 23
     },
     {
       "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
@@ -1210,7 +1192,7 @@
         "album": 11.558769305278771,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
@@ -1236,7 +1218,7 @@
         "album": 11.558769305278771,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-b1e5a339-4d56-4d74-a6e8-73987e330ff7",
@@ -1250,7 +1232,7 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c1/63/e3/c163e3b1-5c0e-1610-cfc1-798ba40578c9/4711720316802_new.jpg/600x600bb.jpg",
+      "cover": "",
       "source": "musicbrainz",
       "artistListeners": 3990,
       "artistPlaycount": 70893,
@@ -1262,39 +1244,7 @@
         "album": 10.41392685158225,
         "freshness": 0
       },
-      "daysOld": 32
-    },
-    {
-      "id": "mb-f9487af4-f5be-41f4-88a7-644b1aa0dd94",
-      "mbid": "f9487af4-f5be-41f4-88a7-644b1aa0dd94",
-      "title": "Heart Byte : LEGACY",
-      "artist": "HEART OF WOMAN",
-      "releaseDate": "2026-08-07",
-      "year": "2026",
-      "type": "Album",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "k-pop",
-        "Korean",
-        "pop",
-        "girl group",
-        "Girl Groups"
-      ],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5d/e5/11/5de511e0-3401-daef-7b19-ecfbd51db492/cover_KM0024667_1.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 35289,
-      "artistPlaycount": 642869,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 34.317595678263544,
-      "scoreBreakdown": {
-        "artist": 30.317595678263544,
-        "album": 0,
-        "freshness": 4
-      },
-      "daysOld": 26
+      "daysOld": 33
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
@@ -1338,7 +1288,39 @@
         "album": 9.286662482156343,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
+    },
+    {
+      "id": "mb-f9487af4-f5be-41f4-88a7-644b1aa0dd94",
+      "mbid": "f9487af4-f5be-41f4-88a7-644b1aa0dd94",
+      "title": "Heart Byte : LEGACY",
+      "artist": "HEART OF WOMAN",
+      "releaseDate": "2026-08-07",
+      "year": "2026",
+      "type": "Album",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "k-pop",
+        "Korean",
+        "pop",
+        "girl group",
+        "Girl Groups"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5d/e5/11/5de511e0-3401-daef-7b19-ecfbd51db492/cover_KM0024667_1.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 35289,
+      "artistPlaycount": 642869,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 33.317595678263544,
+      "scoreBreakdown": {
+        "artist": 30.317595678263544,
+        "album": 0,
+        "freshness": 3
+      },
+      "daysOld": 27
     },
     {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
@@ -1364,7 +1346,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-3df5ec15-0729-4210-b52d-eb1915c487e8",
@@ -1390,13 +1372,13 @@
       "artistPlaycount": 63263,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 28.95759490183029,
+      "score": 27.95759490183029,
       "scoreBreakdown": {
         "artist": 20.95759490183029,
         "album": 0,
-        "freshness": 8
+        "freshness": 7
       },
-      "daysOld": 22
+      "daysOld": 23
     },
     {
       "id": "mb-338d60e1-ad46-44c3-a5fa-b2b2d4daa554",
@@ -1422,7 +1404,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
@@ -1453,7 +1435,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
@@ -1485,7 +1467,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-f10db834-996c-4b1f-9563-98c7b9e80baa",
@@ -1511,7 +1493,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
@@ -1543,7 +1525,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-e178c01c-3f05-4070-9454-749687762747",
@@ -1575,7 +1557,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
@@ -1607,7 +1589,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
@@ -1639,7 +1621,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
@@ -1671,7 +1653,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
@@ -1700,7 +1682,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-dc113487-3606-48ce-976d-37748757097c",
@@ -1732,7 +1714,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-901435e9-1c31-4a69-9fe9-288b4d510d99",
@@ -1764,7 +1746,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "mb-4f123c9f-5775-4f3e-938c-6e4d90cd3944",
@@ -1790,7 +1772,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 244
+      "daysOld": 245
     },
     {
       "id": "chart-0",
@@ -3228,7 +3210,7 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://lastfm-img.freetls.fastly.net/i/u/174s/b16aeae24629ee6d9b8d5be777c2b249.png",
+      "cover": "https://lastfm-img.freetls.fastly.net/i/u/174s/4493e2b31c59813f30ce72463393d914.png",
       "source": "chart",
       "artistListeners": 0,
       "artistPlaycount": 0,
