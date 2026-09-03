@@ -37,11 +37,11 @@ const disc3 = await discoverPages(TOKEN, "/discover/tv", {
 
 // Gate once up front (worker passes all 3 pages through the same filter)
 const gatedAll = disc3.filter(s => s.first_air_date && s.first_air_date > NOW).filter(intelRatingOk).filter(s => titleCn(s) || ovZh(s));
-// Pool(P1): page-1 slice of the gated set preserves the current 1-page behavior approx.
-// (worker's current pool = 1 page pre-gate; reconstruct by popularity order among gated).
-const gatedSortedByPop = [...gatedAll].sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
-const pool1 = gatedSortedByPop.slice(0, 7);      // current pool observed live = 7 zh-visible
-const pool3 = gatedSortedByPop;                   // expanded pool
+// Pool(P1): current 1-page behavior ≈ the first ~7 zh-visible gated items (live observed = 7).
+// Pool(P3): expanded 3-page pool. Keep discover's NATURAL page order (worker does NOT re-sort
+// the gated pool by popularity — scoreUpcoming only sorts by score, ties preserve page order).
+const pool1 = gatedAll.slice(0, 7);
+const pool3 = gatedAll;
 
 function score(s, w, unratedNeutral) {
   const d = Math.max(0, Math.ceil((new Date(s.first_air_date) - new Date(NOW)) / 864e5));
