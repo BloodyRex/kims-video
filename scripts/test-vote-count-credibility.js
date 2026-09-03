@@ -19,9 +19,10 @@ const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai"
 const daysAgo = (n) => new Date(Date.now() - n * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
 
 async function pages(url, n) {
+  const sep = url.includes("?") ? "&" : "?";
   const out = [];
   for (let i = 1; i <= n && i <= 500; i++) {
-    const r = await fetch(`${url}&page=${i}&language=zh-CN`, { headers: { Authorization: `Bearer ${TOKEN}` } });
+    const r = await fetch(`${url}${sep}page=${i}&language=zh-CN`, { headers: { Authorization: `Bearer ${TOKEN}` } });
     if (!r.ok) { console.log(`  !! ${url} page${i}: HTTP ${r.status}`); break; }
     const j = await r.json();
     out.push(...(j.results || []));
@@ -68,17 +69,14 @@ async function main() {
   console.log("TODAY(CN):", today, " 90d-ago:", daysAgo(90));
 
   // ═══ MOVIE: replicate recentMerged (US now_playing 4p + discover90d 3p) ═══
-  const raw = [
-    ...await pages("https://api.themoviedb.org/3/movie/now_playing?region=US", 4),
-    ...await pages(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${daysAgo(90)}&primary_release_date.lte=${today}&sort_by=popularity.desc`, 3),
-  ];
-  const dedup = new Map();
-  for (const m of raw) if (!dedup.has(m.id)) dedup.set(m.id, m);
-  const movies = [...dedup.values()];
-
-  // CN pool = discover hits (recent past-90d, mirrors cnPoolIds build) — proxy: origin countries
-  // Proper worker cnPoolIds = discover past-90d entries. We approximate by those `origin_country` incl CN/HK/TW.
-  cnPoolIds = new Set(movies.filter(m => (m.origin_country||[]).some(c => ["CN","HK","TW"].includes(c))).map(m => m.id));
+    const US = await pages("https://api.themoviedb.org/3/movie/now_playing?region=US", 4);
+    const DIS = await pages(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${daysAgo(90)}&primary_release_date.lte=${today}&sort_by=popularity.desc`, 3);
+    // worker: cnPool = ids seen in the past-90d discover window (recentIds≡cnPoolIds build)
+    cnPoolIds = new Set(DIS.map(m => m.id));
+    const raw = [...US, ...DIS];
+    const dedup = new Map();
+    for (const m of raw) if (!dedup.has(m.id)) dedup.set(m.id, m);
+    const movies = [...dedup.values()];
 
   const movieCands = movies
     .filter(m => m.release_date && m.release_date >= daysAgo(90))
