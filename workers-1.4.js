@@ -317,7 +317,7 @@ const DEFAULT_INTEL_CFG = {
         ongoingTier2: 5,                             // 其余剧补充名额
         ongoingDetailCap: 8,                         // 热播剧 episode detail 回填上限(防50子请求超限)
     detailBudget: 12,                            // premieres+ongoing 共享的 episode-detail 总预算(防50子请求超限)
-    upcomingScore: { wDate: 0.6, wZh: 0.1, wRating: 0.3 }, // 即将播出评分权重(日期/中文/评分) 三者需和=1
+    upcomingScore: { wDate: 0.5, wPop: 0.3, wZh: 0.1, wRating: 0.1 }, // 即将播出评分权重(日期/热度/中文/评分) 四者和=1; wPop 2026-09-04 加(池内min-max软信号),修 dateScore 全打平
     score:     { w_pop: 0.25, w_date: 0.45, w_qual: 0.30, hlFuture: 14, hlPast: 7 },
   },
   ai: {                                          // AI 搜索推荐"恰好5部"的分类配比
@@ -1638,7 +1638,7 @@ async function handleIntelTV(env) {
   const popFloor = cfg.tv.popFloor;
   const tier1 = cfg.tv.ongoingTier1;
   const tier2 = cfg.tv.ongoingTier2;
-  const upcomingScore = cfg.tv.upcomingScore || { wDate: 0.6, wZh: 0.1, wRating: 0.3 };
+  const upcomingScore = cfg.tv.upcomingScore || { wDate: 0.5, wPop: 0.3, wZh: 0.1, wRating: 0.1 };
   const detailBudget = cfg.tv.detailBudget != null ? cfg.tv.detailBudget : 12;
 
   // ── Data sources (2026-08-27 v3: + trending-pagination whole-season recovery) ──
@@ -1745,13 +1745,18 @@ async function handleIntelTV(env) {
   for (const s of tvmazeUpcoming) {
     if (!discIds.has(s.id)) upcomingMerged.push(s);
   }
+  // 池内 min/max 热度归一(软信号,2026-09-04): 仅 coerce 真实 popularity; tvmaze 合成 pop(50)不参与归一,避免拉偏。
+  const realPops = upcomingFromDiscover.map(s => s.popularity).filter(p => typeof p === 'number' && isFinite(p));
+  const popMin = realPops.length ? Math.min(...realPops) : 0;
+  const popMax = realPops.length ? Math.max(...realPops) : 1;
   const scoreUpcoming = (s) => {
     const daysUntil = Math.max(0, Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000));
     const dateScore = daysUntil <= 30 ? 1 : Math.max(0, 1 - (daysUntil - 30) / 60); // 30d peak, decays to 0 by 90d
     const zhScore = (titleCn(s) ? 0.5 : 0) + (hasChinese(s.overview) ? 0.5 : 0);
     const ratingScore = s.vote_average ? Math.min(1, s.vote_average / 10) : 0.5; // neutral when no rating
-    // 权重可调 (2026-08-28): 中文系数降低、评分系数提高 → 减少东亚剧系统性偏多。
-    return { s, score: upcomingScore.wDate * dateScore + upcomingScore.wZh * zhScore + upcomingScore.wRating * ratingScore };
+    const popScore = (s.popularity != null && popMax > popMin) ? (s.popularity - popMin) / (popMax - popMin) : 0.5; // 池内min-max软信号
+    // 权重可调 (2026-09-04): 加 wPop(池内min-max热度) 破 dateScore 全打平; 日期降 0.5→热度 0.3 修冷门挤入。
+    return { s, score: upcomingScore.wDate * dateScore + (upcomingScore.wPop || 0) * popScore + (upcomingScore.wZh || 0) * zhScore + (upcomingScore.wRating || 0) * ratingScore };
   };
   const upcomingSelected = upcomingMerged
     .map(scoreUpcoming)

@@ -71,9 +71,10 @@ const GROUPS = [
       { path: ["tv", "ongoingTier1"], code: "tv.ongoingTier1", label: "近30天活跃名额", labelEn: "tier-1 quota", type: "number", min: 1, max: 15, step: 1, desc: "近30天有新集/近180天首播的剧优先入选的名额" },
       { path: ["tv", "ongoingTier2"], code: "tv.ongoingTier2", label: "其余剧名额", labelEn: "tier-2 quota", type: "number", min: 0, max: 15, step: 1, desc: "其余 2010+ 剧集合计补充名额" },
       { path: ["tv", "detailBudget"], code: "tv.detailBudget", label: "详情回填总预算", labelEn: "detail budget", type: "number", min: 1, max: 30, step: 1, desc: "本周首播+热播共用的 S/E 详情回填总数上限。防拉爆50子请求预算。热播剧优先，首播仅用剩余额度" },
-      { path: ["tv", "upcomingScore", "wDate"], code: "tv.upcomingScore.wDate", label: "首播·日期权重", labelEn: "upcoming date wt", type: "number", min: 0, max: 1, step: 0.05, desc: "即将播出评分中「日期近近」的权重（30天内峰值）" },
+      { path: ["tv", "upcomingScore", "wDate"], code: "tv.upcomingScore.wDate", label: "首播·日期权重", labelEn: "upcoming date wt", type: "number", min: 0, max: 1, step: 0.05, desc: "即将播出评分中「日期近近」的权重（30天内峰值）。默认0.5" },
+      { path: ["tv", "upcomingScore", "wPop"], code: "tv.upcomingScore.wPop", label: "首播·热度权重", labelEn: "upcoming pop wt", type: "number", min: 0, max: 1, step: 0.05, desc: "即将播出评分「热度」权重(池内min-max归一软信号)。防全剧同分、拉冷门出局。默认0.3" },
       { path: ["tv", "upcomingScore", "wZh"], code: "tv.upcomingScore.wZh", label: "首播·中文权重", labelEn: "upcoming zh wt", type: "number", min: 0, max: 1, step: 0.05, desc: "即将播出评分中「中文标题+简介」的权重。此项越高越偏向中文/东亚剧" },
-      { path: ["tv", "upcomingScore", "wRating"], code: "tv.upcomingScore.wRating", label: "首播·评分权重", labelEn: "upcoming rating wt", type: "number", min: 0, max: 1, step: 0.05, desc: "即将播出评分中「口碑(评分)」的权重。三项建议和=1" },
+      { path: ["tv", "upcomingScore", "wRating"], code: "tv.upcomingScore.wRating", label: "首播·评分权重", labelEn: "upcoming rating wt", type: "number", min: 0, max: 1, step: 0.05, desc: "即将播出评分中「口碑(评分)」的权重。四项建议和=1" },
       { path: ["tv", "reserve", "cn"], code: "tv.reserve.cn", label: "大陆保底", labelEn: "cn quota", type: "number", min: 0, max: 15, step: 1, desc: "大陆剧保底席位" },
       { path: ["tv", "reserve", "hmt"], code: "tv.reserve.hmt", label: "港台保底", labelEn: "hmt quota", type: "number", min: 0, max: 15, step: 1, desc: "港台剧保底席位" },
       { path: ["tv", "reserve", "jp"], code: "tv.reserve.jp", label: "日本保底", labelEn: "jp quota", type: "number", min: 0, max: 15, step: 1, desc: "日本剧保底席位" },
@@ -195,11 +196,12 @@ function FormulaBox({ kind, cfg, locale }) {
   } else if (kind === "scoreUpcoming") {
     const s = cfg?.tv?.upcomingScore || {};
     const wD = fmt(num(["tv","upcomingScore","wDate"],0.6));
+    const wP = fmt(num(["tv","upcomingScore","wPop"],0.3));
     const wZ = fmt(num(["tv","upcomingScore","wZh"],0.1));
     const wR = fmt(num(["tv","upcomingScore","wRating"],0.3));
     lines = [
-      { zh: `首播分 = ${wD}·日期近近 + ${wZ}·中文 + ${wR}·评分`, en: `upcoming = ${wD}·dateScore + ${wZ}·zh + ${wR}·rating` },
-      { zh: `中文权重越高 → 越偏东亚剧；评分权重越高 → 越偏口碑`, en: `higher zh weight favors EA shows; higher rating favors reviews` },
+      { zh: `首播分 = ${wD}·日期近近 + ${wP}·热度 + ${wZ}·中文 + ${wR}·评分`, en: `upcoming = ${wD}·date + ${wP}·pop + ${wZ}·zh + ${wR}·rating` },
+      { zh: `热度权重按全池min-max归一(软信号)，防全剧同分；中文权重越高→越偏东亚剧`, en: `pop normalized by pool min-max (soft); higher zh favors EA shows` },
     ];
   } else if (kind === "credibility") {
     const m = fmt(num(["credibility","minVotes"],20));
