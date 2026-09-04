@@ -2735,7 +2735,7 @@ function renderDigestHtml(d, now, locale) {
   const en = locale === "en";
   const L = (zhStr, enStr) => (en ? enStr : zhStr);
   const pickTitle = (item) => (en ? (item.titleEn || item.title) : item.title);
-  const { dig, overview, tvData, musicData, moviesData, gemsData, wallDelta, tvWallDelta } = d;
+  const { dig, overview, tvData, musicData, moviesData, gemsData, wallDelta, tvWallDelta, todayStar } = d;
 
   const stats = overview.stats || {};
   const date = d.dig.date || d.overview.updated || now;
@@ -2937,6 +2937,20 @@ function renderDigestHtml(d, now, locale) {
     ${trendsHtml}
   </div>` : ""}
 
+  <!-- Today's Star (one standout pick — movie or TV — daily, never repeated across days) -->
+  ${todayStar ? `
+  <div style="background:#000;border:4px solid #ffff00;padding:12px;margin-bottom:16px">
+    ${title(L("⭐ 今日之星", "⭐ TODAY'S STAR"))}
+    <table style="width:100%"><tr>
+      ${todayStar.poster ? `<td style="width:92px;vertical-align:top;padding-right:8px"><img src="${thumb(todayStar.poster)}" alt="" style="width:92px;height:138px;border:1px solid #333;display:block"></td>` : ""}
+      <td style="vertical-align:top">
+        <div style="font-size:16px;color:#ffff00;font-weight:bold"><a href="https://bloodyrex.xyz/?from=digest&r=${todayStar.tmdbId}${todayStar.mediaType === "tv" ? "&type=tv" : ""}" style="color:#ffff00;text-decoration:none">${pickTitle(todayStar) || ""}</a></div>
+        <div style="font-size:11px;color:#999;margin-top:2px">${L(todayStar.mediaType === "tv" ? "📺 剧集" : "🎬 电影", todayStar.mediaType === "tv" ? "📺 TV" : "🎬 MOVIE")}${todayStar.rating ? ` · ${L("评分", "Rated")} ${todayStar.rating}/10` : ""}${todayStar.year ? ` · ${todayStar.year}` : ""}</div>
+        ${(en ? todayStar.reasonEn : todayStar.reason) ? `<div style="font-size:12px;color:#ccc;margin-top:4px;line-height:1.5">${en ? todayStar.reasonEn : todayStar.reason}</div>` : ""}
+      </td>
+    </tr></table>
+  </div>` : ""}
+
   <!-- Release Calendar (Movies + TV) -->
   ${calendarHtml ? `
   ${title(L("📅 排片日历", "📅 RELEASE CALENDAR"))}
@@ -3003,9 +3017,55 @@ function renderDigestHtml(d, now, locale) {
 
 // ── Public builder: one data fetch, render both locales ──
 // Returns { zh: {...}, en: {...} } plus shared date/headline fields.
+// ── Today's Star: one standout pick per day (movie OR TV), never repeated across
+// days. Selection + reasons come from the day's existing AI-curated gems (whyWatch
+// is already AI-written), so this is ZERO extra LLM calls and can't fail on DeepSeek.
+// Dedup via KV `dailyStar:history` (cumulative set of `mediaType:tmdbId` keys, no TTL);
+// `dailyStar:${today}` caches the day's pick so a rebuild (retry / new-subscriber
+// path) reuses it instead of double-appending to history.
+async function pickTodayStar(env, gemsAll, today) {
+  if (!env?.SUBSCRIBE_KV || !Array.isArray(gemsAll) || !gemsAll.length) return null;
+  const starKey = `dailyStar:${today}`;
+  const existing = await env.SUBSCRIBE_KV.get(starKey).catch(() => null);
+  if (existing) {
+    try { return JSON.parse(existing); } catch { /* fall through to rebuild */ }
+  }
+  const histRaw = await env.SUBSCRIBE_KV.get(`dailyStar:history`).catch(() => null);
+  const history = histRaw ? (JSON.parse(histRaw) || []) : [];
+  const usedKeys = new Set(history.map(h => `${h.mediaType}:${h.tmdbId}`));
+  // Candidate = any gem not already featured as a past star; keep ones with a
+  // usable reason/poster for a rich card. Score: rating + AI reason + poster.
+  const cands = gemsAll
+    .filter(g => g && g.tmdbId && !usedKeys.has(`${g.mediaType || "movie"}:${g.tmdbId}`))
+    .map(g => ({ g, score: (g.rating || 0) + (g.whyWatch ? 2 : g.summary ? 1 : 0) + (g.poster ? 1 : 0) }))
+    .sort((a, b) => b.score - a.score);
+  if (!cands.length) return null; // every gem has been a star already → show no section (hard no-repeat)
+  const picked = cands[0].g;
+  const type = picked.mediaType === "tv" ? "tv" : "movie";
+  const star = {
+    tmdbId: picked.tmdbId,
+    mediaType: type,
+    title: picked.title || "",
+    poster: picked.poster || "",
+    rating: picked.rating || 0,
+    year: picked.year || "",
+    reason: picked.whyWatch || picked.summary || `评分 ${picked.rating || 0}/10 的${type === "tv" ? "剧集" : "电影"}，今日值得一看`,
+    reasonEn: picked.whyWatchEn || picked.summaryEn || picked.whyWatch || picked.summary || `Rated ${picked.rating || 0}/10 — worth a look today`,
+  };
+  // Append then persist. Concurrency here is negligible (one cron build/day); the
+  // usedKeys Set makes a rare duplicate history row harmless.
+  history.push({ mediaType: type, tmdbId: picked.tmdbId });
+  await env.SUBSCRIBE_KV.put(`dailyStar:history`, JSON.stringify(history)).catch(() => {});
+  await env.SUBSCRIBE_KV.put(starKey, JSON.stringify(star), { expirationTtl: 172800 }).catch(() => {});
+  return star;
+}
+
 async function buildDigestHTML(env, now) {
   now = now || intelToday();
   const data = await withTimeout(fetchDigestData(), 45000, "fetchDigestData");
+  // Today's Star: inject into render data so both zh+en share one pick (deduped once daily).
+  const star = await pickTodayStar(env, (data.gemsData?.gems || []), now).catch(() => null);
+  if (star) data.todayStar = star;
   const zh = renderDigestHtml(data, now, "zh");
   const enResult = renderDigestHtml(data, now, "en");
   return {
