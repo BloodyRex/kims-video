@@ -34,13 +34,13 @@
     "regionalArtistReserve": 16
   },
   "stats": {
-    "mbRaw": 300,
-    "afterFilter": 159,
+    "mbRaw": 400,
+    "afterFilter": 217,
     "artistsChecked": 75,
-    "afterArtistFilter": 54,
+    "afterArtistFilter": 52,
     "albumEnriched": 40,
     "chartItems": 359,
-    "totalCandidates": 413,
+    "totalCandidates": 411,
     "sentToWorker": 18
   },
   "candidates": [
@@ -86,7 +86,7 @@
         "album": 30,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-6f7853c8-e90a-4886-9535-0a14fa328903",
@@ -130,51 +130,51 @@
         "album": 29.55465805120808,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
-      "id": "mb-905ab586-c0f1-478f-812f-aa3dcb430a91",
-      "mbid": "905ab586-c0f1-478f-812f-aa3dcb430a91",
-      "title": "<Hyper-Ego>",
-      "artist": "ARTMS",
-      "releaseDate": "2026-08-07",
+      "id": "mb-c45a9a09-acc2-4b37-a04d-0b9dbc654b22",
+      "mbid": "c45a9a09-acc2-4b37-a04d-0b9dbc654b22",
+      "title": "dinnermode",
+      "artist": "SUMIN",
+      "releaseDate": "2026-08-13",
       "year": "2026",
-      "type": "EP",
+      "type": "Album",
       "country": "KR",
       "genres": [
-        "韩流",
-        "韩国音乐",
-        "kpop",
-        "loona",
-        "2026"
+        "boogie",
+        "缓拍",
+        "neo-soul",
+        "hip hop soul",
+        "alternative rnb"
       ],
       "genresEn": [
-        "k-pop",
-        "korean",
-        "kpop",
-        "loona",
-        "2026"
+        "boogie",
+        "downtempo",
+        "neo-soul",
+        "hip hop soul",
+        "alternative rnb"
       ],
       "lfmTags": [
-        "k-pop",
-        "korean",
-        "kpop",
-        "loona",
-        "2026"
+        "boogie",
+        "downtempo",
+        "neo-soul",
+        "hip hop soul",
+        "alternative rnb"
       ],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7b/59/c5/7b59c503-16c1-2b8f-8724-85237a83d38c/8804775403491.jpg/600x600bb.jpg",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/06/9a/6e/069a6ecf-166b-7f5d-f3b3-8a77d7c0d64d/191953564548.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 267512,
-      "artistPlaycount": 29384073,
-      "albumListeners": 23099,
-      "albumPlaycount": 746077,
-      "score": 61.00025434955505,
+      "artistListeners": 126208,
+      "artistPlaycount": 4268401,
+      "albumListeners": 5737,
+      "albumPlaycount": 110966,
+      "score": 60.800670146672736,
       "scoreBreakdown": {
-        "artist": 36.182288455263695,
-        "album": 21.81796589429135,
-        "freshness": 3
+        "artist": 34.00724589726053,
+        "album": 18.793424249412205,
+        "freshness": 8
       },
-      "daysOld": 27
+      "daysOld": 22
     },
     {
       "id": "mb-ca12bdf9-c25a-4d98-9188-86d41c71efbd",
@@ -218,7 +218,51 @@
         "album": 22.0729449718152,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
+    },
+    {
+      "id": "mb-905ab586-c0f1-478f-812f-aa3dcb430a91",
+      "mbid": "905ab586-c0f1-478f-812f-aa3dcb430a91",
+      "title": "<Hyper-Ego>",
+      "artist": "ARTMS",
+      "releaseDate": "2026-08-07",
+      "year": "2026",
+      "type": "EP",
+      "country": "KR",
+      "genres": [
+        "韩流",
+        "韩国音乐",
+        "kpop",
+        "loona",
+        "2026"
+      ],
+      "genresEn": [
+        "k-pop",
+        "korean",
+        "kpop",
+        "loona",
+        "2026"
+      ],
+      "lfmTags": [
+        "k-pop",
+        "korean",
+        "kpop",
+        "loona",
+        "2026"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7b/59/c5/7b59c503-16c1-2b8f-8724-85237a83d38c/8804775403491.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 267512,
+      "artistPlaycount": 29384073,
+      "albumListeners": 23099,
+      "albumPlaycount": 746077,
+      "score": 60.00025434955505,
+      "scoreBreakdown": {
+        "artist": 36.182288455263695,
+        "album": 21.81796589429135,
+        "freshness": 2
+      },
+      "daysOld": 28
     },
     {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
@@ -262,7 +306,7 @@
         "album": 24.729164032085226,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
@@ -306,33 +350,7 @@
         "album": 24.69667256690064,
         "freshness": 0
       },
-      "daysOld": 245
-    },
-    {
-      "id": "mb-f22190a3-49b0-47e0-a0c3-6bcd560d5f58",
-      "mbid": "f22190a3-49b0-47e0-a0c3-6bcd560d5f58",
-      "title": "Fallen Angel",
-      "artist": "제니",
-      "releaseDate": "2026-08-28",
-      "year": "2026",
-      "type": "EP",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 8862,
-      "artistPlaycount": 250680,
-      "albumListeners": 35,
-      "albumPlaycount": 1529,
-      "score": 58.03721852638867,
-      "scoreBreakdown": {
-        "artist": 26.31687830463729,
-        "album": 7.720340221751379,
-        "freshness": 24
-      },
-      "daysOld": 6
+      "daysOld": 246
     },
     {
       "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
@@ -358,7 +376,7 @@
         "album": 18.71362565652349,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
@@ -402,7 +420,7 @@
         "album": 20.66673632793122,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-dda01573-1be8-4f7a-b06f-9cc3d066f515",
@@ -446,7 +464,7 @@
         "album": 18.26316534041555,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-678bbf03-22b8-4342-bf02-7f0a0dcb353d",
@@ -472,77 +490,7 @@
         "album": 14.776032687709709,
         "freshness": 0
       },
-      "daysOld": 245
-    },
-    {
-      "id": "mb-aca30a57-12bb-4a41-af25-59457048a844",
-      "mbid": "aca30a57-12bb-4a41-af25-59457048a844",
-      "title": "Big Cock",
-      "artist": "King Kurt",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "GB",
-      "genres": [
-        "psychobilly",
-        "duane eddy",
-        "king kurt",
-        "rockabilly",
-        "i feel good"
-      ],
-      "genresEn": [
-        "psychobilly",
-        "duane eddy",
-        "king kurt",
-        "rockabilly",
-        "i feel good"
-      ],
-      "lfmTags": [
-        "psychobilly",
-        "duane eddy",
-        "king kurt",
-        "rockabilly",
-        "i feel good"
-      ],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/27/20/88/27208842-4ee3-3585-0b62-06b5d32cb63d/5013929991309.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 33561,
-      "artistPlaycount": 312375,
-      "albumListeners": 19077,
-      "albumPlaycount": 105462,
-      "score": 51.57478301718726,
-      "scoreBreakdown": {
-        "artist": 30.17223261867088,
-        "album": 21.40255039851638,
-        "freshness": 0
-      },
-      "daysOld": 245
-    },
-    {
-      "id": "mb-268d81bf-6af4-4bfd-b4ce-41a7e777c144",
-      "mbid": "268d81bf-6af4-4bfd-b4ce-41a7e777c144",
-      "title": "Nothing Hurts Like Everything",
-      "artist": "Ourson",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "CA",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 39661,
-      "artistPlaycount": 328611,
-      "albumListeners": 10634,
-      "albumPlaycount": 41079,
-      "score": 50.78924101437097,
-      "scoreBreakdown": {
-        "artist": 30.655757734480176,
-        "album": 20.1334832798908,
-        "freshness": 0
-      },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-c0d31807-a8ee-4127-847b-19f28630871c",
@@ -568,33 +516,7 @@
         "album": 17.870156338638594,
         "freshness": 0
       },
-      "daysOld": 245
-    },
-    {
-      "id": "mb-cdbacf0e-3278-446f-9c2d-6d0057490a33",
-      "mbid": "cdbacf0e-3278-446f-9c2d-6d0057490a33",
-      "title": "梓渝",
-      "artist": "梓渝",
-      "releaseDate": "2026-08-24",
-      "year": "2026",
-      "type": "Album",
-      "country": "CN",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/23/db/9a/23db9a63-3e24-0eca-2bc2-5ab2f707701a/cover.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 9424,
-      "artistPlaycount": 641174,
-      "albumListeners": 5,
-      "albumPlaycount": 644,
-      "score": 49.98975187130027,
-      "scoreBreakdown": {
-        "artist": 26.494901849620177,
-        "album": 3.4948500216800946,
-        "freshness": 20
-      },
-      "daysOld": 10
+      "daysOld": 246
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -638,33 +560,33 @@
         "album": 20.425739060634523,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
-      "id": "mb-9d2523a8-fd80-4544-a11d-78f5c868445a",
-      "mbid": "9d2523a8-fd80-4544-a11d-78f5c868445a",
-      "title": "1126611",
-      "artist": "Shin In Ryu",
-      "releaseDate": "2026-08-12",
+      "id": "mb-cdbacf0e-3278-446f-9c2d-6d0057490a33",
+      "mbid": "cdbacf0e-3278-446f-9c2d-6d0057490a33",
+      "title": "梓渝",
+      "artist": "梓渝",
+      "releaseDate": "2026-08-24",
       "year": "2026",
-      "type": "EP",
-      "country": "KR",
+      "type": "Album",
+      "country": "CN",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0a/c8/b3/0ac8b32c-6a35-71cb-9ce6-8b85635ae075/8800388636493_cover.jpg/600x600bb.jpg",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/23/db/9a/23db9a63-3e24-0eca-2bc2-5ab2f707701a/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 20312,
-      "artistPlaycount": 234146,
-      "albumListeners": 307,
-      "albumPlaycount": 1743,
-      "score": 49.154043129823705,
+      "artistListeners": 9424,
+      "artistPlaycount": 641174,
+      "albumListeners": 5,
+      "albumPlaycount": 644,
+      "score": 48.98975187130027,
       "scoreBreakdown": {
-        "artist": 28.71835125243777,
-        "album": 12.435691877385933,
-        "freshness": 8
+        "artist": 26.494901849620177,
+        "album": 3.4948500216800946,
+        "freshness": 19
       },
-      "daysOld": 22
+      "daysOld": 11
     },
     {
       "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
@@ -690,7 +612,7 @@
         "album": 17.894914213513953,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
@@ -716,7 +638,77 @@
         "album": 14.62397997898956,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
+    },
+    {
+      "id": "mb-9d2523a8-fd80-4544-a11d-78f5c868445a",
+      "mbid": "9d2523a8-fd80-4544-a11d-78f5c868445a",
+      "title": "1126611",
+      "artist": "Shin In Ryu",
+      "releaseDate": "2026-08-12",
+      "year": "2026",
+      "type": "EP",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0a/c8/b3/0ac8b32c-6a35-71cb-9ce6-8b85635ae075/8800388636493_cover.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 20312,
+      "artistPlaycount": 234146,
+      "albumListeners": 307,
+      "albumPlaycount": 1743,
+      "score": 48.154043129823705,
+      "scoreBreakdown": {
+        "artist": 28.71835125243777,
+        "album": 12.435691877385933,
+        "freshness": 7
+      },
+      "daysOld": 23
+    },
+    {
+      "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
+      "mbid": "f4a9a05b-c146-410e-8161-4d10af2f6bfa",
+      "title": "Unity",
+      "artist": "Pariah",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "NL",
+      "genres": [
+        "鞭挞金属",
+        "thrash",
+        "1997",
+        "回响贝斯",
+        "rocking"
+      ],
+      "genresEn": [
+        "thrash metal",
+        "thrash",
+        "1997",
+        "dubstep",
+        "rocking"
+      ],
+      "lfmTags": [
+        "thrash metal",
+        "thrash",
+        "1997",
+        "dubstep",
+        "rocking"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/78/ff/c7/78ffc7d1-9df3-cfde-1a92-c9033427e2f1/196626204936.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 113111,
+      "artistPlaycount": 890966,
+      "albumListeners": 541,
+      "albumPlaycount": 8638,
+      "score": 47.35601860517152,
+      "scoreBreakdown": {
+        "artist": 33.69003227963867,
+        "album": 13.665986325532847,
+        "freshness": 0
+      },
+      "daysOld": 246
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -742,7 +734,7 @@
         "album": 15.79633165546747,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -768,7 +760,7 @@
         "album": 14.152943343425722,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-15e13404-810d-4918-880f-1d43ac51d1fe",
@@ -794,7 +786,7 @@
         "album": 15.846902476559746,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-61ae72aa-afcb-4418-a5c5-249f097dc236",
@@ -820,13 +812,13 @@
       "artistPlaycount": 88195,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 46.092448135794356,
+      "score": 45.092448135794356,
       "scoreBreakdown": {
         "artist": 22.092448135794353,
         "album": 0,
-        "freshness": 24
+        "freshness": 23
       },
-      "daysOld": 6
+      "daysOld": 7
     },
     {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
@@ -852,7 +844,7 @@
         "album": 18.068680706309358,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -896,7 +888,7 @@
         "album": 12.164846454372029,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
@@ -922,33 +914,7 @@
         "album": 12.726535582329118,
         "freshness": 0
       },
-      "daysOld": 245
-    },
-    {
-      "id": "mb-2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
-      "mbid": "2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
-      "title": "Жёсткая неделька",
-      "artist": "СМЕХ",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 30664,
-      "artistPlaycount": 934692,
-      "albumListeners": 221,
-      "albumPlaycount": 2124,
-      "score": 41.63282007673419,
-      "scoreBreakdown": {
-        "artist": 29.910858708308638,
-        "album": 11.721961368425553,
-        "freshness": 0
-      },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
@@ -974,7 +940,7 @@
         "album": 3.0102999566398116,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-f8536d9f-b285-4ec7-add3-62d1d53ccd14",
@@ -1000,33 +966,7 @@
         "album": 5.73064017839119,
         "freshness": 0
       },
-      "daysOld": 245
-    },
-    {
-      "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
-      "mbid": "ee43185d-de89-4967-bd54-2c0af6179b8a",
-      "title": "Ristiriita",
-      "artist": "kukkatalo",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "FI",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4e/62/cd/4e62cd1e-2b15-8044-d1e9-39ec859f084c/cover.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 4307,
-      "artistPlaycount": 110954,
-      "albumListeners": 1491,
-      "albumPlaycount": 24028,
-      "score": 40.09522069568231,
-      "scoreBreakdown": {
-        "artist": 24.227832478417334,
-        "album": 15.867388217264972,
-        "freshness": 0
-      },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
@@ -1052,7 +992,7 @@
         "album": 12.06649882040626,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
@@ -1078,7 +1018,7 @@
         "album": 9.256291743595376,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
@@ -1122,7 +1062,7 @@
         "album": 8.817139967814686,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-eed0703e-1587-4667-81df-c390c4f6a59a",
@@ -1148,7 +1088,7 @@
         "album": 6.611096473669597,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-997158af-bea8-48d8-b4c5-a214cbeddacf",
@@ -1162,19 +1102,45 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ff/37/e3/ff37e35c-6fbc-5265-0631-b47151013ebf/cover_KM0025044_1.jpg/600x600bb.jpg",
+      "cover": "",
       "source": "musicbrainz",
       "artistListeners": 3299,
       "artistPlaycount": 132573,
       "albumListeners": 19,
       "albumPlaycount": 214,
-      "score": 36.84965010839977,
+      "score": 35.84965010839977,
       "scoreBreakdown": {
         "artist": 23.455882103635627,
         "album": 6.393768004764144,
-        "freshness": 7
+        "freshness": 6
       },
-      "daysOld": 23
+      "daysOld": 24
+    },
+    {
+      "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
+      "mbid": "017c16c7-e4c5-488d-8bde-d2e41a15096f",
+      "title": "Nick Collection 2",
+      "artist": "Pop! not soda.",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f8/e1/77/f8e17734-4908-0f60-585c-80a3b8522d87/artwork.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 3660,
+      "artistPlaycount": 45514,
+      "albumListeners": 206,
+      "albumPlaycount": 2242,
+      "score": 35.32587667114184,
+      "scoreBreakdown": {
+        "artist": 23.75654056929607,
+        "album": 11.569336101845767,
+        "freshness": 0
+      },
+      "daysOld": 246
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
@@ -1200,7 +1166,7 @@
         "album": 11.558769305278771,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-b1e5a339-4d56-4d74-a6e8-73987e330ff7",
@@ -1226,7 +1192,7 @@
         "album": 10.44952555719699,
         "freshness": 0
       },
-      "daysOld": 33
+      "daysOld": 34
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
@@ -1270,7 +1236,7 @@
         "album": 9.286662482156343,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-f9487af4-f5be-41f4-88a7-644b1aa0dd94",
@@ -1296,13 +1262,83 @@
       "artistPlaycount": 644815,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 33.32071172220171,
+      "score": 32.32071172220171,
       "scoreBreakdown": {
         "artist": 30.320711722201708,
         "album": 0,
-        "freshness": 3
+        "freshness": 2
       },
-      "daysOld": 27
+      "daysOld": 28
+    },
+    {
+      "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
+      "mbid": "ed578194-4aa6-4100-a951-b57d40adc5d9",
+      "title": "Det Karolinska Arvet",
+      "artist": "Karolinerna",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
+      "genresEn": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
+      "lfmTags": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/db/24/87/db248794-b457-d1e6-167d-3cd33054738d/7321170314616.png/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 2581,
+      "artistPlaycount": 93961,
+      "albumListeners": 50,
+      "albumPlaycount": 224,
+      "score": 31.240103385305886,
+      "scoreBreakdown": {
+        "artist": 22.745253363625793,
+        "album": 8.494850021680094,
+        "freshness": 0
+      },
+      "daysOld": 246
+    },
+    {
+      "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
+      "mbid": "9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
+      "title": "On the Road",
+      "artist": "Ah",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "LT",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/6a/03/d2/6a03d2e6-7328-b0ba-5445-a10c0dd31214/20UMGIM22401.rgb.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 3164,
+      "artistPlaycount": 20576,
+      "albumListeners": 33,
+      "albumPlaycount": 456,
+      "score": 30.927479531560365,
+      "scoreBreakdown": {
+        "artist": 23.334909832170926,
+        "album": 7.592569699389438,
+        "freshness": 0
+      },
+      "daysOld": 246
     },
     {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
@@ -1328,7 +1364,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-3df5ec15-0729-4210-b52d-eb1915c487e8",
@@ -1354,13 +1390,13 @@
       "artistPlaycount": 63283,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 27.95759490183029,
+      "score": 26.95759490183029,
       "scoreBreakdown": {
         "artist": 20.95759490183029,
         "album": 0,
-        "freshness": 7
+        "freshness": 6
       },
-      "daysOld": 23
+      "daysOld": 24
     },
     {
       "id": "mb-338d60e1-ad46-44c3-a5fa-b2b2d4daa554",
@@ -1386,70 +1422,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
-    },
-    {
-      "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
-      "mbid": "9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
-      "title": "On the Road",
-      "artist": "Ah",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "LT",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "j-pop",
-        "japanese",
-        "Neo Soul",
-        "female vocalists"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 3164,
-      "artistPlaycount": 20576,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 23.334909832170926,
-      "scoreBreakdown": {
-        "artist": 23.334909832170926,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 245
-    },
-    {
-      "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
-      "mbid": "ed578194-4aa6-4100-a951-b57d40adc5d9",
-      "title": "Det Karolinska Arvet",
-      "artist": "Karolinerna",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "viking rock",
-        "vikingarock",
-        "swedish",
-        "white power",
-        "Nordisk vikingarock"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2581,
-      "artistPlaycount": 93961,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 22.745253363625793,
-      "scoreBreakdown": {
-        "artist": 22.745253363625793,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-f10db834-996c-4b1f-9563-98c7b9e80baa",
@@ -1475,7 +1448,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
@@ -1507,7 +1480,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-e178c01c-3f05-4070-9454-749687762747",
@@ -1539,7 +1512,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
@@ -1571,7 +1544,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
@@ -1603,7 +1576,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
@@ -1635,7 +1608,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
@@ -1664,7 +1637,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-dc113487-3606-48ce-976d-37748757097c",
@@ -1696,7 +1669,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-901435e9-1c31-4a69-9fe9-288b4d510d99",
@@ -1728,7 +1701,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "mb-4f123c9f-5775-4f3e-938c-6e4d90cd3944",
@@ -1754,7 +1727,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 245
+      "daysOld": 246
     },
     {
       "id": "chart-0",
