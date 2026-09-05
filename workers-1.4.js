@@ -3080,9 +3080,11 @@ async function buildDigestHTML(env, now) {
 async function handleSendDigest(request, env) {
   const corsHeaders = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type, Authorization", "Access-Control-Allow-Methods": "POST, OPTIONS" };
   const auth = request.headers.get("Authorization");
-  if (!auth || auth !== `Bearer ${env.DIGEST_SECRET}`) return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
-  const result = await sendDigestToAll(env);
-  return Response.json(result, { headers: corsHeaders });
+    if (!auth || auth !== `Bearer ${env.DIGEST_SECRET}`) return Response.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
+    let force = false;
+    try { const b = await request.json().catch(() => ({})); force = !!b.force; } catch {}
+    const result = await sendDigestToAll(env, { force });
+    return Response.json(result, { headers: corsHeaders });
 }
 
 // ── Core digest send (shared by HTTP endpoint and cron trigger) ──
@@ -3100,7 +3102,9 @@ async function withTimeout(promise, ms, label) {
   }
 }
 
-async function sendDigestToAll(env) {
+async function sendDigestToAll(env, opts = {}) {
+  // opts.force = bypass today's "already sent" guard (used for manual resend/retry)
+  const FORCE = !!opts.force;
   if (!env.RESEND_API_KEY) return { ok: false, error: "Resend not configured" };
   if (!env.SUBSCRIBE_KV) return { ok: false, error: "KV not configured" };
 
@@ -3112,18 +3116,18 @@ async function sendDigestToAll(env) {
   const status = raw ? JSON.parse(raw) : null;
 
   // Backward compat: also check old lastDigestSent key
-  if (status?.status === "sent") {
+  if (status?.status === "sent" && !FORCE) {
     return { ok: true, sent: 0, skipped: "already sent today" };
   }
   const oldSent = await env.SUBSCRIBE_KV.get("lastDigestSent");
-  if (oldSent === today && !status) {
+  if (oldSent === today && !status && !FORCE) {
     // Migrate old key to new format
     await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "sent", attemptCount: 1 }), { expirationTtl: 172800 });
     return { ok: true, sent: 0, skipped: "already sent today" };
   }
 
   const attemptCount = (status?.attemptCount || 0) + 1;
-  if (attemptCount > 3) {
+  if (attemptCount > 3 && !FORCE) {
     return { ok: false, sent: 0, error: "max retries reached", attemptCount };
   }
 
@@ -3131,11 +3135,11 @@ async function sendDigestToAll(env) {
   await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "attempting", attemptCount }), { expirationTtl: 172800 });
 
   const list = await env.SUBSCRIBE_KV.list({ prefix: "sub:" });
-  if (!list.keys.length) {
-    // No subscribers — mark as sent so we don't retry today
-    await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "sent", attemptCount }), { expirationTtl: 172800 });
-    return { ok: true, sent: 0 };
-  }
+    if (!list.keys.length) {
+      // No subscribers — mark as sent so we don't retry today
+      await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "sent", attemptCount }), { expirationTtl: 172800 });
+      return { ok: true, sent: 0, subscriberCount: 0 };
+    }
 
   // ── Build or retrieve cached digest (generated once per day) ──
 
@@ -3257,13 +3261,13 @@ async function sendDigestToAll(env) {
     // Also write old key for backward compat during migration window
     await env.SUBSCRIBE_KV.put("lastDigestSent", today, { expirationTtl: 172800 });
   } else {
-      // No emails sent — clear cached digest so next retry rebuilds fresh
-      await env.SUBSCRIBE_KV.delete(`digest:${today}`);
-      await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "failed", attemptCount }), { expirationTtl: 172800 });
-    }
+        // No emails sent — clear cached digest so next retry rebuilds fresh
+        await env.SUBSCRIBE_KV.delete(`digest:${today}`);
+        await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "failed", attemptCount }), { expirationTtl: 172800 });
+      }
 
-    return { ok: true, sent };
-  }
+      return { ok: true, sent, subscriberCount: list.keys.length };
+    }
 
 // ── Main ──
 export default {
