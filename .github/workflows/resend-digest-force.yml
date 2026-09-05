@@ -1,0 +1,23 @@
+name: Force Resend Digest (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  force-resend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Force resend digest to ALL subscribers
+        run: |
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            "https://api.bloodyrex.xyz/intelligence/send-digest" \
+            -H "Authorization: Bearer ${{ secrets.DIGEST_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{"force":true}')
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          echo "HTTP $HTTP_CODE: $BODY"
+          if [ "$HTTP_CODE" -ne 200 ]; then
+            echo "Force digest resend failed"
+            exit 1
+          fi
