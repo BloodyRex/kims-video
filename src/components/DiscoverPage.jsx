@@ -132,6 +132,20 @@ function PairCard({ pair, posterMap, metaMap, locale, onOpen }) {
   );
 }
 
+// #1/#4: Discover 弹窗共享 body 滚动锁 + ESC 关闭（与 DetailOverlay 行为一致，零视觉变化）
+function useOverlayLock(onClose) {
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, []);
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose?.(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+}
+
 // ── Pair detail overlay (pair context moves here from the old wide cards) ──
 function PairDetailOverlay({ pair, posterMap, metaMap, locale, onClose }) {
   const recPoster = posterMap[pair.recommend.tmdbId];
@@ -140,6 +154,7 @@ function PairDetailOverlay({ pair, posterMap, metaMap, locale, onClose }) {
   const recTitle = zh ? pair.recommend.title : (pair.recommend.titleEn || pair.recommend.title);
   const srcTitle = zh ? pair.source.title : (pair.source.titleEn || pair.source.title);
   const genres = meta.genres || [];
+  useOverlayLock(onClose);
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={onClose}>
       <div className="relative w-full max-w-md bg-white border-4 border-black shadow-[8px_8px_0_0_rgba(0,255,255,1)]" onClick={e => e.stopPropagation()}>
@@ -191,6 +206,7 @@ function PairDetailOverlay({ pair, posterMap, metaMap, locale, onClose }) {
 function DailyPickDetailOverlay({ pick, locale, onClose }) {
   const zh = locale === "zh";
   const title = zh ? pick.title : (pick.titleEn || pick.title);
+  useOverlayLock(onClose);
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={onClose}>
       <div className="relative w-full max-w-md bg-white border-4 border-black shadow-[8px_8px_0_0_rgba(0,255,255,1)]" onClick={e => e.stopPropagation()}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Icons } from "./components/Icons";
 import Loading from "./components/Loading";
 import InputPage from "./components/InputPage";
@@ -19,16 +19,108 @@ import { loadResultsFromCache } from "./utils/cache";
 import { updateUrl } from "./utils/url";
 import { updateSeo, updateStructuredData, resetSeo, injectStructuredData } from "./services/seo";
 import { useMovieEngine } from "./logic/useMovieEngine";
-import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation, useNavigationType } from "react-router-dom";
 import { LocaleProvider, useLocale } from "./i18n";
 import ShareButton from "./components/ShareButton";
 
 // Entry portal route — the classic engine home lives here now (new home owns "/")
 const ENTRY_ROUTE = "/recommend";
 
+function ScrollManager() {
+  // #2/#3/#5: PUSH/REPLACE(链接、标签切换)滚回顶部; POP(浏览器返回)按 pathname
+  // 从 sessionStorage 恢复原位。scrollRestoration=manual 避免浏览器默认恢复与 React
+  // 重渲染竞争(实测桌面 back 恢复随机)。写恢复位时跳过元素定位动画。
+  const loc = useLocation();
+  const navType = useNavigationType();
+  const pendingKey = useRef(null);
+  const restoring = useRef(false);
+
+  useLayoutEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    // 槽 key 用 pathname: 整页直达/书签/刷新的 location.key 恒为 "default",
+    // 各页面会互相覆盖同一共享槽; pathname 粒度各页独立, 刷新后仍可恢复。
+    const key = loc.pathname || "/";
+    let raf = 0;
+    let done = false;
+    // 跳转/加载瞬间丢弃滚动写入, 直到下方 useEffect 设好新 key,
+    // 防止 scrollTo(0) 的收尾 scroll 事件把 0 写进槽位。
+    pendingKey.current = null;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      cancelAnimationFrame(raf);
+      window.removeEventListener("wheel", abort);
+      window.removeEventListener("touchstart", abort);
+      restoring.current = false;
+    };
+    // 用户主动滚动则放弃重试, 不和用户抢滚动条
+    const abort = () => {
+      done = true;
+      cancelAnimationFrame(raf);
+      restoring.current = false;
+    };
+    window.addEventListener("wheel", abort, { passive: true });
+    window.addEventListener("touchstart", abort, { passive: true });
+    if (navType === "POP") {
+      const raw = sessionStorage.getItem("kv:scroll:" + key);
+      const y = Number(raw);
+      const target = Number.isFinite(y) ? y : 0;
+      restoring.current = true;
+      const deadline = performance.now() + 2000;
+      // 返回时异步内容尚未撑起页面, 首帧 scrollTo 被钳制; 高度够后逐帧补到位
+      const attempt = () => {
+        if (done) return;
+        window.scrollTo({ top: target, behavior: "instant" });
+        if (Math.abs(window.scrollY - target) < 2) {
+          finish();
+          return;
+        }
+        if (performance.now() > deadline) {
+          finish();
+          return;
+        }
+        raf = requestAnimationFrame(attempt);
+      };
+      attempt();
+    } else {
+      finish();
+      sessionStorage.removeItem("kv:scroll:" + key);
+      const el = loc.hash ? document.getElementById(loc.hash.slice(1)) : null;
+      if (el) el.scrollIntoView();
+      else window.scrollTo({ top: 0, behavior: "instant" });
+    }
+    // 导航切换时兜底清理: abort 路径不走 finish(), 不补 cleanup 会泄漏到后续
+    // 导航, 旧闭包的 abort 会提前关掉新一轮恢复的 restoring 开关
+    return () => {
+      done = true;
+      cancelAnimationFrame(raf);
+      window.removeEventListener("wheel", abort);
+      window.removeEventListener("touchstart", abort);
+    };
+  }, [loc.key, navType]);
+
+  // 记录当前 pathname 的滚动位置; 跳转瞬间 pendingKey 为 null(见上), 不写槽;
+  // 恢复期产生的钳制滚动不回写, 保住原恢复位。
+  useEffect(() => {
+    pendingKey.current = loc.pathname || "/";
+    const save = () => {
+      if (restoring.current) return;
+      const k = pendingKey.current;
+      if (k) sessionStorage.setItem("kv:scroll:" + k, String(window.scrollY));
+    };
+    window.addEventListener("scroll", save, { passive: true });
+    return () => window.removeEventListener("scroll", save);
+  }, [loc.key]);
+
+  return null;
+}
+
 function App() {
   return (
     <BrowserRouter>
+      <ScrollManager />
       <LocaleProvider>
         <Routes>
           <Route path="/" element={<NewHomePage />} />
