@@ -1,20 +1,35 @@
 {
-  "updated": "2026-09-08",
-  "count": 1,
+  "updated": "2026-09-09",
+  "count": 2,
   "movies": [
     {
-      "tmdbId": 736212,
+      "tmdbId": 1765072,
       "mediaType": "movie",
-      "title": "歌声缘何慢半拍",
-      "titleEn": "Slow Singing",
+      "title": "你能看到一切",
+      "titleEn": "You Can See Everything",
       "year": "2026",
-      "releaseDate": "2026-09-08",
-      "poster": "https://image.tmdb.org/t/p/w500/h8nBh0SSDOMtZsDZBBPp6zhYIxP.jpg",
+      "releaseDate": "2026-10-16",
+      "poster": "https://image.tmdb.org/t/p/w500/5zaoousDbGy7uM1s2OH4GqR0aQy.jpg",
       "rating": 0,
       "genre": [
-        "Drama"
+        "Documentary"
       ],
-      "firstSeen": "2026-09-08"
+      "firstSeen": "2026-09-09"
+    },
+    {
+      "tmdbId": 1170608,
+      "mediaType": "movie",
+      "title": "沙丘3",
+      "titleEn": "Dune: Part Three",
+      "year": "2026",
+      "releaseDate": "2026-09-15",
+      "poster": "https://image.tmdb.org/t/p/w500/itJtHn6U2lyJPaWNbWGx8Bam4b5.jpg",
+      "rating": 0,
+      "genre": [
+        "Sci-Fi",
+        "Adventure"
+      ],
+      "firstSeen": "2026-09-09"
     }
   ]
 }
