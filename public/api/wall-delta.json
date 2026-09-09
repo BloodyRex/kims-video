@@ -1,35 +1,22 @@
 {
-  "updated": "2026-09-09",
-  "count": 2,
+  "updated": "2026-09-10",
+  "count": 1,
   "movies": [
     {
-      "tmdbId": 1765072,
+      "tmdbId": 1380417,
       "mediaType": "movie",
-      "title": "你能看到一切",
-      "titleEn": "You Can See Everything",
+      "title": "不择手段",
+      "titleEn": "By Any Means",
       "year": "2026",
-      "releaseDate": "2026-10-16",
-      "poster": "https://image.tmdb.org/t/p/w500/5zaoousDbGy7uM1s2OH4GqR0aQy.jpg",
-      "rating": 0,
+      "releaseDate": "2026-09-04",
+      "poster": "https://image.tmdb.org/t/p/w500/f4hdIed8vh10O8TkQ1CkHS8MQ3G.jpg",
+      "rating": 8.1,
       "genre": [
-        "Documentary"
+        "History",
+        "Crime",
+        "Drama"
       ],
-      "firstSeen": "2026-09-09"
-    },
-    {
-      "tmdbId": 1170608,
-      "mediaType": "movie",
-      "title": "沙丘3",
-      "titleEn": "Dune: Part Three",
-      "year": "2026",
-      "releaseDate": "2026-09-15",
-      "poster": "https://image.tmdb.org/t/p/w500/itJtHn6U2lyJPaWNbWGx8Bam4b5.jpg",
-      "rating": 0,
-      "genre": [
-        "Sci-Fi",
-        "Adventure"
-      ],
-      "firstSeen": "2026-09-09"
+      "firstSeen": "2026-09-10"
     }
   ]
 }
