@@ -1,22 +1,83 @@
 {
-  "updated": "2026-09-10",
-  "count": 1,
+  "updated": "2026-09-11",
+  "count": 5,
   "movies": [
     {
-      "tmdbId": 1380417,
+      "tmdbId": 1440098,
       "mediaType": "movie",
-      "title": "不择手段",
-      "titleEn": "By Any Means",
+      "title": "保镖恋人",
+      "titleEn": "Drawn Together",
       "year": "2026",
-      "releaseDate": "2026-09-04",
-      "poster": "https://image.tmdb.org/t/p/w500/f4hdIed8vh10O8TkQ1CkHS8MQ3G.jpg",
-      "rating": 8.1,
+      "releaseDate": "2026-09-09",
+      "poster": "https://image.tmdb.org/t/p/w500/d7lwNomWZbBVv0Mc4IVD2I74P2Q.jpg",
+      "rating": 7.2,
       "genre": [
-        "History",
-        "Crime",
+        "Romance",
+        "Drama",
+        "Thriller"
+      ],
+      "firstSeen": "2026-09-11"
+    },
+    {
+      "tmdbId": 977942,
+      "mediaType": "movie",
+      "title": "起义",
+      "titleEn": "The Uprising",
+      "year": "2026",
+      "releaseDate": "2026-09-10",
+      "poster": "https://image.tmdb.org/t/p/w500/uLI9v21yjlFcrL0qdBPHpNk1Gmu.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama",
+        "Action",
+        "History"
+      ],
+      "firstSeen": "2026-09-11"
+    },
+    {
+      "tmdbId": 1522689,
+      "mediaType": "movie",
+      "title": "我为什么又结婚了？",
+      "titleEn": "Why Did I Get Married Again?",
+      "year": "2026",
+      "releaseDate": "2026-09-08",
+      "poster": "https://image.tmdb.org/t/p/w500/eYzS5JPIzDNwidJ1VXxMDcfgoj1.jpg",
+      "rating": 6.7,
+      "genre": [
+        "Romance",
+        "Comedy",
         "Drama"
       ],
-      "firstSeen": "2026-09-10"
+      "firstSeen": "2026-09-11"
+    },
+    {
+      "tmdbId": 1530121,
+      "mediaType": "movie",
+      "title": "坠河的女孩",
+      "titleEn": "The Girl in the River",
+      "year": "2026",
+      "releaseDate": "2026-09-04",
+      "poster": "https://image.tmdb.org/t/p/w500/zk2saSFclmoJDxBovrOTp8W6NSz.jpg",
+      "rating": 7.375,
+      "genre": [
+        "Crime",
+        "Thriller"
+      ],
+      "firstSeen": "2026-09-11"
+    },
+    {
+      "tmdbId": 1248832,
+      "mediaType": "movie",
+      "title": "挖掘者",
+      "titleEn": "Digger",
+      "year": "2026",
+      "releaseDate": "2026-09-30",
+      "poster": "https://image.tmdb.org/t/p/w500/c8UJ50GM0jiVIk6YO9hEiqEe0dP.jpg",
+      "rating": 0,
+      "genre": [
+        "Comedy"
+      ],
+      "firstSeen": "2026-09-11"
     }
   ]
 }
