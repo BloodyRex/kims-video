@@ -1,9 +1,9 @@
 {
-  "updated": "2026-09-15",
+  "updated": "2026-09-16",
   "stats": {
     "moviesReleased": 3,
     "tvAiringThisWeek": 20,
-    "albumsReleased": 25,
+    "albumsReleased": 0,
     "trending": 20
   },
   "editorsPicks": [
@@ -46,43 +46,58 @@
       "pickCategory": "editors"
     },
     {
-      "tmdbId": 1522689,
-      "title": "我为什么又结婚了？",
-      "titleEn": "Why Did I Get Married Again?",
+      "tmdbId": 1616131,
+      "title": "属于我的孩子",
+      "titleEn": "A Child of My Own",
+      "originalLanguage": "es",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-08-07",
+      "poster": "https://image.tmdb.org/t/p/w500/3QylEx2tqfX8MXswK4oGdJUOExB.jpg",
+      "rating": 8.54,
+      "genre": [
+        "Documentary"
+      ],
+      "summary": "在这部令人震惊的纪录片中，承受家人和社会的期望的女子迫切地想要个孩子，因此假装怀孕，并卷入一起犯罪。",
+      "summaryEn": "Desperate for a baby and burdened by family and societal expectations, a woman fakes a pregnancy and gets tangled in a crime.",
+      "pickCategory": "gem"
+    },
+    {
+      "tmdbId": 1108427,
+      "title": "海洋奇缘：启航",
+      "titleEn": "Moana",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-09-08",
-      "poster": "https://image.tmdb.org/t/p/w500/eRDRU7gsaMi0NV69HdEm7EMGkMq.jpg",
-      "rating": 7.2,
+      "releaseDate": "2026-07-10",
+      "poster": "https://image.tmdb.org/t/p/w500/8f4OJJrMtZcoB4h1BLyyZewd96X.jpg",
+      "rating": 7.239,
       "genre": [
+        "Family",
+        "Fantasy",
         "Comedy",
-        "Romance",
-        "Drama"
+        "Adventure"
       ],
-      "summary": "几对夫妻因马库斯和安吉拉女儿的目的地婚礼重聚，新旧矛盾再次爆发，也让他们不禁发问：\"我们为什么又结婚了？\"",
-      "summaryEn": "The couples reunite for the destination wedding of Marcus and Angela's daughter, bringing drama old and new as they ask, \"Why did we get married again?\"",
+      "summary": "海的召唤，从未停止。熟悉的旋律响起，属于“莫阿娜”的冒险，再次扬帆启航。",
+      "summaryEn": "Teenage Moana answers the Ocean's call and, for the first time, voyages beyond the reef of her island of Motunui with infamous demigod Maui on an unforgettable journey to restore prosperity to her peo",
       "pickCategory": "trending"
     },
     {
-      "tmdbId": 1465063,
-      "title": "忘却之岛",
-      "titleEn": "Forgotten Island",
-      "originalLanguage": "en",
+      "tmdbId": 1440098,
+      "title": "保镖恋人",
+      "titleEn": "Drawn Together",
+      "originalLanguage": "es",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-09-25",
-      "poster": "https://image.tmdb.org/t/p/w500/uSFWzP6gIzqWJUCZLgVAVhtyfYW.jpg",
-      "rating": 9,
+      "releaseDate": "2026-09-09",
+      "poster": "https://image.tmdb.org/t/p/w500/wRyb983cO7hdEdWsN6RNAXXhWqu.jpg",
+      "rating": 6.645,
       "genre": [
-        "Animation",
-        "Adventure",
-        "Fantasy",
-        "Comedy",
-        "Family"
+        "Romance",
+        "Thriller"
       ],
-      "summary": "　　一对好友在高中毕业后要分开了，她们准备吃垃圾食品、唱卡拉ok度过在一起的最后一夜，却被一个神奇的传送通道送去了某座被遗忘已久的魔法岛屿，来自菲律宾神话。",
-      "summaryEn": "While celebrating their last night together, high school graduates and best friends Jo and Raissa stumble upon a mysterious portal that transports them to the fantastical island of Nakali. When they d",
+      "summary": "玛菲尔（Marfil）是一个西班牙富商的女儿，她在纽约的生活因一次绑架然后莫名其妙的获释而彻底颠覆。她的父亲雇佣了塞巴斯蒂安·摩尔（Sebastián Moore）作为她的保镖，两人被迫朝夕相处。在这个看似一切都不真实的世界里，一种无法避免的吸引力在他们之间悄然萌生。本片改编自《罪爱/错误》（Culpables）系列畅销书作者梅塞德斯·罗恩（Mercedes Ron）的同名小说。",
+      "summaryEn": "Marfil, daughter of a powerful Spanish businessman, sees her life in New York turned upside down when she is kidnapped and released without explanation. Her father hires Sebastian Moore as bodyguard a",
       "pickCategory": "trending"
     },
     {
@@ -96,75 +111,16 @@
       "poster": "https://image.tmdb.org/t/p/w500/uLI9v21yjlFcrL0qdBPHpNk1Gmu.jpg",
       "rating": 7.1,
       "genre": [
-        "Drama",
         "Action",
-        "History"
+        "History",
+        "Drama"
       ],
       "summary": "在中世纪的英格兰，一位无畏的勇士召集平民发动了一场激烈的起义，反抗国王理查德二世的高压统治。随着国家陷入混乱，他的起义军与王室军队展开了一场绝望的自由之战。",
       "summaryEn": "As war and plague devastate 14th-century England, a humble peasant ignites a rebellion, uniting an army of commoners to defy the King’s might in a desperate fight for justice and survival.",
       "pickCategory": "editors"
-    },
-    {
-      "tmdbId": 1185806,
-      "title": "汪汪队立大功大电影3：勇闯恐龙岛",
-      "titleEn": "PAW Patrol: The Dino Movie",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-07-25",
-      "poster": "https://image.tmdb.org/t/p/w500/ypDehxii2vqentHazypviu0u1dy.jpg",
-      "rating": 7.474,
-      "genre": [
-        "Animation",
-        "Adventure",
-        "Family",
-        "Fantasy",
-        "Comedy"
-      ],
-      "summary": "一场突如其来的超强风暴，将莱德队长与汪汪队意外带到神秘恐龙岛，还邂逅了被困荒岛的新朋友小狗乐乐。与此同时，宿敌海丁那市长大肆采矿，不慎唤醒沉睡火山！岩浆喷涌、岛屿崩塌，恐龙岛陷入巨大危机。面对这场规模空前的惊险灾难，勇敢的汪汪队绝不退缩！狗狗们携手恐龙并肩作战，能否冲破险境、化解危机，守护恐龙岛？",
-      "summaryEn": "The Paw Patrol lands on a mysterious dinosaur island after a storm, where they meet Rex, a stranded pup. When Humdinger's reckless mining triggers a volcano, the team faces their biggest rescue missio",
-      "pickCategory": "trending"
     }
   ],
   "weeklyHotTv": [
-    {
-      "tmdbId": 299952,
-      "title": "早春晴朗",
-      "titleEn": "The Early Spring",
-      "originalLanguage": "zh",
-      "originCountry": [
-        "CN"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-08-26",
-      "poster": "https://image.tmdb.org/t/p/w500/nLWFbYv1r99Yy7dWvjoxMRegoe0.jpg",
-      "rating": 8.3,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "这是一段十年交锋，敬于才华，合于性格、久于平等的禁忌之恋。北漂伊始的尚之桃与极具天赋的“鬼才”栾念狭路相逢。热烈勇敢的尚之桃亦步亦趋地蜕变成长，撬碎了栾念世故坚硬的心防，互相吸引的二人在都市丛林中极限拉扯、分分合合。爱情，就是用光所有勇气，再无遗憾。爱，则是互相修复，共同成长。但情和爱之间，她选择生存。当她独当一面，他收敛锋芒，势均力敌的他们将会为彼此写下了新的结局……",
-      "summaryEn": "New to Beijing, Shang Zhitao crosses paths with Luan Nian, a true creative genius. Bold and open-hearted, she grows stronger step by step and gradually breaks through the defenses around Luan's guarde",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 103516,
-      "title": "星际迷航：奇异新世界",
-      "titleEn": "Star Trek: Strange New Worlds",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2022",
-      "releaseDate": "2022-05-05",
-      "poster": "https://image.tmdb.org/t/p/w500/5kaTkbuMo8ivbrvTWLy0e3CrpNf.jpg",
-      "rating": 7.9,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "在柯克船长登上企业号之前的几年里，跟随克里斯托弗·派克、斯波克和第一号探索银河系周围的新世界。",
-      "summaryEn": "Follow Captain Christopher Pike, Science Officer Spock and Number One in the years before Captain Kirk boarded the U.S.S. Enterprise, as they explore new worlds around the galaxy.",
-      "pickCategory": "tvhot"
-    },
     {
       "tmdbId": 246473,
       "title": "韩国制造",
@@ -176,7 +132,7 @@
       "year": "2025",
       "releaseDate": "2025-12-24",
       "poster": "https://image.tmdb.org/t/p/w500/qAfnDSi2EO2UdIWCQdoOcmmJJtH.jpg",
-      "rating": 8.114,
+      "rating": 8.167,
       "genre": [
         "Crime",
         "Drama"
@@ -186,61 +142,100 @@
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 615,
-      "title": "飞出个未来",
-      "titleEn": "Futurama",
-      "originalLanguage": "en",
+      "tmdbId": 30984,
+      "title": "死神",
+      "titleEn": "Bleach",
+      "originalLanguage": "ja",
       "originCountry": [
-        "US"
+        "JP"
       ],
-      "year": "1999",
-      "releaseDate": "1999-03-28",
-      "poster": "https://image.tmdb.org/t/p/w500/pTmINJc0Zxik8viSMSCT1wygt8S.jpg",
-      "rating": 8.364,
+      "year": "2004",
+      "releaseDate": "2004-10-05",
+      "poster": "https://image.tmdb.org/t/p/w500/uZM8PIaimoRxQ3vYqzpZOifGE6Y.jpg",
+      "rating": 8.35,
       "genre": [
-        "Animation",
-        "Comedy"
+        "Animation"
       ],
-      "summary": "Fry是一名生活在20世纪的送货员，他工作不顺心，生活不如意，是个彻头彻尾的失败者。机缘巧合下，他被时光机器送到了1000年后的未来，也就是公元3000年！在光怪陆离的未来世界，他遇到了独眼女外星人Leela，Leela要给他植入职业芯片，好让他能在未来生活下去，而他的新职业居然也是送货员。Fry遂逃离出去，路上遇到了机器人Bender。Leela在追捕他们的过程中，也放弃了自己不喜欢的职业，连同",
-      "summaryEn": "The adventures of a late-20th-century New York City pizza delivery boy, Philip J. Fry, who, after being unwittingly cryogenically frozen for one thousand years, finds employment at Planet Express, an ",
+      "summary": "故事的主角黑崎一护是个看似暴力、单薄，实质上善良、勇敢、爱护家庭的少年，并且拥有能看见灵的体质。家里有一个开诊所的老爸和两个性格正常的妹妹夏梨和游子，一护每天七点必须按时回家,否则老爸便会使用“身体语言教训”的家规。吵闹的父子，懂事的妹妹以及与其他普通人并无大异的普通生活，直到女死神朽木露琪亚被他一脚踢到墙角并满脸惊疑地望着他问“你能看见我？”时漫画的序幕才这样被正式地揭开。 从此黑崎一护身边所有",
+      "summaryEn": "For as long as he can remember, Ichigo Kurosaki has been able to see ghosts. But when he meets Rukia, a Soul Reaper who battles evil spirits known as Hollows, he finds his life is changed forever. Now",
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 113962,
-      "title": "特别行动：母狮",
-      "titleEn": "Lioness",
+      "tmdbId": 299952,
+      "title": "早春晴朗",
+      "titleEn": "The Early Spring",
+      "originalLanguage": "zh",
+      "originCountry": [
+        "CN"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-08-26",
+      "poster": "https://image.tmdb.org/t/p/w500/nLWFbYv1r99Yy7dWvjoxMRegoe0.jpg",
+      "rating": 8.265,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "这是一段十年交锋，敬于才华，合于性格、久于平等的禁忌之恋。北漂伊始的尚之桃与极具天赋的“鬼才”栾念狭路相逢。热烈勇敢的尚之桃亦步亦趋地蜕变成长，撬碎了栾念世故坚硬的心防，互相吸引的二人在都市丛林中极限拉扯、分分合合。爱情，就是用光所有勇气，再无遗憾。爱，则是互相修复，共同成长。但情和爱之间，她选择生存。当她独当一面，他收敛锋芒，势均力敌的他们将会为彼此写下了新的结局……",
+      "summaryEn": "New to Beijing, Shang Zhitao crosses paths with Luan Nian, a true creative genius. Bold and open-hearted, she grows stronger step by step and gradually breaks through the defenses around Luan's guarde",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 236235,
+      "title": "绅士们",
+      "titleEn": "The Gentlemen",
+      "originalLanguage": "en",
+      "originCountry": [
+        "GB"
+      ],
+      "year": "2024",
+      "releaseDate": "2024-03-07",
+      "poster": "https://image.tmdb.org/t/p/w500/3Cs3g8GBeMqR9p8rKeACqPLst9Q.jpg",
+      "rating": 7.867,
+      "genre": [
+        "Comedy",
+        "Drama",
+        "Crime"
+      ],
+      "summary": "埃迪·霍尼曼意外地继承了父亲庞大的乡村地产，却发现这是一个大麻帝国的一部分。此外，来自英国黑社会的一群危险人物也想从这次行动中分一杯羹。埃迪决心把家人从他们的魔掌中解救出来，于是试图以黑制黑。然而，卷入犯罪世界之后，他开始沉浸其中无法自拔。",
+      "summaryEn": "When aristocratic Eddie inherits the family estate, he discovers that it's home to an enormous weed empire — and its proprietors aren't going anywhere.",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 125988,
+      "title": "末日地堡",
+      "titleEn": "Silo",
       "originalLanguage": "en",
       "originCountry": [
         "US"
       ],
       "year": "2023",
-      "releaseDate": "2023-07-23",
-      "poster": "https://image.tmdb.org/t/p/w500/fASiB6nkIO1GQKHh55U1fGntwdo.jpg",
-      "rating": 8.173,
+      "releaseDate": "2023-05-04",
+      "poster": "https://image.tmdb.org/t/p/w500/gSvAV1uyOisUNnzND9XQbDTNMg4.jpg",
+      "rating": 8.214,
       "genre": [
         "Drama"
       ],
-      "summary": "本剧基于一个真实的CIA项目，在该项目中，女性被训练来渗透恐怖组织和犯罪网络。故事讲述Cruz Manuelos，一名经验不足但充满热情的海军陆战队士兵，她被CIA招募加入了「母狮」战斗小队，试图从内部瓦解一个恐怖组织。Joe是一位意志坚强、不屈不挠的女性，CIA「母狮」项目的站长。她负责训练、管理和领导手下的女性特工。",
-      "summaryEn": "Cruz Manuelos, a rough-around-the-edges but passionate young Marine, is recruited to join the CIA's Lioness Engagement Team to help bring down a terrorist organization from within. Joe, the station ch",
+      "summary": "该剧基于休·豪伊所著同名畅销科幻系列小说改编，在一个满目疮痍、有毒物质遍布的未来世界中，成千上万的人居住在深埋在地下的巨大筒仓里。在警长违反了一项基本规则以及有些居民神秘死亡后，工程师朱丽叶开始揭开惊人的秘密和筒仓的真相。",
+      "summaryEn": "In a ruined and toxic future, thousands live in a giant silo deep underground. After its sheriff breaks a cardinal rule and residents die mysteriously, engineer Juliette starts to uncover shocking sec",
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 94997,
-      "title": "权力的游戏前传：龙族",
-      "titleEn": "House of the Dragon",
+      "tmdbId": 108978,
+      "title": "侠探杰克",
+      "titleEn": "Reacher",
       "originalLanguage": "en",
       "originCountry": [
         "US"
       ],
       "year": "2022",
-      "releaseDate": "2022-08-21",
-      "poster": "https://image.tmdb.org/t/p/w500/w5iFwPk6h9fv3zxLN2QkxVEVyBw.jpg",
-      "rating": 8.382,
+      "releaseDate": "2022-02-03",
+      "poster": "https://image.tmdb.org/t/p/w500/dt5XNeYjR46lmVHQKiwfAmDHy9d.jpg",
+      "rating": 8.115,
       "genre": [
-        "Drama"
+        "Crime"
       ],
-      "summary": "在维斯特洛大陆，坦格利安家族的衰落被公之于众。一场被称为“血龙狂舞”的内战即将爆发。",
-      "summaryEn": "The Targaryen dynasty is at the absolute apex of its power, with more than 15 dragons under their yoke. Most empires crumble from such heights. In the case of the Targaryens, their slow fall begins wh",
+      "summary": "退役宪兵警察杰克雷彻被误认为是谋杀嫌疑人而被捕，他发现自己卷入了一场致命的阴谋之中。这桩阴谋涉及了黑警、奸商以及狡诈的政客。他只能凭借自己的机智将佐治亚州马格雷夫的案件查个水落石出。",
+      "summaryEn": "Jack Reacher, a veteran military police investigator, has just recently entered civilian life. Reacher is a drifter, carrying no phone and the barest of essentials as he travels the country and explor",
       "pickCategory": "tvhot"
     }
   ],
@@ -253,36 +248,16 @@
       "originCountry": [],
       "year": "2026",
       "releaseDate": "2026-09-16",
-      "poster": "https://image.tmdb.org/t/p/w500/3mILtkNzKWPGX9aVIOkAbuOraW0.jpg",
-      "rating": 9.25,
+      "poster": "https://image.tmdb.org/t/p/w500/qMvRqzzDVfQpLi5ZoKwttTQdaJe.jpg",
+      "rating": 7.6,
       "genre": [
         "Horror",
-        "Thriller"
+        "Thriller",
+        "Sci-Fi"
       ],
       "summary": "奉命奔赴浣熊市的医疗速递员布莱恩，意外深陷全城失控的病毒浩劫。浣熊市彻底沦陷，异变怪物横行肆虐、嗜血猎捕，身陷末日绝境的他，能否在这场惊魂噩梦中突围求生，搏出一线生机？",
       "summaryEn": "Medical courier Bryan unwittingly finds himself fighting for survival as one fateful, horrifying night collapses around him in chaos.",
-      "daysUntil": 1
-    },
-    {
-      "tmdbId": 1465063,
-      "title": "忘却之岛",
-      "titleEn": "Forgotten Island",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-09-16",
-      "poster": "https://image.tmdb.org/t/p/w500/uSFWzP6gIzqWJUCZLgVAVhtyfYW.jpg",
-      "rating": 9,
-      "genre": [
-        "Animation",
-        "Adventure",
-        "Fantasy",
-        "Comedy",
-        "Family"
-      ],
-      "summary": "　　一对好友在高中毕业后要分开了，她们准备吃垃圾食品、唱卡拉ok度过在一起的最后一夜，却被一个神奇的传送通道送去了某座被遗忘已久的魔法岛屿，来自菲律宾神话。",
-      "summaryEn": "While celebrating their last night together, high school graduates and best friends Jo and Raissa stumble upon a mysterious portal that transports them to the fantastical island of Nakali. When they d",
-      "daysUntil": 1
+      "daysUntil": 0
     },
     {
       "tmdbId": 1263337,
@@ -300,7 +275,7 @@
       ],
       "summary": "讲述一名前陆军特种部队士兵与他退役战犬的荒野求生故事。在阿拉斯加深处遭遇坠机事故后，这对老搭档必须在环境严酷的极地荒野中相互扶持，为生存而战。",
       "summaryEn": "After a harrowing plane crash, Special Forces officer James Belmont and his combat dog, Odin, find themselves stranded deep in the Alaskan wilderness. Together, they are forced into a brutal fight for",
-      "daysUntil": 4
+      "daysUntil": 3
     },
     {
       "tmdbId": 1483525,
@@ -317,7 +292,7 @@
       ],
       "summary": "在这个故事中，两对已婚夫妇——失业工人和妻子与纪录片制作人和丈夫——因拍摄纪录片而相遇，各自面对不同的人生和隐藏的欲望。",
       "summaryEn": "A laid-off worker and his wife cross paths with a documentary filmmaker and her spouse and confront their hidden desires.",
-      "daysUntil": 8
+      "daysUntil": 7
     },
     {
       "tmdbId": 1032863,
@@ -335,7 +310,7 @@
       ],
       "summary": "　　奥利芙·史密斯，一名生物学博士生，与亚当·卡尔森博士——一位炙手可热却以专横闻名的教授——开始了一段假恋爱关系。然而，他们各自精心算计的爱情理论，也因此被彻底搅得天翻地覆。一段爱情喜剧中常见的“从互相看不惯变热恋”由此展开。",
       "summaryEn": "Olive Smith, a biology PhD candidate, and Dr. Adam Carlsen, a hotshot professor and well-known tyrant, enter into a fake relationship, seeing each of their carefully calculated theories on love get th",
-      "daysUntil": 8
+      "daysUntil": 7
     },
     {
       "tmdbId": 1248832,
@@ -352,7 +327,25 @@
       ],
       "summary": "世界上最有权势的男子极力证明自己其实是人类的救世主，结果等来了他酝酿的灾难要摧毁万物。",
       "summaryEn": "The most powerful man in the world embarks on a frantic mission to prove he is humanity's savior before the disaster he's unleashed destroys everything.",
-      "daysUntil": 15
+      "daysUntil": 14
+    },
+    {
+      "tmdbId": 1294189,
+      "title": "猫鼬",
+      "titleEn": "The Mongoose",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-10-29",
+      "poster": "https://image.tmdb.org/t/p/w500/m1vBxr5hLklqgMZQogEEsexzyEQ.jpg",
+      "rating": 0,
+      "genre": [
+        "Action",
+        "Thriller"
+      ],
+      "summary": "一位被冤枉的战争英雄，一无所有，在昔日特种部队成员的帮助下，与警方展开了一场史诗般的全国汽车追逐，全程电视直播。而着迷的公众则密切关注着他，希望他能安全逃脱。",
+      "summaryEn": "A falsely accused war hero with nothing to lose leads police on an epic televised cross-country car chase, helped by members of his former Special Forces Army battalion and closely monitored by a fasc",
+      "daysUntil": 43
     }
   ],
   "comingSoonTv": [
@@ -373,7 +366,7 @@
       ],
       "summary": "被困于维多利亚时代残酷家庭的莉齐·博登用斧头残忍杀害了自己的父母，此案震惊全国。",
       "summaryEn": "被困于维多利亚时代残酷家庭的莉齐·博登用斧头残忍杀害了自己的父母，此案震惊全国。",
-      "daysUntil": 2
+      "daysUntil": 1
     },
     {
       "tmdbId": 275102,
@@ -392,7 +385,7 @@
       ],
       "summary": "在朝鲜，一场秘密提议点燃了才华横溢的贵族夫人、声名显赫的情场高手，以及被卷入这场危险游戏的无辜女子的内心欲望。",
       "summaryEn": "在朝鲜，一场秘密提议点燃了才华横溢的贵族夫人、声名显赫的情场高手，以及被卷入这场危险游戏的无辜女子的内心欲望。",
-      "daysUntil": 3
+      "daysUntil": 2
     },
     {
       "tmdbId": 250203,
@@ -411,26 +404,26 @@
       ],
       "summary": "伍迪·哈里森的女儿婚礼搞砸后，他带着全家前往奥斯汀，在马修·麦康纳的牧场小住一段时间。然而，原本旨在疗伤的假期却迅速失控，马修的母亲麦克妈妈无意间透露了一个尘封已久的秘密：这两个朋友可能真的是亲兄弟。伍迪为了追寻真相，把牧场翻了个底朝天，而马修则面临着截然不同的身份危机：他可能要竞选德克萨斯州州长。",
       "summaryEn": "伍迪·哈里森的女儿婚礼搞砸后，他带着全家前往奥斯汀，在马修·麦康纳的牧场小住一段时间。然而，原本旨在疗伤的假期却迅速失控，马修的母亲麦克妈妈无意间透露了一个尘封已久的秘密：这两个朋友可能真的是亲兄弟。伍迪为了追寻真相，把牧场翻了个底朝天，而马修则面临着截然不同的身份危机：他可能要竞选德克萨斯州州长。",
-      "daysUntil": 7
+      "daysUntil": 6
     },
     {
-      "tmdbId": 258165,
-      "title": "伊甸之东",
-      "titleEn": "East of Eden",
-      "originalLanguage": "en",
+      "tmdbId": 307106,
+      "title": "恋爱博士",
+      "titleEn": "연애박사",
+      "originalLanguage": "ko",
       "originCountry": [
-        "US"
+        "KR"
       ],
       "year": "2026",
-      "releaseDate": "2026-10-01",
-      "poster": "https://image.tmdb.org/t/p/w500/axdUor6gLMTrrB1UF4Qfy0TTSyX.jpg",
+      "releaseDate": "2026-10-05",
+      "poster": "https://image.tmdb.org/t/p/w500/guKx4FP8QYBsyGZchJp1BaXPCJl.jpg",
       "rating": 0,
       "genre": [
         "Drama"
       ],
-      "summary": "这部剧集对史坦贝克的经典之作进行了全新诠释，讲述特拉斯克家族跨越数代的传奇故事，特别聚焦于那个难以磨灭的反英雄人物——凯茜·埃姆斯。",
-      "summaryEn": "这部剧集对史坦贝克的经典之作进行了全新诠释，讲述特拉斯克家族跨越数代的传奇故事，特别聚焦于那个难以磨灭的反英雄人物——凯茜·埃姆斯。",
-      "daysUntil": 16
+      "summary": "高中时曾是游泳选手、后因病失去一条腿的博士生民宰，与一度迷失方向、如今重新出发的硕士生宥真。在冰冷的机器人实验室里，两名年轻人开启了一段酸甜苦辣交织的浪漫恋曲。",
+      "summaryEn": "高中时曾是游泳选手、后因病失去一条腿的博士生民宰，与一度迷失方向、如今重新出发的硕士生宥真。在冰冷的机器人实验室里，两名年轻人开启了一段酸甜苦辣交织的浪漫恋曲。",
+      "daysUntil": 19
     },
     {
       "tmdbId": 288673,
@@ -450,7 +443,7 @@
       ],
       "summary": "父亲的突然离世迫使嘉莉进入到了残酷的公立高中，她不得不面对席卷社区的校园霸凌丑闻、社交媒体时代无情的压力和冷酷无情，以及伴随青春期而觉醒的神秘心灵感应能力。",
       "summaryEn": "父亲的突然离世迫使嘉莉进入到了残酷的公立高中，她不得不面对席卷社区的校园霸凌丑闻、社交媒体时代无情的压力和冷酷无情，以及伴随青春期而觉醒的神秘心灵感应能力。",
-      "daysUntil": 22
+      "daysUntil": 21
     },
     {
       "tmdbId": 289423,
@@ -469,8 +462,8 @@
       ],
       "summary": "拥有人工心脏的企业继承人遇到一位能导电的女子。他们的契约不仅能激活他的人工心脏，也点燃了两人之间的火花。",
       "summaryEn": "拥有人工心脏的企业继承人遇到一位能导电的女子。他们的契约不仅能激活他的人工心脏，也点燃了两人之间的火花。",
-      "daysUntil": 24
+      "daysUntil": 23
     }
   ],
-  "brief": "Today: 3 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
+  "brief": "Today: 3 movie(s) released, 20 TV show(s) airing, 0 new album(s)."
 }
