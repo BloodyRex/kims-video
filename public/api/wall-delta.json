@@ -1,109 +1,85 @@
 {
-  "updated": "2026-09-19",
-  "count": 7,
+  "updated": "2026-09-20",
+  "count": 5,
   "movies": [
     {
-      "tmdbId": 1616157,
+      "tmdbId": 1641629,
       "mediaType": "movie",
-      "title": "上海女儿",
-      "titleEn": "Shanghai Daughter",
-      "year": "2026",
-      "releaseDate": "2026-09-19",
-      "poster": "https://image.tmdb.org/t/p/w500/kUA0Ue4KsjaYXMDv9V0DKJ4Df7o.jpg",
-      "rating": 0,
-      "genre": [
-        "Drama"
-      ],
-      "firstSeen": "2026-09-19"
-    },
-    {
-      "tmdbId": 1764816,
-      "mediaType": "movie",
-      "title": "阴风诡影",
-      "titleEn": "阴风诡影",
-      "year": "2026",
-      "releaseDate": "2026-09-19",
-      "poster": "https://image.tmdb.org/t/p/w500/i1Zj0sXxEsWj7yOexeUILynnmIu.jpg",
-      "rating": 0,
-      "genre": [
-        "Thriller",
-        "Drama"
-      ],
-      "firstSeen": "2026-09-19"
-    },
-    {
-      "tmdbId": 1761059,
-      "mediaType": "movie",
-      "title": "一路超平安",
-      "titleEn": "一路超平安",
-      "year": "2026",
-      "releaseDate": "2026-09-19",
-      "poster": "https://image.tmdb.org/t/p/w500/sui5qMd1RRwnxa5yiF9AXZmWF5I.jpg",
-      "rating": 0,
-      "genre": [
-        "Comedy"
-      ],
-      "firstSeen": "2026-09-19"
-    },
-    {
-      "tmdbId": 1303034,
-      "mediaType": "movie",
-      "title": "生日快乐",
-      "titleEn": "عيد ميلاد سعيد",
+      "title": "你我对抗全世界",
+      "titleEn": "You+Me - Against the World",
       "year": "2026",
       "releaseDate": "2026-09-18",
-      "poster": "https://image.tmdb.org/t/p/w500/t4g9u7Fbx5ttPJmXmrqDQ7bSidr.jpg",
-      "rating": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/j801na4Sf6DrZPL5Ba1vUZo5OFN.jpg",
+      "rating": 5.8,
       "genre": [
+        "Romance",
         "Drama"
       ],
-      "firstSeen": "2026-09-19"
+      "firstSeen": "2026-09-20"
     },
     {
-      "tmdbId": 1643135,
+      "tmdbId": 1451944,
       "mediaType": "movie",
-      "title": "校园大逃杀2：篝火行动",
-      "titleEn": "Run Hide Fight: Infidels",
+      "title": "爱欲四部曲3",
+      "titleEn": "Lust Stories 3",
       "year": "2026",
-      "releaseDate": "2026-09-15",
-      "poster": "https://image.tmdb.org/t/p/w500/gkVq1Pd46NF7AP5XQZfRHjQfCXX.jpg",
-      "rating": 5.5,
+      "releaseDate": "2026-09-18",
+      "poster": "https://image.tmdb.org/t/p/w500/5W6eRCUywdVOSswhmkwi2et1Amk.jpg",
+      "rating": 8.5,
       "genre": [
-        "Action",
-        "Thriller"
+        "Romance",
+        "Drama"
       ],
-      "firstSeen": "2026-09-19"
+      "firstSeen": "2026-09-20"
     },
     {
-      "tmdbId": 1300968,
+      "tmdbId": 1477104,
       "mediaType": "movie",
-      "title": "饥饿游戏：收获日出",
-      "titleEn": "The Hunger Games: Sunrise on the Reaping",
+      "title": "小羊肖恩3：青苔农场的怪兽",
+      "titleEn": "Shaun the Sheep: The Beast of Mossy Bottom",
       "year": "2026",
-      "releaseDate": "2026-11-18",
-      "poster": "https://image.tmdb.org/t/p/w500/xdtMZkNcoVgMfsoAJxXDozMQd3n.jpg",
+      "releaseDate": "2026-09-18",
+      "poster": "https://image.tmdb.org/t/p/w500/w442vP2SeAJFiy5fHcdxWFe6AKA.jpg",
+      "rating": 6.6,
+      "genre": [
+        "Animation",
+        "Comedy",
+        "Family",
+        "Adventure",
+        "Horror"
+      ],
+      "firstSeen": "2026-09-20"
+    },
+    {
+      "tmdbId": 1283515,
+      "mediaType": "movie",
+      "title": "不存在的罪人",
+      "titleEn": "Verity",
+      "year": "2026",
+      "releaseDate": "2026-09-30",
+      "poster": "https://image.tmdb.org/t/p/w500/7Sxhh4R6qdNDYo0qbJMNEyKVw0A.jpg",
       "rating": 0,
       "genre": [
-        "Sci-Fi",
-        "Action",
-        "Adventure"
-      ],
-      "firstSeen": "2026-09-19"
-    },
-    {
-      "tmdbId": 1228834,
-      "mediaType": "movie",
-      "title": "拨乱行动",
-      "titleEn": "The Fix",
-      "year": "2026",
-      "releaseDate": "2026-09-11",
-      "poster": "https://image.tmdb.org/t/p/w500/noGrxxPWZsWcJ19kRsEEawfFnEl.jpg",
-      "rating": 8.2,
-      "genre": [
-        "Action",
+        "Mystery",
         "Thriller"
       ],
-      "firstSeen": "2026-09-19"
+      "firstSeen": "2026-09-20"
+    },
+    {
+      "tmdbId": 1400940,
+      "mediaType": "movie",
+      "title": "泥面人",
+      "titleEn": "Clayface",
+      "year": "2026",
+      "releaseDate": "2026-10-21",
+      "poster": "https://image.tmdb.org/t/p/w500/8CVxezsk8HLHC28FDbEHEfh6pMU.jpg",
+      "rating": 0,
+      "genre": [
+        "Horror",
+        "Thriller",
+        "Sci-Fi"
+      ],
+      "firstSeen": "2026-09-20"
     }
   ]
 }
