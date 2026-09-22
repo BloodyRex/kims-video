@@ -1,5 +1,37 @@
 {
-  "updated": "2026-09-22",
-  "count": 0,
-  "movies": []
+  "updated": "2026-09-23",
+  "count": 2,
+  "movies": [
+    {
+      "tmdbId": 1339597,
+      "mediaType": "movie",
+      "title": "水东游",
+      "titleEn": "As the River Goes By",
+      "year": "2026",
+      "releaseDate": "2026-09-23",
+      "poster": "https://image.tmdb.org/t/p/w500/kFwknbq5DIqhh5LxXoI3Vm23cL0.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama",
+        "Fantasy"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "tmdbId": 1751701,
+      "mediaType": "movie",
+      "title": "星陨之后",
+      "titleEn": "After Impact",
+      "year": "2026",
+      "releaseDate": "2026-09-15",
+      "poster": "https://image.tmdb.org/t/p/w500/yzDuAQCY2n6zzOlBkn6JzhLhY3k.jpg",
+      "rating": 4.875,
+      "genre": [
+        "Sci-Fi",
+        "Drama",
+        "Thriller"
+      ],
+      "firstSeen": "2026-09-23"
+    }
+  ]
 }
