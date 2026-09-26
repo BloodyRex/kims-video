@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26",
+  "updated": "2026-09-27",
   "config": {
     "releaseWindowDays": 30,
     "mbPages": 3,
@@ -34,13 +34,13 @@
     "regionalArtistReserve": 16
   },
   "stats": {
-    "mbRaw": 400,
-    "afterFilter": 209,
-    "artistsChecked": 75,
-    "afterArtistFilter": 51,
+    "mbRaw": 300,
+    "afterFilter": 167,
+    "artistsChecked": 61,
+    "afterArtistFilter": 44,
     "albumEnriched": 40,
     "chartItems": 358,
-    "totalCandidates": 409,
+    "totalCandidates": 402,
     "sentToWorker": 18
   },
   "candidates": [
@@ -76,17 +76,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3c/c2/0d/3cc20dcc-8f4e-f060-36dd-7de52a7ec8fe/12UMGIM14712.rgb.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 3593042,
-      "artistPlaycount": 130555902,
-      "albumListeners": 1303379,
-      "albumPlaycount": 13659345,
+      "artistListeners": 3593315,
+      "artistPlaycount": 130565253,
+      "albumListeners": 1303567,
+      "albumPlaycount": 13661048,
       "score": 70,
       "scoreBreakdown": {
         "artist": 40,
         "album": 30,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-6f7853c8-e90a-4886-9535-0a14fa328903",
@@ -120,43 +120,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/41/19/3b/41193bb2-ffc4-043f-4ddd-128c272d8f82/mzi.qimpmkxb.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 1395191,
-      "artistPlaycount": 24904735,
-      "albumListeners": 816360,
-      "albumPlaycount": 8076388,
-      "score": 69.55940858504096,
+      "artistListeners": 1395289,
+      "artistPlaycount": 24907234,
+      "albumListeners": 816445,
+      "albumPlaycount": 8077252,
+      "score": 69.5596346685659,
       "scoreBreakdown": {
         "artist": 40,
-        "album": 29.559408585040963,
+        "album": 29.559634668565906,
         "freshness": 0
       },
-      "daysOld": 267
-    },
-    {
-      "id": "mb-7d6db858-0ab3-4918-bc23-100173256b6c",
-      "mbid": "7d6db858-0ab3-4918-bc23-100173256b6c",
-      "title": "要去什麼地方",
-      "artist": "田馥甄",
-      "releaseDate": "2026-09-24",
-      "year": "2026",
-      "type": "Album",
-      "country": "TW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/49/4c/64494cca-8338-c4d2-7225-951b8d183cd3/cover.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 28102,
-      "artistPlaycount": 1379297,
-      "albumListeners": 149,
-      "albumPlaycount": 3372,
-      "score": 69.52417953835732,
-      "scoreBreakdown": {
-        "artist": 29.65824819629594,
-        "album": 10.86593134206137,
-        "freshness": 29
-      },
-      "daysOld": 1
+      "daysOld": 268
     },
     {
       "id": "mb-82f29eb5-57cd-4f7b-8988-c7858a46530f",
@@ -172,17 +146,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 12187,
-      "artistPlaycount": 235871,
+      "artistListeners": 12190,
+      "artistPlaycount": 235931,
       "albumListeners": 372,
       "albumPlaycount": 2557,
-      "score": 64.09202677362006,
+      "score": 63.092739403532036,
       "scoreBreakdown": {
-        "artist": 27.239312074210584,
+        "artist": 27.24002470412255,
         "album": 12.852714699409486,
-        "freshness": 24
+        "freshness": 23
       },
-      "daysOld": 6
+      "daysOld": 7
     },
     {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
@@ -216,17 +190,52 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/21/68/e821682a-5272-2c24-b02f-aa72d5dac3ea/825646293889.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 158873,
-      "artistPlaycount": 1017154,
-      "albumListeners": 88449,
-      "albumPlaycount": 593932,
-      "score": 59.40713194518118,
+      "artistListeners": 158880,
+      "artistPlaycount": 1017348,
+      "albumListeners": 88454,
+      "albumPlaycount": 594084,
+      "score": 59.40738225947681,
       "scoreBreakdown": {
-        "artist": 34.67366730937287,
-        "album": 24.733464635808307,
+        "artist": 34.673794874342036,
+        "album": 24.733587385134776,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
+    },
+    {
+      "id": "mb-be8a32b8-e09c-45e5-9ce9-3382410ae371",
+      "mbid": "be8a32b8-e09c-45e5-9ce9-3382410ae371",
+      "title": "RE-FLOW",
+      "artist": "ZEROBASEONE",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "KR",
+      "genres": [
+        "2026",
+        "jiwoong de jj"
+      ],
+      "genresEn": [
+        "2026",
+        "jiwoong de jj"
+      ],
+      "lfmTags": [
+        "2026",
+        "jiwoong de jj"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6f/69/ad/6f69adc9-b349-e897-1b59-d0645b5c7fb7/198704967405_Cover.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 359252,
+      "artistPlaycount": 61736264,
+      "albumListeners": 29396,
+      "albumPlaycount": 514822,
+      "score": 59.37743582409608,
+      "scoreBreakdown": {
+        "artist": 37.03599463055804,
+        "album": 22.341441193538046,
+        "freshness": 0
+      },
+      "daysOld": 268
     },
     {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
@@ -260,17 +269,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e9/63/e4/e963e47d-f77e-a73c-6f03-2980801a3ee0/195542927325_cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 140372,
-      "artistPlaycount": 3730137,
-      "albumListeners": 88695,
-      "albumPlaycount": 1820503,
-      "score": 59.05469894174748,
+      "artistListeners": 140425,
+      "artistPlaycount": 3731793,
+      "albumListeners": 88738,
+      "albumPlaycount": 1821453,
+      "score": 59.05684439823515,
       "scoreBreakdown": {
-        "artist": 34.31520325147355,
-        "album": 24.739495690273934,
+        "artist": 34.316296216987865,
+        "album": 24.740548181247284,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
@@ -286,17 +295,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5e/58/c0/5e58c0cb-9ba8-8933-55f9-8ed9c3ee7f5e/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 475561,
-      "artistPlaycount": 6411126,
+      "artistListeners": 475577,
+      "artistPlaycount": 6411877,
       "albumListeners": 5532,
-      "albumPlaycount": 19459,
-      "score": 56.562452401242226,
+      "albumPlaycount": 19460,
+      "score": 56.56254981033479,
       "scoreBreakdown": {
-        "artist": 37.84804154405586,
+        "artist": 37.84813895314842,
         "album": 18.714410857186365,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
@@ -330,17 +339,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/01/12/e5/0112e54b-dcad-d8e1-893d-552d829f5f9f/4001617074657.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 204113,
-      "artistPlaycount": 7783474,
-      "albumListeners": 13632,
-      "albumPlaycount": 204509,
-      "score": 56.07193565980687,
+      "artistListeners": 204118,
+      "artistPlaycount": 7783733,
+      "albumListeners": 13633,
+      "albumPlaycount": 204519,
+      "score": 56.07216586924384,
       "scoreBreakdown": {
-        "artist": 35.39913777269374,
-        "album": 20.672797887113123,
+        "artist": 35.39920869568945,
+        "album": 20.672957173554387,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-678bbf03-22b8-4342-bf02-7f0a0dcb353d",
@@ -356,17 +365,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b7/a9/aa/b7a9aad0-ca1b-337e-4265-427313eb9204/7619978280128_3000.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 392142,
-      "artistPlaycount": 4024594,
+      "artistListeners": 392167,
+      "artistPlaycount": 4024849,
       "albumListeners": 912,
-      "albumPlaycount": 7178,
-      "score": 52.08959658826382,
+      "albumPlaycount": 7180,
+      "score": 52.089781164530756,
       "scoreBreakdown": {
-        "artist": 37.28962239662174,
+        "artist": 37.28980697288868,
         "album": 14.799974191642079,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-aca30a57-12bb-4a41-af25-59457048a844",
@@ -400,17 +409,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/27/20/88/27208842-4ee3-3585-0b62-06b5d32cb63d/5013929991309.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 33572,
-      "artistPlaycount": 312525,
+      "artistListeners": 33573,
+      "artistPlaycount": 312528,
       "albumListeners": 19080,
       "albumPlaycount": 105481,
-      "score": 51.57607328144749,
+      "score": 51.576159521571,
       "scoreBreakdown": {
-        "artist": 30.173181429607116,
+        "artist": 30.17326766973062,
         "album": 21.40289185184038,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-268d81bf-6af4-4bfd-b4ce-41a7e777c144",
@@ -426,43 +435,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 39886,
-      "artistPlaycount": 331296,
-      "albumListeners": 10790,
-      "albumPlaycount": 41922,
-      "score": 50.83724378953265,
+      "artistListeners": 39903,
+      "artistPlaycount": 331482,
+      "albumListeners": 10804,
+      "albumPlaycount": 41971,
+      "score": 50.84129319877487,
       "scoreBreakdown": {
-        "artist": 30.672136566118095,
-        "album": 20.165107223414555,
+        "artist": 30.673370321197805,
+        "album": 20.167922877577066,
         "freshness": 0
       },
-      "daysOld": 267
-    },
-    {
-      "id": "mb-c0d31807-a8ee-4127-847b-19f28630871c",
-      "mbid": "c0d31807-a8ee-4127-847b-19f28630871c",
-      "title": "THE PROTÉGÉ",
-      "artist": "Gareth.T",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "HK",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 84038,
-      "artistPlaycount": 1984564,
-      "albumListeners": 3844,
-      "albumPlaycount": 80861,
-      "score": 50.753754949567565,
-      "scoreBreakdown": {
-        "artist": 32.829838054585025,
-        "album": 17.92391689498254,
-        "freshness": 0
-      },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -497,42 +480,16 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 20536,
-      "artistPlaycount": 153983,
-      "albumListeners": 12172,
-      "albumPlaycount": 97091,
-      "score": 49.17691542285323,
+      "artistPlaycount": 153986,
+      "albumListeners": 12173,
+      "albumPlaycount": 97094,
+      "score": 49.17709381450743,
       "scoreBreakdown": {
         "artist": 28.75010570442258,
-        "album": 20.426809718430643,
+        "album": 20.426988110084846,
         "freshness": 0
       },
-      "daysOld": 267
-    },
-    {
-      "id": "mb-561ba06d-47ba-46c5-86b9-8ea22bbb37ef",
-      "mbid": "561ba06d-47ba-46c5-86b9-8ea22bbb37ef",
-      "title": "鮮花與牛糞",
-      "artist": "斯丹曼簇",
-      "releaseDate": "2026-09-25",
-      "year": "2026",
-      "type": "Album",
-      "country": "CN",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 653,
-      "artistPlaycount": 3608,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 48.76608787516716,
-      "scoreBreakdown": {
-        "artist": 18.76608787516716,
-        "album": 0,
-        "freshness": 30
-      },
-      "daysOld": 0
+      "daysOld": 268
     },
     {
       "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
@@ -548,17 +505,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/77/4c/20/774c20b2-4793-47d4-ff8b-b1494ccd8261/57993.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 39812,
-      "artistPlaycount": 335390,
+      "artistListeners": 39815,
+      "artistPlaycount": 335440,
       "albumListeners": 3825,
-      "albumPlaycount": 38633,
-      "score": 48.57991716676395,
+      "albumPlaycount": 38651,
+      "score": 48.58013533119667,
       "scoreBreakdown": {
-        "artist": 30.66675996931577,
+        "artist": 30.666978133748493,
         "album": 17.913157197448182,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
@@ -574,43 +531,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/a8/20/48a82095-0490-8057-7abc-b417e7b6670e/2860.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 118910,
-      "artistPlaycount": 5439830,
-      "albumListeners": 856,
-      "albumPlaycount": 3871,
-      "score": 48.49715801746267,
+      "artistListeners": 118923,
+      "artistPlaycount": 5440162,
+      "albumListeners": 858,
+      "albumPlaycount": 3875,
+      "score": 48.50254214831318,
       "scoreBreakdown": {
-        "artist": 33.834789194076905,
-        "album": 14.662368823385764,
+        "artist": 33.83510570906965,
+        "album": 14.667436439243527,
         "freshness": 0
       },
-      "daysOld": 267
-    },
-    {
-      "id": "mb-5fce3cbe-4fc2-4e47-bdee-c39260a43d22",
-      "mbid": "5fce3cbe-4fc2-4e47-bdee-c39260a43d22",
-      "title": "What a Wonderful Life (HOME ver.)",
-      "artist": "SOYEON",
-      "releaseDate": "2026-09-08",
-      "year": "2026",
-      "type": "Album",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 98798,
-      "artistPlaycount": 1013463,
-      "albumListeners": 2,
-      "albumPlaycount": 2,
-      "score": 47.803470999069056,
-      "scoreBreakdown": {
-        "artist": 33.29832102074915,
-        "album": 1.5051499783199058,
-        "freshness": 13
-      },
-      "daysOld": 17
+      "daysOld": 268
     },
     {
       "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
@@ -644,17 +575,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/78/ff/c7/78ffc7d1-9df3-cfde-1a92-c9033427e2f1/196626204936.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 113340,
-      "artistPlaycount": 892660,
+      "artistListeners": 113351,
+      "artistPlaycount": 892744,
       "albumListeners": 544,
       "albumPlaycount": 8674,
-      "score": 47.373882553860746,
+      "score": 47.37416353777304,
       "scoreBreakdown": {
-        "artist": 33.69588805536985,
+        "artist": 33.69616903928215,
         "album": 13.677994498490898,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -670,17 +601,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fa/0a/8b/fa0a8b6c-1b71-b94b-559d-0d8f0aa1d9e1/196873496658.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 43242,
-      "artistPlaycount": 1810271,
-      "albumListeners": 1467,
-      "albumPlaycount": 35480,
-      "score": 46.73818905217032,
+      "artistListeners": 43247,
+      "artistPlaycount": 1810408,
+      "albumListeners": 1469,
+      "albumPlaycount": 35520,
+      "score": 46.74148222083976,
       "scoreBreakdown": {
-        "artist": 30.906038482953907,
-        "album": 15.832150569216413,
+        "artist": 30.906373241888478,
+        "album": 15.835108978951281,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -697,42 +628,16 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/8f/66/15/8f661525-0bc5-0792-898a-f3e704da321b/196626905055.jpg/600x600bb.jpg",
       "source": "musicbrainz",
       "artistListeners": 75574,
-      "artistPlaycount": 807385,
+      "artistPlaycount": 807425,
       "albumListeners": 681,
-      "albumPlaycount": 13032,
+      "albumPlaycount": 13035,
       "score": 46.688218288067404,
       "scoreBreakdown": {
         "artist": 32.522482728503476,
         "album": 14.165735559563926,
         "freshness": 0
       },
-      "daysOld": 267
-    },
-    {
-      "id": "mb-0a03c862-ef54-4467-8562-1e74987caa55",
-      "mbid": "0a03c862-ef54-4467-8562-1e74987caa55",
-      "title": "instinct",
-      "artist": "nafla",
-      "releaseDate": "2026-08-26",
-      "year": "2026",
-      "type": "Album",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 71493,
-      "artistPlaycount": 1822723,
-      "albumListeners": 364,
-      "albumPlaycount": 6993,
-      "score": 45.16726372743689,
-      "scoreBreakdown": {
-        "artist": 32.36175680919161,
-        "album": 12.80550691824528,
-        "freshness": 0
-      },
-      "daysOld": 30
+      "daysOld": 268
     },
     {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
@@ -748,17 +653,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/de/1d/f8/de1df8d8-4da7-250c-670a-76c1e7930f0c/5063824079367_cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 7440,
-      "artistPlaycount": 32669,
-      "albumListeners": 4203,
-      "albumPlaycount": 22060,
-      "score": 43.92828318699971,
+      "artistListeners": 7443,
+      "artistPlaycount": 32690,
+      "albumListeners": 4206,
+      "albumPlaycount": 22080,
+      "score": 43.930999801697325,
       "scoreBreakdown": {
-        "artist": 25.810486236972526,
-        "album": 18.117796950027184,
+        "artist": 25.81165345994581,
+        "album": 18.119346341751513,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -792,17 +697,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/c0/ad/bf/c0adbf99-db4a-c7e2-4b96-7667f90929a9/889466029967.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 36859,
-      "artistPlaycount": 2075392,
+      "artistListeners": 36861,
+      "artistPlaycount": 2075529,
       "albumListeners": 271,
       "albumPlaycount": 4374,
-      "score": 42.60847011072512,
+      "score": 42.60862720766201,
       "scoreBreakdown": {
-        "artist": 30.443623656353097,
+        "artist": 30.44378075328998,
         "album": 12.164846454372029,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
@@ -818,17 +723,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3f/1d/dc/3f1ddc4e-fea5-fba7-257f-6650c4ebeb22/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 21786,
-      "artistPlaycount": 66440,
+      "artistListeners": 21792,
+      "artistPlaycount": 66472,
       "albumListeners": 353,
       "albumPlaycount": 745,
-      "score": 41.66005685558268,
+      "score": 41.660854128490385,
       "scoreBreakdown": {
-        "artist": 28.92118332864357,
+        "artist": 28.921980601551276,
         "album": 12.738873526939113,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
@@ -844,17 +749,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f8/75/fc/f875fc9b-1b21-d291-fb09-1b4b0a91fd30/4944099703915.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 533935,
-      "artistPlaycount": 50622854,
+      "artistListeners": 534123,
+      "artistPlaycount": 50637480,
       "albumListeners": 4,
       "albumPlaycount": 74,
-      "score": 41.19355589164256,
+      "score": 41.194575154184996,
       "scoreBreakdown": {
-        "artist": 38.18325593500275,
+        "artist": 38.18427519754518,
         "album": 3.0102999566398116,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-f8536d9f-b285-4ec7-add3-62d1d53ccd14",
@@ -870,17 +775,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a3/85/f6/a385f643-c66b-0881-322c-4e48183ffd75/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 167688,
-      "artistPlaycount": 2231890,
+      "artistListeners": 167707,
+      "artistPlaycount": 2232268,
       "albumListeners": 15,
       "albumPlaycount": 117,
-      "score": 40.710469528384735,
+      "score": 40.71079756329541,
       "scoreBreakdown": {
-        "artist": 34.83001323310633,
+        "artist": 34.830341268017,
         "album": 5.880456295278407,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
@@ -897,16 +802,16 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4e/62/cd/4e62cd1e-2b15-8044-d1e9-39ec859f084c/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
       "artistListeners": 4332,
-      "artistPlaycount": 112512,
-      "albumListeners": 1509,
-      "albumPlaycount": 25010,
-      "score": 40.138035851899836,
+      "artistPlaycount": 112573,
+      "albumListeners": 1510,
+      "albumPlaycount": 25056,
+      "score": 40.13947438948773,
       "scoreBreakdown": {
         "artist": 24.244589653021883,
-        "album": 15.893446198877951,
+        "album": 15.894884736465848,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
@@ -922,17 +827,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 9685,
-      "artistPlaycount": 266430,
-      "albumListeners": 266,
-      "albumPlaycount": 4597,
-      "score": 38.698405683522864,
+      "artistListeners": 9687,
+      "artistPlaycount": 266443,
+      "albumListeners": 268,
+      "albumPlaycount": 4602,
+      "score": 38.71526930172277,
       "scoreBreakdown": {
-        "artist": 26.57399750036753,
-        "album": 12.124408183155335,
+        "artist": 26.57459533157883,
+        "album": 12.140673970143943,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
@@ -948,17 +853,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/54/c5/cf/54c5cf94-6d62-4883-0a92-5802b45f857b/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 25117,
-      "artistPlaycount": 362545,
+      "artistListeners": 25119,
+      "artistPlaycount": 362593,
       "albumListeners": 72,
-      "albumPlaycount": 386,
-      "score": 38.61978091941359,
+      "albumPlaycount": 387,
+      "score": 38.62001145500938,
       "scoreBreakdown": {
-        "artist": 29.33311843725725,
+        "artist": 29.33334897285304,
         "album": 9.286662482156343,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
@@ -992,17 +897,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/34/02/913402e2-f4b8-ed14-a755-165fd699c310/7071245133368.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 25595,
-      "artistPlaycount": 136647,
+      "artistListeners": 25598,
+      "artistPlaycount": 136656,
       "albumListeners": 58,
       "albumPlaycount": 730,
-      "score": 38.20484086038978,
+      "score": 38.205180199348156,
       "scoreBreakdown": {
-        "artist": 29.387700892575097,
+        "artist": 29.38804023153347,
         "album": 8.817139967814686,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-eed0703e-1587-4667-81df-c390c4f6a59a",
@@ -1018,17 +923,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a8/ed/db/a8eddb47-5830-7985-a617-b2eae307dbc5/cover_3618021409602.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 47797,
-      "artistPlaycount": 134814,
+      "artistListeners": 47798,
+      "artistPlaycount": 134829,
       "albumListeners": 21,
       "albumPlaycount": 37,
-      "score": 37.807100732208845,
+      "score": 37.8071613064344,
       "scoreBreakdown": {
-        "artist": 31.196004258539247,
+        "artist": 31.196064832764808,
         "album": 6.611096473669597,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
@@ -1044,17 +949,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 2404,
-      "artistPlaycount": 25987,
+      "artistListeners": 2405,
+      "artistPlaycount": 25992,
       "albumListeners": 668,
-      "albumPlaycount": 3899,
-      "score": 36.66344540124908,
+      "albumPlaycount": 3903,
+      "score": 36.66464951711007,
       "scoreBreakdown": {
-        "artist": 22.539563088871347,
+        "artist": 22.54076720473234,
         "album": 14.123882312377729,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
@@ -1070,17 +975,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3706,
-      "artistPlaycount": 45777,
+      "artistListeners": 3707,
+      "artistPlaycount": 45786,
       "albumListeners": 210,
       "albumPlaycount": 2249,
-      "score": 35.403799240222114,
+      "score": 35.404580380533346,
       "scoreBreakdown": {
-        "artist": 23.792702766552523,
+        "artist": 23.793483906863756,
         "album": 11.611096473669594,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
@@ -1096,17 +1001,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3513,
-      "artistPlaycount": 54269,
+      "artistListeners": 3514,
+      "artistPlaycount": 54288,
       "albumListeners": 208,
-      "albumPlaycount": 2175,
-      "score": 35.22817100676065,
+      "albumPlaycount": 2176,
+      "score": 35.22899505587565,
       "scoreBreakdown": {
-        "artist": 23.637854331946837,
+        "artist": 23.63867838106184,
         "album": 11.590316674813808,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-f10db834-996c-4b1f-9563-98c7b9e80baa",
@@ -1122,43 +1027,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/84/b4/3a84b4cd-86fc-d7fb-7af0-2d45e506e381/60747.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 2496,
-      "artistPlaycount": 41205,
+      "artistListeners": 2499,
+      "artistPlaycount": 41318,
       "albumListeners": 309,
       "albumPlaycount": 3110,
-      "score": 35.09808960386008,
+      "score": 35.10156743796717,
       "scoreBreakdown": {
-        "artist": 22.648297206735908,
+        "artist": 22.651775040843,
         "album": 12.449792397124172,
         "freshness": 0
       },
-      "daysOld": 267
-    },
-    {
-      "id": "mb-b1e5a339-4d56-4d74-a6e8-73987e330ff7",
-      "mbid": "b1e5a339-4d56-4d74-a6e8-73987e330ff7",
-      "title": "快樂的人在路上走",
-      "artist": "無妄合作社",
-      "releaseDate": "2026-08",
-      "year": "2026",
-      "type": "EP",
-      "country": "TW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c1/63/e3/c163e3b1-5c0e-1610-cfc1-798ba40578c9/4711720316802_new.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 4024,
-      "artistPlaycount": 71598,
-      "albumListeners": 128,
-      "albumPlaycount": 741,
-      "score": 34.56710299522515,
-      "scoreBreakdown": {
-        "artist": 24.031053146985805,
-        "album": 10.536049848239342,
-        "freshness": 0
-      },
-      "daysOld": 55
+      "daysOld": 268
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
@@ -1193,7 +1072,7 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/47/5f/2f/475f2fda-9bf0-14f3-f7cd-5b00a5d79f9e/artwork.jpg/600x600bb.jpg",
       "source": "musicbrainz",
       "artistListeners": 5588,
-      "artistPlaycount": 194787,
+      "artistPlaycount": 194798,
       "albumListeners": 72,
       "albumPlaycount": 606,
       "score": 34.2683717984373,
@@ -1202,7 +1081,51 @@
         "album": 9.286662482156343,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
+    },
+    {
+      "id": "mb-e178c01c-3f05-4070-9454-749687762747",
+      "mbid": "e178c01c-3f05-4070-9454-749687762747",
+      "title": "Fit For Use?",
+      "artist": "Blind System",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [
+        "punk rock",
+        "viking rock",
+        "swedish",
+        "vikingarock",
+        "摇滚"
+      ],
+      "genresEn": [
+        "punk rock",
+        "viking rock",
+        "swedish",
+        "vikingarock",
+        "rock"
+      ],
+      "lfmTags": [
+        "punk rock",
+        "viking rock",
+        "swedish",
+        "vikingarock",
+        "rock"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1892,
+      "artistPlaycount": 8596,
+      "albumListeners": 77,
+      "albumPlaycount": 363,
+      "score": 31.2785945063009,
+      "scoreBreakdown": {
+        "artist": 21.846140880438494,
+        "album": 9.432453625862408,
+        "freshness": 0
+      },
+      "daysOld": 268
     },
     {
       "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
@@ -1236,17 +1159,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/db/24/87/db248794-b457-d1e6-167d-3cd33054738d/7321170314616.png/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 2587,
-      "artistPlaycount": 94176,
+      "artistListeners": 2588,
+      "artistPlaycount": 94195,
       "albumListeners": 50,
       "albumPlaycount": 226,
-      "score": 31.246826213123718,
+      "score": 31.247945168324513,
       "scoreBreakdown": {
-        "artist": 22.751976191443624,
+        "artist": 22.75309514664442,
         "album": 8.494850021680094,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
@@ -1260,7 +1183,7 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e6/02/dc/e602dc9a-9c88-2083-c29f-d203df5ca73c/26UM1IM07597.rgb.jpg/600x600bb.jpg",
+      "cover": "",
       "source": "musicbrainz",
       "artistListeners": 3182,
       "artistPlaycount": 20674,
@@ -1272,7 +1195,33 @@
         "album": 7.657394585211276,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
+    },
+    {
+      "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
+      "mbid": "809b9fbd-9dca-4327-bc33-a00df0850431",
+      "title": "Galaxia Tropical",
+      "artist": "Ranil Y Su Conjunto Tropical",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "DE",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/31/44/9c/31449cf5-4969-f2ea-71e2-a4eead42c02e/120960.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 1102,
+      "artistPlaycount": 10333,
+      "albumListeners": 88,
+      "albumPlaycount": 1164,
+      "score": 30.00362399085595,
+      "scoreBreakdown": {
+        "artist": 20.281210630105107,
+        "album": 9.722413360750844,
+        "freshness": 0
+      },
+      "daysOld": 268
     },
     {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
@@ -1288,17 +1237,69 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/04/f9/c7/04f9c76d-7e80-63bd-757a-1c37e01515f7/artwork.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 23517,
-      "artistPlaycount": 1258483,
+      "artistListeners": 23518,
+      "artistPlaycount": 1258543,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 29.142546127777674,
+      "score": 29.142669240206565,
       "scoreBreakdown": {
-        "artist": 29.142546127777674,
+        "artist": 29.142669240206565,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
+    },
+    {
+      "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
+      "mbid": "95d456c4-38a3-487f-b745-09c94b9cea83",
+      "title": "Blå-Gula Hjältar",
+      "artist": "Väringarna",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1175,
+      "artistPlaycount": 7075,
+      "albumListeners": 49,
+      "albumPlaycount": 630,
+      "score": 28.917899510860934,
+      "scoreBreakdown": {
+        "artist": 20.466919110718365,
+        "album": 8.450980400142567,
+        "freshness": 0
+      },
+      "daysOld": 268
+    },
+    {
+      "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
+      "mbid": "38c915a8-858a-4ac1-9b04-13b2da60bed1",
+      "title": "Once I Was A Member Of Ultima Thule",
+      "artist": "Bruno Hansen",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1186,
+      "artistPlaycount": 12647,
+      "albumListeners": 11,
+      "albumPlaycount": 99,
+      "score": 25.700861352646086,
+      "scoreBreakdown": {
+        "artist": 20.49389792685496,
+        "album": 5.206963425791125,
+        "freshness": 0
+      },
+      "daysOld": 268
     },
     {
       "id": "mb-338d60e1-ad46-44c3-a5fa-b2b2d4daa554",
@@ -1314,207 +1315,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 6234,
-      "artistPlaycount": 80302,
+      "artistListeners": 6239,
+      "artistPlaycount": 80335,
       "albumListeners": 1,
       "albumPlaycount": 28,
-      "score": 25.298445319605474,
+      "score": 25.30076657086909,
       "scoreBreakdown": {
-        "artist": 25.298445319605474,
+        "artist": 25.30076657086909,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 267
-    },
-    {
-      "id": "mb-61ae72aa-afcb-4418-a5c5-249f097dc236",
-      "mbid": "61ae72aa-afcb-4418-a5c5-249f097dc236",
-      "title": "靈魂的回聲",
-      "artist": "回聲樂團",
-      "releaseDate": "2026-08-28",
-      "year": "2026",
-      "type": "Album",
-      "country": "TW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "taiwan",
-        "rock",
-        "indie",
-        "male vocalist",
-        "indie rock"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2064,
-      "artistPlaycount": 88257,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 24.09806461970116,
-      "scoreBreakdown": {
-        "artist": 22.09806461970116,
-        "album": 0,
-        "freshness": 2
-      },
-      "daysOld": 28
-    },
-    {
-      "id": "mb-a44dd6f4-dc7c-48f2-b2ea-a2f6c8611a77",
-      "mbid": "a44dd6f4-dc7c-48f2-b2ea-a2f6c8611a77",
-      "title": "늘 그래왔던 것처럼",
-      "artist": "소수빈",
-      "releaseDate": "2026-08-27",
-      "year": "2026",
-      "type": "Album",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "Korea",
-        "Ballad",
-        "k-indie"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2179,
-      "artistPlaycount": 31899,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 23.255048201641703,
-      "scoreBreakdown": {
-        "artist": 22.255048201641703,
-        "album": 0,
-        "freshness": 1
-      },
-      "daysOld": 29
-    },
-    {
-      "id": "mb-e178c01c-3f05-4070-9454-749687762747",
-      "mbid": "e178c01c-3f05-4070-9454-749687762747",
-      "title": "Fit For Use?",
-      "artist": "Blind System",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "viking rock",
-        "punk rock",
-        "swedish",
-        "vikingarock",
-        "hate"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1892,
-      "artistPlaycount": 8596,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 21.846140880438494,
-      "scoreBreakdown": {
-        "artist": 21.846140880438494,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 267
-    },
-    {
-      "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
-      "mbid": "38c915a8-858a-4ac1-9b04-13b2da60bed1",
-      "title": "Once I Was A Member Of Ultima Thule",
-      "artist": "Bruno Hansen",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "vikingarock",
-        "swedish",
-        "viking rock",
-        "Patriotic",
-        "liszaj radio"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1186,
-      "artistPlaycount": 12645,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 20.49389792685496,
-      "scoreBreakdown": {
-        "artist": 20.49389792685496,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 267
-    },
-    {
-      "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
-      "mbid": "95d456c4-38a3-487f-b745-09c94b9cea83",
-      "title": "Blå-Gula Hjältar",
-      "artist": "Väringarna",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "viking rock",
-        "RAC",
-        "vikingarock",
-        "swedish",
-        "hard rock"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1175,
-      "artistPlaycount": 7075,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 20.466919110718365,
-      "scoreBreakdown": {
-        "artist": 20.466919110718365,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 267
-    },
-    {
-      "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
-      "mbid": "809b9fbd-9dca-4327-bc33-a00df0850431",
-      "title": "Galaxia Tropical",
-      "artist": "Ranil Y Su Conjunto Tropical",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "DE",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "cumbia",
-        "latin",
-        "peruvian",
-        "guitar",
-        "psychedelic"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1102,
-      "artistPlaycount": 10332,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 20.281210630105107,
-      "scoreBreakdown": {
-        "artist": 20.281210630105107,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
@@ -1543,7 +1354,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-dc113487-3606-48ce-976d-37748757097c",
@@ -1566,7 +1377,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 866,
-      "artistPlaycount": 12370,
+      "artistPlaycount": 12375,
       "albumListeners": 0,
       "albumPlaycount": 0,
       "score": 19.58345261344898,
@@ -1575,7 +1386,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-901435e9-1c31-4a69-9fe9-288b4d510d99",
@@ -1598,7 +1409,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 675,
-      "artistPlaycount": 5739,
+      "artistPlaycount": 5744,
       "albumListeners": 0,
       "albumPlaycount": 0,
       "score": 18.862025152206833,
@@ -1607,7 +1418,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "mb-4f123c9f-5775-4f3e-938c-6e4d90cd3944",
@@ -1623,17 +1434,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 584,
-      "artistPlaycount": 7036,
+      "artistListeners": 586,
+      "artistPlaycount": 7058,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 18.442752314082664,
+      "score": 18.45265077345394,
       "scoreBreakdown": {
-        "artist": 18.442752314082664,
+        "artist": 18.45265077345394,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 267
+      "daysOld": 268
     },
     {
       "id": "chart-0",
@@ -10371,7 +10182,7 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://lastfm-img.freetls.fastly.net/i/u/174s/52e53e032a8465eb6aaa22a8ed16fc7d.png",
+      "cover": "https://lastfm-img.freetls.fastly.net/i/u/174s/c765357527a146e8801904f57f4a737b.png",
       "source": "chart",
       "artistListeners": 0,
       "artistPlaycount": 0,
