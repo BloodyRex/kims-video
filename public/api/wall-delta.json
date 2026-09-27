@@ -1,22 +1,35 @@
 {
-  "updated": "2026-09-27",
-  "count": 1,
+  "updated": "2026-09-28",
+  "count": 2,
   "movies": [
     {
-      "tmdbId": 1492640,
+      "tmdbId": 1774595,
       "mediaType": "movie",
-      "title": "大学炸弹客",
-      "titleEn": "UNABOMBER",
+      "title": "凝脂手",
+      "titleEn": "凝脂手",
       "year": "2026",
       "releaseDate": "2026-09-25",
-      "poster": "https://image.tmdb.org/t/p/w500/vzDcJVh7BMNgqhbJ6meqZWh0dvf.jpg",
-      "rating": 7.1,
+      "poster": "https://image.tmdb.org/t/p/w500/1pOYZpaFYjfbHp1VN9NF5RstTXU.jpg",
+      "rating": 0,
       "genre": [
-        "Thriller",
-        "Drama",
-        "Crime"
+        "Drama"
       ],
-      "firstSeen": "2026-09-27"
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "tmdbId": 1379486,
+      "mediaType": "movie",
+      "title": "维多利亚时代的精神病人",
+      "titleEn": "Victorian Psycho",
+      "year": "2026",
+      "releaseDate": "2026-11-11",
+      "poster": "https://image.tmdb.org/t/p/w500/9LHVZevgdsdbjJdkFr6bk9EwX7q.jpg",
+      "rating": 0,
+      "genre": [
+        "Horror",
+        "Thriller"
+      ],
+      "firstSeen": "2026-09-28"
     }
   ]
 }
