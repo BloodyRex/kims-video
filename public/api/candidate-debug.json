@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-30",
+  "updated": "2026-10-01",
   "config": {
     "releaseWindowDays": 30,
     "weeklyContinuity": {
@@ -44,7 +44,7 @@
   },
   "stats": {
     "mbRaw": 400,
-    "afterFilter": 215,
+    "afterFilter": 209,
     "artistsChecked": 74,
     "afterArtistFilter": 52,
     "albumEnriched": 40,
@@ -500,8 +500,8 @@
       "daysOld": 272
     },
     {
-      "id": "mb-31475ecf-7591-409a-8145-59210e0458a5",
-      "mbid": "31475ecf-7591-409a-8145-59210e0458a5",
+      "id": "mb-1f275fe4-0f69-4d88-9c4c-127cefdc285d",
+      "mbid": "1f275fe4-0f69-4d88-9c4c-127cefdc285d",
       "title": "PHASE I : Soft Violence",
       "artist": "TAEMIN",
       "releaseDate": "2026-08-31",
@@ -718,32 +718,6 @@
       "daysOld": 272
     },
     {
-      "id": "mb-8ad269a3-d3ad-4aa5-9256-97ce9488fab4",
-      "mbid": "8ad269a3-d3ad-4aa5-9256-97ce9488fab4",
-      "title": "끝내주는 인생",
-      "artist": "SOYEON",
-      "releaseDate": "2026-09-07",
-      "year": "2026",
-      "type": "Album",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 99599,
-      "artistPlaycount": 1038324,
-      "albumListeners": 17,
-      "albumPlaycount": 1283,
-      "score": 46.47394446032767,
-      "scoreBreakdown": {
-        "artist": 33.3216998534363,
-        "album": 6.15224460689137,
-        "freshness": 7
-      },
-      "daysOld": 23
-    },
-    {
       "id": "mb-561ba06d-47ba-46c5-86b9-8ea22bbb37ef",
       "mbid": "561ba06d-47ba-46c5-86b9-8ea22bbb37ef",
       "title": "鮮花與牛糞",
@@ -794,6 +768,32 @@
         "freshness": 0
       },
       "daysOld": 272
+    },
+    {
+      "id": "mb-5fce3cbe-4fc2-4e47-bdee-c39260a43d22",
+      "mbid": "5fce3cbe-4fc2-4e47-bdee-c39260a43d22",
+      "title": "What a Wonderful Life (HOME ver.)",
+      "artist": "SOYEON",
+      "releaseDate": "2026-09-08",
+      "year": "2026",
+      "type": "Album",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 99599,
+      "artistPlaycount": 1038324,
+      "albumListeners": 3,
+      "albumPlaycount": 3,
+      "score": 43.70730612703461,
+      "scoreBreakdown": {
+        "artist": 33.3216998534363,
+        "album": 2.385606273598312,
+        "freshness": 8
+      },
+      "daysOld": 22
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -1284,38 +1284,6 @@
       "daysOld": 272
     },
     {
-      "id": "mb-f6f791e9-62ca-48ea-b807-7b4cb6a08379",
-      "mbid": "f6f791e9-62ca-48ea-b807-7b4cb6a08379",
-      "title": "산산조각",
-      "artist": "장기하",
-      "releaseDate": "2026-09-09",
-      "year": "2026",
-      "type": "Album",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "Korean",
-        "rock",
-        "vocal",
-        "k-rock",
-        "drummer"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 1306,
-      "artistPlaycount": 16496,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 29.772954512927036,
-      "scoreBreakdown": {
-        "artist": 20.772954512927036,
-        "album": 0,
-        "freshness": 9
-      },
-      "daysOld": 21
-    },
-    {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
       "mbid": "240607f1-aeeb-49f0-8f3a-55231a264602",
       "title": "Genom Tid Och Rum - Lost Recordings",
@@ -1340,6 +1308,38 @@
         "freshness": 0
       },
       "daysOld": 272
+    },
+    {
+      "id": "mb-f4cecb73-15b1-4e42-a6dd-31716266d8e9",
+      "mbid": "f4cecb73-15b1-4e42-a6dd-31716266d8e9",
+      "title": "오아시스",
+      "artist": "정동하",
+      "releaseDate": "2026-09-06",
+      "year": "2026",
+      "type": "EP",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "Korean",
+        "Ballad",
+        "k-rock",
+        "boohwal",
+        "video"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 2093,
+      "artistPlaycount": 31732,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 28.13846152225791,
+      "scoreBreakdown": {
+        "artist": 22.13846152225791,
+        "album": 0,
+        "freshness": 6
+      },
+      "daysOld": 24
     },
     {
       "id": "mb-338d60e1-ad46-44c3-a5fa-b2b2d4daa554",

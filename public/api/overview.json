@@ -1,12 +1,30 @@
 {
-  "updated": "2026-09-30",
+  "updated": "2026-10-01",
   "stats": {
-    "moviesReleased": 6,
+    "moviesReleased": 5,
     "tvAiringThisWeek": 20,
-    "albumsReleased": 0,
+    "albumsReleased": 25,
     "trending": 20
   },
   "editorsPicks": [
+    {
+      "tmdbId": 1375441,
+      "title": "黄金时段",
+      "titleEn": "Primetime",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-09-25",
+      "poster": "https://image.tmdb.org/t/p/w500/6rjSYr7NoSWKwzSZbuHogNXgF1O.jpg",
+      "rating": 7.045,
+      "genre": [
+        "Thriller",
+        "Drama"
+      ],
+      "summary": "聚焦电视主持人克里斯·汉森与他推出的一档真人秀节目“猎捕恋童癖”，该节目利用人员在网络上伪装成未成年人，引诱恋童癖进入摄影棚，并将其逮捕。",
+      "summaryEn": "In 2006, To Catch a Predator host Chris Hansen sets out to make television history, turning an undercover investigation into one of the most controversial cultural phenomena of the decade.",
+      "pickCategory": "editors"
+    },
     {
       "tmdbId": 1465063,
       "title": "忘却之岛",
@@ -29,138 +47,100 @@
       "pickCategory": "editors"
     },
     {
-      "tmdbId": 1291366,
-      "title": "副警长",
-      "titleEn": "The Deputy",
+      "tmdbId": 1596249,
+      "title": "小春，屁股摇起来！",
+      "titleEn": "Ha-Chan, Shake Your Booty!",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-09-25",
-      "poster": "https://image.tmdb.org/t/p/w500/qL654LNOfBu49e12jnnQIv6mny.jpg",
-      "rating": 7.214,
+      "releaseDate": "2026-09-23",
+      "poster": "https://image.tmdb.org/t/p/w500/w98RWv9o05OhXYfTvauDrotRZ13.jpg",
+      "rating": 9,
       "genre": [
-        "Action",
-        "Crime",
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "summary": "在东京的舞厅舞比赛中，Haru和Luis是一对热爱竞争的搭档。然而，一场悲剧发生后，晴陷入了自我封闭。在朋友的劝说下，她重返舞蹈工作室，并对新来的教练产生了迷恋。当爱火花迸发时，她必须直面随之而来的一切。",
+      "summaryEn": "Haru and Luis love competing in Tokyo’s ballroom dance scene, but after tragedy strikes, Haru withdraws into isolation. When friends coax her back to the studio, she develops an infatuation with the n",
+      "pickCategory": "gem"
+    },
+    {
+      "tmdbId": 1283515,
+      "title": "不存在的罪人",
+      "titleEn": "Verity",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-10-02",
+      "poster": "https://image.tmdb.org/t/p/w500/fD6hgmReIOGiFv3l22eVSQLxqFX.jpg",
+      "rating": 6.5,
+      "genre": [
+        "Mystery",
         "Thriller"
       ],
-      "summary": "一名年轻的警长副手奉命监视一具尸体，结果这具尸体却从犯罪现场消失了，他因此成为了危险罪犯的眼中钉。",
-      "summaryEn": "一名年轻的警长副手奉命监视一具尸体，结果这具尸体却从犯罪现场消失了，他因此成为了危险罪犯的眼中钉。",
-      "pickCategory": "editors"
-    },
-    {
-      "tmdbId": 977942,
-      "title": "起义",
-      "titleEn": "The Uprising",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-09-10",
-      "poster": "https://image.tmdb.org/t/p/w500/uLI9v21yjlFcrL0qdBPHpNk1Gmu.jpg",
-      "rating": 7.5,
-      "genre": [
-        "History",
-        "Drama"
-      ],
-      "summary": "在中世纪的英格兰，一位无畏的勇士召集平民发动了一场激烈的起义，反抗国王理查德二世的高压统治。随着国家陷入混乱，他的起义军与王室军队展开了一场绝望的自由之战。",
-      "summaryEn": "As war and plague devastate 14th-century England, a humble peasant ignites a rebellion, uniting an army of commoners to defy the King’s might in a desperate fight for justice and survival.",
+      "summary": "影片改编自柯琳·胡佛的同名畅销小说。知名作家维莉蒂因故无法完成新作，潦倒作家洛温受邀前往其偏远庄园代笔，却意外发现维莉蒂诡异的自传手稿。面对其中关于丈夫杰里米的扭曲告白，洛温逐渐难辨虚实、操控与诱惑。",
+      "summaryEn": "Lowen Ashleigh is hired by Jeremy Crawford to ghostwrite novels for his bestselling author wife Verity, who is unable to finish following an accident. Lowen gradually uncovers Verity's disturbing trut",
       "pickCategory": "trending"
     },
     {
-      "tmdbId": 969681,
-      "title": "蜘蛛侠：崭新之日",
-      "titleEn": "Spider-Man: Brand New Day",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-07-29",
-      "poster": "https://image.tmdb.org/t/p/w500/7AjIupf0lxNKNq0p8z36jv5ZpiJ.jpg",
-      "rating": 7.9,
-      "genre": [
-        "Sci-Fi",
-        "Action",
-        "Adventure"
-      ],
-      "summary": "全世界已经忘记了彼得·帕克的存在。失去曾经的朋友、爱人与家人后，他选择独自留在纽约，将全部生活投入打击犯罪，成为一名真正的全职蜘蛛侠。数年过去，日复一日的战斗和孤独让彼得承受着越来越沉重的压力，而他的身体也开始发生无法解释的异常变化。与此同时，一股难以察觉的新威胁正在城市中悄然蔓延。为了阻止危机继续扩大，彼得必须在自己逐渐失控的变化与这名甚至无法被看见的敌人之间寻找新的战斗方式，也再次面对那些他以",
-      "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
-      "pickCategory": "trending"
-    },
-    {
-      "tmdbId": 1375441,
-      "title": "黄金时段",
-      "titleEn": "Primetime",
+      "tmdbId": 1492640,
+      "title": "大学炸弹客",
+      "titleEn": "UNABOMBER",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
       "releaseDate": "2026-09-25",
-      "poster": "https://image.tmdb.org/t/p/w500/6rjSYr7NoSWKwzSZbuHogNXgF1O.jpg",
-      "rating": 7.1,
+      "poster": "https://image.tmdb.org/t/p/w500/oSdSbEXVumkwYst9kwT4CL1b57R.jpg",
+      "rating": 6.731,
       "genre": [
-        "Crime",
         "Thriller",
-        "Drama"
+        "Drama",
+        "Crime"
       ],
-      "summary": "聚焦电视主持人克里斯·汉森与他推出的一档真人秀节目“猎捕恋童癖”，该节目利用人员在网络上伪装成未成年人，引诱恋童癖进入摄影棚，并将其逮捕。",
-      "summaryEn": "In 2006, To Catch a Predator host Chris Hansen sets out to make television history, turning an undercover investigation into one of the most controversial cultural phenomena of the decade.",
-      "pickCategory": "editors"
+      "summary": "在这部改编自真人真事的剧情片中，联邦调查局一路追捕特德·卡钦斯基，而他从哈佛神童和实验对象一步步变成“大学炸弹客”的历程也随之揭晓。",
+      "summaryEn": "Follow Ted Kaczynski's transformation from Harvard prodigy into the infamous Unabomber. Subjected to controversial psychological experiments by Professor Henry Murray, Kaczynski's troubled past resurf",
+      "pickCategory": "trending"
     },
     {
-      "tmdbId": 1263337,
-      "title": "野兽之心",
-      "titleEn": "Heart of the Beast",
+      "tmdbId": 1437396,
+      "title": "为了你的母亲",
+      "titleEn": "Your Mother Your Mother Your Mother",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-09-30",
-      "poster": "https://image.tmdb.org/t/p/w500/k1nznc9xTRkRq0BNu7qOXE3NSlU.jpg",
-      "rating": 7.633,
+      "releaseDate": "2026-09-25",
+      "poster": "https://image.tmdb.org/t/p/w500/4KaPZSKnInnArErTTgy9Oy14leR.jpg",
+      "rating": 7.2,
       "genre": [
-        "Adventure",
-        "Thriller"
+        "Action",
+        "Crime",
+        "Drama"
       ],
-      "summary": "一名前陆军特种部队士兵与他退役战犬在阿拉斯加深处遭遇坠机事故后，这对老搭档必须在环境严酷的极地荒野中相互扶持，为生存而战。",
-      "summaryEn": "After a harrowing plane crash, Special Forces officer James Belmont and his combat dog, Odin, find themselves stranded deep in the Alaskan wilderness. Together, they are forced into a brutal fight for",
+      "summary": "一个虔诚的杀手在杀人的工作、信仰和当父亲的责任之间挣扎，他要保护自己的孩子们，直面来袭的势力和濒临崩塌的信仰。",
+      "summaryEn": "Latif, a devoutly religious hitman, struggles to balance work, faith and fatherhood. When his wife dies, he embarks on a desperate journey across Houston to protect his children, confronting the force",
       "pickCategory": "editors"
     }
   ],
   "weeklyHotTv": [
     {
-      "tmdbId": 282326,
-      "title": "兰香如故",
-      "titleEn": "Against the Current",
-      "originalLanguage": "zh",
-      "originCountry": [
-        "CN"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-09-11",
-      "poster": "https://image.tmdb.org/t/p/w500/kfurXRMH1ZkUoyT5HN72zLTQxzZ.jpg",
-      "rating": 6.2,
-      "genre": [
-        "Drama",
-        "Family"
-      ],
-      "summary": "大学士府长孙女沈嘉兰与吏部尚书林家的长孙林锦岐订下婚约，然而朝堂风云突变，祖父沈大学士被判谋逆之罪，沈家惨遭灭门。林家为了自保，与沈家退婚，另与御前新贵赵家结亲。沈嘉兰母亲崔氏曾接济过的林家家奴许万全夫妇用刚病亡的女儿许兰香替下嘉兰。嘉兰从此顶着许兰香的身份，成为林府的一名三等丫鬟。在艰难的境遇中，兰香没有向命运低头，始终为自己和家人的幸福生活努力着，反抗一切不公与压迫。最终，兰香凭借自己的善良与",
-      "summaryEn": "Shen Jialan, once a nobleman's granddaughter, falls from grace after her family is falsely accused of treason. Abandoned by her fiancé Lin Jinqi, she is forced to assume a servant's identity in his ho",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 615,
-      "title": "飞出个未来",
-      "titleEn": "Futurama",
+      "tmdbId": 456,
+      "title": "辛普森一家",
+      "titleEn": "The Simpsons",
       "originalLanguage": "en",
       "originCountry": [
         "US"
       ],
-      "year": "1999",
-      "releaseDate": "1999-03-28",
-      "poster": "https://image.tmdb.org/t/p/w500/pTmINJc0Zxik8viSMSCT1wygt8S.jpg",
-      "rating": 8.365,
+      "year": "1989",
+      "releaseDate": "1989-12-17",
+      "poster": "https://image.tmdb.org/t/p/w500/muSolUGIvAjrH7VynyJwOyMAtsY.jpg",
+      "rating": 8,
       "genre": [
         "Animation",
         "Comedy"
       ],
-      "summary": "Fry是一名生活在20世纪的送货员，他工作不顺心，生活不如意，是个彻头彻尾的失败者。机缘巧合下，他被时光机器送到了1000年后的未来，也就是公元3000年！在光怪陆离的未来世界，他遇到了独眼女外星人Leela，Leela要给他植入职业芯片，好让他能在未来生活下去，而他的新职业居然也是送货员。Fry遂逃离出去，路上遇到了机器人Bender。Leela在追捕他们的过程中，也放弃了自己不喜欢的职业，连同",
-      "summaryEn": "The adventures of a late-20th-century New York City pizza delivery boy, Philip J. Fry, who, after being unwittingly cryogenically frozen for one thousand years, finds employment at Planet Express, an ",
+      "summary": "辛普森一家是来自美国普通的五口之家，荷马是春田镇核能工厂的安全检查员，母亲马芝曾经是一个很有思想的女性，自从嫁给荷马后渐渐地适应了主妇生活的定式。巴特是家中的长子，天性顽皮的巴特经常爱玩一些恶作剧，以至于经常惹麻烦。妹妹丽莎是一个很聪明的孩子，同时还是素食主义者，佛教徒，爵士乐。小女马姬是一个永远长不大的孩子。故事设定于虚构小镇春田镇，从许多角度对美国的文化与社会、人的条件和电视本身进行了幽默的嘲",
+      "summaryEn": "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands",
       "pickCategory": "tvhot"
     },
     {
@@ -174,7 +154,7 @@
       "year": "1999",
       "releaseDate": "1999-10-20",
       "poster": "https://image.tmdb.org/t/p/w500/f9AFdxegmmWOghgw9E6ebICkstl.jpg",
-      "rating": 8.8,
+      "rating": 8.75,
       "genre": [
         "Comedy",
         "Animation"
@@ -184,41 +164,23 @@
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 108978,
-      "title": "侠探杰克",
-      "titleEn": "Reacher",
+      "tmdbId": 299939,
+      "title": "怪物：莉齐·博登的故事",
+      "titleEn": "Monster: The Lizzie Borden Story",
       "originalLanguage": "en",
       "originCountry": [
         "US"
       ],
-      "year": "2022",
-      "releaseDate": "2022-02-03",
-      "poster": "https://image.tmdb.org/t/p/w500/dt5XNeYjR46lmVHQKiwfAmDHy9d.jpg",
-      "rating": 8.133,
+      "year": "2026",
+      "releaseDate": "2026-09-17",
+      "poster": "https://image.tmdb.org/t/p/w500/4Uk0MaEEx0bO418rhM7B8gqeFPy.jpg",
+      "rating": 7.034,
       "genre": [
+        "Drama",
         "Crime"
       ],
-      "summary": "退役宪兵杰克·雷彻独自游走各地，凭借敏锐头脑与强悍身手追查案件，在一次次危机中揭开隐藏于罪案背后的阴谋。",
-      "summaryEn": "Jack Reacher, a veteran military police investigator, has just recently entered civilian life. Reacher is a drifter, carrying no phone and the barest of essentials as he travels the country and explor",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 284792,
-      "title": "谜样美杜莎",
-      "titleEn": "Medusa",
-      "originalLanguage": "es",
-      "originCountry": [
-        "CO"
-      ],
-      "year": "2025",
-      "releaseDate": "2025-03-05",
-      "poster": "https://image.tmdb.org/t/p/w500/sqC5QH5hYopeZaH7EiBO9T7AFXO.jpg",
-      "rating": 7.3,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "有人要谋杀首席执行官芭芭拉·伊达尔戈。她的家族为了掌控哥伦比亚商业帝国正不择手段地筹谋，而她能否找出真凶？",
-      "summaryEn": "有人要谋杀首席执行官芭芭拉·伊达尔戈。她的家族为了掌控哥伦比亚商业帝国正不择手段地筹谋，而她能否找出真凶？",
+      "summary": "被困于维多利亚时代残酷家庭的莉齐·博登用斧头残忍杀害了自己的父母，此案震惊全国。",
+      "summaryEn": "Trapped in a cruel Victorian-era household, Lizzie Borden kills her parents in a gory ax murder that shocks the nation.",
       "pickCategory": "tvhot"
     },
     {
@@ -232,34 +194,55 @@
       "year": "2026",
       "releaseDate": "2026-09-22",
       "poster": "https://image.tmdb.org/t/p/w500/9XGxH25h5o6aycGLnidA5DKomwl.jpg",
-      "rating": 8.7,
+      "rating": 8.364,
       "genre": [
         "Comedy"
       ],
       "summary": "伍迪·哈里森和马修·麦康纳两位相识多年的好友意外得知可能是亲兄弟，在追查身世真相的同时，也卷入家庭纷争与竞选州长的混乱之中。",
       "summaryEn": "Hollywood actors Matthew McConaughey and Woody Harrelson have been best friends for years, but a shocking family secret suggests their connection might be closer.",
       "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 108978,
+      "title": "侠探杰克",
+      "titleEn": "Reacher",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2022",
+      "releaseDate": "2022-02-03",
+      "poster": "https://image.tmdb.org/t/p/w500/dt5XNeYjR46lmVHQKiwfAmDHy9d.jpg",
+      "rating": 8.134,
+      "genre": [
+        "Crime"
+      ],
+      "summary": "退役宪兵杰克·雷彻独自游走各地，凭借敏锐头脑与强悍身手追查案件，在一次次危机中揭开隐藏于罪案背后的阴谋。",
+      "summaryEn": "Jack Reacher, a veteran military police investigator, has just recently entered civilian life. Reacher is a drifter, carrying no phone and the barest of essentials as he travels the country and explor",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 2190,
+      "title": "南方公园",
+      "titleEn": "South Park",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "1997",
+      "releaseDate": "1997-08-13",
+      "poster": "https://image.tmdb.org/t/p/w500/aqroh5nCMtxWFKjXEhrqXpe1HPO.jpg",
+      "rating": 8.335,
+      "genre": [
+        "Comedy",
+        "Animation"
+      ],
+      "summary": "讲述科罗拉多州南方公园小镇上，斯坦、凯尔、卡特曼和肯尼四个孩子的生活。他们不断卷入超自然事件、社会冲突和各种荒诞危机，并以孩子的视角面对成年人世界中的政治、宗教、文化和社会问题。",
+      "summaryEn": "Follow the misadventures of four irreverent grade-schoolers in the quiet, dysfunctional town of South Park, Colorado.",
+      "pickCategory": "tvhot"
     }
   ],
   "comingSoon": [
-    {
-      "tmdbId": 1283515,
-      "title": "不存在的罪人",
-      "titleEn": "Verity",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-09-30",
-      "poster": "https://image.tmdb.org/t/p/w500/fD6hgmReIOGiFv3l22eVSQLxqFX.jpg",
-      "rating": 7.7,
-      "genre": [
-        "Mystery",
-        "Thriller"
-      ],
-      "summary": "影片改编自柯琳·胡佛的同名畅销小说。知名作家维莉蒂因故无法完成新作，潦倒作家洛温受邀前往其偏远庄园代笔，却意外发现维莉蒂诡异的自传手稿。面对其中关于丈夫杰里米的扭曲告白，洛温逐渐难辨虚实、操控与诱惑。",
-      "summaryEn": "Lowen Ashleigh is hired by Jeremy Crawford to ghostwrite novels for his bestselling author wife Verity, who is unable to finish following an accident. Lowen gradually uncovers Verity's disturbing trut",
-      "daysUntil": 0
-    },
     {
       "tmdbId": 1599191,
       "title": "仙逆剧场版：弑仙之战",
@@ -278,7 +261,7 @@
       ],
       "summary": "王林于雷之仙界遭遇宿敌绝命追杀，在生死绝境中展开一场惊天逆袭，以弱胜强，终成弑仙壮举。",
       "summaryEn": "王林于雷之仙界遭遇宿敌绝命追杀，在生死绝境中展开一场惊天逆袭，以弱胜强，终成弑仙壮举。",
-      "daysUntil": 1
+      "daysUntil": 0
     },
     {
       "tmdbId": 1400837,
@@ -295,7 +278,7 @@
       ],
       "summary": "故事讲述八岁女孩贝拉住在父母婚姻摇摇欲坠的房子里。某天，她发现衣柜深处总在深夜探出一个东西——那东西长得和她妈妈乌苏拉一模一样，于是贝拉叫它“另一个妈妈”。它每天重复同一句话：“我可以进到你心里吗？”贝拉本能地拒绝，但“另一个妈妈”开始以更扭曲狰狞的形态渗透家庭生活，甚至试图取代真正的母亲。当家中怪事频发、家人也开始看见它时，贝拉必须在被彻底吞噬前，揪出这个伪装者，或者承认有些门不该打开。影片改编",
       "summaryEn": "Young Bela forms a relationship with a sinister entity in her home that looks uncannily like her own mother, drawing her into a terrifying and increasingly dark world.",
-      "daysUntil": 7
+      "daysUntil": 6
     },
     {
       "tmdbId": 1153576,
@@ -313,7 +296,7 @@
       ],
       "summary": "改编自卡普空同名系列格斗游戏。1993年，昔日形同兄弟的街头格斗家隆与肯因春丽的邀请重返赛场，参加世界格斗王大赛。然而，一场致命阴谋潜伏其中，迫使两人再次面对彼此与各自的过去。",
       "summaryEn": "In 1993, estranged Street Fighters Ryu and Ken Masters are thrown back into combat when the mysterious Chun-Li recruits them for the next World Warrior Tournament: a brutal clash of fists, fate, and f",
-      "daysUntil": 13
+      "daysUntil": 12
     },
     {
       "tmdbId": 1400940,
@@ -332,7 +315,7 @@
       ],
       "summary": "本片讲述一位B级片演员给自己注射一种物质来保持状态，却发现他可以改变自己的脸和体形，成为一块行走的泥土。",
       "summaryEn": "Matt Hagen's meteoric rise from Gotham street kid to Hollywood leading man is tragically cut short when a local crime boss's actions leave him horribly disfigured. Abandoned by his team and with nothi",
-      "daysUntil": 21
+      "daysUntil": 20
     },
     {
       "tmdbId": 1294189,
@@ -350,69 +333,29 @@
       ],
       "summary": "一位被冤枉的战争英雄，一无所有，在昔日特种部队成员的帮助下，与警方展开了一场史诗般的全国汽车追逐，全程电视直播。而着迷的公众则密切关注着他，希望他能安全逃脱。",
       "summaryEn": "A falsely accused war hero with nothing to lose leads police on an epic televised cross-country car chase, helped by members of his former Special Forces Army battalion and closely monitored by a fasc",
-      "daysUntil": 29
+      "daysUntil": 28
+    },
+    {
+      "tmdbId": 1300968,
+      "title": "饥饿游戏：收获日出",
+      "titleEn": "The Hunger Games: Sunrise on the Reaping",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-11-18",
+      "poster": "https://image.tmdb.org/t/p/w500/xdtMZkNcoVgMfsoAJxXDozMQd3n.jpg",
+      "rating": 0,
+      "genre": [
+        "Sci-Fi",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "",
+      "summaryEn": "Return to the world of Panem 24 years before the events of The Hunger Games, starting on the morning of the reaping of the 50th Hunger Games, also known as the Second Quarter Quell.",
+      "daysUntil": 48
     }
   ],
   "comingSoonTv": [
-    {
-      "tmdbId": 298505,
-      "title": "女巫团学院",
-      "titleEn": "Coven Academy",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-01",
-      "poster": "https://image.tmdb.org/t/p/w500/9QQtWusZn3imcHWtgeXF8eMABU2.jpg",
-      "rating": 10,
-      "genre": [
-        "Mystery",
-        "Drama",
-        "Comedy"
-      ],
-      "summary": "在新奥尔良闹鬼的中心地带，跟随三名少女女巫和她们那些魅力十足又危险的男巫同学，来到这所精英魔法寄宿学校——在这里，权力是货币，秘密足以致命，吸引力更是一种负担。夹在古老的超自然战争和禁忌之恋之间，女巫团必须决定，为了保护她们的城市——以及她们自己——她们愿意走到哪一步。",
-      "summaryEn": "在新奥尔良闹鬼的中心地带，跟随三名少女女巫和她们那些魅力十足又危险的男巫同学，来到这所精英魔法寄宿学校——在这里，权力是货币，秘密足以致命，吸引力更是一种负担。夹在古老的超自然战争和禁忌之恋之间，女巫团必须决定，为了保护她们的城市——以及她们自己——她们愿意走到哪一步。",
-      "daysUntil": 1
-    },
-    {
-      "tmdbId": 298852,
-      "title": "律界战争",
-      "titleEn": "War",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-01",
-      "poster": "https://image.tmdb.org/t/p/w500/AtCR5LMuvwepTi1kipKq878Rbuq.jpg",
-      "rating": 10,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "这是一部选集剧，背景设定在伦敦法律界的精英世界，讲述两家竞争律所Cathcarts和Taylor & Byrne，每一季都将在一场不同的、登上头条的法律大战中正面交锋。",
-      "summaryEn": "这是一部选集剧，背景设定在伦敦法律界的精英世界，讲述两家竞争律所Cathcarts和Taylor & Byrne，每一季都将在一场不同的、登上头条的法律大战中正面交锋。",
-      "daysUntil": 1
-    },
-    {
-      "tmdbId": 258165,
-      "title": "伊甸之东",
-      "titleEn": "East of Eden",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-01",
-      "poster": "https://image.tmdb.org/t/p/w500/2i2l3ZZeC08Bqo9evE3cqyS2N1L.jpg",
-      "rating": 8.3,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "这部剧集对史坦贝克的经典之作进行了全新诠释，讲述特拉斯克家族跨越数代的传奇故事，特别聚焦于那个难以磨灭的反英雄人物——凯茜·埃姆斯。",
-      "summaryEn": "这部剧集对史坦贝克的经典之作进行了全新诠释，讲述特拉斯克家族跨越数代的传奇故事，特别聚焦于那个难以磨灭的反英雄人物——凯茜·埃姆斯。",
-      "daysUntil": 1
-    },
     {
       "tmdbId": 324502,
       "title": "装备我最强",
@@ -430,7 +373,7 @@
       ],
       "summary": "　　全世界有20亿人游玩的超人气VR游戏《SATISFY》。\n\n　　在这个游戏内获得的财富与名声也会影响现实世界的背景下，\n\n　　长岭巧以玩家名“贪婪”为名，目标是摆脱平淡无奇的日常，实现人生逆袭。\n\n　　某天，贪婪在完成一项超高难度任务后，\n\n　　获得了传说级道具，并转职成为传说中的锻造工匠“法格玛的后裔”。\n\n　　虽然等级归零、装备几乎等于全裸，一切要从头开始——但……\n\n　　“既然打不到强力",
       "summaryEn": "　　全世界有20亿人游玩的超人气VR游戏《SATISFY》。\n\n　　在这个游戏内获得的财富与名声也会影响现实世界的背景下，\n\n　　长岭巧以玩家名“贪婪”为名，目标是摆脱平淡无奇的日常，实现人生逆袭。\n\n　　某天，贪婪在完成一项超高难度任务后，\n\n　　获得了传说级道具，并转职成为传说中的锻造工匠“法格玛的后裔”。\n\n　　虽然等级归零、装备几乎等于全裸，一切要从头开始——但……\n\n　　“既然打不到强力",
-      "daysUntil": 2
+      "daysUntil": 1
     },
     {
       "tmdbId": 307106,
@@ -449,7 +392,7 @@
       ],
       "summary": "高中时曾是游泳选手、后因病失去一条腿的博士生民宰，与一度迷失方向、如今重新出发的硕士生宥真。在冰冷的机器人实验室里，两名年轻人开启了一段酸甜苦辣交织的浪漫恋曲。",
       "summaryEn": "高中时曾是游泳选手、后因病失去一条腿的博士生民宰，与一度迷失方向、如今重新出发的硕士生宥真。在冰冷的机器人实验室里，两名年轻人开启了一段酸甜苦辣交织的浪漫恋曲。",
-      "daysUntil": 5
+      "daysUntil": 4
     },
     {
       "tmdbId": 288673,
@@ -469,8 +412,66 @@
       ],
       "summary": "父亲的突然离世迫使嘉莉进入到了残酷的公立高中，她不得不面对席卷社区的校园霸凌丑闻、社交媒体时代无情的压力和冷酷无情，以及伴随青春期而觉醒的神秘心灵感应能力。",
       "summaryEn": "父亲的突然离世迫使嘉莉进入到了残酷的公立高中，她不得不面对席卷社区的校园霸凌丑闻、社交媒体时代无情的压力和冷酷无情，以及伴随青春期而觉醒的神秘心灵感应能力。",
+      "daysUntil": 6
+    },
+    {
+      "tmdbId": 305551,
+      "title": "莓好遇见你",
+      "titleEn": "メリーベリーラブ",
+      "originalLanguage": "ja",
+      "originCountry": [
+        "JP"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-07",
+      "poster": "https://image.tmdb.org/t/p/w500/vI6dEbvs31QxAgTpNsq23eJDYl4.jpg",
+      "rating": 0,
+      "genre": [
+        "Comedy",
+        "Drama"
+      ],
+      "summary": "一夜之间失去一切的韩国空间规划师，与一心只扑在草莓上的日本农业女孩——在美丽岛屿上展开的、跨越国界的酸甜浪漫爱情喜剧。",
+      "summaryEn": "一夜之间失去一切的韩国空间规划师，与一心只扑在草莓上的日本农业女孩——在美丽岛屿上展开的、跨越国界的酸甜浪漫爱情喜剧。",
+      "daysUntil": 6
+    },
+    {
+      "tmdbId": 285322,
+      "title": "暗潮之下",
+      "titleEn": "Below",
+      "originalLanguage": "en",
+      "originCountry": [
+        "GB"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-08",
+      "poster": "https://image.tmdb.org/t/p/w500/it6VZ3N056EsfUmT8MjXpqpE2LZ.jpg",
+      "rating": 0,
+      "genre": [
+        "Mystery"
+      ],
+      "summary": "当一只神秘的海洋生物威胁着纽芬兰的一个小镇时，一位坚韧的渔夫和他的家人奋力保护他们这个紧密相连的社区。",
+      "summaryEn": "当一只神秘的海洋生物威胁着纽芬兰的一个小镇时，一位坚韧的渔夫和他的家人奋力保护他们这个紧密相连的社区。",
       "daysUntil": 7
+    },
+    {
+      "tmdbId": 289423,
+      "title": "恋爱充电中",
+      "titleEn": "나를 충전해줘",
+      "originalLanguage": "ko",
+      "originCountry": [
+        "KR"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-09",
+      "poster": "https://image.tmdb.org/t/p/w500/wlyn8eEOOxzn8oRGAePY7k59pv2.jpg",
+      "rating": 0,
+      "genre": [
+        "Comedy"
+      ],
+      "summary": "拥有人工心脏的企业继承人遇到一位能导电的女子。他们的契约不仅能激活他的人工心脏，也点燃了两人之间的火花。",
+      "summaryEn": "拥有人工心脏的企业继承人遇到一位能导电的女子。他们的契约不仅能激活他的人工心脏，也点燃了两人之间的火花。",
+      "daysUntil": 8
     }
   ],
-  "brief": "Today: 6 movie(s) released, 20 TV show(s) airing, 0 new album(s)."
+  "brief": "Today: 5 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
 }
