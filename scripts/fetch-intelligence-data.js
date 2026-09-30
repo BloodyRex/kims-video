@@ -9,6 +9,12 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { INTELLIGENCE_CONFIG } from "../config/intelligence.config.js";
 import { collectMusicCandidates, stripDebugFields } from "./music-pipeline.js";
+import {
+  applyWeeklyContinuity,
+  loadWeeklyLock,
+  saveWeeklyLock,
+  WEEKLY_SCOPE,
+} from "./weekly-continuity.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -135,6 +141,18 @@ async function main() {
   let anyChange = false;
   let failCount = 0;
 
+  // ── Weekly continuity state (每周累计 / 周初锁定 / 周内只增不减 / 周一重置) ──
+  // Rex 2026-09-30. Scope + rationale: scripts/weekly-continuity.js.
+  const weeklyCfg = INTELLIGENCE_CONFIG.weeklyContinuity || {};
+  const weeklyEnabled = weeklyCfg.enabled !== false && process.env.WEEKLY_CONTINUITY !== "0";
+  const weeklyCap = Number(weeklyCfg.cap) > 0 ? Number(weeklyCfg.cap) : 25;
+  const weeklyCaps = weeklyCfg.caps && typeof weeklyCfg.caps === "object" ? weeklyCfg.caps : null;
+  let weeklyState = loadWeeklyLock(API_DIR);
+  // Pre-merge copies of movies/tv: hidden-gems / discover-daily are OUT of scope and
+  // must keep curating from TODAY's selection, not from the week's accumulated set.
+  const freshSnapshots = {};
+  if (!weeklyEnabled) console.log("· weekly-lock — 已停用（config weeklyContinuity.enabled=false），按每日规则运行");
+
   for (const task of tasks) {
     const filePath = join(API_DIR, task.file);
     try {
@@ -142,8 +160,12 @@ async function main() {
       // Hidden gems: POST this run's movies/tv intelligence so the Worker curates
       // from TODAY's data (CDN static files are still yesterday's at this point)
       if (task.endpoint === "/intelligence/hidden-gems") {
-        const moviesToday = JSON.parse(readFileSync(join(API_DIR, "movies.json"), "utf8"));
-        const tvToday = JSON.parse(readFileSync(join(API_DIR, "tv.json"), "utf8"));
+        // POST THIS RUN's data — prefer the in-memory fresh snapshot taken BEFORE the
+        // weekly-continuity merge (hidden-gems / discover-daily are out of scope).
+        const moviesToday = freshSnapshots["movies.json"]
+          || JSON.parse(readFileSync(join(API_DIR, "movies.json"), "utf8"));
+        const tvToday = freshSnapshots["tv.json"]
+          || JSON.parse(readFileSync(join(API_DIR, "tv.json"), "utf8"));
         data = await fetchJSON(task.endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -188,6 +210,36 @@ async function main() {
         if (fresh < oldData.ongoing.length * 0.5) {
           console.warn(`⚠ GUARD ${task.file}: ongoing shrank ${oldData.ongoing.length} → ${fresh} (>50%, suspect cold-cache budget truncation) — keeping yesterday's ${oldData.ongoing.length} items`);
           data.ongoing = oldData.ongoing;
+        }
+      }
+
+      // ── Fresh snapshot for out-of-scope consumers (hidden-gems POST) ──
+      if (WEEKLY_SCOPE[task.file]) freshSnapshots[task.file] = { ...data };
+
+      // ── Weekly continuity merge (only the in-scope, date-windowed sections) ──
+      if (WEEKLY_SCOPE[task.file]) {
+        const res = await applyWeeklyContinuity({
+          file: task.file,
+          fresh: data,
+          previous: oldData,
+          state: weeklyState,
+          today: data.updated || beijingDate(),
+          cap: weeklyCap,
+          caps: weeklyCaps,
+          enabled: weeklyEnabled,
+        });
+        weeklyState = res.state;
+        data = res.data;
+        if (res.changed) anyChange = true;
+        for (const r of res.report) {
+          if (r.disabled) { console.log(`· weekly-lock — ${r.section}: 已停用（按每日规则）`); continue; }
+          if (r.emptyFallback) { console.log(`· weekly-lock — ${r.section}: 今日数据为空 → 沿用本周锁定 ${r.carried} 条${r.dead ? `（剔除失效 ${r.dead}）` : ""}`); continue; }
+          console.log(
+            `· weekly-lock — ${r.section}: 锁存 ${r.lockedBefore} + 锁定沿用 ${r.carried} + 今日新增 ${r.keptNew}/${r.newToday}`
+            + ` → ${r.total}/${r.cap}`
+            + (r.dropped ? `（满额舍弃 ${r.dropped}）` : "")
+            + (r.dead ? `（剔除失效 ${r.dead}）` : "")
+          );
         }
       }
 
@@ -647,14 +699,52 @@ async function main() {
       });
     }
 
+    // ── Weekly continuity for the music "本周精选" section (发行时间窗口栏目) ──
+    // Locked picks are carried forward verbatim from yesterday's music.json, so no
+    // extra MusicBrainz / Last.fm work is repeated for them.
+    try {
+      let oldMusic = null;
+      if (existsSync(join(API_DIR, "music.json"))) {
+        try { oldMusic = JSON.parse(readFileSync(join(API_DIR, "music.json"), "utf8")); } catch {}
+      }
+      const res = await applyWeeklyContinuity({
+        file: "music.json",
+        fresh: musicData,
+        previous: oldMusic,
+        state: weeklyState,
+        today: musicData.updated || beijingDate(),
+        cap: weeklyCap,
+        caps: weeklyCaps,
+        enabled: weeklyEnabled,
+      });
+      weeklyState = res.state;
+      for (const r of res.report) {
+        if (r.disabled) { console.log(`· weekly-lock — ${r.section}: 已停用（按每日规则）`); continue; }
+        if (r.emptyFallback) { console.log(`· weekly-lock — ${r.section}: 今日数据为空 → 沿用本周锁定 ${r.carried} 条`); continue; }
+        console.log(
+          `· weekly-lock — ${r.section}: 锁存 ${r.lockedBefore} + 锁定沿用 ${r.carried} + 今日新增 ${r.keptNew}/${r.newToday}`
+          + ` → ${r.total}/${r.cap}` + (r.dropped ? `（满额舍弃 ${r.dropped}）` : "")
+        );
+      }
+    } catch (e) {
+      console.warn(`⚠ weekly-lock (music) failed: ${e.message}`);
+    }
+
     // Write music.json (same format as before — frontend unaffected)
     writeFileSync(join(API_DIR, "music.json"), JSON.stringify(musicData, null, 2), "utf8");
-    console.log(`OK music.json — ${picksCount} picks from AI`);
+    console.log(`OK music.json — AI ${picksCount} picks → 发布 ${musicData.picks?.length || 0} 条`);
     anyChange = true;
     console.log(`[MUSIC] Done in $((Date.now() - musicStart) / 1000)s`);
   } catch (e) {
     console.error(`FAIL music pipeline: ${e.message}`);
     // Don't set exit code — music pipeline failure shouldn't block commit of other data
+  }
+
+  // ── Persist the weekly lock (survives across runs; committed with public/api/) ──
+  try {
+    if (saveWeeklyLock(API_DIR, weeklyState)) anyChange = true;
+  } catch (e) {
+    console.error(`FAIL weekly-lock.json: ${e.message}`);
   }
 
   if (!anyChange) {
