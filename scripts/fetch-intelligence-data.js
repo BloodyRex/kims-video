@@ -138,6 +138,10 @@ async function main() {
     { endpoint: "/intelligence/overview", file: "overview.json" },
   ];
 
+  // Endpoints whose multi-resource reads can be silently truncated by the
+  // per-invocation API budget on a cold cache → worth extra attempts (see loop below).
+  const COLD_CACHE_RETRY_ENDPOINTS = { "/intelligence/overview": true, "/intelligence/tv": true };
+
   let anyChange = false;
   let failCount = 0;
 
@@ -155,6 +159,15 @@ async function main() {
 
   for (const task of tasks) {
     const filePath = join(API_DIR, task.file);
+    // Yesterday's published file, read BEFORE the fetch: the cold-cache validators
+    // below compare against it to decide whether a response is trustworthy or a
+    // budget-truncated one worth retrying.
+    let oldData = null;
+    if (existsSync(filePath)) {
+      try {
+        oldData = JSON.parse(readFileSync(filePath, "utf8"));
+      } catch {}
+    }
     try {
       let data;
       // Hidden gems: POST this run's movies/tv intelligence so the Worker curates
@@ -173,22 +186,40 @@ async function main() {
         });
       } else {
         // ── Cold-cache retry (2026-10-02) ──────────────────────────────────────
-        // /intelligence/overview reads ~30 upstream resources and rebuilds its Cache
+        // Two endpoints read many upstream resources at once and rebuild their Cache
         // API entries on the first hit after every deploy / cache expiry. On a COLD
-        // cache that call used to 500 outright (deployment-day visitors got an error
-        // page); the handler now degrades per-group and reports the failed group
-        // names in `degraded`. Retrying is the right recovery here because the
-        // groups that DID succeed are now warm in cache: the budget reaches further
-        // on attempt 2 and normally completes. Only the overview gets the extra
-        // attempts — every other endpoint keeps the original single-shot behaviour.
-        const attempts = task.endpoint === "/intelligence/overview" ? 3 : 1;
+        // cache the invocation's API budget runs out mid-flight and the response is
+        // silently WORSE, in an endpoint-specific way:
+        //   · /intelligence/overview — handler degrades per group and names the
+        //     failed groups in `degraded` (it used to 500 outright: deployment-day
+        //     visitors got an error page).
+        //   · /intelligence/tv — no error at all, just a partially ablated `ongoing`
+        //     (13 → 3 on 2026-10-02, same family as the 09-02 15 → 5 ablation).
+        // Retrying is the right recovery because the resources that DID load are now
+        // warm: the budget reaches further on attempt 2 and normally completes. The
+        // validators below decide "retry" per endpoint; every other endpoint keeps
+        // the original single-shot behaviour.
+        const attempts = COLD_CACHE_RETRY_ENDPOINTS[task.endpoint] ? 3 : 1;
+        const coldCacheReason = (d) => {
+          if (task.endpoint === "/intelligence/overview") {
+            const deg = Array.isArray(d?.degraded) ? d.degraded : [];
+            return deg.length ? `degraded sections: ${deg.join(", ")}` : null;
+          }
+          if (task.file === "tv.json") {
+            const prev = Array.isArray(oldData?.ongoing) ? oldData.ongoing.length : 0;
+            const fresh = Array.isArray(d?.ongoing) ? d.ongoing.length : 0;
+            if (prev > 0 && fresh === 0) return `ongoing came back EMPTY (yesterday ${prev})`;
+            if (prev >= 12 && fresh < prev * 0.5) return `ongoing shrank ${prev} → ${fresh} (>50%)`;
+          }
+          return null;
+        };
         let lastErr = null;
         for (let attempt = 1; attempt <= attempts; attempt++) {
           try {
             data = await fetchJSON(task.endpoint);
-            const deg = Array.isArray(data?.degraded) ? data.degraded : [];
-            if (!deg.length) { lastErr = null; break; }
-            lastErr = new Error(`degraded sections: ${deg.join(", ")}`);
+            const why = coldCacheReason(data);
+            if (!why) { lastErr = null; break; }
+            lastErr = new Error(why);
           } catch (e) {
             lastErr = e;
           }
@@ -197,10 +228,15 @@ async function main() {
             await new Promise(r => setTimeout(r, 2000));
           }
         }
-        // Still broken after the retries → throw so the task's catch keeps
-        // YESTERDAY'S file (better a stale full overview than a half-empty one,
-        // same philosophy as the tv.json guards below).
-        if (lastErr) throw lastErr;
+        if (lastErr) {
+          // overview: a half-empty overview is worse than yesterday's full one → let
+          // the catch below keep YESTERDAY'S file.
+          // tv: the guard further down already knows how to splice yesterday's
+          // `ongoing` into today's otherwise-fresh file (upcoming / premieres must
+          // still publish), so only a HARD failure (no payload at all) bails out.
+          if (task.endpoint === "/intelligence/overview" || !data) throw lastErr;
+          console.warn(`⚠ ${task.file}: ${lastErr.message} — ${attempts} 次尝试后仍疑似冷缓存截断，交由下方守卫处理`);
+        }
       }
 
       // Universal filter: all content items must have Chinese title + summary
@@ -212,12 +248,6 @@ async function main() {
       // legitimately empty comes back empty, keep yesterday's file instead of
       // publishing the hole. (withCache no longer caches [] — this is the
       // belt-and-braces layer for data already in flight.)
-      let oldData = null;
-      if (existsSync(filePath)) {
-        try {
-          oldData = JSON.parse(readFileSync(filePath, "utf8"));
-        } catch {}
-      }
       const neverEmptySections = { "tv.json": ["ongoing"] };
       const guarded = neverEmptySections[task.file] || [];
       for (const key of guarded) {
