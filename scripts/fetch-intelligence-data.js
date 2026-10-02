@@ -172,7 +172,35 @@ async function main() {
           body: JSON.stringify({ movies: moviesToday, tv: tvToday }),
         });
       } else {
-        data = await fetchJSON(task.endpoint);
+        // ── Cold-cache retry (2026-10-02) ──────────────────────────────────────
+        // /intelligence/overview reads ~30 upstream resources and rebuilds its Cache
+        // API entries on the first hit after every deploy / cache expiry. On a COLD
+        // cache that call used to 500 outright (deployment-day visitors got an error
+        // page); the handler now degrades per-group and reports the failed group
+        // names in `degraded`. Retrying is the right recovery here because the
+        // groups that DID succeed are now warm in cache: the budget reaches further
+        // on attempt 2 and normally completes. Only the overview gets the extra
+        // attempts — every other endpoint keeps the original single-shot behaviour.
+        const attempts = task.endpoint === "/intelligence/overview" ? 3 : 1;
+        let lastErr = null;
+        for (let attempt = 1; attempt <= attempts; attempt++) {
+          try {
+            data = await fetchJSON(task.endpoint);
+            const deg = Array.isArray(data?.degraded) ? data.degraded : [];
+            if (!deg.length) { lastErr = null; break; }
+            lastErr = new Error(`degraded sections: ${deg.join(", ")}`);
+          } catch (e) {
+            lastErr = e;
+          }
+          if (attempt < attempts) {
+            console.warn(`⚠ ${task.file}: ${lastErr.message} — attempt ${attempt}/${attempts}（冷缓存预算，2s 后重试；已成功分组已进缓存）`);
+            await new Promise(r => setTimeout(r, 2000));
+          }
+        }
+        // Still broken after the retries → throw so the task's catch keeps
+        // YESTERDAY'S file (better a stale full overview than a half-empty one,
+        // same philosophy as the tv.json guards below).
+        if (lastErr) throw lastErr;
       }
 
       // Universal filter: all content items must have Chinese title + summary

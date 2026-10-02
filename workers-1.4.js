@@ -1044,6 +1044,28 @@ Return JSON only: { "items": [ { index: 0, tag: "trending", tagDisplay: "🔥 �
 
 // ── Intelligence handlers ──
 
+// ── Bounded-concurrency map (2026-10-02) ─────────────────────────────────────
+// KV/R2 reads are API requests, and a single Worker invocation is capped at
+// 1000 of them. Reading serially does NOT buy headroom under that cap — it only
+// makes the invocation slow (a /wall/recs page of 900 keys took 106s, one KV
+// round-trip at a time). mapLimit keeps the request COUNT identical, it just
+// removes the round-trip queueing. 10 in flight: above the latency knee, far
+// below any per-instance connection cap.
+const MAP_LIMIT_DEFAULT = 10;
+async function mapLimit(items, limit, fn) {
+  const out = new Array(items.length);
+  let next = 0;
+  const runners = Array.from({ length: Math.max(1, Math.min(limit || 1, items.length)) }, async () => {
+    for (;;) {
+      const i = next++;
+      if (i >= items.length) return;
+      out[i] = await fn(items[i], i);
+    }
+  });
+  await Promise.all(runners);
+  return out;
+}
+
 async function handleIntelOverview(env) {
   const token = env.TMDB_API_READ_ACCESS_TOKEN;
   const today = intelToday();
@@ -1056,11 +1078,31 @@ async function handleIntelOverview(env) {
   // MusicBrainz is wrapped in its own catch: a MB infra blip (525, hit
   // 2026-08-24) must not 500 the WHOLE overview — stats lose one number,
   // everything else still ships.
+  //
+  // 2026-10-02 — same treatment for the four TMDB groups. This handler reads ~30
+  // upstream resources; on a COLD cache (first hit after every deploy, every edge
+  // cache expiry) it fetches all of them at once, and ANY single group tripping
+  // the per-invocation budget rejected the bare Promise.all → uncaught → 500 for
+  // the first visitor after each deploy. Each group is now isolated: it degrades
+  // to [] and its NAME is reported in `degraded`, which the daily pipeline treats
+  // as "not today's data" and retries — the retry finds the groups that DID
+  // succeed warm in cache, so the budget reaches further and the cold miss
+  // self-heals instead of being published as a 500 / hole.
+  const degraded = [];
+  const group = async (name, fn) => {
+    try {
+      return (await fn()) || [];
+    } catch (e) {
+      degraded.push(name);
+      console.warn(`overview: ${name} fetch failed (degrades to empty) — ${e.message}`);
+      return [];
+    }
+  };
   const [nowPlaying, upcoming, trending, tvOnAir] = await Promise.all([
-    intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4),
-    intelFetchUpcomingMovies(token, 1),
-    intelFetchTMDB(token, "/trending/movie/week"),
-    intelFetchPages(token, "/tv/on_the_air", {}, 2),
+    group("nowPlaying", () => intelFetchPages(token, "/movie/now_playing", { region: "US" }, 4)),
+    group("upcoming", () => intelFetchUpcomingMovies(token, 1)),
+    group("trending", () => intelFetchTMDB(token, "/trending/movie/week")),
+    group("tvOnAir", () => intelFetchPages(token, "/tv/on_the_air", {}, 2)),
   ]);
   let todayMB = [];
   try {
@@ -1150,13 +1192,18 @@ async function handleIntelOverview(env) {
       if (!coolKeys.list_complete) console.warn(`gem cooldown list truncated at ${coolKeys.keys.length} keys — entries beyond this are ignored`);
       const now = Date.now();
       const cutoff = now - gemCooldownDays * 86400000;
+      // 2026-10-02: bounded concurrency — up to 200 cooldown keys used to be read
+      // (and the expired ones deleted) one KV round-trip at a time, ~25s of the
+      // cold overview path. Same request count, no serial queueing. One key
+      // failing no longer abandons the remaining keys.
       const fresh = [];
-      for (const k of coolKeys.keys) {
-        const raw = await env.DISCOVER_KV.get(k.name, "json");
+      await mapLimit(coolKeys.keys, MAP_LIMIT_DEFAULT, async (k) => {
+        let raw = null;
+        try { raw = await env.DISCOVER_KV.get(k.name, "json"); } catch { return; }
         const dt = raw?.date ? Date.parse(raw.date) : 0;
         if (dt >= cutoff) fresh.push(k.name);
         else await env.DISCOVER_KV.delete(k.name).catch(() => {});
-      }
+      });
       gemCoolSet = new Set(fresh.map(k => k.replace("intel:gemCool:", "")));
     } catch (e) { console.warn("gem cooldown read failed:", e.message); }
   }
@@ -1198,10 +1245,19 @@ async function handleIntelOverview(env) {
     editorsPicksV2.push(cand);
   }
   // CN-first release date correction on the final six (same semantics as before;
-  // cached 1 day so repeat runs don't refetch)
-  const editorsPicksFinal = (await Promise.all(
-    editorsPicksV2.map(m => intelPickCnReleaseDate(m, token))
-  )).filter(Boolean);
+  // cached 1 day so repeat runs don't refetch). Best-effort since 2026-10-02: a
+  // budget/upstream failure here must not discard the six picks we already have
+  // (nor 500 the overview) — ship them uncorrected and report it.
+  let editorsPicksFinal = editorsPicksV2;
+  try {
+    const corrected = (await Promise.all(
+      editorsPicksV2.map(m => intelPickCnReleaseDate(m, token))
+    )).filter(Boolean);
+    if (corrected.length) editorsPicksFinal = corrected;
+  } catch (e) {
+    degraded.push("cnReleaseDate");
+    console.warn(`overview: cnReleaseDate failed (picks ship uncorrected) — ${e.message}`);
+  }
   // ── Gem cooldown write: record today's picked gems so they rotate out for
   // the next gemCooldownDays. Only gem-category picks get cooled (star/trending
   // are heat-driven and self-rotating). Best-effort: a KV failure must not 500.
@@ -1218,7 +1274,7 @@ async function handleIntelOverview(env) {
   // trending/tv/week was already fetched by the weekly endpoint earlier in the
   // pipeline task order → this call hits its cache (≈0 subrequests). zh gate +
   // daily rotation, same standards as the movie pools above.
-  const tvTrendingWeek = await intelFetchTMDB(token, "/trending/tv/week");
+  const tvTrendingWeek = await group("tvTrending", () => intelFetchTMDB(token, "/trending/tv/week"));
   const weeklyHotTv = seededShuffle((tvTrendingWeek || [])
     .filter(intelRatingOk)
     .filter(s => ovZh(s)))
@@ -1229,8 +1285,8 @@ async function handleIntelOverview(env) {
   // Same discover call the tv handler makes → cache hit. Sorted by daysUntil
   // (date-first, the section's whole point), zh-gated for the pipeline layer.
   const ninetyDaysLaterOv = new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
-  const tvUpcomingRaw = await intelFetchPages(token, "/discover/tv",
-    { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLaterOv, "sort_by": "popularity.desc" }, 1);
+  const tvUpcomingRaw = await group("tvUpcoming", () => intelFetchPages(token, "/discover/tv",
+    { "first_air_date.gte": today, "first_air_date.lte": ninetyDaysLaterOv, "sort_by": "popularity.desc" }, 1));
   const comingSoonTv = (tvUpcomingRaw || [])
     .filter(s => s.first_air_date && s.first_air_date > today)
     .filter(intelRatingOk)
@@ -1251,6 +1307,11 @@ async function handleIntelOverview(env) {
 
   return {
     updated: today,
+    // Empty when every group fetched. NON-EMPTY = names of the groups that failed
+    // (cold-cache budget / upstream blip) → consumers MUST NOT publish this as
+    // today's overview; scripts/fetch-intelligence-data.js retries, and otherwise
+    // keeps yesterday's file.
+    degraded,
     stats: {
       moviesReleased,
       tvAiringThisWeek: tvSelected.length,
@@ -3344,9 +3405,14 @@ export default {
               const page = await env.DISCOVER_KV.list({ prefix: "wallRec:", limit, cursor });
               const items = [];
               let failed = 0;
-              for (const k of page.keys) {
-                try { const v = await env.DISCOVER_KV.get(k.name, "json"); if (v?.tmdbId) items.push(v); } catch { failed++; }
-              }
+              // 2026-10-02: bounded concurrency. 900 keys read one round-trip at a
+              // time took 106s and looked like a hang; the request COUNT is
+              // unchanged (1 list + ≤900 gets, still under the 1000 cap) — only the
+              // queueing goes away. Per-key failures are still counted.
+              const vals = await mapLimit(page.keys, MAP_LIMIT_DEFAULT, async (k) => {
+                try { return await env.DISCOVER_KV.get(k.name, "json"); } catch { failed++; return null; }
+              });
+              for (const v of vals) if (v?.tmdbId) items.push(v);
               return Response.json({ items, nextCursor: page.cursor || null, listComplete: !page.cursor, count: items.length, failed }, { headers: corsHeaders });
             }
 
