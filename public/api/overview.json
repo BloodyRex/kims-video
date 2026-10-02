@@ -1,9 +1,10 @@
 {
   "updated": "2026-10-02",
+  "degraded": [],
   "stats": {
     "moviesReleased": 9,
     "tvAiringThisWeek": 20,
-    "albumsReleased": 25,
+    "albumsReleased": 0,
     "trending": 20
   },
   "editorsPicks": [
@@ -52,7 +53,7 @@
       "year": "2026",
       "releaseDate": "2026-09-25",
       "poster": "https://image.tmdb.org/t/p/w500/oSdSbEXVumkwYst9kwT4CL1b57R.jpg",
-      "rating": 6.661,
+      "rating": 6.648,
       "genre": [
         "Thriller",
         "Drama",
@@ -63,22 +64,21 @@
       "pickCategory": "trending"
     },
     {
-      "tmdbId": 1423191,
-      "title": "生化危机：爆发夜",
-      "titleEn": "Resident Evil",
+      "tmdbId": 977942,
+      "title": "起义",
+      "titleEn": "The Uprising",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-10-05",
-      "poster": "https://image.tmdb.org/t/p/w500/qMvRqzzDVfQpLi5ZoKwttTQdaJe.jpg",
-      "rating": 7.315,
+      "releaseDate": "2026-09-10",
+      "poster": "https://image.tmdb.org/t/p/w500/uLI9v21yjlFcrL0qdBPHpNk1Gmu.jpg",
+      "rating": 8.1,
       "genre": [
-        "Horror",
-        "Sci-Fi",
-        "Adventure"
+        "History",
+        "Drama"
       ],
-      "summary": "奉命奔赴浣熊市的医疗速递员布莱恩，意外深陷全城失控的病毒浩劫。浣熊市彻底沦陷，异变怪物横行肆虐、嗜血猎捕，身陷末日绝境的他，能否在这场惊魂噩梦中突围求生，搏出一线生机？",
-      "summaryEn": "Medical courier Bryan unwittingly finds himself fighting for survival as one fateful, horrifying night collapses around him in chaos.",
+      "summary": "在中世纪的英格兰，一位无畏的勇士召集平民发动了一场激烈的起义，反抗国王理查德二世的高压统治。随着国家陷入混乱，他的起义军与王室军队展开了一场绝望的自由之战。",
+      "summaryEn": "As war and plague devastate 14th-century England, a humble peasant ignites a rebellion, uniting an army of commoners to defy the King’s might in a desperate fight for justice and survival.",
       "pickCategory": "trending"
     },
     {
@@ -218,7 +218,7 @@
         "Comedy"
       ],
       "summary": "Fry是一名生活在20世纪的送货员，他工作不顺心，生活不如意，是个彻头彻尾的失败者。机缘巧合下，他被时光机器送到了1000年后的未来，也就是公元3000年！在光怪陆离的未来世界，他遇到了独眼女外星人Leela，Leela要给他植入职业芯片，好让他能在未来生活下去，而他的新职业居然也是送货员。Fry遂逃离出去，路上遇到了机器人Bender。Leela在追捕他们的过程中，也放弃了自己不喜欢的职业，连同",
-      "summaryEn": "The adventures of a late-20th-century New York City pizza delivery boy, Philip J. Fry, who, after being unwittingly cryogenically frozen for one thousand years, finds employment at Planet Express, an ",
+      "summaryEn": "Fry是一名生活在20世纪的送货员，他工作不顺心，生活不如意，是个彻头彻尾的失败者。机缘巧合下，他被时光机器送到了1000年后的未来，也就是公元3000年！在光怪陆离的未来世界，他遇到了独眼女外星人Leela，Leela要给他植入职业芯片，好让他能在未来生活下去，而他的新职业居然也是送货员。Fry遂逃离出去，路上遇到了机器人Bender。Leela在追捕他们的过程中，也放弃了自己不喜欢的职业，连同",
       "pickCategory": "tvhot"
     },
     {
@@ -470,5 +470,5 @@
       "daysUntil": 7
     }
   ],
-  "brief": "Today: 9 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
+  "brief": "Today: 9 movie(s) released, 20 TV show(s) airing, 0 new album(s)."
 }
