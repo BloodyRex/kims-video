@@ -1144,6 +1144,10 @@ async function handleIntelOverview(env) {
   if (env?.DISCOVER_KV) {
     try {
       const coolKeys = await env.DISCOVER_KV.list({ prefix: "intel:gemCool:", limit: 200 });
+      // Keys self-expire (TTL == the 7-day window), so the set is bounded and 200
+      // is generous — but never truncate silently: stale entries past the page
+      // would be ignored and the gem rotation would quietly degrade.
+      if (!coolKeys.list_complete) console.warn(`gem cooldown list truncated at ${coolKeys.keys.length} keys — entries beyond this are ignored`);
       const now = Date.now();
       const cutoff = now - gemCooldownDays * 86400000;
       const fresh = [];
@@ -3134,7 +3138,25 @@ async function sendDigestToAll(env, opts = {}) {
   // Mark this attempt
   await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "attempting", attemptCount }), { expirationTtl: 172800 });
 
-  const list = await env.SUBSCRIBE_KV.list({ prefix: "sub:" });
+  // ── Subscriber list: KV list() returns at most 1000 keys per call and does
+  // NOT auto-page. Before 2026-10-02 this was a single bare list() — subscribers
+  // past the first 1000 keys silently got no digest at all (same silent-
+  // truncation class as the old /wall/recs 997-item cut). Page with the cursor,
+  // capped so one invocation cannot blow the 1000-API-request budget. ──
+  const SUB_LIST_MAX_PAGES = 20; // ≤20k subscribers
+  const subKeys = [];
+  let subCursor, subPages = 0, subComplete = false;
+  do {
+    const page = await env.SUBSCRIBE_KV.list({ prefix: "sub:", cursor: subCursor, limit: 1000 });
+    subKeys.push(...page.keys);
+    subComplete = !!page.list_complete;
+    subCursor = subComplete ? null : page.cursor;
+    subPages++;
+  } while (subCursor && subPages < SUB_LIST_MAX_PAGES);
+  if (!subComplete) {
+    console.warn(`subscriber list truncated: ${subKeys.length} keys after ${subPages} pages (SUB_LIST_MAX_PAGES=${SUB_LIST_MAX_PAGES}) — some subscribers will be skipped`);
+  }
+  const list = { keys: subKeys };
     if (!list.keys.length) {
       // No subscribers — mark as sent so we don't retry today
       await env.SUBSCRIBE_KV.put(digestKey, JSON.stringify({ status: "sent", attemptCount }), { expirationTtl: 172800 });
