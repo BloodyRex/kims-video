@@ -404,10 +404,26 @@ async function main() {
     // Merge user-recommended films (collected from ResultsPage via /wall/collect → KV wallRec:*)
     // Wall rule: MOVIES ONLY. TV shows are excluded here — they belong to a future 剧集墙.
     // (WALL_TV_BLACKLIST declared above; probed via TMDB movie 404 + tv 200 on 2026-08-18)
+    // Paged via ?cursor=: /wall/recs serves ONE KV page per request (a Worker invocation is
+    // capped at 1000 API requests; 2026-10-02: 1281 wallRec keys → 500 after ~130s with the
+    // tail unreadable). Failures are LOUD now — this merge silently no-op'd for 28 days.
     try {
-      const recsRes = await fetch(`${WORKER_BASE}/wall/recs`);
-      if (recsRes.ok) {
+      let recCursor = "";
+      let recPages = 0;
+      let recSeen = 0;
+      let recFailed = 0;
+      let recError = "";
+      do {
+        const recsUrl = `${WORKER_BASE}/wall/recs?limit=800${recCursor ? `&cursor=${encodeURIComponent(recCursor)}` : ""}`;
+        const recsRes = await fetch(recsUrl);
+        if (!recsRes.ok) {
+          const body = await recsRes.text().catch(() => "");
+          recError = `HTTP ${recsRes.status}${body ? ` — ${body.slice(0, 180)}` : ""}`;
+          break;
+        }
         const recsData = await recsRes.json();
+        recSeen += (recsData.items || []).length;
+        recFailed += recsData.failed || 0;
         for (const r of recsData.items || []) {
           if (!r?.tmdbId) continue;
           if (WALL_TV_BLACKLIST.has(Number(r.tmdbId))) continue; // TV → skip, not a film
@@ -431,8 +447,21 @@ async function main() {
           delta.push(recEntry);
           added++;
         }
+        recCursor = recsData.nextCursor || "";
+        recPages++;
+      } while (recCursor && recPages < 20);
+      if (recError) {
+        console.log(`::warning title=wall/recs merge failed::${recError}`);
+        console.warn(`⚠ wall.json 未并入用户推荐 — /wall/recs ${recError}`);
+      } else {
+        if (recFailed) {
+          console.log(`::warning title=wall/recs partial::${recFailed} 条条目读取失败（KV 单次调用预算）`);
+          console.warn(`⚠ /wall/recs: ${recFailed} 条读取失败`);
+        }
+        console.log(`OK wall/recs — ${recSeen} items in ${recPages} page(s)${recFailed ? `, ${recFailed} failed` : ""}`);
       }
     } catch (e) {
+      console.log(`::warning title=wall/recs merge error::${String(e.message).slice(0, 200)}`);
       console.warn("wall-recs merge failed:", e.message);
     }
 

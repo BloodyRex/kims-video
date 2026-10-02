@@ -3309,19 +3309,24 @@ export default {
             if (path === "/intelligence/ai-config") { const cfg = await getIntelConfig(env); return Response.json({ ai: cfg.ai }, { headers: corsHeaders }); }
 
             // Wall recs list (pipeline reads to merge into wall.json)
+            // ONE page per invocation on purpose: every KV op is a Worker subrequest and a
+            // single invocation is capped at 1000 API requests. The old unpaged loop read
+            // every wallRec:* key (1281 by 2026-10-02 → 1 list + N gets) and blew the cap
+            // after ~130s: the next list threw uncaught → 500, and everything past ~key 997
+            // was unreadable (CI merged 0 recs for 28 days). Callers follow nextCursor.
             if (path === "/wall/recs") {
-        if (!env.DISCOVER_KV) return Response.json({ items: [] }, { headers: corsHeaders });
-        const items = [];
-        let cursor;
-        do {
-          const page = await env.DISCOVER_KV.list({ prefix: "wallRec:", limit: 1000, cursor });
-          for (const k of page.keys) {
-            try { const v = await env.DISCOVER_KV.get(k.name, "json"); if (v?.tmdbId) items.push(v); } catch {}
-          }
-          cursor = page.cursor;
-        } while (cursor);
-        return Response.json({ items }, { headers: corsHeaders });
-      }
+              if (!env.DISCOVER_KV) return Response.json({ items: [], nextCursor: null, count: 0, failed: 0 }, { headers: corsHeaders });
+              const limRaw = parseInt(url.searchParams.get("limit") || "800", 10);
+              const limit = Math.min(Math.max(Number.isFinite(limRaw) ? limRaw : 800, 1), 900);
+              const cursor = url.searchParams.get("cursor") || undefined;
+              const page = await env.DISCOVER_KV.list({ prefix: "wallRec:", limit, cursor });
+              const items = [];
+              let failed = 0;
+              for (const k of page.keys) {
+                try { const v = await env.DISCOVER_KV.get(k.name, "json"); if (v?.tmdbId) items.push(v); } catch { failed++; }
+              }
+              return Response.json({ items, nextCursor: page.cursor || null, listComplete: !page.cursor, count: items.length, failed }, { headers: corsHeaders });
+            }
 
       // Discover list
       if (path === "/discover/results") { try { return Response.json(await handleDiscoverList(env, url), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message, results: [] }, { headers: corsHeaders }); } }
