@@ -4,7 +4,7 @@
   "stats": {
     "moviesReleased": 9,
     "tvAiringThisWeek": 20,
-    "albumsReleased": 0,
+    "albumsReleased": 25,
     "trending": 20
   },
   "editorsPicks": [
@@ -122,23 +122,42 @@
   ],
   "weeklyHotTv": [
     {
-      "tmdbId": 95350,
-      "title": "绿灯军团",
-      "titleEn": "Lanterns",
+      "tmdbId": 290720,
+      "title": "最后一案",
+      "titleEn": "El problema final",
+      "originalLanguage": "es",
+      "originCountry": [
+        "ES"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-09-25",
+      "poster": "https://image.tmdb.org/t/p/w500/fb60GExkE8dooZkvnJnvnSBGInv.jpg",
+      "rating": 7.1,
+      "genre": [
+        "Crime",
+        "Mystery"
+      ],
+      "summary": "1959年春天，马略卡岛附近的一个小岛上，有13人被一场猛烈的风暴困住。他们中的任何一个人都可以预测到他们住的小酒店即将发生的事情：谨慎的英国游客Elisa Mander被发现死亡。最初看起来像是自杀，但很快就引起了令人不安的迹象，实际上可能是谋杀。Basil是一位退休演员，曾经因在大银幕上扮演福尔摩斯而闻名，他意外地发现自己的任务是解开此案。在一个没有人可以离开的地方，没有人能够接触到每个客人和",
+      "summaryEn": "1959年春天，马略卡岛附近的一个小岛上，有13人被一场猛烈的风暴困住。他们中的任何一个人都可以预测到他们住的小酒店即将发生的事情：谨慎的英国游客Elisa Mander被发现死亡。最初看起来像是自杀，但很快就引起了令人不安的迹象，实际上可能是谋杀。Basil是一位退休演员，曾经因在大银幕上扮演福尔摩斯而闻名，他意外地发现自己的任务是解开此案。在一个没有人可以离开的地方，没有人能够接触到每个客人和",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 295778,
+      "title": "实习医生风云",
+      "titleEn": "Scrubs",
       "originalLanguage": "en",
       "originCountry": [
         "US"
       ],
       "year": "2026",
-      "releaseDate": "2026-08-16",
-      "poster": "https://image.tmdb.org/t/p/w500/5ZmOP60VIEfM2cnt7CpAK1j9mEv.jpg",
-      "rating": 8.4,
+      "releaseDate": "2026-02-25",
+      "poster": "https://image.tmdb.org/t/p/w500/p9V5Dc32VBMxNt9Uj1UdFPKoxJf.jpg",
+      "rating": 7.7,
       "genre": [
-        "Drama",
-        "Mystery"
+        "Comedy"
       ],
-      "summary": "绿灯侠哈尔·乔丹与新晋成员约翰·斯图尔特奉命调查美国小镇的一起神秘命案，却意外发现案件背后隐藏着与外星势力有关的阴谋，两人也在追查真相的过程中面对各自的信念与考验。",
-      "summaryEn": "Two intergalactic cops, new recruit John Stewart and Lantern legend Hal Jordan, are drawn into a dark, Earth-based mystery as they investigate a murder in the American heartland.",
+      "summary": "约多(J.D.)与特克睽违多年，再度合体执刀。医学环境物换星移，实习医生也早已换了一批，但他们坚不可摧的兄弟情谊始终如一。新旧角色齐聚圣心医院，在充满欢笑、感动与惊喜的行医路上，继续向前迈进。",
+      "summaryEn": "J.D. & Turk scrub in together for the first time in a long time–medicine has changed, interns have changed, but their bromance has stood the test of time. Characters new and old navigate the waters of",
       "pickCategory": "tvhot"
     },
     {
@@ -181,63 +200,43 @@
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 284558,
-      "title": "杀死杰姬",
-      "titleEn": "Kill Jackie",
+      "tmdbId": 2190,
+      "title": "南方公园",
+      "titleEn": "South Park",
       "originalLanguage": "en",
       "originCountry": [
-        "AU",
-        "GB"
+        "US"
+      ],
+      "year": "1997",
+      "releaseDate": "1997-08-13",
+      "poster": "https://image.tmdb.org/t/p/w500/aqroh5nCMtxWFKjXEhrqXpe1HPO.jpg",
+      "rating": 8.335,
+      "genre": [
+        "Comedy",
+        "Animation"
+      ],
+      "summary": "讲述科罗拉多州南方公园小镇上，斯坦、凯尔、卡特曼和肯尼四个孩子的生活。他们不断卷入超自然事件、社会冲突和各种荒诞危机，并以孩子的视角面对成年人世界中的政治、宗教、文化和社会问题。",
+      "summaryEn": "Follow the misadventures of four irreverent grade-schoolers in the quiet, dysfunctional town of South Park, Colorado.",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 95350,
+      "title": "绿灯军团",
+      "titleEn": "Lanterns",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
       ],
       "year": "2026",
-      "releaseDate": "2026-10-02",
-      "poster": "https://image.tmdb.org/t/p/w500/vvMpr6wO4EMtA7lqftffTel5c1R.jpg",
-      "rating": 8.5,
+      "releaseDate": "2026-08-16",
+      "poster": "https://image.tmdb.org/t/p/w500/5ZmOP60VIEfM2cnt7CpAK1j9mEv.jpg",
+      "rating": 8.4,
       "genre": [
         "Drama",
-        "Crime"
+        "Mystery"
       ],
-      "summary": "前可卡因贩子杰基·普莱斯 （Jackie Price） 通过税收计划奢侈地出售艺术品。在匿名20年后，当精英杀手七恶魔被雇佣杀死她时，她平静的生活结束了。",
-      "summaryEn": "Jackie Price has been living a wealthy, luxurious life for the past 20 years after escaping a dangerous past as an international cocaine dealer. But just as life begins to feel a little boring, she di",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 615,
-      "title": "飞出个未来",
-      "titleEn": "Futurama",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "1999",
-      "releaseDate": "1999-03-28",
-      "poster": "https://image.tmdb.org/t/p/w500/pTmINJc0Zxik8viSMSCT1wygt8S.jpg",
-      "rating": 8.365,
-      "genre": [
-        "Animation",
-        "Comedy"
-      ],
-      "summary": "Fry是一名生活在20世纪的送货员，他工作不顺心，生活不如意，是个彻头彻尾的失败者。机缘巧合下，他被时光机器送到了1000年后的未来，也就是公元3000年！在光怪陆离的未来世界，他遇到了独眼女外星人Leela，Leela要给他植入职业芯片，好让他能在未来生活下去，而他的新职业居然也是送货员。Fry遂逃离出去，路上遇到了机器人Bender。Leela在追捕他们的过程中，也放弃了自己不喜欢的职业，连同",
-      "summaryEn": "Fry是一名生活在20世纪的送货员，他工作不顺心，生活不如意，是个彻头彻尾的失败者。机缘巧合下，他被时光机器送到了1000年后的未来，也就是公元3000年！在光怪陆离的未来世界，他遇到了独眼女外星人Leela，Leela要给他植入职业芯片，好让他能在未来生活下去，而他的新职业居然也是送货员。Fry遂逃离出去，路上遇到了机器人Bender。Leela在追捕他们的过程中，也放弃了自己不喜欢的职业，连同",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 108978,
-      "title": "侠探杰克",
-      "titleEn": "Reacher",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2022",
-      "releaseDate": "2022-02-03",
-      "poster": "https://image.tmdb.org/t/p/w500/dt5XNeYjR46lmVHQKiwfAmDHy9d.jpg",
-      "rating": 8.1,
-      "genre": [
-        "Crime"
-      ],
-      "summary": "退役宪兵杰克·雷彻独自游走各地，凭借敏锐头脑与强悍身手追查案件，在一次次危机中揭开隐藏于罪案背后的阴谋。",
-      "summaryEn": "Jack Reacher, a veteran military police investigator, has just recently entered civilian life. Reacher is a drifter, carrying no phone and the barest of essentials as he travels the country and explor",
+      "summary": "绿灯侠哈尔·乔丹与新晋成员约翰·斯图尔特奉命调查美国小镇的一起神秘命案，却意外发现案件背后隐藏着与外星势力有关的阴谋，两人也在追查真相的过程中面对各自的信念与考验。",
+      "summaryEn": "Two intergalactic cops, new recruit John Stewart and Lantern legend Hal Jordan, are drawn into a dark, Earth-based mystery as they investigate a murder in the American heartland.",
       "pickCategory": "tvhot"
     }
   ],
@@ -470,5 +469,5 @@
       "daysUntil": 7
     }
   ],
-  "brief": "Today: 9 movie(s) released, 20 TV show(s) airing, 0 new album(s)."
+  "brief": "Today: 9 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
 }
