@@ -1,37 +1,54 @@
 {
-  "updated": "2026-10-03",
-  "count": 2,
+  "updated": "2026-10-04",
+  "count": 3,
   "movies": [
     {
-      "tmdbId": 1503023,
+      "tmdbId": 1269325,
       "mediaType": "movie",
-      "title": "重生2",
-      "titleEn": "Go for Broke 2",
+      "title": "误杀瞒天记3",
+      "titleEn": "Drishyam: The Conclusion",
       "year": "2026",
-      "releaseDate": "2026-10-03",
-      "poster": "https://image.tmdb.org/t/p/w500/b64Qih8RALtpxQcuFnsJOOSoIBT.jpg",
+      "releaseDate": "2026-10-02",
+      "poster": "https://image.tmdb.org/t/p/w500/7T62GSduOWDMB0gGDBs9pmtLTSB.jpg",
+      "rating": 10,
+      "genre": [
+        "Thriller",
+        "Drama",
+        "Mystery",
+        "Crime"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "tmdbId": 1458857,
+      "mediaType": "movie",
+      "title": "只要活下去",
+      "titleEn": "Doing Life",
+      "year": "2026",
+      "releaseDate": "2026-10-02",
+      "poster": "https://image.tmdb.org/t/p/w500/bPof2ZCsbjCJ6nPPqQPexAd4wfm.jpg",
+      "rating": 6.065,
+      "genre": [
+        "Drama",
+        "Romance"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "tmdbId": 1567605,
+      "mediaType": "movie",
+      "title": "寒夜怪谈",
+      "titleEn": "Ebenezer",
+      "year": "2026",
+      "releaseDate": "2026-11-11",
+      "poster": "https://image.tmdb.org/t/p/w500/tmdavZi5MP73yn4fpe2wD4RVlrL.jpg",
       "rating": 0,
       "genre": [
         "Drama",
-        "Action",
-        "Crime"
+        "Fantasy",
+        "Comedy"
       ],
-      "firstSeen": "2026-10-03"
-    },
-    {
-      "tmdbId": 1596275,
-      "mediaType": "movie",
-      "title": "Drive - The Pretenders",
-      "titleEn": "Drive - The Pretenders",
-      "year": "2026",
-      "releaseDate": "2026-10-28",
-      "poster": "",
-      "rating": 0,
-      "genre": [
-        "Thriller",
-        "Romance"
-      ],
-      "firstSeen": "2026-10-03"
+      "firstSeen": "2026-10-04"
     }
   ]
 }
