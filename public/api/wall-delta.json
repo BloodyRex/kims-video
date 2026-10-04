@@ -1,53 +1,33 @@
 {
-  "updated": "2026-10-04",
-  "count": 3,
+  "updated": "2026-10-05",
+  "count": 2,
   "movies": [
     {
-      "tmdbId": 1269325,
+      "tmdbId": 1763619,
       "mediaType": "movie",
-      "title": "误杀瞒天记3",
-      "titleEn": "Drishyam: The Conclusion",
+      "title": "疯狂穷富翁",
+      "titleEn": "Crazy Rich, Incredibly Broke",
       "year": "2026",
-      "releaseDate": "2026-10-02",
-      "poster": "https://image.tmdb.org/t/p/w500/7T62GSduOWDMB0gGDBs9pmtLTSB.jpg",
-      "rating": 10,
+      "releaseDate": "2026-10-01",
+      "poster": "https://image.tmdb.org/t/p/w500/eo7K5bphGc4F0JJ9vAzO126PwoQ.jpg",
+      "rating": 5.5,
       "genre": [
-        "Thriller",
-        "Drama",
-        "Mystery",
-        "Crime"
+        "Comedy",
+        "Drama"
       ],
-      "firstSeen": "2026-10-04"
+      "firstSeen": "2026-10-05"
     },
     {
-      "tmdbId": 1458857,
+      "tmdbId": 54344,
       "mediaType": "movie",
-      "title": "只要活下去",
-      "titleEn": "Doing Life",
-      "year": "2026",
-      "releaseDate": "2026-10-02",
-      "poster": "https://image.tmdb.org/t/p/w500/bPof2ZCsbjCJ6nPPqQPexAd4wfm.jpg",
-      "rating": 6.065,
-      "genre": [
-        "Drama",
-        "Romance"
-      ],
-      "firstSeen": "2026-10-04"
-    },
-    {
-      "tmdbId": 1567605,
-      "mediaType": "movie",
-      "title": "寒夜怪谈",
-      "titleEn": "Ebenezer",
-      "year": "2026",
-      "releaseDate": "2026-11-11",
-      "poster": "https://image.tmdb.org/t/p/w500/tmdavZi5MP73yn4fpe2wD4RVlrL.jpg",
+      "title": "Liberty's Kids - The First Fourth of July",
+      "titleEn": "Liberty's Kids - The First Fourth of July",
+      "year": "2004",
+      "releaseDate": "2004-08-01",
+      "poster": "",
       "rating": 0,
-      "genre": [
-        "Drama",
-        "Fantasy",
-        "Comedy"
-      ],
+      "genre": [],
+      "source": "rec",
       "firstSeen": "2026-10-04"
     }
   ]

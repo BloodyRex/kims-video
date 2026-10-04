@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04",
+  "updated": "2026-10-05",
   "config": {
     "releaseWindowDays": 30,
     "weeklyContinuity": {
@@ -44,12 +44,12 @@
   },
   "stats": {
     "mbRaw": 400,
-    "afterFilter": 206,
-    "artistsChecked": 75,
-    "afterArtistFilter": 56,
+    "afterFilter": 204,
+    "artistsChecked": 74,
+    "afterArtistFilter": 54,
     "albumEnriched": 40,
     "chartItems": 358,
-    "totalCandidates": 414,
+    "totalCandidates": 412,
     "sentToWorker": 18
   },
   "candidates": [
@@ -87,15 +87,15 @@
       "source": "musicbrainz",
       "artistListeners": 3595468,
       "artistPlaycount": 130626444,
-      "albumListeners": 1304816,
-      "albumPlaycount": 13670746,
+      "albumListeners": 1305014,
+      "albumPlaycount": 13672307,
       "score": 70,
       "scoreBreakdown": {
         "artist": 40,
         "album": 30,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-6f7853c8-e90a-4886-9535-0a14fa328903",
@@ -129,17 +129,61 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/41/19/3b/41193bb2-ffc4-043f-4ddd-128c272d8f82/mzi.qimpmkxb.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 1396016,
-      "artistPlaycount": 24924338,
-      "albumListeners": 816983,
-      "albumPlaycount": 8083147,
-      "score": 69.56106509855556,
+      "artistListeners": 1396120,
+      "artistPlaycount": 24926454,
+      "albumListeners": 817059,
+      "albumPlaycount": 8083933,
+      "score": 69.56126709079717,
       "scoreBreakdown": {
         "artist": 40,
-        "album": 29.56106509855556,
+        "album": 29.561267090797177,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
+    },
+    {
+      "id": "mb-c749f9a8-08ce-4e60-b093-4ae68a1bd4bb",
+      "mbid": "c749f9a8-08ce-4e60-b093-4ae68a1bd4bb",
+      "title": "Distracted",
+      "artist": "Thundercat",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "JP",
+      "genres": [
+        "2026",
+        "灵魂",
+        "节奏蓝调",
+        "neo-psychedelia",
+        "jazz fusion"
+      ],
+      "genresEn": [
+        "2026",
+        "soul",
+        "rnb",
+        "neo-psychedelia",
+        "jazz fusion"
+      ],
+      "lfmTags": [
+        "2026",
+        "soul",
+        "rnb",
+        "neo-psychedelia",
+        "jazz fusion"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 2145860,
+      "artistPlaycount": 81637886,
+      "albumListeners": 228878,
+      "albumPlaycount": 2092913,
+      "score": 66.79802024913548,
+      "scoreBreakdown": {
+        "artist": 40,
+        "album": 26.798020249135483,
+        "freshness": 0
+      },
+      "daysOld": 276
     },
     {
       "id": "mb-b6db328d-dc95-451c-adee-44732141d27d",
@@ -155,58 +199,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 372261,
-      "artistPlaycount": 56974193,
-      "albumListeners": 4,
-      "albumPlaycount": 13,
-      "score": 66.149283554314,
+      "artistListeners": 372439,
+      "artistPlaycount": 57003171,
+      "albumListeners": 6,
+      "albumPlaycount": 15,
+      "score": 66.03112393122261,
       "scoreBreakdown": {
-        "artist": 37.138983597674184,
-        "album": 3.0102999566398116,
-        "freshness": 26
+        "artist": 37.14036767930439,
+        "album": 3.8907562519182184,
+        "freshness": 25
       },
-      "daysOld": 4
-    },
-    {
-      "id": "mb-79f7d260-1f4b-41e7-9166-eab572479c8c",
-      "mbid": "79f7d260-1f4b-41e7-9166-eab572479c8c",
-      "title": "UNIQUE",
-      "artist": "P1Harmony",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "EP",
-      "country": "KR",
-      "genres": [
-        "2026",
-        "韩流",
-        "韩国音乐",
-        "kpop"
-      ],
-      "genresEn": [
-        "2026",
-        "k-pop",
-        "korean",
-        "kpop"
-      ],
-      "lfmTags": [
-        "2026",
-        "k-pop",
-        "korean",
-        "kpop"
-      ],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9d/a4/3c/9da43c4a-faf8-a743-56e7-c63f9c28d669/cover_KM0024197_1.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 477364,
-      "artistPlaycount": 63112268,
-      "albumListeners": 108854,
-      "albumPlaycount": 4009153,
-      "score": 63.043219722004025,
-      "scoreBreakdown": {
-        "artist": 37.8589977597115,
-        "album": 25.18422196229253,
-        "freshness": 0
-      },
-      "daysOld": 275
+      "daysOld": 5
     },
     {
       "id": "mb-7d6db858-0ab3-4918-bc23-100173256b6c",
@@ -222,43 +225,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/49/4c/64494cca-8338-c4d2-7225-951b8d183cd3/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 28159,
-      "artistPlaycount": 1387086,
-      "albumListeners": 267,
-      "albumPlaycount": 8862,
-      "score": 62.79667115886928,
+      "artistListeners": 28165,
+      "artistPlaycount": 1387901,
+      "albumListeners": 274,
+      "albumPlaycount": 9371,
+      "score": 61.85348451791107,
       "scoreBreakdown": {
-        "artist": 29.664114852046403,
-        "album": 12.132556306822877,
-        "freshness": 21
+        "artist": 29.66473170380913,
+        "album": 12.188752814101939,
+        "freshness": 20
       },
-      "daysOld": 9
-    },
-    {
-      "id": "mb-df42a572-d05a-46b7-937d-6ad5bcaaaa8f",
-      "mbid": "df42a572-d05a-46b7-937d-6ad5bcaaaa8f",
-      "title": "i love u",
-      "artist": "The Volunteers",
-      "releaseDate": "2026-09-14",
-      "year": "2026",
-      "type": "Album",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/de/b8/ea/deb8eaf6-0e44-8286-37a4-a7ffe60e6d7e/8809704411707_Cover.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 88339,
-      "artistPlaycount": 1778849,
-      "albumListeners": 1693,
-      "albumPlaycount": 23326,
-      "score": 60.117634648706506,
-      "scoreBreakdown": {
-        "artist": 32.97434985816183,
-        "album": 16.143284790544676,
-        "freshness": 11
-      },
-      "daysOld": 19
+      "daysOld": 10
     },
     {
       "id": "mb-8deaeb34-e6b2-4159-b1de-5896d3e8545a",
@@ -292,17 +269,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/21/68/e821682a-5272-2c24-b02f-aa72d5dac3ea/825646293889.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 158948,
-      "artistPlaycount": 1018368,
-      "albumListeners": 88516,
-      "albumPlaycount": 594796,
-      "score": 59.41014268508377,
+      "artistListeners": 158958,
+      "artistPlaycount": 1018501,
+      "albumListeners": 88525,
+      "albumPlaycount": 594875,
+      "score": 59.41054560961122,
       "scoreBreakdown": {
-        "artist": 34.67503378449555,
-        "album": 24.735108900588223,
+        "artist": 34.675215932460475,
+        "album": 24.73532967715074,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
@@ -336,17 +313,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e9/63/e4/e963e47d-f77e-a73c-6f03-2980801a3ee0/195542927325_cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 141034,
-      "artistPlaycount": 3743879,
-      "albumListeners": 89316,
-      "albumPlaycount": 1828612,
-      "score": 59.08347181535257,
+      "artistListeners": 141110,
+      "artistPlaycount": 3745522,
+      "albumListeners": 89384,
+      "albumPlaycount": 1829636,
+      "score": 59.086684207866995,
       "scoreBreakdown": {
-        "artist": 34.32882549015508,
-        "album": 24.754646325197484,
+        "artist": 34.33038527907719,
+        "album": 24.756298928789807,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-0cace6d9-1497-42e7-a1fd-0d88c857fb89",
@@ -362,43 +339,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5e/58/c0/5e58c0cb-9ba8-8933-55f9-8ed9c3ee7f5e/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 475725,
-      "artistPlaycount": 6413976,
-      "albumListeners": 5533,
-      "albumPlaycount": 19467,
-      "score": 56.56384318299851,
+      "artistListeners": 475749,
+      "artistPlaycount": 6414471,
+      "albumListeners": 5534,
+      "albumPlaycount": 19468,
+      "score": 56.56438166799325,
       "scoreBreakdown": {
-        "artist": 37.849039831927755,
-        "album": 18.71480335107076,
+        "artist": 37.84918589396859,
+        "album": 18.715195774024664,
         "freshness": 0
       },
-      "daysOld": 275
-    },
-    {
-      "id": "mb-82f29eb5-57cd-4f7b-8988-c7858a46530f",
-      "mbid": "82f29eb5-57cd-4f7b-8988-c7858a46530f",
-      "title": "Lovestories",
-      "artist": "ENKAY",
-      "releaseDate": "2026-09-19",
-      "year": "2026",
-      "type": "EP",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 12205,
-      "artistPlaycount": 236117,
-      "albumListeners": 372,
-      "albumPlaycount": 2559,
-      "score": 56.096299924430866,
-      "scoreBreakdown": {
-        "artist": 27.24358522502138,
-        "album": 12.852714699409486,
-        "freshness": 16
-      },
-      "daysOld": 14
+      "daysOld": 276
     },
     {
       "id": "mb-ccca0f73-1b3d-4264-9fd8-68ae932c3130",
@@ -432,84 +383,43 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/01/12/e5/0112e54b-dcad-d8e1-893d-552d829f5f9f/4001617074657.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 204139,
-      "artistPlaycount": 7785438,
-      "albumListeners": 13643,
-      "albumPlaycount": 204620,
-      "score": 56.07405594896069,
+      "artistListeners": 204143,
+      "artistPlaycount": 7785587,
+      "albumListeners": 13645,
+      "albumPlaycount": 204632,
+      "score": 56.074430984640045,
       "scoreBreakdown": {
-        "artist": 35.3995065533013,
-        "album": 20.67454939565939,
+        "artist": 35.399563284610466,
+        "album": 20.674867700029576,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
-      "id": "mb-d0fd4a0e-23d4-4eb5-9eae-828a4984c823",
-      "mbid": "d0fd4a0e-23d4-4eb5-9eae-828a4984c823",
-      "title": "Memory",
-      "artist": "Redoor",
-      "releaseDate": "2026-09-16",
+      "id": "mb-82f29eb5-57cd-4f7b-8988-c7858a46530f",
+      "mbid": "82f29eb5-57cd-4f7b-8988-c7858a46530f",
+      "title": "Lovestories",
+      "artist": "ENKAY",
+      "releaseDate": "2026-09-19",
       "year": "2026",
       "type": "EP",
-      "country": "KR",
+      "country": "XW",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4e/91/35/4e9135f9-74ba-73fc-7422-24f9c393ff11/888272188431_Cover.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 25544,
-      "artistPlaycount": 390563,
-      "albumListeners": 389,
-      "albumPlaycount": 4617,
-      "score": 55.331674043504464,
-      "scoreBreakdown": {
-        "artist": 29.381926036875928,
-        "album": 12.949748006628537,
-        "freshness": 13
-      },
-      "daysOld": 17
-    },
-    {
-      "id": "mb-c860c276-14b1-4f76-807f-311870007697",
-      "mbid": "c860c276-14b1-4f76-807f-311870007697",
-      "title": "PINK TAPE",
-      "artist": "H1GHR MUSIC",
-      "releaseDate": "2026-09-15",
-      "year": "2026",
-      "type": "EP",
-      "country": "KR",
-      "genres": [
-        "说唱",
-        "韩流",
-        "韩国音乐",
-        "kpop"
-      ],
-      "genresEn": [
-        "rap",
-        "k-pop",
-        "korean",
-        "kpop"
-      ],
-      "lfmTags": [
-        "rap",
-        "k-pop",
-        "korean",
-        "kpop"
-      ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 19142,
-      "artistPlaycount": 215651,
-      "albumListeners": 662,
-      "albumPlaycount": 5052,
-      "score": 54.65087202648918,
+      "artistListeners": 12210,
+      "artistPlaycount": 236144,
+      "albumListeners": 372,
+      "albumPlaycount": 2559,
+      "score": 55.097485792375366,
       "scoreBreakdown": {
-        "artist": 28.54658207929068,
-        "album": 14.1042899471985,
-        "freshness": 12
+        "artist": 27.24477109296588,
+        "album": 12.852714699409486,
+        "freshness": 15
       },
-      "daysOld": 18
+      "daysOld": 15
     },
     {
       "id": "mb-678bbf03-22b8-4342-bf02-7f0a0dcb353d",
@@ -525,17 +435,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b7/a9/aa/b7a9aad0-ca1b-337e-4265-427313eb9204/7619978280128_3000.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 392330,
-      "artistPlaycount": 4026630,
-      "albumListeners": 914,
-      "albumPlaycount": 7183,
-      "score": 52.09574110043869,
+      "artistListeners": 392362,
+      "artistPlaycount": 4026917,
+      "albumListeners": 915,
+      "albumPlaycount": 7185,
+      "score": 52.098351734408624,
       "scoreBreakdown": {
-        "artist": 37.29101012176953,
-        "album": 14.804730978669157,
+        "artist": 37.291246264076385,
+        "album": 14.807105470332242,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-aca30a57-12bb-4a41-af25-59457048a844",
@@ -569,17 +479,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/27/20/88/27208842-4ee3-3585-0b62-06b5d32cb63d/5013929991309.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 33578,
-      "artistPlaycount": 312585,
+      "artistListeners": 33581,
+      "artistPlaycount": 312597,
       "albumListeners": 19081,
       "albumPlaycount": 105488,
-      "score": 51.5767044895053,
+      "score": 51.57696315594298,
       "scoreBreakdown": {
-        "artist": 30.17369883182074,
+        "artist": 30.173957498258414,
         "album": 21.403005657684567,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-268d81bf-6af4-4bfd-b4ce-41a7e777c144",
@@ -595,17 +505,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 40003,
-      "artistPlaycount": 332654,
-      "albumListeners": 10860,
-      "albumPlaycount": 42277,
-      "score": 50.859766207548894,
+      "artistListeners": 40015,
+      "artistPlaycount": 332806,
+      "albumListeners": 10865,
+      "albumPlaycount": 42336,
+      "score": 50.861634128149234,
       "scoreBreakdown": {
-        "artist": 30.68061708128475,
-        "album": 20.179149126264143,
+        "artist": 30.68148547486652,
+        "album": 20.180148653282714,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-c0d31807-a8ee-4127-847b-19f28630871c",
@@ -621,17 +531,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 84237,
-      "artistPlaycount": 1989827,
-      "albumListeners": 3885,
-      "albumPlaycount": 81612,
-      "score": 50.783641059513485,
+      "artistListeners": 84255,
+      "artistPlaycount": 1990593,
+      "albumListeners": 3893,
+      "albumPlaycount": 81750,
+      "score": 50.78872657146963,
       "scoreBreakdown": {
-        "artist": 32.83668594382882,
-        "album": 17.946955115684666,
+        "artist": 32.83730455287882,
+        "album": 17.95142201859081,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-50568f3c-616c-4d19-a8f1-8151ecb6eb72",
@@ -666,16 +576,68 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 20539,
-      "artistPlaycount": 154004,
+      "artistPlaycount": 154005,
       "albumListeners": 12175,
-      "albumPlaycount": 97102,
+      "albumPlaycount": 97103,
       "score": 49.17787348214095,
       "scoreBreakdown": {
         "artist": 28.750528632707596,
         "album": 20.42734484943336,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
+    },
+    {
+      "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
+      "mbid": "39b58fe5-9a4b-44b6-a42c-3791dc89115a",
+      "title": "Appalachia",
+      "artist": "Emily Scott Robinson",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "US",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/77/4c/20/774c20b2-4793-47d4-ff8b-b1494ccd8261/57993.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 39839,
+      "artistPlaycount": 335812,
+      "albumListeners": 3837,
+      "albumPlaycount": 38844,
+      "score": 48.58868185365117,
+      "scoreBreakdown": {
+        "artist": 30.66872285765959,
+        "album": 17.91995899599158,
+        "freshness": 0
+      },
+      "daysOld": 276
+    },
+    {
+      "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
+      "mbid": "4e05d16b-0198-4994-b1fe-78053c4c5055",
+      "title": "The Lighthouse Session II",
+      "artist": "Saturnus",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "EP",
+      "country": "DE",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/a8/20/48a82095-0490-8057-7abc-b417e7b6670e/2860.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 119077,
+      "artistPlaycount": 5443136,
+      "albumListeners": 861,
+      "albumPlaycount": 3897,
+      "score": 48.513868321214524,
+      "scoreBreakdown": {
+        "artist": 33.83885256394625,
+        "album": 14.675015757268275,
+        "freshness": 0
+      },
+      "daysOld": 276
     },
     {
       "id": "mb-d7a8177f-0ba1-4e11-8c26-80085e537a48",
@@ -694,69 +656,17 @@
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 2080,
-      "artistPlaycount": 20480,
+      "artistListeners": 2083,
+      "artistPlaycount": 20499,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 49.12042223308508,
+      "score": 48.12459513298498,
       "scoreBreakdown": {
-        "artist": 22.120422233085076,
+        "artist": 22.124595132984975,
         "album": 0,
-        "freshness": 27
+        "freshness": 26
       },
-      "daysOld": 3
-    },
-    {
-      "id": "mb-39b58fe5-9a4b-44b6-a42c-3791dc89115a",
-      "mbid": "39b58fe5-9a4b-44b6-a42c-3791dc89115a",
-      "title": "Appalachia",
-      "artist": "Emily Scott Robinson",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "US",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/77/4c/20/774c20b2-4793-47d4-ff8b-b1494ccd8261/57993.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 39838,
-      "artistPlaycount": 335759,
-      "albumListeners": 3837,
-      "albumPlaycount": 38827,
-      "score": 48.588609177808806,
-      "scoreBreakdown": {
-        "artist": 30.668650181817224,
-        "album": 17.91995899599158,
-        "freshness": 0
-      },
-      "daysOld": 275
-    },
-    {
-      "id": "mb-4e05d16b-0198-4994-b1fe-78053c4c5055",
-      "mbid": "4e05d16b-0198-4994-b1fe-78053c4c5055",
-      "title": "The Lighthouse Session II",
-      "artist": "Saturnus",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "EP",
-      "country": "DE",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/a8/20/48a82095-0490-8057-7abc-b417e7b6670e/2860.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 119057,
-      "artistPlaycount": 5442716,
-      "albumListeners": 861,
-      "albumPlaycount": 3894,
-      "score": 48.51338199056828,
-      "scoreBreakdown": {
-        "artist": 33.8383662333,
-        "album": 14.675015757268275,
-        "freshness": 0
-      },
-      "daysOld": 275
+      "daysOld": 4
     },
     {
       "id": "mb-f4a9a05b-c146-410e-8161-4d10af2f6bfa",
@@ -790,17 +700,17 @@
       ],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/78/ff/c7/78ffc7d1-9df3-cfde-1a92-c9033427e2f1/196626204936.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 113431,
-      "artistPlaycount": 893338,
+      "artistListeners": 113434,
+      "artistPlaycount": 893420,
       "albumListeners": 548,
       "albumPlaycount": 8698,
-      "score": 47.39211453115359,
+      "score": 47.39219110435473,
       "scoreBreakdown": {
-        "artist": 33.69821173873174,
+        "artist": 33.698288311932885,
         "album": 13.693902792421845,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
@@ -816,17 +726,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fa/0a/8b/fa0a8b6c-1b71-b94b-559d-0d8f0aa1d9e1/196873496658.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 43285,
-      "artistPlaycount": 1811629,
-      "albumListeners": 1477,
-      "albumPlaycount": 35706,
-      "score": 46.75581862224846,
+      "artistListeners": 43289,
+      "artistPlaycount": 1811765,
+      "albumListeners": 1478,
+      "albumPlaycount": 35730,
+      "score": 46.75755586019216,
       "scoreBreakdown": {
-        "artist": 30.908916145688718,
-        "album": 15.846902476559746,
+        "artist": 30.90918368989813,
+        "album": 15.848372170294033,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-b577931e-be63-4e84-a7b2-e4c0764e9920",
@@ -842,17 +752,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/8f/66/15/8f661525-0bc5-0792-898a-f3e704da321b/196626905055.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 75608,
-      "artistPlaycount": 807875,
+      "artistListeners": 75609,
+      "artistPlaycount": 807960,
       "albumListeners": 683,
       "albumPlaycount": 13064,
-      "score": 46.69588851945978,
+      "score": 46.695926812727684,
       "scoreBreakdown": {
-        "artist": 32.52378500105212,
+        "artist": 32.523823294320025,
         "album": 14.172103518407662,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-81337af6-7dfe-4ee4-ba62-d3e5352f1fd3",
@@ -868,55 +778,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/de/1d/f8/de1df8d8-4da7-250c-670a-76c1e7930f0c/5063824079367_cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 7485,
-      "artistPlaycount": 32865,
-      "albumListeners": 4248,
-      "albumPlaycount": 22238,
-      "score": 43.968867904894196,
+      "artistListeners": 7493,
+      "artistPlaycount": 32896,
+      "albumListeners": 4257,
+      "albumPlaycount": 22266,
+      "score": 43.976556468206354,
       "scoreBreakdown": {
-        "artist": 25.82794536452714,
-        "album": 18.14092254036706,
+        "artist": 25.83103821732067,
+        "album": 18.145518250885683,
         "freshness": 0
       },
-      "daysOld": 275
-    },
-    {
-      "id": "mb-e3df1551-06dc-4dd4-8708-132615625366",
-      "mbid": "e3df1551-06dc-4dd4-8708-132615625366",
-      "title": "Bloom & Gloom",
-      "artist": "ChRocktikal",
-      "releaseDate": "2026-09-03",
-      "year": "2026",
-      "type": "EP",
-      "country": "KR",
-      "genres": [
-        "摇滚",
-        "韩国音乐",
-        "k-rock"
-      ],
-      "genresEn": [
-        "rock",
-        "korean",
-        "k-rock"
-      ],
-      "lfmTags": [
-        "rock",
-        "korean",
-        "k-rock"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 13247,
-      "artistPlaycount": 535087,
-      "albumListeners": 1596,
-      "albumPlaycount": 38846,
-      "score": 43.495948010495304,
-      "scoreBreakdown": {
-        "artist": 27.480783575421754,
-        "album": 16.01516443507355,
-        "freshness": 0
-      },
-      "daysOld": 30
+      "daysOld": 276
     },
     {
       "id": "mb-f6319d87-cc91-4654-8bee-79db8d857e5a",
@@ -951,7 +823,7 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/c0/ad/bf/c0adbf99-db4a-c7e2-4b96-7667f90929a9/889466029967.jpg/600x600bb.jpg",
       "source": "musicbrainz",
       "artistListeners": 36870,
-      "artistPlaycount": 2076359,
+      "artistPlaycount": 2076414,
       "albumListeners": 271,
       "albumPlaycount": 4374,
       "score": 42.60933403841281,
@@ -960,7 +832,33 @@
         "album": 12.164846454372029,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
+    },
+    {
+      "id": "mb-2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
+      "mbid": "2ec305a9-8ba8-4c69-a166-c63bedd43ef6",
+      "title": "Жёсткая неделька",
+      "artist": "СМЕХ",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "XW",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 30681,
+      "artistPlaycount": 935273,
+      "albumListeners": 226,
+      "albumPlaycount": 2191,
+      "score": 41.68300560019178,
+      "scoreBreakdown": {
+        "artist": 29.91246340445477,
+        "album": 11.770542195737004,
+        "freshness": 0
+      },
+      "daysOld": 276
     },
     {
       "id": "mb-00292388-ab95-4285-8846-120dcfd95b71",
@@ -976,43 +874,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3f/1d/dc/3f1ddc4e-fea5-fba7-257f-6650c4ebeb22/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 21837,
-      "artistPlaycount": 66654,
+      "artistListeners": 21845,
+      "artistPlaycount": 66671,
       "albumListeners": 353,
       "albumPlaycount": 745,
-      "score": 41.66682668760349,
+      "score": 41.667887187243025,
       "scoreBreakdown": {
-        "artist": 28.92795316066438,
+        "artist": 28.929013660303916,
         "album": 12.738873526939113,
         "freshness": 0
       },
-      "daysOld": 275
-    },
-    {
-      "id": "mb-5fce3cbe-4fc2-4e47-bdee-c39260a43d22",
-      "mbid": "5fce3cbe-4fc2-4e47-bdee-c39260a43d22",
-      "title": "What a Wonderful Life (HOME ver.)",
-      "artist": "SOYEON",
-      "releaseDate": "2026-09-08",
-      "year": "2026",
-      "type": "Album",
-      "country": "KR",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 99925,
-      "artistPlaycount": 1052786,
-      "albumListeners": 4,
-      "albumPlaycount": 4,
-      "score": 41.341461002854096,
-      "scoreBreakdown": {
-        "artist": 33.331161046214284,
-        "album": 3.0102999566398116,
-        "freshness": 5
-      },
-      "daysOld": 25
+      "daysOld": 276
     },
     {
       "id": "mb-74d81edb-75d4-44f4-bf72-71e3c433d96d",
@@ -1028,43 +900,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f8/75/fc/f875fc9b-1b21-d291-fb09-1b4b0a91fd30/4944099703915.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 535363,
-      "artistPlaycount": 50761333,
+      "artistListeners": 535532,
+      "artistPlaycount": 50777849,
       "albumListeners": 4,
       "albumPlaycount": 74,
-      "score": 41.201288976200075,
+      "score": 41.20220280084272,
       "scoreBreakdown": {
-        "artist": 38.19098901956026,
+        "artist": 38.19190284420291,
         "album": 3.0102999566398116,
         "freshness": 0
       },
-      "daysOld": 275
-    },
-    {
-      "id": "mb-561ba06d-47ba-46c5-86b9-8ea22bbb37ef",
-      "mbid": "561ba06d-47ba-46c5-86b9-8ea22bbb37ef",
-      "title": "鮮花與牛糞",
-      "artist": "斯丹曼簇",
-      "releaseDate": "2026-09-25",
-      "year": "2026",
-      "type": "Album",
-      "country": "CN",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 721,
-      "artistPlaycount": 4080,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 41.05290176479619,
-      "scoreBreakdown": {
-        "artist": 19.052901764796193,
-        "album": 0,
-        "freshness": 22
-      },
-      "daysOld": 8
+      "daysOld": 276
     },
     {
       "id": "mb-f8536d9f-b285-4ec7-add3-62d1d53ccd14",
@@ -1080,17 +926,43 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a3/85/f6/a385f643-c66b-0881-322c-4e48183ffd75/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 167917,
-      "artistPlaycount": 2234744,
+      "artistListeners": 167940,
+      "artistPlaycount": 2235068,
       "albumListeners": 15,
-      "albumPlaycount": 117,
-      "score": 40.714420738956335,
+      "albumPlaycount": 121,
+      "score": 40.714817287610444,
       "scoreBreakdown": {
-        "artist": 34.83396444367793,
+        "artist": 34.83436099233204,
         "album": 5.880456295278407,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
+    },
+    {
+      "id": "mb-5fce3cbe-4fc2-4e47-bdee-c39260a43d22",
+      "mbid": "5fce3cbe-4fc2-4e47-bdee-c39260a43d22",
+      "title": "What a Wonderful Life (HOME ver.)",
+      "artist": "SOYEON",
+      "releaseDate": "2026-09-08",
+      "year": "2026",
+      "type": "Album",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 100063,
+      "artistPlaycount": 1057220,
+      "albumListeners": 4,
+      "albumPlaycount": 4,
+      "score": 40.345456752466745,
+      "scoreBreakdown": {
+        "artist": 33.33515679582693,
+        "album": 3.0102999566398116,
+        "freshness": 4
+      },
+      "daysOld": 26
     },
     {
       "id": "mb-ee43185d-de89-4967-bd54-2c0af6179b8a",
@@ -1107,47 +979,42 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4e/62/cd/4e62cd1e-2b15-8044-d1e9-39ec859f084c/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
       "artistListeners": 4346,
-      "artistPlaycount": 112949,
+      "artistPlaycount": 112979,
       "albumListeners": 1520,
-      "albumPlaycount": 25283,
+      "albumPlaycount": 25309,
       "score": 40.16314941962057,
       "scoreBreakdown": {
         "artist": 24.253931479896703,
         "album": 15.909217939723865,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
-      "id": "mb-b2eff2c9-01a3-469f-af93-e5f5fffaaf50",
-      "mbid": "b2eff2c9-01a3-469f-af93-e5f5fffaaf50",
-      "title": "Single Mind Worst Thought",
-      "artist": "파란노을",
-      "releaseDate": "2026-09-20",
+      "id": "mb-561ba06d-47ba-46c5-86b9-8ea22bbb37ef",
+      "mbid": "561ba06d-47ba-46c5-86b9-8ea22bbb37ef",
+      "title": "鮮花與牛糞",
+      "artist": "斯丹曼簇",
+      "releaseDate": "2026-09-25",
       "year": "2026",
-      "type": "EP",
-      "country": "KR",
+      "type": "Album",
+      "country": "CN",
       "genres": [],
       "genresEn": [],
-      "lfmTags": [
-        "emo",
-        "shoegaze",
-        "south korea",
-        "Korean"
-      ],
+      "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 2345,
-      "artistPlaycount": 93659,
+      "artistListeners": 731,
+      "artistPlaycount": 4115,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 39.46761898034068,
+      "score": 40.0927825130524,
       "scoreBreakdown": {
-        "artist": 22.46761898034068,
+        "artist": 19.092782513052402,
         "album": 0,
-        "freshness": 17
+        "freshness": 21
       },
-      "daysOld": 13
+      "daysOld": 9
     },
     {
       "id": "mb-8c5b6568-d616-4e00-b3b9-2117642ef141",
@@ -1163,17 +1030,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 9691,
-      "artistPlaycount": 266586,
-      "albumListeners": 270,
-      "albumPlaycount": 4647,
-      "score": 38.73260944459676,
+      "artistListeners": 9692,
+      "artistPlaycount": 266650,
+      "albumListeners": 271,
+      "albumPlaycount": 4654,
+      "score": 38.740935824141815,
       "scoreBreakdown": {
-        "artist": 26.575790623801822,
-        "album": 12.156818820794935,
+        "artist": 26.57608936976979,
+        "album": 12.164846454372029,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-cea5026f-761e-49df-ad47-02f85c162a7e",
@@ -1189,17 +1056,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/54/c5/cf/54c5cf94-6d62-4883-0a92-5802b45f857b/cover.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 25127,
-      "artistPlaycount": 362814,
+      "artistListeners": 25129,
+      "artistPlaycount": 362836,
       "albumListeners": 72,
       "albumPlaycount": 387,
-      "score": 38.62093341387432,
+      "score": 38.621163857725605,
       "scoreBreakdown": {
-        "artist": 29.334270931717978,
+        "artist": 29.334501375569264,
         "album": 9.286662482156343,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-48fd3a66-9b8c-4db5-8aa5-4a2fd576b837",
@@ -1234,7 +1101,7 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/34/02/913402e2-f4b8-ed14-a755-165fd699c310/7071245133368.jpg/600x600bb.jpg",
       "source": "musicbrainz",
       "artistListeners": 25610,
-      "artistPlaycount": 136702,
+      "artistPlaycount": 136711,
       "albumListeners": 58,
       "albumPlaycount": 731,
       "score": 38.20653715760422,
@@ -1243,7 +1110,7 @@
         "album": 8.817139967814686,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-eed0703e-1587-4667-81df-c390c4f6a59a",
@@ -1259,17 +1126,17 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a8/ed/db/a8eddb47-5830-7985-a617-b2eae307dbc5/cover_3618021409602.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 47813,
-      "artistPlaycount": 134907,
+      "artistListeners": 47818,
+      "artistPlaycount": 134923,
       "albumListeners": 21,
       "albumPlaycount": 37,
-      "score": 37.8080697677735,
+      "score": 37.80837252488664,
       "scoreBreakdown": {
-        "artist": 31.19697329410391,
+        "artist": 31.19727605121705,
         "album": 6.611096473669597,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-017c16c7-e4c5-488d-8bde-d2e41a15096f",
@@ -1285,17 +1152,43 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3724,
-      "artistPlaycount": 45903,
+      "artistListeners": 3726,
+      "artistPlaycount": 45915,
       "albumListeners": 210,
       "albumPlaycount": 2249,
-      "score": 35.41782762239829,
+      "score": 35.419382144071086,
       "scoreBreakdown": {
-        "artist": 23.8067311487287,
+        "artist": 23.808285670401492,
         "album": 11.611096473669594,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
+    },
+    {
+      "id": "mb-57ab87c3-627f-44d5-b9aa-e2758da2b5f8",
+      "mbid": "57ab87c3-627f-44d5-b9aa-e2758da2b5f8",
+      "title": "도그마",
+      "artist": "Kim Ximya",
+      "releaseDate": "2026-09-09",
+      "year": "2026",
+      "type": "Album",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 10777,
+      "artistPlaycount": 80780,
+      "albumListeners": 5,
+      "albumPlaycount": 69,
+      "score": 35.3781692407275,
+      "scoreBreakdown": {
+        "artist": 26.883319219047404,
+        "album": 3.4948500216800946,
+        "freshness": 5
+      },
+      "daysOld": 25
     },
     {
       "id": "mb-8cad04bc-f71b-4bbd-a518-77399a2352ad",
@@ -1312,16 +1205,16 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 3518,
-      "artistPlaycount": 54448,
+      "artistPlaycount": 54453,
       "albumListeners": 209,
-      "albumPlaycount": 2203,
+      "albumPlaycount": 2204,
       "score": 35.24270366469822,
       "scoreBreakdown": {
         "artist": 23.641972234142948,
         "album": 11.60073143055527,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-49056c96-f203-4fbc-bdd6-ddd1ab08180b",
@@ -1356,7 +1249,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 5589,
-      "artistPlaycount": 194903,
+      "artistPlaycount": 194905,
       "albumListeners": 72,
       "albumPlaycount": 606,
       "score": 34.26888987959571,
@@ -1365,33 +1258,77 @@
         "album": 9.286662482156343,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
-      "id": "mb-71621f44-e23b-4dda-bdfe-dcd5b5b6b7d4",
-      "mbid": "71621f44-e23b-4dda-bdfe-dcd5b5b6b7d4",
-      "title": "외곽의 사랑",
-      "artist": "이고도",
-      "releaseDate": "2026-09-16",
+      "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
+      "mbid": "ed578194-4aa6-4100-a951-b57d40adc5d9",
+      "title": "Det Karolinska Arvet",
+      "artist": "Karolinerna",
+      "releaseDate": "2026",
       "year": "2026",
       "type": "Album",
-      "country": "KR",
+      "country": "XW",
+      "genres": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
+      "genresEn": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
+      "lfmTags": [
+        "viking rock",
+        "vikingarock",
+        "swedish",
+        "white power",
+        "nordisk vikingarock"
+      ],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/db/24/87/db248794-b457-d1e6-167d-3cd33054738d/7321170314616.png/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 2589,
+      "artistPlaycount": 94232,
+      "albumListeners": 50,
+      "albumPlaycount": 226,
+      "score": 31.249063691245908,
+      "scoreBreakdown": {
+        "artist": 22.754213669565814,
+        "album": 8.494850021680094,
+        "freshness": 0
+      },
+      "daysOld": 276
+    },
+    {
+      "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
+      "mbid": "9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
+      "title": "On the Road",
+      "artist": "Ah",
+      "releaseDate": "2026",
+      "year": "2026",
+      "type": "Album",
+      "country": "LT",
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 1284,
-      "artistPlaycount": 16427,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 33.72376682488556,
+      "artistListeners": 3185,
+      "artistPlaycount": 20679,
+      "albumListeners": 34,
+      "albumPlaycount": 482,
+      "score": 31.011457496353735,
       "scoreBreakdown": {
-        "artist": 20.723766824885562,
-        "album": 0,
-        "freshness": 13
+        "artist": 23.35406291114246,
+        "album": 7.657394585211276,
+        "freshness": 0
       },
-      "daysOld": 17
+      "daysOld": 276
     },
     {
       "id": "mb-240607f1-aeeb-49f0-8f3a-55231a264602",
@@ -1407,17 +1344,49 @@
       "lfmTags": [],
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/04/f9/c7/04f9c76d-7e80-63bd-757a-1c37e01515f7/artwork.jpg/600x600bb.jpg",
       "source": "musicbrainz",
-      "artistListeners": 23530,
-      "artistPlaycount": 1258822,
+      "artistListeners": 23533,
+      "artistPlaycount": 1258846,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 29.14414618117348,
+      "score": 29.14451529872441,
       "scoreBreakdown": {
-        "artist": 29.14414618117348,
+        "artist": 29.14451529872441,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
+    },
+    {
+      "id": "mb-f6f791e9-62ca-48ea-b807-7b4cb6a08379",
+      "mbid": "f6f791e9-62ca-48ea-b807-7b4cb6a08379",
+      "title": "산산조각",
+      "artist": "장기하",
+      "releaseDate": "2026-09-09",
+      "year": "2026",
+      "type": "Album",
+      "country": "KR",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [
+        "Korean",
+        "rock",
+        "vocal",
+        "k-rock",
+        "drummer"
+      ],
+      "cover": "",
+      "source": "musicbrainz",
+      "artistListeners": 1306,
+      "artistPlaycount": 16516,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 25.772954512927036,
+      "scoreBreakdown": {
+        "artist": 20.772954512927036,
+        "album": 0,
+        "freshness": 5
+      },
+      "daysOld": 25
     },
     {
       "id": "mb-338d60e1-ad46-44c3-a5fa-b2b2d4daa554",
@@ -1433,80 +1402,49 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 6264,
-      "artistPlaycount": 80525,
+      "artistListeners": 6268,
+      "artistPlaycount": 80554,
       "albumListeners": 1,
       "albumPlaycount": 28,
-      "score": 25.312344993665917,
+      "score": 25.314193251977017,
       "scoreBreakdown": {
-        "artist": 25.312344993665917,
+        "artist": 25.314193251977017,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
-      "id": "mb-9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
-      "mbid": "9e6ce49b-4fd0-4145-be6c-ad0d3eeb3522",
-      "title": "On the Road",
-      "artist": "Ah",
-      "releaseDate": "2026",
+      "id": "mb-f4cecb73-15b1-4e42-a6dd-31716266d8e9",
+      "mbid": "f4cecb73-15b1-4e42-a6dd-31716266d8e9",
+      "title": "오아시스",
+      "artist": "정동하",
+      "releaseDate": "2026-09-06",
       "year": "2026",
-      "type": "Album",
-      "country": "LT",
+      "type": "EP",
+      "country": "KR",
       "genres": [],
       "genresEn": [],
       "lfmTags": [
-        "j-pop",
-        "japanese",
-        "female vocalists",
-        "Neo Soul"
+        "Korean",
+        "Ballad",
+        "k-rock",
+        "boohwal",
+        "video"
       ],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 3184,
-      "artistPlaycount": 20677,
+      "artistListeners": 2094,
+      "artistPlaycount": 31781,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 23.353153727104207,
+      "score": 24.139844515618826,
       "scoreBreakdown": {
-        "artist": 23.353153727104207,
+        "artist": 22.139844515618826,
         "album": 0,
-        "freshness": 0
+        "freshness": 2
       },
-      "daysOld": 275
-    },
-    {
-      "id": "mb-ed578194-4aa6-4100-a951-b57d40adc5d9",
-      "mbid": "ed578194-4aa6-4100-a951-b57d40adc5d9",
-      "title": "Det Karolinska Arvet",
-      "artist": "Karolinerna",
-      "releaseDate": "2026",
-      "year": "2026",
-      "type": "Album",
-      "country": "XW",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [
-        "viking rock",
-        "vikingarock",
-        "swedish",
-        "white power",
-        "Nordisk vikingarock"
-      ],
-      "cover": "",
-      "source": "musicbrainz",
-      "artistListeners": 2589,
-      "artistPlaycount": 94230,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 22.754213669565814,
-      "scoreBreakdown": {
-        "artist": 22.754213669565814,
-        "album": 0,
-        "freshness": 0
-      },
-      "daysOld": 275
+      "daysOld": 28
     },
     {
       "id": "mb-f10db834-996c-4b1f-9563-98c7b9e80baa",
@@ -1522,17 +1460,17 @@
       "lfmTags": [],
       "cover": "",
       "source": "musicbrainz",
-      "artistListeners": 2503,
-      "artistPlaycount": 41564,
+      "artistListeners": 2504,
+      "artistPlaycount": 41598,
       "albumListeners": 0,
       "albumPlaycount": 0,
-      "score": 22.656405664054823,
+      "score": 22.657562163589283,
       "scoreBreakdown": {
-        "artist": 22.656405664054823,
+        "artist": 22.657562163589283,
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-5a3824cd-dc0b-4f7d-99a2-2b323addfcdb",
@@ -1555,7 +1493,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 2408,
-      "artistPlaycount": 26067,
+      "artistPlaycount": 26069,
       "albumListeners": 0,
       "albumPlaycount": 0,
       "score": 22.544376550571915,
@@ -1564,7 +1502,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-e178c01c-3f05-4070-9454-749687762747",
@@ -1596,7 +1534,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-38c915a8-858a-4ac1-9b04-13b2da60bed1",
@@ -1628,7 +1566,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-95d456c4-38a3-487f-b745-09c94b9cea83",
@@ -1660,7 +1598,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-809b9fbd-9dca-4327-bc33-a00df0850431",
@@ -1692,7 +1630,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-60ef8bde-d4fc-41bb-a7ad-268dbd666cf2",
@@ -1721,7 +1659,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-dc113487-3606-48ce-976d-37748757097c",
@@ -1744,7 +1682,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 868,
-      "artistPlaycount": 12415,
+      "artistPlaycount": 12419,
       "albumListeners": 0,
       "albumPlaycount": 0,
       "score": 19.590131501176614,
@@ -1753,7 +1691,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-901435e9-1c31-4a69-9fe9-288b4d510d99",
@@ -1785,7 +1723,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "mb-4f123c9f-5775-4f3e-938c-6e4d90cd3944",
@@ -1802,7 +1740,7 @@
       "cover": "",
       "source": "musicbrainz",
       "artistListeners": 586,
-      "artistPlaycount": 7170,
+      "artistPlaycount": 7180,
       "albumListeners": 0,
       "albumPlaycount": 0,
       "score": 18.45265077345394,
@@ -1811,7 +1749,7 @@
         "album": 0,
         "freshness": 0
       },
-      "daysOld": 275
+      "daysOld": 276
     },
     {
       "id": "chart-0",
@@ -10699,7 +10637,7 @@
       "genres": [],
       "genresEn": [],
       "lfmTags": [],
-      "cover": "https://lastfm-img.freetls.fastly.net/i/u/174s/825edc59e23542cac2d60cf5820f12f1.png",
+      "cover": "https://lastfm-img.freetls.fastly.net/i/u/174s/d724d98ff16297aef35f9f55bbcb9a62.png",
       "source": "chart",
       "artistListeners": 0,
       "artistPlaycount": 0,
