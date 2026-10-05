@@ -1,34 +1,107 @@
 {
-  "updated": "2026-10-05",
-  "count": 2,
+  "updated": "2026-10-06",
+  "count": 6,
   "movies": [
     {
-      "tmdbId": 1763619,
+      "tmdbId": 167581,
       "mediaType": "movie",
-      "title": "疯狂穷富翁",
-      "titleEn": "Crazy Rich, Incredibly Broke",
-      "year": "2026",
-      "releaseDate": "2026-10-01",
-      "poster": "https://image.tmdb.org/t/p/w500/eo7K5bphGc4F0JJ9vAzO126PwoQ.jpg",
-      "rating": 5.5,
+      "title": "自由坠落",
+      "titleEn": "Freier Fall",
+      "year": "2013",
+      "releaseDate": "2013-05-27",
+      "poster": "https://image.tmdb.org/t/p/w342/fNmiRDUoAPmfS6q6HW5OH7q4VYA.jpg",
+      "rating": 7.7,
       "genre": [
-        "Comedy",
-        "Drama"
+        "剧情",
+        "爱情"
       ],
+      "source": "rec",
       "firstSeen": "2026-10-05"
     },
     {
-      "tmdbId": 54344,
+      "tmdbId": 17614,
       "mediaType": "movie",
-      "title": "Liberty's Kids - The First Fourth of July",
-      "titleEn": "Liberty's Kids - The First Fourth of July",
-      "year": "2004",
-      "releaseDate": "2004-08-01",
-      "poster": "",
-      "rating": 0,
-      "genre": [],
+      "title": "我的军中情人",
+      "titleEn": "יוסי וג'אגר",
+      "year": "2002",
+      "releaseDate": "2002-08-28",
+      "poster": "https://image.tmdb.org/t/p/w342/iAaoY66dkJiZftsj3bmbWLeNgRt.jpg",
+      "rating": 6.7,
+      "genre": [
+        "战争",
+        "剧情",
+        "爱情"
+      ],
       "source": "rec",
-      "firstSeen": "2026-10-04"
+      "firstSeen": "2026-10-05"
+    },
+    {
+      "tmdbId": 25078,
+      "mediaType": "movie",
+      "title": "猫汤",
+      "titleEn": "ねこぢる草",
+      "year": "2001",
+      "releaseDate": "2001-02-21",
+      "poster": "https://image.tmdb.org/t/p/w342/85c6VTiUOtizQBoT9ekBBlUz3zc.jpg",
+      "rating": 7.1,
+      "genre": [
+        "奇幻",
+        "动画",
+        "科幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-05"
+    },
+    {
+      "tmdbId": 37433,
+      "mediaType": "movie",
+      "title": "迷宫物语",
+      "titleEn": "迷宮物語",
+      "year": "1989",
+      "releaseDate": "1989-04-15",
+      "poster": "https://image.tmdb.org/t/p/w342/3tQqkfhE2v03OXK4ocxKQ4rnkaC.jpg",
+      "rating": 6.7,
+      "genre": [
+        "科幻",
+        "动画",
+        "冒险"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-05"
+    },
+    {
+      "tmdbId": 382475,
+      "mediaType": "movie",
+      "title": "十年带球跑",
+      "titleEn": "The Pass",
+      "year": "2016",
+      "releaseDate": "2016-03-16",
+      "poster": "https://image.tmdb.org/t/p/w342/uDoCBDEhOlOcNhIK3RwBUC557Zj.jpg",
+      "rating": 6.3,
+      "genre": [
+        "剧情",
+        "爱情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-05"
+    },
+    {
+      "tmdbId": 912598,
+      "mediaType": "movie",
+      "title": "泡泡",
+      "titleEn": "バブル",
+      "year": "2022",
+      "releaseDate": "2022-02-14",
+      "poster": "https://image.tmdb.org/t/p/w342/wjgwIZyEgtgy9nIdz6C5uJNel2X.jpg",
+      "rating": 7.262,
+      "genre": [
+        "动画",
+        "冒险",
+        "科幻",
+        "奇幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-05"
     }
   ]
 }
