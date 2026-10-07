@@ -1,53 +1,37 @@
 {
-  "updated": "2026-10-07",
-  "count": 3,
+  "updated": "2026-10-08",
+  "count": 2,
   "movies": [
     {
-      "tmdbId": 1234139,
+      "tmdbId": 1381071,
       "mediaType": "movie",
-      "title": "ஜெயிலர் 2",
-      "titleEn": "Jailer 2",
+      "title": "哥斯拉-0.0",
+      "titleEn": "Godzilla Minus Zero",
       "year": "2026",
-      "releaseDate": "2026-10-15",
-      "poster": "https://image.tmdb.org/t/p/w500/lXOMsqKXVhEmPwthnx0F34DgoUt.jpg",
+      "releaseDate": "2026-11-03",
+      "poster": "https://image.tmdb.org/t/p/w500/51RBWzkFd4zEsOGg4ZIqYlNszHc.jpg",
       "rating": 0,
       "genre": [
-        "Action",
-        "Comedy"
+        "Sci-Fi",
+        "Horror",
+        "Action"
       ],
-      "firstSeen": "2026-10-07"
+      "firstSeen": "2026-10-08"
     },
     {
-      "tmdbId": 12143,
+      "tmdbId": 1229906,
       "mediaType": "movie",
-      "title": "坏中尉",
-      "titleEn": "Bad Lieutenant",
-      "year": "1992",
-      "releaseDate": "1992-11-20",
-      "poster": "https://image.tmdb.org/t/p/w342/mVJ2mXykqq3t2v1nuouf1P10g0d.jpg",
-      "rating": 7,
+      "title": "家魇",
+      "titleEn": "Family",
+      "year": "2026",
+      "releaseDate": "2026-09-25",
+      "poster": "https://image.tmdb.org/t/p/w500/cTXGUz1Mle56A6vAK2GAf1j8Wtn.jpg",
+      "rating": 6.333,
       "genre": [
-        "犯罪",
-        "剧情"
+        "Drama",
+        "Horror"
       ],
-      "source": "rec",
-      "firstSeen": "2026-10-06"
-    },
-    {
-      "tmdbId": 42112,
-      "mediaType": "movie",
-      "title": "钱",
-      "titleEn": "L'Argent",
-      "year": "1983",
-      "releaseDate": "1983-05-18",
-      "poster": "https://image.tmdb.org/t/p/w342/tqt9D4TH702ZXEUKWa3e6UdFAvY.jpg",
-      "rating": 6.931,
-      "genre": [
-        "犯罪",
-        "剧情"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-10-06"
+      "firstSeen": "2026-10-08"
     }
   ]
 }
