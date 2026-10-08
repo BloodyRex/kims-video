@@ -23,7 +23,30 @@ function buildEntries() {
     { loc: `${SITE}/discover/`, changefreq: "daily", priority: "0.9", lastmod: today },
     { loc: `${SITE}/intelligence`, changefreq: "daily", priority: "0.9", lastmod: today },
     { loc: `${SITE}/wall/`, changefreq: "daily", priority: "0.8", lastmod: today },
+    // Festival Calendar — 入口页（其 canonical 为 /festivals，week/month/all/changes 均归一到它，故不重复收录）
+    { loc: `${SITE}/festivals`, changefreq: "daily", priority: "0.9", lastmod: today },
   ];
+
+  // 电影节详情页：仅收录已发布届次的独立路由（页面 canonical 为 /festivals/<slug>）。
+  // 数据源为发布索引本身；读取失败只跳过详情页，不中断 sitemap 生成。
+  try {
+    const festivals = JSON.parse(
+      readFileSync(join(ROOT, "public", "api", "festivals.json"), "utf-8")
+    );
+    const seenFestival = new Set();
+    for (const f of festivals.festivals || []) {
+      if (!f || !f.slug || seenFestival.has(f.slug)) continue;
+      seenFestival.add(f.slug);
+      entries.push({
+        loc: `${SITE}/festivals/${f.slug}`,
+        changefreq: "daily",
+        priority: "0.7",
+        lastmod: today,
+      });
+    }
+  } catch (e) {
+    console.warn(`[sitemap] skipped festival detail pages: ${e.message}`);
+  }
 
   // Genre pages
   const seenSlugs = new Set();
