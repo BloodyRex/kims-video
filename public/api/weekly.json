@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "movies": [
     {
       "tmdbId": 969681,
@@ -9,8 +9,8 @@
       "originCountry": [],
       "year": "2026",
       "releaseDate": "2026-07-29",
-      "poster": "https://image.tmdb.org/t/p/w500/7AjIupf0lxNKNq0p8z36jv5ZpiJ.jpg",
-      "rating": 8.24,
+      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
+      "rating": 8.309,
       "genre": [
         "Sci-Fi",
         "Action",
@@ -30,7 +30,7 @@
       "year": "2026",
       "releaseDate": "2026-09-28",
       "poster": "https://image.tmdb.org/t/p/w500/c8UJ50GM0jiVIk6YO9hEiqEe0dP.jpg",
-      "rating": 7.527,
+      "rating": 7.51,
       "genre": [
         "Comedy",
         "Drama"
@@ -49,33 +49,14 @@
       "year": "2026",
       "releaseDate": "2026-08-19",
       "poster": "https://image.tmdb.org/t/p/w500/5hzLh3TS8XLZpNDlQ6fZGc2TPCn.jpg",
-      "rating": 7.435,
+      "rating": 7.549,
       "genre": [
         "Horror",
         "Thriller"
       ],
-      "summary": "　　三名潜行者悄然入侵静谧的郊区，将一户新搬来的家庭困于灵薄狱的夹缝之中。他们原以为这只是场残酷的猎杀游戏，却在此撕裂了现实与异界的边界——一个令人战栗的真相逐渐浮现：深渊彼岸的“灵薄狱”，正从裂缝中不断渗入现实世界。",
-      "summaryEn": "Gemma, a young mother raising her daughter in the house she grew up in, discovers she can travel into The Further, where she possesses an ability to bring what lives there back to the real world.",
+      "summary": "一位年轻母亲带着女儿住回儿时的家中，却发现自己能够进入亡魂徘徊的异界“幽冥界”。当邪恶力量盯上她，她发现自己不仅能进入其中，还能将其中的存在带回现实世界。",
+      "summaryEn": "Gemma, a young mother raising her daughter in the house she grew up in, discovers she can travel into The Further, the purgatorial realm of lost souls at the heart of the Insidious universe. When some",
       "rank": 3,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1283515,
-      "title": "不存在的罪人",
-      "titleEn": "Verity",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-09-30",
-      "poster": "https://image.tmdb.org/t/p/w500/fD6hgmReIOGiFv3l22eVSQLxqFX.jpg",
-      "rating": 6.4,
-      "genre": [
-        "Mystery",
-        "Thriller"
-      ],
-      "summary": "影片改编自柯琳·胡佛的同名畅销小说。知名作家维莉蒂因故无法完成新作，潦倒作家洛温受邀前往其偏远庄园代笔，却意外发现维莉蒂诡异的自传手稿。面对其中关于丈夫杰里米的扭曲告白，洛温逐渐难辨虚实、操控与诱惑。",
-      "summaryEn": "Lowen Ashleigh is hired by Jeremy Crawford to ghostwrite novels for his bestselling author wife Verity, who is unable to finish following an accident. Lowen gradually uncovers Verity's disturbing trut",
-      "rank": 4,
       "trend": "new"
     },
     {
@@ -87,12 +68,31 @@
       "year": "2026",
       "releaseDate": "2026-09-01",
       "poster": "https://image.tmdb.org/t/p/w500/nsihyCiAHotJ3G4NTSJcBuWLbzg.jpg",
-      "rating": 7.003,
+      "rating": 7.13,
       "genre": [
         "Thriller"
       ],
       "summary": "痛失姐姐杭特之后，贾克斯与杭特那无畏的好友露斯重聚。两人结伴前往泰国著名的关山山脉疗伤。不料突如其来的山体滑坡将她们逼入绝境，两人被困在一段摇摇欲坠、高耸入云的4000英尺高空栈道上。面对死神的威胁，贾克斯必须直面内心深处的恐惧，在绝壁之上觅得一线生机。",
       "summaryEn": "On a perilous climb across Thailand's Mount Kwan, two climbers become trapped thousands of feet above the ground, where vertigo-inducing heights, sheer exposure, and impossible odds turn every moment ",
+      "rank": 4,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 1283515,
+      "title": "不存在的罪人",
+      "titleEn": "Verity",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-09-30",
+      "poster": "https://image.tmdb.org/t/p/w500/fD6hgmReIOGiFv3l22eVSQLxqFX.jpg",
+      "rating": 6.471,
+      "genre": [
+        "Mystery",
+        "Thriller"
+      ],
+      "summary": "影片改编自柯琳·胡佛的同名畅销小说。知名作家维莉蒂因故无法完成新作，潦倒作家洛温受邀前往其偏远庄园代笔，却意外发现维莉蒂诡异的自传手稿。面对其中关于丈夫杰里米的扭曲告白，洛温逐渐难辨虚实、操控与诱惑。",
+      "summaryEn": "Lowen Ashleigh is hired by Jeremy Crawford to ghostwrite novels for his bestselling author wife Verity, who is unable to finish following an accident. Lowen gradually uncovers Verity's disturbing trut",
       "rank": 5,
       "trend": "new"
     },
@@ -105,7 +105,7 @@
       "year": "2026",
       "releaseDate": "2026-09-16",
       "poster": "https://image.tmdb.org/t/p/w500/qMvRqzzDVfQpLi5ZoKwttTQdaJe.jpg",
-      "rating": 7.3,
+      "rating": 7.318,
       "genre": [
         "Horror",
         "Sci-Fi",
@@ -118,21 +118,40 @@
     },
     {
       "tmdbId": 1400837,
-      "title": "另一个妈妈",
+      "title": "另一个妈咪",
       "titleEn": "Other Mommy",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
       "releaseDate": "2026-10-07",
       "poster": "https://image.tmdb.org/t/p/w500/8NhvDXIZXU39wZCJbhUerrJyRnK.jpg",
-      "rating": 9,
+      "rating": 8.156,
       "genre": [
-        "Horror",
-        "Thriller"
+        "Horror"
       ],
       "summary": "故事讲述八岁女孩贝拉住在父母婚姻摇摇欲坠的房子里。某天，她发现衣柜深处总在深夜探出一个东西——那东西长得和她妈妈乌苏拉一模一样，于是贝拉叫它“另一个妈妈”。它每天重复同一句话：“我可以进到你心里吗？”贝拉本能地拒绝，但“另一个妈妈”开始以更扭曲狰狞的形态渗透家庭生活，甚至试图取代真正的母亲。当家中怪事频发、家人也开始看见它时，贝拉必须在被彻底吞噬前，揪出这个伪装者，或者承认有些门不该打开。影片改编",
       "summaryEn": "Young Bela forms a relationship with a sinister entity in her home that looks uncannily like her own mother, drawing her into a terrifying and increasingly dark world.",
       "rank": 7,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 1284046,
+      "title": "猛攻",
+      "titleEn": "Onslaught",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-09-02",
+      "poster": "https://image.tmdb.org/t/p/w500/xsCLTMktqhQSbde0hiEREKEELcN.jpg",
+      "rating": 5.762,
+      "genre": [
+        "Action",
+        "Horror",
+        "Thriller"
+      ],
+      "summary": "军事基地逃出了一个神秘的危险存在，被佣军追捕，威胁到了一名此前曾是军人、如今因为某些原因住在拖车里的母亲。为保护所爱之人，她不得不使出特殊技能。",
+      "summaryEn": "When a rogue squad of genetically engineered super soldiers break loose in the desert, a badass Army sniper must unleash hell to protect her young daughter.",
+      "rank": 8,
       "trend": "new"
     },
     {
@@ -144,7 +163,7 @@
       "year": "2026",
       "releaseDate": "2026-09-10",
       "poster": "https://image.tmdb.org/t/p/w500/uLI9v21yjlFcrL0qdBPHpNk1Gmu.jpg",
-      "rating": 7.986,
+      "rating": 7.99,
       "genre": [
         "History",
         "Drama",
@@ -152,45 +171,26 @@
       ],
       "summary": "在中世纪的英格兰，一位无畏的勇士召集平民发动了一场激烈的起义，反抗国王理查德二世的高压统治。随着国家陷入混乱，他的起义军与王室军队展开了一场绝望的自由之战。",
       "summaryEn": "As war and plague devastate 14th-century England, a humble peasant ignites a rebellion, uniting an army of commoners to defy the King’s might in a desperate fight for justice and survival.",
-      "rank": 8,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1377237,
-      "title": "护肝人",
-      "titleEn": "Runner",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-09-07",
-      "poster": "https://image.tmdb.org/t/p/w500/bou3s9jCvcZ1iGPiYilD7C0LdLo.jpg",
-      "rating": 8.33,
-      "genre": [
-        "Action",
-        "Comedy"
-      ],
-      "summary": "高端特种押运员汉克·马龙必须在三小时内，将一颗肝脏从洛杉矶国际机场运往圣巴巴拉的一家医院，用于一台紧急移植手术。受赠者是一名濒危的七岁女孩，她拥有全球极为罕见的血型。偏偏南加州最危险犯罪集团的头目，也急需这颗器官。",
-      "summaryEn": "A former soldier is thrown into a brutal race against time when a critical medical delivery makes him and his unlikely partner the targets of a ruthless cartel. As the mission spirals into a deadly ma",
       "rank": 9,
       "trend": "new"
     },
     {
-      "tmdbId": 1284046,
-      "title": "猛攻",
-      "titleEn": "Onslaught",
+      "tmdbId": 1400940,
+      "title": "泥面人",
+      "titleEn": "Clayface",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-09-02",
-      "poster": "https://image.tmdb.org/t/p/w500/qg5U3trH8yEk94Iee9pFFxy8VzK.jpg",
-      "rating": 5.7,
+      "releaseDate": "2026-10-21",
+      "poster": "https://image.tmdb.org/t/p/w500/8CVxezsk8HLHC28FDbEHEfh6pMU.jpg",
+      "rating": 0,
       "genre": [
-        "Action",
         "Horror",
-        "Thriller"
+        "Thriller",
+        "Sci-Fi"
       ],
-      "summary": "军事基地逃出了一个神秘的危险存在，被佣军追捕，威胁到了一名此前曾是军人、如今因为某些原因住在拖车里的母亲。为保护所爱之人，她不得不使出特殊技能。",
-      "summaryEn": "When a rogue squad of genetically engineered super soldiers break loose in the desert, a badass Army sniper must unleash hell to protect her young daughter.",
+      "summary": "本片讲述一位B级片演员给自己注射一种物质来保持状态，却发现他可以改变自己的脸和体形，成为一块行走的泥土。",
+      "summaryEn": "Matt Hagen's meteoric rise from Gotham street kid to Hollywood leading man is tragically cut short when a local crime boss's actions leave him horribly disfigured. Abandoned by his team and with nothi",
       "rank": 10,
       "trend": "new"
     }
@@ -207,7 +207,7 @@
       "year": "2026",
       "releaseDate": "2026-08-16",
       "poster": "https://image.tmdb.org/t/p/w500/5ZmOP60VIEfM2cnt7CpAK1j9mEv.jpg",
-      "rating": 8.337,
+      "rating": 8.3,
       "genre": [
         "Drama",
         "Mystery"
@@ -231,7 +231,7 @@
       "year": "2026",
       "releaseDate": "2026-10-01",
       "poster": "https://image.tmdb.org/t/p/w500/slYjlpkFnaCSZJICqj2G158Eoqg.jpg",
-      "rating": 8,
+      "rating": 8.053,
       "genre": [
         "Drama"
       ],
@@ -240,33 +240,7 @@
       "season": 1,
       "episode": 7,
       "latestAirDate": "2026-10-01",
-      "rank": 3,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 258230,
-      "title": "最后目击",
-      "titleEn": "Last Seen",
-      "originalLanguage": "en",
-      "originCountry": [
-        "GB"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-09-09",
-      "poster": "https://image.tmdb.org/t/p/w500/fvfkAqD1Q1GfdZv3Pew95lmMe6u.jpg",
-      "rating": 7.782,
-      "genre": [
-        "Crime",
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "紧急报案中心调度员伊恩接到一通少女的求助电话，深信对方就是失踪多年的女儿玛吉，于是不惜一切展开追寻。",
-      "summaryEn": "When emergency dispatcher Ian Ridley receives a frantic call from a teenager he believes could be his long-missing daughter, he stops at nothing to find her.",
-      "nextAirDate": "2026-10-07",
-      "season": 1,
-      "episode": 5,
-      "latestAirDate": "2026-09-30",
-      "rank": 4,
+      "rank": 2,
       "trend": "new"
     },
     {
@@ -275,72 +249,23 @@
       "titleEn": "Carrie",
       "originalLanguage": "en",
       "originCountry": [
+        "CA",
         "US"
       ],
       "year": "2026",
       "releaseDate": "2026-10-07",
-      "poster": "https://image.tmdb.org/t/p/w500/AsBZWp9VZfSY7HhZBADlaQtb9k4.jpg",
-      "rating": 8.2,
+      "poster": "https://image.tmdb.org/t/p/w500/xobpaz7TiODcuGhT9dvENFhhVGw.jpg",
+      "rating": 8.738,
       "genre": [
         "Mystery",
         "Drama"
       ],
       "summary": "父亲的突然离世迫使嘉莉进入到了残酷的公立高中，她不得不面对席卷社区的校园霸凌丑闻、社交媒体时代无情的压力和冷酷无情，以及伴随青春期而觉醒的神秘心灵感应能力。",
       "summaryEn": "After her father's sudden, untimely death thrusts her into the unforgiving ecosystem of public high school, Carrie is forced to navigate a viral bullying scandal that tears through her community, the ",
-      "nextAirDate": "2026-10-07",
       "season": 1,
-      "episode": 1,
+      "episode": 8,
       "latestAirDate": "2026-10-07",
-      "rank": 5,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 305551,
-      "title": "莓好遇见你",
-      "titleEn": "Merry Berry Love",
-      "originalLanguage": "ja",
-      "originCountry": [
-        "JP"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-07",
-      "poster": "https://image.tmdb.org/t/p/w500/vI6dEbvs31QxAgTpNsq23eJDYl4.jpg",
-      "rating": 8,
-      "genre": [
-        "Comedy",
-        "Drama"
-      ],
-      "summary": "一夜之间失去一切的韩国空间规划师，与一心只扑在草莓上的日本农业女孩——在美丽岛屿上展开的、跨越国界的酸甜浪漫爱情喜剧。",
-      "summaryEn": "When star Korean spatial designer Lee Yubin loses everything, he heads off to a Japanese island. There, he meets Karin, a resilient strawberry farmer. Hailing from different worlds, their lives collid",
-      "nextAirDate": "2026-10-07",
-      "season": 1,
-      "episode": 1,
-      "latestAirDate": "2026-10-07",
-      "rank": 7,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 37854,
-      "title": "航海王",
-      "titleEn": "One Piece",
-      "originalLanguage": "ja",
-      "originCountry": [
-        "JP"
-      ],
-      "year": "1999",
-      "releaseDate": "1999-10-20",
-      "poster": "https://image.tmdb.org/t/p/w500/f9AFdxegmmWOghgw9E6ebICkstl.jpg",
-      "rating": 8.8,
-      "genre": [
-        "Comedy",
-        "Animation"
-      ],
-      "summary": "拥有财富、名声、势力，拥有整个世界的海贼王 – 哥尔·D·罗杰，他在临刑前的一句话，让人们趋之若鹜奔向大海。“想要我的财宝吗？想要的话可以全部给你，去找吧！我把所有财宝都放在那里。”于是所有男子汉航向伟大的航路追逐梦想，世界开始迎接“大海贼时代”。",
-      "summaryEn": "Years ago, the fearsome Pirate King, Gol D. Roger was executed leaving a huge pile of treasure and the famous \"One Piece\" behind. Whoever claims the \"One Piece\" will be named the new King of the Pirat",
-      "season": 23,
-      "episode": 1180,
-      "latestAirDate": "2026-09-27",
-      "rank": 8,
+      "rank": 3,
       "trend": "new"
     },
     {
@@ -353,18 +278,117 @@
       ],
       "year": "2026",
       "releaseDate": "2026-10-01",
-      "poster": "https://image.tmdb.org/t/p/w500/9QQtWusZn3imcHWtgeXF8eMABU2.jpg",
-      "rating": 7.125,
+      "poster": "https://image.tmdb.org/t/p/w500/lxB8RtueKNlTHoKajFA1TK06n8n.jpg",
+      "rating": 7.1,
       "genre": [
         "Mystery",
         "Drama"
       ],
-      "summary": "纽约少女布莱尔·罗伯兹来到新奥尔良一所神秘的魔法学校，试图揭开母亲的命运之谜，此时女巫与吸血鬼的冲突却一触即发。她和一群少女见习女巫，必须联手对抗更黑暗的威胁，同时应付超自然高中的种种危机。随着危险步步逼近，一段禁忌的初恋也悄然萌芽。",
+      "summary": "纽约少女布莱尔来到新奥尔良一所神秘的魔法学校，试图揭开母亲命运的谜团。随着巫师与吸血鬼的冲突升级，她和同伴必须对抗更黑暗的威胁，同时应对超自然校园生活与禁忌初恋。",
       "summaryEn": "A coven protects their magic school from a dark fate.",
       "nextAirDate": "2026-10-08",
       "season": 1,
       "episode": 4,
       "latestAirDate": "2026-10-01",
+      "rank": 6,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 73223,
+      "title": "黑色四叶草",
+      "titleEn": "Black Clover",
+      "originalLanguage": "ja",
+      "originCountry": [
+        "JP"
+      ],
+      "year": "2017",
+      "releaseDate": "2017-10-03",
+      "poster": "https://image.tmdb.org/t/p/w500/qCYdcLGAARSbnTuG9BGlDyi7Zue.jpg",
+      "rating": 8.509,
+      "genre": [
+        "Animation"
+      ],
+      "summary": "曾经险些遭到魔神毁灭的世界，拯救它的是一位被后世称为“魔法帝”的魔导士……两位被遗弃在教堂的少年，一位是有卓越魔力跟魔法才能的四叶草魔导书的尤诺，另一位魔法值为零但却意外获得黑色五叶草的魔法书的亚斯塔……这是关于一位没魔法能力的少年却想要成为魔法帝的故事。",
+      "summaryEn": "Asta and Yuno are two orphans who want the same thing: to become the Wizard King. Locked in a friendly rivalry, they work hard towards their goal. While Yuno excels at magic, Asta has a problem uncomm",
+      "nextAirDate": "2026-10-10",
+      "season": 2,
+      "episode": 1,
+      "latestAirDate": "2026-10-03",
+      "rank": 7,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 207347,
+      "title": "青之箱",
+      "titleEn": "Blue Box",
+      "originalLanguage": "ja",
+      "originCountry": [
+        "JP"
+      ],
+      "year": "2024",
+      "releaseDate": "2024-10-03",
+      "poster": "https://image.tmdb.org/t/p/w500/fTt9CEgDgxP8tNiQisNBTnRRpEk.jpg",
+      "rating": 7.9,
+      "genre": [
+        "Animation",
+        "Drama"
+      ],
+      "summary": "进入中高一贯制体育强校──荣明高校男子羽毛球部的一年级生猪股大喜，每天早晨在晨练时都会遇到比他大一岁的的鹿野千夏学姐，并对她产生了爱慕之情。千夏是女子篮球队的王牌，无论在校内还是校外都是备受瞩目的高岭之花。就这样，忙于社团活动、恋爱和学习的高中生活就这样开始了，而在某一天……",
+      "summaryEn": "Taiki Inomata loves badminton, but he has a long way to go before he can reach nationals. When Taiki sees upperclassman Chinatsu Kano practicing her heart out on the girls’ basketball team, he falls f",
+      "nextAirDate": "2026-10-11",
+      "season": 1,
+      "episode": 26,
+      "latestAirDate": "2026-10-04",
+      "rank": 8,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 2190,
+      "title": "南方公园",
+      "titleEn": "South Park",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "1997",
+      "releaseDate": "1997-08-13",
+      "poster": "https://image.tmdb.org/t/p/w500/aqroh5nCMtxWFKjXEhrqXpe1HPO.jpg",
+      "rating": 8.3,
+      "genre": [
+        "Comedy",
+        "Animation"
+      ],
+      "summary": "讲述科罗拉多州南方公园小镇上，斯坦、凯尔、卡特曼和肯尼四个孩子的生活。他们不断卷入超自然事件、社会冲突和各种荒诞危机，并以孩子的视角面对成年人世界中的政治、宗教、文化和社会问题。",
+      "summaryEn": "Follow the misadventures of four irreverent grade-schoolers in the quiet, dysfunctional town of South Park, Colorado.",
+      "nextAirDate": "2026-10-14",
+      "season": 29,
+      "episode": 2,
+      "latestAirDate": "2026-09-30",
+      "rank": 9,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 284558,
+      "title": "杀死杰姬",
+      "titleEn": "Kill Jackie",
+      "originalLanguage": "en",
+      "originCountry": [
+        "AU",
+        "GB"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-02",
+      "poster": "https://image.tmdb.org/t/p/w500/3tjZspkqquE24iK1rc0nvnJwdEZ.jpg",
+      "rating": 6.9,
+      "genre": [
+        "Drama",
+        "Crime"
+      ],
+      "summary": "前可卡因贩子杰基·普莱斯 （Jackie Price） 通过税收计划奢侈地出售艺术品。在匿名20年后，当精英杀手七恶魔被雇佣杀死她时，她平静的生活结束了。",
+      "summaryEn": "Jackie Price has been living a wealthy, luxurious life for the past 20 years after escaping a dangerous past as an international cocaine dealer. But just as life begins to feel a little boring, she di",
+      "season": 1,
+      "episode": 8,
+      "latestAirDate": "2026-10-02",
       "rank": 10,
       "trend": "new"
     }

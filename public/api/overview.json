@@ -1,203 +1,165 @@
 {
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "degraded": [],
   "stats": {
-    "moviesReleased": 7,
+    "moviesReleased": 9,
     "tvAiringThisWeek": 20,
     "albumsReleased": 25,
     "trending": 20
   },
   "editorsPicks": [
     {
-      "tmdbId": 1596303,
-      "title": "万人之上：冬攀乔戈里峰",
-      "titleEn": "The Last First: Winter K2",
-      "originalLanguage": "en",
+      "tmdbId": 1393326,
+      "title": "牢笼鬼魂",
+      "titleEn": "Ghost in the Cell",
+      "originalLanguage": "id",
       "originCountry": [],
       "year": "2026",
       "releaseDate": "2026-10-02",
-      "poster": "https://image.tmdb.org/t/p/w500/5pZUhYDXulwOj6985AMlrriNaim.jpg",
-      "rating": 6,
-      "genre": [
-        "Documentary"
-      ],
-      "summary": "一场历史性的竞赛，试图成为冬季首位登顶 K2 峰的人，最终演变成悲剧，暴露出野心、自我和对荣耀的追求可能与这座山峰本身一样危险。",
-      "summaryEn": "A historic race to become the first to summit K2 in winter unravels into tragedy, exposing how ambition, ego, and the pursuit of glory can be as dangerous as the mountain itself.",
-      "pickCategory": "editors"
-    },
-    {
-      "tmdbId": 1244523,
-      "title": "巨蟒博尤纳",
-      "titleEn": "Beware Boiúna",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-10-02",
-      "poster": "https://image.tmdb.org/t/p/w500/uW5YMPxJUzT9bkafrCKHXjPTCoQ.jpg",
-      "rating": 5.75,
+      "poster": "https://image.tmdb.org/t/p/w500/a6HlN2x472krH34s7SFhJAS5fPb.jpg",
+      "rating": 7,
       "genre": [
         "Horror",
+        "Comedy",
         "Thriller"
       ],
-      "summary": "　　一支医疗小队深入亚马逊雨林执行任务，但他们很快察觉，此地的生灵并不欢迎外来者。一行人贸然闯入，惊动了丛林掠兽 —— 博尤纳。",
-      "summaryEn": "Deep in the Amazon, a medical mission spirals into a fight for survival when Boiúna, a colossal ancient predator, awakens to reclaim her domain. In the jungle where nature holds absolute power, she de",
+      "summary": "故事舞台设在一座狱警贪腐、帮派割据、管理极端残暴的重型监狱，一名自带恶灵的新囚犯入狱后，牢房区接连爆发无差别血腥命案，死者遗体都会被恶灵改造成诡异惊悚的人体陈列造型，监狱里水火不容的几大囚犯帮派、收受贿赂草菅人命的狱警，在持续不断的死亡恐慌下被迫放下仇怨抱团求生。其中一名囚犯意外获得感知人身上黑暗气场的能力，能预判恶灵的猎杀目标，众人一边对抗恶灵的疯狂屠戮，一边逐层揭开监狱长期掩盖的虐囚黑幕、以及",
+      "summaryEn": "In a notorious prison, an invisible force begins killing inmates brutally, compelling enemy gangs and corrupt guards to work together as they try to survive the mounting bloodshed.",
       "pickCategory": "editors"
     },
     {
-      "tmdbId": 213,
-      "title": "西北偏北",
-      "titleEn": "North by Northwest",
-      "originalLanguage": "en",
+      "tmdbId": 1269325,
+      "title": "误杀瞒天记3",
+      "titleEn": "Drishyam: The Conclusion",
+      "originalLanguage": "hi",
       "originCountry": [],
-      "year": "1959",
-      "releaseDate": "1959-08-06",
-      "poster": "https://image.tmdb.org/t/p/w500/49ub9q4SlNwGMq3TuivfynxYUGe.jpg",
-      "rating": 8,
+      "year": "2026",
+      "releaseDate": "2026-10-02",
+      "poster": "https://image.tmdb.org/t/p/w500/7T62GSduOWDMB0gGDBs9pmtLTSB.jpg",
+      "rating": 7.643,
       "genre": [
         "Thriller",
-        "Adventure"
-      ],
-      "summary": "一位时运不济的纽约广告主管被外国间谍误认为政府特工，为寻求生路被迫展开横跨美国的逃亡之旅。",
-      "summaryEn": "Advertising man Roger Thornhill is mistaken for a spy, triggering a deadly cross-country chase.",
-      "pickCategory": "gem"
-    },
-    {
-      "tmdbId": 1391021,
-      "title": "欢迎来龙餐馆",
-      "titleEn": "Once Upon a Time in the Middle East",
-      "originalLanguage": "zh",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-08-08",
-      "poster": "https://image.tmdb.org/t/p/w500/2OJX7udqqpk5c82pXXdL2hnny0D.jpg",
-      "rating": 9,
-      "genre": [
         "Drama",
-        "War"
+        "Mystery",
+        "Crime"
       ],
-      "summary": "徐福为养家还债远赴中东中餐馆当厨师，在当地结识了大堂经理马俊生。他们以地道中国风味广招八方来客，龙餐馆声名鹊起。然而随着战争爆发，当地形势急转直下，没有人能够独善其身，徐福和马俊生也不例外，他们的命运将何去何从？战火中的龙餐馆又将如何维系？",
-      "summaryEn": "Seeking a fresh start, chef Xu Fu travels to the Middle East to support his family and repay his debts. Alongside restaurant manager Ma Junsheng, he transforms the struggling Dragon Restaurant into a ",
-      "pickCategory": "gem"
+      "summary": "《误杀瞒天记3》延续《误杀瞒天记》系列脉络，围绕Salgaonkar家族掩盖谋杀事件展开叙事。",
+      "summaryEn": "Years after outsmarting the police, Vijay Salgaonkar's past resurfaces when a new evidence threatens to expose his secret. As the investigation reopens, he must outwit the system once again to save hi",
+      "pickCategory": "editors"
     },
     {
-      "tmdbId": 1291595,
-      "title": "潜伏6：血域",
-      "titleEn": "Insidious: Out of the Further",
+      "tmdbId": 1514026,
+      "title": "逃出布迪秀",
+      "titleEn": "Buddy",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-08-21",
-      "poster": "https://image.tmdb.org/t/p/w500/5hzLh3TS8XLZpNDlQ6fZGc2TPCn.jpg",
-      "rating": 7.435,
+      "releaseDate": "2026-08-28",
+      "poster": "https://image.tmdb.org/t/p/w500/qG84lCvV5wDVBDYaNFPDFWa9IAl.jpg",
+      "rating": 7.9,
       "genre": [
         "Horror",
+        "Comedy",
+        "Fantasy"
+      ],
+      "summary": "一行人意外坠入诡异老式儿童节目次元。画风酷似玛卡巴卡，软萌橙色独角兽巴迪主持欢乐秀场。一旦拒绝配合演出，便会惨遭猎杀，死者还会被节目直接替换。众人被困虚假片场，一边躲避玩偶的疯狂追杀，一边拼死寻找逃出电视空间的出路。",
+      "summaryEn": "A magical, singing orange unicorn holds his cast hostage in a surreal TV-show dimension, as he becomes more and more demented.",
+      "pickCategory": "gem"
+    },
+    {
+      "tmdbId": 141,
+      "title": "死亡幻觉",
+      "titleEn": "Donnie Darko",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2001",
+      "releaseDate": "2001-10-26",
+      "poster": "https://image.tmdb.org/t/p/w500/zkFYMf4yvifziIVIBo55ux2hpSw.jpg",
+      "rating": 7.76,
+      "genre": [
+        "Fantasy",
+        "Drama",
+        "Mystery"
+      ],
+      "summary": "一名问题少年在诡异地逃过一场离奇事故后，不断被一个穿着巨型兔子装的神秘男子幻象纠缠，并被操纵犯下一连串罪行。",
+      "summaryEn": "After narrowly escaping a bizarre accident, a troubled teenager is plagued by visions of a large bunny rabbit that manipulates him to commit a series of crimes.",
+      "pickCategory": "gem"
+    },
+    {
+      "tmdbId": 1375441,
+      "title": "黄金时段",
+      "titleEn": "Primetime",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-09-25",
+      "poster": "https://image.tmdb.org/t/p/w500/6rjSYr7NoSWKwzSZbuHogNXgF1O.jpg",
+      "rating": 6.8,
+      "genre": [
+        "Drama",
         "Thriller"
       ],
-      "summary": "　　三名潜行者悄然入侵静谧的郊区，将一户新搬来的家庭困于灵薄狱的夹缝之中。他们原以为这只是场残酷的猎杀游戏，却在此撕裂了现实与异界的边界——一个令人战栗的真相逐渐浮现：深渊彼岸的“灵薄狱”，正从裂缝中不断渗入现实世界。",
-      "summaryEn": "Gemma, a young mother raising her daughter in the house she grew up in, discovers she can travel into The Further, where she possesses an ability to bring what lives there back to the real world.",
+      "summary": "聚焦电视主持人克里斯·汉森与他推出的一档真人秀节目“猎捕恋童癖”，该节目利用人员在网络上伪装成未成年人，引诱恋童癖进入摄影棚，并将其逮捕。",
+      "summaryEn": "In 2006, To Catch a Predator host Chris Hansen sets out to make television history. When a high stakes operation goes fatally wrong, his veneered dream of fame curdles into a nightmare of performative",
       "pickCategory": "trending"
     },
     {
-      "tmdbId": 1003596,
-      "title": "复仇者联盟5",
-      "titleEn": "Avengers: Doomsday",
+      "tmdbId": 1339713,
+      "title": "痴迷",
+      "titleEn": "Obsession",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-12-18",
-      "poster": "https://image.tmdb.org/t/p/w500/4bhCfFuCfMITX3ZXYmyQKTvvSVI.jpg",
-      "rating": 0,
+      "releaseDate": "2026-07-24",
+      "poster": "https://image.tmdb.org/t/p/w500/32HbiLe4AWBqsM7WrYEYpL3oHmS.jpg",
+      "rating": 8.2,
       "genre": [
-        "Sci-Fi",
-        "Action",
-        "Adventure"
+        "Horror",
+        "Thriller"
       ],
-      "summary": "来自三个截然不同宇宙的传奇英雄们，将被推向一场生死对决，并最终直面一股前所未见、足以撼动万物存亡的终极威胁。",
-      "summaryEn": "Beloved heroes from three distinct universes are set on a deadly collision course and face an existential threat unlike anything they've ever encountered.",
+      "summary": "性格孤僻的小镇青年贝尔苦苦暗恋女神妮基却怯于表白。他在一家商店意外获得神秘许愿道具 “一愿柳”，折断柳条许下 “让妮基爱我胜过世上所有人” 的愿望。愿望成真后，妮基却逐渐失控，变得痴缠癫狂，对贝尔产生窒息般的控制欲，身体、人格与理智接连崩塌。这场强求来的 “爱情” 暗藏致命代价，将贝尔拖入万劫不复的深渊。",
+      "summaryEn": "After breaking the mysterious \"One Wish Willow\" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinis",
       "pickCategory": "trending"
     }
   ],
   "weeklyHotTv": [
     {
-      "tmdbId": 258230,
-      "title": "最后目击",
-      "titleEn": "Last Seen",
-      "originalLanguage": "en",
-      "originCountry": [
-        "GB"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-09-09",
-      "poster": "https://image.tmdb.org/t/p/w500/fvfkAqD1Q1GfdZv3Pew95lmMe6u.jpg",
-      "rating": 7.782,
-      "genre": [
-        "Crime",
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "紧急报案中心调度员伊恩接到一通少女的求助电话，深信对方就是失踪多年的女儿玛吉，于是不惜一切展开追寻。",
-      "summaryEn": "When emergency dispatcher Ian Ridley receives a frantic call from a teenager he believes could be his long-missing daughter, he stops at nothing to find her.",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 298505,
-      "title": "乌鸦学园",
-      "titleEn": "Coven Academy",
+      "tmdbId": 258165,
+      "title": "伊甸之东",
+      "titleEn": "East of Eden",
       "originalLanguage": "en",
       "originCountry": [
         "US"
       ],
       "year": "2026",
       "releaseDate": "2026-10-01",
-      "poster": "https://image.tmdb.org/t/p/w500/9QQtWusZn3imcHWtgeXF8eMABU2.jpg",
-      "rating": 7.125,
+      "poster": "https://image.tmdb.org/t/p/w500/slYjlpkFnaCSZJICqj2G158Eoqg.jpg",
+      "rating": 8.053,
       "genre": [
-        "Mystery",
         "Drama"
       ],
-      "summary": "纽约少女布莱尔·罗伯兹来到新奥尔良一所神秘的魔法学校，试图揭开母亲的命运之谜，此时女巫与吸血鬼的冲突却一触即发。她和一群少女见习女巫，必须联手对抗更黑暗的威胁，同时应付超自然高中的种种危机。随着危险步步逼近，一段禁忌的初恋也悄然萌芽。",
-      "summaryEn": "A coven protects their magic school from a dark fate.",
+      "summary": "这部剧集对史坦贝克的经典之作进行了全新诠释，讲述特拉斯克家族跨越数代的传奇故事，特别聚焦于那个难以磨灭的反英雄人物——凯茜·埃姆斯。",
+      "summaryEn": "In the early 1900s, a fiercely independent woman drives a rift between two brothers, igniting a saga that unfolds across two generations.",
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 65942,
-      "title": "Re：从零开始的异世界生活",
-      "titleEn": "Re:ZERO -Starting Life in Another World-",
+      "tmdbId": 283428,
+      "title": "冰之城墙",
+      "titleEn": "The Ramparts of Ice",
       "originalLanguage": "ja",
       "originCountry": [
         "JP"
       ],
-      "year": "2016",
-      "releaseDate": "2016-04-04",
-      "poster": "https://image.tmdb.org/t/p/w500/a1pMK4456dF2j5B9xvkjMEGiOOw.jpg",
-      "rating": 8.1,
+      "year": "2026",
+      "releaseDate": "2026-04-02",
+      "poster": "https://image.tmdb.org/t/p/w500/7hVGp1KlPvxtYufq8kTdCKu2cWS.jpg",
+      "rating": 8.6,
       "genre": [
         "Animation",
-        "Mystery"
+        "Drama"
       ],
-      "summary": "在异世界陷入迷茫的普通高中生菜月昴，邂逅了一位银发的美少女。但想助她一臂之力的昴，却一次次地遭遇敌袭，背叛、暴力，甚至是死亡……“死亡回归”——无力的少年拥有的唯一能力，能将死后时间倒转回一开始。使用了这般力量，便会失去过去的回忆，可为了守护最重要的人们，昴必须抗争到底。“即使你忘却了我，我也不会遗忘你。”",
-      "summaryEn": "Natsuki Subaru, an ordinary high school  student, is on his way home from the convenience store when he finds  himself transported to another world. As he's lost and confused in a new  world where he ",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 284558,
-      "title": "杀死杰姬",
-      "titleEn": "Kill Jackie",
-      "originalLanguage": "en",
-      "originCountry": [
-        "AU",
-        "GB"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-02",
-      "poster": "https://image.tmdb.org/t/p/w500/vvMpr6wO4EMtA7lqftffTel5c1R.jpg",
-      "rating": 6.9,
-      "genre": [
-        "Drama",
-        "Crime"
-      ],
-      "summary": "前可卡因贩子杰基·普莱斯 （Jackie Price） 通过税收计划奢侈地出售艺术品。在匿名20年后，当精英杀手七恶魔被雇佣杀死她时，她平静的生活结束了。",
-      "summaryEn": "Jackie Price has been living a wealthy, luxurious life for the past 20 years after escaping a dangerous past as an international cocaine dealer. But just as life begins to feel a little boring, she di",
+      "summary": "冰川小雪不擅长与人接触，与他人之间竖起了一堵城墙。尽管在高中里不与人扯上关系独自度过，却和不知为何不停逼近的雨宫凑相遇了……孤高的女子小雪，学校里的人气之人美姬，毫无距离感男子凑，有着悠哉温柔氛围的阳太。有些问题的四人的，令人着急的青春混线故事！",
+      "summaryEn": "Weighed down by memories she can't shake, high schooler Koyuki Hikawa keeps everyone at arm's length — until three schoolmates draw her out of her shell.",
       "pickCategory": "tvhot"
     },
     {
@@ -211,7 +173,7 @@
       "year": "2017",
       "releaseDate": "2017-10-03",
       "poster": "https://image.tmdb.org/t/p/w500/qCYdcLGAARSbnTuG9BGlDyi7Zue.jpg",
-      "rating": 8.5,
+      "rating": 8.509,
       "genre": [
         "Animation"
       ],
@@ -220,23 +182,63 @@
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 305551,
-      "title": "莓好遇见你",
-      "titleEn": "Merry Berry Love",
+      "tmdbId": 45790,
+      "title": "JOJO的奇妙冒险",
+      "titleEn": "ジョジョの奇妙な冒険",
       "originalLanguage": "ja",
       "originCountry": [
         "JP"
       ],
-      "year": "2026",
-      "releaseDate": "2026-10-07",
-      "poster": "https://image.tmdb.org/t/p/w500/vI6dEbvs31QxAgTpNsq23eJDYl4.jpg",
-      "rating": 8,
+      "year": "2012",
+      "releaseDate": "2012-10-06",
+      "poster": "https://image.tmdb.org/t/p/w500/v3tg5I7DkyXjSVgV0MINbNaeR12.jpg",
+      "rating": 8.5,
       "genre": [
-        "Comedy",
-        "Drama"
+        "Animation"
       ],
-      "summary": "一夜之间失去一切的韩国空间规划师，与一心只扑在草莓上的日本农业女孩——在美丽岛屿上展开的、跨越国界的酸甜浪漫爱情喜剧。",
-      "summaryEn": "When star Korean spatial designer Lee Yubin loses everything, he heads off to a Japanese island. There, he meets Karin, a resilient strawberry farmer. Hailing from different worlds, their lives collid",
+      "summary": "乔斯达家族的数代人都有一个相同的绰号“JOJO”，他们在不同的时代与各种拥有超自然力量的反派战斗不休。",
+      "summaryEn": "乔斯达家族的数代人都有一个相同的绰号“JOJO”，他们在不同的时代与各种拥有超自然力量的反派战斗不休。",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 1434,
+      "title": "恶搞之家",
+      "titleEn": "Family Guy",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "1999",
+      "releaseDate": "1999-01-31",
+      "poster": "https://image.tmdb.org/t/p/w500/gRi80SuiWoTlmBwkznXOSjo8bTS.jpg",
+      "rating": 7.409,
+      "genre": [
+        "Animation",
+        "Comedy"
+      ],
+      "summary": "本剧集讲述了格里芬一家的冒险故事。无知得可爱的皮特及其家庭主妇妻子路易丝居住在罗得岛圆蛤市，他们有三个孩子。最大的孩子梅根与周围人格格不入，而青少年克里斯在面对异性时笨拙而无知。最小的孩子斯图尔特是个天才宝宝，一心想要杀死妈妈并毁灭世界。会说话的狗布莱恩在喝着马提尼酒和解决自己生活问题的同时，控制着斯图尔特。",
+      "summaryEn": "Sick, twisted, politically incorrect and Freakin' Sweet animated series featuring the adventures of the dysfunctional Griffin family. Bumbling Peter and long-suffering Lois have three kids. Stewie (a ",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 284558,
+      "title": "杀死杰姬",
+      "titleEn": "Kill Jackie",
+      "originalLanguage": "en",
+      "originCountry": [
+        "AU",
+        "GB"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-02",
+      "poster": "https://image.tmdb.org/t/p/w500/3tjZspkqquE24iK1rc0nvnJwdEZ.jpg",
+      "rating": 6.9,
+      "genre": [
+        "Drama",
+        "Crime"
+      ],
+      "summary": "前可卡因贩子杰基·普莱斯 （Jackie Price） 通过税收计划奢侈地出售艺术品。在匿名20年后，当精英杀手七恶魔被雇佣杀死她时，她平静的生活结束了。",
+      "summaryEn": "Jackie Price has been living a wealthy, luxurious life for the past 20 years after escaping a dangerous past as an international cocaine dealer. But just as life begins to feel a little boring, she di",
       "pickCategory": "tvhot"
     }
   ],
@@ -257,7 +259,7 @@
       ],
       "summary": "改编自卡普空同名系列格斗游戏。1993年，昔日形同兄弟的街头格斗家隆与肯因春丽的邀请重返赛场，参加世界格斗王大赛。然而，一场致命阴谋潜伏其中，迫使两人再次面对彼此与各自的过去。",
       "summaryEn": "In 1993, estranged Street Fighters Ryu and Ken Masters are thrown back into combat when the mysterious Chun-Li recruits them for the next World Warrior Tournament: a brutal clash of fists, fate, and f",
-      "daysUntil": 5
+      "daysUntil": 4
     },
     {
       "tmdbId": 1255833,
@@ -270,12 +272,11 @@
       "poster": "https://image.tmdb.org/t/p/w500/dGDJlUMPbLPavjrpMwUhmDHCBMB.jpg",
       "rating": 0,
       "genre": [
-        "Thriller",
-        "Horror"
+        "Thriller"
       ],
       "summary": "一场突如其来的意外，让他被巨鲸吞入腹中。受困于漆黑鲸腹之中，他仅剩 一小时氧气。在与时间赛跑、与恐惧正面交锋的同时，父亲留给他的技能，或许正是他逃出生天的唯一希望。",
       "summaryEn": "Following the death of his father, Jay Gardiner goes diving off the central Coast of California in search of his remains, but is swallowed by a massive sperm whale. While trapped inside its belly with",
-      "daysUntil": 6
+      "daysUntil": 5
     },
     {
       "tmdbId": 1234139,
@@ -292,8 +293,8 @@
         "Comedy"
       ],
       "summary": "",
-      "summaryEn": "Following the events of \"Jailer\",  former ruthless police officer Muthuvel Pandian must come face-to-face with the consequences of his actions against the antique mafia.",
-      "daysUntil": 7
+      "summaryEn": "When a dangerous syndicate expands its reach to threaten his family's peace, retired jailer Tiger Muthuvel Pandian goes undercover as a driver. Operating from the shadows, he takes on ruthless new ene",
+      "daysUntil": 6
     },
     {
       "tmdbId": 1400940,
@@ -312,7 +313,7 @@
       ],
       "summary": "本片讲述一位B级片演员给自己注射一种物质来保持状态，却发现他可以改变自己的脸和体形，成为一块行走的泥土。",
       "summaryEn": "Matt Hagen's meteoric rise from Gotham street kid to Hollywood leading man is tragically cut short when a local crime boss's actions leave him horribly disfigured. Abandoned by his team and with nothi",
-      "daysUntil": 13
+      "daysUntil": 12
     },
     {
       "tmdbId": 1596275,
@@ -330,7 +331,7 @@
       ],
       "summary": "",
       "summaryEn": "A young race car mechanic fakes an engagement to the most scandalous racing star on the scene—officially for his reputation, secretly for her own chance behind the wheel. But soon the lie threatens to",
-      "daysUntil": 20
+      "daysUntil": 19
     },
     {
       "tmdbId": 1294189,
@@ -348,70 +349,10 @@
       ],
       "summary": "一位被冤枉的战争英雄，一无所有，在昔日特种部队成员的帮助下，与警方展开了一场史诗般的全国汽车追逐，全程电视直播。而着迷的公众则密切关注着他，希望他能安全逃脱。",
       "summaryEn": "A falsely accused war hero with nothing to lose leads police on an epic televised cross-country car chase, helped by members of his former Special Forces Army battalion and closely monitored by a fasc",
-      "daysUntil": 21
+      "daysUntil": 20
     }
   ],
   "comingSoonTv": [
-    {
-      "tmdbId": 289423,
-      "title": "恋爱充电中",
-      "titleEn": "나를 충전해줘",
-      "originalLanguage": "ko",
-      "originCountry": [
-        "KR"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-09",
-      "poster": "https://image.tmdb.org/t/p/w500/wlyn8eEOOxzn8oRGAePY7k59pv2.jpg",
-      "rating": 0,
-      "genre": [
-        "Comedy"
-      ],
-      "summary": "拥有人工心脏的企业继承人遇到一位能导电的女子。他们的契约不仅能激活他的人工心脏，也点燃了两人之间的火花。",
-      "summaryEn": "拥有人工心脏的企业继承人遇到一位能导电的女子。他们的契约不仅能激活他的人工心脏，也点燃了两人之间的火花。",
-      "daysUntil": 1
-    },
-    {
-      "tmdbId": 293610,
-      "title": "Doctor X：白色黑手党时代",
-      "titleEn": "닥터X: 하얀 마피아의 시대",
-      "originalLanguage": "ko",
-      "originCountry": [
-        "KR"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-09",
-      "poster": "https://image.tmdb.org/t/p/w500/3vdziRiueKXLnyxFjKCQH5mEQ6B.jpg",
-      "rating": 0,
-      "genre": [
-        "Mystery",
-        "Drama",
-        "Crime"
-      ],
-      "summary": "《Doctor X：白色黑手党时代》讲述了专门纠正医生问题的医生桂秀晶，她凭借精湛的专业能力，践行医生职业的真谛，并对腐败的医疗权力体系展开系统性整治的故事。",
-      "summaryEn": "《Doctor X：白色黑手党时代》讲述了专门纠正医生问题的医生桂秀晶，她凭借精湛的专业能力，践行医生职业的真谛，并对腐败的医疗权力体系展开系统性整治的故事。",
-      "daysUntil": 1
-    },
-    {
-      "tmdbId": 284833,
-      "title": "降世神通：七净土",
-      "titleEn": "Avatar: Seven Havens",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-09",
-      "poster": "https://image.tmdb.org/t/p/w500/vYNar1VtdNyQXXUt16uPbIT6wzr.jpg",
-      "rating": 0,
-      "genre": [
-        "Animation",
-        "Family"
-      ],
-      "summary": "在一场毁灭性大灾难击碎的世界里，一位年轻的御土师发现自己是科拉之后的新任神通。但在这个危险的时代，这个头衔意味着她是人类的毁灭者，而非救世主。她遭到人类和灵界敌人的追捕，必须与失散多年的双胞胎揭开他们神秘的身世，在文明最后的堡垒崩溃之前拯救七净土。",
-      "summaryEn": "在一场毁灭性大灾难击碎的世界里，一位年轻的御土师发现自己是科拉之后的新任神通。但在这个危险的时代，这个头衔意味着她是人类的毁灭者，而非救世主。她遭到人类和灵界敌人的追捕，必须与失散多年的双胞胎揭开他们神秘的身世，在文明最后的堡垒崩溃之前拯救七净土。",
-      "daysUntil": 1
-    },
     {
       "tmdbId": 293607,
       "title": "百日谎言",
@@ -427,26 +368,7 @@
       "genre": [],
       "summary": "天才扒手佳景在朝鲜总督府伪装就业100天，作为假密探活跃在朝鲜，最后成为真正的密探的过程以及与朝鲜翻译官泰雄展开浪漫爱情故事的谍报罗曼史电视剧。",
       "summaryEn": "天才扒手佳景在朝鲜总督府伪装就业100天，作为假密探活跃在朝鲜，最后成为真正的密探的过程以及与朝鲜翻译官泰雄展开浪漫爱情故事的谍报罗曼史电视剧。",
-      "daysUntil": 2
-    },
-    {
-      "tmdbId": 333101,
-      "title": "金银岛",
-      "titleEn": "Treasure Island",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-11",
-      "poster": "https://image.tmdb.org/t/p/w500/o79kVEpMG6FSr5qyiBmVuc3IGWD.jpg",
-      "rating": 0,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "　　该剧改编自罗伯特·路易斯·史蒂文森的经典冒险小说，聚焦少年吉姆·霍金斯的成长蜕变，讲述他如何从一个涉世未深的男孩，一步步变成敢闯敢拼的年轻海盗。当吉姆意外获得一张传说中的藏宝图后，母亲贝斯当机立断的决断虽然守住了关键线索，却也将母子二人双双推入了命悬一线的凶险境地。",
-      "summaryEn": "　　该剧改编自罗伯特·路易斯·史蒂文森的经典冒险小说，聚焦少年吉姆·霍金斯的成长蜕变，讲述他如何从一个涉世未深的男孩，一步步变成敢闯敢拼的年轻海盗。当吉姆意外获得一张传说中的藏宝图后，母亲贝斯当机立断的决断虽然守住了关键线索，却也将母子二人双双推入了命悬一线的凶险境地。",
-      "daysUntil": 3
+      "daysUntil": 1
     },
     {
       "tmdbId": 331693,
@@ -465,8 +387,84 @@
       ],
       "summary": "这部剧讲述了黑海地区两个名门家族之间的世仇，源于哈菲泽·阿拉兹勒和杜拉勒·耶尼杰利未竟的爱情。多年后，他们的孙子库泽伊和泽伊桑被迫包办婚姻。在秘密、禁忌之恋和复仇誓言之中，这对年轻人被迫做出一个将改变两家族命运的选择。",
       "summaryEn": "这部剧讲述了黑海地区两个名门家族之间的世仇，源于哈菲泽·阿拉兹勒和杜拉勒·耶尼杰利未竟的爱情。多年后，他们的孙子库泽伊和泽伊桑被迫包办婚姻。在秘密、禁忌之恋和复仇誓言之中，这对年轻人被迫做出一个将改变两家族命运的选择。",
-      "daysUntil": 4
+      "daysUntil": 3
+    },
+    {
+      "tmdbId": 111298,
+      "title": "红楼梦",
+      "titleEn": "紅樓夢",
+      "originalLanguage": "cn",
+      "originCountry": [
+        "HK"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-12",
+      "poster": "https://image.tmdb.org/t/p/w500/vCO7gIkuWtTFVdgRTpdbRizwm3E.jpg",
+      "rating": 0,
+      "genre": [],
+      "summary": "进士贾雨村（白彪饰）被贬官到扬州，成为巡盐御史林如海的幕客，教其女儿林黛玉（毛舜筠饰）读书。一年后，丧母的黛玉由雨村护送，住进贾家荣国府，雨村因此得到黛玉舅父贾政（郑雷饰）的帮助而复职。  黛玉得外婆贾母疼爱，更与表兄贾宝玉（伍卫国饰）十分亲近，但不久，薛姨妈之女薛宝钗（米雪饰）也住进了荣国府，贾家孙媳王熙凤（吴浣仪饰）竟极力怂恿贾母撮合宝钗与宝玉成亲。其后，宝玉丢失通灵玉，神志陷入昏迷，贾母决定",
+      "summaryEn": "进士贾雨村（白彪饰）被贬官到扬州，成为巡盐御史林如海的幕客，教其女儿林黛玉（毛舜筠饰）读书。一年后，丧母的黛玉由雨村护送，住进贾家荣国府，雨村因此得到黛玉舅父贾政（郑雷饰）的帮助而复职。  黛玉得外婆贾母疼爱，更与表兄贾宝玉（伍卫国饰）十分亲近，但不久，薛姨妈之女薛宝钗（米雪饰）也住进了荣国府，贾家孙媳王熙凤（吴浣仪饰）竟极力怂恿贾母撮合宝钗与宝玉成亲。其后，宝玉丢失通灵玉，神志陷入昏迷，贾母决定",
+      "daysUntil": 3
+    },
+    {
+      "tmdbId": 213375,
+      "title": "幻视任务",
+      "titleEn": "VisionQuest",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-14",
+      "poster": "https://image.tmdb.org/t/p/w500/wG8FByKU1I9UCCP4fOXgm8BFYyI.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "讲述幻视试图恢复记忆和人性的故事。",
+      "summaryEn": "讲述幻视试图恢复记忆和人性的故事。",
+      "daysUntil": 5
+    },
+    {
+      "tmdbId": 213562,
+      "title": "水晶湖",
+      "titleEn": "Crystal Lake",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-15",
+      "poster": "https://image.tmdb.org/t/p/w500/t0OZ6k0hvLgbQjK6tge6F83bfng.jpg",
+      "rating": 10,
+      "genre": [
+        "Mystery",
+        "Drama"
+      ],
+      "summary": "经典恐怖 IP《十三号星期五》即将推出前传剧集《水晶湖》，剧集敲定琳达・卡德里尼出演不死杀人魔杰森的母亲帕梅拉・沃赫斯；1980 年原版电影里，帕梅拉便是整部悲剧的缘起：幼子杰森自幼体弱多病，在将近一年前不幸溺亡于小镇湖泊，丧子之痛始终将这位单亲母亲裹挟其中、难以消解。而后两名陌生来客登门打探她的过往，一连串惊悚诡异的事件接连爆发，水晶湖小镇的居民也纷纷心生猜忌：帕梅拉・沃赫斯的真面目到底是什么？",
+      "summaryEn": "经典恐怖 IP《十三号星期五》即将推出前传剧集《水晶湖》，剧集敲定琳达・卡德里尼出演不死杀人魔杰森的母亲帕梅拉・沃赫斯；1980 年原版电影里，帕梅拉便是整部悲剧的缘起：幼子杰森自幼体弱多病，在将近一年前不幸溺亡于小镇湖泊，丧子之痛始终将这位单亲母亲裹挟其中、难以消解。而后两名陌生来客登门打探她的过往，一连串惊悚诡异的事件接连爆发，水晶湖小镇的居民也纷纷心生猜忌：帕梅拉・沃赫斯的真面目到底是什么？",
+      "daysUntil": 6
+    },
+    {
+      "tmdbId": 303745,
+      "title": "我的有罪之人",
+      "titleEn": "나의 유죄인간",
+      "originalLanguage": "ko",
+      "originCountry": [
+        "KR"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-19",
+      "poster": "https://image.tmdb.org/t/p/w500/psv95lgfw9poTHzI04AIsoThHA7.jpg",
+      "rating": 0,
+      "genre": [
+        "Comedy",
+        "Drama"
+      ],
+      "summary": "该剧讲述了被列为杀人嫌疑人的目中无人财阀三世，与潜伏在其身边担任随行秘书的特种部队出身刑警，两人之间展开的紧密贴身惊悚浪漫故事。",
+      "summaryEn": "该剧讲述了被列为杀人嫌疑人的目中无人财阀三世，与潜伏在其身边担任随行秘书的特种部队出身刑警，两人之间展开的紧密贴身惊悚浪漫故事。",
+      "daysUntil": 10
     }
   ],
-  "brief": "Today: 7 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
+  "brief": "Today: 9 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
 }
