@@ -1,12 +1,31 @@
 {
- "at": "2026-10-08T10:31:57Z",
- "proxy": true,
+ "at": "2026-10-08T10:45:58Z",
+ "proxy": false,
  "force": false,
  "editions": [
   {
+   "slug": "biff-2026",
+   "due": true,
+   "reason": "age 301min ≥ 30min",
+   "status": "SCREENING_LIVE",
+   "parsed": {
+    "films": 255,
+    "screenings": 726,
+    "venues": 26,
+    "days": 10,
+    "sourcesOk": 11,
+    "sourcesTotal": 11,
+    "status": "SCREENING_LIVE",
+    "lifecycle": "LIVE"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 0
+  },
+  {
    "slug": "idfa-2026",
    "due": false,
-   "reason": "age 0min < 1440min",
+   "reason": "age 14min < 1440min",
    "status": "PROGRAM_RELEASED",
    "action": "skipped (throttled)"
   }
