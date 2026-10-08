@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLocale } from "../i18n";
 import { Icons } from "./Icons";
 import { SectionHeader } from "./Cards";
-import { setCanonical } from "../services/seo";
+import { setSocialMeta } from "../services/seo";
 
 /**
  * FESTIVAL CALENDAR / 全球电影节排片日历
@@ -98,21 +98,45 @@ function useJsonData(endpoint) {
 
 /** 详情文件按需加载 + 进程内缓存（切 tab 不重复请求） */
 const detailCache = new Map();
+
+/**
+ * 「不存在」与「加载失败」必须区分：
+ * 静态托管（_redirects: /* → /index.html 200）会把缺失的详情文件伪装成 200 HTML，
+ * 若只按 r.ok 判断，未知届次会被误报成「数据加载失败」。故一律校验 content-type 与必备字段。
+ */
+function missingEdition() {
+  const err = new Error("EDITION_NOT_FOUND");
+  err.missing = true;
+  return err;
+}
+
 function useDetail(slug) {
-  const [state, setState] = useState(() => (slug && detailCache.get(slug)) || { data: null, loading: !!slug, error: false });
+  const [state, setState] = useState(() => (slug && detailCache.get(slug)) || { data: null, loading: !!slug, error: false, missing: false });
+  const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     if (!slug) return undefined;
     const hit = detailCache.get(slug);
-    if (hit) { setState({ data: hit, loading: false, error: false }); return undefined; }
+    if (hit) { setState({ data: hit, loading: false, error: false, missing: false }); return undefined; }
     let cancelled = false;
-    setState({ data: null, loading: true, error: false });
+    setState({ data: null, loading: true, error: false, missing: false });
     fetch(`/api/festivals/${slug}.json`)
-      .then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-      .then((json) => { detailCache.set(slug, json); if (!cancelled) setState({ data: json, loading: false, error: false }); })
-      .catch(() => { if (!cancelled) setState({ data: null, loading: false, error: true }); });
+      .then((r) => {
+        const ct = (r.headers.get("content-type") || "").toLowerCase();
+        if (!r.ok || !ct.includes("json")) throw missingEdition();
+        return r.json();
+      })
+      .then((json) => {
+        if (!json || !json.edition) throw missingEdition();
+        detailCache.set(slug, json);
+        if (!cancelled) setState({ data: json, loading: false, error: false, missing: false });
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setState({ data: null, loading: false, error: !(err && err.missing), missing: !!(err && err.missing) });
+      });
     return () => { cancelled = true; };
-  }, [slug]);
-  return state;
+  }, [slug, attempt]);
+  return { ...state, retry: () => { detailCache.delete(slug); setAttempt((a) => a + 1); } };
 }
 
 // ── 工具 ──────────────────────────────────────────────
@@ -227,7 +251,25 @@ function LoadingSpinner({ locale }) {
   );
 }
 
-function DataError({ locale, onRetry }) {
+function DataError({ locale, onRetry, onBack, notFound = false }) {
+  if (notFound) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-[#ffff00] text-xs pixel-font mb-2">
+          {locale === "zh" ? "未找到该电影节届次，请检查链接或返回日历" : "Festival edition not found. Check the link or return to the calendar."}
+        </p>
+        <p className="text-gray-500 text-[10px] pixel-font mb-4">
+          {locale === "zh" ? "该届次可能尚未收录，或链接中的地址有误。" : "It may not be covered yet, or the link is wrong."}
+        </p>
+        <button
+          onClick={onBack}
+          className="inline-block px-6 py-2 text-xs font-black bg-[#ffff00] border-4 border-black pixel-font uppercase shadow-[4px_4px_0_0_#000] hover:translate-y-1 transition-all"
+        >
+          {locale === "zh" ? "返回日历" : "BACK TO CALENDAR"}
+        </button>
+      </div>
+    );
+  }
   return (
     <div className="text-center py-8">
       <p className="text-red-400 text-xs pixel-font mb-4">
@@ -973,7 +1015,7 @@ function StatusRow({ label, value, locale }) {
 }
 
 function DetailView({ slug, locale, onBack }) {
-  const { data, loading, error } = useDetail(slug);
+  const { data, loading, error, missing, retry } = useDetail(slug);
   const [day, setDay] = useState("ALL");
   const [venue, setVenue] = useState("ALL");
   const [section, setSection] = useState("ALL");
@@ -982,13 +1024,43 @@ function DetailView({ slug, locale, onBack }) {
   const [showAllDays, setShowAllDays] = useState(false);
   const [filmsOpen, setFilmsOpen] = useState(false);
 
+  // 标题口径：可读的「电影节名 + 届次年」，不是 slug。
+  // 数据到达后重设一次，并同步 OG/Twitter/description/canonical —— 只改标签文字不算改 SEO 标题。
   useEffect(() => {
-    document.title = `${slug} | Festival Calendar | Kim's Video`;
-    setCanonical(`https://bloodyrex.xyz/festivals/${slug}`);
-  }, [slug]);
+    const nm = data?.festival?.name;
+    const year = data?.edition?.year;
+    const label = nm ? `${fname(nm, locale)}${year ? ` ${year}` : ""}` : null;
+    const title = label
+      ? `${label} | Festival Calendar`
+      : locale === "zh"
+        ? "全球电影节排片日历 | FESTIVAL CALENDAR | Kim's Video"
+        : "Global Festival Calendar | Kim's Video";
+
+    let description = title;
+    if (label) {
+      const bits = [fmtDateRange(data.edition.startDate, data.edition.endDate, locale)];
+      if (data.festival?.city) bits.push(data.festival.city);
+      const entries = (data.screenings || []).length;
+      if (entries) bits.push(locale === "zh" ? `${entries} 条排片与活动` : `${entries} screenings & events`);
+      description = locale === "zh"
+        ? `${label} 官方排片日历：${bits.join(" · ")}。数据来自电影节官方来源。`
+        : `${label} official calendar: ${bits.join(" · ")}. Sourced from the festival's official channels.`;
+    }
+
+    setSocialMeta({ title, description, url: `https://bloodyrex.xyz/festivals/${slug}` });
+  }, [slug, data, locale]);
 
   if (loading) return <LoadingSpinner locale={locale} />;
-  if (error || !data) return <DataError locale={locale} onRetry={() => { detailCache.delete(slug); onBack(); }} />;
+  if (missing || error || !data) {
+    return (
+      <DataError
+        locale={locale}
+        notFound={missing || !error}
+        onRetry={retry}
+        onBack={onBack}
+      />
+    );
+  }
 
   const s = STATUS[data.status] || STATUS.TBC;
   const all = data.screenings || [];
@@ -1268,11 +1340,11 @@ export default function FestivalCalendarPage() {
 
   useEffect(() => {
     if (slug) return;
-    document.title =
+    const title =
       locale === "zh"
         ? "全球电影节排片日历 | FESTIVAL CALENDAR | Kim's Video"
         : "Global Festival Calendar | Kim's Video";
-    setCanonical("https://bloodyrex.xyz/festivals");
+    setSocialMeta({ title, description: t("festivals.subtitle"), url: "https://bloodyrex.xyz/festivals" });
   }, [locale, slug]);
 
   const open = (s) => navigate(`/festivals/${s}`);

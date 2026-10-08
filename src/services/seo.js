@@ -107,6 +107,39 @@ export const resetSeo = (locale = "zh") => {
   manageHreflang("https://bloodyrex.xyz/");
 };
 
+// 详情页/列表页的社交与搜索结果标题必须与可见标题一致：
+// 仅改 document.title 会在 OG/Twitter 卡片与搜索结果里留下旧标题，故统一在此写入。
+export const setSocialMeta = ({ title, description, url, type = "website" } = {}) => {
+  const upsertMeta = (attr, key, content) => {
+    if (!content) return;
+    let el = document.head.querySelector(`meta[${attr}="${key}"]`);
+    if (!el) {
+      el = document.createElement("meta");
+      el.setAttribute(attr, key);
+      document.head.appendChild(el);
+    }
+    el.setAttribute("content", content);
+  };
+
+  if (title) {
+    upsertMeta("property", "og:title", title);
+    upsertMeta("name", "twitter:title", title);
+    if (document.title !== title) document.title = title;
+  }
+  if (description) {
+    upsertMeta("name", "description", description);
+    upsertMeta("property", "og:description", description);
+    upsertMeta("name", "twitter:description", description);
+  }
+  if (url) {
+    upsertMeta("property", "og:url", url);
+    upsertMeta("name", "twitter:url", url);
+    if (url !== window.location.href) setCanonical(url);
+  }
+  upsertMeta("property", "og:type", type);
+  upsertMeta("name", "twitter:card", "summary_large_image");
+};
+
 export const setCanonical = (url) => {
   let linkEl = document.querySelector('link[rel="canonical"]');
   if (!linkEl) {
