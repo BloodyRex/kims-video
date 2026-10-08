@@ -188,6 +188,37 @@ const NewSplash = ({ onEnterAI }) => {
         </p>
       </div>
 
+      {/* 电影节日历入口（2026-10-08：让用户能从首页直接进入 Festival Calendar。
+          放在标题区与四宫格之间，桌面端与移动端首屏即可见；沿用既有边框 / 硬阴影 /
+          像素字体，不改动既有四张卡片。徽章用 NEW 而非 SEC.05，避免打乱 SEC.01–04 编号） */}
+      <Link
+        to="/festivals"
+        className="group mb-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-6 bg-black border-4 border-[#ff00ff] px-4 py-3 md:px-6 md:py-4 transition-transform duration-300 hover:-translate-y-1"
+        style={{ boxShadow: "12px 12px 0 0 #00ffff" }}
+      >
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 min-w-0">
+          <span className="font-mono text-xs px-2 py-1 border-2 border-black bg-[#ff00ff] text-white font-black self-start shrink-0">
+            NEW
+          </span>
+          <div className="min-w-0">
+            <h3 className="text-xl md:text-3xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff]">
+              Festival Calendar
+            </h3>
+            <h4 className="text-xs md:text-sm font-bold text-[#00ffff] mt-0.5">
+              全球电影节排片日历 · 官方一手数据
+            </h4>
+          </div>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <span className="text-xs font-bold text-[#ffff00] uppercase tracking-wider pixel-font group-hover:translate-x-2 transition-transform hidden sm:inline">
+            {zh ? "点击进入系统 >>" : "Enter System >>"}
+          </span>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-white text-black border-2 border-black flex items-center justify-center font-black group-hover:bg-[#ffff00] transition-colors shrink-0">
+            <Icons.ChevronRight className="w-5 h-5" />
+          </div>
+        </div>
+      </Link>
+
       {/* 四张全景满铺卡片网格 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {CARDS.map((card, i) => renderCard(card, i))}
