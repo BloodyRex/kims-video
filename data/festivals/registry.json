@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "note": "Festival Registry — 只登记经过官方来源核实的电影节与届次。adapter 为 null 表示暂未接入官方抓取（状态应显示 SCHEDULE_PENDING / 明确标注，而不是留空）。",
+  "festivals": [
+    {
+      "id": "biff",
+      "slug": "biff-2026",
+      "name": { "zh": "釜山国际电影节", "en": "Busan International Film Festival" },
+      "city": "Busan",
+      "country": "Korea, Republic of",
+      "countryCode": "KR",
+      "region": "ASIA",
+      "types": ["FEATURE", "DOCUMENTARY", "ANIMATION", "SHORT"],
+      "officialUrl": "https://www.biff.kr/eng/",
+      "adapter": "biff",
+      "editions": [
+        {
+          "id": "biff-2026",
+          "year": 2026,
+          "startDate": "2026-10-06",
+          "endDate": "2026-10-15",
+          "timezone": "Asia/Seoul",
+          "dateTabStart": 6,
+          "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8",
+          "sources": [
+            {
+              "kind": "SCHEDULE",
+              "label": "Official schedule by date",
+              "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8"
+            },
+            {
+              "kind": "PROGRAMME",
+              "label": "Official programme (all films)",
+              "url": "https://www.biff.kr/eng/html/program/prog_all_list.asp?allYear=2026"
+            },
+            {
+              "kind": "TICKETING",
+              "label": "BIFF official ticketing",
+              "url": "https://biff.maketicket.co.kr/BIFF/en/"
+            },
+            {
+              "kind": "OFFICIAL_SITE",
+              "label": "Festival home",
+              "url": "https://www.biff.kr/eng/"
+            }
+          ],
+          "fetch": {
+            "farHours": 24,
+            "nearDays": 30,
+            "nearHours": 6,
+            "liveMinutes": 30
+          }
+        }
+      ]
+    }
+  ]
+}

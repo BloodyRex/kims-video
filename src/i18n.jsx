@@ -127,6 +127,9 @@ const messages = {
     "footer.discover": "社区发现",
     "footer.intel": "全球影音",
     "footer.wall": "影视墙",
+    "footer.festivals": "电影节日历",
+    "festivals.title": "全球电影节排片日历",
+    "festivals.subtitle": "全球电影节排片日历 · 官方一手数据",
     "footer.contact": "联系我",
   },
   en: {
@@ -257,6 +260,9 @@ const messages = {
     "footer.discover": "Discover",
     "footer.intel": "Intel",
     "footer.wall": "Movie Wall",
+    "footer.festivals": "Festivals",
+    "festivals.title": "Global Festival Calendar",
+    "festivals.subtitle": "GLOBAL FESTIVAL CALENDAR · OFFICIAL SOURCES",
     "footer.contact": "Contact",
   },
 };

@@ -336,6 +336,15 @@ const NewHomePage = () => {
                   {locale === "zh" ? "影视墙" : "MOVIE WALL"}
                 </span>
               </Link>
+              <Link
+                to="/festivals"
+                className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
+              >
+                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
+                  <span className="text-base">🗓️</span>
+                  {locale === "zh" ? "电影节日历" : "FESTIVALS"}
+                </span>
+              </Link>
             </div>
           </>
         )}
@@ -394,6 +403,8 @@ const NewHomePage = () => {
             <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t("footer.discover")}</Link>
             <span className="text-gray-600 mx-2">|</span>
             <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">{t("footer.intel")}</Link>
+            <span className="text-gray-600 mx-2">|</span>
+            <Link to="/festivals" className="hover:text-[#00ffff] transition-colors">{t("footer.festivals")}</Link>
             <span className="text-gray-600 mx-2">|</span>
             <Link to="/wall" className="hover:text-[#ff00ff] transition-colors">{t("footer.wall")}</Link>
             <span className="text-gray-600 mx-2">|</span>

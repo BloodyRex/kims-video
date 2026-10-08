@@ -13,6 +13,7 @@ import WallPage from "./components/WallPage";
 import EntryPage from "./components/EntryPage";
 import NewHomePage from "./components/NewHomePage";
 import AdminPage from "./components/AdminPage";
+import FestivalCalendarPage from "./components/FestivalCalendarPage";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "./services/api";
 import { loadResultsFromCache } from "./utils/cache";
@@ -135,6 +136,13 @@ function App() {
           <Route path="/intelligence/weekly" element={<IntelligencePage />} />
           <Route path="/intelligence/search" element={<IntelligencePage />} />
           <Route path="/wall" element={<WallPage />} />
+          {/* Festival Calendar — TODAY/WEEK/MONTH/FESTIVALS/CHANGES + /festivals/:slug detail */}
+          <Route path="/festivals" element={<FestivalCalendarPage />} />
+          <Route path="/festivals/week" element={<FestivalCalendarPage />} />
+          <Route path="/festivals/month" element={<FestivalCalendarPage />} />
+          <Route path="/festivals/all" element={<FestivalCalendarPage />} />
+          <Route path="/festivals/changes" element={<FestivalCalendarPage />} />
+          <Route path="/festivals/:slug" element={<FestivalCalendarPage />} />
           {/* Legacy engine home (pre-new-home design) — kept at /recommend */}
           <Route path="/recommend" element={<AppContent />} />
           {/* Hidden test page: new 4-card entry portal */}
