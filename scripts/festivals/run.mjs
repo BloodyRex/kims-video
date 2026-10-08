@@ -23,6 +23,7 @@ import { normalize, validate } from "./normalize.mjs";
 import { detectChanges, summarize } from "./diff.mjs";
 import { buildPublished, registryOnlyStore } from "./publish.mjs";
 import * as biff from "./adapters/biff.mjs";
+import * as idfa from "./adapters/idfa.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..");
@@ -32,7 +33,7 @@ const SNAPS_DIR = join(DATA_DIR, "snapshots");
 const API_DIR = join(ROOT, "public", "api");
 const API_FEST_DIR = join(API_DIR, "festivals");
 
-const ADAPTERS = { biff };
+const ADAPTERS = { biff, idfa };
 const CHANGES_MAX = 1000;
 
 const args = process.argv.slice(2);
@@ -208,10 +209,11 @@ async function main() {
   }
 
   // ── 发布：始终从磁盘上的「当前最佳数据」生成，保证局部失败也能发布 ──
+  // 注意：--only 只约束「抓取」阶段；发布必须收录注册表内全部届次，
+  // 否则单站运行（如 --only=idfa-2026）会把其它站从 public/api/festivals.json 索引里挤掉。
   const stores = [];
   for (const festival of registry.festivals || []) {
     for (const edition of festival.editions || []) {
-      if (ONLY && edition.id !== ONLY) continue;
       const store = readJson(join(EDITIONS_DIR, `${edition.id}.json`), null);
       if (store) stores.push(store);
       else if (!festival.adapter) stores.push(registryOnlyStore(festival, edition, now));

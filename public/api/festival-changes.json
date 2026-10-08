@@ -1,7 +1,33 @@
 {
- "updated": "2026-10-08T05:44:34Z",
- "count7d": 1,
+ "updated": "2026-10-08T10:31:57Z",
+ "count7d": 2,
  "changes": [
+  {
+   "id": "idfa-2026-INIT-EDITION-idfa-2026-2026-10-08T10:31:40Z",
+   "at": "2026-10-08T10:31:40Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "INIT",
+   "entity": "EDITION",
+   "ref": "idfa-2026",
+   "label": "International Documentary Film Festival Amsterdam 2026",
+   "fields": [
+    {
+     "field": "entries",
+     "from": null,
+     "to": "26",
+     "fieldLabel": "entries"
+    },
+    {
+     "field": "films",
+     "from": null,
+     "to": "168",
+     "fieldLabel": "films"
+    }
+   ],
+   "sourceUrl": "https://festival.idfa.nl/en/",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
   {
    "id": "biff-2026-INIT-EDITION-biff-2026-2026-10-08T05:44:34Z",
    "at": "2026-10-08T05:44:34Z",

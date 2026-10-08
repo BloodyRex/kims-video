@@ -52,6 +52,56 @@
           }
         }
       ]
+    },
+    {
+      "id": "idfa",
+      "slug": "idfa-2026",
+      "name": { "zh": "阿姆斯特丹国际纪录片电影节", "en": "International Documentary Film Festival Amsterdam" },
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "countryCode": "NL",
+      "region": "EUROPE",
+      "types": ["FEATURE", "DOCUMENTARY", "SHORT", "IMMERSIVE"],
+      "officialUrl": "https://festival.idfa.nl/en/",
+      "adapter": "idfa",
+      "editions": [
+        {
+          "id": "idfa-2026",
+          "year": 2026,
+          "startDate": "2026-11-12",
+          "endDate": "2026-11-22",
+          "timezone": "Europe/Amsterdam",
+          "officialUrl": "https://festival.idfa.nl/en/",
+          "sources": [
+            {
+              "kind": "SCHEDULE",
+              "label": "Official schedule (festival GraphQL API)",
+              "url": "https://my.idfa.nl/api/graphql/festival"
+            },
+            {
+              "kind": "PROGRAMME",
+              "label": "Official programme (festival GraphQL API)",
+              "url": "https://my.idfa.nl/api/graphql/festival"
+            },
+            {
+              "kind": "INFORMATION",
+              "label": "Official dates — “IDFA 2026 will take place from November 12-22, 2026”",
+              "url": "https://festival.idfa.nl/en/about"
+            },
+            {
+              "kind": "OFFICIAL_SITE",
+              "label": "Festival site",
+              "url": "https://festival.idfa.nl/en/"
+            }
+          ],
+          "fetch": {
+            "farHours": 24,
+            "nearDays": 30,
+            "nearHours": 6,
+            "liveMinutes": 30
+          }
+        }
+      ]
     }
   ]
 }

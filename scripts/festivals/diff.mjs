@@ -4,7 +4,7 @@
  * 记录 old value / new value / changed at / official source，永不覆盖历史。
  */
 
-const WATCHED = ["kind", "title", "date", "localTime", "venueName", "code", "grade", "subtitle", "qa", "filmId", "ticketUrl", "eventUrl"];
+const WATCHED = ["kind", "title", "date", "localTime", "venueName", "code", "grade", "subtitle", "qa", "ticketStatus", "filmId", "ticketUrl", "eventUrl"];
 
 const fieldLabel = {
   kind: "条目类型",
@@ -16,6 +16,7 @@ const fieldLabel = {
   grade: "观众分级",
   subtitle: "字幕",
   qa: "影人问答",
+  ticketStatus: "售票状态",
   filmId: "影片",
   ticketUrl: "购票链接",
   eventUrl: "活动页",
