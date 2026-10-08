@@ -1,0 +1,53 @@
+name: Festival Calendar Pipeline
+
+# 更新频率策略（计划书第七节）由脚本按「每站状态」自行节流：
+#   >30 天 → 24h ｜ ≤30 天 → 6h ｜ 正在举行 → 30 分钟 ｜ 节目/排片待公布 → 更高频
+# 因此本 workflow 每 30 分钟触发一次，脚本决定这次到底抓不抓（不做无谓请求）。
+# 无变化时不 commit、不 push → 不触发 Pages 重新部署。
+
+on:
+  push:
+    paths:
+      - ".github/workflows/festival-daily.yml"
+      - "scripts/festivals/**"
+  schedule:
+    - cron: "7,37 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: festival-calendar
+  cancel-in-progress: false
+
+jobs:
+  update-festivals:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch official festival data (throttled per edition)
+        run: node scripts/festivals/run.mjs
+
+      - name: Show run report
+        if: always()
+        run: |
+          if [ -f data/festivals/last-run.json ]; then
+            node -e "const r=require('./data/festivals/last-run.json'); console.log(JSON.stringify(r.editions,null,1)); if(r.errors.length) console.log('ERRORS:', r.errors);"
+          fi
+
+      - name: Commit and push when data changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/api/festivals.json public/api/festival-changes.json public/api/festivals data/festivals 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No festival data change — nothing to commit"
+            exit 0
+          fi
+          git commit -m "chore: festival calendar data update [data]"
+          git push || (echo "Push failed, retrying..." && sleep 10 && git push) || echo "WARN: git push failed after 2 attempts"

@@ -1,0 +1,42 @@
+{
+ "at": "2026-10-08T05:44:34Z",
+ "proxy": true,
+ "force": true,
+ "editions": [
+  {
+   "slug": "biff-2026",
+   "due": true,
+   "reason": "never fetched",
+   "status": null,
+   "parsed": {
+    "films": 255,
+    "screenings": 726,
+    "venues": 26,
+    "days": 10,
+    "sourcesOk": 11,
+    "sourcesTotal": 11,
+    "status": "SCREENING_LIVE",
+    "lifecycle": "LIVE"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 1
+  }
+ ],
+ "errors": [],
+ "published": {
+  "festivals": 1,
+  "stats": {
+   "festivals": 1,
+   "liveToday": 1,
+   "screeningsToday": 91,
+   "eventsToday": 7,
+   "upcoming": 0,
+   "changes7d": 1,
+   "venuesToday": 24
+  },
+  "detailFiles": [
+   "biff-2026"
+  ]
+ }
+}

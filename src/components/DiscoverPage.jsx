@@ -731,6 +731,8 @@ const DiscoverPage = () => {
           <span className="text-gray-600 mx-2">|</span>
           <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">{t('footer.intel')}</Link>
           <span className="text-gray-600 mx-2">|</span>
+          <Link to="/festivals" className="hover:text-[#00ffff] transition-colors">{t('footer.festivals')}</Link>
+          <span className="text-gray-600 mx-2">|</span>
           <Link to="/wall" className="hover:text-[#ff00ff] transition-colors">{t('footer.wall')}</Link>
           <span className="text-gray-600 mx-2">|</span>
           <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">{t('footer.contact')}</a>
