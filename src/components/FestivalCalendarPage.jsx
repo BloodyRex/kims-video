@@ -1008,6 +1008,16 @@ function DetailView({ slug, locale, onBack }) {
     return true;
   });
 
+  // 口径：列表同时包含 SCREENING + EVENT + TBA —— 数量拆分必须从数据动态读取，禁止硬编码
+  const byKind = filtered.reduce(
+    (m, x) => {
+      const k = KIND[x.kind] ? x.kind : "TBA";
+      m[k] = (m[k] || 0) + 1;
+      return m;
+    },
+    { SCREENING: 0, EVENT: 0, TBA: 0 }
+  );
+
   const byDate = new Map();
   for (const x of filtered) {
     if (!byDate.has(x.date)) byDate.set(x.date, new Map());
@@ -1131,9 +1141,14 @@ function DetailView({ slug, locale, onBack }) {
         </div>
       </div>
 
-      {/* schedule */}
+      {/* schedule —— SCREENING + EVENT + TBA 合并列表（口径：entries = screenings + events + pending） */}
       <section>
-        <SectionHeader label={locale === "zh" ? "排片表" : "SCREENING SCHEDULE"} count={filtered.length} color="#00ffff" />
+        <SectionHeader label={locale === "zh" ? "排片总表" : "PROGRAMME SCHEDULE"} count={filtered.length} color="#00ffff" />
+        <div className="-mt-2 mb-3 text-[10px] pixel-font text-gray-400">
+          {locale === "zh"
+            ? `${byKind.SCREENING} 场影片 · ${byKind.EVENT} 场活动 · ${byKind.TBA} 项待定`
+            : `${byKind.SCREENING} screenings · ${byKind.EVENT} events · ${byKind.TBA} TBA`}
+        </div>
         {dateKeys.length ? (
           <div className="space-y-3">
             {dateKeys.map((d, idx) => {

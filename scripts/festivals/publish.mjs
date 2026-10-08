@@ -90,6 +90,7 @@ function cardOf(store, { today, changes }) {
     grade: s.grade,
     subtitle: s.subtitle,
     qa: s.qa,
+    ticketStatus: s.ticketStatus || null,
     ticketUrl: s.ticketUrl,
     eventUrl: s.eventUrl,
     officialUrl: s.officialSourceUrl,

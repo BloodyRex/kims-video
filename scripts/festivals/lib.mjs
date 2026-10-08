@@ -102,7 +102,7 @@ export function createFetcher(opts = {}) {
     return queue;
   };
 
-  async function fetchText(url, { label = url } = {}) {
+  async function fetchText(url, { label = url, method = "GET", headers = {}, body = null } = {}) {
     await setupDispatcher();
     let host = url;
     try {
@@ -116,18 +116,21 @@ export function createFetcher(opts = {}) {
       const timer = setTimeout(() => ctrl.abort(), timeoutMs);
       try {
         const res = await fetch(url, {
+          method,
           redirect: "follow",
           signal: ctrl.signal,
           headers: {
             "user-agent": UA,
             accept: "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
             "accept-language": "en-US,en;q=0.9",
+            ...headers,
           },
+          ...(body == null ? {} : { body }),
         });
-        const body = await res.text();
+        const text = await res.text();
         clearTimeout(timer);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return { ok: true, status: res.status, body, url };
+        return { ok: true, status: res.status, body: text, url };
       } catch (e) {
         clearTimeout(timer);
         const msg = e?.name === "AbortError" ? `timeout after ${timeoutMs}ms` : String(e?.message || e);

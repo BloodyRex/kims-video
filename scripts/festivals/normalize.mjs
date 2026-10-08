@@ -95,6 +95,7 @@ export function normalize({ festival, edition, raw }) {
       grade: s.grade || null,
       subtitle: s.subtitle || null,
       qa: !!s.qa,
+      ticketStatus: s.ticketStatus || null,
       ticketUrl: s.ticketUrl || null,
       eventUrl: s.eventUrl || null,
       officialSourceUrl: s.officialSourceUrl || null,
@@ -247,6 +248,13 @@ export function validate(store, previous) {
 
   if (!store.screenings.length && store.statusDetail?.schedule === "LIVE")
     errors.push("status says schedule LIVE but no entries parsed");
+  // 口径不变量：列表条目总数 = 场次 + 活动 + 待定（PROGRAMME SCHEDULE 的计数拆分必须自洽）
+  const st = store.stats || {};
+  if (st.entries !== st.screenings + st.events + st.pending) {
+    errors.push(
+      `stats mismatch: entries ${st.entries} != screenings ${st.screenings} + events ${st.events} + pending ${st.pending}`
+    );
+  }
   if (!store.films.length) warnings.push("no films parsed");
 
   // 官方排片页只要有任一页抓取失败 → 拒绝覆盖（宁可用旧数据，也不发布残缺排片）
