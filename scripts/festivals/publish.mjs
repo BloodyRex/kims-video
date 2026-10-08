@@ -99,6 +99,20 @@ function cardOf(store, { today, changes }) {
   const changes7d = (changes || []).filter(
     (c) => c.slug === store.slug && Date.parse(c.at) > Date.now() - 7 * DAY
   ).length;
+  // 官方节目变更摘要（仅官方已接入「节目变更」页的届次才有；其余为 null，卡片不落键）
+  const pc = store.programmeChanges
+    ? {
+        lastUpdate: store.programmeChanges.lastUpdate || null,
+        via: store.programmeChanges.via || null,
+        url: store.programmeChanges.url || null,
+        sectionCount: store.programmeChanges.sectionCount || 0,
+        entryCount: store.programmeChanges.entryCount || 0,
+        sections: (store.programmeChanges.sections || []).map((s) => ({
+          title: s.title,
+          entries: s.entryCount ?? (s.entries || []).length,
+        })),
+      }
+    : null;
 
   return {
     slug: store.slug,
@@ -120,6 +134,7 @@ function cardOf(store, { today, changes }) {
     statusDetail: store.statusDetail,
     statusNote: store.statusNote,
     stats: store.stats,
+    ...(pc ? { programmeChanges: pc } : {}),
     today: {
       date: today,
       screenings: todayEntries.filter((s) => s.kind === "SCREENING").length,

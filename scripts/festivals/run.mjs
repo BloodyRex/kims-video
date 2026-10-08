@@ -24,6 +24,7 @@ import { detectChanges, summarize } from "./diff.mjs";
 import { buildPublished, registryOnlyStore } from "./publish.mjs";
 import * as biff from "./adapters/biff.mjs";
 import * as idfa from "./adapters/idfa.mjs";
+import * as bfi from "./adapters/bfi.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..");
@@ -33,7 +34,7 @@ const SNAPS_DIR = join(DATA_DIR, "snapshots");
 const API_DIR = join(ROOT, "public", "api");
 const API_FEST_DIR = join(API_DIR, "festivals");
 
-const ADAPTERS = { biff, idfa };
+const ADAPTERS = { biff, idfa, bfi };
 const CHANGES_MAX = 1000;
 
 const args = process.argv.slice(2);

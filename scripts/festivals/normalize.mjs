@@ -127,6 +127,23 @@ export function normalize({ festival, edition, raw }) {
     if (s.sectionId) addSection(Number(s.sectionId.slice(1)), s.sectionName);
   }
 
+  // ── 官方「节目变更」（如有）—— 原样保留可追溯文本，缺失即 null，不编造 ──
+  const programmeChanges = raw.programmeChanges
+    ? {
+        url: raw.programmeChanges.url || null,
+        via: raw.programmeChanges.via || null,
+        format: raw.programmeChanges.format || null,
+        lastUpdate: raw.programmeChanges.lastUpdate || null,
+        sectionCount: Number(raw.programmeChanges.sectionCount) || 0,
+        entryCount: Number(raw.programmeChanges.entryCount) || 0,
+        sections: (raw.programmeChanges.sections || []).map((s) => ({
+          title: s.title,
+          entryCount: (s.entries || []).length,
+          entries: (s.entries || []).map((e) => ({ title: e.title, lines: e.lines || [] })),
+        })),
+      }
+    : null;
+
   // ── 状态 ──
   const today = new Date().toLocaleDateString("en-CA", { timeZone: tz });
   const lifecycle = today < edition.startDate ? "UPCOMING" : today > edition.endDate ? "ENDED" : "LIVE";
@@ -208,6 +225,8 @@ export function normalize({ festival, edition, raw }) {
       guestVisits: screenings.filter((s) => s.qa).length,
     },
     days: raw.days || [],
+    // 仅当适配器真的提供了官方节目变更时才落字段（BIFF/IDFA 产物保持逐字节不变）
+    ...(programmeChanges ? { programmeChanges } : {}),
     warnings: raw.warnings || [],
     fetchedAt: now,
     lastVerifiedAt: now,

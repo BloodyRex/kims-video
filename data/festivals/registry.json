@@ -102,6 +102,61 @@
           }
         }
       ]
+    },
+    {
+      "id": "bfi",
+      "slug": "bfi-2026",
+      "name": { "zh": "伦敦国际电影节", "en": "BFI London Film Festival" },
+      "city": "London",
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "region": "EUROPE",
+      "types": ["FEATURE", "DOCUMENTARY", "ANIMATION", "SHORT"],
+      "officialUrl": "https://whatson.bfi.org.uk/lff/",
+      "adapter": "bfi",
+      "editions": [
+        {
+          "id": "bfi-2026",
+          "year": 2026,
+          "startDate": "2026-10-07",
+          "endDate": "2026-10-18",
+          "timezone": "Europe/London",
+          "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=films-events",
+          "sources": [
+            {
+              "kind": "SCHEDULE",
+              "label": "Official schedule by day (whatson permalink per date)",
+              "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=YYYYMMDD"
+            },
+            {
+              "kind": "PROGRAMME",
+              "label": "Official films & events index",
+              "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=films-events"
+            },
+            {
+              "kind": "PROGRAMME_CHANGES",
+              "label": "Official programme changes",
+              "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=programme-changes-lff"
+            },
+            {
+              "kind": "TICKETING",
+              "label": "Official screening & ticket information",
+              "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=screening-information-lff26"
+            },
+            {
+              "kind": "OFFICIAL_SITE",
+              "label": "Festival box office site (whatson)",
+              "url": "https://whatson.bfi.org.uk/lff/"
+            }
+          ],
+          "fetch": {
+            "farHours": 24,
+            "nearDays": 30,
+            "nearHours": 6,
+            "liveMinutes": 30
+          }
+        }
+      ]
     }
   ]
 }

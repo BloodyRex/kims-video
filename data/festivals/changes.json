@@ -1,6 +1,32 @@
 {
  "changes": [
   {
+   "id": "bfi-2026-INIT-EDITION-bfi-2026-2026-10-08T13:28:49Z",
+   "at": "2026-10-08T13:28:49Z",
+   "slug": "bfi-2026",
+   "festivalId": "bfi",
+   "kind": "INIT",
+   "entity": "EDITION",
+   "ref": "bfi-2026",
+   "label": "BFI London Film Festival 2026",
+   "fields": [
+    {
+     "field": "entries",
+     "from": null,
+     "to": "480",
+     "fieldLabel": "entries"
+    },
+    {
+     "field": "films",
+     "from": null,
+     "to": "242",
+     "fieldLabel": "films"
+    }
+   ],
+   "sourceUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=films-events",
+   "sourceLabel": "BFI London Film Festival"
+  },
+  {
    "id": "idfa-2026-INIT-EDITION-idfa-2026-2026-10-08T10:31:40Z",
    "at": "2026-10-08T10:31:40Z",
    "slug": "idfa-2026",
@@ -53,5 +79,5 @@
    "sourceLabel": "Busan International Film Festival"
   }
  ],
- "updated": "2026-10-08T10:31:40Z"
+ "updated": "2026-10-08T13:28:49Z"
 }

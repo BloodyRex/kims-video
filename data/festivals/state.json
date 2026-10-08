@@ -39,7 +39,27 @@
    "lastError": null,
    "changesLastRun": 1,
    "collapsed": 0
+  },
+  "bfi-2026": {
+   "lastFetchedAt": "2026-10-08T13:47:59Z",
+   "lastVerifiedAt": "2026-10-08T13:47:59Z",
+   "lastChangedAt": "2026-10-08T13:28:49Z",
+   "lastStatus": "SCREENING_LIVE",
+   "statusDetail": {
+    "dates": "CONFIRMED",
+    "programme": "RELEASED",
+    "schedule": "LIVE"
+   },
+   "lifecycle": "LIVE",
+   "counts": {
+    "films": 242,
+    "screenings": 480
+   },
+   "failCount": 0,
+   "lastError": null,
+   "changesLastRun": 0,
+   "collapsed": 0
   }
  },
- "updated": "2026-10-08T10:46:46Z"
+ "updated": "2026-10-08T13:47:59Z"
 }
