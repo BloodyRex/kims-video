@@ -96,9 +96,10 @@ export function normalize({ festival, edition, raw }) {
       subtitle: s.subtitle || null,
       qa: !!s.qa,
       ticketStatus: s.ticketStatus || null,
-      // 官方票价原文（如 "£10.00" / "£0.00"）——缺失即 null，绝不臆造；
-      // 语义交由前端区分：£0.00 = 官方免费价，null = 未知（不得当成免费）。
-      minPrice: s.minPrice || null,
+      // 官方票价原文（如 "£10.00" / "£0.00"）——仅当适配器真的提供时才落字段（条件落键）；
+      // 语义交由前端区分：£0.00 = 官方免费价，缺键 = 未知（不得当成免费）。
+      // 未接入票价的届次（BIFF/IDFA）不得被写入 minPrice 键，以保持其 schema 逐字节不变。
+      ...(s.minPrice ? { minPrice: s.minPrice } : {}),
       ticketUrl: s.ticketUrl || null,
       eventUrl: s.eventUrl || null,
       officialSourceUrl: s.officialSourceUrl || null,

@@ -603,9 +603,11 @@ async function main() {
         ids.add(s.id);
         ok(!!s.officialSourceUrl, `detail ${f.slug}: ${s.id} without official source`);
         ok(!!s.timezone, `detail ${f.slug}: ${s.id} without timezone`);
+        // 条件落键：minPrice 键「存在即必须是非空官方 £ 原文」，绝不落 null；
+        // 未接入票价的届次应完全无此键（保持 schema 不变）。
         ok(
-          !("minPrice" in s) || s.minPrice === null || /^£\d/.test(s.minPrice),
-          `detail ${f.slug}: ${s.id} bad minPrice ${JSON.stringify(s.minPrice)}`
+          !("minPrice" in s) || (typeof s.minPrice === "string" && /^£\d/.test(s.minPrice)),
+          `detail ${f.slug}: ${s.id} minPrice 键存在时必须为官方 £ 原文（不得落 null）${JSON.stringify(s.minPrice)}`
         );
         if (s.kind === "SCREENING") ok(filmIds.has(s.filmId), `detail ${f.slug}: ${s.id} unknown film`);
         else ok(!!s.title, `detail ${f.slug}: ${s.kind} entry without title`);
