@@ -1,9 +1,9 @@
 {
  "editions": {
   "biff-2026": {
-   "lastFetchedAt": "2026-10-08T23:16:11Z",
-   "lastVerifiedAt": "2026-10-08T23:16:11Z",
-   "lastChangedAt": "2026-10-08T05:44:34Z",
+   "lastFetchedAt": "2026-10-09T03:03:15Z",
+   "lastVerifiedAt": "2026-10-09T03:03:15Z",
+   "lastChangedAt": "2026-10-09T03:03:15Z",
    "lastStatus": "SCREENING_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -13,11 +13,11 @@
    "lifecycle": "LIVE",
    "counts": {
     "films": 255,
-    "screenings": 726
+    "screenings": 724
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 0,
+   "changesLastRun": 3,
    "collapsed": 0
   },
   "idfa-2026": {
@@ -41,8 +41,8 @@
    "collapsed": 0
   },
   "bfi-2026": {
-   "lastFetchedAt": "2026-10-08T23:16:16Z",
-   "lastVerifiedAt": "2026-10-08T23:16:16Z",
+   "lastFetchedAt": "2026-10-09T03:03:20Z",
+   "lastVerifiedAt": "2026-10-09T03:03:20Z",
    "lastChangedAt": "2026-10-08T13:28:49Z",
    "lastStatus": "SCREENING_LIVE",
    "statusDetail": {
@@ -61,5 +61,5 @@
    "collapsed": 0
   }
  },
- "updated": "2026-10-08T23:16:11Z"
+ "updated": "2026-10-09T03:03:15Z"
 }

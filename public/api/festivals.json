@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-08T23:16:11Z",
+ "updated": "2026-10-09T03:03:15Z",
  "today": "2026-10-09",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
@@ -11,7 +11,7 @@
   "screeningsToday": 132,
   "eventsToday": 3,
   "upcoming": 1,
-  "changes7d": 3,
+  "changes7d": 6,
   "venuesToday": 38
  },
  "festivals": [
@@ -52,14 +52,14 @@
    "stats": {
     "films": 255,
     "filmsTotal": 255,
-    "screenings": 726,
+    "screenings": 724,
     "events": 18,
     "pending": 8,
-    "entries": 752,
+    "entries": 750,
     "venues": 26,
     "sections": 15,
     "days": 10,
-    "guestVisits": 313
+    "guestVisits": 312
    },
    "today": {
     "date": "2026-10-09",
@@ -1618,9 +1618,9 @@
       "id": "biff-2026-20261009-168",
       "kind": "SCREENING",
       "time": "23:59",
-      "title": "Red Thread",
+      "title": "Spirit Guardians: The Last Secret Of The First Emperor",
       "venueName": "Busan Cinema Center Haneulyeon Theatre",
-      "section": "Midnight Passion",
+      "section": "A Window on Asian Cinema",
       "grade": "15",
       "subtitle": "KE",
       "qa": true,
@@ -1639,7 +1639,7 @@
      "url": "https://www.biff.kr/eng/html/program/prog_all_list.asp?allYear=2026",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1647,7 +1647,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=6",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1655,7 +1655,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=7",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1663,7 +1663,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1671,7 +1671,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=9",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1679,7 +1679,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=10",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1687,7 +1687,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=11",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1695,7 +1695,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=12",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1703,7 +1703,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=13",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1711,7 +1711,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1719,13 +1719,13 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-08T23:16:11Z"
+     "fetchedAt": "2026-10-09T03:03:15Z"
     }
    ],
-   "fetchedAt": "2026-10-08T23:16:11Z",
-   "lastVerifiedAt": "2026-10-08T23:16:11Z",
+   "fetchedAt": "2026-10-09T03:03:15Z",
+   "lastVerifiedAt": "2026-10-09T03:03:15Z",
    "dataAgeMinutes": 0,
-   "changes7d": 1,
+   "changes7d": 4,
    "dataSource": "official"
   },
   {
@@ -1804,7 +1804,7 @@
    ],
    "fetchedAt": "2026-10-08T10:31:40Z",
    "lastVerifiedAt": "2026-10-08T10:31:40Z",
-   "dataAgeMinutes": 765,
+   "dataAgeMinutes": 992,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -2366,7 +2366,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261007",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2374,7 +2374,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261008",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2382,7 +2382,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261009",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2390,7 +2390,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261010",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2398,7 +2398,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261011",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2406,7 +2406,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261012",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2414,7 +2414,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261013",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2422,7 +2422,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261014",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2430,7 +2430,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261015",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2438,7 +2438,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2446,7 +2446,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2454,7 +2454,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261018",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     },
     {
      "kind": "PROGRAMME_CHANGES",
@@ -2462,11 +2462,11 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=programme-changes-lff",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-08T23:16:16Z"
+     "fetchedAt": "2026-10-09T03:03:20Z"
     }
    ],
-   "fetchedAt": "2026-10-08T23:16:16Z",
-   "lastVerifiedAt": "2026-10-08T23:16:16Z",
+   "fetchedAt": "2026-10-09T03:03:20Z",
+   "lastVerifiedAt": "2026-10-09T03:03:20Z",
    "dataAgeMinutes": 0,
    "changes7d": 1,
    "dataSource": "official"
@@ -2521,7 +2521,7 @@
    ]
   },
   "2026-10-12": {
-   "screenings": 122,
+   "screenings": 121,
    "events": 0,
    "festivals": [
     "bfi-2026",
@@ -2529,7 +2529,7 @@
    ]
   },
   "2026-10-13": {
-   "screenings": 122,
+   "screenings": 121,
    "events": 2,
    "festivals": [
     "bfi-2026",

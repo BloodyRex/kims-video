@@ -1,6 +1,72 @@
 {
  "changes": [
   {
+   "id": "biff-2026-CHANGED-SCREENING-biff-2026-20261009-168-2026-10-09T03:03:15Z",
+   "at": "2026-10-09T03:03:15Z",
+   "slug": "biff-2026",
+   "festivalId": "biff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "biff-2026-20261009-168",
+   "label": "Spirit Guardians: The Last Secret Of The First Emperor — 2026-10-09 23:59 · Busan Cinema Center Haneulyeon Theatre",
+   "fields": [
+    {
+     "field": "title",
+     "from": "Red Thread",
+     "to": "Spirit Guardians: The Last Secret Of The First Emperor",
+     "fieldLabel": "片名 / 活动名"
+    },
+    {
+     "field": "filmId",
+     "from": "Red Thread",
+     "to": "Spirit Guardians: The Last Secret Of The First Emperor",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=9",
+   "sourceLabel": "Busan International Film Festival"
+  },
+  {
+   "id": "biff-2026-REMOVED-SCREENING-biff-2026-20261012-510-2026-10-09T03:03:15Z",
+   "at": "2026-10-09T03:03:15Z",
+   "slug": "biff-2026",
+   "festivalId": "biff",
+   "kind": "REMOVED",
+   "entity": "SCREENING",
+   "ref": "biff-2026-20261012-510",
+   "label": "Red Thread — 2026-10-12 15:30 · LOTTE CINEMA Centum City 2",
+   "fields": [
+    {
+     "field": "localTime",
+     "from": "15:30",
+     "to": null,
+     "fieldLabel": "放映时间"
+    }
+   ],
+   "sourceUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=12",
+   "sourceLabel": "Busan International Film Festival"
+  },
+  {
+   "id": "biff-2026-REMOVED-SCREENING-biff-2026-20261013-633-2026-10-09T03:03:15Z",
+   "at": "2026-10-09T03:03:15Z",
+   "slug": "biff-2026",
+   "festivalId": "biff",
+   "kind": "REMOVED",
+   "entity": "SCREENING",
+   "ref": "biff-2026-20261013-633",
+   "label": "Red Thread — 2026-10-13 10:00 · KOFIC Theater",
+   "fields": [
+    {
+     "field": "localTime",
+     "from": "10:00",
+     "to": null,
+     "fieldLabel": "放映时间"
+    }
+   ],
+   "sourceUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=13",
+   "sourceLabel": "Busan International Film Festival"
+  },
+  {
    "id": "bfi-2026-INIT-EDITION-bfi-2026-2026-10-08T13:28:49Z",
    "at": "2026-10-08T13:28:49Z",
    "slug": "bfi-2026",
@@ -79,5 +145,5 @@
    "sourceLabel": "Busan International Film Festival"
   }
  ],
- "updated": "2026-10-08T13:28:49Z"
+ "updated": "2026-10-09T03:03:15Z"
 }

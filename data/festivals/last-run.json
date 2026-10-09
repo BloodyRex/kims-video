@@ -1,16 +1,16 @@
 {
- "at": "2026-10-08T23:16:11Z",
+ "at": "2026-10-09T03:03:15Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 326min ≥ 30min",
+   "reason": "age 227min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 255,
-    "screenings": 726,
+    "screenings": 724,
     "venues": 26,
     "days": 10,
     "sourcesOk": 11,
@@ -20,19 +20,19 @@
    },
    "warnings": [],
    "action": "updated",
-   "changes": 0
+   "changes": 3
   },
   {
    "slug": "idfa-2026",
    "due": false,
-   "reason": "age 765min < 1440min",
+   "reason": "age 992min < 1440min",
    "status": "PROGRAM_RELEASED",
    "action": "skipped (throttled)"
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 326min ≥ 30min",
+   "reason": "age 227min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
@@ -58,7 +58,7 @@
    "screeningsToday": 132,
    "eventsToday": 3,
    "upcoming": 1,
-   "changes7d": 3,
+   "changes7d": 6,
    "venuesToday": 38
   },
   "detailFiles": [
