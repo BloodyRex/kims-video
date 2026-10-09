@@ -1,12 +1,12 @@
 {
- "at": "2026-10-09T05:23:05Z",
+ "at": "2026-10-09T10:23:44Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 38min ≥ 30min",
+   "reason": "age 301min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 255,
@@ -25,14 +25,14 @@
   {
    "slug": "idfa-2026",
    "due": false,
-   "reason": "age 1131min < 1440min",
+   "reason": "age 1432min < 1440min",
    "status": "PROGRAM_RELEASED",
    "action": "skipped (throttled)"
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 51min ≥ 30min",
+   "reason": "age 301min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
