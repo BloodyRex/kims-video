@@ -91,6 +91,8 @@ function cardOf(store, { today, changes }) {
     subtitle: s.subtitle,
     qa: s.qa,
     ticketStatus: s.ticketStatus || null,
+    // 票价仅在来源确有官方价时落键；无价则不落键，避免给未接入票价的届次写入 null 噪声
+    ...(s.minPrice ? { minPrice: s.minPrice } : {}),
     ticketUrl: s.ticketUrl,
     eventUrl: s.eventUrl,
     officialUrl: s.officialSourceUrl,

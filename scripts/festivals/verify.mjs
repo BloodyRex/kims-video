@@ -371,6 +371,12 @@ async function bfiAdapterChecks() {
   eq(synthRes.items.filter((i) => i.ticketStatus === "NOT_ON_SALE").length, 12, "bfi: 未开票行映射 NOT_ON_SALE");
   eq(synthRes.items.filter((i) => i.ticketStatus === "LIMITED").length, 12, "bfi: 受限行映射 LIMITED");
   ok(synthRes.items.every((i) => i.ticketUrl === null), "bfi: 无稳定购票 URL 时必须置 null（不得编造）");
+  ok(
+    synthRes.items.every((i) => typeof i.minPrice === "string" && i.minPrice.length > 0),
+    "bfi: 合成快照每行必须带官方票价原文（minPrice）"
+  );
+  eq(synthRes.items.filter((i) => i.minPrice === "£10.00").length, 24, "bfi: 票价列原样透传（£10.00 × 12 天 × 2 行）");
+  eq(synthRes.items.filter((i) => i.minPrice === "£12.50").length, 12, "bfi: 票价列原样透传（£12.50 × 12 天 × 1 行）");
   ok(synthRes.items.every((i) => /^https:\/\/whatson\.bfi\.org\.uk\//.test(i.officialSourceUrl)), "bfi: 每行必须带官方来源 URL");
   ok(synthRes.items.every((i) => /^https:\/\/whatson\.bfi\.org\.uk\//.test(i.eventUrl)), "bfi: eventUrl 必须是官方深链");
   eq(synthRes.days.length, 12, "bfi: 覆盖 12 天");
@@ -466,6 +472,12 @@ async function bfiAdapterChecks() {
     ok(res.items.some((i) => i.ticketStatus === t), `bfi(实测): 缺少 ${t} 实测样本`);
   }
   eq(res.items.filter((i) => i.ticketStatus === "EXCELLENT").length, 0, "bfi(实测): 本批数据未观测到 EXCELLENT，不得输出");
+  ok(
+    res.items.every((i) => i.minPrice === null || /^£\d/.test(i.minPrice)),
+    "bfi(实测): minPrice 必须是官方 £ 金额原文或 null（不得臆造）"
+  );
+  ok(res.items.some((i) => i.minPrice === "£0.00"), "bfi(实测): LFF for Free 场次应带 £0.00（官方免费价）");
+  ok(res.items.some((i) => i.minPrice && i.minPrice !== "£0.00"), "bfi(实测): 应存在非零票价样本");
   ok(res.items.every((i) => /^https:\/\/whatson\.bfi\.org\.uk\//.test(i.eventUrl)), "bfi(实测): 全部 eventUrl 官方");
   ok(res.films.length > 0 && res.sections.length > 0, "bfi(实测): 影片与单元不得为空");
   ok(res.films.every((f) => f.director === null && f.country === null), "bfi(实测): 导演/国家无引证时必须 null");
@@ -591,6 +603,10 @@ async function main() {
         ids.add(s.id);
         ok(!!s.officialSourceUrl, `detail ${f.slug}: ${s.id} without official source`);
         ok(!!s.timezone, `detail ${f.slug}: ${s.id} without timezone`);
+        ok(
+          !("minPrice" in s) || s.minPrice === null || /^£\d/.test(s.minPrice),
+          `detail ${f.slug}: ${s.id} bad minPrice ${JSON.stringify(s.minPrice)}`
+        );
         if (s.kind === "SCREENING") ok(filmIds.has(s.filmId), `detail ${f.slug}: ${s.id} unknown film`);
         else ok(!!s.title, `detail ${f.slug}: ${s.kind} entry without title`);
       }
@@ -658,6 +674,19 @@ async function main() {
         ok(
           (bd.programmeChanges.sections || []).every((s, i) => s.title === bfiCard.programmeChanges.sections[i].title),
           "detail bfi-2026: 详情与卡片的分节标题不一致"
+        );
+        // 票价贯通发布产物：详情每条必须带 minPrice（£ 原文或 null），并覆盖免费/非零两态
+        ok(
+          (bd.screenings || []).every((s) => s.minPrice === null || /^£\d/.test(s.minPrice)),
+          "detail bfi-2026: minPrice 必须是官方 £ 原文或 null"
+        );
+        ok((bd.screenings || []).some((s) => s.minPrice === "£0.00"), "detail bfi-2026: 应含 £0.00（免费场次）");
+        ok((bd.screenings || []).some((s) => s.minPrice && s.minPrice !== "£0.00"), "detail bfi-2026: 应含非零票价");
+        // 今日卡片 items 也必须带票价（前端今日排片直接读卡片）
+        const pricedCardItems = (bfiCard.today?.items || []).filter((i) => "minPrice" in i);
+        ok(
+          pricedCardItems.every((i) => i.minPrice === null || /^£\d/.test(i.minPrice)),
+          "card bfi-2026: today.items minPrice 必须是官方 £ 原文或 null"
         );
       }
     }

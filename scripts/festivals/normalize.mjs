@@ -96,6 +96,9 @@ export function normalize({ festival, edition, raw }) {
       subtitle: s.subtitle || null,
       qa: !!s.qa,
       ticketStatus: s.ticketStatus || null,
+      // 官方票价原文（如 "£10.00" / "£0.00"）——缺失即 null，绝不臆造；
+      // 语义交由前端区分：£0.00 = 官方免费价，null = 未知（不得当成免费）。
+      minPrice: s.minPrice || null,
       ticketUrl: s.ticketUrl || null,
       eventUrl: s.eventUrl || null,
       officialSourceUrl: s.officialSourceUrl || null,

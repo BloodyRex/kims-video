@@ -191,6 +191,23 @@ function fname(name, locale) {
   return (locale === "zh" ? name.zh || name.en : name.en || name.zh) || "—";
 }
 
+/**
+ * 票价语义（务必区分三态，不得误导）：
+ *   - 有明确官方价格（如 "£10.00"）→ 原样展示；
+ *   - 官方明确免费（"£0.00"）→ 展示为「免费」；
+ *   - 缺失/未知 → 返回 null，**不展示**（绝不臆造成「免费」或一律「待定」）。
+ * 价格字符串由官方页面直取，前端不做任何货币换算或猜测。
+ */
+function priceLabel(minPrice, locale) {
+  if (minPrice == null || minPrice === "") return null;
+  const s = String(minPrice).trim();
+  if (!s) return null;
+  const num = Number(s.replace(/[^0-9.]/g, ""));
+  if (!Number.isFinite(num)) return s; // 非数字原文 → 原样展示，不臆测
+  if (num === 0) return locale === "zh" ? "免费" : "FREE";
+  return s;
+}
+
 // ── 通用小组件 ─────────────────────────────────────────
 function StatusBadge({ status, locale, small = false }) {
   const s = STATUS[status] || STATUS.TBC;
@@ -317,6 +334,20 @@ function ScreeningRow({ s, locale, color = "#ffff00" }) {
         </div>
         <div className="text-[10px] text-gray-400 mt-0.5 break-words">
           {[s.section, s.venueName].filter(Boolean).join(" · ")}
+          {(() => {
+            const p = priceLabel(s.minPrice, locale);
+            if (!p) return null;
+            const free = p === "免费" || p === "FREE";
+            return (
+              <span
+                className="ml-1.5 px-1 border border-black text-black text-[8px] font-black pixel-font uppercase align-middle"
+                style={{ background: free ? "#00ffff" : "#ffff00" }}
+                title={locale === "zh" ? "官方票价" : "Official ticket price"}
+              >
+                {free ? (locale === "zh" ? "免费" : "FREE") : (locale === "zh" ? `${p} 起` : `FROM ${p}`)}
+              </span>
+            );
+          })()}
         </div>
         <div className="flex flex-wrap gap-1.5 mt-1">
           {s.grade ? <span className="text-[8px] text-gray-500 pixel-font">{locale === "zh" ? `分级 ${s.grade}` : `RATED ${s.grade}`}</span> : null}
@@ -1014,6 +1045,118 @@ function StatusRow({ label, value, locale }) {
   );
 }
 
+const PC_SECTION_LIMIT = 6;
+
+/**
+ * 官方「节目变更」面板（折叠式）。
+ * 数据 100% 来自 API 的 programmeChanges（栏目/条目/更新时间/来源），前端不再抓取或解析。
+ * 长列表（如 ACCESS UPDATES 110 条）按栏目分页展开，避免一次性铺满页面。
+ * 缺失字段逐项降级：无 lastUpdate → 标注未知；无 via/url → 只显示已存在的来源信息。
+ */
+function ProgrammeChangesPanel({ pc, locale }) {
+  const [open, setOpen] = useState(false);
+  const [openSections, setOpenSections] = useState({});
+  if (!pc) return null;
+
+  const sections = (Array.isArray(pc.sections) ? pc.sections : []).filter(
+    (s) => s && Array.isArray(s.entries) && s.entries.length
+  );
+  const entryTotal = pc.entryCount != null ? pc.entryCount : sections.reduce((n, s) => n + s.entries.length, 0);
+
+  return (
+    <section>
+      <div className="border-4 border-black bg-black" style={{ boxShadow: "6px 6px 0 0 #ff00ff" }}>
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className="w-full text-left p-3 flex flex-wrap items-center gap-2 hover:bg-gray-950 transition-colors"
+        >
+          <span className="text-sm sm:text-base font-black pixel-font uppercase text-white">
+            {locale === "zh" ? "官方排片变更" : "PROGRAMME CHANGES"}
+          </span>
+          {entryTotal ? (
+            <span className="text-[9px] pixel-font bg-[#ff00ff] text-black px-1.5 py-0.5 border-2 border-black">
+              {entryTotal} {locale === "zh" ? "条" : "ENTRIES"}
+            </span>
+          ) : null}
+          {pc.sectionCount ? (
+            <span className="text-[9px] pixel-font text-gray-500">
+              {pc.sectionCount} {locale === "zh" ? "个栏目" : "SECTIONS"}
+            </span>
+          ) : null}
+          <span className="text-[9px] pixel-font text-gray-500 ml-auto">
+            {open ? (locale === "zh" ? "收起 ▲" : "COLLAPSE ▲") : (locale === "zh" ? "展开 ▼" : "EXPAND ▼")}
+          </span>
+        </button>
+
+        <div className="px-3 pb-3 flex flex-wrap items-center gap-2">
+          {pc.lastUpdate ? (
+            <span className="text-[10px] text-[#ffff00]">ⓘ {pc.lastUpdate}</span>
+          ) : (
+            <span className="text-[10px] text-gray-600">{locale === "zh" ? "更新时间未提供" : "Update time not provided"}</span>
+          )}
+          {pc.via ? (
+            <span className="text-[9px] pixel-font text-gray-500 uppercase">
+              {locale === "zh" ? `来源：${pc.via}` : `VIA ${pc.via}`}
+            </span>
+          ) : null}
+          <span className="ml-auto">
+            <OfficialLink url={pc.url} label={locale === "zh" ? "官方变更页 ↗" : "OFFICIAL CHANGES ↗"} locale={locale} color="#ff00ff" />
+          </span>
+        </div>
+
+        {open ? (
+          sections.length ? (
+            <div className="p-3 pt-0 space-y-3 border-t-2 border-gray-900">
+              {sections.map((sec, i) => {
+                const expanded = !!openSections[i];
+                const shown = expanded ? sec.entries : sec.entries.slice(0, PC_SECTION_LIMIT);
+                const rest = sec.entries.length - shown.length;
+                return (
+                  <div key={i} className="border-2 border-gray-800">
+                    <div className="px-2 py-1 bg-gray-950 flex flex-wrap items-center gap-2">
+                      <span className="text-[10px] font-black text-[#00ffff] uppercase pixel-font break-words">{sec.title || "—"}</span>
+                      <span className="text-[9px] pixel-font text-gray-500 ml-auto">{sec.entries.length}</span>
+                    </div>
+                    <div className="divide-y divide-gray-900">
+                      {shown.map((e, j) => {
+                        const lines = (e.lines || []).filter((l) => l && l !== e.title);
+                        return (
+                          <div key={j} className="p-2">
+                            <div className="text-xs font-bold text-white break-words">{e.title || "—"}</div>
+                            {lines.length ? (
+                              <div className="text-[10px] text-gray-400 mt-0.5 space-y-0.5">
+                                {lines.map((l, k) => <div key={k} className="break-words">{l}</div>)}
+                              </div>
+                            ) : null}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {rest > 0 ? (
+                      <button
+                        onClick={() => setOpenSections((m) => ({ ...m, [i]: true }))}
+                        className="w-full text-left px-2 py-1 text-[9px] pixel-font text-[#00ffff] hover:text-white border-t-2 border-gray-900"
+                      >
+                        {locale === "zh" ? `+ 展开其余 ${rest} 条` : `+ ${rest} MORE`}
+                      </button>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="p-3 pt-0 border-t-2 border-gray-900">
+              <p className="text-[10px] text-gray-500">
+                {locale === "zh" ? "官方已提供变更页，但当前没有可展示的变更条目。" : "The official changes page exists but lists no entries right now."}
+              </p>
+            </div>
+          )
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
 function DetailView({ slug, locale, onBack }) {
   const { data, loading, error, missing, retry } = useDetail(slug);
   const [day, setDay] = useState("ALL");
@@ -1169,6 +1312,9 @@ function DetailView({ slug, locale, onBack }) {
         <Tile label={locale === "zh" ? "单元" : "SECTIONS"} value={data.stats?.sections ?? 0} color="#00ffff" />
         <Tile label={locale === "zh" ? "有影人出席" : "WITH GUESTS"} value={data.stats?.guestVisits ?? 0} color="#ff00ff" />
       </div>
+
+      {/* 官方排片变更（仅当 API 提供了 programmeChanges；BIFF/IDFA 无此字段 → 不渲染） */}
+      <ProgrammeChangesPanel pc={data.programmeChanges} locale={locale} />
 
       {/* filters */}
       <div className="border-4 border-black bg-black p-3 space-y-2">
