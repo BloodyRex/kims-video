@@ -1,7 +1,87 @@
 {
- "updated": "2026-10-09T10:23:44Z",
- "count7d": 6,
+ "updated": "2026-10-09T17:09:52Z",
+ "count7d": 10,
  "changes": [
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-7f9f3482-0de8-4286-9f40-fde664a3fb14-vpro-previewdag-2026-10-09T17:09:52Z",
+   "at": "2026-10-09T17:09:52Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261113-7f9f3482-0de8-4286-9f40-fde664a3fb14-vpro-previewdag",
+   "label": "VPRO Previewdag — 2026-11-13 09:50 · Tuschinski 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261114-c19ab744-cb70-49fd-a20a-06fb5a85dfd4-de-volkskrantdag-2026-10-09T17:09:52Z",
+   "at": "2026-10-09T17:09:52Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261114-c19ab744-cb70-49fd-a20a-06fb5a85dfd4-de-volkskrantdag",
+   "label": "de Volkskrantdag — 2026-11-14 10:00 · Carré",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "SOLD_OUT",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261117-699be57b-b1ca-4c10-bf5c-f2b610c85456-in-person-ulrich-seidl-2026-10-09T17:09:52Z",
+   "at": "2026-10-09T17:09:52Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261117-699be57b-b1ca-4c10-bf5c-f2b610c85456-in-person-ulrich-seidl",
+   "label": "In Person: Ulrich Seidl — 2026-11-17 18:30 · Eye: Cinema 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-fb36df60-9d66-4520-bad1-de48312173e8-best-of-idfa-audience-fa-2026-10-09T17:09:52Z",
+   "at": "2026-10-09T17:09:52Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-fb36df60-9d66-4520-bad1-de48312173e8-best-of-idfa-audience-fa",
+   "label": "Best of IDFA: Audience Favorites — 2026-11-21 10:30 · Pathé Noord 5",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
   {
    "id": "biff-2026-CHANGED-SCREENING-biff-2026-20261009-168-2026-10-09T03:03:15Z",
    "at": "2026-10-09T03:03:15Z",
