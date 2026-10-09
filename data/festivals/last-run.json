@@ -1,12 +1,12 @@
 {
- "at": "2026-10-09T17:09:52Z",
+ "at": "2026-10-09T21:51:33Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 406min ≥ 30min",
+   "reason": "age 282min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 255,
@@ -24,32 +24,15 @@
   },
   {
    "slug": "idfa-2026",
-   "due": true,
-   "reason": "age 1838min ≥ 1440min",
+   "due": false,
+   "reason": "age 282min < 1440min",
    "status": "PROGRAM_RELEASED",
-   "parsed": {
-    "films": 168,
-    "screenings": 0,
-    "venues": 12,
-    "days": 6,
-    "sourcesOk": 2,
-    "sourcesTotal": 2,
-    "status": "PROGRAM_RELEASED",
-    "lifecycle": "UPCOMING"
-   },
-   "warnings": [
-    "schedule covers 6/11 days",
-    "ignored 5 official record(s) outside this edition: 2026-05-06×1, 2026-05-07×1, 2026-05-08×1, 2026-05-09×1, 2026-05-10×1",
-    "official day amounts (31) do not sum to totalHits (27)",
-    "official screening times not published yet: 0 SCREENING, 26 official programme entry/entries (status SCHEDULE_PENDING — partial data, NOT a complete schedule)"
-   ],
-   "action": "updated",
-   "changes": 4
+   "action": "skipped (throttled)"
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 406min ≥ 30min",
+   "reason": "age 281min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
