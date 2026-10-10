@@ -25,6 +25,7 @@ import { buildPublished, registryOnlyStore } from "./publish.mjs";
 import * as biff from "./adapters/biff.mjs";
 import * as idfa from "./adapters/idfa.mjs";
 import * as bfi from "./adapters/bfi.mjs";
+import * as hkiff from "./adapters/hkiff.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..");
@@ -34,7 +35,7 @@ const SNAPS_DIR = join(DATA_DIR, "snapshots");
 const API_DIR = join(ROOT, "public", "api");
 const API_FEST_DIR = join(API_DIR, "festivals");
 
-const ADAPTERS = { biff, idfa, bfi };
+const ADAPTERS = { biff, idfa, bfi, hkiff };
 const CHANGES_MAX = 1000;
 
 const args = process.argv.slice(2);
@@ -48,7 +49,41 @@ const FORCE = flag("force");
 const DRY = flag("dry-run");
 const ONLY = opt("only");
 const PROXY = opt("proxy");
+const SNAPSHOT = opt("snapshot"); // 离线快照目录：用本地已抓页面替代网络抓取（未获授权时的合规模式）
 const log = (...a) => console.log(...a);
+
+/**
+ * 离线快照 fetcher —— 与 createFetcher 返回的 fetchText 同签名。
+ * 从 SNAPSHOT 目录读取已抓取的页面，绝不发起网络请求。
+ * 映射：/schedule → schedule.html；/period → period.html；/film/:slug → films/<slug>.html
+ */
+function createSnapshotFetcher(dir) {
+  const resolve = (url) => {
+    let pathname = url;
+    try {
+      pathname = new URL(url).pathname;
+    } catch {
+      /* keep raw */
+    }
+    if (pathname === "/schedule" || pathname === "/schedule/") return join(dir, "schedule.html");
+    if (pathname === "/period" || pathname === "/period/") return join(dir, "period.html");
+    const fm = pathname.match(/^\/film\/([^/]+)\/?$/);
+    if (fm) return join(dir, "films", `${fm[1]}.html`);
+    return null;
+  };
+  async function fetchText(url, { label = url } = {}) {
+    const p = resolve(url);
+    if (!p || !existsSync(p)) {
+      return { ok: false, status: 0, error: `snapshot missing: ${p || url}`, url, label };
+    }
+    try {
+      return { ok: true, status: 200, body: readFileSync(p, "utf8"), url };
+    } catch (e) {
+      return { ok: false, status: 0, error: String(e?.message || e), url, label };
+    }
+  }
+  return { fetchText, proxy: null, snapshot: dir };
+}
 
 const readJson = (p, fallback) => {
   try {
@@ -90,6 +125,7 @@ function isDue(edition, state, now) {
   const last = state?.editions?.[edition.id];
   if (!last?.lastFetchedAt) return { due: true, reason: "never fetched" };
   if (FORCE) return { due: true, reason: "forced" };
+  if (SNAPSHOT) return { due: true, reason: "snapshot mode" };
   const interval = fetchIntervalMinutes(edition, last, now);
   const ageMin = (Date.parse(now) - Date.parse(last.lastFetchedAt)) / 60000;
   if (ageMin >= interval) return { due: true, reason: `age ${Math.round(ageMin)}min ≥ ${interval}min` };
@@ -102,7 +138,7 @@ async function main() {
   const state = readJson(join(DATA_DIR, "state.json"), { editions: {} });
   const changeLog = readJson(join(DATA_DIR, "changes.json"), { changes: [] });
   const fetchTextOpts = { proxy: PROXY };
-  const { fetchText } = createFetcher(fetchTextOpts);
+  const { fetchText } = SNAPSHOT ? createSnapshotFetcher(SNAPSHOT) : createFetcher(fetchTextOpts);
 
   const report = { at: now, proxy: !!PROXY, force: FORCE, editions: [], errors: [] };
 
@@ -121,6 +157,18 @@ async function main() {
         report.editions.push(entry);
         continue;
       }
+
+      // 授权闸门：数据源未获书面授权（authorization 存在且 ≠ "granted"）时，
+      // 绝不发起实时抓取 —— 仅允许 --snapshot 离线快照在本地生成。
+      // 防止 CI 定时任务在未授权情况下抓取受条款限制的站点（如 HKIFF）。
+      const auth = edition.authorization || festival.authorization;
+      if (!SNAPSHOT && auth && auth !== "granted") {
+        entry.action = `skipped (authorization: ${auth})`;
+        entry.authorization = auth;
+        report.editions.push(entry);
+        continue;
+      }
+
       if (!due) {
         entry.action = "skipped (throttled)";
         report.editions.push(entry);

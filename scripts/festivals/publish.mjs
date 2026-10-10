@@ -125,6 +125,9 @@ function cardOf(store, { today, changes }) {
     countryCode: store.festival.countryCode,
     region: store.festival.region,
     types: store.festival.types,
+    // 授权状态（仅当存在时落键，未声明授权的届次卡片保持不变）
+    ...(store.festival.authorization ? { authorization: store.festival.authorization } : {}),
+    ...(store.festival.authorizationNote ? { authorizationNote: store.festival.authorizationNote } : {}),
     year: store.edition.year,
     startDate: store.edition.startDate,
     endDate: store.edition.endDate,

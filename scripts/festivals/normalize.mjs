@@ -177,6 +177,9 @@ export function normalize({ festival, edition, raw }) {
       region: festival.region || null,
       types: festival.types || [],
       officialUrl: festival.officialUrl,
+      // 授权状态（仅当 registry 显式声明时落键，保持其他届次产物逐字节不变）
+      ...(festival.authorization ? { authorization: festival.authorization } : {}),
+      ...(festival.authorizationNote ? { authorizationNote: festival.authorizationNote } : {}),
     },
     edition: {
       id: edition.id,
@@ -186,6 +189,7 @@ export function normalize({ festival, edition, raw }) {
       timezone: tz,
       dayCount: daysBetween(edition.startDate, edition.endDate) + 1,
       officialUrl: edition.officialUrl || festival.officialUrl,
+      coverageMinDays: edition.coverageMinDays || null,
     },
     lifecycle,
     status,
@@ -289,11 +293,12 @@ export function validate(store, previous) {
     );
   }
 
-  // 覆盖天数不足
+  // 覆盖天数不足（repertory 类型可通过 coverageMinDays 调整阈值）
   const daysCovered = new Set(store.screenings.map((s) => s.date)).size;
   const dayCount = store.edition?.dayCount || 0;
+  const minCoverage = store.edition?.coverageMinDays ?? Math.ceil(dayCount / 2);
   if (dayCount && daysCovered < dayCount) warnings.push(`schedule covers ${daysCovered}/${dayCount} days`);
-  if (dayCount && daysCovered < Math.ceil(dayCount / 2))
+  if (dayCount && daysCovered < minCoverage)
     errors.push(`schedule covers only ${daysCovered}/${dayCount} days`);
 
   // 防回退：新数据比旧数据少一半以上 → 视为抓取异常

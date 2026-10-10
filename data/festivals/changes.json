@@ -1,6 +1,32 @@
 {
  "changes": [
   {
+   "id": "hkiff-cinefan-2026-INIT-EDITION-hkiff-cinefan-2026-2026-10-10T03:26:20Z",
+   "at": "2026-10-10T03:26:20Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "INIT",
+   "entity": "EDITION",
+   "ref": "hkiff-cinefan-2026",
+   "label": "Hong Kong International Film Festival Cine Fan 2026",
+   "fields": [
+    {
+     "field": "entries",
+     "from": null,
+     "to": "44",
+     "fieldLabel": "entries"
+    },
+    {
+     "field": "films",
+     "from": null,
+     "to": "22",
+     "fieldLabel": "films"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
    "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-7f9f3482-0de8-4286-9f40-fde664a3fb14-vpro-previewdag-2026-10-09T17:09:52Z",
    "at": "2026-10-09T17:09:52Z",
    "slug": "idfa-2026",
@@ -225,5 +251,5 @@
    "sourceLabel": "Busan International Film Festival"
   }
  ],
- "updated": "2026-10-09T17:09:52Z"
+ "updated": "2026-10-10T03:26:20Z"
 }

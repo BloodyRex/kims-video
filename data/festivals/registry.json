@@ -157,6 +157,57 @@
           }
         }
       ]
+    },
+    {
+      "id": "hkiff",
+      "slug": "hkiff-cinefan-2026",
+      "name": { "zh": "香港国际电影节 Cine Fan", "en": "Hong Kong International Film Festival Cine Fan" },
+      "city": "Hong Kong",
+      "country": "Hong Kong SAR",
+      "countryCode": "HK",
+      "region": "ASIA",
+      "types": ["FEATURE", "CLASSIC", "RESTORED"],
+      "officialUrl": "https://cinefan.hkiff.org.hk/",
+      "adapter": "hkiff",
+      "authorization": "pending",
+      "authorizationNote": {
+        "zh": "授权待定：cinefan.hkiff.org.hk 无 robots.txt，但 HKIFF Society 条款限制自动访问/复制/分发；www.hkiff.org.hk robots.txt = Disallow: /。数据由已获授权的离线快照生成，正式上线前需取得官方书面授权。",
+        "en": "Authorization pending: cinefan.hkiff.org.hk has no robots.txt, but HKIFF Society terms restrict automated access/copying/redistribution; www.hkiff.org.hk robots.txt = Disallow: /. Data generated from an authorized offline snapshot; written authorization required before going live."
+      },
+      "editions": [
+        {
+          "id": "hkiff-cinefan-2026",
+          "year": 2026,
+          "startDate": "2026-09-12",
+          "endDate": "2026-10-31",
+          "timezone": "Asia/Hong_Kong",
+          "officialUrl": "https://cinefan.hkiff.org.hk/",
+          "coverageMinDays": 10,
+          "sources": [
+            {
+              "kind": "SCHEDULE",
+              "label": "Cine Fan official schedule (offline screenings)",
+              "url": "https://cinefan.hkiff.org.hk/schedule"
+            },
+            {
+              "kind": "PROGRAMME",
+              "label": "Cine Fan official programme (periods + sections)",
+              "url": "https://cinefan.hkiff.org.hk/period"
+            },
+            {
+              "kind": "OFFICIAL_SITE",
+              "label": "Cine Fan home",
+              "url": "https://cinefan.hkiff.org.hk/"
+            }
+          ],
+          "fetch": {
+            "farHours": 24,
+            "nearDays": 30,
+            "nearHours": 6,
+            "liveMinutes": 30
+          }
+        }
+      ]
     }
   ]
 }
