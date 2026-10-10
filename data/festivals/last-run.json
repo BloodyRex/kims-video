@@ -1,12 +1,12 @@
 {
- "at": "2026-10-10T01:40:31Z",
+ "at": "2026-10-10T03:51:45Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 229min ≥ 30min",
+   "reason": "age 131min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 255,
@@ -25,14 +25,14 @@
   {
    "slug": "idfa-2026",
    "due": false,
-   "reason": "age 511min < 1440min",
+   "reason": "age 642min < 1440min",
    "status": "PROGRAM_RELEASED",
    "action": "skipped (throttled)"
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 229min ≥ 30min",
+   "reason": "age 131min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
@@ -47,24 +47,33 @@
    "warnings": [],
    "action": "updated",
    "changes": 0
+  },
+  {
+   "slug": "hkiff-cinefan-2026",
+   "due": false,
+   "reason": "age 6min < 30min",
+   "status": "SCREENING_LIVE",
+   "action": "skipped (authorization: pending)",
+   "authorization": "pending"
   }
  ],
  "errors": [],
  "published": {
-  "festivals": 3,
+  "festivals": 4,
   "stats": {
-   "festivals": 3,
-   "liveToday": 2,
-   "screeningsToday": 152,
+   "festivals": 4,
+   "liveToday": 3,
+   "screeningsToday": 155,
    "eventsToday": 4,
    "upcoming": 1,
-   "changes7d": 10,
-   "venuesToday": 42
+   "changes7d": 11,
+   "venuesToday": 43
   },
   "detailFiles": [
    "biff-2026",
    "idfa-2026",
-   "bfi-2026"
+   "bfi-2026",
+   "hkiff-cinefan-2026"
   ]
  }
 }
