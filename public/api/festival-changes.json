@@ -1,7 +1,47 @@
 {
- "updated": "2026-10-10T03:51:45Z",
- "count7d": 11,
+ "updated": "2026-10-10T08:23:45Z",
+ "count7d": 13,
  "changes": [
+  {
+   "id": "biff-2026-CHANGED-SCREENING-biff-2026-20261011-362-2026-10-10T08:23:45Z",
+   "at": "2026-10-10T08:23:45Z",
+   "slug": "biff-2026",
+   "festivalId": "biff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "biff-2026-20261011-362",
+   "label": "Inherit — 2026-10-11 20:00 · Busan Cinema Center Roof Theater",
+   "fields": [
+    {
+     "field": "subtitle",
+     "from": null,
+     "to": "KE",
+     "fieldLabel": "字幕"
+    }
+   ],
+   "sourceUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=11",
+   "sourceLabel": "Busan International Film Festival"
+  },
+  {
+   "id": "biff-2026-CHANGED-SCREENING-biff-2026-20261012-546-2026-10-10T08:23:45Z",
+   "at": "2026-10-10T08:23:45Z",
+   "slug": "biff-2026",
+   "festivalId": "biff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "biff-2026-20261012-546",
+   "label": "Inherit — 2026-10-12 19:40 · KOFIC Theater",
+   "fields": [
+    {
+     "field": "subtitle",
+     "from": null,
+     "to": "KE",
+     "fieldLabel": "字幕"
+    }
+   ],
+   "sourceUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=12",
+   "sourceLabel": "Busan International Film Festival"
+  },
   {
    "id": "hkiff-cinefan-2026-INIT-EDITION-hkiff-cinefan-2026-2026-10-10T03:26:20Z",
    "at": "2026-10-10T03:26:20Z",
