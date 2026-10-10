@@ -1,7 +1,47 @@
 {
- "updated": "2026-10-10T14:39:51Z",
- "count7d": 13,
+ "updated": "2026-10-10T19:14:18Z",
+ "count7d": 15,
  "changes": [
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-8894e730-7010-4828-9d84-0a15667ad981-best-of-idfa-audience-fa-2026-10-10T19:14:18Z",
+   "at": "2026-10-10T19:14:18Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-8894e730-7010-4828-9d84-0a15667ad981-best-of-idfa-audience-fa",
+   "label": "Best of IDFA: Audience Favorites — 2026-11-22 09:30 · Pathé Noord 3",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-ADDED-EVENT-idfa-2026-20261122-ce385220-4116-4c8b-86e6-0a54ee437e60-best-of-idfa-audience-fa-2026-10-10T19:14:18Z",
+   "at": "2026-10-10T19:14:18Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "ADDED",
+   "entity": "EVENT",
+   "ref": "idfa-2026-20261122-ce385220-4116-4c8b-86e6-0a54ee437e60-best-of-idfa-audience-fa",
+   "label": "Best of IDFA: Audience Favorites — 2026-11-22 10:30 · Pathé Noord 4",
+   "fields": [
+    {
+     "field": "localTime",
+     "from": null,
+     "to": "10:30",
+     "fieldLabel": "放映时间"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
   {
    "id": "biff-2026-CHANGED-SCREENING-biff-2026-20261011-362-2026-10-10T08:23:45Z",
    "at": "2026-10-10T08:23:45Z",

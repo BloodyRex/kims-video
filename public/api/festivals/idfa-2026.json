@@ -26,7 +26,8 @@
   "endDate": "2026-11-22",
   "timezone": "Europe/Amsterdam",
   "dayCount": 11,
-  "officialUrl": "https://festival.idfa.nl/en/"
+  "officialUrl": "https://festival.idfa.nl/en/",
+  "coverageMinDays": null
  },
  "lifecycle": "UPCOMING",
  "status": "PROGRAM_RELEASED",
@@ -46,7 +47,7 @@
    "url": "https://my.idfa.nl/api/graphql/festival",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-09T17:09:58Z"
+   "fetchedAt": "2026-10-10T19:14:24Z"
   },
   {
    "kind": "PROGRAMME",
@@ -54,7 +55,7 @@
    "url": "https://my.idfa.nl/api/graphql/festival",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-09T17:09:58Z"
+   "fetchedAt": "2026-10-10T19:14:24Z"
   }
  ],
  "sections": [
@@ -136,6 +137,10 @@
   {
    "id": "path-noord-3",
    "name": "Pathé Noord 3"
+  },
+  {
+   "id": "path-noord-4",
+   "name": "Pathé Noord 4"
   },
   {
    "id": "path-noord-5",
@@ -2025,7 +2030,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261114-c19ab744-cb70-49fd-a20a-06fb5a85dfd4-de-volkskrantdag",
@@ -2047,7 +2052,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261117-699be57b-b1ca-4c10-bf5c-f2b610c85456-in-person-ulrich-seidl",
@@ -2069,7 +2074,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261120-dc22b747-f043-4614-8d60-3cb3e24dc923-best-of-idfa-award-winne",
@@ -2091,7 +2096,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261120-a7f0f74c-4918-4ee4-8da4-a764d1c66137-best-of-idfa-audience-fa",
@@ -2113,7 +2118,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261120-10763d06-4938-4d3d-8627-680f69ad3b68-best-of-idfa-award-winne",
@@ -2135,7 +2140,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261120-892b93dc-db76-4f25-a47a-c995d099b18f-best-of-idfa-audience-fa",
@@ -2157,7 +2162,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261120-b9f991ec-34a6-4870-8499-1fc100f6f88e-best-of-idfa-audience-fa",
@@ -2179,7 +2184,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261121-be88fdb4-2d42-496e-8900-76dc0e861204-best-of-idfa-award-winne",
@@ -2201,7 +2206,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261121-01393255-2dab-4545-bb9d-29fde85caaa0-best-of-idfa-audience-fa",
@@ -2223,7 +2228,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261121-96440aa0-4418-49b2-80b1-23369306363b-best-of-idfa-award-winne",
@@ -2245,7 +2250,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261121-6d437b43-d9eb-4df5-8ca4-f5f2f0b8b02f-best-of-idfa-award-winne",
@@ -2267,7 +2272,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261121-edb9a04b-2d98-4c2c-9390-659eae2ac4fa-de-groene-amsterdammerda",
@@ -2289,7 +2294,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261121-48b09a47-6800-48fe-9935-2ab1e55e17c1-best-of-idfa-audience-fa",
@@ -2311,7 +2316,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261121-fb36df60-9d66-4520-bad1-de48312173e8-best-of-idfa-audience-fa",
@@ -2333,7 +2338,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261121-fba9790a-09ca-40a5-8c1c-5d91278bbbf4-best-of-idfa-audience-fa",
@@ -2355,7 +2360,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261121-6bd92f17-bf6d-456d-b84a-98f49688695d-best-of-idfa-audience-fa",
@@ -2377,7 +2382,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261122-cbd4e3d6-a2ab-43f7-be8c-f48f310f27e4-best-of-idfa-award-winne",
@@ -2399,7 +2404,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261122-8894e730-7010-4828-9d84-0a15667ad981-best-of-idfa-audience-fa",
@@ -2417,11 +2422,11 @@
    "grade": null,
    "subtitle": null,
    "qa": false,
-   "ticketStatus": "HIGH_AVAILABILITY",
+   "ticketStatus": "LOW_AVAILABILITY",
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261122-2f42a827-b733-430f-b42a-eb878bbff0f8-best-of-idfa-audience-fa",
@@ -2443,7 +2448,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261122-a559720f-7225-410f-802c-b19fc1c28950-best-of-idfa-award-winne",
@@ -2465,7 +2470,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261122-7f1a6611-26e0-442d-9be2-f3b3fbbcc713-best-of-idfa-award-winne",
@@ -2487,7 +2492,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261122-e059e916-9bd8-4ec8-b8db-4f7568eeb9c7-best-of-idfa-audience-fa",
@@ -2509,7 +2514,29 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
+  },
+  {
+   "id": "idfa-2026-20261122-ce385220-4116-4c8b-86e6-0a54ee437e60-best-of-idfa-audience-fa",
+   "kind": "EVENT",
+   "filmId": null,
+   "title": "Best of IDFA: Audience Favorites",
+   "sectionId": null,
+   "sectionName": null,
+   "date": "2026-11-22",
+   "localTime": "10:30",
+   "timezone": "Europe/Amsterdam",
+   "venueId": "path-noord-4",
+   "venueName": "Pathé Noord 4",
+   "code": "ce385220-4116-4c8b-86e6-0a54ee437e60",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": "HIGH_AVAILABILITY",
+   "ticketUrl": null,
+   "eventUrl": null,
+   "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261122-a50c9537-1377-4267-b350-926cd3370d4c-best-of-idfa-audience-fa",
@@ -2531,7 +2558,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261122-3c123c70-cf43-41f3-aa85-f3c450326be2-best-of-idfa-audience-fa",
@@ -2553,7 +2580,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   },
   {
    "id": "idfa-2026-20261122-4bae3c95-8d0d-4c13-9860-dd6d5bc9eaa4-best-of-idfa-audience-fa",
@@ -2575,31 +2602,31 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-09T17:09:58Z"
+   "lastVerifiedAt": "2026-10-10T19:14:24Z"
   }
  ],
  "stats": {
   "films": 168,
   "filmsTotal": 168,
   "screenings": 0,
-  "events": 26,
+  "events": 27,
   "pending": 0,
-  "entries": 26,
-  "venues": 12,
+  "entries": 27,
+  "venues": 13,
   "sections": 9,
   "days": 6,
   "guestVisits": 0
  },
  "days": [
   {
-   "date": "2026-11-21",
+   "date": "2026-11-22",
    "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "officialItems": 9,
-   "items": 9,
+   "officialItems": 10,
+   "items": 10,
    "failed": false
   },
   {
-   "date": "2026-11-22",
+   "date": "2026-11-21",
    "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
    "officialItems": 9,
    "items": 9,
@@ -2634,7 +2661,7 @@
    "failed": false
   }
  ],
- "fetchedAt": "2026-10-09T17:09:58Z",
- "lastVerifiedAt": "2026-10-09T17:09:58Z",
+ "fetchedAt": "2026-10-10T19:14:24Z",
+ "lastVerifiedAt": "2026-10-10T19:14:24Z",
  "dataSource": "official"
 }
