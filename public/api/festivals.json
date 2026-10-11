@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-11T15:34:19Z",
- "today": "2026-10-11",
+ "updated": "2026-10-11T19:41:18Z",
+ "today": "2026-10-12",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
   "en": "Only festivals with verified official sources. Unannounced schedules are labelled, never left blank."
@@ -8,11 +8,11 @@
  "stats": {
   "festivals": 7,
   "liveToday": 3,
-  "screeningsToday": 146,
+  "screeningsToday": 143,
   "eventsToday": 0,
   "upcoming": 1,
   "changes7d": 18,
-  "venuesToday": 40
+  "venuesToday": 39
  },
  "festivals": [
   {
@@ -1384,7 +1384,7 @@
      "url": "https://www.biff.kr/eng/html/program/prog_all_list.asp?allYear=2026",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1392,7 +1392,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=6",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1400,7 +1400,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=7",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1408,7 +1408,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1416,7 +1416,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=9",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1424,7 +1424,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=10",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1432,7 +1432,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=11",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1440,7 +1440,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=12",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1448,7 +1448,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=13",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1456,7 +1456,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1464,11 +1464,11 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-11T15:34:19Z"
+     "fetchedAt": "2026-10-11T19:41:18Z"
     }
    ],
-   "fetchedAt": "2026-10-11T15:34:19Z",
-   "lastVerifiedAt": "2026-10-11T15:34:19Z",
+   "fetchedAt": "2026-10-11T19:41:18Z",
+   "lastVerifiedAt": "2026-10-11T19:41:18Z",
    "dataAgeMinutes": 0,
    "changes7d": 6,
    "dataSource": "official"
@@ -1536,7 +1536,7 @@
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-10T19:14:24Z"
+     "fetchedAt": "2026-10-11T19:41:25Z"
     },
     {
      "kind": "PROGRAMME",
@@ -1544,12 +1544,12 @@
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-10T19:14:24Z"
+     "fetchedAt": "2026-10-11T19:41:25Z"
     }
    ],
-   "fetchedAt": "2026-10-10T19:14:24Z",
-   "lastVerifiedAt": "2026-10-10T19:14:24Z",
-   "dataAgeMinutes": 1220,
+   "fetchedAt": "2026-10-11T19:41:25Z",
+   "lastVerifiedAt": "2026-10-11T19:41:25Z",
+   "dataAgeMinutes": 0,
    "changes7d": 7,
    "dataSource": "official"
   },
@@ -2542,7 +2542,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261007",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2550,7 +2550,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261008",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2558,7 +2558,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261009",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2566,7 +2566,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261010",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2574,7 +2574,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261011",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2582,7 +2582,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261012",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2590,7 +2590,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261013",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2598,7 +2598,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261014",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2606,7 +2606,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261015",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2614,7 +2614,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2622,7 +2622,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2630,7 +2630,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261018",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     },
     {
      "kind": "PROGRAMME_CHANGES",
@@ -2638,11 +2638,11 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=programme-changes-lff",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-11T15:34:24Z"
+     "fetchedAt": "2026-10-11T19:41:39Z"
     }
    ],
-   "fetchedAt": "2026-10-11T15:34:24Z",
-   "lastVerifiedAt": "2026-10-11T15:34:24Z",
+   "fetchedAt": "2026-10-11T19:41:39Z",
+   "lastVerifiedAt": "2026-10-11T19:41:39Z",
    "dataAgeMinutes": 0,
    "changes7d": 1,
    "dataSource": "official"
@@ -2698,59 +2698,13 @@
     "guestVisits": 7
    },
    "today": {
-    "date": "2026-10-11",
-    "screenings": 3,
+    "date": "2026-10-12",
+    "screenings": 0,
     "events": 0,
-    "entries": 3,
-    "venues": 1,
+    "entries": 0,
+    "venues": 0,
     "guestVisits": 0,
-    "items": [
-     {
-      "id": "hkiff-cinefan-2026-20261011-202610111300",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "The Runaway",
-      "venueName": "EMP Cinemas iSQUARE",
-      "section": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://www.urbtix.hk/event-detail/15515/",
-      "eventUrl": "https://cinefan.hkiff.org.hk/film/the-runaway-26",
-      "officialUrl": "https://cinefan.hkiff.org.hk/film/the-runaway-26"
-     },
-     {
-      "id": "hkiff-cinefan-2026-20261011-202610111530",
-      "kind": "SCREENING",
-      "time": "15:30",
-      "title": "The Cloud-Capped Star",
-      "venueName": "EMP Cinemas iSQUARE",
-      "section": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://www.urbtix.hk/event-detail/15515/",
-      "eventUrl": "https://cinefan.hkiff.org.hk/film/the-cloud-capped-star-26",
-      "officialUrl": "https://cinefan.hkiff.org.hk/film/the-cloud-capped-star-26"
-     },
-     {
-      "id": "hkiff-cinefan-2026-20261011-202610111800",
-      "kind": "SCREENING",
-      "time": "18:00",
-      "title": "The Good, the Bad and the Ugly",
-      "venueName": "EMP Cinemas iSQUARE",
-      "section": "BACK TO THE SCREEN",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "Full House",
-      "ticketUrl": null,
-      "eventUrl": "https://cinefan.hkiff.org.hk/film/the-good-the-bad-and-the-ugly-26",
-      "officialUrl": "https://cinefan.hkiff.org.hk/film/the-good-the-bad-and-the-ugly-26"
-     }
-    ]
+    "items": []
    },
    "nextScreeningDate": "2026-10-17",
    "sources": [
@@ -2949,7 +2903,7 @@
    ],
    "fetchedAt": "2026-10-10T03:45:38Z",
    "lastVerifiedAt": "2026-10-10T03:45:38Z",
-   "dataAgeMinutes": 2149,
+   "dataAgeMinutes": 2396,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -3106,7 +3060,7 @@
    ],
    "fetchedAt": "2026-10-11T03:36:10.050Z",
    "lastVerifiedAt": "2026-10-11T03:36:10.050Z",
-   "dataAgeMinutes": 718,
+   "dataAgeMinutes": 965,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -3199,7 +3153,7 @@
    ],
    "fetchedAt": "2026-10-11T04:47:16Z",
    "lastVerifiedAt": "2026-10-11T04:47:16Z",
-   "dataAgeMinutes": 647,
+   "dataAgeMinutes": 894,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -3284,7 +3238,7 @@
    ],
    "fetchedAt": "2026-10-11T04:47:16Z",
    "lastVerifiedAt": "2026-10-11T04:47:16Z",
-   "dataAgeMinutes": 647,
+   "dataAgeMinutes": 894,
    "changes7d": 1,
    "dataSource": "official"
   }

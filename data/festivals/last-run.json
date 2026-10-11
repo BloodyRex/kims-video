@@ -1,12 +1,12 @@
 {
- "at": "2026-10-11T15:34:19Z",
+ "at": "2026-10-11T19:41:18Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 414min ≥ 30min",
+   "reason": "age 247min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 255,
@@ -24,15 +24,32 @@
   },
   {
    "slug": "idfa-2026",
-   "due": false,
-   "reason": "age 1220min < 1440min",
+   "due": true,
+   "reason": "age 1467min ≥ 1440min",
    "status": "PROGRAM_RELEASED",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 168,
+    "screenings": 0,
+    "venues": 13,
+    "days": 6,
+    "sourcesOk": 2,
+    "sourcesTotal": 2,
+    "status": "PROGRAM_RELEASED",
+    "lifecycle": "UPCOMING"
+   },
+   "warnings": [
+    "schedule covers 6/11 days",
+    "ignored 5 official record(s) outside this edition: 2026-05-06×1, 2026-05-07×1, 2026-05-08×1, 2026-05-09×1, 2026-05-10×1",
+    "official day amounts (32) do not sum to totalHits (28)",
+    "official screening times not published yet: 0 SCREENING, 27 official programme entry/entries (status SCHEDULE_PENDING — partial data, NOT a complete schedule)"
+   ],
+   "action": "updated",
+   "changes": 0
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 414min ≥ 30min",
+   "reason": "age 247min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
@@ -51,7 +68,7 @@
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 2149min ≥ 30min",
+   "reason": "age 2396min ≥ 30min",
    "status": "SCREENING_LIVE",
    "action": "skipped (authorization: pending)",
    "authorization": "pending"
@@ -59,7 +76,7 @@
   {
    "slug": "venice-2026",
    "due": true,
-   "reason": "age 718min ≥ 360min",
+   "reason": "age 965min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (authorization: pending)",
    "authorization": "pending"
@@ -67,7 +84,7 @@
   {
    "slug": "cannes-2026",
    "due": true,
-   "reason": "age 647min ≥ 180min",
+   "reason": "age 894min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "action": "skipped (authorization: pending)",
    "authorization": "pending"
@@ -75,7 +92,7 @@
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 647min ≥ 180min",
+   "reason": "age 894min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "action": "skipped (authorization: pending)",
    "authorization": "pending"
@@ -87,11 +104,11 @@
   "stats": {
    "festivals": 7,
    "liveToday": 3,
-   "screeningsToday": 146,
+   "screeningsToday": 143,
    "eventsToday": 0,
    "upcoming": 1,
    "changes7d": 18,
-   "venuesToday": 40
+   "venuesToday": 39
   },
   "detailFiles": [
    "biff-2026",
