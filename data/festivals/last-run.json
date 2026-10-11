@@ -1,28 +1,84 @@
 {
- "at": "2026-10-11T04:47:16Z",
+ "at": "2026-10-11T04:48:04Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
-   "slug": "cannes-2026",
+   "slug": "biff-2026",
    "due": true,
-   "reason": "never fetched",
-   "status": null,
+   "reason": "age 70min ≥ 30min",
+   "status": "SCREENING_LIVE",
    "parsed": {
-    "films": 150,
-    "screenings": 0,
-    "venues": 0,
-    "days": 0,
-    "sourcesOk": 3,
-    "sourcesTotal": 3,
-    "status": "PROGRAM_RELEASED",
-    "lifecycle": "ENDED"
+    "films": 255,
+    "screenings": 724,
+    "venues": 26,
+    "days": 10,
+    "sourcesOk": 11,
+    "sourcesTotal": 11,
+    "status": "SCREENING_LIVE",
+    "lifecycle": "LIVE"
    },
-   "warnings": [
-    "schedule covers 0/12 days"
-   ],
+   "warnings": [],
    "action": "updated",
-   "changes": 1
+   "changes": 0
+  },
+  {
+   "slug": "idfa-2026",
+   "due": false,
+   "reason": "age 574min < 1440min",
+   "status": "PROGRAM_RELEASED",
+   "action": "skipped (throttled)"
+  },
+  {
+   "slug": "bfi-2026",
+   "due": true,
+   "reason": "age 70min ≥ 30min",
+   "status": "SCREENING_LIVE",
+   "parsed": {
+    "films": 242,
+    "screenings": 480,
+    "venues": 20,
+    "days": 12,
+    "sourcesOk": 13,
+    "sourcesTotal": 13,
+    "status": "SCREENING_LIVE",
+    "lifecycle": "LIVE"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 0
+  },
+  {
+   "slug": "hkiff-cinefan-2026",
+   "due": true,
+   "reason": "age 1502min ≥ 30min",
+   "status": "SCREENING_LIVE",
+   "action": "skipped (authorization: pending)",
+   "authorization": "pending"
+  },
+  {
+   "slug": "venice-2026",
+   "due": false,
+   "reason": "age 72min < 360min",
+   "status": "SCHEDULE_LIVE",
+   "action": "skipped (authorization: pending)",
+   "authorization": "pending"
+  },
+  {
+   "slug": "cannes-2026",
+   "due": false,
+   "reason": "age 1min < 180min",
+   "status": "PROGRAM_RELEASED",
+   "action": "skipped (authorization: pending)",
+   "authorization": "pending"
+  },
+  {
+   "slug": "iffr-2026",
+   "due": false,
+   "reason": "age 1min < 180min",
+   "status": "PROGRAM_RELEASED",
+   "action": "skipped (authorization: pending)",
+   "authorization": "pending"
   }
  ],
  "errors": [],
