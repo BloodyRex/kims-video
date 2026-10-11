@@ -274,6 +274,14 @@ export function validate(store, previous) {
     if (s.kind !== "SCREENING" && !s.title) errors.push(`entry ${s.id} (${s.kind}) has no title`);
     if (!venueIds.has(s.venueId)) errors.push(`entry ${s.id} references unknown venue ${s.venueId}`);
     if (!s.officialSourceUrl) errors.push(`entry ${s.id} has no official source url`);
+    // 票价不变量（发布前硬性拦截）：minPrice 键「存在即必须是官方 £ 原文」，绝不落 null/空值。
+    // 未接入票价的届次（BIFF/IDFA 等）在 normalize 中条件落键，本不应出现该键；
+    // 一旦出现 null/非法值即为 schema 污染回归（历史事故：CI 日更曾给 BIFF 写入 minPrice:null），
+    // 此处判为 error → run.mjs 拒绝覆盖并保留旧数据，从而在「发布前」拦截，而非污染上线后才发现。
+    if ("minPrice" in s && !(typeof s.minPrice === "string" && /^£\d/.test(s.minPrice)))
+      errors.push(
+        `entry ${s.id} minPrice 键存在时必须为官方 £ 原文（不得落 null）: ${JSON.stringify(s.minPrice)}`
+      );
     if (ids.has(s.id)) errors.push(`duplicate entry id ${s.id}`);
     ids.add(s.id);
   }
