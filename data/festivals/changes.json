@@ -1,6 +1,58 @@
 {
  "changes": [
   {
+   "id": "cannes-2026-INIT-EDITION-cannes-2026-2026-10-11T04:47:16Z",
+   "at": "2026-10-11T04:47:16Z",
+   "slug": "cannes-2026",
+   "festivalId": "cannes",
+   "kind": "INIT",
+   "entity": "EDITION",
+   "ref": "cannes-2026",
+   "label": "Festival de Cannes 2026",
+   "fields": [
+    {
+     "field": "entries",
+     "from": null,
+     "to": "0",
+     "fieldLabel": "entries"
+    },
+    {
+     "field": "films",
+     "from": null,
+     "to": "150",
+     "fieldLabel": "films"
+    }
+   ],
+   "sourceUrl": "https://www.festival-cannes.com/en/the-selection/",
+   "sourceLabel": "Festival de Cannes"
+  },
+  {
+   "id": "iffr-2026-INIT-EDITION-iffr-2026-2026-10-11T04:47:16Z",
+   "at": "2026-10-11T04:47:16Z",
+   "slug": "iffr-2026",
+   "festivalId": "iffr",
+   "kind": "INIT",
+   "entity": "EDITION",
+   "ref": "iffr-2026",
+   "label": "International Film Festival Rotterdam 2026",
+   "fields": [
+    {
+     "field": "entries",
+     "from": null,
+     "to": "0",
+     "fieldLabel": "entries"
+    },
+    {
+     "field": "films",
+     "from": null,
+     "to": "496",
+     "fieldLabel": "films"
+    }
+   ],
+   "sourceUrl": "https://iffr.com/en/iffr/2026/films",
+   "sourceLabel": "International Film Festival Rotterdam"
+  },
+  {
    "id": "venice-2026-INIT-EDITION-venice-2026-2026-10-11T03:35:57Z",
    "at": "2026-10-11T03:35:57Z",
    "slug": "venice-2026",
@@ -357,5 +409,5 @@
    "sourceLabel": "Busan International Film Festival"
   }
  ],
- "updated": "2026-10-11T03:35:57Z"
+ "updated": "2026-10-11T04:47:16Z"
 }

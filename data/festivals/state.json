@@ -99,7 +99,47 @@
    "lastError": null,
    "changesLastRun": 0,
    "collapsed": 0
+  },
+  "iffr-2026": {
+   "lastFetchedAt": "2026-10-11T04:47:16Z",
+   "lastVerifiedAt": "2026-10-11T04:47:16Z",
+   "lastChangedAt": "2026-10-11T04:47:16Z",
+   "lastStatus": "PROGRAM_RELEASED",
+   "statusDetail": {
+    "dates": "CONFIRMED",
+    "programme": "RELEASED",
+    "schedule": "PENDING"
+   },
+   "lifecycle": "ENDED",
+   "counts": {
+    "films": 496,
+    "screenings": 0
+   },
+   "failCount": 0,
+   "lastError": null,
+   "changesLastRun": 1,
+   "collapsed": 0
+  },
+  "cannes-2026": {
+   "lastFetchedAt": "2026-10-11T04:47:16Z",
+   "lastVerifiedAt": "2026-10-11T04:47:16Z",
+   "lastChangedAt": "2026-10-11T04:47:16Z",
+   "lastStatus": "PROGRAM_RELEASED",
+   "statusDetail": {
+    "dates": "CONFIRMED",
+    "programme": "RELEASED",
+    "schedule": "PENDING"
+   },
+   "lifecycle": "ENDED",
+   "counts": {
+    "films": 150,
+    "screenings": 0
+   },
+   "failCount": 0,
+   "lastError": null,
+   "changesLastRun": 1,
+   "collapsed": 0
   }
  },
- "updated": "2026-10-11T03:37:46Z"
+ "updated": "2026-10-11T04:47:16Z"
 }

@@ -34,6 +34,10 @@ export function normalize({ festival, edition, raw }) {
       sectionId: f.cIdx ? `c${f.cIdx}` : null,
       sectionName: f.sectionName || null,
       officialUrl: f.officialUrl || null,
+      // 影片元数据扩展（简介 / 片长）——仅当适配器显式提供时落键，
+      // 保证未提供这些字段的届次（BIFF/IDFA/BFI/HKIFF/Venice）产物逐字节不变。
+      ...(f.synopsis ? { synopsis: f.synopsis } : {}),
+      ...(f.runtime != null ? { runtime: f.runtime } : {}),
       inProgramme: true,
     };
     films.push(rec);
@@ -189,7 +193,8 @@ export function normalize({ festival, edition, raw }) {
       timezone: tz,
       dayCount: daysBetween(edition.startDate, edition.endDate) + 1,
       officialUrl: edition.officialUrl || festival.officialUrl,
-      coverageMinDays: edition.coverageMinDays || null,
+      // 用 ?? 而非 ||：programme-only 届次需显式设置 coverageMinDays: 0（0 不能被吞成 null）
+      coverageMinDays: edition.coverageMinDays ?? null,
     },
     lifecycle,
     status,

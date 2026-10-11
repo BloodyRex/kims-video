@@ -259,6 +259,108 @@
                   }
                 }
               ]
+            },
+            {
+              "id": "cannes",
+              "slug": "cannes-2026",
+              "name": { "zh": "戛纳电影节", "en": "Festival de Cannes" },
+              "city": "Cannes",
+              "country": "France",
+              "countryCode": "FR",
+              "region": "EUROPE",
+              "types": ["FEATURE", "DOCUMENTARY", "ANIMATION", "SHORT"],
+              "officialUrl": "https://www.festival-cannes.com/en/",
+              "adapter": "cannes",
+              "authorization": "pending",
+              "authorizationNote": {
+                "zh": "授权待定：Cannes 法律声明明文禁止提取、复用、存储、复制其数据库全部或部分内容，以及任何未经授权的再发布。数据由离线快照生成（仅影片元数据与简介，不含图片/票价），raw HTML 不入库；正式上线前需取得 Festival de Cannes 书面授权。",
+                "en": "Authorization pending: the Cannes legal notice explicitly forbids extracting, reusing, stocking or reproducing all or part of its database contents, and any unauthorised reproduction or distribution. Data generated from offline snapshots (film metadata + synopsis only; no images/prices), raw HTML not committed; written authorization from the Festival de Cannes required before going live."
+              },
+              "editions": [
+                {
+                  "id": "cannes-2026",
+                  "year": 2026,
+                  "startDate": "2026-05-12",
+                  "endDate": "2026-05-23",
+                  "timezone": "Europe/Paris",
+                  "officialUrl": "https://www.festival-cannes.com/en/the-selection/",
+                  "coverageMinDays": 0,
+                  "sources": [
+                    {
+                      "kind": "PROGRAMME",
+                      "label": "Official selection — all films & sections (2026)",
+                      "url": "https://www.festival-cannes.com/en/the-selection/"
+                    },
+                    {
+                      "kind": "INFORMATION",
+                      "label": "Official dates — 79th Festival de Cannes, May 12–23 2026",
+                      "url": "https://www.festival-cannes.com/en/press/press-releases/the-79th-festival-de-cannes-will-take-place-from-may-12-to-23-2026/"
+                    },
+                    {
+                      "kind": "OFFICIAL_SITE",
+                      "label": "Festival de Cannes home",
+                      "url": "https://www.festival-cannes.com/en/"
+                    }
+                  ],
+                  "fetch": {
+                    "farHours": 24,
+                    "nearDays": 30,
+                    "nearHours": 6,
+                    "liveMinutes": 30
+                  }
+                }
+              ]
+            },
+            {
+              "id": "iffr",
+              "slug": "iffr-2026",
+              "name": { "zh": "鹿特丹国际电影节", "en": "International Film Festival Rotterdam" },
+              "city": "Rotterdam",
+              "country": "Netherlands",
+              "countryCode": "NL",
+              "region": "EUROPE",
+              "types": ["FEATURE", "DOCUMENTARY", "ANIMATION", "SHORT"],
+              "officialUrl": "https://iffr.com/en",
+              "adapter": "iffr",
+              "authorization": "pending",
+              "authorizationNote": {
+                "zh": "授权待定：iffr.com/en/disclaimer 明文禁止未经 IFFR 事先书面许可复制内容或将其公开。数据由离线快照生成（仅影片元数据与简介，不含图片/票价），raw JSON 不入库；正式上线前需取得 IFFR 书面授权。",
+                "en": "Authorization pending: iffr.com/en/disclaimer explicitly states it is not permitted to reproduce the Content or make it public without prior written permission from IFFR. Data generated from offline snapshots (film metadata + synopsis only; no images/prices), raw JSON not committed; written authorization from IFFR required before going live."
+              },
+              "editions": [
+                {
+                  "id": "iffr-2026",
+                  "year": 2026,
+                  "startDate": "2026-01-29",
+                  "endDate": "2026-02-08",
+                  "timezone": "Europe/Amsterdam",
+                  "officialUrl": "https://iffr.com/en/iffr/2026/films",
+                  "coverageMinDays": 0,
+                  "sources": [
+                    {
+                      "kind": "PROGRAMME",
+                      "label": "Official IFFR film catalogue (static JSON feed, 2026)",
+                      "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json"
+                    },
+                    {
+                      "kind": "INFORMATION",
+                      "label": "Official dates — IFFR 2026 (55th), Jan 29 – Feb 8 2026",
+                      "url": "https://iffr.com/en/key-dates"
+                    },
+                    {
+                      "kind": "OFFICIAL_SITE",
+                      "label": "IFFR official site",
+                      "url": "https://iffr.com/en"
+                    }
+                  ],
+                  "fetch": {
+                    "farHours": 24,
+                    "nearDays": 30,
+                    "nearHours": 6,
+                    "liveMinutes": 30
+                  }
+                }
+              ]
             }
           ]
         }

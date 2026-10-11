@@ -1,17 +1,17 @@
 {
- "updated": "2026-10-11T03:37:46Z",
+ "updated": "2026-10-11T04:47:16Z",
  "today": "2026-10-11",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
   "en": "Only festivals with verified official sources. Unannounced schedules are labelled, never left blank."
  },
  "stats": {
-  "festivals": 5,
+  "festivals": 7,
   "liveToday": 3,
   "screeningsToday": 163,
   "eventsToday": 1,
   "upcoming": 1,
-  "changes7d": 16,
+  "changes7d": 18,
   "venuesToday": 41
  },
  "festivals": [
@@ -1739,7 +1739,7 @@
    ],
    "fetchedAt": "2026-10-11T03:37:46Z",
    "lastVerifiedAt": "2026-10-11T03:37:46Z",
-   "dataAgeMinutes": 0,
+   "dataAgeMinutes": 70,
    "changes7d": 6,
    "dataSource": "official"
   },
@@ -1819,7 +1819,7 @@
    ],
    "fetchedAt": "2026-10-10T19:14:24Z",
    "lastVerifiedAt": "2026-10-10T19:14:24Z",
-   "dataAgeMinutes": 503,
+   "dataAgeMinutes": 573,
    "changes7d": 7,
    "dataSource": "official"
   },
@@ -2913,7 +2913,7 @@
    ],
    "fetchedAt": "2026-10-11T03:37:51Z",
    "lastVerifiedAt": "2026-10-11T03:37:51Z",
-   "dataAgeMinutes": 0,
+   "dataAgeMinutes": 69,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -3219,7 +3219,7 @@
    ],
    "fetchedAt": "2026-10-10T03:45:38Z",
    "lastVerifiedAt": "2026-10-10T03:45:38Z",
-   "dataAgeMinutes": 1432,
+   "dataAgeMinutes": 1502,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -3376,7 +3376,185 @@
    ],
    "fetchedAt": "2026-10-11T03:36:10.050Z",
    "lastVerifiedAt": "2026-10-11T03:36:10.050Z",
-   "dataAgeMinutes": 2,
+   "dataAgeMinutes": 71,
+   "changes7d": 1,
+   "dataSource": "official"
+  },
+  {
+   "slug": "cannes-2026",
+   "festivalId": "cannes",
+   "name": {
+    "zh": "戛纳电影节",
+    "en": "Festival de Cannes"
+   },
+   "city": "Cannes",
+   "country": "France",
+   "countryCode": "FR",
+   "region": "EUROPE",
+   "types": [
+    "FEATURE",
+    "DOCUMENTARY",
+    "ANIMATION",
+    "SHORT"
+   ],
+   "authorization": "pending",
+   "authorizationNote": {
+    "zh": "授权待定：Cannes 法律声明明文禁止提取、复用、存储、复制其数据库全部或部分内容，以及任何未经授权的再发布。数据由离线快照生成（仅影片元数据与简介，不含图片/票价），raw HTML 不入库；正式上线前需取得 Festival de Cannes 书面授权。",
+    "en": "Authorization pending: the Cannes legal notice explicitly forbids extracting, reusing, stocking or reproducing all or part of its database contents, and any unauthorised reproduction or distribution. Data generated from offline snapshots (film metadata + synopsis only; no images/prices), raw HTML not committed; written authorization from the Festival de Cannes required before going live."
+   },
+   "year": 2026,
+   "startDate": "2026-05-12",
+   "endDate": "2026-05-23",
+   "dayCount": 12,
+   "timezone": "Europe/Paris",
+   "officialUrl": "https://www.festival-cannes.com/en/",
+   "lifecycle": "ENDED",
+   "status": "PROGRAM_RELEASED",
+   "statusDetail": {
+    "dates": "CONFIRMED",
+    "programme": "RELEASED",
+    "schedule": "PENDING"
+   },
+   "statusNote": {
+    "zh": "官方已公布节目，具体排片尚未公布",
+    "en": "Programme announced, screening schedule pending"
+   },
+   "stats": {
+    "films": 150,
+    "filmsTotal": 150,
+    "screenings": 0,
+    "events": 0,
+    "pending": 0,
+    "entries": 0,
+    "venues": 0,
+    "sections": 9,
+    "days": 0,
+    "guestVisits": 0
+   },
+   "today": {
+    "date": "2026-10-11",
+    "screenings": 0,
+    "events": 0,
+    "entries": 0,
+    "venues": 0,
+    "guestVisits": 0,
+    "items": []
+   },
+   "nextScreeningDate": null,
+   "sources": [
+    {
+     "kind": "PROGRAMME",
+     "label": "Official selection (all films & sections)",
+     "url": "https://www.festival-cannes.com/en/the-selection/",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T04:47:16Z"
+    },
+    {
+     "kind": "PROGRAMME",
+     "label": "Official film detail pages (150/150)",
+     "url": "https://www.festival-cannes.com/en/f/",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T04:47:16Z"
+    },
+    {
+     "kind": "OFFICIAL_SITE",
+     "label": "Festival de Cannes official site",
+     "url": "https://www.festival-cannes.com/en/",
+     "ok": true,
+     "httpStatus": null,
+     "fetchedAt": "2026-10-11T04:47:16Z"
+    }
+   ],
+   "fetchedAt": "2026-10-11T04:47:16Z",
+   "lastVerifiedAt": "2026-10-11T04:47:16Z",
+   "dataAgeMinutes": 0,
+   "changes7d": 1,
+   "dataSource": "official"
+  },
+  {
+   "slug": "iffr-2026",
+   "festivalId": "iffr",
+   "name": {
+    "zh": "鹿特丹国际电影节",
+    "en": "International Film Festival Rotterdam"
+   },
+   "city": "Rotterdam",
+   "country": "Netherlands",
+   "countryCode": "NL",
+   "region": "EUROPE",
+   "types": [
+    "FEATURE",
+    "DOCUMENTARY",
+    "ANIMATION",
+    "SHORT"
+   ],
+   "authorization": "pending",
+   "authorizationNote": {
+    "zh": "授权待定：iffr.com/en/disclaimer 明文禁止未经 IFFR 事先书面许可复制内容或将其公开。数据由离线快照生成（仅影片元数据与简介，不含图片/票价），raw JSON 不入库；正式上线前需取得 IFFR 书面授权。",
+    "en": "Authorization pending: iffr.com/en/disclaimer explicitly states it is not permitted to reproduce the Content or make it public without prior written permission from IFFR. Data generated from offline snapshots (film metadata + synopsis only; no images/prices), raw JSON not committed; written authorization from IFFR required before going live."
+   },
+   "year": 2026,
+   "startDate": "2026-01-29",
+   "endDate": "2026-02-08",
+   "dayCount": 11,
+   "timezone": "Europe/Amsterdam",
+   "officialUrl": "https://iffr.com/en",
+   "lifecycle": "ENDED",
+   "status": "PROGRAM_RELEASED",
+   "statusDetail": {
+    "dates": "CONFIRMED",
+    "programme": "RELEASED",
+    "schedule": "PENDING"
+   },
+   "statusNote": {
+    "zh": "官方已公布节目，具体排片尚未公布",
+    "en": "Programme announced, screening schedule pending"
+   },
+   "stats": {
+    "films": 496,
+    "filmsTotal": 496,
+    "screenings": 0,
+    "events": 0,
+    "pending": 0,
+    "entries": 0,
+    "venues": 0,
+    "sections": 21,
+    "days": 0,
+    "guestVisits": 0
+   },
+   "today": {
+    "date": "2026-10-11",
+    "screenings": 0,
+    "events": 0,
+    "entries": 0,
+    "venues": 0,
+    "guestVisits": 0,
+    "items": []
+   },
+   "nextScreeningDate": null,
+   "sources": [
+    {
+     "kind": "PROGRAMME",
+     "label": "Official IFFR film catalogue (static JSON feed)",
+     "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T04:47:16Z"
+    },
+    {
+     "kind": "OFFICIAL_SITE",
+     "label": "IFFR official site",
+     "url": "https://iffr.com/en/iffr/2026",
+     "ok": true,
+     "httpStatus": null,
+     "fetchedAt": "2026-10-11T04:47:16Z"
+    }
+   ],
+   "fetchedAt": "2026-10-11T04:47:16Z",
+   "lastVerifiedAt": "2026-10-11T04:47:16Z",
+   "dataAgeMinutes": 0,
    "changes7d": 1,
    "dataSource": "official"
   }
@@ -3906,6 +4084,167 @@
    "events": 0,
    "festivals": [
     "venice-2026"
+   ]
+  },
+  "2026-05-12": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-13": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-14": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-15": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-16": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-17": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-18": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-19": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-20": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-21": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-22": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-23": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-01-29": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
+   ]
+  },
+  "2026-01-30": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
+   ]
+  },
+  "2026-01-31": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
+   ]
+  },
+  "2026-02-01": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
+   ]
+  },
+  "2026-02-02": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
+   ]
+  },
+  "2026-02-03": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
+   ]
+  },
+  "2026-02-04": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
+   ]
+  },
+  "2026-02-05": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
+   ]
+  },
+  "2026-02-06": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
+   ]
+  },
+  "2026-02-07": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
+   ]
+  },
+  "2026-02-08": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "iffr-2026"
    ]
   }
  }

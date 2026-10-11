@@ -1,80 +1,40 @@
 {
- "at": "2026-10-11T03:37:46Z",
+ "at": "2026-10-11T04:47:16Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
-   "slug": "biff-2026",
+   "slug": "cannes-2026",
    "due": true,
-   "reason": "age 110min ≥ 30min",
-   "status": "SCREENING_LIVE",
+   "reason": "never fetched",
+   "status": null,
    "parsed": {
-    "films": 255,
-    "screenings": 724,
-    "venues": 26,
-    "days": 10,
-    "sourcesOk": 11,
-    "sourcesTotal": 11,
-    "status": "SCREENING_LIVE",
-    "lifecycle": "LIVE"
+    "films": 150,
+    "screenings": 0,
+    "venues": 0,
+    "days": 0,
+    "sourcesOk": 3,
+    "sourcesTotal": 3,
+    "status": "PROGRAM_RELEASED",
+    "lifecycle": "ENDED"
    },
-   "warnings": [],
+   "warnings": [
+    "schedule covers 0/12 days"
+   ],
    "action": "updated",
-   "changes": 0
-  },
-  {
-   "slug": "idfa-2026",
-   "due": false,
-   "reason": "age 503min < 1440min",
-   "status": "PROGRAM_RELEASED",
-   "action": "skipped (throttled)"
-  },
-  {
-   "slug": "bfi-2026",
-   "due": true,
-   "reason": "age 110min ≥ 30min",
-   "status": "SCREENING_LIVE",
-   "parsed": {
-    "films": 242,
-    "screenings": 480,
-    "venues": 20,
-    "days": 12,
-    "sourcesOk": 13,
-    "sourcesTotal": 13,
-    "status": "SCREENING_LIVE",
-    "lifecycle": "LIVE"
-   },
-   "warnings": [],
-   "action": "updated",
-   "changes": 0
-  },
-  {
-   "slug": "hkiff-cinefan-2026",
-   "due": true,
-   "reason": "age 1432min ≥ 30min",
-   "status": "SCREENING_LIVE",
-   "action": "skipped (authorization: pending)",
-   "authorization": "pending"
-  },
-  {
-   "slug": "venice-2026",
-   "due": false,
-   "reason": "age 2min < 360min",
-   "status": "SCHEDULE_LIVE",
-   "action": "skipped (authorization: pending)",
-   "authorization": "pending"
+   "changes": 1
   }
  ],
  "errors": [],
  "published": {
-  "festivals": 5,
+  "festivals": 7,
   "stats": {
-   "festivals": 5,
+   "festivals": 7,
    "liveToday": 3,
    "screeningsToday": 163,
    "eventsToday": 1,
    "upcoming": 1,
-   "changes7d": 16,
+   "changes7d": 18,
    "venuesToday": 41
   },
   "detailFiles": [
@@ -82,7 +42,9 @@
    "idfa-2026",
    "bfi-2026",
    "hkiff-cinefan-2026",
-   "venice-2026"
+   "venice-2026",
+   "cannes-2026",
+   "iffr-2026"
   ]
  }
 }
