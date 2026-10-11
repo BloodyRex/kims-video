@@ -1,83 +1,83 @@
 {
-  "updated": "2026-10-11",
+  "updated": "2026-10-12",
   "degraded": [],
   "stats": {
-    "moviesReleased": 6,
+    "moviesReleased": 8,
     "tvAiringThisWeek": 20,
     "albumsReleased": 25,
     "trending": 20
   },
   "editorsPicks": [
     {
-      "tmdbId": 1476746,
-      "title": "花匠刺客",
-      "titleEn": "The Florist",
+      "tmdbId": 1401459,
+      "title": "峡湾",
+      "titleEn": "Fjord",
+      "originalLanguage": "ro",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-10-09",
+      "poster": "https://image.tmdb.org/t/p/w500/whXX6V7UdBcIrTsgdDTOEhqqwfU.jpg",
+      "rating": 7.2,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "故事聚焦于格奥尔基一家，讲述这家人从罗马尼亚搬迁至挪威一座偏远小村庄后，本与邻居相处融洽，却意外陷入一桩令人不安的指控。随着调查深入，他们不仅要面对小镇居民的监视与敌意，生活也从此失序，坠入混乱的泥沼。\r 投诉",
+      "summaryEn": "Following the deaths of Mihai's parents, Mihai and Lisbeth Gheorghiu leave their life behind in Romania and move with their children to a remote village in Norway, hoping to rebuild their lives near L",
+      "pickCategory": "editors"
+    },
+    {
+      "tmdbId": 1281331,
+      "title": "社交清算",
+      "titleEn": "The Social Reckoning",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
       "releaseDate": "2026-10-09",
-      "poster": "https://image.tmdb.org/t/p/w500/vv2WOsUIL4tAdf8BW2of8Kgq08E.jpg",
-      "rating": 5.8,
+      "poster": "https://image.tmdb.org/t/p/w500/on14cDF7G7lHYiLzxH4yHMKGPsO.jpg",
+      "rating": 7.402,
       "genre": [
-        "Action",
+        "Drama",
+        "History",
         "Thriller"
       ],
-      "summary": "温和低调的花匠，实则是顶尖刺客，一心逃离血腥过往。他偶然结识揭发警界腐败的关键证人，对方遭黑警追杀，他的真实身份也随之曝光。为保护证人，他不得不重拾武器，对抗庞大的黑警集团，浴血奋战。",
-      "summaryEn": "A quiet horticulturalist harboring a secret life as a lethal assassin finds his true identity jeopardized when he forms an unlikely friendship with a witnesses to police corruption.",
+      "summary": "《社交网络》的延续作品，受真实事件启发。年轻的Facebook工程师弗朗西斯·豪根在《华尔街日报》记者杰夫·霍维茨的协助下，踏上一段危险的旅程，揭露这个社交网络最隐秘的内幕。",
+      "summaryEn": "Frances Haugen, a young Facebook engineer, enlists the help of Jeff Horwitz, a Wall Street Journal reporter, to go on a dangerous journey that ends up blowing the whistle on the social network's most ",
       "pickCategory": "editors"
     },
     {
-      "tmdbId": 1709391,
-      "title": "哈奴曼化身",
-      "titleEn": "Hanuman Ansh",
-      "originalLanguage": "hi",
+      "tmdbId": 615,
+      "title": "耶稣受难记",
+      "titleEn": "The Passion of the Christ",
+      "originalLanguage": "en",
       "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-10-06",
-      "poster": "https://image.tmdb.org/t/p/w500/as2Y3zGUa2IUS3uAx2sh6Ano3es.jpg",
-      "rating": 8.077,
+      "year": "2004",
+      "releaseDate": "2004-03-19",
+      "poster": "https://image.tmdb.org/t/p/w500/eBZwlmmkwdUu7gf7gZiCxwo1UU8.jpg",
+      "rating": 7.541,
       "genre": [
-        "Family",
         "Drama"
       ],
-      "summary": "一个悲伤的男孩寻求上帝，希望能与他逝去的母亲重逢。在追寻神性的过程中，他学会用爱、食物和无声的祝福的奇迹来服务人类，最终成为哈奴曼化身——尼姆·卡罗利·巴巴。",
-      "summaryEn": "A grieving boy seeks God to meet his departed mother, and in finding the divine, learns to serve humanity with miracles of love, food and silent blessings, becoming Hanuman Ansh, Neem Karoli Baba.",
-      "pickCategory": "editors"
-    },
-    {
-      "tmdbId": 9323,
-      "title": "攻壳机动队",
-      "titleEn": "Ghost in the Shell",
-      "originalLanguage": "ja",
-      "originCountry": [],
-      "year": "1996",
-      "releaseDate": "2025-05-17",
-      "poster": "https://image.tmdb.org/t/p/w500/lmvZpjzulqjQGgR6zcHHR74S6ZH.jpg",
-      "rating": 7.9,
-      "genre": [
-        "Action",
-        "Animation",
-        "Sci-Fi"
-      ],
-      "summary": "公元2029年，未来世界是高科技与信息化的世界。人类生活水平的提高伴随着犯罪活动的高科技化，于是，专门镇压高科技犯罪的特殊部队——公安9课成立了。队长草薙素子，作为一位全身“义体化”的女警，带领公安9课不断展开行动。这次，公安9课帮助公安6课秘密解决了一位程序员外逃他国的麻烦琐事，又卷入传说中的黑客“傀儡师”的犯罪事件。当行动陷入僵局之际，傀儡师竟然不请自来，出现在公安9课！素子与她的战友们，不知",
-      "summaryEn": "In the year 2029, the barriers of our world have been broken down by the net and by cybernetics, but this brings new vulnerability to humans in the form of brain-hacking. When a highly-wanted hacker k",
+      "summary": "　　耶稣(詹姆斯·卡维泽 James Caviezel饰)拒绝了魔鬼的诱惑，受到了犹大的出卖。他被罗马人带到了罗马政权主持者比拉多那里。比拉多本来不想处死耶稣——他明知这样会引起一场政治风波。于是，他让希律王建议如何决断这件事。 　　希律王把耶稣的命运交到了人们手上。但是，愚蠢的民众宁愿放过罪犯，也不能容忍耶稣逃过刑罚。受尽苦难的耶稣还远远不能满足人们的愿望。他们要把耶稣推上绞刑架。 　　比拉多顺",
+      "summaryEn": "A graphic portrayal of the last twelve hours of Jesus of Nazareth's life.",
       "pickCategory": "gem"
     },
     {
-      "tmdbId": 29154,
-      "title": "为人师表",
-      "titleEn": "Stand and Deliver",
-      "originalLanguage": "en",
+      "tmdbId": 1671548,
+      "title": "给阿嬷的情书",
+      "titleEn": "Dear You",
+      "originalLanguage": "zh",
       "originCountry": [],
-      "year": "1988",
-      "releaseDate": "1988-03-11",
-      "poster": "https://image.tmdb.org/t/p/w500/6PM8We41I68GkzpsN771EK3quqJ.jpg",
-      "rating": 7.793,
+      "year": "2026",
+      "releaseDate": "2026-04-30",
+      "poster": "https://image.tmdb.org/t/p/w500/s0sC3hPPX4OobLNfdl2iSs2vtvI.jpg",
+      "rating": 8.7,
       "genre": [
-        "Drama"
+        "Drama",
+        "Family",
+        "Comedy"
       ],
-      "summary": "故事背景是以南美移民子女为主的洛杉矶加菲莆高中。原来任职电脑公司的伊斯克兰特为施展抱负到该校任教，因该校经费拮据没有电脑，只好改教数学。他用强悍的教学方式台阶驯服了以菲利浦为首的顽劣学生，并帮他们以高分通过了越级考试，不料竟被人怀疑为集体作弊。学生们为了澄清误会决定重考，师生之间合作无间，终创下合格人数之最高纪录，也为该校争取到购卖电脑的经费",
-      "summaryEn": "Jaime Escalante is a mathematics teacher in a school in a hispanic neighbourhood. Convinced that his students have potential, he adopts unconventional teaching methods to try and turn gang members and",
+      "summary": "潮汕阿嬷叶淑柔一直守着平淡的日子，安享晚年。孙子晓伟因债务缠身，瞒着家人远赴泰国，寻找传闻中已成亿万富豪的阿公郑木生。然而，一个令人意外的消息打破了整个家庭的平静：多年来一直通过跨国信件与阿嬷“谈情说爱”诉说思念的人，竟然并非阿嬷的丈夫郑木生。随着晓伟的调查，一个感人的真相被缓缓揭开。",
+      "summaryEn": "Xiaowei travels to Thailand to find his \"billionaire grandfather\" who is out of contact due to debt problems, but unexpectedly find the one who has been corresponding with his grandmother for years is",
       "pickCategory": "gem"
     },
     {
@@ -88,8 +88,8 @@
       "originCountry": [],
       "year": "2026",
       "releaseDate": "2026-10-05",
-      "poster": "https://image.tmdb.org/t/p/w500/uA41lHbWzKTo7FJlCEITuICozc0.jpg",
-      "rating": 7.59,
+      "poster": "https://image.tmdb.org/t/p/w500/qpLaKSlC9OE3Fk1e48jFIekgr5t.jpg",
+      "rating": 7.761,
       "genre": [
         "Action",
         "Comedy",
@@ -108,7 +108,7 @@
       "year": "2026",
       "releaseDate": "2026-10-02",
       "poster": "https://image.tmdb.org/t/p/w500/c8UJ50GM0jiVIk6YO9hEiqEe0dP.jpg",
-      "rating": 7.495,
+      "rating": 7.535,
       "genre": [
         "Comedy",
         "Drama"
@@ -131,7 +131,7 @@
       "year": "2026",
       "releaseDate": "2026-10-07",
       "poster": "https://image.tmdb.org/t/p/w500/xobpaz7TiODcuGhT9dvENFhhVGw.jpg",
-      "rating": 8.339,
+      "rating": 8.3,
       "genre": [
         "Mystery",
         "Drama"
@@ -141,63 +141,40 @@
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 285322,
-      "title": "暗潮之下",
-      "titleEn": "Below",
+      "tmdbId": 95350,
+      "title": "绿灯军团",
+      "titleEn": "Lanterns",
       "originalLanguage": "en",
       "originCountry": [
-        "CA",
-        "GB"
+        "US"
       ],
       "year": "2026",
-      "releaseDate": "2026-10-08",
-      "poster": "https://image.tmdb.org/t/p/w500/zalCOSxzRZgmZLE7PxYZ9nD6J9z.jpg",
-      "rating": 7.347,
+      "releaseDate": "2026-08-16",
+      "poster": "https://image.tmdb.org/t/p/w500/5ZmOP60VIEfM2cnt7CpAK1j9mEv.jpg",
+      "rating": 8.303,
       "genre": [
         "Drama",
         "Mystery"
       ],
-      "summary": "当一只神秘的海洋生物威胁着纽芬兰的一个小镇时，一位坚韧的渔夫和他的家人奋力保护他们这个紧密相连的社区。",
-      "summaryEn": "When a mysterious sea creature terrorizes a small Newfoundland town, a hard-bitten fisherman and his family fight to protect their close-knit community.",
+      "summary": "绿灯侠哈尔·乔丹与新晋成员约翰·斯图尔特奉命调查美国小镇的一起神秘命案，却意外发现案件背后隐藏着与外星势力有关的阴谋，两人也在追查真相的过程中面对各自的信念与考验。",
+      "summaryEn": "Two intergalactic cops, new recruit John Stewart and Lantern legend Hal Jordan, are drawn into a dark, Earth-based mystery as they investigate a murder in the American heartland.",
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 259140,
-      "title": "乱马½",
-      "titleEn": "Ranma1/2",
-      "originalLanguage": "ja",
+      "tmdbId": 333101,
+      "title": "金银岛",
+      "titleEn": "Treasure Island",
+      "originalLanguage": "en",
       "originCountry": [
-        "JP"
-      ],
-      "year": "2024",
-      "releaseDate": "2024-10-06",
-      "poster": "https://image.tmdb.org/t/p/w500/hOmadnDmq8aNdygqsxFkEVclxgF.jpg",
-      "rating": 8.1,
-      "genre": [
-        "Animation",
-        "Comedy"
-      ],
-      "summary": "电视动画片《乱马1/2》改编自漫画家高桥留美子创作的同名漫画作品，由MAPPA负责制作，于2024年10月播出。该片以一遇冷水就会变为女生的高中生早乙女乱马和他的未婚妻天道茜为主角，描绘了他们与家人、朋友等人的混乱搞笑的日常生活。",
-      "summaryEn": "Akane Tendo meets her new fiancé, Ranma Saotome, a martial arts prodigy with a twist: he magically transforms into a girl upon touching cold water.",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 289423,
-      "title": "恋爱充电中",
-      "titleEn": "Take Charge of My Heart",
-      "originalLanguage": "ko",
-      "originCountry": [
-        "KR"
+        "US"
       ],
       "year": "2026",
-      "releaseDate": "2026-10-09",
-      "poster": "https://image.tmdb.org/t/p/w500/gcFiVo7LHh0uk2Z4mH74ifgTe3r.jpg",
-      "rating": 6.3,
-      "genre": [
-        "Comedy"
-      ],
-      "summary": "白虎狼（金英光 饰）是冷峻的财阀三代。他依赖人工心脏存活，却面临电池即将耗尽的危机，而电视剧编剧罗宝培（蔡秀彬 饰）在小时候遭雷击后身体充满了电流，更因此获得了能让别人触电的超能力。她无法与人亲近，却发现自己的超能力对白浩朗不起作用。白浩朗面临电池耗尽时，意外发现只要待在罗宝贝身边，人工心脏就能自动充电。最终，俩人签订了为期三个月的“身体接触契约”，奇幻的浪漫故事就此展开。",
-      "summaryEn": "A corporate heir with an artificial heart meets a woman who's literally electric. They strike a deal that makes his heart beat — in more ways than one.",
+      "releaseDate": "2026-10-11",
+      "poster": "https://image.tmdb.org/t/p/w500/6UGFQsv7vWuhgj8iTAN7CrMs7M9.jpg",
+      "rating": 4,
+      "genre": [],
+      "summary": "改编自罗伯特·路易斯·史蒂文森的经典冒险小说。年轻的吉姆·霍金斯和母亲贝斯得到一张传说中的海盗藏宝图，由此踏上横渡大西洋的致命航程。面对叛变、暴力与背叛，吉姆必须在危机四伏的旅途中成长，而这段经历也将彻底改变他的人生。",
+      "summaryEn": "Young Jim Hawkins and his mother Bess come into possession of a legendary pirate’s treasure map and are drawn into a deadly voyage across the Atlantic, where Jim is forced to navigate mutiny, violence",
       "pickCategory": "tvhot"
     },
     {
@@ -211,7 +188,7 @@
       "year": "2026",
       "releaseDate": "2026-10-01",
       "poster": "https://image.tmdb.org/t/p/w500/slYjlpkFnaCSZJICqj2G158Eoqg.jpg",
-      "rating": 8,
+      "rating": 8.008,
       "genre": [
         "Drama"
       ],
@@ -220,23 +197,44 @@
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 1413,
-      "title": "美国恐怖故事",
-      "titleEn": "American Horror Story",
-      "originalLanguage": "en",
+      "tmdbId": 37854,
+      "title": "航海王",
+      "titleEn": "One Piece",
+      "originalLanguage": "ja",
       "originCountry": [
-        "US"
+        "JP"
       ],
-      "year": "2011",
-      "releaseDate": "2011-10-05",
-      "poster": "https://image.tmdb.org/t/p/w500/j2Uix4JYiunJhoiS2DLPYSkOZ8Q.jpg",
-      "rating": 8.076,
+      "year": "1999",
+      "releaseDate": "1999-10-20",
+      "poster": "https://image.tmdb.org/t/p/w500/f9AFdxegmmWOghgw9E6ebICkstl.jpg",
+      "rating": 8.752,
       "genre": [
+        "Comedy",
+        "Animation"
+      ],
+      "summary": "拥有财富、名声、势力，拥有整个世界的海贼王 – 哥尔·D·罗杰，他在临刑前的一句话，让人们趋之若鹜奔向大海。“想要我的财宝吗？想要的话可以全部给你，去找吧！我把所有财宝都放在那里。”于是所有男子汉航向伟大的航路追逐梦想，世界开始迎接“大海贼时代”。",
+      "summaryEn": "Years ago, the fearsome Pirate King, Gol D. Roger was executed leaving a huge pile of treasure and the famous \"One Piece\" behind. Whoever claims the \"One Piece\" will be named the new King of the Pirat",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 220542,
+      "title": "药屋少女的呢喃",
+      "titleEn": "The Apothecary Diaries",
+      "originalLanguage": "ja",
+      "originCountry": [
+        "JP"
+      ],
+      "year": "2023",
+      "releaseDate": "2023-10-22",
+      "poster": "https://image.tmdb.org/t/p/w500/nUFTbH417TqmCbw2b2mPSAESoTb.jpg",
+      "rating": 8.7,
+      "genre": [
+        "Animation",
         "Drama",
         "Mystery"
       ],
-      "summary": "从闹鬼的豪宅到精神病院，从女巫、马戏团到酒店、邪教、末日与外星人，每一季都讲述一个全新的恐怖故事。它不只是制造鬼魂、杀人狂与怪物，更将恐惧藏进家庭、欲望、宗教、政治、疾病与人性之中。看似彼此独立的故事，又通过人物、地点与事件悄然连接，最终构成一个庞大的“美国恐怖宇宙”。",
-      "summaryEn": "An anthology horror drama series centering on different characters and locations, including a house with a murderous past, an asylum, a witch coven, a freak show, a hotel, a farmhouse in Roanoke, a cu",
+      "summary": "“可否为我配制一帖春药？”猫猫的眼眸瞬间浮现出惊讶与好奇的色彩。位处大陆中央的某个大国，有位姑娘置身于皇帝宫阙之中。姑娘名唤猫猫，原在烟花巷担任药师，眼下则在后宫做下女。这个绝对称不上美女的姑娘很懂分寸，只是静待期满离宫。她有自信，皇帝绝对不会“宠幸”她。其间，猫猫得知皇子皆年幼早夭的事，并听闻连尚在人世的皇子皇女也身染重病，她开始调查他们的病因。广获赞誉的酣畅淋漓推理之作，众所期盼的第一集终于出",
+      "summaryEn": "Maomao lived a peaceful life with her apothecary father. Until one day, she's sold as a lowly servant to the emperor's palace. But she wasn't meant for a compliant life among royalty. So when imperial",
       "pickCategory": "tvhot"
     }
   ],
@@ -257,7 +255,7 @@
       ],
       "summary": "改编自卡普空同名系列格斗游戏。1993年，昔日形同兄弟的街头格斗家隆与肯因春丽的邀请重返赛场，参加世界格斗王大赛。然而，一场致命阴谋潜伏其中，迫使两人再次面对彼此与各自的过去。",
       "summaryEn": "In 1993, estranged Street Fighters Ryu and Ken Masters are thrown back into combat when the mysterious Chun-Li recruits them for the next World Warrior Tournament: a brutal clash of fists, fate, and f",
-      "daysUntil": 2
+      "daysUntil": 1
     },
     {
       "tmdbId": 1255833,
@@ -274,7 +272,7 @@
       ],
       "summary": "一场突如其来的意外，让他被巨鲸吞入腹中。受困于漆黑鲸腹之中，他仅剩 一小时氧气。在与时间赛跑、与恐惧正面交锋的同时，父亲留给他的技能，或许正是他逃出生天的唯一希望。",
       "summaryEn": "Following the death of his father, Jay Gardiner goes diving off the central Coast of California in search of his remains, but is swallowed by a massive sperm whale. While trapped inside its belly with",
-      "daysUntil": 3
+      "daysUntil": 2
     },
     {
       "tmdbId": 1234139,
@@ -292,7 +290,7 @@
       ],
       "summary": "",
       "summaryEn": "When a dangerous syndicate expands its reach to threaten his family's peace, retired jailer Tiger Muthuvel Pandian goes undercover as a driver. Operating from the shadows, he takes on ruthless new ene",
-      "daysUntil": 4
+      "daysUntil": 3
     },
     {
       "tmdbId": 1400940,
@@ -311,7 +309,7 @@
       ],
       "summary": "好莱坞新星马特·哈根遭犯罪头目毁容后，为恢复容貌接受先进治疗，却意外陷入疯狂，走上复仇之路。",
       "summaryEn": "Matt Hagen's meteoric rise from Gotham street kid to Hollywood leading man is tragically cut short when a local crime boss's actions leave him horribly disfigured. Abandoned by his team and with nothi",
-      "daysUntil": 10
+      "daysUntil": 9
     },
     {
       "tmdbId": 1294189,
@@ -329,7 +327,7 @@
       ],
       "summary": "一位被冤枉的战争英雄，一无所有，在昔日特种部队成员的帮助下，与警方展开了一场史诗般的全国汽车追逐，全程电视直播。而着迷的公众则密切关注着他，希望他能安全逃脱。",
       "summaryEn": "A falsely accused war hero with nothing to lose leads police on an epic televised cross-country car chase, helped by members of his former Special Forces Army battalion and closely monitored by a fasc",
-      "daysUntil": 18
+      "daysUntil": 17
     },
     {
       "tmdbId": 1381071,
@@ -348,48 +346,10 @@
       ],
       "summary": "人类的罪与罚。已经，没法归零。战争将日本粉碎至“零”，哥斯拉的袭击更将它推至“负”的绝境。时间来到两年后，人民历尽痛苦磨难仍坚持复苏的步伐，看似终于可以回归正常生活……然而此时，巨兽再次袭来。它彻底摧毁这份希望，将人类推向新的绝望深渊！",
       "summaryEn": "War reduced Japan to zero, and Godzilla plunged it into minus. Two years have passed since then, and the country has faced agonizing struggles to achieve recovery and finally reclaim its daily life. J",
-      "daysUntil": 23
+      "daysUntil": 22
     }
   ],
   "comingSoonTv": [
-    {
-      "tmdbId": 304452,
-      "title": "玉簟秋",
-      "titleEn": "玉簟秋",
-      "originalLanguage": "zh",
-      "originCountry": [
-        "CN"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-12",
-      "poster": "https://image.tmdb.org/t/p/w500/r5N8g3WEes9x1z76Sil614Do9Bv.jpg",
-      "rating": 9,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "20世纪20年代的乱世中，少帅虞昶轩与女学生叶平君因一场邂逅深陷爱恨漩涡，彻底改写二人的人生轨迹。纵然身份悬殊、前路艰险，二人仍毅然冲破一切阻隔，在战火与命运的洪流中坚定携手，沙场硝烟与儿女情长交织，将热血、信仰与挚爱，共同谱写成一段荡气回肠的传奇。",
-      "summaryEn": "20世纪20年代的乱世中，少帅虞昶轩与女学生叶平君因一场邂逅深陷爱恨漩涡，彻底改写二人的人生轨迹。纵然身份悬殊、前路艰险，二人仍毅然冲破一切阻隔，在战火与命运的洪流中坚定携手，沙场硝烟与儿女情长交织，将热血、信仰与挚爱，共同谱写成一段荡气回肠的传奇。",
-      "daysUntil": 1
-    },
-    {
-      "tmdbId": 331693,
-      "title": "黑海之恋",
-      "titleEn": "Sevdam Karadeniz",
-      "originalLanguage": "tr",
-      "originCountry": [
-        "TR"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-12",
-      "poster": "https://image.tmdb.org/t/p/w500/zOqcJuBcEgzwKax9jHQM4MGAy0y.jpg",
-      "rating": 0,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "这部剧讲述了黑海地区两个名门家族之间的世仇，源于哈菲泽·阿拉兹勒和杜拉勒·耶尼杰利未竟的爱情。多年后，他们的孙子库泽伊和泽伊桑被迫包办婚姻。在秘密、禁忌之恋和复仇誓言之中，这对年轻人被迫做出一个将改变两家族命运的选择。",
-      "summaryEn": "这部剧讲述了黑海地区两个名门家族之间的世仇，源于哈菲泽·阿拉兹勒和杜拉勒·耶尼杰利未竟的爱情。多年后，他们的孙子库泽伊和泽伊桑被迫包办婚姻。在秘密、禁忌之恋和复仇誓言之中，这对年轻人被迫做出一个将改变两家族命运的选择。",
-      "daysUntil": 1
-    },
     {
       "tmdbId": 213375,
       "title": "幻视任务",
@@ -407,7 +367,7 @@
       ],
       "summary": "幻视重获新生后，试图寻找人生的新意义，却因人工智能人格与奥创的影响陷入危机，并与神秘少年托马斯·谢泼德一同揭开身世之谜。",
       "summaryEn": "幻视重获新生后，试图寻找人生的新意义，却因人工智能人格与奥创的影响陷入危机，并与神秘少年托马斯·谢泼德一同揭开身世之谜。",
-      "daysUntil": 3
+      "daysUntil": 2
     },
     {
       "tmdbId": 213562,
@@ -427,7 +387,7 @@
       ],
       "summary": "经典恐怖 IP《十三号星期五》即将推出前传剧集《水晶湖》，剧集敲定琳达・卡德里尼出演不死杀人魔杰森的母亲帕梅拉・沃赫斯；1980 年原版电影里，帕梅拉便是整部悲剧的缘起：幼子杰森自幼体弱多病，在将近一年前不幸溺亡于小镇湖泊，丧子之痛始终将这位单亲母亲裹挟其中、难以消解。而后两名陌生来客登门打探她的过往，一连串惊悚诡异的事件接连爆发，水晶湖小镇的居民也纷纷心生猜忌：帕梅拉・沃赫斯的真面目到底是什么？",
       "summaryEn": "经典恐怖 IP《十三号星期五》即将推出前传剧集《水晶湖》，剧集敲定琳达・卡德里尼出演不死杀人魔杰森的母亲帕梅拉・沃赫斯；1980 年原版电影里，帕梅拉便是整部悲剧的缘起：幼子杰森自幼体弱多病，在将近一年前不幸溺亡于小镇湖泊，丧子之痛始终将这位单亲母亲裹挟其中、难以消解。而后两名陌生来客登门打探她的过往，一连串惊悚诡异的事件接连爆发，水晶湖小镇的居民也纷纷心生猜忌：帕梅拉・沃赫斯的真面目到底是什么？",
-      "daysUntil": 4
+      "daysUntil": 3
     },
     {
       "tmdbId": 303745,
@@ -447,7 +407,7 @@
       ],
       "summary": "该剧讲述了被列为杀人嫌疑人的目中无人财阀三世，与潜伏在其身边担任随行秘书的特种部队出身刑警，两人之间展开的紧密贴身惊悚浪漫故事。",
       "summaryEn": "该剧讲述了被列为杀人嫌疑人的目中无人财阀三世，与潜伏在其身边担任随行秘书的特种部队出身刑警，两人之间展开的紧密贴身惊悚浪漫故事。",
-      "daysUntil": 8
+      "daysUntil": 7
     },
     {
       "tmdbId": 334085,
@@ -466,8 +426,47 @@
       ],
       "summary": "　　皮奥特·哈伊杜克，一名背负过往遗憾与失误的医生，重回这间他曾经工作过的医院，想要弥补旧日所失。命运将他再次推到卡西亚·扎瓦兹卡面前——他曾经深爱之人。二人重逢于急诊室这片方寸之地，在这里，连闲谈的片刻都成为奢侈。\n\n　　他们要在生死急救的巨大压力下直面旧日情愫与隔阂。镜头不只聚焦惊心动魄的抢救现场，更望向医者本身：疲惫、执念、过错与希望。故事讲述这群终日拯救他人生命的人，常常忽略了自身的挣扎与",
       "summaryEn": "　　皮奥特·哈伊杜克，一名背负过往遗憾与失误的医生，重回这间他曾经工作过的医院，想要弥补旧日所失。命运将他再次推到卡西亚·扎瓦兹卡面前——他曾经深爱之人。二人重逢于急诊室这片方寸之地，在这里，连闲谈的片刻都成为奢侈。\n\n　　他们要在生死急救的巨大压力下直面旧日情愫与隔阂。镜头不只聚焦惊心动魄的抢救现场，更望向医者本身：疲惫、执念、过错与希望。故事讲述这群终日拯救他人生命的人，常常忽略了自身的挣扎与",
-      "daysUntil": 9
+      "daysUntil": 8
+    },
+    {
+      "tmdbId": 314360,
+      "title": "雅嘎疑云",
+      "titleEn": "YAGA",
+      "originalLanguage": "en",
+      "originCountry": [
+        "CA"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-23",
+      "poster": "https://image.tmdb.org/t/p/w500/kp8xgZ8SrikHQrPn2lC3hb50KD5.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "私家侦探Rapp来到一座海滨小镇调查Henry Park失踪案，Park来自一个实力强大的渔业家族，是位年轻的继承人。调查过程中，Rapp发现自己面临重重困境：忧虑的当地警探Carson，魅力非凡且偏爱年轻男性的大学教授Catherine，以及神秘嫌疑人、秘密人生和古老魔法组成的迷宫。",
+      "summaryEn": "私家侦探Rapp来到一座海滨小镇调查Henry Park失踪案，Park来自一个实力强大的渔业家族，是位年轻的继承人。调查过程中，Rapp发现自己面临重重困境：忧虑的当地警探Carson，魅力非凡且偏爱年轻男性的大学教授Catherine，以及神秘嫌疑人、秘密人生和古老魔法组成的迷宫。",
+      "daysUntil": 11
+    },
+    {
+      "tmdbId": 292741,
+      "title": "夜曲",
+      "titleEn": "Nocturne",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-29",
+      "poster": "https://image.tmdb.org/t/p/w500/ugOuqxAelrt2ebKKmJv4pPYWqYz.jpg",
+      "rating": 0,
+      "genre": [
+        "Crime",
+        "Mystery"
+      ],
+      "summary": "当臭名昭著的连环杀手尤雷克·沃尔特的一名受害者意外生还时，侦探乔纳·林恩必须争分夺秒找到仍然失踪的那个人，而他的门徒萨加·鲍尔则卧底潜入，从杀手本人那里获取答案。",
+      "summaryEn": "当臭名昭著的连环杀手尤雷克·沃尔特的一名受害者意外生还时，侦探乔纳·林恩必须争分夺秒找到仍然失踪的那个人，而他的门徒萨加·鲍尔则卧底潜入，从杀手本人那里获取答案。",
+      "daysUntil": 17
     }
   ],
-  "brief": "Today: 6 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
+  "brief": "Today: 8 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
 }
