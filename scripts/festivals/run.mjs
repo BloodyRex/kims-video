@@ -26,6 +26,7 @@ import * as biff from "./adapters/biff.mjs";
 import * as idfa from "./adapters/idfa.mjs";
 import * as bfi from "./adapters/bfi.mjs";
 import * as hkiff from "./adapters/hkiff.mjs";
+import * as venice from "./adapters/venice.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..");
@@ -35,7 +36,7 @@ const SNAPS_DIR = join(DATA_DIR, "snapshots");
 const API_DIR = join(ROOT, "public", "api");
 const API_FEST_DIR = join(API_DIR, "festivals");
 
-const ADAPTERS = { biff, idfa, bfi, hkiff };
+const ADAPTERS = { biff, idfa, bfi, hkiff, venice };
 const CHANGES_MAX = 1000;
 
 const args = process.argv.slice(2);
@@ -169,30 +170,30 @@ async function main() {
         continue;
       }
 
-      if (!due) {
-        entry.action = "skipped (throttled)";
-        report.editions.push(entry);
-        continue;
-      }
+            if (!due) {
+              entry.action = "skipped (throttled)";
+              report.editions.push(entry);
+              continue;
+            }
 
-      let raw;
-      try {
-        raw = await adapter.fetchEdition({ festival, edition, fetchText, log });
-      } catch (e) {
-        entry.action = "fetch failed";
-        entry.error = String(e?.message || e);
-        state.editions[edition.id] = {
-          ...st,
-          lastAttemptAt: now,
-          failCount: (st.failCount || 0) + 1,
-          lastError: entry.error,
-        };
-        report.editions.push(entry);
-        report.errors.push(`${edition.id}: fetch threw ${entry.error}`);
-        continue;
-      }
+            let raw;
+            try {
+              raw = await adapter.fetchEdition({ festival, edition, fetchText, log, snapshotDir: SNAPSHOT });
+            } catch (e) {
+              entry.action = "fetch failed";
+              entry.error = String(e?.message || e);
+              state.editions[edition.id] = {
+                ...st,
+                lastAttemptAt: now,
+                failCount: (st.failCount || 0) + 1,
+                lastError: entry.error,
+              };
+              report.editions.push(entry);
+              report.errors.push(`${edition.id}: fetch threw ${entry.error}`);
+              continue;
+            }
 
-      const store = normalize({ festival, edition, raw });
+            const store = normalize({ festival, edition, raw });
       const verdict = validate(store, previous);
       entry.parsed = {
         films: store.stats.films,

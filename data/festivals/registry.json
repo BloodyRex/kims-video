@@ -207,7 +207,58 @@
             "liveMinutes": 30
           }
         }
-      ]
-    }
-  ]
-}
+              ]
+            },
+            {
+              "id": "venice",
+              "slug": "venice-2026",
+              "name": { "zh": "威尼斯国际电影节", "en": "Venice International Film Festival" },
+              "city": "Venice",
+              "country": "Italy",
+              "countryCode": "IT",
+              "region": "EUROPE",
+              "types": ["FEATURE", "DOCUMENTARY", "ANIMATION", "SHORT"],
+              "officialUrl": "https://www.labiennale.org/en/cinema",
+              "adapter": "venice",
+              "authorization": "pending",
+              "authorizationNote": {
+                "zh": "授权待定：La Biennale 官方网站 Note legali 明文要求书面许可方可复制/转载/再发布。数据由离线快照生成，仅供内部验证与原型开发；正式上线前需取得 La Biennale 书面授权。",
+                "en": "Authorization pending: La Biennale legal notice explicitly requires written permission for any reproduction/redistribution. Data generated from offline snapshots for internal validation and prototyping only; written authorization from La Biennale required before going live."
+              },
+              "editions": [
+                {
+                  "id": "venice-2026",
+                  "year": 2026,
+                  "startDate": "2026-09-01",
+                  "endDate": "2026-09-11",
+                  "timezone": "Europe/Rome",
+                  "officialUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public",
+                  "coverageMinDays": 6,
+                  "sources": [
+                    {
+                      "kind": "SCHEDULE",
+                      "label": "Official daily schedule (offline snapshots)",
+                      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public"
+                    },
+                    {
+                      "kind": "PROGRAMME",
+                      "label": "Official lineup & sections",
+                      "url": "https://www.labiennale.org/en/cinema/2026/lineup"
+                    },
+                    {
+                      "kind": "OFFICIAL_SITE",
+                      "label": "Festival home",
+                      "url": "https://www.labiennale.org/en/cinema"
+                    }
+                  ],
+                  "fetch": {
+                    "farHours": 24,
+                    "nearDays": 30,
+                    "nearHours": 6,
+                    "liveMinutes": 30
+                  }
+                }
+              ]
+            }
+          ]
+        }

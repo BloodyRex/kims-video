@@ -1,7 +1,33 @@
 {
- "updated": "2026-10-11T01:47:37Z",
- "count7d": 15,
+ "updated": "2026-10-11T03:36:10Z",
+ "count7d": 16,
  "changes": [
+  {
+   "id": "venice-2026-INIT-EDITION-venice-2026-2026-10-11T03:35:57Z",
+   "at": "2026-10-11T03:35:57Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "INIT",
+   "entity": "EDITION",
+   "ref": "venice-2026",
+   "label": "Venice International Film Festival 2026",
+   "fields": [
+    {
+     "field": "entries",
+     "from": null,
+     "to": "350",
+     "fieldLabel": "entries"
+    },
+    {
+     "field": "films",
+     "from": null,
+     "to": "347",
+     "fieldLabel": "films"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public",
+   "sourceLabel": "Venice International Film Festival"
+  },
   {
    "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-8894e730-7010-4828-9d84-0a15667ad981-best-of-idfa-audience-fa-2026-10-10T19:14:18Z",
    "at": "2026-10-10T19:14:18Z",

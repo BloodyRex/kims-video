@@ -1,17 +1,17 @@
 {
- "updated": "2026-10-11T01:47:37Z",
+ "updated": "2026-10-11T03:36:10Z",
  "today": "2026-10-11",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
   "en": "Only festivals with verified official sources. Unannounced schedules are labelled, never left blank."
  },
  "stats": {
-  "festivals": 4,
+  "festivals": 5,
   "liveToday": 3,
   "screeningsToday": 163,
   "eventsToday": 1,
   "upcoming": 1,
-  "changes7d": 15,
+  "changes7d": 16,
   "venuesToday": 41
  },
  "festivals": [
@@ -1739,7 +1739,7 @@
    ],
    "fetchedAt": "2026-10-11T01:47:37Z",
    "lastVerifiedAt": "2026-10-11T01:47:37Z",
-   "dataAgeMinutes": 0,
+   "dataAgeMinutes": 109,
    "changes7d": 6,
    "dataSource": "official"
   },
@@ -1819,7 +1819,7 @@
    ],
    "fetchedAt": "2026-10-10T19:14:24Z",
    "lastVerifiedAt": "2026-10-10T19:14:24Z",
-   "dataAgeMinutes": 393,
+   "dataAgeMinutes": 502,
    "changes7d": 7,
    "dataSource": "official"
   },
@@ -2913,7 +2913,7 @@
    ],
    "fetchedAt": "2026-10-11T01:47:42Z",
    "lastVerifiedAt": "2026-10-11T01:47:42Z",
-   "dataAgeMinutes": 0,
+   "dataAgeMinutes": 108,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -3219,7 +3219,164 @@
    ],
    "fetchedAt": "2026-10-10T03:45:38Z",
    "lastVerifiedAt": "2026-10-10T03:45:38Z",
-   "dataAgeMinutes": 1322,
+   "dataAgeMinutes": 1431,
+   "changes7d": 1,
+   "dataSource": "official"
+  },
+  {
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "name": {
+    "zh": "威尼斯国际电影节",
+    "en": "Venice International Film Festival"
+   },
+   "city": "Venice",
+   "country": "Italy",
+   "countryCode": "IT",
+   "region": "EUROPE",
+   "types": [
+    "FEATURE",
+    "DOCUMENTARY",
+    "ANIMATION",
+    "SHORT"
+   ],
+   "authorization": "pending",
+   "authorizationNote": {
+    "zh": "授权待定：La Biennale 官方网站 Note legali 明文要求书面许可方可复制/转载/再发布。数据由离线快照生成，仅供内部验证与原型开发；正式上线前需取得 La Biennale 书面授权。",
+    "en": "Authorization pending: La Biennale legal notice explicitly requires written permission for any reproduction/redistribution. Data generated from offline snapshots for internal validation and prototyping only; written authorization from La Biennale required before going live."
+   },
+   "year": 2026,
+   "startDate": "2026-09-01",
+   "endDate": "2026-09-11",
+   "dayCount": 11,
+   "timezone": "Europe/Rome",
+   "officialUrl": "https://www.labiennale.org/en/cinema",
+   "lifecycle": "ENDED",
+   "status": "SCHEDULE_LIVE",
+   "statusDetail": {
+    "dates": "CONFIRMED",
+    "programme": "RELEASED",
+    "schedule": "LIVE"
+   },
+   "statusNote": {
+    "zh": null,
+    "en": null
+   },
+   "stats": {
+    "films": 347,
+    "filmsTotal": 347,
+    "screenings": 350,
+    "events": 0,
+    "pending": 0,
+    "entries": 350,
+    "venues": 10,
+    "sections": 7,
+    "days": 11,
+    "guestVisits": 0
+   },
+   "today": {
+    "date": "2026-10-11",
+    "screenings": 0,
+    "events": 0,
+    "entries": 0,
+    "venues": 0,
+    "guestVisits": 0,
+    "items": []
+   },
+   "nextScreeningDate": null,
+   "sources": [
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-01",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-01",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.019Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-02",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-02",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.020Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-03",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-03",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.021Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-04",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-04",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.023Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-05",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-05",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.025Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-06",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-06",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.027Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-07",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-07",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.028Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-08",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-08",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.029Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-09",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-09",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.031Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-10",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-10",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.033Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (offline snapshot) — https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-11",
+     "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-11",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-11T03:36:10.034Z"
+    }
+   ],
+   "fetchedAt": "2026-10-11T03:36:10.050Z",
+   "lastVerifiedAt": "2026-10-11T03:36:10.050Z",
+   "dataAgeMinutes": 0,
    "changes7d": 1,
    "dataSource": "official"
   }
@@ -3672,6 +3829,83 @@
    "events": 0,
    "festivals": [
     "hkiff-cinefan-2026"
+   ]
+  },
+  "2026-09-01": {
+   "screenings": 1,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-02": {
+   "screenings": 5,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-03": {
+   "screenings": 34,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-04": {
+   "screenings": 33,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-05": {
+   "screenings": 37,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-06": {
+   "screenings": 34,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-07": {
+   "screenings": 38,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-08": {
+   "screenings": 41,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-09": {
+   "screenings": 34,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-10": {
+   "screenings": 41,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-11": {
+   "screenings": 52,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
    ]
   }
  }

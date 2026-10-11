@@ -6,3 +6,6 @@ send-test-digest.mjs
 
 # wrangler local state
 .wrangler/
+
+# Venice raw snapshots — pending authorization (public republication needs La Biennale written permission)
+data/festivals/raw/venice/
