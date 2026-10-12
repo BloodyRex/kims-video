@@ -1,12 +1,12 @@
 {
- "at": "2026-10-12T02:38:15Z",
+ "at": "2026-10-12T10:37:41Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 182min ≥ 30min",
+   "reason": "age 479min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 255,
@@ -25,14 +25,14 @@
   {
    "slug": "idfa-2026",
    "due": false,
-   "reason": "age 417min < 1440min",
+   "reason": "age 896min < 1440min",
    "status": "PROGRAM_RELEASED",
    "action": "skipped (throttled)"
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 182min ≥ 30min",
+   "reason": "age 479min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
@@ -51,7 +51,7 @@
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 2813min ≥ 30min",
+   "reason": "age 3292min ≥ 30min",
    "status": "SCREENING_LIVE",
    "action": "skipped (authorization: pending)",
    "authorization": "pending"
@@ -59,7 +59,7 @@
   {
    "slug": "venice-2026",
    "due": true,
-   "reason": "age 1382min ≥ 360min",
+   "reason": "age 1862min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (authorization: pending)",
    "authorization": "pending"
@@ -67,7 +67,7 @@
   {
    "slug": "cannes-2026",
    "due": true,
-   "reason": "age 1311min ≥ 180min",
+   "reason": "age 1790min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "action": "skipped (authorization: pending)",
    "authorization": "pending"
@@ -75,7 +75,7 @@
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 1311min ≥ 180min",
+   "reason": "age 1790min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "action": "skipped (authorization: pending)",
    "authorization": "pending"
