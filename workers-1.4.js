@@ -3615,6 +3615,28 @@ export default {
           catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); }
         }
 
+        // POST /admin/set-authorization — trigger GitHub Actions workflow_dispatch
+        if (path === "/admin/set-authorization" && method === "POST") {
+          const er = requireAdmin(); if (er) return er;
+          let b; try { b = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); }
+          const { edition_id, authorization } = b;
+          if (!edition_id || !authorization) return Response.json({ error: "edition_id and authorization required" }, { status: 400, headers: corsHeaders });
+          if (!["granted","testing","pending"].includes(authorization)) return Response.json({ error: "invalid authorization value" }, { status: 400, headers: corsHeaders });
+          const token = env.GITHUB_TOKEN;
+          if (!token) return Response.json({ error: "GITHUB_TOKEN not configured" }, { status: 500, headers: corsHeaders });
+          const repo = env.GITHUB_REPO || "BloodyRex/kims-video";
+          const [owner, name] = repo.split("/");
+          try {
+            const resp = await fetch(`https://api.github.com/repos/${owner}/${name}/actions/workflows/set-authorization.yml/dispatches`, {
+              method: "POST",
+              headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" },
+              body: JSON.stringify({ ref: "main", inputs: { edition_id, authorization } }),
+            });
+            if (!resp.ok) return Response.json({ error: `GitHub API ${resp.status}: ${await resp.text()}` }, { status: 502, headers: corsHeaders });
+            return Response.json({ ok: true, edition_id, authorization, workflow: "set-authorization" }, { headers: corsHeaders });
+          } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); }
+        }
+
         const adm = path.match(/^\/admin\/results\/(.+)$/);
         if (adm) {
       if (method === "DELETE") { const er = requireAdmin(); if (er) return er; try { return Response.json(await handleAdminDelete(env, adm[1]), { headers: corsHeaders }); } catch (e) { return Response.json({ error: e.message }, { status: 500, headers: corsHeaders }); } }

@@ -55,3 +55,16 @@ export async function adminSaveConfig(token, patchBody) {
   });
   return r.json();
 }
+
+// Trigger GitHub Actions workflow_dispatch to set festival authorization.
+export async function adminSetAuthorization(token, editionId, authorization) {
+  const r = await fetch(`${apiBaseUrl}/admin/set-authorization`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ edition_id: editionId, authorization }),
+  });
+  return r.json();
+}

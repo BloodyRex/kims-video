@@ -13,6 +13,7 @@
       "types": ["FEATURE", "DOCUMENTARY", "ANIMATION", "SHORT"],
       "officialUrl": "https://www.biff.kr/eng/",
       "adapter": "biff",
+      "authorization": "testing",
       "editions": [
         {
           "id": "biff-2026",
@@ -64,6 +65,7 @@
       "types": ["FEATURE", "DOCUMENTARY", "SHORT", "IMMERSIVE"],
       "officialUrl": "https://festival.idfa.nl/en/",
       "adapter": "idfa",
+      "authorization": "testing",
       "editions": [
         {
           "id": "idfa-2026",
@@ -114,6 +116,7 @@
       "types": ["FEATURE", "DOCUMENTARY", "ANIMATION", "SHORT"],
       "officialUrl": "https://whatson.bfi.org.uk/lff/",
       "adapter": "bfi",
+      "authorization": "testing",
       "editions": [
         {
           "id": "bfi-2026",
@@ -169,7 +172,7 @@
       "types": ["FEATURE", "CLASSIC", "RESTORED"],
       "officialUrl": "https://cinefan.hkiff.org.hk/",
       "adapter": "hkiff",
-      "authorization": "pending",
+      "authorization": "testing",
       "authorizationNote": {
         "zh": "授权待定：cinefan.hkiff.org.hk 无 robots.txt，但 HKIFF Society 条款限制自动访问/复制/分发；www.hkiff.org.hk robots.txt = Disallow: /。数据由已获授权的离线快照生成，正式上线前需取得官方书面授权。",
         "en": "Authorization pending: cinefan.hkiff.org.hk has no robots.txt, but HKIFF Society terms restrict automated access/copying/redistribution; www.hkiff.org.hk robots.txt = Disallow: /. Data generated from an authorized offline snapshot; written authorization required before going live."
@@ -220,7 +223,7 @@
               "types": ["FEATURE", "DOCUMENTARY", "ANIMATION", "SHORT"],
               "officialUrl": "https://www.labiennale.org/en/cinema",
               "adapter": "venice",
-              "authorization": "pending",
+              "authorization": "testing",
               "authorizationNote": {
                 "zh": "授权待定：La Biennale 官方网站 Note legali 明文要求书面许可方可复制/转载/再发布。数据由离线快照生成，仅供内部验证与原型开发；正式上线前需取得 La Biennale 书面授权。",
                 "en": "Authorization pending: La Biennale legal notice explicitly requires written permission for any reproduction/redistribution. Data generated from offline snapshots for internal validation and prototyping only; written authorization from La Biennale required before going live."
@@ -271,7 +274,7 @@
               "types": ["FEATURE", "DOCUMENTARY", "ANIMATION", "SHORT"],
               "officialUrl": "https://www.festival-cannes.com/en/",
               "adapter": "cannes",
-              "authorization": "pending",
+              "authorization": "testing",
               "authorizationNote": {
                 "zh": "授权待定：Cannes 法律声明明文禁止提取、复用、存储、复制其数据库全部或部分内容，以及任何未经授权的再发布。数据由离线快照生成（仅影片元数据与简介，不含图片/票价），raw HTML 不入库；正式上线前需取得 Festival de Cannes 书面授权。",
                 "en": "Authorization pending: the Cannes legal notice explicitly forbids extracting, reusing, stocking or reproducing all or part of its database contents, and any unauthorised reproduction or distribution. Data generated from offline snapshots (film metadata + synopsis only; no images/prices), raw HTML not committed; written authorization from the Festival de Cannes required before going live."
@@ -322,7 +325,7 @@
               "types": ["FEATURE", "DOCUMENTARY", "ANIMATION", "SHORT"],
               "officialUrl": "https://iffr.com/en",
               "adapter": "iffr",
-              "authorization": "pending",
+              "authorization": "testing",
               "authorizationNote": {
                 "zh": "授权待定：iffr.com/en/disclaimer 明文禁止未经 IFFR 事先书面许可复制内容或将其公开。数据由离线快照生成（仅影片元数据与简介，不含图片/票价），raw JSON 不入库；正式上线前需取得 IFFR 书面授权。",
                 "en": "Authorization pending: iffr.com/en/disclaimer explicitly states it is not permitted to reproduce the Content or make it public without prior written permission from IFFR. Data generated from offline snapshots (film metadata + synopsis only; no images/prices), raw JSON not committed; written authorization from IFFR required before going live."

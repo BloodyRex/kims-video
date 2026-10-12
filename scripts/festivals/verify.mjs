@@ -43,13 +43,14 @@ const hasItem = (arr, needle, msg) =>
   ok((arr || []).some((x) => String(x || "").includes(needle)), `${msg} — nothing matching "${needle}" in ${JSON.stringify((arr || []).slice(0, 6))}`);
 
 /* ═════════════════════ 发布授权门禁（P1）═════════════════════
- * 统一授权规则：唯一判据是 authorization === "granted"。
- *   - 公开 feed（索引卡片 festivals.json、变更流 festival-changes.json）含任何未授权届次 → 授权违规；
- *   - public/api/festivals/*.json 静态详情文件未授权 → 旧公开文件残留（需下架）。
+ * 统一授权规则：放行集合 = authorization ∈ { granted, testing }。
+ *   - granted：正式书面授权；testing：测试授权（用户明确允许测试内容通过并发布）。二者语义严格区分。
+ *   - 公开 feed（索引卡片 festivals.json、变更流 festival-changes.json）含任何未放行届次 → 授权违规；
+ *   - public/api/festivals/*.json 静态详情文件未放行 → 旧公开文件残留（需下架）。
  * 说明（authorizationNote）只作解释，不能作为放行依据 —— 与 run.mjs / publish.mjs 的 isAuthorized 严格一致。
  * 本段是索引卡片授权检查的「唯一实现」（主循环不再重复断言，消除 card / card-dup 重复计数），
  * 同时保留对门禁纯函数本身的回归断言。 */
-/* 授权判据（受总开关约束）：门禁启用时仅 granted 放行；停用时一律放行。
+/* 授权判据（受总开关约束）：门禁启用时仅 granted/testing 放行；停用时一律放行。
  * 纯判据（不受开关影响）由 publish.mjs 的 rawAuthorized 提供，用于逻辑回归。 */
 const AUTHORIZED = (auth) => authorizationAllows(auth);
 const DATA_FEST = join(ROOT, "data", "festivals");
@@ -64,17 +65,22 @@ function authorizationGateChecks(index, changes) {
   const residual = (msg) => { staleResiduals.push(msg); ok(false, msg); };
 
   // 1) 门禁纯函数回归（合成数据，离线）。
-  //    逻辑回归始终验证「纯判据 rawAuthorized 仅 granted 为真」；enforcement 期望随总开关变化。
+  //    逻辑回归始终验证「纯判据 rawAuthorized 仅 granted/testing 为真」；enforcement 期望随总开关变化。
   const synth = [
     { slug: "a", festival: { authorization: "granted" } },
+    { slug: "a2", festival: { authorization: "testing" } },
     { slug: "b", festival: { authorization: "pending" } },
     { slug: "c", festival: {} },
     { slug: "d", festival: { authorization: "other" } },
     { slug: "e", festival: null },
   ];
-  eq(synth.filter((s) => rawAuthorized(s.festival?.authorization)).map((s) => s.slug), ["a"], "gate: 纯判据仅 granted 为真");
+  eq(synth.filter((s) => rawAuthorized(s.festival?.authorization)).map((s) => s.slug), ["a", "a2"], "gate: 纯判据 granted/testing 为真");
+  // 语义区分回归：testing 放行，但不得等同 granted（纯判据对 granted 与 testing 分别成立，二者互不冒充）。
+  ok(rawAuthorized("granted") === true, "gate: granted 属放行集合");
+  ok(rawAuthorized("testing") === true, "gate: testing 属放行集合");
+  ok(rawAuthorized("pending") === false && rawAuthorized("") === false && rawAuthorized(null) === false && rawAuthorized(undefined) === false, "gate: pending/空/缺失/未定义一律不放行");
   if (GATE_ENFORCED) {
-    eq(blockedEditions(synth).map((b) => b.slug), ["b", "c", "d", "e"], "gate: 仅 granted 放行，pending/缺失/其它值一律阻断");
+    eq(blockedEditions(synth).map((b) => b.slug), ["b", "c", "d", "e"], "gate: 仅 granted/testing 放行，pending/缺失/其它值一律阻断");
     eq(blockedEditions(synth).find((b) => b.slug === "c").authorization, null, "gate: 缺失授权在清单里显式记为 null");
   } else {
     eq(blockedEditions(synth).map((b) => b.slug), [], "gate(disabled): 门禁停用时全部放行（enforcement 不阻断）");
@@ -93,16 +99,16 @@ function authorizationGateChecks(index, changes) {
     }
   }
 
-  // 3) 索引卡片（公开 feed）：只有 granted 允许出现在公开索引，缺失/pending/其它值一律为授权违规。
+  // 3) 索引卡片（公开 feed）：只有放行集合（granted/testing）允许出现在公开索引，缺失/pending/其它值一律为授权违规。
   for (const f of index.festivals || []) {
     if (!AUTHORIZED(f.authorization)) {
       violation(
-        `card ${f.slug}: 公开索引卡片含未授权届次（authorization=${f.authorization ?? "missing"}）—— 门禁只允许 granted 进入公开产物`
+        `card ${f.slug}: 公开索引卡片含未放行届次（authorization=${f.authorization ?? "missing"}）—— 门禁只允许 granted/testing 进入公开产物`
       );
     }
   }
 
-  // 4) 详情文件（静态公开文件）：authorization === "granted" 才允许存在，否则属旧公开文件残留。
+  // 4) 详情文件（静态公开文件）：authorization ∈ {granted,testing} 才允许存在，否则属旧公开文件残留。
   if (existsSync(API_FEST)) {
     for (const f of readdirSync(API_FEST)) {
       if (!f.endsWith(".json")) continue;
@@ -111,19 +117,19 @@ function authorizationGateChecks(index, changes) {
       try { d = readJson(join(API_FEST, f)); } catch { continue; }
       if (!AUTHORIZED(d.festival?.authorization)) {
         residual(
-          `detail ${slug}: public/api/festivals/${f} 未授权（authorization=${d.festival?.authorization ?? "missing"}）—— 属旧公开文件，需下架`
+          `detail ${slug}: public/api/festivals/${f} 未放行（authorization=${d.festival?.authorization ?? "missing"}）—— 属旧公开文件，需下架`
         );
       }
     }
   }
 
-  // 5) 变更流（公开 feed）：不得含未授权届次的 slug。
+  // 5) 变更流（公开 feed）：不得含未放行届次的 slug。
   for (const c of changes.changes || []) {
     if (!c.slug) continue;
     const auth = diskAuth[c.slug];
     if (!AUTHORIZED(auth)) {
       violation(
-        `change ${c.id}: 公开变更流含未授权届次 ${c.slug}（authorization=${auth ?? "missing"}）`
+        `change ${c.id}: 公开变更流含未放行届次 ${c.slug}（authorization=${auth ?? "missing"}）`
       );
     }
   }

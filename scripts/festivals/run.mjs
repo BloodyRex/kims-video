@@ -161,12 +161,12 @@ async function main() {
         continue;
       }
 
-      // 授权闸门：只有明确 granted 的届次才允许实时抓取 —— 缺失 / pending / 任何非 granted 值
+      // 授权闸门：只有明确放行（granted / testing）的届次才允许实时抓取 —— 缺失 / pending / 任何未知值
       // 一律跳过，仅允许 --snapshot 离线快照在本地生成。
       // 防止 CI 定时任务在未授权（或授权状态未知）情况下抓取受条款限制的站点（如 HKIFF）。
       const auth = edition.authorization || festival.authorization;
-      // 统一授权规则（P1）：只有明确 granted 才允许实时抓取 —— 与 verify.mjs / publish.mjs 门禁一致。
-      // 缺失（undefined）与 pending / 任何非 granted 值一律跳过，杜绝「状态未知即抓取」。
+      // 统一授权规则（P1）：只有明确放行（granted / testing）才允许实时抓取 —— 与 verify.mjs / publish.mjs 门禁一致。
+      // 缺失（undefined）与 pending / 任何未知值一律跳过，杜绝「状态未知即抓取」。
       if (!SNAPSHOT && !authorizationAllows(auth)) {
         entry.action = `skipped (authorization: ${auth ?? "missing"})`;
         entry.authorization = auth ?? null;
@@ -274,8 +274,8 @@ async function main() {
     }
   }
 
-  // ── 发布授权门禁（P1）── 未明确 granted 的届次不得进入任何公开产物。
-  // 门禁在「写盘前」集中执行：详情文件也只写已授权届次，杜绝旧待授权数据被重新发布。
+  // ── 发布授权门禁（P1）── 未明确放行（granted / testing）的届次不得进入任何公开产物。
+  // 门禁在「写盘前」集中执行：详情文件也只写已放行届次，杜绝旧待授权数据被重新发布。
   // 注意：只决定「是否发布」，绝不修改 store 自身字段，也不改动磁盘上的 editions/*.json。
   const publishable = stores.filter((s) => authorizationAllows(s.festival?.authorization));
   report.blockedEditions = blockedEditions(stores);

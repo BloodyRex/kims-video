@@ -2,11 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
-import { adminLogin, adminFetchResults, adminDeleteResult, adminPatchResult } from "../services/adminApi";
+import { adminLogin, adminFetchResults, adminDeleteResult, adminPatchResult, adminSetAuthorization } from "../services/adminApi";
 import { fetchMovieByTmdbId } from "../services/api";
 import IntelConfigPanel from "./IntelConfigPanel";
 
 const CATEGORIES = ["科幻", "悬疑", "恐怖", "动画", "战争", "犯罪", "剧情", "奇幻"];
+
+const FESTIVALS = [
+  { id: "biff-2026", name: "BFI Flare" },
+  { id: "idfa-2026", name: "IDFA" },
+  { id: "bfi-2026", name: "BFI London" },
+  { id: "hkiff-cinefan-2026", name: "HKIFF Cinefan" },
+  { id: "venice-2026", name: "Venice" },
+  { id: "cannes-2026", name: "Cannes" },
+  { id: "iffr-2026", name: "IFFR" },
+];
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -21,7 +31,10 @@ const AdminPage = () => {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
   const [posterMap, setPosterMap] = useState({});
-  const [view, setView] = useState("cards"); // "cards" | "config"
+  const [view, setView] = useState("cards"); // "cards" | "config" | "festivals"
+  const [authStatus, setAuthStatus] = useState({});
+  const [authLoading, setAuthLoading] = useState({});
+  const [authError, setAuthError] = useState("");
 
   // Lazy-load TMDB posters for cards without uploaded thumbnails (same pattern as DiscoverPage, zero LLM tokens)
   useEffect(() => {
@@ -99,6 +112,22 @@ const AdminPage = () => {
     setResults([]);
   };
 
+  const handleSetAuth = async (editionId, newAuth) => {
+    setAuthLoading(prev => ({ ...prev, [editionId]: true }));
+    setAuthError("");
+    try {
+      const res = await adminSetAuthorization(token, editionId, newAuth);
+      if (res.error) {
+        setAuthError(res.error);
+      } else {
+        setAuthStatus(prev => ({ ...prev, [editionId]: newAuth }));
+      }
+    } catch (e) {
+      setAuthError(e.message || "Failed");
+    }
+    setAuthLoading(prev => ({ ...prev, [editionId]: false }));
+  };
+
   // Login screen
   if (!token) {
     return (
@@ -170,10 +199,61 @@ const AdminPage = () => {
           >
             {locale === "en" ? "Engine Config" : "参数配置"}
           </button>
+          <button
+            onClick={() => setView("festivals")}
+            className={`px-4 py-1.5 text-xs font-black border-2 border-black uppercase transition-colors ${view === "festivals" ? "bg-[#ff00ff] text-black" : "bg-gray-800 text-gray-300 hover:bg-gray-700"}`}
+          >
+            {locale === "en" ? "Festivals" : "电影节授权"}
+          </button>
         </div>
 
         {view === "config" ? (
           <IntelConfigPanel token={token} locale={locale} />
+        ) : view === "festivals" ? (
+          <div className="space-y-4">
+            <div className="bg-white border-4 border-black p-4">
+              <h2 className="text-sm font-black uppercase mb-3">
+                {locale === "en" ? "Festival Authorization" : "电影节授权状态"}
+              </h2>
+              <p className="text-xs text-gray-600 mb-4">
+                {locale === "en"
+                  ? "Set authorization status for each festival edition. 'granted' = officially authorized, 'testing' = test mode (allowed to publish), 'pending' = not yet authorized."
+                  : "为每个电影节届次设置授权状态。'granted' = 已获正式授权，'testing' = 测试模式（允许发布），'pending' = 尚未授权。"}
+              </p>
+              {authError && (
+                <div className="bg-red-500 border-2 border-black p-2 text-white text-xs font-bold mb-3">{authError}</div>
+              )}
+              <div className="space-y-2">
+                {FESTIVALS.map(f => {
+                  const current = authStatus[f.id] || "pending";
+                  return (
+                    <div key={f.id} className="flex items-center justify-between gap-3 border-2 border-black p-2 bg-gray-50">
+                      <div>
+                        <span className="text-xs font-bold">{f.name}</span>
+                        <span className="text-xs text-gray-400 ml-2">{f.id}</span>
+                      </div>
+                      <div className="flex gap-1">
+                        {["granted", "testing", "pending"].map(status => (
+                          <button
+                            key={status}
+                            onClick={() => handleSetAuth(f.id, status)}
+                            disabled={authLoading[f.id]}
+                            className={`text-xs font-bold border-2 border-black px-2 py-1 transition-colors ${
+                              current === status
+                                ? status === "granted" ? "bg-green-500 text-white" : status === "testing" ? "bg-[#ffff00] text-black" : "bg-gray-400 text-white"
+                                : "bg-white text-gray-600 hover:bg-gray-100"
+                            } disabled:opacity-50`}
+                          >
+                            {status}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         ) : (
         <>
         {error && <div className="bg-red-500 border-4 border-black p-3 text-white font-bold text-sm mb-4">{error}</div>}

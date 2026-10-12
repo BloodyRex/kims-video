@@ -76,14 +76,15 @@ export function registryOnlyStore(festival, edition, now) {
 }
 
 /**
- * 发布授权门禁（P1）：只有「授权状态明确为 granted」的届次才允许生成公开产物。
- *   - 缺失 / pending / 任何非 granted 值 → 一律阻断（不得进入索引、详情、变更流）。
- *   - 授权范围是否覆盖全部内容由人工审核；门禁只负责「未明确授权即不放行」。
+ * 发布授权门禁（P1）：只有「授权状态明确放行」的届次才允许生成公开产物。
+ *   - 放行状态 = granted（正式书面授权）或 testing（测试授权，用户明确允许测试内容通过并发布）。
+ *   - 缺失 / pending / 其它未知值 → 一律阻断（不得进入索引、详情、变更流）。
+ *   - 授权范围是否覆盖全部内容由人工审核；门禁只负责「未明确放行即不放行」。
  * 注意：本函数只决定「是否发布」，绝不修改 store 自身的任何字段。
  */
 /* ═════════════════════ P1 授权门禁总开关 ═════════════════════
  * ⚠️ 高风险开关。本轮用户明确授权「停用 granted 门禁」（选项 a），故默认 GATE_DEFAULT = false。
- *   - true  = 门禁强制：只有 authorization === "granted" 的届次进入公开产物（原 P1 行为）。
+ *   - true  = 门禁强制：只有 authorization 属于放行集合（granted / testing）的届次进入公开产物。
  *   - false = 门禁停用：未授权（missing / pending / 其它值）届次照常进入索引 / 详情 / 变更流。
  * 恢复门禁（二选一，无需改逻辑）：
  *   1) 把 GATE_DEFAULT 改回 true；或
@@ -95,8 +96,14 @@ export const GATE_ENFORCED =
   : process.env.FESTIVALS_AUTHORIZATION_GATE === "off" ? false
   : GATE_DEFAULT;
 
-/** 纯授权判据（不受开关影响）：仅 authorization === "granted" 为真。 */
-export const rawAuthorized = (auth) => auth === "granted";
+/* 放行集合（纯判据，不受开关影响）：
+ *   granted —— 已取得正式书面授权（原 P1 唯一放行状态，语义不变）。
+ *   testing —— 测试授权：用户明确要求「允许测试状态内容通过并发布」，与 granted 并列放行。
+ * 二者语义严格区分：testing 绝不等于 granted，也不会被改写成 granted；仅是「允许进入公开产物」的两种状态。 */
+export const RELEASABLE_AUTHORIZATIONS = Object.freeze(["granted", "testing"]);
+
+/** 纯授权判据（不受开关影响）：authorization 属于放行集合（granted / testing）为真。 */
+export const rawAuthorized = (auth) => RELEASABLE_AUTHORIZATIONS.includes(auth);
 
 /** 生效的授权判据：门禁停用时一律放行，否则等同 rawAuthorized。 */
 export function authorizationAllows(auth) {
