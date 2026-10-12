@@ -52,7 +52,7 @@
    "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-11T04:47:16Z"
+   "fetchedAt": "2026-10-12T15:57:20Z"
   },
   {
    "kind": "OFFICIAL_SITE",
@@ -60,7 +60,7 @@
    "url": "https://iffr.com/en/iffr/2026",
    "httpStatus": null,
    "ok": true,
-   "fetchedAt": "2026-10-11T04:47:16Z"
+   "fetchedAt": "2026-10-12T15:57:20Z"
   }
  ],
  "sections": [
@@ -77,8 +77,7 @@
   {
    "id": "c1266",
    "cIdx": 1266,
-   "name": "Art Directions: sound//vision",
-   "nameZh": "艺术指向：声音//视觉"
+   "name": "Art Directions: sound//vision"
   },
   {
    "id": "c1283",
@@ -88,14 +87,12 @@
   {
    "id": "c1250",
    "cIdx": 1250,
-   "name": "Bright Future",
-   "nameZh": "光明未来"
+   "name": "Bright Future"
   },
   {
    "id": "c1258",
    "cIdx": 1258,
-   "name": "Cinema Regained",
-   "nameZh": "电影重获新生"
+   "name": "Cinema Regained"
   },
   {
    "id": "c1286",
@@ -165,14 +162,12 @@
   {
    "id": "c1284",
    "cIdx": 1284,
-   "name": "Tiger Competition",
-   "nameZh": "老虎竞赛"
+   "name": "Tiger Competition"
   },
   {
    "id": "c1282",
    "cIdx": 1282,
-   "name": "Tiger Short Competition",
-   "nameZh": "老虎短片竞赛"
+   "name": "Tiger Short Competition"
   }
  ],
  "venues": [],
@@ -402,21 +397,6 @@
    "inProgramme": true
   },
   {
-   "id": "iffr-2026-f496",
-   "idx": 496,
-   "cIdx": 1266,
-   "title": "水托邦 (Hydrotopia)",
-   "titleZh": "水托邦",
-   "director": "Chiemi Shimada, Jamie Man",
-   "country": "United Kingdom",
-   "sectionId": "c1266",
-   "sectionName": "Art Directions: sound//vision",
-   "officialUrl": "https://iffr.com/en/iffr/2026/films/水托邦-hydrotopia",
-   "synopsis": "Hydrophones in a block of ice capture the disintegration of a frozen body as a projected film emerges into clarity.",
-   "runtime": "50 min",
-   "inProgramme": true
-  },
-  {
    "id": "iffr-2026-f105",
    "idx": 105,
    "cIdx": 1266,
@@ -470,6 +450,20 @@
    "officialUrl": "https://iffr.com/en/iffr/2026/films/vj-emmy-ugandan-live-dubbing",
    "synopsis": "Uganda&rsquo;s VJ Emmy brings the art of live dubbing to IFFR for a sound//vision performance.",
    "runtime": "60 min",
+   "inProgramme": true
+  },
+  {
+   "id": "iffr-2026-f496",
+   "idx": 496,
+   "cIdx": 1266,
+   "title": "水托邦 (Hydrotopia)",
+   "director": "Chiemi Shimada, Jamie Man",
+   "country": "United Kingdom",
+   "sectionId": "c1266",
+   "sectionName": "Art Directions: sound//vision",
+   "officialUrl": "https://iffr.com/en/iffr/2026/films/水托邦-hydrotopia",
+   "synopsis": "Hydrophones in a block of ice capture the disintegration of a frozen body as a projected film emerges into clarity.",
+   "runtime": "50 min",
    "inProgramme": true
   },
   {
@@ -7138,7 +7132,7 @@
  },
  "days": [],
  "warnings": [],
- "fetchedAt": "2026-10-11T04:47:16Z",
- "lastVerifiedAt": "2026-10-11T04:47:16Z",
+ "fetchedAt": "2026-10-12T15:57:20Z",
+ "lastVerifiedAt": "2026-10-12T15:57:20Z",
  "dataSource": "official"
 }

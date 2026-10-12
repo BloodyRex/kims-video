@@ -1,7 +1,47 @@
 {
- "updated": "2026-10-12T15:51:59Z",
- "count7d": 169,
+ "updated": "2026-10-12T20:14:12Z",
+ "count7d": 171,
  "changes": [
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261120-b9f991ec-34a6-4870-8499-1fc100f6f88e-best-of-idfa-audience-fa-2026-10-12T20:14:12Z",
+   "at": "2026-10-12T20:14:12Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261120-b9f991ec-34a6-4870-8499-1fc100f6f88e-best-of-idfa-audience-fa",
+   "label": "Best of IDFA: Audience Favorites — 2026-11-20 10:45 · Pathé Noord 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-7f1a6611-26e0-442d-9be2-f3b3fbbcc713-best-of-idfa-award-winne-2026-10-12T20:14:12Z",
+   "at": "2026-10-12T20:14:12Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-7f1a6611-26e0-442d-9be2-f3b3fbbcc713-best-of-idfa-award-winne",
+   "label": "Best of IDFA: Award Winners — 2026-11-22 10:00 · Pathé Noord 6",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
   {
    "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260903-gyoei-no-mure-catch-2026-09-03-14-15-2026-10-12T15:51:59Z",
    "at": "2026-10-12T15:51:59Z",
