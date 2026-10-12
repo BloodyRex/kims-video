@@ -14,12 +14,13 @@
  * 任一失败 → 非零退出（CI 里会让这一步红掉）。
  */
 
-import { readFileSync, existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
+import { readFileSync, existsSync, mkdirSync, writeFileSync, rmSync, readdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { tmpdir } from "os";
 import * as idfa from "./adapters/idfa.mjs";
 import * as bfi from "./adapters/bfi.mjs";
+import { blockedEditions, GATE_ENFORCED, rawAuthorized, authorizationAllows } from "./publish.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const API = join(ROOT, "public", "api");
@@ -40,6 +41,93 @@ const eq = (got, want, msg) =>
   ok(JSON.stringify(got) === JSON.stringify(want), `${msg} — got ${JSON.stringify(got)}, want ${JSON.stringify(want)}`);
 const hasItem = (arr, needle, msg) =>
   ok((arr || []).some((x) => String(x || "").includes(needle)), `${msg} — nothing matching "${needle}" in ${JSON.stringify((arr || []).slice(0, 6))}`);
+
+/* ═════════════════════ 发布授权门禁（P1）═════════════════════
+ * 统一授权规则：唯一判据是 authorization === "granted"。
+ *   - 公开 feed（索引卡片 festivals.json、变更流 festival-changes.json）含任何未授权届次 → 授权违规；
+ *   - public/api/festivals/*.json 静态详情文件未授权 → 旧公开文件残留（需下架）。
+ * 说明（authorizationNote）只作解释，不能作为放行依据 —— 与 run.mjs / publish.mjs 的 isAuthorized 严格一致。
+ * 本段是索引卡片授权检查的「唯一实现」（主循环不再重复断言，消除 card / card-dup 重复计数），
+ * 同时保留对门禁纯函数本身的回归断言。 */
+/* 授权判据（受总开关约束）：门禁启用时仅 granted 放行；停用时一律放行。
+ * 纯判据（不受开关影响）由 publish.mjs 的 rawAuthorized 提供，用于逻辑回归。 */
+const AUTHORIZED = (auth) => authorizationAllows(auth);
+const DATA_FEST = join(ROOT, "data", "festivals");
+const API_FEST = join(API, "festivals");
+
+// 分类报告容器：授权违规（公开 feed）与旧公开文件残留（静态详情文件）分开统计。
+const gateViolations = [];
+const staleResiduals = [];
+
+function authorizationGateChecks(index, changes) {
+  const violation = (msg) => { gateViolations.push(msg); ok(false, msg); };
+  const residual = (msg) => { staleResiduals.push(msg); ok(false, msg); };
+
+  // 1) 门禁纯函数回归（合成数据，离线）。
+  //    逻辑回归始终验证「纯判据 rawAuthorized 仅 granted 为真」；enforcement 期望随总开关变化。
+  const synth = [
+    { slug: "a", festival: { authorization: "granted" } },
+    { slug: "b", festival: { authorization: "pending" } },
+    { slug: "c", festival: {} },
+    { slug: "d", festival: { authorization: "other" } },
+    { slug: "e", festival: null },
+  ];
+  eq(synth.filter((s) => rawAuthorized(s.festival?.authorization)).map((s) => s.slug), ["a"], "gate: 纯判据仅 granted 为真");
+  if (GATE_ENFORCED) {
+    eq(blockedEditions(synth).map((b) => b.slug), ["b", "c", "d", "e"], "gate: 仅 granted 放行，pending/缺失/其它值一律阻断");
+    eq(blockedEditions(synth).find((b) => b.slug === "c").authorization, null, "gate: 缺失授权在清单里显式记为 null");
+  } else {
+    eq(blockedEditions(synth).map((b) => b.slug), [], "gate(disabled): 门禁停用时全部放行（enforcement 不阻断）");
+  }
+
+  // 2) 磁盘上 editions/*.json 的授权状态（用于变更流归属判定与定位旧数据冲突）
+  const diskAuth = {};
+  const edDir = join(DATA_FEST, "editions");
+  if (existsSync(edDir)) {
+    for (const f of readdirSync(edDir)) {
+      if (!f.endsWith(".json")) continue;
+      try {
+        const d = JSON.parse(readFileSync(join(edDir, f), "utf8"));
+        diskAuth[d.slug || f.replace(/\.json$/, "")] = d.festival?.authorization ?? null;
+      } catch { /* 坏文件由既有断言负责，这里忽略 */ }
+    }
+  }
+
+  // 3) 索引卡片（公开 feed）：只有 granted 允许出现在公开索引，缺失/pending/其它值一律为授权违规。
+  for (const f of index.festivals || []) {
+    if (!AUTHORIZED(f.authorization)) {
+      violation(
+        `card ${f.slug}: 公开索引卡片含未授权届次（authorization=${f.authorization ?? "missing"}）—— 门禁只允许 granted 进入公开产物`
+      );
+    }
+  }
+
+  // 4) 详情文件（静态公开文件）：authorization === "granted" 才允许存在，否则属旧公开文件残留。
+  if (existsSync(API_FEST)) {
+    for (const f of readdirSync(API_FEST)) {
+      if (!f.endsWith(".json")) continue;
+      const slug = f.replace(/\.json$/, "");
+      let d;
+      try { d = readJson(join(API_FEST, f)); } catch { continue; }
+      if (!AUTHORIZED(d.festival?.authorization)) {
+        residual(
+          `detail ${slug}: public/api/festivals/${f} 未授权（authorization=${d.festival?.authorization ?? "missing"}）—— 属旧公开文件，需下架`
+        );
+      }
+    }
+  }
+
+  // 5) 变更流（公开 feed）：不得含未授权届次的 slug。
+  for (const c of changes.changes || []) {
+    if (!c.slug) continue;
+    const auth = diskAuth[c.slug];
+    if (!AUTHORIZED(auth)) {
+      violation(
+        `change ${c.id}: 公开变更流含未授权届次 ${c.slug}（authorization=${auth ?? "missing"}）`
+      );
+    }
+  }
+}
 
 /* ═════════════════════ 一、口径：PROGRAMME SCHEDULE 计数拆分必须自洽 ═════════════════════
  * 页面把 SCREENING + EVENT + TBA 合成一张 PROGRAMME SCHEDULE 列表并展示拆分计数；
@@ -577,6 +665,9 @@ async function main() {
     statBreakdown(f.stats, `card ${f.slug}`);
     statBreakdown(f.today, `card ${f.slug}`, { today: true });
 
+    // P1 授权门禁：索引卡片的授权检查已在 authorizationGateChecks() 统一实现（唯一来源），
+    // 此处不再重复断言，避免 card / card-dup 重复计数。规则见文件顶部 gate 段。
+
     if (f.dataSource === "official") {
       const detailPath = join(API, "festivals", `${f.slug}.json`);
       ok(existsSync(detailPath), `detail file missing for ${f.slug}`);
@@ -702,11 +793,26 @@ async function main() {
 
   await idfaAdapterChecks();
   await bfiAdapterChecks();
+  authorizationGateChecks(index, changes);
 
   console.log(`[verify] ${checks} assertions, ${errors.length} error(s), ${warnings.length} warning(s)`);
   if (warnings.length) warnings.slice(0, 10).forEach((w) => console.log(`  warn: ${w}`));
   if (errors.length) {
-    errors.slice(0, 25).forEach((e) => console.error(`  ERR: ${e}`));
+    // 分类报告：授权违规（公开 feed 泄漏）与旧公开文件残留（静态详情文件）分开列出，便于分别处置。
+    if (gateViolations.length) {
+      console.error(`  ── 授权违规（公开 feed：索引/变更流）: ${gateViolations.length} ──`);
+      gateViolations.forEach((e) => console.error(`  ERR[gate]: ${e}`));
+    }
+    if (staleResiduals.length) {
+      console.error(`  ── 旧公开文件残留（public/api/festivals/*.json）: ${staleResiduals.length} ──`);
+      staleResiduals.forEach((e) => console.error(`  ERR[stale]: ${e}`));
+    }
+    const gateSet = new Set([...gateViolations, ...staleResiduals]);
+    const others = errors.filter((e) => !gateSet.has(e));
+    if (others.length) {
+      console.error(`  ── 其它断言失败: ${others.length} ──`);
+      others.forEach((e) => console.error(`  ERR: ${e}`));
+    }
     process.exit(1);
   }
   console.log("[verify] published festival data is self-consistent ✓");

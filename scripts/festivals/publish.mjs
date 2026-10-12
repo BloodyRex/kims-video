@@ -75,6 +75,45 @@ export function registryOnlyStore(festival, edition, now) {
   };
 }
 
+/**
+ * 发布授权门禁（P1）：只有「授权状态明确为 granted」的届次才允许生成公开产物。
+ *   - 缺失 / pending / 任何非 granted 值 → 一律阻断（不得进入索引、详情、变更流）。
+ *   - 授权范围是否覆盖全部内容由人工审核；门禁只负责「未明确授权即不放行」。
+ * 注意：本函数只决定「是否发布」，绝不修改 store 自身的任何字段。
+ */
+/* ═════════════════════ P1 授权门禁总开关 ═════════════════════
+ * ⚠️ 高风险开关。本轮用户明确授权「停用 granted 门禁」（选项 a），故默认 GATE_DEFAULT = false。
+ *   - true  = 门禁强制：只有 authorization === "granted" 的届次进入公开产物（原 P1 行为）。
+ *   - false = 门禁停用：未授权（missing / pending / 其它值）届次照常进入索引 / 详情 / 变更流。
+ * 恢复门禁（二选一，无需改逻辑）：
+ *   1) 把 GATE_DEFAULT 改回 true；或
+ *   2) 运行时设环境变量 FESTIVALS_AUTHORIZATION_GATE=on（=off 可再次停用）。
+ * 本开关只决定「是否按授权过滤」，绝不修改 store 自身任何字段，也不伪造授权状态。 */
+const GATE_DEFAULT = false;
+export const GATE_ENFORCED =
+  process.env.FESTIVALS_AUTHORIZATION_GATE === "on" ? true
+  : process.env.FESTIVALS_AUTHORIZATION_GATE === "off" ? false
+  : GATE_DEFAULT;
+
+/** 纯授权判据（不受开关影响）：仅 authorization === "granted" 为真。 */
+export const rawAuthorized = (auth) => auth === "granted";
+
+/** 生效的授权判据：门禁停用时一律放行，否则等同 rawAuthorized。 */
+export function authorizationAllows(auth) {
+  return !GATE_ENFORCED || rawAuthorized(auth);
+}
+
+export function isAuthorized(store) {
+  return authorizationAllows(store?.festival?.authorization);
+}
+
+/** 被门禁阻断的届次清单（含原因），用于报告与核验；不写盘、不改数据。 */
+export function blockedEditions(stores) {
+  return (stores || [])
+    .filter((s) => !isAuthorized(s))
+    .map((s) => ({ slug: s.slug, authorization: s.festival?.authorization ?? null }));
+}
+
 function cardOf(store, { today, changes }) {
   const tz = store.edition.timezone;
   const entries = store.screenings || [];
@@ -164,7 +203,11 @@ function cardOf(store, { today, changes }) {
 }
 
 export function buildPublished({ stores, changes, now = new Date().toISOString().replace(/\.\d{3}Z$/, "Z") }) {
-  const cards = stores.map((store) => cardOf(store, { today: localDay(now, store.edition.timezone || "UTC"), changes }));
+  // ── 发布授权门禁 ── 未明确 granted 的届次在此被整体剔除，
+  // 后续所有产物（索引卡片、月历、变更流）都从过滤后的集合派生，无法被绕过。
+  const publishable = (stores || []).filter(isAuthorized);
+  const publishedSlugs = new Set(publishable.map((s) => s.slug));
+  const cards = publishable.map((store) => cardOf(store, { today: localDay(now, store.edition.timezone || "UTC"), changes }));
 
   // 月历 / 周视图密度：日期 → {screenings, events, festivals}
   const calendar = {};
@@ -174,7 +217,7 @@ export function buildPublished({ stores, changes, now = new Date().toISOString()
     calendar[date].screenings += screenings;
     calendar[date].events += events;
   };
-  for (const store of stores) {
+  for (const store of publishable) {
     for (const d of dateRange(store.edition.startDate, store.edition.endDate)) bump(d, store.slug, 0, 0);
     const perDay = new Map();
     for (const s of store.screenings || []) {
@@ -204,6 +247,7 @@ export function buildPublished({ stores, changes, now = new Date().toISOString()
       },
       stats: {
         festivals: cards.length,
+        blocked: (stores || []).filter((s) => !isAuthorized(s)).length,
         liveToday: liveToday.length,
         screeningsToday: liveToday.reduce((n, c) => n + (c.today?.screenings || 0), 0),
         eventsToday: liveToday.reduce((n, c) => n + (c.today?.events || 0), 0),
@@ -214,11 +258,12 @@ export function buildPublished({ stores, changes, now = new Date().toISOString()
       festivals: cards,
       calendar,
     },
-    details: Object.fromEntries(stores.map((s) => [s.slug, s])),
+    details: Object.fromEntries(publishable.map((s) => [s.slug, s])),
     changesFeed: {
       updated: now,
       count7d: recentChanges.length,
-      changes: (changes || []).slice(0, 200),
+      // 变更流只收录已获授权届次，避免被阻断届次的变更记录绕过门禁出现在公开产物里
+      changes: (changes || []).filter((c) => publishedSlugs.has(c.slug)).slice(0, 200),
     },
   };
 }

@@ -40,6 +40,14 @@ jobs:
 
       - run: npm ci
 
+      # 阻断门禁（P1）：构建/部署前先校验发布产物；未通过则整步非零退出，
+      # 不会执行 npm run build / upload-artifact / deploy-pages —— 未授权详情文件无法进入 dist 并上线。
+      - name: Verify published artifacts (blocking gate)
+        run: node scripts/festivals/verify.mjs
+        env:
+          # CI 显式钉住门禁：CI 恢复 granted 授权门禁（本地默认仍停用，GATE_DEFAULT=false）。
+          FESTIVALS_AUTHORIZATION_GATE: "on"
+
       - run: npm run build
         env:
           VITE_API_URL: ${{ vars.VITE_API_URL || 'https://api.bloodyrex.xyz/' }}

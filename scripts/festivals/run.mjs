@@ -21,7 +21,7 @@ import { fileURLToPath } from "url";
 import { createFetcher, nowIso, daysBetween } from "./lib.mjs";
 import { normalize, validate } from "./normalize.mjs";
 import { detectChanges, summarize } from "./diff.mjs";
-import { buildPublished, registryOnlyStore } from "./publish.mjs";
+import { buildPublished, registryOnlyStore, blockedEditions, authorizationAllows, GATE_ENFORCED } from "./publish.mjs";
 import * as biff from "./adapters/biff.mjs";
 import * as idfa from "./adapters/idfa.mjs";
 import * as bfi from "./adapters/bfi.mjs";
@@ -161,13 +161,15 @@ async function main() {
         continue;
       }
 
-      // 授权闸门：数据源未获书面授权（authorization 存在且 ≠ "granted"）时，
-      // 绝不发起实时抓取 —— 仅允许 --snapshot 离线快照在本地生成。
-      // 防止 CI 定时任务在未授权情况下抓取受条款限制的站点（如 HKIFF）。
+      // 授权闸门：只有明确 granted 的届次才允许实时抓取 —— 缺失 / pending / 任何非 granted 值
+      // 一律跳过，仅允许 --snapshot 离线快照在本地生成。
+      // 防止 CI 定时任务在未授权（或授权状态未知）情况下抓取受条款限制的站点（如 HKIFF）。
       const auth = edition.authorization || festival.authorization;
-      if (!SNAPSHOT && auth && auth !== "granted") {
-        entry.action = `skipped (authorization: ${auth})`;
-        entry.authorization = auth;
+      // 统一授权规则（P1）：只有明确 granted 才允许实时抓取 —— 与 verify.mjs / publish.mjs 门禁一致。
+      // 缺失（undefined）与 pending / 任何非 granted 值一律跳过，杜绝「状态未知即抓取」。
+      if (!SNAPSHOT && !authorizationAllows(auth)) {
+        entry.action = `skipped (authorization: ${auth ?? "missing"})`;
+        entry.authorization = auth ?? null;
         report.editions.push(entry);
         continue;
       }
@@ -272,9 +274,33 @@ async function main() {
     }
   }
 
+  // ── 发布授权门禁（P1）── 未明确 granted 的届次不得进入任何公开产物。
+  // 门禁在「写盘前」集中执行：详情文件也只写已授权届次，杜绝旧待授权数据被重新发布。
+  // 注意：只决定「是否发布」，绝不修改 store 自身字段，也不改动磁盘上的 editions/*.json。
+  const publishable = stores.filter((s) => authorizationAllows(s.festival?.authorization));
+  report.blockedEditions = blockedEditions(stores);
+  if (GATE_ENFORCED && report.blockedEditions.length) {
+    log(
+      `[run] authorization gate blocked ${report.blockedEditions.length} edition(s): ` +
+        report.blockedEditions.map((b) => `${b.slug}(${b.authorization ?? "missing"})`).join(", ")
+    );
+  }
+
   if (!DRY && stores.length) {
+    // 安全失败（P1）：没有任何届次获准发布（granted）时，绝不写盘。
+    // 否则会把 0 卡片的索引与 0 条变更的 feed 静默覆盖到 public/api/**，
+    // 造成「空索引」上线事故。此处选择保留既有公开产物不动，并以非零退出码中止。
+    if (!publishable.length) {
+      console.error(
+        `[run] authorization gate: 0 of ${stores.length} edition(s) authorized (granted) — ` +
+          `refusing to publish. public/api/** left untouched (no silent empty index/changes overwrite).`
+      );
+      report.published = { skipped: true, reason: "no authorized edition (safe-fail)", authorized: 0, total: stores.length };
+      writeJson(join(ROOT, "data", "festivals", "last-run.json"), report);
+      process.exit(1);
+    }
     const published = buildPublished({ stores, changes: changeLog.changes || [], now });
-    for (const store of stores) {
+    for (const store of publishable) {
       const detail = { ...store };
       delete detail.warnings;
       detail.films = (detail.films || []).map(({ idx, ...rest }) => rest);
@@ -285,7 +311,7 @@ async function main() {
     report.published = {
       festivals: published.summary.festivals.length,
       stats: published.summary.stats,
-      detailFiles: stores.map((s) => s.slug),
+      detailFiles: publishable.map((s) => s.slug),
     };
     log(`[run] published public/api/festivals.json — ${JSON.stringify(published.summary.stats)}`);
   }

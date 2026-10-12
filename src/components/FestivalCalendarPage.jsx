@@ -192,6 +192,25 @@ function fname(name, locale) {
 }
 
 /**
+ * 统一内容取值 helper（P1：影片目录语言回退）。
+ * 复用 fname 处理 {zh,en} 双语对象（含缺译回退）；对当前单语言字符串字段
+ * （影片 title/director/country 等）原文直取，绝不臆造翻译。
+ * 后续若引入中文旁路字段，经 zhSidecar 传入：中文模式优先取有效中文、缺失回退原文；
+ * 英文模式优先官方原文、缺失回退中文。返回 "" 表示无内容，调用方据此跳过渲染，
+ * 以避免出现空白占位（statusNote 空对象回归）。
+ */
+function contentText(value, locale, zhSidecar) {
+  if (value && typeof value === "object") {
+    const picked = fname(value, locale);
+    return picked === "—" ? "" : picked;
+  }
+  const original = typeof value === "string" ? value.trim() : "";
+  const zh = typeof zhSidecar === "string" ? zhSidecar.trim() : "";
+  if (locale === "zh") return zh || original;
+  return original || zh;
+}
+
+/**
  * 票价语义（务必区分三态，不得误导）：
  *   - 有明确官方价格（如 "£10.00"）→ 原样展示；
  *   - 官方明确免费（"£0.00"）→ 展示为「免费」；
@@ -433,9 +452,9 @@ function FestivalCard({ card, locale, onOpen }) {
             {fmtDateRange(card.startDate, card.endDate, locale)}
           </p>
         </button>
-        {card.statusNote ? (
+        {contentText(card.statusNote, locale) ? (
           <p className="text-[10px] text-[#ff00ff] mt-1.5 leading-relaxed">
-            ⓘ {locale === "zh" ? card.statusNote.zh : card.statusNote.en}
+            ⓘ {contentText(card.statusNote, locale)}
           </p>
         ) : null}
       </div>
@@ -542,8 +561,8 @@ function TodayView({ locale, onOpen }) {
           <Tile label={locale === "zh" ? "即将到来" : "UPCOMING"} value={stats.upcoming ?? upcoming.length} color="#ffff00" />
           <Tile label={locale === "zh" ? "近期变更" : "CHANGES · 7D"} value={stats.changes7d ?? 0} color="#00ffff" />
         </div>
-        {data.scopeNote ? (
-          <p className="text-[9px] text-gray-500 mt-3 leading-relaxed">ⓘ {locale === "zh" ? data.scopeNote.zh : data.scopeNote.en}</p>
+        {contentText(data.scopeNote, locale) ? (
+          <p className="text-[9px] text-gray-500 mt-3 leading-relaxed">ⓘ {contentText(data.scopeNote, locale)}</p>
         ) : null}
       </div>
 
@@ -580,7 +599,7 @@ function TodayView({ locale, onOpen }) {
                   <div className="text-sm font-black text-white break-words">{fname(c.name, locale)}</div>
                   <div className="text-[10px] text-gray-400">{card_city(c, locale)}</div>
                   <div className="text-[10px] text-[#00ffff] pixel-font mt-0.5">{fmtDateRange(c.startDate, c.endDate, locale)}</div>
-                  {c.statusNote ? <div className="text-[9px] text-[#ff00ff] mt-1">ⓘ {locale === "zh" ? c.statusNote.zh : c.statusNote.en}</div> : null}
+                  {contentText(c.statusNote, locale) ? <div className="text-[9px] text-[#ff00ff] mt-1">ⓘ {contentText(c.statusNote, locale)}</div> : null}
                 </button>
               );
             })}
@@ -929,7 +948,7 @@ function FestivalsView({ locale, onOpen }) {
                 <div className="text-sm font-black text-white break-words">{fname(c.name, locale)}</div>
                 <div className="text-[10px] text-gray-400">{card_city(c, locale)}</div>
                 <div className="text-[10px] text-[#00ffff] pixel-font mt-0.5">{fmtDateRange(c.startDate, c.endDate, locale)}</div>
-                {c.statusNote ? <div className="text-[9px] text-[#ff00ff] mt-1">ⓘ {locale === "zh" ? c.statusNote.zh : c.statusNote.en}</div> : null}
+                {contentText(c.statusNote, locale) ? <div className="text-[9px] text-[#ff00ff] mt-1">ⓘ {contentText(c.statusNote, locale)}</div> : null}
                 <div className="text-[9px] pixel-font text-gray-600 mt-2">
                   {locale === "zh" ? `最后验证：${timeAgo(c.lastVerifiedAt, locale)}` : `Last verified: ${timeAgo(c.lastVerifiedAt, locale)}`}
                 </div>
@@ -1244,7 +1263,7 @@ function DetailView({ slug, locale, onBack }) {
 
   const filmsBySection = new Map();
   for (const f of data.films || []) {
-    const key = f.sectionName || (locale === "zh" ? "未分组" : "Ungrouped");
+    const key = contentText(f.sectionName, locale, f.sectionNameZh) || (locale === "zh" ? "未分组" : "Ungrouped");
     if (!filmsBySection.has(key)) filmsBySection.set(key, []);
     filmsBySection.get(key).push(f);
   }
@@ -1299,8 +1318,8 @@ function DetailView({ slug, locale, onBack }) {
         <StatusRow label={locale === "zh" ? "节目单" : "PROGRAMME"} value={data.statusDetail?.programme} locale={locale} />
         <StatusRow label={locale === "zh" ? "排片表" : "SCREENING SCHEDULE"} value={data.statusDetail?.schedule} locale={locale} />
       </div>
-      {data.statusNote ? (
-        <p className="text-[10px] text-[#ff00ff] leading-relaxed">ⓘ {locale === "zh" ? data.statusNote.zh : data.statusNote.en}</p>
+      {contentText(data.statusNote, locale) ? (
+        <p className="text-[10px] text-[#ff00ff] leading-relaxed">ⓘ {contentText(data.statusNote, locale)}</p>
       ) : null}
 
       {/* stats */}
@@ -1340,13 +1359,13 @@ function DetailView({ slug, locale, onBack }) {
             {(data.venues || []).map((v) => <option key={v.id} value={v.id}>{v.name}</option>)}
           </select>
           <select
-            value={section}
-            onChange={(e) => setSection(e.target.value)}
-            className="px-2 py-1 border-2 border-black bg-white text-[10px] font-bold max-w-full"
-          >
-            <option value="ALL">{locale === "zh" ? "全部单元" : "ALL SECTIONS"}</option>
-            {(data.sections || []).map((x) => <option key={x.id} value={x.id}>{x.name || x.id}</option>)}
-          </select>
+                        value={section}
+                        onChange={(e) => setSection(e.target.value)}
+                        className="px-2 py-1 border-2 border-black bg-white text-[10px] font-bold max-w-full"
+                      >
+                        <option value="ALL">{locale === "zh" ? "全部单元" : "ALL SECTIONS"}</option>
+                        {(data.sections || []).map((x) => <option key={x.id} value={x.id}>{contentText(x.name, locale, x.nameZh) || x.id}</option>)}
+                      </select>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -1428,13 +1447,18 @@ function DetailView({ slug, locale, onBack }) {
                     {sec} <span className="text-gray-600">({films.length})</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-1">
-                    {films.slice(0, 120).map((f) => (
-                      <div key={f.id} className="text-[10px] text-gray-300 border-l-2 border-gray-800 pl-2 break-words">
-                        <span className="text-white font-bold">{f.title}</span>
-                        {f.director ? <span className="text-gray-500"> · {f.director}</span> : null}
-                        {f.country ? <span className="text-gray-600"> · {f.country}</span> : null}
-                      </div>
-                    ))}
+                    {films.slice(0, 120).map((f) => {
+                      const title = contentText(f.title, locale, f.titleZh);
+                      const director = contentText(f.director, locale, f.directorZh);
+                      const country = contentText(f.country, locale, f.countryZh);
+                      return (
+                        <div key={f.id} className="text-[10px] text-gray-300 border-l-2 border-gray-800 pl-2 break-words">
+                          <span className="text-white font-bold">{title}</span>
+                          {director ? <span className="text-gray-500"> · {director}</span> : null}
+                          {country ? <span className="text-gray-600"> · {country}</span> : null}
+                        </div>
+                      );
+                    })}
                   </div>
                   {films.length > 120 ? (
                     <div className="text-[9px] text-gray-600 mt-1">

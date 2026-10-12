@@ -40,6 +40,14 @@ jobs:
             node -e "const r=require('./data/festivals/last-run.json'); console.log(JSON.stringify(r.editions,null,1)); if(r.errors.length) console.log('ERRORS:', r.errors);"
           fi
 
+      # 阻断门禁（P1）：发布产物自检未通过则整步非零退出 → 后续 commit/push 不再执行。
+      # 未授权届次一旦进入 public/api（索引/详情/变更流）或残留旧文件，都会被这里拦下。
+      - name: Verify published artifacts (blocking gate)
+        run: node scripts/festivals/verify.mjs
+        env:
+          # CI 显式钉住门禁：CI 恢复 granted 授权门禁（本地默认仍停用，GATE_DEFAULT=false）。
+          FESTIVALS_AUTHORIZATION_GATE: "on"
+
       - name: Commit and push when data changed
         run: |
           git config user.name "github-actions[bot]"
