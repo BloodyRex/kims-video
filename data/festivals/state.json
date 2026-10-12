@@ -1,8 +1,8 @@
 {
  "editions": {
   "biff-2026": {
-   "lastFetchedAt": "2026-10-12T10:37:41Z",
-   "lastVerifiedAt": "2026-10-12T10:37:41Z",
+   "lastFetchedAt": "2026-10-12T15:51:59Z",
+   "lastVerifiedAt": "2026-10-12T15:51:59Z",
    "lastChangedAt": "2026-10-10T08:23:45Z",
    "lastStatus": "SCREENING_LIVE",
    "statusDetail": {
@@ -41,8 +41,8 @@
    "collapsed": 0
   },
   "bfi-2026": {
-   "lastFetchedAt": "2026-10-12T10:37:46Z",
-   "lastVerifiedAt": "2026-10-12T10:37:46Z",
+   "lastFetchedAt": "2026-10-12T15:52:04Z",
+   "lastVerifiedAt": "2026-10-12T15:52:04Z",
    "lastChangedAt": "2026-10-08T13:28:49Z",
    "lastStatus": "SCREENING_LIVE",
    "statusDetail": {
@@ -75,15 +75,16 @@
     "films": 22,
     "screenings": 44
    },
-   "failCount": 0,
-   "lastError": null,
+   "failCount": 1,
+   "lastError": "schedule covers only 0/50 days | regression: entries 0 vs previous 44 (<50%)",
    "changesLastRun": 0,
-   "collapsed": 0
+   "collapsed": 0,
+   "lastAttemptAt": "2026-10-12T15:51:59Z"
   },
   "venice-2026": {
-   "lastFetchedAt": "2026-10-11T03:36:10.050Z",
-   "lastVerifiedAt": "2026-10-11T03:36:10.050Z",
-   "lastChangedAt": "2026-10-11T03:35:57Z",
+   "lastFetchedAt": "2026-10-12T15:54:06.225Z",
+   "lastVerifiedAt": "2026-10-12T15:54:06.225Z",
+   "lastChangedAt": "2026-10-12T15:51:59Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -97,12 +98,12 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 0,
+   "changesLastRun": 151,
    "collapsed": 0
   },
   "iffr-2026": {
-   "lastFetchedAt": "2026-10-11T04:47:16Z",
-   "lastVerifiedAt": "2026-10-11T04:47:16Z",
+   "lastFetchedAt": "2026-10-12T15:57:20Z",
+   "lastVerifiedAt": "2026-10-12T15:57:20Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -117,12 +118,12 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 1,
+   "changesLastRun": 0,
    "collapsed": 0
   },
   "cannes-2026": {
-   "lastFetchedAt": "2026-10-11T04:47:16Z",
-   "lastVerifiedAt": "2026-10-11T04:47:16Z",
+   "lastFetchedAt": "2026-10-12T15:54:06Z",
+   "lastVerifiedAt": "2026-10-12T15:54:06Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -137,9 +138,9 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 1,
+   "changesLastRun": 0,
    "collapsed": 0
   }
  },
- "updated": "2026-10-12T10:37:41Z"
+ "updated": "2026-10-12T15:51:59Z"
 }

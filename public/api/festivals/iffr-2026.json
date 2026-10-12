@@ -52,7 +52,7 @@
    "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-11T04:47:16Z"
+   "fetchedAt": "2026-10-12T15:57:20Z"
   },
   {
    "kind": "OFFICIAL_SITE",
@@ -60,7 +60,7 @@
    "url": "https://iffr.com/en/iffr/2026",
    "httpStatus": null,
    "ok": true,
-   "fetchedAt": "2026-10-11T04:47:16Z"
+   "fetchedAt": "2026-10-12T15:57:20Z"
   }
  ],
  "sections": [
@@ -381,19 +381,6 @@
    "inProgramme": true
   },
   {
-   "id": "iffr-2026-f496",
-   "cIdx": 1266,
-   "title": "水托邦 (Hydrotopia)",
-   "director": "Chiemi Shimada, Jamie Man",
-   "country": "United Kingdom",
-   "sectionId": "c1266",
-   "sectionName": "Art Directions: sound//vision",
-   "officialUrl": "https://iffr.com/en/iffr/2026/films/水托邦-hydrotopia",
-   "synopsis": "Hydrophones in a block of ice capture the disintegration of a frozen body as a projected film emerges into clarity.",
-   "runtime": "50 min",
-   "inProgramme": true
-  },
-  {
    "id": "iffr-2026-f105",
    "cIdx": 1266,
    "title": "DIsINCARNATE (I-III)",
@@ -443,6 +430,19 @@
    "officialUrl": "https://iffr.com/en/iffr/2026/films/vj-emmy-ugandan-live-dubbing",
    "synopsis": "Uganda&rsquo;s VJ Emmy brings the art of live dubbing to IFFR for a sound//vision performance.",
    "runtime": "60 min",
+   "inProgramme": true
+  },
+  {
+   "id": "iffr-2026-f496",
+   "cIdx": 1266,
+   "title": "水托邦 (Hydrotopia)",
+   "director": "Chiemi Shimada, Jamie Man",
+   "country": "United Kingdom",
+   "sectionId": "c1266",
+   "sectionName": "Art Directions: sound//vision",
+   "officialUrl": "https://iffr.com/en/iffr/2026/films/水托邦-hydrotopia",
+   "synopsis": "Hydrophones in a block of ice capture the disintegration of a frozen body as a projected film emerges into clarity.",
+   "runtime": "50 min",
    "inProgramme": true
   },
   {
@@ -6635,7 +6635,7 @@
   "guestVisits": 0
  },
  "days": [],
- "fetchedAt": "2026-10-11T04:47:16Z",
- "lastVerifiedAt": "2026-10-11T04:47:16Z",
+ "fetchedAt": "2026-10-12T15:57:20Z",
+ "lastVerifiedAt": "2026-10-12T15:57:20Z",
  "dataSource": "official"
 }
