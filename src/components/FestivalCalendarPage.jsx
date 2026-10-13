@@ -551,7 +551,6 @@ function FestivalCard({ card, locale, onOpen }) {
 
 function TodayView({ locale, onOpen }) {
   const { data, loading, error, retry } = useJsonData("/api/festivals.json");
-  const changes = useJsonData("/api/festival-changes.json");
   if (loading) return <LoadingSpinner locale={locale} />;
   if (error) return <DataError locale={locale} onRetry={retry} />;
   if (!data) return <Empty locale={locale} />;
@@ -562,14 +561,13 @@ function TodayView({ locale, onOpen }) {
   const upcoming = cards.filter((c) => c.startDate > data.today).sort((a, b) => a.startDate.localeCompare(b.startDate));
   const pending = cards.filter((c) => c.statusDetail?.schedule === "PENDING" && c.startDate > data.today);
   const ended = cards.filter((c) => c.endDate < data.today).sort((a, b) => b.endDate.localeCompare(a.endDate));
-  const recent = (changes.data?.changes || []).filter((c) => Date.parse(c.at) > Date.now() - 7 * 86400000).slice(0, 8);
 
   return (
     <div className="space-y-6">
       <div className="border-4 border-black bg-black p-3" style={{ boxShadow: "6px 6px 0 0 #ff00ff" }}>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 className="text-sm sm:text-lg font-black pixel-font text-white uppercase">
-            TODAY · {fmtDate(data.today, locale)}
+            {locale === "zh" ? `今天 · ${fmtDate(data.today, locale)}` : `TODAY · ${fmtDate(data.today, locale)}`}
           </h2>
           <span className="text-[9px] pixel-font text-gray-500">
             {locale === "zh" ? `数据更新：${timeAgo(data.updated, locale)}` : `Updated ${timeAgo(data.updated, locale)}`}
@@ -579,7 +577,7 @@ function TodayView({ locale, onOpen }) {
           <Tile label={locale === "zh" ? "正在举行" : "FESTIVALS TODAY"} value={stats.liveToday ?? live.length} color="#ff00ff" />
           <Tile label={locale === "zh" ? "今日场次" : "SCREENINGS TODAY"} value={stats.screeningsToday ?? 0} color="#00ffff" />
           <Tile label={locale === "zh" ? "即将到来" : "UPCOMING"} value={stats.upcoming ?? upcoming.length} color="#ffff00" />
-          <Tile label={locale === "zh" ? "近期变更" : "CHANGES · 7D"} value={stats.changes7d ?? 0} color="#00ffff" />
+          <Tile label={locale === "zh" ? "已结束" : "ENDED"} value={ended.length} color="#9ca3af" />
         </div>
         <p className="text-[9px] pixel-font text-gray-400 mt-2">
           {locale === "zh"
@@ -669,17 +667,6 @@ function TodayView({ locale, onOpen }) {
           </div>
         </section>
       ) : null}
-
-      <section>
-        <SectionHeader label={locale === "zh" ? "最近变更" : "RECENT CHANGES"} color="#ff00ff" />
-        {recent.length ? (
-          <div className="space-y-2">
-            {recent.map((c) => <ChangeCard key={c.id} change={c} locale={locale} />)}
-          </div>
-        ) : (
-          <Empty locale={locale} text={locale === "zh" ? "最近 7 天没有记录到官方排片变化" : "No official schedule changes recorded in the last 7 days"} />
-        )}
-      </section>
     </div>
   );
 }
@@ -709,7 +696,7 @@ function WeekView({ locale, onOpen }) {
     <div className="space-y-4">
       <div className="border-4 border-black bg-black p-3" style={{ boxShadow: "6px 6px 0 0 #ffff00" }}>
         <h2 className="text-sm sm:text-lg font-black pixel-font text-white uppercase">
-          WEEK · {fmtDateRange(start, end, locale)}
+          {locale === "zh" ? `本周 · ${fmtDateRange(start, end, locale)}` : `WEEK · ${fmtDateRange(start, end, locale)}`}
         </h2>
         <p className="text-[10px] text-gray-400 mt-1">
           {locale === "zh"
@@ -1070,7 +1057,7 @@ function ChangesView({ locale }) {
     <div className="space-y-4">
       <div className="border-4 border-black bg-black p-3" style={{ boxShadow: "6px 6px 0 0 #ffff00" }}>
         <h2 className="text-sm sm:text-lg font-black pixel-font text-white uppercase">
-          CHANGES · {data.count7d ?? 0} / 7D
+          {locale === "zh" ? `变更 · ${data.count7d ?? 0} / 7 天` : `CHANGES · ${data.count7d ?? 0} / 7D`}
         </h2>
         <p className="text-[10px] text-gray-400 mt-1">
           {locale === "zh"
