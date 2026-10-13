@@ -1,12 +1,12 @@
 {
- "at": "2026-10-12T20:14:12Z",
+ "at": "2026-10-13T02:13:00Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 262min ≥ 30min",
+   "reason": "age 359min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 255,
@@ -25,7 +25,7 @@
   {
    "slug": "idfa-2026",
    "due": true,
-   "reason": "age 1473min ≥ 1440min",
+   "reason": "age 359min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 168,
@@ -45,12 +45,12 @@
     "official screening times not published yet: 0 SCREENING, 27 official programme entry/entries (status SCHEDULE_PENDING — partial data, NOT a complete schedule)"
    ],
    "action": "updated",
-   "changes": 2
+   "changes": 0
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 262min ≥ 30min",
+   "reason": "age 359min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
@@ -69,7 +69,7 @@
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 3869min ≥ 30min",
+   "reason": "age 4227min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 0,
@@ -116,15 +116,27 @@
   },
   {
    "slug": "venice-2026",
-   "due": false,
-   "reason": "age 260min < 360min",
+   "due": true,
+   "reason": "age 619min ≥ 360min",
    "status": "SCHEDULE_LIVE",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 347,
+    "screenings": 350,
+    "venues": 10,
+    "days": 11,
+    "sourcesOk": 12,
+    "sourcesTotal": 12,
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 149
   },
   {
    "slug": "cannes-2026",
    "due": true,
-   "reason": "age 260min ≥ 180min",
+   "reason": "age 357min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 150,
@@ -145,7 +157,7 @@
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 257min ≥ 180min",
+   "reason": "age 354min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 496,
@@ -174,10 +186,10 @@
    "festivals": 7,
    "blocked": 0,
    "liveToday": 3,
-   "screeningsToday": 122,
+   "screeningsToday": 121,
    "eventsToday": 2,
    "upcoming": 1,
-   "changes7d": 171,
+   "changes7d": 320,
    "venuesToday": 38
   },
   "detailFiles": [
