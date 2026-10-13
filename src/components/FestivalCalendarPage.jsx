@@ -416,6 +416,7 @@ function NowNext({ items, timezone, locale, color }) {
 
 function FestivalCard({ card, locale, onOpen }) {
   const [expanded, setExpanded] = useState(false);
+  const [open, setOpen] = useState(false);
   const s = STATUS[card.status] || STATUS.TBC;
   const items = card.today?.items || [];
   const byVenue = useMemo(() => {
@@ -475,43 +476,60 @@ function FestivalCard({ card, locale, onOpen }) {
         ))}
       </div>
 
-      {/* today's schedule */}
-      <div className="p-3">
-        <div className="text-[9px] pixel-font uppercase text-gray-400 mb-2">
-          {isLive
-            ? locale === "zh" ? `今日排片 · ${fmtDate(card.today?.date, locale, false)}` : `TODAY'S SCHEDULE · ${fmtDate(card.today?.date, locale, false)}`
-            : locale === "zh" ? "今日无排片（未在进行中）" : "NO SCREENINGS TODAY"}
-        </div>
-        {isLive && items.length ? (
-          <>
-            <NowNext items={items} timezone={card.timezone} locale={locale} color={s.color} />
-            {byVenue.map(([venue, list]) => {
-              const shown = expanded ? list : list.slice(0, limit);
-              return (
-                <div key={venue} className="mb-2">
-                  <div className="text-[9px] font-black text-[#ffff00] mb-0.5 break-words">
-                    {locale === "zh" ? VENUE_ZH[venue] || venue : venue} <span className="text-gray-600">({list.length})</span>
-                  </div>
-                  <div className="pl-2 border-l-2 border-gray-800">
-                    {shown.map((i) => <ScreeningRow key={i.id} s={i} locale={locale} color={s.color} />)}
-                    {!expanded && list.length > limit ? (
-                      <button onClick={() => setExpanded(true)} className="text-[9px] pixel-font text-[#00ffff] mt-1 hover:text-white">
-                        {locale === "zh" ? `+ 展开其余 ${list.length - limit} 场` : `+ ${list.length - limit} MORE`}
-                      </button>
-                    ) : null}
-                  </div>
-                </div>
-              );
-            })}
-            {expanded ? (
-              <button onClick={() => setExpanded(false)} className="text-[9px] pixel-font text-gray-500 hover:text-white">
-                {locale === "zh" ? "收起" : "COLLAPSE"}
-              </button>
-            ) : null}
-          </>
-        ) : (
-          <p className="text-[10px] text-gray-600">{locale === "zh" ? "官方尚未公布今日排片。" : "Official schedule not published for today."}</p>
-        )}
+      {/* today's schedule — collapsed by default (summary only) */}
+      <div className="border-b-4 border-black">
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className="w-full flex flex-wrap items-center justify-between gap-2 p-3 text-left hover:bg-gray-950 transition-colors"
+          aria-expanded={open}
+        >
+          <span className="text-[9px] pixel-font uppercase text-gray-400">
+            {isLive
+              ? locale === "zh" ? `今日排片 · ${fmtDate(card.today?.date, locale, false)}` : `TODAY'S SCHEDULE · ${fmtDate(card.today?.date, locale, false)}`
+              : locale === "zh" ? "今日无排片（未在进行中）" : "NO SCREENINGS TODAY"}
+          </span>
+          <span className="text-[9px] pixel-font text-[#00ffff] whitespace-nowrap">
+            {open
+              ? (locale === "zh" ? "▲ 收起详情" : "▲ COLLAPSE")
+              : isLive && items.length
+                ? (locale === "zh" ? `▼ 展开排片（${items.length} 场）` : `▼ SHOW SCHEDULE (${items.length})`)
+                : (locale === "zh" ? "▼ 展开" : "▼ SHOW")}
+          </span>
+        </button>
+        {open ? (
+          <div className="px-3 pb-3">
+            {isLive && items.length ? (
+              <>
+                <NowNext items={items} timezone={card.timezone} locale={locale} color={s.color} />
+                {byVenue.map(([venue, list]) => {
+                  const shown = expanded ? list : list.slice(0, limit);
+                  return (
+                    <div key={venue} className="mb-2">
+                      <div className="text-[9px] font-black text-[#ffff00] mb-0.5 break-words">
+                        {locale === "zh" ? VENUE_ZH[venue] || venue : venue} <span className="text-gray-600">({list.length})</span>
+                      </div>
+                      <div className="pl-2 border-l-2 border-gray-800">
+                        {shown.map((i) => <ScreeningRow key={i.id} s={i} locale={locale} color={s.color} />)}
+                        {!expanded && list.length > limit ? (
+                          <button onClick={() => setExpanded(true)} className="text-[9px] pixel-font text-[#00ffff] mt-1 hover:text-white">
+                            {locale === "zh" ? `+ 展开其余 ${list.length - limit} 场` : `+ ${list.length - limit} MORE`}
+                          </button>
+                        ) : null}
+                      </div>
+                    </div>
+                  );
+                })}
+                {expanded ? (
+                  <button onClick={() => setExpanded(false)} className="text-[9px] pixel-font text-gray-500 hover:text-white">
+                    {locale === "zh" ? "收起" : "COLLAPSE"}
+                  </button>
+                ) : null}
+              </>
+            ) : (
+              <p className="text-[10px] text-gray-600">{locale === "zh" ? "官方尚未公布今日排片。" : "Official schedule not published for today."}</p>
+            )}
+          </div>
+        ) : null}
       </div>
 
       {/* actions */}
@@ -542,7 +560,8 @@ function TodayView({ locale, onOpen }) {
   const cards = data.festivals || [];
   const live = cards.filter((c) => c.lifecycle === "LIVE" || (c.startDate <= data.today && c.endDate >= data.today));
   const upcoming = cards.filter((c) => c.startDate > data.today).sort((a, b) => a.startDate.localeCompare(b.startDate));
-  const pending = cards.filter((c) => c.statusDetail?.schedule === "PENDING" && !live.includes(c));
+  const pending = cards.filter((c) => c.statusDetail?.schedule === "PENDING" && c.startDate > data.today);
+  const ended = cards.filter((c) => c.endDate < data.today).sort((a, b) => b.endDate.localeCompare(a.endDate));
   const recent = (changes.data?.changes || []).filter((c) => Date.parse(c.at) > Date.now() - 7 * 86400000).slice(0, 8);
 
   return (
@@ -562,6 +581,11 @@ function TodayView({ locale, onOpen }) {
           <Tile label={locale === "zh" ? "即将到来" : "UPCOMING"} value={stats.upcoming ?? upcoming.length} color="#ffff00" />
           <Tile label={locale === "zh" ? "近期变更" : "CHANGES · 7D"} value={stats.changes7d ?? 0} color="#00ffff" />
         </div>
+        <p className="text-[9px] pixel-font text-gray-400 mt-2">
+          {locale === "zh"
+            ? `共收录 ${cards.length} 届 · 举行中 ${live.length} · 即将到来 ${upcoming.length} · 已结束 ${ended.length}`
+            : `${cards.length} TRACKED · ${live.length} LIVE · ${upcoming.length} UPCOMING · ${ended.length} ENDED`}
+        </p>
         {contentText(data.scopeNote, locale) ? (
           <p className="text-[9px] text-gray-500 mt-3 leading-relaxed">ⓘ {contentText(data.scopeNote, locale)}</p>
         ) : null}
@@ -612,6 +636,37 @@ function TodayView({ locale, onOpen }) {
                 : `${pending.length} festival(s) have confirmed dates with schedules not yet announced (shown as a status, never blank).`}
             </p>
           ) : null}
+        </section>
+      ) : null}
+
+      {ended.length ? (
+        <section>
+          <SectionHeader label={locale === "zh" ? "已结束" : "ENDED"} count={ended.length} color="#9ca3af" />
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
+            {ended.map((c) => {
+              const s = STATUS[c.status] || STATUS.TBC;
+              return (
+                <button
+                  key={c.slug}
+                  onClick={() => onOpen(c.slug)}
+                  className="text-left border-4 border-black bg-black p-3 hover:bg-gray-950 transition-colors opacity-80"
+                  style={{ boxShadow: `4px 4px 0 0 ${s.color}` }}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <StatusBadge status={c.status} locale={locale} small />
+                    <span className="text-[9px] pixel-font text-gray-500">
+                      {locale === "zh"
+                        ? `已结束 · 距今 ${Math.max(0, Math.round((Date.parse(data.today) - Date.parse(c.endDate)) / 86400000))} 天`
+                        : `ENDED · ${Math.max(0, Math.round((Date.parse(data.today) - Date.parse(c.endDate)) / 86400000))} DAYS AGO`}
+                    </span>
+                  </div>
+                  <div className="text-sm font-black text-white break-words">{fname(c.name, locale)}</div>
+                  <div className="text-[10px] text-gray-400">{card_city(c, locale)}</div>
+                  <div className="text-[10px] text-[#00ffff] pixel-font mt-0.5">{fmtDateRange(c.startDate, c.endDate, locale)}</div>
+                </button>
+              );
+            })}
+          </div>
         </section>
       ) : null}
 
