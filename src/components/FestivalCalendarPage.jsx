@@ -74,6 +74,7 @@ const REGION_ZH = {
 const TYPE_ZH = {
   FEATURE: "长片", SHORT: "短片", DOCUMENTARY: "纪录片", ANIMATION: "动画",
   "FAMILY / YOUTH": "家庭/青少年", EXPERIMENTAL: "实验", GENRE: "类型", IMMERSIVE: "沉浸式",
+  CLASSIC: "经典", RESTORED: "修复",
 };
 
 // ── 取数 ──────────────────────────────────────────────
