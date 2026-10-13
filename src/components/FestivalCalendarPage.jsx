@@ -4,6 +4,7 @@ import { useLocale } from "../i18n";
 import { Icons } from "./Icons";
 import { SectionHeader } from "./Cards";
 import { setSocialMeta } from "../services/seo";
+import { CITY_ZH, COUNTRY_ZH, SECTION_ZH, VENUE_ZH, glossSourceLabel } from "./festivalGlossary.js";
 
 /**
  * FESTIVAL CALENDAR / 全球电影节排片日历
@@ -352,7 +353,7 @@ function ScreeningRow({ s, locale, color = "#ffff00" }) {
           ) : null}
         </div>
         <div className="text-[10px] text-gray-400 mt-0.5 break-words">
-          {[s.section, s.venueName].filter(Boolean).join(" · ")}
+          {[locale === "zh" ? SECTION_ZH[s.section] || s.section : s.section, locale === "zh" ? VENUE_ZH[s.venueName] || s.venueName : s.venueName].filter(Boolean).join(" · ")}
           {(() => {
             const p = priceLabel(s.minPrice, locale);
             if (!p) return null;
@@ -446,7 +447,7 @@ function FestivalCard({ card, locale, onOpen }) {
             {fname(card.name, locale)}
           </h3>
           <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5 break-words">
-            {[card.city, card.country].filter(Boolean).join(", ")} · {locale === "zh" ? `第 ${card.year} 届` : `${card.year} edition`}
+            {[locale === "zh" ? CITY_ZH[card.city] || card.city : card.city, locale === "zh" ? COUNTRY_ZH[card.country] || card.country : card.country].filter(Boolean).join(", ")} · {locale === "zh" ? `第 ${card.year} 届` : `${card.year} edition`}
           </p>
           <p className="text-[10px] sm:text-xs text-[#00ffff] mt-0.5 pixel-font">
             {fmtDateRange(card.startDate, card.endDate, locale)}
@@ -489,7 +490,7 @@ function FestivalCard({ card, locale, onOpen }) {
               return (
                 <div key={venue} className="mb-2">
                   <div className="text-[9px] font-black text-[#ffff00] mb-0.5 break-words">
-                    {venue} <span className="text-gray-600">({list.length})</span>
+                    {locale === "zh" ? VENUE_ZH[venue] || venue : venue} <span className="text-gray-600">({list.length})</span>
                   </div>
                   <div className="pl-2 border-l-2 border-gray-800">
                     {shown.map((i) => <ScreeningRow key={i.id} s={i} locale={locale} color={s.color} />)}
@@ -629,7 +630,7 @@ function TodayView({ locale, onOpen }) {
 }
 
 function card_city(card, locale) {
-  return [card.city, card.country].filter(Boolean).join(", ") + (locale === "zh" ? ` · 第 ${card.year} 届` : ` · ${card.year} edition`);
+  return [locale === "zh" ? CITY_ZH[card.city] || card.city : card.city, locale === "zh" ? COUNTRY_ZH[card.country] || card.country : card.country].filter(Boolean).join(", ") + (locale === "zh" ? ` · 第 ${card.year} 届` : ` · ${card.year} edition`);
 }
 
 // ── WEEK ─────────────────────────────────────────────
@@ -675,7 +676,7 @@ function WeekView({ locale, onOpen }) {
               <span className={`text-xs sm:text-sm font-black pixel-font ${isToday ? "text-[#ff00ff]" : "text-white"}`}>
                 {dayOfWeek(d, locale)} {fmtDate(d, locale, false)}
               </span>
-              {isToday ? <span className="text-[8px] pixel-font bg-[#ff00ff] text-black px-1 border border-black">TODAY</span> : null}
+              {isToday ? <span className="text-[8px] pixel-font bg-[#ff00ff] text-black px-1 border border-black">{locale === "zh" ? "今天" : "TODAY"}</span> : null}
               <span className="text-[9px] pixel-font text-gray-500 ml-auto">
                 {locale === "zh" ? `${c.screenings} 场 · ${c.events} 活动 · ${list.length} 个电影节` : `${c.screenings} screenings · ${c.events} events · ${list.length} festivals`}
               </span>
@@ -895,7 +896,7 @@ function FestivalsView({ locale, onOpen }) {
     <div className="space-y-4">
       <div className="border-4 border-black bg-black p-3" style={{ boxShadow: "6px 6px 0 0 #ff00ff" }}>
         <h2 className="text-sm sm:text-lg font-black pixel-font text-white uppercase">
-          FESTIVAL DATABASE · {filtered.length}/{cards.length}
+          {locale === "zh" ? "电影节库" : "FESTIVAL DATABASE"} · {filtered.length}/{cards.length}
         </h2>
         <p className="text-[10px] text-gray-400 mt-1">
           {locale === "zh"
@@ -940,7 +941,7 @@ function FestivalsView({ locale, onOpen }) {
               >
                 <div className="flex flex-wrap items-center gap-2 mb-1">
                   <StatusBadge status={c.status} locale={locale} small />
-                  <span className="text-[9px] pixel-font text-gray-500 uppercase">{c.region}</span>
+                  <span className="text-[9px] pixel-font text-gray-500 uppercase">{locale === "zh" ? REGION_ZH[c.region] || c.region : c.region}</span>
                   <span className="text-[9px] pixel-font text-gray-600">
                     {locale === "zh" ? `${c.dayCount} 天 · ${c.stats?.films ?? 0} 部影片 · ${c.stats?.screenings ?? 0} 场` : `${c.dayCount}d · ${c.stats?.films ?? 0} films · ${c.stats?.screenings ?? 0} screenings`}
                   </span>
@@ -1287,10 +1288,10 @@ function DetailView({ slug, locale, onBack }) {
         </div>
         <h2 className="text-lg sm:text-2xl font-black text-white break-words">{fname(data.festival?.name, locale)}</h2>
         <p className="text-xs text-gray-400 mt-1">
-          {[data.festival?.city, data.festival?.country].filter(Boolean).join(", ")}
+          {[locale === "zh" ? CITY_ZH[data.festival?.city] || data.festival?.city : data.festival?.city, locale === "zh" ? COUNTRY_ZH[data.festival?.country] || data.festival?.country : data.festival?.country].filter(Boolean).join(", ")}
           {" · "}
           {locale === "zh" ? `第 ${data.edition?.year} 届` : `${data.edition?.year} edition`}
-          {data.festival?.region ? ` · ${data.festival.region}` : ""}
+          {data.festival?.region ? ` · ${locale === "zh" ? REGION_ZH[data.festival.region] || data.festival.region : data.festival.region}` : ""}
         </p>
         <p className="text-xs text-[#00ffff] pixel-font mt-1">
           {fmtDateRange(data.edition?.startDate, data.edition?.endDate, locale)} · {data.edition?.dayCount} {locale === "zh" ? "天" : "days"} · {data.edition?.timezone}
@@ -1356,7 +1357,7 @@ function DetailView({ slug, locale, onBack }) {
             className="px-2 py-1 border-2 border-black bg-white text-[10px] font-bold max-w-full"
           >
             <option value="ALL">{locale === "zh" ? "全部影厅" : "ALL VENUES"}</option>
-            {(data.venues || []).map((v) => <option key={v.id} value={v.id}>{v.name}</option>)}
+            {(data.venues || []).map((v) => <option key={v.id} value={v.id}>{locale === "zh" ? VENUE_ZH[v.name] || v.name : v.name}</option>)}
           </select>
           <select
                         value={section}
@@ -1364,7 +1365,7 @@ function DetailView({ slug, locale, onBack }) {
                         className="px-2 py-1 border-2 border-black bg-white text-[10px] font-bold max-w-full"
                       >
                         <option value="ALL">{locale === "zh" ? "全部单元" : "ALL SECTIONS"}</option>
-                        {(data.sections || []).map((x) => <option key={x.id} value={x.id}>{contentText(x.name, locale, x.nameZh) || x.id}</option>)}
+                        {(data.sections || []).map((x) => <option key={x.id} value={x.id}>{locale === "zh" ? (SECTION_ZH[x.name] || x.name || x.id) : (x.name || x.id)}</option>)}
                       </select>
           <input
             value={query}
@@ -1398,7 +1399,7 @@ function DetailView({ slug, locale, onBack }) {
                     <span className="text-xs font-black pixel-font text-white">
                       {dayOfWeek(d, locale)} {fmtDate(d, locale)}
                     </span>
-                    {d === todayLocal ? <span className="text-[8px] pixel-font bg-[#ff00ff] text-black px-1 border border-black">TODAY</span> : null}
+                    {d === todayLocal ? <span className="text-[8px] pixel-font bg-[#ff00ff] text-black px-1 border border-black">{locale === "zh" ? "今天" : "TODAY"}</span> : null}
                     <span className="text-[9px] pixel-font text-gray-500 ml-auto">{total} {locale === "zh" ? "条" : "entries"}</span>
                   </div>
                   {open ? (
@@ -1406,7 +1407,7 @@ function DetailView({ slug, locale, onBack }) {
                       {[...byVenue.entries()].map(([v, list]) => (
                         <div key={v}>
                           <div className="text-[9px] font-black text-[#ffff00] break-words">
-                            {v} <span className="text-gray-600">({list.length})</span>
+                            {locale === "zh" ? VENUE_ZH[v] || v : v} <span className="text-gray-600">({list.length})</span>
                           </div>
                           <div className="pl-2 border-l-2 border-gray-800">
                             {list.map((x) => <ScreeningRow key={x.id} s={x} locale={locale} color={s.color} />)}
@@ -1444,7 +1445,7 @@ function DetailView({ slug, locale, onBack }) {
               {[...filmsBySection.entries()].map(([sec, films]) => (
                 <div key={sec} className="border-4 border-black bg-black p-2">
                   <div className="text-[10px] font-black text-[#ffff00] mb-1">
-                    {sec} <span className="text-gray-600">({films.length})</span>
+                    {locale === "zh" ? SECTION_ZH[sec] || sec : sec} <span className="text-gray-600">({films.length})</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-1">
                     {films.slice(0, 120).map((f) => {
@@ -1479,12 +1480,12 @@ function DetailView({ slug, locale, onBack }) {
           {(data.sources || []).map((src) => (
             <div key={src.url} className="border-2 border-gray-800 p-2 flex flex-wrap items-center gap-2">
               <span className="text-[9px] pixel-font uppercase" style={{ color: src.ok ? "#00ffff" : "#ff4444" }}>
-                {src.ok ? "OK" : "FAIL"} {src.httpStatus || ""}
+                {src.ok ? (locale === "zh" ? "正常" : "OK") : (locale === "zh" ? "失败" : "FAIL")} {src.httpStatus || ""}
               </span>
               <span className="text-[9px] text-gray-400">
                 {(SOURCE_KIND[src.kind] && (locale === "zh" ? SOURCE_KIND[src.kind].zh : SOURCE_KIND[src.kind].en)) || src.kind}
               </span>
-              <span className="text-[10px] text-gray-300 break-all">{src.label || src.url}</span>
+              <span className="text-[10px] text-gray-300 break-all">{glossSourceLabel(src.label, locale) || src.url}</span>
               <a href={src.url} target="_blank" rel="noreferrer noopener" className="text-[9px] pixel-font text-[#ffff00] hover:text-white ml-auto">
                 {locale === "zh" ? "打开 ↗" : "OPEN ↗"}
               </a>
