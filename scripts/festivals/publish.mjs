@@ -41,6 +41,11 @@ export function registryOnlyStore(festival, edition, now) {
       region: festival.region || null,
       types: festival.types || [],
       officialUrl: festival.officialUrl,
+      // 授权状态必须从 registry 带到 store：发布门禁读的就是这里（run.mjs / publish.mjs
+      // authorizationAllows）。漏带会让无 adapter 届次永远判为未放行，无论 registry 里
+      // 是 granted 还是 testing。仅在 registry 已声明时才落键，避免向公开卡片注入 null。
+      ...(festival.authorization ? { authorization: festival.authorization } : {}),
+      ...(festival.authorizationNote ? { authorizationNote: festival.authorizationNote } : {}),
     },
     edition: {
       id: edition.id,

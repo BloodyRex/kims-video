@@ -8,15 +8,8 @@ import IntelConfigPanel from "./IntelConfigPanel";
 
 const CATEGORIES = ["科幻", "悬疑", "恐怖", "动画", "战争", "犯罪", "剧情", "奇幻"];
 
-const FESTIVALS = [
-  { id: "biff-2026", name: "BFI Flare" },
-  { id: "idfa-2026", name: "IDFA" },
-  { id: "bfi-2026", name: "BFI London" },
-  { id: "hkiff-cinefan-2026", name: "HKIFF Cinefan" },
-  { id: "venice-2026", name: "Venice" },
-  { id: "cannes-2026", name: "Cannes" },
-  { id: "iffr-2026", name: "IFFR" },
-];
+// 电影节列表不再硬编码：从 /api/festivals.json 的 festivals[] 动态派生（与 /festivals 页同源），
+// 新增第 8 届时授权面板会自动出现，无需改前端。字段：slug / name.{zh,en} / authorization。
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -35,6 +28,32 @@ const AdminPage = () => {
   const [authStatus, setAuthStatus] = useState({});
   const [authLoading, setAuthLoading] = useState({});
   const [authError, setAuthError] = useState("");
+  // 电影节列表（Gap 3：动态派生，不再硬编码）+ 首次加载的真实授权状态
+  const [festivals, setFestivals] = useState([]);
+  const [festivalsLoading, setFestivalsLoading] = useState(false);
+
+  // 从静态 JSON 拉取电影节卡片（slug / name.{zh,en} / authorization）。
+  // 与 /festivals 页同源，新增届次无需改前端；失败时静默保持空列表。
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setFestivalsLoading(true);
+      try {
+        const r = await fetch("/api/festivals.json");
+        if (!r.ok) return;
+        const d = await r.json();
+        const list = Array.isArray(d?.festivals) ? d.festivals : [];
+        if (cancelled) return;
+        setFestivals(list);
+        // 用公开卡片里的真实 authorization 预填状态，避免面板一律显示 "pending"
+        const seeded = {};
+        for (const f of list) if (f.slug && f.authorization) seeded[f.slug] = f.authorization;
+        setAuthStatus(prev => ({ ...seeded, ...prev }));
+      } catch { /* 保持空列表 */ }
+      finally { if (!cancelled) setFestivalsLoading(false); }
+    })();
+    return () => { cancelled = true; };
+  }, []);
 
   // Lazy-load TMDB posters for cards without uploaded thumbnails (same pattern as DiscoverPage, zero LLM tokens)
   useEffect(() => {
@@ -224,20 +243,30 @@ const AdminPage = () => {
                 <div className="bg-red-500 border-2 border-black p-2 text-white text-xs font-bold mb-3">{authError}</div>
               )}
               <div className="space-y-2">
-                {FESTIVALS.map(f => {
-                  const current = authStatus[f.id] || "pending";
+                {festivalsLoading && !festivals.length && (
+                  <p className="text-xs text-gray-500 py-2">Loading...</p>
+                )}
+                {!festivalsLoading && !festivals.length && (
+                  <p className="text-xs text-gray-500 py-2">
+                    {locale === "en" ? "No festivals available." : "暂无电影节数据。"}
+                  </p>
+                )}
+                {festivals.map(f => {
+                  const id = f.slug;
+                  const current = authStatus[id] || f.authorization || "pending";
+                  const label = f.name ? (f.name[locale === "en" ? "en" : "zh"] || f.name.en || id) : id;
                   return (
-                    <div key={f.id} className="flex items-center justify-between gap-3 border-2 border-black p-2 bg-gray-50">
+                    <div key={id} className="flex items-center justify-between gap-3 border-2 border-black p-2 bg-gray-50">
                       <div>
-                        <span className="text-xs font-bold">{f.name}</span>
-                        <span className="text-xs text-gray-400 ml-2">{f.id}</span>
+                        <span className="text-xs font-bold">{label}</span>
+                        <span className="text-xs text-gray-400 ml-2">{id}</span>
                       </div>
                       <div className="flex gap-1">
                         {["granted", "testing", "pending"].map(status => (
                           <button
                             key={status}
-                            onClick={() => handleSetAuth(f.id, status)}
-                            disabled={authLoading[f.id]}
+                            onClick={() => handleSetAuth(id, status)}
+                            disabled={authLoading[id]}
                             className={`text-xs font-bold border-2 border-black px-2 py-1 transition-colors ${
                               current === status
                                 ? status === "granted" ? "bg-green-500 text-white" : status === "testing" ? "bg-[#ffff00] text-black" : "bg-gray-400 text-white"

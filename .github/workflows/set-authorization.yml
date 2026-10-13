@@ -15,6 +15,14 @@ on:
           - granted
           - testing
           - pending
+      note_zh:
+        description: "Optional authorizationNote (zh). Leave empty to keep existing note untouched."
+        required: false
+        type: string
+      note_en:
+        description: "Optional authorizationNote (en). Must be provided together with note_zh."
+        required: false
+        type: string
 
 jobs:
   set-authorization:
@@ -24,105 +32,37 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set authorization
+      # 单一真源在 scripts/festivals/set-authorization.mjs：同时写
+      #   data/festivals/registry.json   （festival 级 authorization）
+      #   data/festivals/editions/<id>.json （festival 级 authorization，"festival" 对象内）
+      # 门禁判据读的是 editions 文件，所以只改 registry 不生效（见 run.mjs:167 / run.mjs:280 / verify.mjs）。
+      # 脚本默认 DRY-RUN，--apply 才写盘，写盘前有 JSON.parse 校验；CRLF 与不规则缩进均保持。
+      # authorizationNote（{zh,en} 多行对象）可选：只有 note_zh 与 note_en 同时非空才写入两侧；
+      # 都不填则保持原值不动（避免误清空）。只填一个会被脚本拒绝（exit 2）。
+      - name: Set authorization (registry + editions)
         run: |
-          python3 - <<'PYEOF'
-          import json, re, sys, os
+          NOTE_ARGS=()
+          if [ -n "${{ github.event.inputs.note_zh }}" ] || [ -n "${{ github.event.inputs.note_en }}" ]; then
+            NOTE_ARGS=(--note-zh "${{ github.event.inputs.note_zh }}" --note-en "${{ github.event.inputs.note_en }}")
+          fi
+          node scripts/festivals/set-authorization.mjs \
+            --edition "${{ github.event.inputs.edition_id }}" \
+            --authorization "${{ github.event.inputs.authorization }}" \
+            "${NOTE_ARGS[@]}" \
+            --apply
 
-          edition_id = "${{ github.event.inputs.edition_id }}"
-          new_auth = "${{ github.event.inputs.authorization }}"
+      # 落盘后立刻离线复核：确保没有制造新违规（未放行届次泄漏到公开索引、旧公开文件残留等）
+      - name: Verify (default)
+        run: node scripts/festivals/verify.mjs
 
-          registry_path = "data/festivals/registry.json"
-          with open(registry_path, "r", encoding="utf-8", newline="") as f:
-              raw = f.read()
+      - name: Verify (gate on)
+        run: FESTIVALS_AUTHORIZATION_GATE=on node scripts/festivals/verify.mjs
 
-          # Parse to find the festival containing this edition
-          data = json.loads(raw)
-          found = False
-          for festival in data.get("festivals", []):
-              for edition in festival.get("editions", []):
-                  if edition.get("id") == edition_id:
-                      found = True
-                      break
-              if found:
-                  break
-
-          if not found:
-              print(f"ERROR: edition '{edition_id}' not found in registry", file=sys.stderr)
-              sys.exit(1)
-
-          # Surgical text replacement: find the festival block and replace its authorization
-          # Strategy: find the edition_id in raw text, then find the enclosing festival's authorization field
-          # Since registry.json has irregular formatting, we use a targeted approach:
-          # 1. Find the position of the edition_id
-          # 2. Find the enclosing festival object by tracking brace depth
-          # 3. Replace the authorization value within that festival object
-
-          # Simple approach: use regex to find the festival containing this edition
-          # and replace its authorization field
-          # This is safe because authorization values are simple strings
-
-          # Find all festival blocks
-          # We'll use a state machine to find the festival containing our edition
-          lines = raw.split("\n")
-          in_target_festival = False
-          brace_depth = 0
-          festival_start = -1
-          auth_line_idx = -1
-          old_auth = None
-
-          for i, line in enumerate(lines):
-              stripped = line.strip()
-              if not in_target_festival:
-                  # Look for festival start (contains "id": "xxx" at festival level)
-                  if re.match(r'"id":\s*"[^"]+",?\s*$', stripped) and brace_depth == 0:
-                      # Potential festival start, check if our edition is in the next few lines
-                      # Look ahead for edition_id
-                      for j in range(i, min(i + 50, len(lines))):
-                          if edition_id in lines[j]:
-                              in_target_festival = True
-                              festival_start = i
-                              break
-              else:
-                  # Track brace depth to find festival end
-                  brace_depth += line.count("{") - line.count("}")
-                  if brace_depth <= 0:
-                      # Festival ended without finding edition (shouldn't happen)
-                      in_target_festival = False
-                      brace_depth = 0
-
-              if in_target_festival and auth_line_idx < 0:
-                  # Look for authorization field in this festival
-                  m = re.match(r'"authorization":\s*"([^"]*)"', stripped)
-                  if m:
-                      auth_line_idx = i
-                      old_auth = m.group(1)
-                      break
-
-          if auth_line_idx < 0:
-              print(f"ERROR: authorization field not found for edition '{edition_id}'", file=sys.stderr)
-              sys.exit(1)
-
-          # Replace the authorization value
-          old_line = lines[auth_line_idx]
-          new_line = re.sub(r'("authorization":\s*")[^"]*(")', rf'\g<1>{new_auth}\g<2>', old_line)
-          lines[auth_line_idx] = new_line
-
-          new_raw = "\n".join(lines)
-
-          # Verify the change
-          if new_raw == raw:
-              print(f"WARNING: no change made (authorization may already be '{new_auth}')", file=sys.stderr)
-          else:
-              with open(registry_path, "w", encoding="utf-8", newline="") as f:
-                  f.write(new_raw)
-              print(f"OK: {edition_id} authorization '{old_auth}' -> '{new_auth}'")
-          PYEOF
-
+      # 两个真源都要进提交，否则 editions 侧改动会在下次 fetch 时被 normalize 覆盖回去
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/festivals/registry.json
+          git add data/festivals/registry.json data/festivals/editions
           git diff --cached --quiet || git commit -m "set-authorization: ${{ github.event.inputs.edition_id }} -> ${{ github.event.inputs.authorization }}"
           git push
