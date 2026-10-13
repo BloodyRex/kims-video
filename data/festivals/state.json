@@ -1,8 +1,8 @@
 {
  "editions": {
   "biff-2026": {
-   "lastFetchedAt": "2026-10-13T09:42:23Z",
-   "lastVerifiedAt": "2026-10-13T09:42:23Z",
+   "lastFetchedAt": "2026-10-13T10:20:17Z",
+   "lastVerifiedAt": "2026-10-13T10:20:17Z",
    "lastChangedAt": "2026-10-10T08:23:45Z",
    "lastStatus": "SCREENING_LIVE",
    "statusDetail": {
@@ -41,8 +41,8 @@
    "collapsed": 0
   },
   "bfi-2026": {
-   "lastFetchedAt": "2026-10-13T09:42:43Z",
-   "lastVerifiedAt": "2026-10-13T09:42:43Z",
+   "lastFetchedAt": "2026-10-13T10:20:23Z",
+   "lastVerifiedAt": "2026-10-13T10:20:23Z",
    "lastChangedAt": "2026-10-08T13:28:49Z",
    "lastStatus": "SCREENING_LIVE",
    "statusDetail": {
@@ -61,9 +61,9 @@
    "collapsed": 0
   },
   "hkiff-cinefan-2026": {
-   "lastFetchedAt": "2026-10-10T03:45:38Z",
-   "lastVerifiedAt": "2026-10-10T03:45:38Z",
-   "lastChangedAt": null,
+   "lastFetchedAt": "2026-10-13T10:20:23Z",
+   "lastVerifiedAt": "2026-10-13T10:20:23Z",
+   "lastChangedAt": "2026-10-13T10:20:17Z",
    "lastStatus": "SCREENING_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -75,11 +75,10 @@
     "films": 22,
     "screenings": 44
    },
-   "failCount": 5,
-   "lastError": "schedule covers only 0/50 days | regression: entries 0 vs previous 44 (<50%)",
-   "changesLastRun": 0,
-   "collapsed": 0,
-   "lastAttemptAt": "2026-10-13T09:42:23Z"
+   "failCount": 0,
+   "lastError": null,
+   "changesLastRun": 44,
+   "collapsed": 0
   },
   "venice-2026": {
    "lastFetchedAt": "2026-10-13T09:44:41.149Z",
@@ -142,5 +141,5 @@
    "collapsed": 0
   }
  },
- "updated": "2026-10-13T09:42:23Z"
+ "updated": "2026-10-13T10:20:17Z"
 }

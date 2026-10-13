@@ -1,12 +1,12 @@
 {
- "at": "2026-10-13T09:42:23Z",
+ "at": "2026-10-13T10:20:17Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 288min ≥ 30min",
+   "reason": "age 38min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 255,
@@ -24,33 +24,15 @@
   },
   {
    "slug": "idfa-2026",
-   "due": true,
-   "reason": "age 449min ≥ 180min",
+   "due": false,
+   "reason": "age 38min < 180min",
    "status": "PROGRAM_RELEASED",
-   "parsed": {
-    "films": 176,
-    "screenings": 0,
-    "venues": 13,
-    "days": 6,
-    "sourcesOk": 2,
-    "sourcesTotal": 2,
-    "status": "PROGRAM_RELEASED",
-    "lifecycle": "UPCOMING"
-   },
-   "warnings": [
-    "schedule covers 6/11 days",
-    "ignored 5 official record(s) outside this edition: 2026-05-06×1, 2026-05-07×1, 2026-05-08×1, 2026-05-09×1, 2026-05-10×1",
-    "official day amounts (32) do not sum to totalHits (28)",
-    "1 record(s) look like all-day programme blocks (linked film, > 240min) — kept as EVENT, not screenings",
-    "official screening times not published yet: 0 SCREENING, 27 official programme entry/entries (status SCHEDULE_PENDING — partial data, NOT a complete schedule)"
-   ],
-   "action": "updated",
-   "changes": 9
+   "action": "skipped (throttled)"
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 287min ≥ 30min",
+   "reason": "age 38min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
@@ -69,116 +51,47 @@
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 4677min ≥ 30min",
+   "reason": "age 4715min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
-    "films": 0,
-    "screenings": 0,
-    "venues": 0,
-    "days": 0,
-    "sourcesOk": 1,
+    "films": 22,
+    "screenings": 44,
+    "venues": 4,
+    "days": 15,
+    "sourcesOk": 24,
     "sourcesTotal": 24,
-    "status": "SCHEDULE_PENDING",
+    "status": "SCREENING_LIVE",
     "lifecycle": "LIVE"
    },
    "warnings": [
-    "no films parsed",
-    "schedule covers 0/50 days",
-    "period fetch failed: HTTP 404",
-    "film a-fistful-of-dollars-26 fetch failed: HTTP 404",
-    "film a-river-called-titas-26 fetch failed: HTTP 404",
-    "film bird-26 fetch failed: HTTP 404",
-    "film changeling-26 fetch failed: HTTP 404",
-    "film e-flat-26 fetch failed: HTTP 404",
-    "film for-a-few-dollars-more-26 fetch failed: HTTP 404",
-    "film gran-torino-26 fetch failed: HTTP 404",
-    "film how-green-was-my-valley-26 fetch failed: HTTP 404",
-    "film juror2-26 fetch failed: HTTP 404",
-    "film lost-paradise-26 fetch failed: HTTP 404",
-    "film million-dollar-baby-26 fetch failed: HTTP 404",
-    "film mystic-river-26 fetch failed: HTTP 404",
-    "film pale-rider-26 fetch failed: HTTP 404",
-    "film swallowtail-butterfly-26 fetch failed: HTTP 404",
-    "film the-bridges-of-madison-county-26 fetch failed: HTTP 404",
-    "film the-cloud-capped-star-26 fetch failed: HTTP 404",
-    "film the-golden-line-26 fetch failed: HTTP 404",
-    "film the-good-the-bad-and-the-ugly-26 fetch failed: HTTP 404",
-    "film the-man-who-shot-liberty-valance-26 fetch failed: HTTP 404",
-    "film the-outlaw-josey-wales-26 fetch failed: HTTP 404",
-    "film the-runaway-26 fetch failed: HTTP 404",
-    "film unforgiven-26 fetch failed: HTTP 404"
+    "schedule covers 15/50 days"
    ],
-   "action": "REJECTED (kept previous data)",
-   "errors": [
-    "schedule covers only 0/50 days",
-    "regression: entries 0 vs previous 44 (<50%)"
-   ]
+   "action": "updated",
+   "changes": 44
   },
   {
    "slug": "venice-2026",
-   "due": true,
-   "reason": "age 447min ≥ 360min",
+   "due": false,
+   "reason": "age 36min < 360min",
    "status": "SCHEDULE_LIVE",
-   "parsed": {
-    "films": 347,
-    "screenings": 350,
-    "venues": 10,
-    "days": 11,
-    "sourcesOk": 12,
-    "sourcesTotal": 12,
-    "status": "SCHEDULE_LIVE",
-    "lifecycle": "ENDED"
-   },
-   "warnings": [],
-   "action": "updated",
-   "changes": 116
+   "action": "skipped (throttled)"
   },
   {
    "slug": "cannes-2026",
-   "due": true,
-   "reason": "age 447min ≥ 180min",
+   "due": false,
+   "reason": "age 36min < 180min",
    "status": "PROGRAM_RELEASED",
-   "parsed": {
-    "films": 150,
-    "screenings": 0,
-    "venues": 0,
-    "days": 0,
-    "sourcesOk": 3,
-    "sourcesTotal": 3,
-    "status": "PROGRAM_RELEASED",
-    "lifecycle": "ENDED"
-   },
-   "warnings": [
-    "schedule covers 0/12 days"
-   ],
-   "action": "updated",
-   "changes": 0
+   "action": "skipped (throttled)"
   },
   {
    "slug": "iffr-2026",
-   "due": true,
-   "reason": "age 444min ≥ 180min",
+   "due": false,
+   "reason": "age 33min < 180min",
    "status": "PROGRAM_RELEASED",
-   "parsed": {
-    "films": 496,
-    "screenings": 0,
-    "venues": 0,
-    "days": 0,
-    "sourcesOk": 2,
-    "sourcesTotal": 2,
-    "status": "PROGRAM_RELEASED",
-    "lifecycle": "ENDED"
-   },
-   "warnings": [
-    "schedule covers 0/11 days"
-   ],
-   "action": "updated",
-   "changes": 0
+   "action": "skipped (throttled)"
   }
  ],
- "errors": [
-  "hkiff-cinefan-2026: schedule covers only 0/50 days | regression: entries 0 vs previous 44 (<50%)"
- ],
+ "errors": [],
  "blockedEditions": [],
  "published": {
   "festivals": 7,
@@ -189,7 +102,7 @@
    "screeningsToday": 121,
    "eventsToday": 2,
    "upcoming": 1,
-   "changes7d": 445,
+   "changes7d": 489,
    "venuesToday": 38
   },
   "detailFiles": [

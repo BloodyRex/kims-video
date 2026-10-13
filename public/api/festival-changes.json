@@ -1,7 +1,899 @@
 {
- "updated": "2026-10-13T09:42:23Z",
- "count7d": 445,
+ "updated": "2026-10-13T10:20:17Z",
+ "count7d": 489,
  "changes": [
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260912-202609121400-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260912-202609121400",
+   "label": "The Outlaw Josey Wales — 2026-09-12 14:00 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-outlaw-josey-wales-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260912-202609121715-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260912-202609121715",
+   "label": "Pale Rider — 2026-09-12 17:15 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/pale-rider-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260912-202609121945-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260912-202609121945",
+   "label": "Lost Paradise — 2026-09-12 19:45 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/lost-paradise-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260913-202609131300-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260913-202609131300",
+   "label": "Bird — 2026-09-13 13:00 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/bird-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/bird-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/bird-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260913-202609131615-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260913-202609131615",
+   "label": "Unforgiven — 2026-09-13 16:15 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/unforgiven-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260913-202609131900-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260913-202609131900",
+   "label": "The Runaway — 2026-09-13 19:00 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-runaway-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260919-202609191400-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260919-202609191400",
+   "label": "The Bridges of Madison County — 2026-09-19 14:00 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-bridges-of-madison-county-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260919-202609191715-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260919-202609191715",
+   "label": "The Cloud-Capped Star — 2026-09-19 17:15 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-cloud-capped-star-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260919-202609192000-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260919-202609192000",
+   "label": "E-Flat — 2026-09-19 20:00 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/e-flat-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260920-202609201300-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260920-202609201300",
+   "label": "The Golden Line — 2026-09-20 13:00 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-golden-line-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260920-202609201630-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260920-202609201630",
+   "label": "A River Called Titas — 2026-09-20 16:30 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/a-river-called-titas-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260920-202609201945-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260920-202609201945",
+   "label": "Mystic River — 2026-09-20 19:45 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/mystic-river-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260926-202609261400-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260926-202609261400",
+   "label": "A Fistful of Dollars — 2026-09-26 14:00 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/a-fistful-of-dollars-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260926-202609261615-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260926-202609261615",
+   "label": "For a Few Dollars More — 2026-09-26 16:15 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/for-a-few-dollars-more-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260926-202609261900-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260926-202609261900",
+   "label": "Million Dollar Baby — 2026-09-26 19:00 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/million-dollar-baby-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260927-202609271300-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260927-202609271300",
+   "label": "The Good, the Bad and the Ugly — 2026-09-27 13:00 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-good-the-bad-and-the-ugly-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260927-202609271630-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260927-202609271630",
+   "label": "Changeling — 2026-09-27 16:30 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/changeling-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/changeling-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/changeling-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20260927-202609271930-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20260927-202609271930",
+   "label": "Gran Torino — 2026-09-27 19:30 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/gran-torino-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261003-202610031400-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261003-202610031400",
+   "label": "Mystic River — 2026-10-03 14:00 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/mystic-river-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261003-202610031645-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261003-202610031645",
+   "label": "The Outlaw Josey Wales — 2026-10-03 16:45 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-outlaw-josey-wales-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261003-202610032000-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261003-202610032000",
+   "label": "How Green Was My Valley — 2026-10-03 20:00 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/how-green-was-my-valley-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261004-202610041300-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261004-202610041300",
+   "label": "Juror #2 — 2026-10-04 13:00 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/juror2-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/juror2-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/juror2-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261004-202610041630-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261004-202610041630",
+   "label": "Pale Rider — 2026-10-04 16:30 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/pale-rider-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261004-202610041930-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261004-202610041930",
+   "label": "The Man Who Shot Liberty Valance — 2026-10-04 19:30 · Hong Kong Arts Centre Louis Koo Cinema",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-man-who-shot-liberty-valance-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261010-202610101400-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261010-202610101400",
+   "label": "Lost Paradise — 2026-10-10 14:00 · EMP Cinemas iSQUARE",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/lost-paradise-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261010-202610101700-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261010-202610101700",
+   "label": "A Fistful of Dollars — 2026-10-10 17:00 · EMP Cinemas iSQUARE",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/a-fistful-of-dollars-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261010-202610101915-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261010-202610101915",
+   "label": "For a Few Dollars More — 2026-10-10 19:15 · EMP Cinemas iSQUARE",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/for-a-few-dollars-more-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261011-202610111300-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261011-202610111300",
+   "label": "The Runaway — 2026-10-11 13:00 · EMP Cinemas iSQUARE",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-runaway-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261011-202610111530-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261011-202610111530",
+   "label": "The Cloud-Capped Star — 2026-10-11 15:30 · EMP Cinemas iSQUARE",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-cloud-capped-star-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261011-202610111800-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261011-202610111800",
+   "label": "The Good, the Bad and the Ugly — 2026-10-11 18:00 · EMP Cinemas iSQUARE",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-good-the-bad-and-the-ugly-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261017-202610171400-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261017-202610171400",
+   "label": "The Golden Line — 2026-10-17 14:00 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-golden-line-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261017-202610171645-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261017-202610171645",
+   "label": "How Green Was My Valley — 2026-10-17 16:45 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/how-green-was-my-valley-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261017-202610171915-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261017-202610171915",
+   "label": "The Man Who Shot Liberty Valance — 2026-10-17 19:15 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": null,
+     "to": "Full House",
+     "fieldLabel": "售票状态"
+    },
+    {
+     "field": "ticketUrl",
+     "from": "https://www.urbtix.hk/event-detail/15517/",
+     "to": null,
+     "fieldLabel": "购票链接"
+    },
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-man-who-shot-liberty-valance-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261018-202610181300-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261018-202610181300",
+   "label": "The Bridges of Madison County — 2026-10-18 13:00 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/the-bridges-of-madison-county-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261018-202610181545-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261018-202610181545",
+   "label": "Swallowtail Butterfly — 2026-10-18 15:45 · PREMIERE Elements",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/swallowtail-butterfly-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261024-202610241400-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261024-202610241400",
+   "label": "E-Flat — 2026-10-24 14:00 · EMP Cinemas Times Square",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/e-flat-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261024-202610241645-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261024-202610241645",
+   "label": "Million Dollar Baby — 2026-10-24 16:45 · EMP Cinemas Times Square",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/million-dollar-baby-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261024-202610241930-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261024-202610241930",
+   "label": "Unforgiven — 2026-10-24 19:30 · EMP Cinemas Times Square",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/unforgiven-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261025-202610251300-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261025-202610251300",
+   "label": "A River Called Titas — 2026-10-25 13:00 · EMP Cinemas Times Square",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/a-river-called-titas-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261025-202610251645-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261025-202610251645",
+   "label": "Gran Torino — 2026-10-25 16:45 · EMP Cinemas Times Square",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/gran-torino-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261025-202610251915-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261025-202610251915",
+   "label": "Changeling — 2026-10-25 19:15 · EMP Cinemas Times Square",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/changeling-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/changeling-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/changeling-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261031-202610311300-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261031-202610311300",
+   "label": "Swallowtail Butterfly — 2026-10-31 13:00 · EMP Cinemas Times Square",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/swallowtail-butterfly-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261031-202610311600-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261031-202610311600",
+   "label": "Bird — 2026-10-31 16:00 · EMP Cinemas Times Square",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/bird-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/bird-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/bird-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
+  {
+   "id": "hkiff-cinefan-2026-CHANGED-SCREENING-hkiff-cinefan-2026-20261031-202610311915-2026-10-13T10:20:17Z",
+   "at": "2026-10-13T10:20:17Z",
+   "slug": "hkiff-cinefan-2026",
+   "festivalId": "hkiff",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "hkiff-cinefan-2026-20261031-202610311915",
+   "label": "Juror #2 — 2026-10-31 19:15 · EMP Cinemas Times Square",
+   "fields": [
+    {
+     "field": "eventUrl",
+     "from": "https://cinefan.hkiff.org.hk/film/juror2-26",
+     "to": "https://cinefan.hkiff.org.hk/movie/juror2-26",
+     "fieldLabel": "活动页"
+    }
+   ],
+   "sourceUrl": "https://cinefan.hkiff.org.hk/movie/juror2-26",
+   "sourceLabel": "Hong Kong International Film Festival Cine Fan"
+  },
   {
    "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260903-gyoei-no-mure-catch-2026-09-03-14-15-2026-10-13T09:42:23Z",
    "at": "2026-10-13T09:42:23Z",
@@ -3120,886 +4012,6 @@
     }
    ],
    "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/balcanica-2026-09-04-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260904-everest-other-side-2026-09-04-17-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260904-everest-other-side-2026-09-04-17-00",
-   "label": "Everest: The Other Side — 2026-09-04 17:00 · Sala Volpi",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Everest: The Other Side",
-     "to": "Balcanica",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/everest-other-side-2026-09-04-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260904-les-m%C3%A9tamorphoses-au-f%C3%A9minin-2026-09-04-19-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260904-les-m%C3%A9tamorphoses-au-f%C3%A9minin-2026-09-04-19-30",
-   "label": "Les métamorphoses, au féminin — 2026-09-04 19:30 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Les métamorphoses, au féminin",
-     "to": "Il grande Giaffa (Giaffa the Great)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/les-m%C3%A9tamorphoses-au-f%C3%A9minin-2026-09-04-19-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260904-il-grande-giaffa-giaffa-great-2026-09-04-19-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260904-il-grande-giaffa-giaffa-great-2026-09-04-19-30",
-   "label": "Il grande Giaffa (Giaffa the Great) — 2026-09-04 19:30 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Il grande Giaffa (Giaffa the Great)",
-     "to": "Les métamorphoses, au féminin",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/il-grande-giaffa-giaffa-great-2026-09-04-19-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260904-la-ragazza-con-la-leica-2026-09-04-21-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260904-la-ragazza-con-la-leica-2026-09-04-21-00",
-   "label": "La ragazza con la Leica — 2026-09-04 21:00 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "La ragazza con la Leica",
-     "to": "Furies",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/la-ragazza-con-la-leica-2026-09-04-21-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260904-furies-2026-09-04-21-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260904-furies-2026-09-04-21-00",
-   "label": "Furies — 2026-09-04 21:00 · Sala Giardino",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Furies",
-     "to": "La ragazza con la Leica",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/furies-2026-09-04-21-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-our-share-sand-2026-09-05-13-45-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-our-share-sand-2026-09-05-13-45",
-   "label": "Our Share of Sand — 2026-09-05 13:45 · Sala Perla",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Our Share of Sand",
-     "to": "Gusci (Eggshells)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/our-share-sand-2026-09-05-13-45",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-gusci-eggshells-2026-09-05-13-45-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-gusci-eggshells-2026-09-05-13-45",
-   "label": "Gusci (Eggshells) — 2026-09-05 13:45 · Sala Perla",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Gusci (Eggshells)",
-     "to": "Our Share of Sand",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/gusci-eggshells-2026-09-05-13-45",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-be-or-not-be-2026-09-05-14-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-be-or-not-be-2026-09-05-14-00",
-   "label": "To be or not to be — 2026-09-05 14:00 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "To be or not to be",
-     "to": "Viaggio in Italia (Journey to Italy)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/be-or-not-be-2026-09-05-14-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-shumei-living-legacy-kabuki-2026-09-05-14-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-shumei-living-legacy-kabuki-2026-09-05-14-00",
-   "label": "Shumei: The living legacy of Kabuki — 2026-09-05 14:00 · Astra 2",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Shumei: The living legacy of Kabuki",
-     "to": "Eklipse",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/shumei-living-legacy-kabuki-2026-09-05-14-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-viaggio-italia-journey-italy-2026-09-05-14-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-viaggio-italia-journey-italy-2026-09-05-14-00",
-   "label": "Viaggio in Italia (Journey to Italy) — 2026-09-05 14:00 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Viaggio in Italia (Journey to Italy)",
-     "to": "Shumei: The living legacy of Kabuki",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/viaggio-italia-journey-italy-2026-09-05-14-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-eklipse-2026-09-05-14-15-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-eklipse-2026-09-05-14-15",
-   "label": "Eklipse — 2026-09-05 14:00 · Sala Darsena",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Eklipse",
-     "to": "To be or not to be",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/eklipse-2026-09-05-14-15",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-la-maison-du-vent-2026-09-05-16-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-la-maison-du-vent-2026-09-05-16-30",
-   "label": "La maison du vent — 2026-09-05 16:30 · Astra 2",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "La maison du vent",
-     "to": "Un détour par Diane",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/la-maison-du-vent-2026-09-05-16-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-un-d%C3%A9tour-par-diane-2026-09-05-16-45-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-un-d%C3%A9tour-par-diane-2026-09-05-16-45",
-   "label": "Un détour par Diane — 2026-09-05 16:30 · Sala Darsena",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Un détour par Diane",
-     "to": "Les Indes",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/un-d%C3%A9tour-par-diane-2026-09-05-16-45",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-31-discipline-2026-09-05-16-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-31-discipline-2026-09-05-16-30",
-   "label": "#31 Discipline — 2026-09-05 16:30 · Sala Perla",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "#31 Discipline",
-     "to": "La maison du vent",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/31-discipline-2026-09-05-16-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-les-indes-2026-09-05-16-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-les-indes-2026-09-05-16-30",
-   "label": "Les Indes — 2026-09-05 16:30 · Sala Perla",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Les Indes",
-     "to": "#31 Discipline",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/les-indes-2026-09-05-16-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-basics-philosophy-2026-09-05-17-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-basics-philosophy-2026-09-05-17-00",
-   "label": "The Basics of Philosophy — 2026-09-05 17:00 · PalaBiennale",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "The Basics of Philosophy",
-     "to": "Al mowaten Osama (Citizen Osama)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/basics-philosophy-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-al-mowaten-osama-citizen-osama-2026-09-05-17-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-al-mowaten-osama-citizen-osama-2026-09-05-17-00",
-   "label": "Al mowaten Osama (Citizen Osama) — 2026-09-05 17:00 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Al mowaten Osama (Citizen Osama)",
-     "to": "Queer Edward II",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/al-mowaten-osama-citizen-osama-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-primetime-2026-09-05-17-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-primetime-2026-09-05-17-00",
-   "label": "Primetime — 2026-09-05 17:00 · Sala Grande",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Primetime",
-     "to": "The Basics of Philosophy",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/primetime-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-queer-edward-ii-2026-09-05-17-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-queer-edward-ii-2026-09-05-17-00",
-   "label": "Queer Edward II — 2026-09-05 17:00 · Sala Volpi",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Queer Edward II",
-     "to": "Primetime",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/queer-edward-ii-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-fa-xian-zhi-l%C3%BC-zoom-zoom-out-2026-09-05-19-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-fa-xian-zhi-l%C3%BC-zoom-zoom-out-2026-09-05-19-30",
-   "label": "Fa xian zhi lü (Zoom In, Zoom Out) — 2026-09-05 19:30 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Fa xian zhi lü (Zoom In, Zoom Out)",
-     "to": "E-I-E-I-O",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/fa-xian-zhi-l%C3%BC-zoom-zoom-out-2026-09-05-19-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-e-i-e-i-o-2026-09-05-19-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-e-i-e-i-o-2026-09-05-19-30",
-   "label": "E-I-E-I-O — 2026-09-05 19:30 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "E-I-E-I-O",
-     "to": "Fa xian zhi lü (Zoom In, Zoom Out)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/e-i-e-i-o-2026-09-05-19-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-my-undesirable-friends-part-ii-%E2%80%93-exile-ch-1-2-3-2026-09-05-21-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-my-undesirable-friends-part-ii-%E2%80%93-exile-ch-1-2-3-2026-09-05-21-00",
-   "label": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3) — 2026-09-05 21:00 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3)",
-     "to": "Serpenti",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/my-undesirable-friends-part-ii-%E2%80%93-exile-ch-1-2-3-2026-09-05-21-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-serpenti-2026-09-05-21-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-serpenti-2026-09-05-21-00",
-   "label": "Serpenti — 2026-09-05 21:00 · Sala Giardino",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Serpenti",
-     "to": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/serpenti-2026-09-05-21-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-tijuana-todav%C3%ADa-2026-09-06-09-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-tijuana-todav%C3%ADa-2026-09-06-09-00",
-   "label": "Tijuana, todavía — 2026-09-06 09:00 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Tijuana, todavía",
-     "to": "Serpenti",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/tijuana-todav%C3%ADa-2026-09-06-09-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-serpenti-2026-09-06-09-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-serpenti-2026-09-06-09-00",
-   "label": "Serpenti — 2026-09-06 09:00 · Sala Giardino",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Serpenti",
-     "to": "Tijuana, todavía",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/serpenti-2026-09-06-09-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-london-2026-09-06-13-45-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-london-2026-09-06-13-45",
-   "label": "London — 2026-09-06 13:45 · Sala Perla",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "London",
-     "to": "Revolver",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/london-2026-09-06-13-45",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-revolver-2026-09-06-13-45-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-revolver-2026-09-06-13-45",
-   "label": "Revolver — 2026-09-06 13:45 · Sala Perla",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Revolver",
-     "to": "London",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/revolver-2026-09-06-13-45",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-al-mowaten-osama-citizen-osama-2026-09-06-14-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-al-mowaten-osama-citizen-osama-2026-09-06-14-00",
-   "label": "Al mowaten Osama (Citizen Osama) — 2026-09-06 14:00 · Astra 2",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Al mowaten Osama (Citizen Osama)",
-     "to": "From Inside Out – The Architecture of Peter Zumthor",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/al-mowaten-osama-citizen-osama-2026-09-06-14-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-inside-out-%E2%80%93-architecture-peter-zumthor-2026-09-06-14-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-inside-out-%E2%80%93-architecture-peter-zumthor-2026-09-06-14-00",
-   "label": "From Inside Out – The Architecture of Peter Zumthor — 2026-09-06 14:00 · Sala Grande",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "From Inside Out – The Architecture of Peter Zumthor",
-     "to": "Al mowaten Osama (Citizen Osama)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/inside-out-%E2%80%93-architecture-peter-zumthor-2026-09-06-14-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-eklipse-2026-09-06-17-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-eklipse-2026-09-06-17-00",
-   "label": "Eklipse — 2026-09-06 17:00 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Eklipse",
-     "to": "The road to Jericho",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/eklipse-2026-09-06-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-primetime-2026-09-06-17-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-primetime-2026-09-06-17-00",
-   "label": "Primetime — 2026-09-06 17:00 · PalaBiennale",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Primetime",
-     "to": "Eklipse",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/primetime-2026-09-06-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-holy-wood-dust-2026-09-06-17-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-holy-wood-dust-2026-09-06-17-00",
-   "label": "Holy Wood Dust — 2026-09-06 17:00 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Holy Wood Dust",
-     "to": "Primetime",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/holy-wood-dust-2026-09-06-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-road-jericho-2026-09-06-17-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-road-jericho-2026-09-06-17-00",
-   "label": "The road to Jericho — 2026-09-06 17:00 · Sala Volpi",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "The road to Jericho",
-     "to": "Holy Wood Dust",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/road-jericho-2026-09-06-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-my-undesirable-friends-part-ii-%E2%80%93-exile-ch-4-5-2026-09-06-21-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-my-undesirable-friends-part-ii-%E2%80%93-exile-ch-4-5-2026-09-06-21-00",
-   "label": "My Undesirable Friends: Part II – Exile (Ch. 4-5) — 2026-09-06 21:00 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "My Undesirable Friends: Part II – Exile (Ch. 4-5)",
-     "to": "The road to Jericho",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/my-undesirable-friends-part-ii-%E2%80%93-exile-ch-4-5-2026-09-06-21-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-road-jericho-2026-09-06-21-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-road-jericho-2026-09-06-21-00",
-   "label": "The road to Jericho — 2026-09-06 21:00 · Astra 2",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "The road to Jericho",
-     "to": "Hombre al agua",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/road-jericho-2026-09-06-21-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-hombre-al-agua-2026-09-06-21-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-hombre-al-agua-2026-09-06-21-00",
-   "label": "Hombre al agua — 2026-09-06 21:00 · Sala Giardino",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Hombre al agua",
-     "to": "My Undesirable Friends: Part II – Exile (Ch. 4-5)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/hombre-al-agua-2026-09-06-21-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-holy-wood-dust-2026-09-07-14-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260907-holy-wood-dust-2026-09-07-14-00",
-   "label": "Holy Wood Dust — 2026-09-07 14:00 · Astra 2",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Holy Wood Dust",
-     "to": "Ga-neung-han sa-rang (Possible love)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/holy-wood-dust-2026-09-07-14-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-ga-neung-han-sa-rang-possible-love-2026-09-07-14-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260907-ga-neung-han-sa-rang-possible-love-2026-09-07-14-00",
-   "label": "Ga-neung-han sa-rang (Possible love) — 2026-09-07 14:00 · PalaBiennale",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Ga-neung-han sa-rang (Possible love)",
-     "to": "Popiół i diament (Ashes and Diamonds)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/ga-neung-han-sa-rang-possible-love-2026-09-07-14-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-popi%C3%B3%C5%82-i-diament-ashes-and-diamonds-2026-09-07-14-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260907-popi%C3%B3%C5%82-i-diament-ashes-and-diamonds-2026-09-07-14-00",
-   "label": "Popiół i diament (Ashes and Diamonds) — 2026-09-07 14:00 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Popiół i diament (Ashes and Diamonds)",
-     "to": "Holy Wood Dust",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/popi%C3%B3%C5%82-i-diament-ashes-and-diamonds-2026-09-07-14-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-cul-de-sac-2026-09-07-14-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260907-cul-de-sac-2026-09-07-14-30",
-   "label": "Cul-de-sac — 2026-09-07 14:30 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Cul-de-sac",
-     "to": "They’re Here",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/cul-de-sac-2026-09-07-14-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-flesh-impact-2026-09-07-14-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260907-flesh-impact-2026-09-07-14-30",
-   "label": "Flesh Impact — 2026-09-07 14:30 · Sala Grande",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Flesh Impact",
-     "to": "Cul-de-sac",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/flesh-impact-2026-09-07-14-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-halayon-wild-asparagus-2026-09-07-14-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260907-halayon-wild-asparagus-2026-09-07-14-30",
-   "label": "Halayon (Wild Asparagus) — 2026-09-07 14:30 · Sala Grande",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Halayon (Wild Asparagus)",
-     "to": "Flesh Impact",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/halayon-wild-asparagus-2026-09-07-14-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-they%E2%80%99re-here-2026-09-07-14-30-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260907-they%E2%80%99re-here-2026-09-07-14-30",
-   "label": "They’re Here — 2026-09-07 14:30 · Sala Grande",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "They’re Here",
-     "to": "Halayon (Wild Asparagus)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/they%E2%80%99re-here-2026-09-07-14-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260908-pervert%E2%80%99s-guide-utopias-2026-09-08-09-00-2026-10-13T02:13:00Z",
-   "at": "2026-10-13T02:13:00Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260908-pervert%E2%80%99s-guide-utopias-2026-09-08-09-00",
-   "label": "The Pervert’s Guide to Utopias — 2026-09-08 09:00 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "The Pervert’s Guide to Utopias",
-     "to": "Hiwar ma’ albahr (Conversation With The Sea)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/pervert%E2%80%99s-guide-utopias-2026-09-08-09-00",
    "sourceLabel": "Venice International Film Festival"
   }
  ]
