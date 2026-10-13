@@ -230,7 +230,7 @@ const AdminPage = () => {
           <IntelConfigPanel token={token} locale={locale} />
         ) : view === "festivals" ? (
           <div className="space-y-4">
-            <div className="bg-white border-4 border-black p-4">
+            <div className="bg-white text-black border-4 border-black p-4">
               <h2 className="text-sm font-black uppercase mb-3">
                 {locale === "en" ? "Festival Authorization" : "电影节授权状态"}
               </h2>
@@ -259,7 +259,7 @@ const AdminPage = () => {
                     <div key={id} className="flex items-center justify-between gap-3 border-2 border-black p-2 bg-gray-50">
                       <div>
                         <span className="text-xs font-bold">{label}</span>
-                        <span className="text-xs text-gray-400 ml-2">{id}</span>
+                        <span className="text-xs text-gray-500 ml-2">{id}</span>
                       </div>
                       <div className="flex gap-1">
                         {["granted", "testing", "pending"].map(status => (

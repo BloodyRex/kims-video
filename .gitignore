@@ -15,3 +15,6 @@ data/festivals/raw/cannes/
 
 # IFFR raw snapshots — pending authorization (iffr.com disclaimer forbids reproduction without written permission)
 data/festivals/raw/iffr/
+
+# 告警幂等标记（本地写入，不提交）
+data/festivals/.alert-state.json

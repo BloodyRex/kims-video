@@ -73,6 +73,15 @@ const CARDS = [
   },
 ];
 
+// 电影节日历入口文案（2026-10-14）—— 与 CARDS 同一套字段：中文名 + 一句话简介。
+// 原副标题「全球电影节排片日历 · 官方一手数据」是标语、不是中文名，已并入简介句。
+const FESTIVAL_ENTRY = {
+  title: "Festival Calendar",
+  subtitleZh: "电影节日历",
+  descZh: "全球电影节排片日历 · 官方一手数据。",
+  descEn: "Global film festival schedules, straight from official sources.",
+};
+
 const NewSplash = ({ onEnterAI }) => {
   const { locale, tArray } = useLocale();
   const zh = locale === "zh";
@@ -202,11 +211,14 @@ const NewSplash = ({ onEnterAI }) => {
           </span>
           <div className="min-w-0">
             <h3 className="text-xl md:text-3xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff]">
-              Festival Calendar
+              {FESTIVAL_ENTRY.title}
             </h3>
             <h4 className="text-xs md:text-sm font-bold text-[#00ffff] mt-0.5">
-              全球电影节排片日历 · 官方一手数据
+              {FESTIVAL_ENTRY.subtitleZh}
             </h4>
+            <p className="text-gray-300 text-xs md:text-sm font-medium line-clamp-2 bg-black/60 p-2.5 border-l-4 border-[#ff00ff] mt-2">
+              {zh ? FESTIVAL_ENTRY.descZh : FESTIVAL_ENTRY.descEn}
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-3 shrink-0">
