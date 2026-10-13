@@ -26,10 +26,36 @@
 import { nowIso } from "../lib.mjs";
 
 export const HOST = "https://cinefan.hkiff.org.hk";
+export const HOME_URL = `${HOST}/`;
 export const SCHEDULE_URL = `${HOST}/schedule`;
-export const PERIOD_URL = `${HOST}/period`;
-export const FILM_URL = (slug) => `${HOST}/film/${slug}`;
+/** 兜底档期 URL —— 站点每两个月更换档期 slug，实际 URL 由 menu 动态发现（见 discoverPeriodUrl） */
+export const PERIOD_URL = `${HOST}/period/2026/sep-oct-2026`;
+export const FILM_URL = (slug) => `${HOST}/movie/${slug}`;
 export const OFFICIAL_SITE = `${HOST}/`;
+
+/**
+ * 动态发现当前档期 URL —— 站点每两个月更换档期 slug（如 2026/sep-oct-2026），
+ * 旧的 /period 索引页已下线（404）。当前档期取自 menu 中 title === "Programme"
+ * 的子项 slug；兜底取所有 /period/<YYYY>/… 子项中最大年份；再兜底 PERIOD_URL。
+ */
+export function discoverPeriodUrl(menu) {
+  const items = Array.isArray(menu) ? menu : [];
+  const prog = items.find(
+    (m) => String(m?.title || "").trim().toLowerCase() === "programme"
+  );
+  const childSlug = prog?.children?.[0]?.slug;
+  if (childSlug) return `${HOST}/period/${String(childSlug).replace(/^\/+/, "")}`;
+  let best = null;
+  for (const m of items) {
+    for (const c of m?.children || []) {
+      const sl = String(c?.slug || "");
+      const y = Number((sl.match(/^(\d{4})\//) || [])[1]);
+      if (y && (!best || y > best.y)) best = { y, slug: sl };
+    }
+  }
+  if (best) return `${HOST}/period/${best.slug}`;
+  return PERIOD_URL;
+}
 
 /** 从 __NEXT_DATA__ 提取 pageProps */
 function extractPageProps(html) {
@@ -151,12 +177,14 @@ export async function fetchEdition({ festival, edition, fetchText, log = () => {
   let scheduleByKey = new Map();
   let venueDict = new Map();
   const scheduleSlugs = new Set();
+  let menuItems = [];
   if (schedRes.ok) {
     const pageProps = extractPageProps(schedRes.body);
     if (pageProps) {
       const parsed = parseSchedule(pageProps);
       scheduleByKey = parsed.byKey;
       venueDict = parsed.dict;
+      menuItems = Array.isArray(pageProps.menu) ? pageProps.menu : [];
       for (const s of pageProps?.data?.offline || []) {
         if (s.movie?.slug) scheduleSlugs.add(s.movie.slug);
       }
@@ -168,13 +196,14 @@ export async function fetchEdition({ festival, edition, fetchText, log = () => {
     warnings.push(`schedule fetch failed: ${schedRes.error}`);
   }
 
-  // ── 2) Period 页（档期/单元/片单） ──
-  log(`[hkiff] period: ${PERIOD_URL}`);
-  const periodRes = await fetchText(PERIOD_URL, { label: "period" });
+  // ── 2) Period 页（档期/单元/片单） —— 档期 URL 每两个月更换，动态发现 ──
+  const periodUrl = discoverPeriodUrl(menuItems);
+  log(`[hkiff] period: ${periodUrl}`);
+  const periodRes = await fetchText(periodUrl, { label: "period" });
   sources.push({
     kind: "PROGRAMME",
     label: "Cine Fan official programme (periods + sections)",
-    url: PERIOD_URL,
+    url: periodUrl,
     httpStatus: periodRes.status || null,
     ok: periodRes.ok,
     fetchedAt,
@@ -233,6 +262,15 @@ export async function fetchEdition({ festival, edition, fetchText, log = () => {
     }
   }
   log(`[hkiff] film pages: ${filmPagesFetched} ok, ${filmPagesFailed} failed`);
+
+  // ── 回归护栏：单源失败比例过高 → 判定 URL schema 变更（避免静默 REJECTED 只藏在覆盖率 warning 里） ──
+  const filmAttempts = filmSlugs.length;
+  if (filmAttempts > 0 && filmPagesFailed / filmAttempts > 0.5) {
+    warnings.push(
+      `URL schema change suspected: ${filmPagesFailed}/${filmAttempts} film pages failed (>50%). ` +
+        `站点可能已更换 URL 结构，请检查 FILM_URL / PERIOD_URL。`
+    );
+  }
 
   // ── 5) 合并：以电影详情页场次为权威 → normalize items ──
   const items = [];
@@ -341,6 +379,6 @@ export async function fetchEdition({ festival, edition, fetchText, log = () => {
 export const meta = {
   id: "hkiff",
   officialHost: "cinefan.hkiff.org.hk",
-  entryPages: ["/schedule", "/period", "/film/:slug"],
+  entryPages: ["/schedule", "/period/:year/:name", "/movie/:slug"],
   note: "Requires official authorization. www.hkiff.org.hk is Disallowed by robots.txt.",
 };

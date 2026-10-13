@@ -58,7 +58,7 @@ const log = (...a) => console.log(...a);
 /**
  * 离线快照 fetcher —— 与 createFetcher 返回的 fetchText 同签名。
  * 从 SNAPSHOT 目录读取已抓取的页面，绝不发起网络请求。
- * 映射：/schedule → schedule.html；/period → period.html；/film/:slug → films/<slug>.html
+ * 映射：/schedule → schedule.html；/period(/…) → period.html；/movie/:slug（兼容旧 /film/:slug）→ films/<slug>.html
  */
 function createSnapshotFetcher(dir) {
   const resolve = (url) => {
@@ -69,8 +69,9 @@ function createSnapshotFetcher(dir) {
       /* keep raw */
     }
     if (pathname === "/schedule" || pathname === "/schedule/") return join(dir, "schedule.html");
-    if (pathname === "/period" || pathname === "/period/") return join(dir, "period.html");
-    const fm = pathname.match(/^\/film\/([^/]+)\/?$/);
+    if (pathname === "/period" || pathname === "/period/" || /^\/period\/.+/.test(pathname))
+      return join(dir, "period.html");
+    const fm = pathname.match(/^\/(?:film|movie)\/([^/]+)\/?$/);
     if (fm) return join(dir, "films", `${fm[1]}.html`);
     return null;
   };
