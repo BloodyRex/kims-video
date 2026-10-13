@@ -1,12 +1,12 @@
 {
- "at": "2026-10-13T04:54:52Z",
+ "at": "2026-10-13T09:42:23Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 162min ≥ 30min",
+   "reason": "age 288min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 255,
@@ -24,15 +24,33 @@
   },
   {
    "slug": "idfa-2026",
-   "due": false,
-   "reason": "age 162min < 180min",
+   "due": true,
+   "reason": "age 449min ≥ 180min",
    "status": "PROGRAM_RELEASED",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 176,
+    "screenings": 0,
+    "venues": 13,
+    "days": 6,
+    "sourcesOk": 2,
+    "sourcesTotal": 2,
+    "status": "PROGRAM_RELEASED",
+    "lifecycle": "UPCOMING"
+   },
+   "warnings": [
+    "schedule covers 6/11 days",
+    "ignored 5 official record(s) outside this edition: 2026-05-06×1, 2026-05-07×1, 2026-05-08×1, 2026-05-09×1, 2026-05-10×1",
+    "official day amounts (32) do not sum to totalHits (28)",
+    "1 record(s) look like all-day programme blocks (linked film, > 240min) — kept as EVENT, not screenings",
+    "official screening times not published yet: 0 SCREENING, 27 official programme entry/entries (status SCHEDULE_PENDING — partial data, NOT a complete schedule)"
+   ],
+   "action": "updated",
+   "changes": 9
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 162min ≥ 30min",
+   "reason": "age 287min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
@@ -51,7 +69,7 @@
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 4389min ≥ 30min",
+   "reason": "age 4677min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 0,
@@ -98,24 +116,64 @@
   },
   {
    "slug": "venice-2026",
-   "due": false,
-   "reason": "age 160min < 360min",
+   "due": true,
+   "reason": "age 447min ≥ 360min",
    "status": "SCHEDULE_LIVE",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 347,
+    "screenings": 350,
+    "venues": 10,
+    "days": 11,
+    "sourcesOk": 12,
+    "sourcesTotal": 12,
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 116
   },
   {
    "slug": "cannes-2026",
-   "due": false,
-   "reason": "age 160min < 180min",
+   "due": true,
+   "reason": "age 447min ≥ 180min",
    "status": "PROGRAM_RELEASED",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 150,
+    "screenings": 0,
+    "venues": 0,
+    "days": 0,
+    "sourcesOk": 3,
+    "sourcesTotal": 3,
+    "status": "PROGRAM_RELEASED",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [
+    "schedule covers 0/12 days"
+   ],
+   "action": "updated",
+   "changes": 0
   },
   {
    "slug": "iffr-2026",
-   "due": false,
-   "reason": "age 156min < 180min",
+   "due": true,
+   "reason": "age 444min ≥ 180min",
    "status": "PROGRAM_RELEASED",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 496,
+    "screenings": 0,
+    "venues": 0,
+    "days": 0,
+    "sourcesOk": 2,
+    "sourcesTotal": 2,
+    "status": "PROGRAM_RELEASED",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [
+    "schedule covers 0/11 days"
+   ],
+   "action": "updated",
+   "changes": 0
   }
  ],
  "errors": [
@@ -131,7 +189,7 @@
    "screeningsToday": 121,
    "eventsToday": 2,
    "upcoming": 1,
-   "changes7d": 320,
+   "changes7d": 445,
    "venuesToday": 38
   },
   "detailFiles": [
