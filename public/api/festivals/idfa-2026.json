@@ -48,7 +48,7 @@
    "url": "https://my.idfa.nl/api/graphql/festival",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-13T09:42:28Z"
+   "fetchedAt": "2026-10-13T16:15:24Z"
   },
   {
    "kind": "PROGRAMME",
@@ -56,7 +56,7 @@
    "url": "https://my.idfa.nl/api/graphql/festival",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-13T09:42:28Z"
+   "fetchedAt": "2026-10-13T16:15:24Z"
   }
  ],
  "sections": [
@@ -71,6 +71,16 @@
    "name": "Dead Angle: Common Ground"
   },
   {
+   "id": "c426120051",
+   "cIdx": 426120051,
+   "name": "Envision Competition"
+  },
+  {
+   "id": "c2036835288",
+   "cIdx": 2036835288,
+   "name": "Frontlight"
+  },
+  {
    "id": "c2925148615",
    "cIdx": 2925148615,
    "name": "IDFA Competition for Short Documentary"
@@ -79,6 +89,21 @@
    "id": "c1426294077",
    "cIdx": 1426294077,
    "name": "IDFA DocLab Program & Competition"
+  },
+  {
+   "id": "c3712688772",
+   "cIdx": 3712688772,
+   "name": "IDFA Junior"
+  },
+  {
+   "id": "c1955600897",
+   "cIdx": 1955600897,
+   "name": "International Competition"
+  },
+  {
+   "id": "c3574009759",
+   "cIdx": 3574009759,
+   "name": "Luminous"
   },
   {
    "id": "c3124395363",
@@ -94,6 +119,11 @@
    "id": "c3598213944",
    "cIdx": 3598213944,
    "name": "Signed"
+  },
+  {
+   "id": "c107310163",
+   "cIdx": 107310163,
+   "name": "Special Screenings"
   },
   {
    "id": "c3567309384",
@@ -275,7 +305,7 @@
    "id": "idfa-2026-f3989209042",
    "cIdx": 177423142,
    "title": "Birds of War",
-   "director": "Janay Boulos, Abd al Kader Habak",
+   "director": "Janay Boulos, Abd Al Kader Habak",
    "country": "United Kingdom, Syria, Lebanon",
    "sectionId": "c177423142",
    "sectionName": "Best of Fests",
@@ -396,7 +426,7 @@
    "id": "idfa-2026-f49570635",
    "cIdx": 177423142,
    "title": "Everest: The Other Side",
-   "director": "Elizabeth Chai Vasarhelyi, Jimmy Chin",
+   "director": "Chai Vasarhelyi, Jimmy Chin",
    "country": "United States",
    "sectionId": "c177423142",
    "sectionName": "Best of Fests",
@@ -541,6 +571,28 @@
    "title": "If Pigeons Turned to Gold",
    "director": "Pepa Lubojacki",
    "country": "Czech Republic, Slovakia",
+   "sectionId": "c177423142",
+   "sectionName": "Best of Fests",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f4004306234",
+   "cIdx": 177423142,
+   "title": "In Search of the Grey Bird with Green Stripes",
+   "director": "Said Hamich",
+   "country": "France, Morocco",
+   "sectionId": "c177423142",
+   "sectionName": "Best of Fests",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2267962014",
+   "cIdx": 177423142,
+   "title": "Into the Jaws of the Ogre",
+   "director": "Mahsa Karampour",
+   "country": "France",
    "sectionId": "c177423142",
    "sectionName": "Best of Fests",
    "officialUrl": null,
@@ -836,7 +888,7 @@
    "id": "idfa-2026-f2475393801",
    "cIdx": 1984670957,
    "title": "La Bonga",
-   "director": "Sebastian Pinzon Silva, Canela Reyes",
+   "director": "Sebastian Pinzon, Canela Reyes",
    "country": "Colombia, United States",
    "sectionId": "c1984670957",
    "sectionName": "Dead Angle: Common Ground",
@@ -899,6 +951,325 @@
    "inProgramme": true
   },
   {
+   "id": "idfa-2026-f2339053626",
+   "cIdx": 426120051,
+   "title": "Bahía Honda",
+   "director": "Alejandro Alonso Estrella",
+   "country": "Cuba, France, Norway",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f4006820380",
+   "cIdx": 426120051,
+   "title": "Between Revolutions",
+   "director": "Ruben Desiere",
+   "country": "Belgium, Netherlands",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2191960032",
+   "cIdx": 426120051,
+   "title": "Drop! Cover! Hold On!",
+   "director": "Stéphanie Roland",
+   "country": "Belgium, France",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f919525128",
+   "cIdx": 426120051,
+   "title": "Lyrical Vengeance",
+   "director": "wendelien van oldenborgh",
+   "country": "Netherlands",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3876172608",
+   "cIdx": 426120051,
+   "title": "Memories",
+   "director": "Anna Falguères",
+   "country": "Belgium, France",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3059334679",
+   "cIdx": 426120051,
+   "title": "Memories of Lightning",
+   "director": "Riccardo Giacconi",
+   "country": "France, Italy",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2689818906",
+   "cIdx": 426120051,
+   "title": "My Own Personal Gulag",
+   "director": "Lina Gorbaneva",
+   "country": "Spain",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f864590182",
+   "cIdx": 426120051,
+   "title": "Radiant Mountain",
+   "director": "Miguel Moraes Cabral",
+   "country": "Belgium, Portugal, France",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2197317278",
+   "cIdx": 426120051,
+   "title": "Ragazzi al fiume",
+   "director": "Pablo Briones",
+   "country": "Switzerland",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1628013797",
+   "cIdx": 426120051,
+   "title": "Rivers of Memory",
+   "director": "Shishir Jha",
+   "country": "India",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f400960110",
+   "cIdx": 426120051,
+   "title": "The Black Box Is Orange",
+   "director": "Yuula Benivolski",
+   "country": "Canada",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2892598393",
+   "cIdx": 426120051,
+   "title": "Vertigo Garden",
+   "director": "Lei Lei",
+   "country": "Hong Kong SAR, China",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1665441103",
+   "cIdx": 426120051,
+   "title": "You Don’t Die Two Times",
+   "director": "Ager Oueslati",
+   "country": "Algeria, Germany, Netherlands",
+   "sectionId": "c426120051",
+   "sectionName": "Envision Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2161090311",
+   "cIdx": 2036835288,
+   "title": "A Derailment",
+   "director": "Nathan Truesdell",
+   "country": "United States",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3767773811",
+   "cIdx": 2036835288,
+   "title": "A Minute of Silence",
+   "director": "Laurent Pantaleon",
+   "country": "Réunion, France",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3914130741",
+   "cIdx": 2036835288,
+   "title": "Hold Your Breath",
+   "director": "Vincent Sparreboom",
+   "country": "Netherlands",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2700727696",
+   "cIdx": 2036835288,
+   "title": "Jenin & the Nakba Between Us",
+   "director": "Serene Husni",
+   "country": "Canada, Jordan",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f850763633",
+   "cIdx": 2036835288,
+   "title": "No Man's Air",
+   "director": "Peter Delpeut, Gerco de Ruijter",
+   "country": "Netherlands",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f479505889",
+   "cIdx": 2036835288,
+   "title": "Notes From a Besieged City",
+   "director": "Mateusz Mularski",
+   "country": "Poland",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2166079599",
+   "cIdx": 2036835288,
+   "title": "Regarding Memory and Neglect",
+   "director": "Ricardo Martensen",
+   "country": "Brazil",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f570135666",
+   "cIdx": 2036835288,
+   "title": "Romare Bearden: A Life in Collage",
+   "director": "Deborah Riley Draper",
+   "country": "United States",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f386350610",
+   "cIdx": 2036835288,
+   "title": "Small Expectations",
+   "director": "Alexandru Solomon",
+   "country": "Romania, Belgium",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f288617673",
+   "cIdx": 2036835288,
+   "title": "Tehran, Under the Skin",
+   "director": "Afsaneh Salari",
+   "country": "France, Iran, Sweden",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f24997327",
+   "cIdx": 2036835288,
+   "title": "The Big Boom!",
+   "director": "Gabriel Tejedor",
+   "country": "Switzerland",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2849643006",
+   "cIdx": 2036835288,
+   "title": "The Dome Sessions",
+   "director": "Firas El Hallak",
+   "country": "Lebanon",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2306410830",
+   "cIdx": 2036835288,
+   "title": "The Message",
+   "director": "Guylaine Maroist, Eric Ruel",
+   "country": "Canada",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f490427533",
+   "cIdx": 2036835288,
+   "title": "Then I Saw a Beautiful Horse",
+   "director": "Altay Erlik",
+   "country": "Turkey, Germany",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f992376184",
+   "cIdx": 2036835288,
+   "title": "Water Cooler",
+   "director": "Emma V.F.",
+   "country": "United States",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f825275351",
+   "cIdx": 2036835288,
+   "title": "Wood Street",
+   "director": "Caron Creighton",
+   "country": "United States",
+   "sectionId": "c2036835288",
+   "sectionName": "Frontlight",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
    "id": "idfa-2026-f1362857022",
    "cIdx": 2925148615,
    "title": "all that appears solid is built on blood",
@@ -957,7 +1328,7 @@
    "id": "idfa-2026-f177910119",
    "cIdx": 2925148615,
    "title": "Eye Sun",
-   "director": "Maricé Castañeda",
+   "director": "Marice Castañeda",
    "country": "Peru",
    "sectionId": "c2925148615",
    "sectionName": "IDFA Competition for Short Documentary",
@@ -1144,7 +1515,7 @@
    "id": "idfa-2026-f952790569",
    "cIdx": 1426294077,
    "title": "BENCHES",
-   "director": "Clare Richards",
+   "director": "Clare Richards, Samuel D Loveless",
    "country": "United Kingdom",
    "sectionId": "c1426294077",
    "sectionName": "IDFA DocLab Program & Competition",
@@ -1155,7 +1526,7 @@
    "id": "idfa-2026-f570217998",
    "cIdx": 1426294077,
    "title": "Body Count",
-   "director": "Cris Bringas",
+   "director": "Cris Bringas, Sönke Kirchhof",
    "country": "Philippines, Germany",
    "sectionId": "c1426294077",
    "sectionName": "IDFA DocLab Program & Competition",
@@ -1179,6 +1550,17 @@
    "title": "ESHRAQ",
    "director": "Ali Eslami",
    "country": "Netherlands",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3938846588",
+   "cIdx": 1426294077,
+   "title": "Hello You",
+   "director": "May Abdalla, Barry Gene Murphy",
+   "country": "United Kingdom, France",
    "sectionId": "c1426294077",
    "sectionName": "IDFA DocLab Program & Competition",
    "officialUrl": null,
@@ -1218,6 +1600,17 @@
    "inProgramme": true
   },
   {
+   "id": "idfa-2026-f1820104042",
+   "cIdx": 1426294077,
+   "title": "Lost Hood",
+   "director": "Abner Preis",
+   "country": "Netherlands",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
    "id": "idfa-2026-f3941058134",
    "cIdx": 1426294077,
    "title": "Microbiome Restaurant: Haute Cuisine for the Rectum",
@@ -1240,6 +1633,39 @@
    "inProgramme": true
   },
   {
+   "id": "idfa-2026-f1669026649",
+   "cIdx": 1426294077,
+   "title": "My Father is Turning into Soil",
+   "director": "Noa Jansma",
+   "country": "Netherlands",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3717217639",
+   "cIdx": 1426294077,
+   "title": "My Father is Turning into Soil Fulldome",
+   "director": "Noa Jansma",
+   "country": "Netherlands",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2747991393",
+   "cIdx": 1426294077,
+   "title": "Notes On Blindness: Into Darkness Fulldome",
+   "director": "Arnaud Colinart, Amaury La Burthe, Peter Middleton, James Spinney",
+   "country": "France, United Kingdom",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
    "id": "idfa-2026-f1571726995",
    "cIdx": 1426294077,
    "title": "Orgasmagoria",
@@ -1256,6 +1682,61 @@
    "title": "Palimpsest",
    "director": "Guillaume Roux, Johan Delétang, Noah Cohen",
    "country": "Netherlands",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2708547616",
+   "cIdx": 1426294077,
+   "title": "Plum Road Tea Dream ",
+   "director": "Samuel Baidoo, Fran Vincent",
+   "country": "Belgium",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1348742682",
+   "cIdx": 1426294077,
+   "title": "Raj'in",
+   "director": "Keren Manor, Faiz Abu Rmeleh",
+   "country": "Germany, Palestine",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f385725896",
+   "cIdx": 1426294077,
+   "title": "Shifting Connections",
+   "director": "Tungyen Chou",
+   "country": "Taiwan",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1904770872",
+   "cIdx": 1426294077,
+   "title": "Tartupaluk",
+   "director": "Laakkuluk Williamson",
+   "country": "Canada, Denmark, Greenland",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3215219935",
+   "cIdx": 1426294077,
+   "title": "Temporal Strata",
+   "director": "Ping-Sheng Wu, Jie Liou",
+   "country": "Taiwan, United States",
    "sectionId": "c1426294077",
    "sectionName": "IDFA DocLab Program & Competition",
    "officialUrl": null,
@@ -1291,6 +1772,424 @@
    "country": "Netherlands, Belgium",
    "sectionId": "c1426294077",
    "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1321304246",
+   "cIdx": 1426294077,
+   "title": "Twenty Twenty-Five",
+   "director": "Ghazal Majidi",
+   "country": "Canada, Iran",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1610146333",
+   "cIdx": 1426294077,
+   "title": "Uprooted",
+   "director": "Jason Jacobs, Devon Delmar",
+   "country": "South Africa",
+   "sectionId": "c1426294077",
+   "sectionName": "IDFA DocLab Program & Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2521154808",
+   "cIdx": 3712688772,
+   "title": "I AM – Investigation Art Mysteries",
+   "director": "Martijn Blekendaal, Finbarr Wilbrink",
+   "country": "Netherlands",
+   "sectionId": "c3712688772",
+   "sectionName": "IDFA Junior",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1166242226",
+   "cIdx": 3712688772,
+   "title": "Louis the Ferris Wheel Kid",
+   "director": "Tara Fallaux",
+   "country": "Netherlands",
+   "sectionId": "c3712688772",
+   "sectionName": "IDFA Junior",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2156169401",
+   "cIdx": 1955600897,
+   "title": "An Incomplete Day in the History of Georgia 10.06.93",
+   "director": "Salomé Jashi",
+   "country": "Georgia",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3236429018",
+   "cIdx": 1955600897,
+   "title": "Bardi",
+   "director": "Tala Hadid",
+   "country": "Morocco",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f611605677",
+   "cIdx": 1955600897,
+   "title": "Crack in the Head, Crack in the Sky",
+   "director": "Mehran Tamadon",
+   "country": "France",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1584444740",
+   "cIdx": 1955600897,
+   "title": "Down the River",
+   "director": "Ruslan Fedotov",
+   "country": "Germany",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f4037846677",
+   "cIdx": 1955600897,
+   "title": "Hazara Town",
+   "director": "Khadim Dai",
+   "country": "Belgium, Australia, Germany",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3648479001",
+   "cIdx": 1955600897,
+   "title": "Here Where the Fire Burns",
+   "director": "Juan Manuel Sepúlveda",
+   "country": "Mexico",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2838765786",
+   "cIdx": 1955600897,
+   "title": "Lonan Tché",
+   "director": "Joël Richmond Mathieu Akafou",
+   "country": "France, Italy, Ivory Coast, Senegal",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2275838822",
+   "cIdx": 1955600897,
+   "title": "Mangabangabaka",
+   "director": "Michaël Andrianaly",
+   "country": "France, Madagascar, Burkina Faso",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f727478072",
+   "cIdx": 1955600897,
+   "title": "Morro Grande",
+   "director": "Isabel Joffily, Rita Toledo",
+   "country": "Brazil, Netherlands",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1961513571",
+   "cIdx": 1955600897,
+   "title": "Still Night, Burning House",
+   "director": "Carol Nguyen",
+   "country": "Canada",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2223997520",
+   "cIdx": 1955600897,
+   "title": "The Year of the Ghost",
+   "director": "Louis Hothothot",
+   "country": "Netherlands, China",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2582939533",
+   "cIdx": 1955600897,
+   "title": "White Tiger Column ",
+   "director": "Robert Mentov, Dwight Jantzi, Bryan Dickie",
+   "country": "Canada",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2250199035",
+   "cIdx": 1955600897,
+   "title": "Women and War",
+   "director": "Elwira Niewiera",
+   "country": "Germany, Poland, Ukraine",
+   "sectionId": "c1955600897",
+   "sectionName": "International Competition",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f353293241",
+   "cIdx": 3574009759,
+   "title": "A Modern Roma Fairytale",
+   "director": "Raluca Lupaşcu",
+   "country": "Netherlands",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f977063076",
+   "cIdx": 3574009759,
+   "title": "Agaar",
+   "director": "Bo Yang",
+   "country": "China, France",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f4240790803",
+   "cIdx": 3574009759,
+   "title": "Alter Ego",
+   "director": "Mohammad Ali Atassi",
+   "country": "Lebanon, France",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f533076326",
+   "cIdx": 3574009759,
+   "title": "Back Before 3 P.M.",
+   "director": "Gaël Lépingle",
+   "country": "France",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3716839753",
+   "cIdx": 3574009759,
+   "title": "Cuscú",
+   "director": "Risseth Yangüez Singh",
+   "country": "Panama, United States",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1256819991",
+   "cIdx": 3574009759,
+   "title": "Dreams of the Wild Oaks",
+   "director": "Marjan Khosravibaledi",
+   "country": "Iran, Spain, France",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3175327089",
+   "cIdx": 3574009759,
+   "title": "Every Death Diminishes Me",
+   "director": "Sergii Bazhenov",
+   "country": "Ukraine",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f539823451",
+   "cIdx": 3574009759,
+   "title": "How Much Longer",
+   "director": "Niels van Koevorden",
+   "country": "Netherlands",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1030304173",
+   "cIdx": 3574009759,
+   "title": "Mentor",
+   "director": "Krzysztof Tomaszewski",
+   "country": "Poland",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2751127744",
+   "cIdx": 3574009759,
+   "title": "Scenes from Departure",
+   "director": "Ray Kamhei Chan",
+   "country": "Taiwan, Hong Kong",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3147826187",
+   "cIdx": 3574009759,
+   "title": "She Was Not Alone",
+   "director": "Hussein Al-asadi",
+   "country": "Iraq, Saudi Arabia, Qatar, United States",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3321105686",
+   "cIdx": 3574009759,
+   "title": "The Blood of the Covenant",
+   "director": "Fábio Silva",
+   "country": "Portugal",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f4235638649",
+   "cIdx": 3574009759,
+   "title": "The Brush in Your Hand",
+   "director": "Charlotte Dumas",
+   "country": "Netherlands",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f65313091",
+   "cIdx": 3574009759,
+   "title": "The Last Season",
+   "director": "Yohan Guignard",
+   "country": "France",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f3000892793",
+   "cIdx": 3574009759,
+   "title": "The Middle Room",
+   "director": "Enrico Maisto",
+   "country": "Italy, Switzerland",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f224567103",
+   "cIdx": 3574009759,
+   "title": "The Sacred Circle",
+   "director": "Elahe Esmaili",
+   "country": "Iran, United Kingdom",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f4227679863",
+   "cIdx": 3574009759,
+   "title": "Tonight is Forever",
+   "director": "Fernando Souza",
+   "country": "France, Spain, Japan",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f205126468",
+   "cIdx": 3574009759,
+   "title": "Up in the Air",
+   "director": "Oksana Koklonska",
+   "country": "Ukraine, Czech Republic, Lithuania",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f531121357",
+   "cIdx": 3574009759,
+   "title": "Waves of Time",
+   "director": "Weicheng Hua",
+   "country": "China",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f41155572",
+   "cIdx": 3574009759,
+   "title": "We Had a Plan",
+   "director": "Suzanne Raes, Venice De Castro Atienza",
+   "country": "Netherlands, Philippines",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2390118904",
+   "cIdx": 3574009759,
+   "title": "Where the Sun is Born",
+   "director": "Laura Bermúdez, Jorge García",
+   "country": "Honduras",
+   "sectionId": "c3574009759",
+   "sectionName": "Luminous",
    "officialUrl": null,
    "inProgramme": true
   },
@@ -1605,7 +2504,7 @@
   {
    "id": "idfa-2026-f2267219922",
    "cIdx": 3598213944,
-   "title": "Bára – Diary of a Rockstar",
+   "title": "Bára - Diary of a Rockstar",
    "director": "Helena Třeštíková",
    "country": "Czech Republic",
    "sectionId": "c3598213944",
@@ -1790,10 +2689,32 @@
    "inProgramme": true
   },
   {
+   "id": "idfa-2026-f690801394",
+   "cIdx": 3598213944,
+   "title": "Musk",
+   "director": "Alex Gibney",
+   "country": "United States",
+   "sectionId": "c3598213944",
+   "sectionName": "Signed",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
    "id": "idfa-2026-f2739784964",
    "cIdx": 3598213944,
    "title": "My Undesirable Friends: Part II — Exile",
    "director": "Julia Loktev, Anna Nemzer",
+   "country": "United States",
+   "sectionId": "c3598213944",
+   "sectionName": "Signed",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1256172289",
+   "cIdx": 3598213944,
+   "title": "Once Upon a Time in Harlem",
+   "director": "William Greaves, David Greaves",
    "country": "United States",
    "sectionId": "c3598213944",
    "sectionName": "Signed",
@@ -1806,6 +2727,28 @@
    "title": "Revolutionaries Never Die",
    "director": "Mohanad Yaqubi",
    "country": "Palestine, Belgium, Qatar",
+   "sectionId": "c3598213944",
+   "sectionName": "Signed",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1506745400",
+   "cIdx": 3598213944,
+   "title": "Sixteen Moments of My Life",
+   "director": "Albert Serra",
+   "country": "Spain, France",
+   "sectionId": "c3598213944",
+   "sectionName": "Signed",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f816507708",
+   "cIdx": 3598213944,
+   "title": "The Mayor: Halsema & Amsterdam",
+   "director": "Mijke de Jong",
+   "country": "Netherlands",
    "sectionId": "c3598213944",
    "sectionName": "Signed",
    "officialUrl": null,
@@ -1889,21 +2832,32 @@
    "inProgramme": true
   },
   {
-   "id": "idfa-2026-f1686742325",
-   "cIdx": 3567309384,
-   "title": "In the Company of Men",
-   "director": "William Greaves",
+   "id": "idfa-2026-f1901205479",
+   "cIdx": 3598213944,
+   "title": "You Can See Everything",
+   "director": "Nathan Fielder, Lance Oppenheim",
    "country": "United States",
-   "sectionId": "c3567309384",
-   "sectionName": "Spotlight on William Greaves",
+   "sectionId": "c3598213944",
+   "sectionName": "Signed",
    "officialUrl": null,
    "inProgramme": true
   },
   {
-   "id": "idfa-2026-f1256172289",
+   "id": "idfa-2026-f2663489471",
+   "cIdx": 107310163,
+   "title": "30 mei, 1969 (gritu di un pueblo)",
+   "director": "John Leerdam",
+   "country": "Netherlands",
+   "sectionId": "c107310163",
+   "sectionName": "Special Screenings",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f1686742325",
    "cIdx": 3567309384,
-   "title": "Once Upon a Time in Harlem",
-   "director": "William Greaves, David Greaves",
+   "title": "In the Company of Men",
+   "director": "William Greaves",
    "country": "United States",
    "sectionId": "c3567309384",
    "sectionName": "Spotlight on William Greaves",
@@ -1971,6 +2925,17 @@
    "title": "Belovy",
    "director": "Victor Kossakovsky",
    "country": "Russia",
+   "sectionId": "c187799890",
+   "sectionName": "Top 10",
+   "officialUrl": null,
+   "inProgramme": true
+  },
+  {
+   "id": "idfa-2026-f2826970247",
+   "cIdx": 187799890,
+   "title": "Être et avoir",
+   "director": "Nicolas Philibert",
+   "country": "France",
    "sectionId": "c187799890",
    "sectionName": "Top 10",
    "officialUrl": null,
@@ -2065,17 +3030,6 @@
    "inProgramme": true
   },
   {
-   "id": "idfa-2026-f2826970247",
-   "cIdx": 187799890,
-   "title": "To Be and to Have",
-   "director": "Nicolas Philibert",
-   "country": "France",
-   "sectionId": "c187799890",
-   "sectionName": "Top 10",
-   "officialUrl": null,
-   "inProgramme": true
-  },
-  {
    "id": "idfa-2026-f3986945387",
    "cIdx": 187799890,
    "title": "Tropic of Cancer",
@@ -2119,7 +3073,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261114-c19ab744-cb70-49fd-a20a-06fb5a85dfd4-de-volkskrantdag",
@@ -2141,7 +3095,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261117-699be57b-b1ca-4c10-bf5c-f2b610c85456-in-person-ulrich-seidl",
@@ -2159,11 +3113,11 @@
    "grade": null,
    "subtitle": null,
    "qa": false,
-   "ticketStatus": "SOLD_OUT",
+   "ticketStatus": "HIGH_AVAILABILITY",
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261120-dc22b747-f043-4614-8d60-3cb3e24dc923-best-of-idfa-award-winne",
@@ -2185,7 +3139,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261120-a7f0f74c-4918-4ee4-8da4-a764d1c66137-best-of-idfa-audience-fa",
@@ -2207,7 +3161,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261120-10763d06-4938-4d3d-8627-680f69ad3b68-best-of-idfa-award-winne",
@@ -2229,7 +3183,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261120-892b93dc-db76-4f25-a47a-c995d099b18f-best-of-idfa-audience-fa",
@@ -2251,7 +3205,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261120-b9f991ec-34a6-4870-8499-1fc100f6f88e-best-of-idfa-audience-fa",
@@ -2273,7 +3227,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261121-be88fdb4-2d42-496e-8900-76dc0e861204-best-of-idfa-award-winne",
@@ -2295,7 +3249,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261121-01393255-2dab-4545-bb9d-29fde85caaa0-best-of-idfa-audience-fa",
@@ -2317,7 +3271,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261121-96440aa0-4418-49b2-80b1-23369306363b-best-of-idfa-award-winne",
@@ -2339,7 +3293,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261121-6d437b43-d9eb-4df5-8ca4-f5f2f0b8b02f-best-of-idfa-award-winne",
@@ -2361,7 +3315,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261121-edb9a04b-2d98-4c2c-9390-659eae2ac4fa-de-groene-amsterdammerda",
@@ -2383,7 +3337,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261121-48b09a47-6800-48fe-9935-2ab1e55e17c1-best-of-idfa-audience-fa",
@@ -2405,7 +3359,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261121-fb36df60-9d66-4520-bad1-de48312173e8-best-of-idfa-audience-fa",
@@ -2427,7 +3381,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261121-fba9790a-09ca-40a5-8c1c-5d91278bbbf4-best-of-idfa-audience-fa",
@@ -2449,7 +3403,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261121-6bd92f17-bf6d-456d-b84a-98f49688695d-best-of-idfa-audience-fa",
@@ -2471,7 +3425,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261122-cbd4e3d6-a2ab-43f7-be8c-f48f310f27e4-best-of-idfa-award-winne",
@@ -2493,7 +3447,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261122-8894e730-7010-4828-9d84-0a15667ad981-best-of-idfa-audience-fa",
@@ -2515,7 +3469,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261122-2f42a827-b733-430f-b42a-eb878bbff0f8-best-of-idfa-audience-fa",
@@ -2537,7 +3491,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261122-a559720f-7225-410f-802c-b19fc1c28950-best-of-idfa-award-winne",
@@ -2559,7 +3513,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261122-7f1a6611-26e0-442d-9be2-f3b3fbbcc713-best-of-idfa-award-winne",
@@ -2581,7 +3535,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261122-e059e916-9bd8-4ec8-b8db-4f7568eeb9c7-best-of-idfa-audience-fa",
@@ -2603,7 +3557,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261122-ce385220-4116-4c8b-86e6-0a54ee437e60-best-of-idfa-audience-fa",
@@ -2625,7 +3579,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261122-a50c9537-1377-4267-b350-926cd3370d4c-best-of-idfa-audience-fa",
@@ -2647,7 +3601,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261122-3c123c70-cf43-41f3-aa85-f3c450326be2-best-of-idfa-audience-fa",
@@ -2669,7 +3623,7 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   },
   {
    "id": "idfa-2026-20261122-4bae3c95-8d0d-4c13-9860-dd6d5bc9eaa4-best-of-idfa-audience-fa",
@@ -2691,18 +3645,18 @@
    "ticketUrl": null,
    "eventUrl": null,
    "officialSourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "lastVerifiedAt": "2026-10-13T09:42:28Z"
+   "lastVerifiedAt": "2026-10-13T16:15:24Z"
   }
  ],
  "stats": {
-  "films": 176,
-  "filmsTotal": 176,
+  "films": 260,
+  "filmsTotal": 260,
   "screenings": 0,
   "events": 27,
   "pending": 0,
   "entries": 27,
   "venues": 13,
-  "sections": 9,
+  "sections": 15,
   "days": 6,
   "guestVisits": 0
  },
@@ -2750,7 +3704,7 @@
    "failed": false
   }
  ],
- "fetchedAt": "2026-10-13T09:42:28Z",
- "lastVerifiedAt": "2026-10-13T09:42:28Z",
+ "fetchedAt": "2026-10-13T16:15:24Z",
+ "lastVerifiedAt": "2026-10-13T16:15:24Z",
  "dataSource": "official"
 }
