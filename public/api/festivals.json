@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-14T12:49:24Z",
- "today": "2026-10-14",
+ "updated": "2026-10-14T17:57:33Z",
+ "today": "2026-10-15",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
   "en": "Only festivals with verified official sources. Unannounced schedules are labelled, never left blank."
@@ -9,11 +9,11 @@
   "festivals": 7,
   "blocked": 0,
   "liveToday": 3,
-  "screeningsToday": 122,
-  "eventsToday": 2,
+  "screeningsToday": 34,
+  "eventsToday": 7,
   "upcoming": 1,
   "changes7d": 991,
-  "venuesToday": 38
+  "venuesToday": 17
  },
  "festivals": [
   {
@@ -64,1366 +64,121 @@
     "guestVisits": 312
    },
    "today": {
-    "date": "2026-10-14",
-    "screenings": 88,
-    "events": 2,
-    "entries": 90,
-    "venues": 25,
-    "guestVisits": 2,
+    "date": "2026-10-15",
+    "screenings": 0,
+    "events": 7,
+    "entries": 7,
+    "venues": 4,
+    "guestVisits": 0,
     "items": [
      {
-      "id": "biff-2026-20261014-688",
-      "kind": "SCREENING",
-      "time": "09:20",
-      "title": "Sense and Sensibility",
-      "venueName": "LOTTE CINEMA Centum City 3",
-      "section": "World Cinema",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=688",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-652",
-      "kind": "SCREENING",
-      "time": "09:40",
-      "title": "Föa - Once Upon A Future",
-      "venueName": "Busan Cinema Center Cinema 2",
-      "section": "Flash Forward",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=652",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-684",
-      "kind": "SCREENING",
-      "time": "09:40",
-      "title": "The Birds",
-      "venueName": "LOTTE CINEMA Centum City 2",
-      "section": "Vision - Korea",
-      "grade": "15",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=684",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-692",
-      "kind": "SCREENING",
-      "time": "09:40",
-      "title": "SINNER",
-      "venueName": "LOTTE CINEMA Centum City 4",
-      "section": "Korean Cinema Today - Panorama",
-      "grade": "12",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=692",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-712",
-      "kind": "SCREENING",
-      "time": "09:40",
-      "title": "Not for You",
-      "venueName": "LOTTE CINEMA Centum City 9",
-      "section": "Vision - Korea",
-      "grade": "12",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=712",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-648",
-      "kind": "SCREENING",
-      "time": "10:00",
-      "title": "A Girl′s Story",
-      "venueName": "Busan Cinema Center Cinema 1",
-      "section": "Gala Presentation",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=648",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-645",
-      "kind": "SCREENING",
-      "time": "10:00",
-      "title": "Union Town",
-      "venueName": "Busan Cinema Center Haneulyeon Theatre",
-      "section": "Wide Angle - Documentary Showcase",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=645",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-665",
-      "kind": "SCREENING",
-      "time": "10:00",
-      "title": "Birds in the Dark",
-      "venueName": "CGV Centum City 2",
-      "section": "Vision - Asia",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=665",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-680",
-      "kind": "SCREENING",
-      "time": "10:00",
-      "title": "The Gate of Murder",
-      "venueName": "CGV Centum City 6",
-      "section": "A Window on Asian Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=680",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-658",
-      "kind": "SCREENING",
-      "time": "10:00",
-      "title": "We Are Aliens",
-      "venueName": "CGV Centum City IMAX",
-      "section": "Special Program in Focus - Japanese Animation Special: Masterpieces of Madness, Exhilarating Prospects 12+1",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=658",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-720",
-      "kind": "SCREENING",
-      "time": "10:00",
-      "title": "Between Two Lovers",
-      "venueName": "KOFIC Theater",
-      "section": "Competition",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=720",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-704",
-      "kind": "SCREENING",
-      "time": "10:00",
-      "title": "Beyond Love′s Horizon",
-      "venueName": "LOTTE CINEMA Centum City 7",
-      "section": "Vision - Korea",
-      "grade": "ALL",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=704",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-708",
-      "kind": "SCREENING",
-      "time": "10:00",
-      "title": "FULL MOON",
-      "venueName": "LOTTE CINEMA Centum City 8",
-      "section": "Vision - Korea",
-      "grade": "ALL",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=708",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-654",
-      "kind": "SCREENING",
-      "time": "10:20",
-      "title": "The First Taste of Loneliness",
-      "venueName": "Busan Cinema Center Cinematheque",
-      "section": "Competition",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=654",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-669",
-      "kind": "SCREENING",
-      "time": "10:20",
-      "title": "Earbug",
-      "venueName": "CGV Centum City 3",
-      "section": "Vision - Korea",
-      "grade": "15",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=669",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-673",
-      "kind": "SCREENING",
-      "time": "10:20",
-      "title": "Zogsool",
-      "venueName": "CGV Centum City 4",
-      "section": "Vision - Asia",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=673",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-716",
-      "kind": "SCREENING",
-      "time": "10:20",
-      "title": "To Be Ordinary",
-      "venueName": "LOTTE CINEMA Centum City 10",
-      "section": "Competition",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=716",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-696",
-      "kind": "SCREENING",
-      "time": "10:20",
-      "title": "There Will Be Snow",
-      "venueName": "LOTTE CINEMA Centum City 5",
-      "section": "Vision - Asia",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=696",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-700",
-      "kind": "SCREENING",
-      "time": "10:20",
-      "title": "Shaving",
-      "venueName": "LOTTE CINEMA Centum City 6",
-      "section": "Competition",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=700",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-727",
-      "kind": "SCREENING",
-      "time": "10:40",
-      "title": "Some Detective",
-      "venueName": "Busan Community Media Center Open Hall",
-      "section": "Vision - Korea",
-      "grade": "12",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=727",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-653",
-      "kind": "SCREENING",
-      "time": "12:00",
-      "title": "The Sea Speaks His Name",
-      "venueName": "Busan Cinema Center Cinema 2",
-      "section": "Competition",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=653",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-662",
-      "kind": "SCREENING",
-      "time": "12:00",
-      "title": "Gabin",
-      "venueName": "CGV Centum City 1",
-      "section": "Wide Angle - Documentary Showcase",
-      "grade": "ALL",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=662",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-724",
-      "kind": "SCREENING",
-      "time": "12:20",
-      "title": "In the Clear Moonlit Dusk",
-      "venueName": "Sohyang Theatre Woori Bank Hall",
-      "section": "Open Cinema",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=724",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-693",
-      "kind": "SCREENING",
-      "time": "12:30",
-      "title": "Ugly Duckling Ms. Maeng",
-      "venueName": "LOTTE CINEMA Centum City 4",
-      "section": "Korean Cinema Today - Panorama",
-      "grade": "12",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=693",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-677",
-      "kind": "SCREENING",
-      "time": "12:40",
-      "title": "The Echo Chamber",
-      "venueName": "CGV Centum City 5",
-      "section": "Icons",
-      "grade": "19",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=677",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-689",
-      "kind": "SCREENING",
-      "time": "12:40",
-      "title": "zi",
-      "venueName": "LOTTE CINEMA Centum City 3",
-      "section": "Icons",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=689",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-705",
-      "kind": "SCREENING",
-      "time": "12:40",
-      "title": "The Flower",
-      "venueName": "LOTTE CINEMA Centum City 7",
-      "section": "Vision - Korea",
-      "grade": "12",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=705",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-709",
-      "kind": "SCREENING",
-      "time": "12:50",
-      "title": "Space",
-      "venueName": "LOTTE CINEMA Centum City 8",
-      "section": "Vision - Korea",
-      "grade": "15",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=709",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-713",
-      "kind": "SCREENING",
-      "time": "12:50",
-      "title": "Things I Left at the Theater",
-      "venueName": "LOTTE CINEMA Centum City 9",
-      "section": "Vision - Korea",
-      "grade": "ALL",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=713",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-649",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "Sad Girlz",
-      "venueName": "Busan Cinema Center Cinema 1",
-      "section": "Flash Forward",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=649",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-646",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "In Waves",
-      "venueName": "Busan Cinema Center Haneulyeon Theatre",
-      "section": "World Cinema",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=646",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-670",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "Birds on Ice",
-      "venueName": "CGV Centum City 3",
-      "section": "A Window on Asian Cinema",
-      "grade": "ALL",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=670",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-681",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "You, Like a Star",
-      "venueName": "CGV Centum City 6",
-      "section": "A Window on Asian Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=681",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-685",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "The Chain of Roses",
-      "venueName": "LOTTE CINEMA Centum City 2",
-      "section": "Midnight Passion",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=685",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-697",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "L’Autre",
-      "venueName": "LOTTE CINEMA Centum City 5",
-      "section": "Midnight Passion",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=697",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-701",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "Beach Fictions",
-      "venueName": "LOTTE CINEMA Centum City 6",
-      "section": "Competition",
-      "grade": "12",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=701",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-728",
-      "kind": "SCREENING",
-      "time": "13:20",
-      "title": "Let Us Through, Dear Ancestors",
-      "venueName": "Busan Community Media Center Open Hall",
-      "section": "Icons",
-      "grade": "19",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=728",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-674",
-      "kind": "SCREENING",
-      "time": "13:20",
-      "title": "Dust",
-      "venueName": "CGV Centum City 4",
-      "section": "Icons",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=674",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-721",
-      "kind": "SCREENING",
-      "time": "13:20",
-      "title": "Nagi Notes",
-      "venueName": "KOFIC Theater",
-      "section": "Icons",
-      "grade": "ALL",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=721",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-717",
-      "kind": "SCREENING",
-      "time": "13:20",
-      "title": "Slumber",
-      "venueName": "LOTTE CINEMA Centum City 10",
-      "section": "Vision - Asia",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=717",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-655",
-      "kind": "SCREENING",
-      "time": "13:30",
-      "title": "Woman Unknown",
-      "venueName": "Busan Cinema Center Cinematheque",
-      "section": "World Cinema",
-      "grade": "19",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=655",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-666",
-      "kind": "SCREENING",
-      "time": "13:40",
-      "title": "Khoriya",
-      "venueName": "CGV Centum City 2",
-      "section": "A Window on Asian Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=666",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-659",
-      "kind": "SCREENING",
-      "time": "13:40",
-      "title": "A Day in the Life of Jo: Chapter Phaedra",
-      "venueName": "CGV Centum City IMAX",
-      "section": "Flash Forward",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=659",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-663",
-      "kind": "SCREENING",
-      "time": "15:00",
-      "title": "Cosmic Trace",
-      "venueName": "CGV Centum City 1",
-      "section": "Vision - Korea",
-      "grade": "12",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=663",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-706",
-      "kind": "SCREENING",
-      "time": "15:00",
-      "title": "Midday Meal",
-      "venueName": "LOTTE CINEMA Centum City 7",
-      "section": "Competition",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=706",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-694",
-      "kind": "SCREENING",
-      "time": "15:10",
-      "title": "Club Kid",
-      "venueName": "LOTTE CINEMA Centum City 4",
-      "section": "World Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=694",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-690",
-      "kind": "SCREENING",
-      "time": "15:20",
-      "title": "A Girl Unknown",
-      "venueName": "LOTTE CINEMA Centum City 3",
-      "section": "A Window on Asian Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=690",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-725",
-      "kind": "SCREENING",
-      "time": "15:20",
-      "title": "Bucking Fastard",
-      "venueName": "Sohyang Theatre Woori Bank Hall",
-      "section": "Icons",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=725",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-650",
-      "kind": "SCREENING",
-      "time": "15:30",
-      "title": "Roma Elastica",
-      "venueName": "Busan Cinema Center Cinema 1",
-      "section": "Icons",
-      "grade": "19",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=650",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-737",
-      "kind": "SCREENING",
-      "time": "15:30",
-      "title": "Possible Love",
-      "venueName": "Busan Cinema Center Haneulyeon Theatre",
-      "section": "Icons",
-      "grade": "19",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=737",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-686",
-      "kind": "SCREENING",
-      "time": "15:30",
-      "title": "Paper Tiger",
-      "venueName": "LOTTE CINEMA Centum City 2",
-      "section": "Icons",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=686",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-698",
-      "kind": "SCREENING",
-      "time": "15:40",
-      "title": "A Long Winter",
-      "venueName": "LOTTE CINEMA Centum City 5",
-      "section": "Icons",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=698",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-714",
-      "kind": "SCREENING",
-      "time": "15:50",
-      "title": "Head to Head",
-      "venueName": "LOTTE CINEMA Centum City 9",
-      "section": "A Window on Asian Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=714",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-671",
-      "kind": "SCREENING",
-      "time": "16:00",
-      "title": "Big Little Things",
-      "venueName": "CGV Centum City 3",
-      "section": "A Window on Asian Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=671",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-678",
-      "kind": "SCREENING",
-      "time": "16:00",
-      "title": "Black Church Bay",
-      "venueName": "CGV Centum City 5",
-      "section": "Flash Forward",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=678",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-718",
-      "kind": "SCREENING",
-      "time": "16:10",
-      "title": "1982",
-      "venueName": "LOTTE CINEMA Centum City 10",
-      "section": "Vision - Asia",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=718",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-710",
-      "kind": "SCREENING",
-      "time": "16:10",
-      "title": "Promised Spaces",
-      "venueName": "LOTTE CINEMA Centum City 8",
-      "section": "A Window on Asian Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=710",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-667",
-      "kind": "SCREENING",
-      "time": "16:20",
-      "title": "In Winter",
-      "venueName": "CGV Centum City 2",
-      "section": "A Window on Asian Cinema",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=667",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-660",
-      "kind": "SCREENING",
-      "time": "16:20",
-      "title": "Titanic Ocean",
-      "venueName": "CGV Centum City IMAX",
-      "section": "Flash Forward",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=660",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-722",
-      "kind": "SCREENING",
-      "time": "16:20",
-      "title": "Satoko Always",
-      "venueName": "KOFIC Theater",
-      "section": "Competition",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=722",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-702",
-      "kind": "SCREENING",
-      "time": "16:30",
-      "title": "A Good Little Soldier",
-      "venueName": "LOTTE CINEMA Centum City 6",
-      "section": "World Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=702",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-656",
-      "kind": "SCREENING",
-      "time": "16:40",
-      "title": "What Belongs to Others",
-      "venueName": "Busan Cinema Center Cinematheque",
-      "section": "Flash Forward",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=656",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-682",
-      "kind": "SCREENING",
-      "time": "16:40",
-      "title": "Diary of a Mad Old Man",
-      "venueName": "CGV Centum City 6",
-      "section": "A Window on Asian Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=682",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-729",
-      "kind": "SCREENING",
-      "time": "17:00",
-      "title": "Filipiñana",
-      "venueName": "Busan Community Media Center Open Hall",
-      "section": "A Window on Asian Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=729",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-675",
-      "kind": "SCREENING",
-      "time": "17:20",
-      "title": "Pressure",
-      "venueName": "CGV Centum City 4",
-      "section": "World Cinema",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=675",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-664",
-      "kind": "SCREENING",
-      "time": "18:00",
-      "title": "From Dawn to Dawn",
-      "venueName": "CGV Centum City 1",
-      "section": "Wide Angle - Documentary Showcase",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=664",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-715",
-      "kind": "SCREENING",
-      "time": "18:10",
-      "title": "La Perra",
-      "venueName": "LOTTE CINEMA Centum City 9",
-      "section": "World Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=715",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-695",
-      "kind": "SCREENING",
-      "time": "18:20",
-      "title": "Rose",
-      "venueName": "LOTTE CINEMA Centum City 4",
-      "section": "World Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=695",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-707",
-      "kind": "SCREENING",
-      "time": "18:20",
-      "title": "Dead End",
-      "venueName": "LOTTE CINEMA Centum City 7",
-      "section": "Vision - Asia",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=707",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-726",
-      "kind": "SCREENING",
-      "time": "18:20",
-      "title": "Ray Gunn",
-      "venueName": "Sohyang Theatre Woori Bank Hall",
-      "section": "Icons",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=726",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-651",
-      "kind": "SCREENING",
-      "time": "18:30",
-      "title": "Dora",
-      "venueName": "Busan Cinema Center Cinema 1",
-      "section": "Gala Presentation",
-      "grade": "19",
-      "subtitle": "KE",
-      "qa": true,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=651",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-687",
-      "kind": "SCREENING",
-      "time": "18:30",
-      "title": "Will You Still Be My Friend",
-      "venueName": "LOTTE CINEMA Centum City 2",
-      "section": "A Window on Asian Cinema",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=687",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-691",
-      "kind": "SCREENING",
-      "time": "18:30",
-      "title": "Hinotama: Ball of Fire",
-      "venueName": "LOTTE CINEMA Centum City 3",
-      "section": "Vision - Asia",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=691",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-741",
-      "kind": "SCREENING",
-      "time": "18:40",
-      "title": "PARADISE LOST",
-      "venueName": "LOTTE CINEMA Centum City 10",
-      "section": "Gala Presentation",
-      "grade": "15",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=741",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-699",
-      "kind": "SCREENING",
-      "time": "18:40",
-      "title": "Too Many Beasts",
-      "venueName": "LOTTE CINEMA Centum City 5",
-      "section": "World Cinema",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=699",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-711",
-      "kind": "SCREENING",
-      "time": "18:40",
-      "title": "Welcome to Dolly′s House",
-      "venueName": "LOTTE CINEMA Centum City 8",
-      "section": "Midnight Passion",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=711",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-826-cine-class-shim-eun-kyun",
-      "kind": "EVENT",
-      "time": "19:00",
-      "title": "[Cine Class] SHIM Eun-kyung: Transcending Borders, Discovering Craft",
-      "venueName": "Book Cafe Lounge, 4F, DSU-KIT Centum Campus",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=826",
-      "eventUrl": "https://www.biff.kr/eng/addon/10000001/page.asp?page_num=11366&strCode=826",
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-1900-bafa-2026-graduation-cer",
+      "id": "biff-2026-20261015-731-the-winner-of-flash-forw",
       "kind": "TBA",
-      "time": "19:00",
-      "title": "BAFA 2026 Graduation Ceremony & Short Film Screening",
+      "time": "10:00",
+      "title": "The Winner of Flash Forward Audience Award",
+      "venueName": "Busan Cinema Center Cinema 1",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": null,
+      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=731",
+      "eventUrl": null,
+      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15"
+     },
+     {
+      "id": "biff-2026-20261015-733-the-winner-of-songwon-vi",
+      "kind": "TBA",
+      "time": "10:20",
+      "title": "The Winner of Songwon Vision Audience Award - Korea",
       "venueName": "Busan Cinema Center Cinema 2",
       "section": null,
       "grade": null,
       "subtitle": null,
       "qa": false,
       "ticketStatus": null,
-      "ticketUrl": null,
+      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=733",
       "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
+      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15"
      },
      {
-      "id": "biff-2026-20261014-672",
-      "kind": "SCREENING",
-      "time": "19:00",
-      "title": "The Cord",
-      "venueName": "CGV Centum City 3",
-      "section": "Vision - Asia",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=672",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-679",
-      "kind": "SCREENING",
-      "time": "19:00",
-      "title": "Nowhere to Lay My Eyes",
-      "venueName": "CGV Centum City 5",
-      "section": "Icons",
-      "grade": "12",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=679",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-703",
-      "kind": "SCREENING",
-      "time": "19:20",
-      "title": "Long Long Night",
-      "venueName": "LOTTE CINEMA Centum City 6",
-      "section": "Competition",
-      "grade": "ALL",
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=703",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-657",
-      "kind": "SCREENING",
-      "time": "19:30",
-      "title": "Deep Blue",
+      "id": "biff-2026-20261015-735-the-winner-of-busan-cine",
+      "kind": "TBA",
+      "time": "10:20",
+      "title": "The Winner of Busan Cinephile Award",
       "venueName": "Busan Cinema Center Cinematheque",
-      "section": "World Cinema",
-      "grade": "15",
-      "subtitle": "KE",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
       "qa": false,
       "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=657",
+      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=735",
       "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
+      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15"
      },
      {
-      "id": "biff-2026-20261014-647",
-      "kind": "SCREENING",
-      "time": "19:30",
-      "title": "Wild Horse Nine",
-      "venueName": "Busan Cinema Center Haneulyeon Theatre",
-      "section": "Icons",
-      "grade": "15",
-      "subtitle": "KE",
+      "id": "biff-2026-20261015-732-the-winner-of-citizen-cr",
+      "kind": "TBA",
+      "time": "13:40",
+      "title": "The Winner of Citizen Critics′ Award",
+      "venueName": "Busan Cinema Center Cinema 1",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
       "qa": false,
       "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=647",
+      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=732",
       "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
+      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15"
      },
      {
-      "id": "biff-2026-20261014-730",
-      "kind": "SCREENING",
-      "time": "19:40",
-      "title": "Ria",
-      "venueName": "Busan Community Media Center Open Hall",
-      "section": "Vision - Asia",
-      "grade": "15",
-      "subtitle": "KE",
+      "id": "biff-2026-20261015-734-the-winner-of-songwon-vi",
+      "kind": "TBA",
+      "time": "14:00",
+      "title": "The Winner of Songwon Vision Audience Award - Asia",
+      "venueName": "Busan Cinema Center Cinema 2",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
       "qa": false,
       "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=730",
+      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=734",
       "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
+      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15"
      },
      {
-      "id": "biff-2026-20261014-668",
-      "kind": "SCREENING",
-      "time": "19:40",
-      "title": "About an Intimate Matter",
-      "venueName": "CGV Centum City 2",
-      "section": "A Window on Asian Cinema",
-      "grade": "15",
-      "subtitle": "KE",
+      "id": "biff-2026-20261015-736-the-winner-of-documentar",
+      "kind": "TBA",
+      "time": "14:00",
+      "title": "The Winner of Documentary Audience Award",
+      "venueName": "Busan Cinema Center Cinematheque",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
       "qa": false,
       "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=668",
+      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=736",
       "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
+      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15"
      },
      {
-      "id": "biff-2026-20261014-683",
-      "kind": "SCREENING",
-      "time": "19:40",
-      "title": "ghost – end of night",
-      "venueName": "CGV Centum City 6",
-      "section": "Special Program in Focus - Japanese Animation Special: Masterpieces of Madness, Exhilarating Prospects 12+1",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": true,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=683",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-661",
-      "kind": "SCREENING",
-      "time": "19:40",
-      "title": "I Rarely Wake Up Dreaming",
-      "venueName": "CGV Centum City IMAX",
-      "section": "World Cinema",
-      "grade": "19",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=661",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-723",
-      "kind": "SCREENING",
-      "time": "19:40",
-      "title": "silver express",
-      "venueName": "KOFIC Theater",
-      "section": "Competition",
-      "grade": "12",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=723",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-644",
-      "kind": "SCREENING",
-      "time": "20:00",
-      "title": "Just an Illusion",
+      "id": "biff-2026-20261015-002-closing-ceremony-the-win",
+      "kind": "TBA",
+      "time": "18:00",
+      "title": "Closing Ceremony + The Winner of Busan Award Screening",
       "venueName": "Busan Cinema Center Roof Theater",
-      "section": "Open Cinema",
-      "grade": "ALL",
-      "subtitle": "KE",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
       "qa": false,
       "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=644",
+      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=002",
       "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
-     },
-     {
-      "id": "biff-2026-20261014-676",
-      "kind": "SCREENING",
-      "time": "20:00",
-      "title": "Selvi",
-      "venueName": "CGV Centum City 4",
-      "section": "Vision - Asia",
-      "grade": "15",
-      "subtitle": "KE",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://biff.maketicket.co.kr/BIFF/en/resMain?sdCode=676",
-      "eventUrl": null,
-      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14"
+      "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15"
      }
     ]
    },
-   "nextScreeningDate": "2026-10-15",
+   "nextScreeningDate": null,
    "sources": [
     {
      "kind": "PROGRAMME",
@@ -1431,7 +186,7 @@
      "url": "https://www.biff.kr/eng/html/program/prog_all_list.asp?allYear=2026",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1439,7 +194,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=6",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1447,7 +202,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=7",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1455,7 +210,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1463,7 +218,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=9",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1471,7 +226,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=10",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1479,7 +234,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=11",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1487,7 +242,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=12",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1495,7 +250,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=13",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1503,7 +258,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1511,11 +266,11 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:24Z"
+     "fetchedAt": "2026-10-14T17:57:33Z"
     }
    ],
-   "fetchedAt": "2026-10-14T12:49:24Z",
-   "lastVerifiedAt": "2026-10-14T12:49:24Z",
+   "fetchedAt": "2026-10-14T17:57:33Z",
+   "lastVerifiedAt": "2026-10-14T17:57:33Z",
    "dataAgeMinutes": 4,
    "changes7d": 6,
    "dataSource": "official"
@@ -1597,7 +352,7 @@
    ],
    "fetchedAt": "2026-10-14T12:49:30Z",
    "lastVerifiedAt": "2026-10-14T12:49:30Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 312,
    "changes7d": 126,
    "dataSource": "official"
   },
@@ -2239,7 +994,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261007",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2247,7 +1002,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261008",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2255,7 +1010,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261009",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2263,7 +1018,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261010",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2271,7 +1026,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261011",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2279,7 +1034,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261012",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2287,7 +1042,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261013",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2295,7 +1050,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261014",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2303,7 +1058,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261015",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2311,7 +1066,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2319,7 +1074,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2327,7 +1082,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261018",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "PROGRAMME_CHANGES",
@@ -2335,12 +1090,12 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=programme-changes-lff",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     }
    ],
-   "fetchedAt": "2026-10-14T12:49:48Z",
-   "lastVerifiedAt": "2026-10-14T12:49:48Z",
-   "dataAgeMinutes": 4,
+   "fetchedAt": "2026-10-14T17:57:38Z",
+   "lastVerifiedAt": "2026-10-14T17:57:38Z",
+   "dataAgeMinutes": 3,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -2395,7 +1150,7 @@
     "guestVisits": 7
    },
    "today": {
-    "date": "2026-10-14",
+    "date": "2026-10-15",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -2411,7 +1166,7 @@
      "url": "https://cinefan.hkiff.org.hk/schedule",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "PROGRAMME",
@@ -2419,7 +1174,7 @@
      "url": "https://cinefan.hkiff.org.hk/period/2026/sep-oct-2026",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2427,7 +1182,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2435,7 +1190,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2443,7 +1198,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/bird-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2451,7 +1206,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/changeling-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2459,7 +1214,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2467,7 +1222,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2475,7 +1230,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2483,7 +1238,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2491,7 +1246,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/juror2-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2499,7 +1254,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2507,7 +1262,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2515,7 +1270,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2523,7 +1278,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2531,7 +1286,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2539,7 +1294,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2547,7 +1302,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2555,7 +1310,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2563,7 +1318,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2571,7 +1326,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2579,7 +1334,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2587,7 +1342,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2595,12 +1350,12 @@
      "url": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:49:48Z"
+     "fetchedAt": "2026-10-14T17:57:38Z"
     }
    ],
-   "fetchedAt": "2026-10-14T12:49:48Z",
-   "lastVerifiedAt": "2026-10-14T12:49:48Z",
-   "dataAgeMinutes": 4,
+   "fetchedAt": "2026-10-14T17:57:38Z",
+   "lastVerifiedAt": "2026-10-14T17:57:38Z",
+   "dataAgeMinutes": 3,
    "changes7d": 45,
    "dataSource": "official"
   },
@@ -2765,7 +1520,7 @@
    ],
    "fetchedAt": "2026-10-14T12:50:21.391Z",
    "lastVerifiedAt": "2026-10-14T12:50:21.391Z",
-   "dataAgeMinutes": 3,
+   "dataAgeMinutes": 311,
    "changes7d": 811,
    "dataSource": "official"
   },
@@ -2837,7 +1592,7 @@
      "url": "https://www.festival-cannes.com/en/the-selection/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:50:21Z"
+     "fetchedAt": "2026-10-14T17:57:48Z"
     },
     {
      "kind": "PROGRAMME",
@@ -2845,7 +1600,7 @@
      "url": "https://www.festival-cannes.com/en/f/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:50:21Z"
+     "fetchedAt": "2026-10-14T17:57:48Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -2853,11 +1608,11 @@
      "url": "https://www.festival-cannes.com/en/",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:50:21Z"
+     "fetchedAt": "2026-10-14T17:57:48Z"
     }
    ],
-   "fetchedAt": "2026-10-14T12:50:21Z",
-   "lastVerifiedAt": "2026-10-14T12:50:21Z",
+   "fetchedAt": "2026-10-14T17:57:48Z",
+   "lastVerifiedAt": "2026-10-14T17:57:48Z",
    "dataAgeMinutes": 3,
    "changes7d": 1,
    "dataSource": "official"
@@ -2930,7 +1685,7 @@
      "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T12:53:35Z"
+     "fetchedAt": "2026-10-14T18:01:05Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -2938,11 +1693,11 @@
      "url": "https://iffr.com/en/iffr/2026",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T12:53:35Z"
+     "fetchedAt": "2026-10-14T18:01:05Z"
     }
    ],
-   "fetchedAt": "2026-10-14T12:53:35Z",
-   "lastVerifiedAt": "2026-10-14T12:53:35Z",
+   "fetchedAt": "2026-10-14T18:01:05Z",
+   "lastVerifiedAt": "2026-10-14T18:01:05Z",
    "dataAgeMinutes": 0,
    "changes7d": 1,
    "dataSource": "official"
