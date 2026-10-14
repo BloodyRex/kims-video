@@ -1,12 +1,12 @@
 {
- "at": "2026-10-14T01:07:25Z",
+ "at": "2026-10-14T06:38:48Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 455min ≥ 30min",
+   "reason": "age 331min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 255,
@@ -25,7 +25,7 @@
   {
    "slug": "idfa-2026",
    "due": true,
-   "reason": "age 532min ≥ 180min",
+   "reason": "age 331min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 260,
@@ -45,12 +45,12 @@
     "official screening times not published yet: 0 SCREENING, 27 official programme entry/entries (status SCHEDULE_PENDING — partial data, NOT a complete schedule)"
    ],
    "action": "updated",
-   "changes": 2
+   "changes": 0
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 455min ≥ 30min",
+   "reason": "age 331min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
@@ -69,7 +69,7 @@
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 455min ≥ 30min",
+   "reason": "age 331min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 22,
@@ -89,27 +89,15 @@
   },
   {
    "slug": "venice-2026",
-   "due": true,
-   "reason": "age 531min ≥ 360min",
+   "due": false,
+   "reason": "age 331min < 360min",
    "status": "SCHEDULE_LIVE",
-   "parsed": {
-    "films": 347,
-    "screenings": 350,
-    "venues": 10,
-    "days": 11,
-    "sourcesOk": 12,
-    "sourcesTotal": 12,
-    "status": "SCHEDULE_LIVE",
-    "lifecycle": "ENDED"
-   },
-   "warnings": [],
-   "action": "updated",
-   "changes": 88
+   "action": "skipped (throttled)"
   },
   {
    "slug": "cannes-2026",
    "due": true,
-   "reason": "age 531min ≥ 180min",
+   "reason": "age 331min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 150,
@@ -130,7 +118,7 @@
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 530min ≥ 180min",
+   "reason": "age 327min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 496,
