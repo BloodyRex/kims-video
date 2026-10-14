@@ -1,6 +1,1806 @@
 {
  "changes": [
   {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260904-fb-astra-1-0900-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260904-fb-astra-1-0900",
+   "label": "Demetra in esilio — 2026-09-04 09:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Demetra in esilio",
+     "to": "Sumo: Spirit Weighs Nothing",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-04",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260904-sumo-spirit-weighs-nothing-2026-09-04-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260904-sumo-spirit-weighs-nothing-2026-09-04-09-00",
+   "label": "Sumo: Spirit Weighs Nothing — 2026-09-04 09:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Sumo: Spirit Weighs Nothing",
+     "to": "Demetra in esilio",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/sumo-spirit-weighs-nothing-2026-09-04-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260904-burgundy-2026-09-04-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260904-burgundy-2026-09-04-14-00",
+   "label": "Burgundy — 2026-09-04 14:00 · Astra 2",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Burgundy",
+     "to": "La maison du vent",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/burgundy-2026-09-04-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260904-be-or-not-be-2026-09-04-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260904-be-or-not-be-2026-09-04-14-00",
+   "label": "To be or not to be — 2026-09-04 14:00 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "To be or not to be",
+     "to": "Burgundy",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/be-or-not-be-2026-09-04-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260904-la-maison-du-vent-2026-09-04-14-15-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260904-la-maison-du-vent-2026-09-04-14-15",
+   "label": "La maison du vent — 2026-09-04 14:00 · Sala Darsena",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "La maison du vent",
+     "to": "To be or not to be",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/la-maison-du-vent-2026-09-04-14-15",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-be-or-not-be-2026-09-05-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260905-be-or-not-be-2026-09-05-14-00",
+   "label": "To be or not to be — 2026-09-05 14:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "To be or not to be",
+     "to": "Shumei: The living legacy of Kabuki",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/be-or-not-be-2026-09-05-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-shumei-living-legacy-kabuki-2026-09-05-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260905-shumei-living-legacy-kabuki-2026-09-05-14-00",
+   "label": "Shumei: The living legacy of Kabuki — 2026-09-05 14:00 · Astra 2",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Shumei: The living legacy of Kabuki",
+     "to": "To be or not to be",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/shumei-living-legacy-kabuki-2026-09-05-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-viaggio-italia-journey-italy-2026-09-05-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260905-viaggio-italia-journey-italy-2026-09-05-14-00",
+   "label": "Viaggio in Italia (Journey to Italy) — 2026-09-05 14:00 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Viaggio in Italia (Journey to Italy)",
+     "to": "Eklipse",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/viaggio-italia-journey-italy-2026-09-05-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-eklipse-2026-09-05-14-15-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260905-eklipse-2026-09-05-14-15",
+   "label": "Eklipse — 2026-09-05 14:00 · Sala Darsena",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Eklipse",
+     "to": "Viaggio in Italia (Journey to Italy)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/eklipse-2026-09-05-14-15",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-la-citt%C3%A0-dei-vivi-2026-09-05-14-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260905-la-citt%C3%A0-dei-vivi-2026-09-05-14-30",
+   "label": "La città dei vivi — 2026-09-05 14:30 · PalaBiennale",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "La città dei vivi",
+     "to": "Imperium",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/la-citt%C3%A0-dei-vivi-2026-09-05-14-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-imperium-2026-09-05-14-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260905-imperium-2026-09-05-14-30",
+   "label": "Imperium — 2026-09-05 14:30 · Sala Casinò",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Imperium",
+     "to": "La città dei vivi",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/imperium-2026-09-05-14-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-my-undesirable-friends-part-ii-%E2%80%93-exile-ch-1-2-3-2026-09-05-21-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260905-my-undesirable-friends-part-ii-%E2%80%93-exile-ch-1-2-3-2026-09-05-21-00",
+   "label": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3) — 2026-09-05 21:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3)",
+     "to": "Serpenti",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/my-undesirable-friends-part-ii-%E2%80%93-exile-ch-1-2-3-2026-09-05-21-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-serpenti-2026-09-05-21-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260905-serpenti-2026-09-05-21-00",
+   "label": "Serpenti — 2026-09-05 21:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Serpenti",
+     "to": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/serpenti-2026-09-05-21-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-tijuana-todav%C3%ADa-2026-09-06-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-tijuana-todav%C3%ADa-2026-09-06-09-00",
+   "label": "Tijuana, todavía — 2026-09-06 09:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Tijuana, todavía",
+     "to": "Serpenti",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/tijuana-todav%C3%ADa-2026-09-06-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-serpenti-2026-09-06-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-serpenti-2026-09-06-09-00",
+   "label": "Serpenti — 2026-09-06 09:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Serpenti",
+     "to": "Tijuana, todavía",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/serpenti-2026-09-06-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-al-mowaten-osama-citizen-osama-2026-09-06-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-al-mowaten-osama-citizen-osama-2026-09-06-14-00",
+   "label": "Al mowaten Osama (Citizen Osama) — 2026-09-06 14:00 · Astra 2",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Al mowaten Osama (Citizen Osama)",
+     "to": "From Inside Out – The Architecture of Peter Zumthor",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/al-mowaten-osama-citizen-osama-2026-09-06-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-inside-out-%E2%80%93-architecture-peter-zumthor-2026-09-06-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-inside-out-%E2%80%93-architecture-peter-zumthor-2026-09-06-14-00",
+   "label": "From Inside Out – The Architecture of Peter Zumthor — 2026-09-06 14:00 · Sala Grande",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "From Inside Out – The Architecture of Peter Zumthor",
+     "to": "Al mowaten Osama (Citizen Osama)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/inside-out-%E2%80%93-architecture-peter-zumthor-2026-09-06-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-eklipse-2026-09-06-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-eklipse-2026-09-06-17-00",
+   "label": "Eklipse — 2026-09-06 17:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Eklipse",
+     "to": "Primetime",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/eklipse-2026-09-06-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-primetime-2026-09-06-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-primetime-2026-09-06-17-00",
+   "label": "Primetime — 2026-09-06 17:00 · PalaBiennale",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Primetime",
+     "to": "Holy Wood Dust",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/primetime-2026-09-06-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-holy-wood-dust-2026-09-06-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-holy-wood-dust-2026-09-06-17-00",
+   "label": "Holy Wood Dust — 2026-09-06 17:00 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Holy Wood Dust",
+     "to": "The road to Jericho",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/holy-wood-dust-2026-09-06-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-road-jericho-2026-09-06-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-road-jericho-2026-09-06-17-00",
+   "label": "The road to Jericho — 2026-09-06 17:00 · Sala Volpi",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "The road to Jericho",
+     "to": "Eklipse",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/road-jericho-2026-09-06-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-my-undesirable-friends-part-ii-%E2%80%93-exile-ch-4-5-2026-09-06-21-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-my-undesirable-friends-part-ii-%E2%80%93-exile-ch-4-5-2026-09-06-21-00",
+   "label": "My Undesirable Friends: Part II – Exile (Ch. 4-5) — 2026-09-06 21:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "My Undesirable Friends: Part II – Exile (Ch. 4-5)",
+     "to": "Hombre al agua",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/my-undesirable-friends-part-ii-%E2%80%93-exile-ch-4-5-2026-09-06-21-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-road-jericho-2026-09-06-21-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-road-jericho-2026-09-06-21-00",
+   "label": "The road to Jericho — 2026-09-06 21:00 · Astra 2",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "The road to Jericho",
+     "to": "My Undesirable Friends: Part II – Exile (Ch. 4-5)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/road-jericho-2026-09-06-21-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-hombre-al-agua-2026-09-06-21-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260906-hombre-al-agua-2026-09-06-21-00",
+   "label": "Hombre al agua — 2026-09-06 21:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Hombre al agua",
+     "to": "The road to Jericho",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/hombre-al-agua-2026-09-06-21-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-cul-de-sac-2026-09-07-14-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260907-cul-de-sac-2026-09-07-14-30",
+   "label": "Cul-de-sac — 2026-09-07 14:30 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Cul-de-sac",
+     "to": "They’re Here",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/cul-de-sac-2026-09-07-14-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-they%E2%80%99re-here-2026-09-07-14-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260907-they%E2%80%99re-here-2026-09-07-14-30",
+   "label": "They’re Here — 2026-09-07 14:30 · Sala Grande",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "They’re Here",
+     "to": "Halayon (Wild Asparagus)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/they%E2%80%99re-here-2026-09-07-14-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-flesh-impact-2026-09-07-14-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260907-flesh-impact-2026-09-07-14-30",
+   "label": "Flesh Impact — 2026-09-07 14:30 · Sala Grande",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Flesh Impact",
+     "to": "Cul-de-sac",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/flesh-impact-2026-09-07-14-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-halayon-wild-asparagus-2026-09-07-14-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260907-halayon-wild-asparagus-2026-09-07-14-30",
+   "label": "Halayon (Wild Asparagus) — 2026-09-07 14:30 · Sala Grande",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Halayon (Wild Asparagus)",
+     "to": "Flesh Impact",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/halayon-wild-asparagus-2026-09-07-14-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-difficult-bride-2026-09-07-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260907-difficult-bride-2026-09-07-17-00",
+   "label": "The Difficult Bride — 2026-09-07 17:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "The Difficult Bride",
+     "to": "Look Back",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/difficult-bride-2026-09-07-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260907-look-back-2026-09-07-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260907-look-back-2026-09-07-17-00",
+   "label": "Look Back — 2026-09-07 17:00 · Sala Grande",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Look Back",
+     "to": "The Difficult Bride",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/look-back-2026-09-07-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-minjing-gushi-beat-2026-09-09-11-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-minjing-gushi-beat-2026-09-09-11-00",
+   "label": "Minjing gushi (On the beat) — 2026-09-09 11:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Minjing gushi (On the beat)",
+     "to": "English, August",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/minjing-gushi-beat-2026-09-09-11-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-english-august-2026-09-09-11-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-english-august-2026-09-09-11-00",
+   "label": "English, August — 2026-09-09 11:00 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "English, August",
+     "to": "Minjing gushi (On the beat)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/english-august-2026-09-09-11-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-juso-ferie-2026-09-09-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-juso-ferie-2026-09-09-14-00",
+   "label": "Juso per ferie — 2026-09-09 14:00 · Astra 2",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Juso per ferie",
+     "to": "La Moula",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/juso-ferie-2026-09-09-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-la-moula-2026-09-09-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-la-moula-2026-09-09-14-00",
+   "label": "La Moula — 2026-09-09 14:00 · Sala Darsena",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "La Moula",
+     "to": "Halaa (The H@llow Man)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/la-moula-2026-09-09-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-halaa-hllow-man-2026-09-09-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-halaa-hllow-man-2026-09-09-14-00",
+   "label": "Halaa (The H@llow Man) — 2026-09-09 14:00 · Sala Perla",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Halaa (The H@llow Man)",
+     "to": "Granchità (Crabkind)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/halaa-hllow-man-2026-09-09-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-granchit%C3%A0-crabkind-2026-09-09-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-granchit%C3%A0-crabkind-2026-09-09-14-00",
+   "label": "Granchità (Crabkind) — 2026-09-09 14:00 · Sala Perla",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Granchità (Crabkind)",
+     "to": "Juso per ferie",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/granchit%C3%A0-crabkind-2026-09-09-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-meteorito-2026-09-09-19-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-meteorito-2026-09-09-19-30",
+   "label": "Meteorito — 2026-09-09 19:30 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Meteorito",
+     "to": "Puca",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/meteorito-2026-09-09-19-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-puca-2026-09-09-19-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-puca-2026-09-09-19-30",
+   "label": "Puca — 2026-09-09 19:30 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Puca",
+     "to": "Meteorito",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/puca-2026-09-09-19-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-joie-de-vivre-notes-thoughts-words-reflections-faces-visions-around-bernardo-bertolucci-and-2026-09-09-20-00-0-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-joie-de-vivre-notes-thoughts-words-reflections-faces-visions-around-bernardo-bertolucci-and-2026-09-09-20-00-0",
+   "label": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 1) — 2026-09-09 20:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 1)",
+     "to": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 1)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/joie-de-vivre-notes-thoughts-words-reflections-faces-visions-around-bernardo-bertolucci-and-2026-09-09-20-00-0",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-joie-de-vivre-notes-thoughts-words-reflections-faces-visions-around-bernardo-bertolucci-and-2026-09-09-20-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-joie-de-vivre-notes-thoughts-words-reflections-faces-visions-around-bernardo-bertolucci-and-2026-09-09-20-00",
+   "label": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 1) — 2026-09-09 20:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 1)",
+     "to": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 1)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/joie-de-vivre-notes-thoughts-words-reflections-faces-visions-around-bernardo-bertolucci-and-2026-09-09-20-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-musk-2026-09-09-20-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-musk-2026-09-09-20-00",
+   "label": "Musk — 2026-09-09 20:00 · Astra 2",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Musk",
+     "to": "Un bon petit soldat",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/musk-2026-09-09-20-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260909-un-bon-petit-soldat-2026-09-09-20-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260909-un-bon-petit-soldat-2026-09-09-20-00",
+   "label": "Un bon petit soldat — 2026-09-09 20:00 · PalaBiennale",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Un bon petit soldat",
+     "to": "Musk",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/un-bon-petit-soldat-2026-09-09-20-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-place-be-2026-09-10-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-place-be-2026-09-10-09-00",
+   "label": "Place to be — 2026-09-10 09:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Place to be",
+     "to": "Guria",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/place-be-2026-09-10-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-guria-2026-09-10-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-guria-2026-09-10-09-00",
+   "label": "Guria — 2026-09-10 09:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Guria",
+     "to": "Place to be",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/guria-2026-09-10-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-listy-letters-silenced-country-2026-09-10-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-listy-letters-silenced-country-2026-09-10-14-00",
+   "label": "Listy (Letters from the Silenced Country) — 2026-09-10 14:00 · Astra 2",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Listy (Letters from the Silenced Country)",
+     "to": "The Wild Angels",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/listy-letters-silenced-country-2026-09-10-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-wild-angels-2026-09-10-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-wild-angels-2026-09-10-14-00",
+   "label": "The Wild Angels — 2026-09-10 14:00 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "The Wild Angels",
+     "to": "Listy (Letters from the Silenced Country)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/wild-angels-2026-09-10-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-color-sun-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-color-sun-2026-09-10-17-00",
+   "label": "The Color of the Sun — 2026-09-10 17:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "The Color of the Sun",
+     "to": "Mothmama",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/color-sun-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-father-joe-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-father-joe-2026-09-10-17-00",
+   "label": "Father Joe — 2026-09-10 17:00 · PalaBiennale",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Father Joe",
+     "to": "Man made lake",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/father-joe-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-twist-shoot-mister-suzuki-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-twist-shoot-mister-suzuki-2026-09-10-17-00",
+   "label": "Twist &amp; Shoot Mister Suzuki — 2026-09-10 17:00 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Twist &amp; Shoot Mister Suzuki",
+     "to": "Union Town",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/twist-shoot-mister-suzuki-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-do-kraja-dana-until-day-ends-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-do-kraja-dana-until-day-ends-2026-09-10-17-00",
+   "label": "Do kraja dana (Until the day ends) — 2026-09-10 17:00 · Sala Darsena",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Do kraja dana (Until the day ends)",
+     "to": "Angelo azzurro (My First Day of Summer)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/do-kraja-dana-until-day-ends-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-bleu-au-loin-distant-blue-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-bleu-au-loin-distant-blue-2026-09-10-17-00",
+   "label": "Bleu au loin (Distant Blue) — 2026-09-10 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Bleu au loin (Distant Blue)",
+     "to": "Paper Plane",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/bleu-au-loin-distant-blue-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-man-made-lake-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-man-made-lake-2026-09-10-17-00",
+   "label": "Man made lake — 2026-09-10 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Man made lake",
+     "to": "Il senso della Terra",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/man-made-lake-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-paper-plane-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-paper-plane-2026-09-10-17-00",
+   "label": "Paper Plane — 2026-09-10 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Paper Plane",
+     "to": "Do kraja dana (Until the day ends)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/paper-plane-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-il-senso-della-terra-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-il-senso-della-terra-2026-09-10-17-00",
+   "label": "Il senso della Terra — 2026-09-10 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Il senso della Terra",
+     "to": "The Color of the Sun",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/il-senso-della-terra-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-angelo-azzurro-my-first-day-summer-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-angelo-azzurro-my-first-day-summer-2026-09-10-17-00",
+   "label": "Angelo azzurro (My First Day of Summer) — 2026-09-10 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Angelo azzurro (My First Day of Summer)",
+     "to": "Twist &amp; Shoot Mister Suzuki",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/angelo-azzurro-my-first-day-summer-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-mothmama-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-mothmama-2026-09-10-17-00",
+   "label": "Mothmama — 2026-09-10 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Mothmama",
+     "to": "Una fortaleza",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/mothmama-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-una-fortaleza-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-una-fortaleza-2026-09-10-17-00",
+   "label": "Una fortaleza — 2026-09-10 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Una fortaleza",
+     "to": "Father Joe",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/una-fortaleza-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260910-union-town-2026-09-10-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260910-union-town-2026-09-10-17-00",
+   "label": "Union Town — 2026-09-10 17:00 · Sala Volpi",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Union Town",
+     "to": "Bleu au loin (Distant Blue)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/union-town-2026-09-10-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-il-senso-della-terra-2026-09-11-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-il-senso-della-terra-2026-09-11-09-00",
+   "label": "Il senso della Terra — 2026-09-11 09:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Il senso della Terra",
+     "to": "Mothmama",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/il-senso-della-terra-2026-09-11-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-angelo-azzurro-my-first-day-summer-2026-09-11-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-angelo-azzurro-my-first-day-summer-2026-09-11-09-00",
+   "label": "Angelo azzurro (My First Day of Summer) — 2026-09-11 09:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Angelo azzurro (My First Day of Summer)",
+     "to": "Una fortaleza",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/angelo-azzurro-my-first-day-summer-2026-09-11-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-mothmama-2026-09-11-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-mothmama-2026-09-11-09-00",
+   "label": "Mothmama — 2026-09-11 09:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Mothmama",
+     "to": "Man made lake",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/mothmama-2026-09-11-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-una-fortaleza-2026-09-11-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-una-fortaleza-2026-09-11-09-00",
+   "label": "Una fortaleza — 2026-09-11 09:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Una fortaleza",
+     "to": "Les Indes",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/una-fortaleza-2026-09-11-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-bleu-au-loin-distant-blue-2026-09-11-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-bleu-au-loin-distant-blue-2026-09-11-09-00",
+   "label": "Bleu au loin (Distant Blue) — 2026-09-11 09:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Bleu au loin (Distant Blue)",
+     "to": "Paper Plane",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/bleu-au-loin-distant-blue-2026-09-11-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-man-made-lake-2026-09-11-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-man-made-lake-2026-09-11-09-00",
+   "label": "Man made lake — 2026-09-11 09:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Man made lake",
+     "to": "Il senso della Terra",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/man-made-lake-2026-09-11-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-paper-plane-2026-09-11-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-paper-plane-2026-09-11-09-00",
+   "label": "Paper Plane — 2026-09-11 09:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Paper Plane",
+     "to": "Földszint (Ground floor)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/paper-plane-2026-09-11-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-f%C3%B6ldszint-ground-floor-2026-09-11-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-f%C3%B6ldszint-ground-floor-2026-09-11-09-00",
+   "label": "Földszint (Ground floor) — 2026-09-11 09:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Földszint (Ground floor)",
+     "to": "Bleu au loin (Distant Blue)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/f%C3%B6ldszint-ground-floor-2026-09-11-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-les-indes-2026-09-11-09-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-les-indes-2026-09-11-09-00",
+   "label": "Les Indes — 2026-09-11 09:00 · Sala Perla",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Les Indes",
+     "to": "Angelo azzurro (My First Day of Summer)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/les-indes-2026-09-11-09-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-woo-yuet-dik-goo-si-story-woo-viet-2026-09-11-11-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-woo-yuet-dik-goo-si-story-woo-viet-2026-09-11-11-00",
+   "label": "Woo Yuet dik goo si (The Story of Woo Viet) — 2026-09-11 11:00 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Woo Yuet dik goo si (The Story of Woo Viet)",
+     "to": "Agata The Writer",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/woo-yuet-dik-goo-si-story-woo-viet-2026-09-11-11-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-agata-writer-2026-09-11-11-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-agata-writer-2026-09-11-11-00",
+   "label": "Agata The Writer — 2026-09-11 11:00 · Sala Perla",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Agata The Writer",
+     "to": "Woo Yuet dik goo si (The Story of Woo Viet)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/agata-writer-2026-09-11-11-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-rider-2026-09-11-13-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-rider-2026-09-11-13-30",
+   "label": "Rider — 2026-09-11 13:30 · Sala Perla",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Rider",
+     "to": "Un breve incontro (A brief encounter)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/rider-2026-09-11-13-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-un-breve-incontro-brief-encounter-2026-09-11-13-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-un-breve-incontro-brief-encounter-2026-09-11-13-30",
+   "label": "Un breve incontro (A brief encounter) — 2026-09-11 13:30 · Sala Perla",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Un breve incontro (A brief encounter)",
+     "to": "Rider",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/un-breve-incontro-brief-encounter-2026-09-11-13-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-twist-shoot-mister-suzuki-2026-09-11-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-twist-shoot-mister-suzuki-2026-09-11-14-00",
+   "label": "Twist &amp; Shoot Mister Suzuki — 2026-09-11 14:00 · Astra 2",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Twist &amp; Shoot Mister Suzuki",
+     "to": "Lo zio di Brooklyn (The uncle from Brooklyn)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/twist-shoot-mister-suzuki-2026-09-11-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-lo-zio-di-brooklyn-uncle-brooklyn-2026-09-11-14-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-lo-zio-di-brooklyn-uncle-brooklyn-2026-09-11-14-00",
+   "label": "Lo zio di Brooklyn (The uncle from Brooklyn) — 2026-09-11 14:00 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Lo zio di Brooklyn (The uncle from Brooklyn)",
+     "to": "Twist &amp; Shoot Mister Suzuki",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/lo-zio-di-brooklyn-uncle-brooklyn-2026-09-11-14-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-wild-angels-2026-09-11-14-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-wild-angels-2026-09-11-14-30",
+   "label": "The Wild Angels — 2026-09-11 14:30 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "The Wild Angels",
+     "to": "Cudze rzeczy (What belongs to others)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/wild-angels-2026-09-11-14-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-cudze-rzeczy-what-belongs-others-2026-09-11-14-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-cudze-rzeczy-what-belongs-others-2026-09-11-14-30",
+   "label": "Cudze rzeczy (What belongs to others) — 2026-09-11 14:30 · PalaBiennale",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Cudze rzeczy (What belongs to others)",
+     "to": "Huangyan shenghuo (Big Little Things)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/cudze-rzeczy-what-belongs-others-2026-09-11-14-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-huangyan-shenghuo-big-little-things-2026-09-11-14-30-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-huangyan-shenghuo-big-little-things-2026-09-11-14-30",
+   "label": "Huangyan shenghuo (Big Little Things) — 2026-09-11 14:30 · Sala Darsena",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Huangyan shenghuo (Big Little Things)",
+     "to": "The Wild Angels",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/huangyan-shenghuo-big-little-things-2026-09-11-14-30",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-do-kraja-dana-until-day-ends-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-do-kraja-dana-until-day-ends-2026-09-11-17-00",
+   "label": "Do kraja dana (Until the day ends) — 2026-09-11 17:00 · Astra 1",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Do kraja dana (Until the day ends)",
+     "to": "Sounds from home",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/do-kraja-dana-until-day-ends-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-naza-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-naza-2026-09-11-17-00",
+   "label": "NAZA — 2026-09-11 17:00 · PalaBiennale",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "NAZA",
+     "to": "Sasso, carta, forbici",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/naza-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-dai-nostri-inviati-la-rai-racconta-la-mostra-del-cinema-di-venezia-2001-2012-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-dai-nostri-inviati-la-rai-racconta-la-mostra-del-cinema-di-venezia-2001-2012-2026-09-11-17-00",
+   "label": "Dai nostri inviati. La Rai racconta la Mostra del Cinema di Venezia 2001-2012 — 2026-09-11 17:00 · Sala Corinto",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Dai nostri inviati. La Rai racconta la Mostra del Cinema di Venezia 2001-2012",
+     "to": "Tropikos tou thrinountos gkeko (Tropic of the mourning gecko)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/dai-nostri-inviati-la-rai-racconta-la-mostra-del-cinema-di-venezia-2001-2012-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-silence-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-silence-2026-09-11-17-00",
+   "label": "Silence — 2026-09-11 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Silence",
+     "to": "Los poderes",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/silence-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-sounds-home-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-sounds-home-2026-09-11-17-00",
+   "label": "Sounds from home — 2026-09-11 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Sounds from home",
+     "to": "Head of a Camel",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/sounds-home-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-tesztp%C3%A1lya-test-track-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-tesztp%C3%A1lya-test-track-2026-09-11-17-00",
+   "label": "Tesztpálya (Test Track) — 2026-09-11 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Tesztpálya (Test Track)",
+     "to": "Do kraja dana (Until the day ends)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/tesztp%C3%A1lya-test-track-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-los-poderes-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-los-poderes-2026-09-11-17-00",
+   "label": "Los poderes — 2026-09-11 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Los poderes",
+     "to": "Quelques instants de bonheur",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/los-poderes-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-head-camel-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-head-camel-2026-09-11-17-00",
+   "label": "Head of a Camel — 2026-09-11 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Head of a Camel",
+     "to": "Be Brave",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/head-camel-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-tropikos-tou-thrinountos-gkeko-tropic-mourning-gecko-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-tropikos-tou-thrinountos-gkeko-tropic-mourning-gecko-2026-09-11-17-00",
+   "label": "Tropikos tou thrinountos gkeko (Tropic of the mourning gecko) — 2026-09-11 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Tropikos tou thrinountos gkeko (Tropic of the mourning gecko)",
+     "to": "Silence",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/tropikos-tou-thrinountos-gkeko-tropic-mourning-gecko-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-sasso-carta-forbici-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-sasso-carta-forbici-2026-09-11-17-00",
+   "label": "Sasso, carta, forbici — 2026-09-11 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Sasso, carta, forbici",
+     "to": "Dai nostri inviati. La Rai racconta la Mostra del Cinema di Venezia 2001-2012",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/sasso-carta-forbici-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-quelques-instants-de-bonheur-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-quelques-instants-de-bonheur-2026-09-11-17-00",
+   "label": "Quelques instants de bonheur — 2026-09-11 17:00 · Sala Giardino",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Quelques instants de bonheur",
+     "to": "Tesztpálya (Test Track)",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/quelques-instants-de-bonheur-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-be-brave-2026-09-11-17-00-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "venice-2026",
+   "festivalId": "venice",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "venice-2026-20260911-be-brave-2026-09-11-17-00",
+   "label": "Be Brave — 2026-09-11 17:00 · Sala Volpi",
+   "fields": [
+    {
+     "field": "filmId",
+     "from": "Be Brave",
+     "to": "NAZA",
+     "fieldLabel": "影片"
+    }
+   ],
+   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/be-brave-2026-09-11-17-00",
+   "sourceLabel": "Venice International Film Festival"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-48b09a47-6800-48fe-9935-2ab1e55e17c1-best-of-idfa-audience-fa-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-48b09a47-6800-48fe-9935-2ab1e55e17c1-best-of-idfa-audience-fa",
+   "label": "Best of IDFA: Audience Favorites — 2026-11-21 10:30 · Pathé Noord 11",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-8894e730-7010-4828-9d84-0a15667ad981-best-of-idfa-audience-fa-2026-10-14T01:07:25Z",
+   "at": "2026-10-14T01:07:25Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-8894e730-7010-4828-9d84-0a15667ad981-best-of-idfa-audience-fa",
+   "label": "Best of IDFA: Audience Favorites — 2026-11-22 09:30 · Pathé Noord 3",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
    "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260903-una-fortaleza-2026-09-03-14-30-2026-10-13T16:15:19Z",
    "at": "2026-10-13T16:15:19Z",
    "slug": "venice-2026",
@@ -14801,5 +16601,5 @@
    "sourceLabel": "Busan International Film Festival"
   }
  ],
- "updated": "2026-10-13T16:15:19Z"
+ "updated": "2026-10-14T01:07:25Z"
 }
