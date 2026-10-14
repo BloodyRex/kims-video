@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-14T06:38:48Z",
+ "updated": "2026-10-14T12:49:24Z",
  "today": "2026-10-14",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
@@ -12,7 +12,7 @@
   "screeningsToday": 122,
   "eventsToday": 2,
   "upcoming": 1,
-  "changes7d": 827,
+  "changes7d": 991,
   "venuesToday": 38
  },
  "festivals": [
@@ -1431,7 +1431,7 @@
      "url": "https://www.biff.kr/eng/html/program/prog_all_list.asp?allYear=2026",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1439,7 +1439,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=6",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1447,7 +1447,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=7",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1455,7 +1455,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1463,7 +1463,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=9",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1471,7 +1471,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=10",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1479,7 +1479,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=11",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1487,7 +1487,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=12",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1495,7 +1495,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=13",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1503,7 +1503,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1511,12 +1511,12 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:48Z"
+     "fetchedAt": "2026-10-14T12:49:24Z"
     }
    ],
-   "fetchedAt": "2026-10-14T06:38:48Z",
-   "lastVerifiedAt": "2026-10-14T06:38:48Z",
-   "dataAgeMinutes": 5,
+   "fetchedAt": "2026-10-14T12:49:24Z",
+   "lastVerifiedAt": "2026-10-14T12:49:24Z",
+   "dataAgeMinutes": 4,
    "changes7d": 6,
    "dataSource": "official"
   },
@@ -1545,27 +1545,27 @@
    "timezone": "Europe/Amsterdam",
    "officialUrl": "https://festival.idfa.nl/en/",
    "lifecycle": "UPCOMING",
-   "status": "PROGRAM_RELEASED",
+   "status": "SCHEDULE_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
     "programme": "RELEASED",
-    "schedule": "PENDING"
+    "schedule": "LIVE"
    },
    "statusNote": {
-    "zh": "官方已公布节目，具体排片尚未公布",
-    "en": "Programme announced, screening schedule pending"
+    "zh": null,
+    "en": null
    },
    "stats": {
     "films": 260,
     "filmsTotal": 260,
-    "screenings": 0,
-    "events": 27,
+    "screenings": 9,
+    "events": 38,
     "pending": 0,
-    "entries": 27,
-    "venues": 13,
+    "entries": 47,
+    "venues": 15,
     "sections": 15,
-    "days": 6,
-    "guestVisits": 0
+    "days": 8,
+    "guestVisits": 5
    },
    "today": {
     "date": "2026-10-14",
@@ -1580,11 +1580,11 @@
    "sources": [
     {
      "kind": "SCHEDULE",
-     "label": "Official schedule (GraphQL, DAY × 6)",
+     "label": "Official schedule (GraphQL, DAY × 8)",
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:53Z"
+     "fetchedAt": "2026-10-14T12:49:30Z"
     },
     {
      "kind": "PROGRAMME",
@@ -1592,13 +1592,13 @@
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:38:53Z"
+     "fetchedAt": "2026-10-14T12:49:30Z"
     }
    ],
-   "fetchedAt": "2026-10-14T06:38:53Z",
-   "lastVerifiedAt": "2026-10-14T06:38:53Z",
-   "dataAgeMinutes": 5,
-   "changes7d": 105,
+   "fetchedAt": "2026-10-14T12:49:30Z",
+   "lastVerifiedAt": "2026-10-14T12:49:30Z",
+   "dataAgeMinutes": 4,
+   "changes7d": 126,
    "dataSource": "official"
   },
   {
@@ -2239,7 +2239,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261007",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2247,7 +2247,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261008",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2255,7 +2255,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261009",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2263,7 +2263,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261010",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2271,7 +2271,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261011",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2279,7 +2279,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261012",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2287,7 +2287,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261013",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2295,7 +2295,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261014",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2303,7 +2303,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261015",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2311,7 +2311,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2319,7 +2319,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2327,7 +2327,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261018",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "PROGRAMME_CHANGES",
@@ -2335,11 +2335,11 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=programme-changes-lff",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     }
    ],
-   "fetchedAt": "2026-10-14T06:39:10Z",
-   "lastVerifiedAt": "2026-10-14T06:39:10Z",
+   "fetchedAt": "2026-10-14T12:49:48Z",
+   "lastVerifiedAt": "2026-10-14T12:49:48Z",
    "dataAgeMinutes": 4,
    "changes7d": 1,
    "dataSource": "official"
@@ -2411,7 +2411,7 @@
      "url": "https://cinefan.hkiff.org.hk/schedule",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "PROGRAMME",
@@ -2419,7 +2419,7 @@
      "url": "https://cinefan.hkiff.org.hk/period/2026/sep-oct-2026",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2427,7 +2427,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2435,7 +2435,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2443,7 +2443,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/bird-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2451,7 +2451,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/changeling-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2459,7 +2459,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2467,7 +2467,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2475,7 +2475,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2483,7 +2483,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2491,7 +2491,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/juror2-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2499,7 +2499,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2507,7 +2507,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2515,7 +2515,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2523,7 +2523,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2531,7 +2531,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2539,7 +2539,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2547,7 +2547,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2555,7 +2555,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2563,7 +2563,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2571,7 +2571,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2579,7 +2579,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2587,7 +2587,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2595,11 +2595,11 @@
      "url": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:10Z"
+     "fetchedAt": "2026-10-14T12:49:48Z"
     }
    ],
-   "fetchedAt": "2026-10-14T06:39:10Z",
-   "lastVerifiedAt": "2026-10-14T06:39:10Z",
+   "fetchedAt": "2026-10-14T12:49:48Z",
+   "lastVerifiedAt": "2026-10-14T12:49:48Z",
    "dataAgeMinutes": 4,
    "changes7d": 45,
    "dataSource": "official"
@@ -2672,7 +2672,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/lineup",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:07:57.381Z"
+     "fetchedAt": "2026-10-14T12:50:02.410Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2680,7 +2680,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-01",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:07:58.440Z"
+     "fetchedAt": "2026-10-14T12:50:04.235Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2688,7 +2688,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-02",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:07:58.919Z"
+     "fetchedAt": "2026-10-14T12:50:05.497Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2696,7 +2696,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-03",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:08:00.288Z"
+     "fetchedAt": "2026-10-14T12:50:07.091Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2704,7 +2704,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-04",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:08:02.604Z"
+     "fetchedAt": "2026-10-14T12:50:08.828Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2712,7 +2712,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-05",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:08:04.199Z"
+     "fetchedAt": "2026-10-14T12:50:10.423Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2720,7 +2720,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-06",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:08:05.707Z"
+     "fetchedAt": "2026-10-14T12:50:12.210Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2728,7 +2728,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-07",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:08:07.230Z"
+     "fetchedAt": "2026-10-14T12:50:13.798Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2736,7 +2736,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-08",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:08:08.652Z"
+     "fetchedAt": "2026-10-14T12:50:16.578Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2744,7 +2744,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-09",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:08:10.038Z"
+     "fetchedAt": "2026-10-14T12:50:17.989Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2752,7 +2752,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-10",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:08:10.501Z"
+     "fetchedAt": "2026-10-14T12:50:19.777Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2760,13 +2760,13 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-11",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T01:08:12.056Z"
+     "fetchedAt": "2026-10-14T12:50:21.389Z"
     }
    ],
-   "fetchedAt": "2026-10-14T01:08:12.059Z",
-   "lastVerifiedAt": "2026-10-14T01:08:12.059Z",
-   "dataAgeMinutes": 335,
-   "changes7d": 668,
+   "fetchedAt": "2026-10-14T12:50:21.391Z",
+   "lastVerifiedAt": "2026-10-14T12:50:21.391Z",
+   "dataAgeMinutes": 3,
+   "changes7d": 811,
    "dataSource": "official"
   },
   {
@@ -2837,7 +2837,7 @@
      "url": "https://www.festival-cannes.com/en/the-selection/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:21Z"
+     "fetchedAt": "2026-10-14T12:50:21Z"
     },
     {
      "kind": "PROGRAMME",
@@ -2845,7 +2845,7 @@
      "url": "https://www.festival-cannes.com/en/f/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:39:21Z"
+     "fetchedAt": "2026-10-14T12:50:21Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -2853,12 +2853,12 @@
      "url": "https://www.festival-cannes.com/en/",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:39:21Z"
+     "fetchedAt": "2026-10-14T12:50:21Z"
     }
    ],
-   "fetchedAt": "2026-10-14T06:39:21Z",
-   "lastVerifiedAt": "2026-10-14T06:39:21Z",
-   "dataAgeMinutes": 4,
+   "fetchedAt": "2026-10-14T12:50:21Z",
+   "lastVerifiedAt": "2026-10-14T12:50:21Z",
+   "dataAgeMinutes": 3,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -2930,7 +2930,7 @@
      "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-14T06:43:23Z"
+     "fetchedAt": "2026-10-14T12:53:35Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -2938,11 +2938,11 @@
      "url": "https://iffr.com/en/iffr/2026",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-14T06:43:23Z"
+     "fetchedAt": "2026-10-14T12:53:35Z"
     }
    ],
-   "fetchedAt": "2026-10-14T06:43:23Z",
-   "lastVerifiedAt": "2026-10-14T06:43:23Z",
+   "fetchedAt": "2026-10-14T12:53:35Z",
+   "lastVerifiedAt": "2026-10-14T12:53:35Z",
    "dataAgeMinutes": 0,
    "changes7d": 1,
    "dataSource": "official"
@@ -3046,7 +3046,7 @@
    ]
   },
   "2026-11-13": {
-   "screenings": 0,
+   "screenings": 4,
    "events": 1,
    "festivals": [
     "idfa-2026"
@@ -3054,14 +3054,14 @@
   },
   "2026-11-14": {
    "screenings": 0,
-   "events": 1,
+   "events": 2,
    "festivals": [
     "idfa-2026"
    ]
   },
   "2026-11-15": {
-   "screenings": 0,
-   "events": 0,
+   "screenings": 5,
+   "events": 1,
    "festivals": [
     "idfa-2026"
    ]
@@ -3082,7 +3082,7 @@
   },
   "2026-11-18": {
    "screenings": 0,
-   "events": 0,
+   "events": 1,
    "festivals": [
     "idfa-2026"
    ]
@@ -3096,21 +3096,21 @@
   },
   "2026-11-20": {
    "screenings": 0,
-   "events": 5,
+   "events": 7,
    "festivals": [
     "idfa-2026"
    ]
   },
   "2026-11-21": {
    "screenings": 0,
-   "events": 9,
+   "events": 14,
    "festivals": [
     "idfa-2026"
    ]
   },
   "2026-11-22": {
    "screenings": 0,
-   "events": 10,
+   "events": 11,
    "festivals": [
     "idfa-2026"
    ]
