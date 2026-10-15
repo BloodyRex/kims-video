@@ -1,85 +1,215 @@
 {
-  "updated": "2026-10-15",
-  "count": 5,
+  "updated": "2026-10-16",
+  "count": 13,
   "movies": [
     {
-      "tmdbId": 1770952,
+      "tmdbId": 1422041,
       "mediaType": "movie",
-      "title": "喂喂喂，足球队",
-      "titleEn": "Voy Boys",
+      "title": "黑球",
+      "titleEn": "La bola negra",
       "year": "2026",
-      "releaseDate": "2026-10-15",
-      "poster": "https://image.tmdb.org/t/p/w500/66gSAoE0Ne1faHY7lNALKmMJynd.jpg",
-      "rating": 0,
+      "releaseDate": "2026-10-16",
+      "poster": "https://image.tmdb.org/t/p/w500/iog65w1sTbRNtv3K2nuUjlRpuAR.jpg",
+      "rating": 8.4,
       "genre": [
-        "Documentary"
+        "Drama",
+        "War"
       ],
-      "firstSeen": "2026-10-15"
+      "firstSeen": "2026-10-16"
     },
     {
-      "tmdbId": 1538497,
+      "tmdbId": 1503762,
       "mediaType": "movie",
-      "title": "魔法秘境",
-      "titleEn": "Hexed",
+      "title": "理智与情感",
+      "titleEn": "Sense and Sensibility",
       "year": "2026",
-      "releaseDate": "2026-11-25",
-      "poster": "https://image.tmdb.org/t/p/w500/wt0SVolfV6jy47eDYTuD9u7TVJX.jpg",
+      "releaseDate": "2026-10-16",
+      "poster": "https://image.tmdb.org/t/p/w500/czsyPHosFNbh4PPqXfqWu1aBXnA.jpg",
+      "rating": 7.4,
+      "genre": [
+        "Drama",
+        "Romance"
+      ],
+      "firstSeen": "2026-10-16"
+    },
+    {
+      "tmdbId": 858035,
+      "mediaType": "movie",
+      "title": "克拉拉与太阳",
+      "titleEn": "Klara and the Sun",
+      "year": "2026",
+      "releaseDate": "2026-10-21",
+      "poster": "https://image.tmdb.org/t/p/w500/uzk5UGnX0aUTg4liflF4KhPq6LW.jpg",
       "rating": 0,
       "genre": [
-        "Adventure",
-        "Animation",
-        "Family",
-        "Fantasy",
+        "Sci-Fi",
+        "Drama",
         "Comedy"
       ],
-      "firstSeen": "2026-10-15"
+      "firstSeen": "2026-10-16"
     },
     {
-      "tmdbId": 791523,
+      "tmdbId": 1562642,
       "mediaType": "movie",
-      "title": "荒野丛林",
-      "titleEn": "Wildwood",
+      "title": "鬼影战士",
+      "titleEn": "Ghost Soldier",
       "year": "2026",
-      "releaseDate": "2026-10-19",
-      "poster": "https://image.tmdb.org/t/p/w500/z5MMAxbQO2nCvBU8BqHgoY1zKdD.jpg",
+      "releaseDate": "2026-11-04",
+      "poster": "https://image.tmdb.org/t/p/w500/8Y4oJ5iUs3hgPcDB3SIEmsNYjZk.jpg",
       "rating": 0,
       "genre": [
-        "Animation",
-        "Adventure",
-        "Fantasy"
+        "Action",
+        "Thriller"
       ],
-      "firstSeen": "2026-10-15"
+      "firstSeen": "2026-10-16"
     },
     {
-      "tmdbId": 1776004,
+      "tmdbId": 1131943,
       "mediaType": "movie",
-      "title": "头号粉丝",
-      "titleEn": "头号粉丝",
+      "title": "Madden",
+      "titleEn": "Madden",
       "year": "2026",
-      "releaseDate": "2026-10-06",
-      "poster": "",
+      "releaseDate": "2026-11-11",
+      "poster": "https://image.tmdb.org/t/p/w500/5dxL9HPnaeqAmXXImfh7gDaa3Bp.jpg",
       "rating": 0,
-      "genre": [],
+      "genre": [
+        "Drama",
+        "History"
+      ],
+      "firstSeen": "2026-10-16"
+    },
+    {
+      "tmdbId": 1381078,
+      "mediaType": "movie",
+      "title": "一生所爱",
+      "titleEn": "Love of Your Life",
+      "year": "2026",
+      "releaseDate": "2026-10-07",
+      "poster": "https://image.tmdb.org/t/p/w500/eEu09K9uy02fO8UcCrAnulDV3US.jpg",
+      "rating": 6.387,
+      "genre": [
+        "Romance",
+        "Drama"
+      ],
+      "firstSeen": "2026-10-16"
+    },
+    {
+      "tmdbId": 16646,
+      "mediaType": "movie",
+      "title": "俄罗斯方舟",
+      "titleEn": "Русский ковчег",
+      "year": "2002",
+      "releaseDate": "2002-05-22",
+      "poster": "https://image.tmdb.org/t/p/w342/dkFM8Q7J0wNpEnbtD1AcWumkShj.jpg",
+      "rating": 7.22,
+      "genre": [
+        "剧情",
+        "奇幻",
+        "历史"
+      ],
+      "source": "rec",
       "firstSeen": "2026-10-15"
     },
     {
-      "tmdbId": 19898,
+      "tmdbId": 43424,
       "mediaType": "movie",
-      "title": "深空失忆",
-      "titleEn": "Pandorum",
-      "year": "2009",
-      "releaseDate": "2009-09-08",
-      "poster": "https://image.tmdb.org/t/p/w342/mNMfa6r3pl0EzFIKEkVcxyr6Rc7.jpg",
-      "rating": 6.6,
+      "title": "绝代艳后玛丽·安托瓦内特",
+      "titleEn": "Marie Antoinette: A Film by David Grubin",
+      "year": "2006",
+      "releaseDate": "2006-11-28",
+      "poster": "https://image.tmdb.org/t/p/w342/cqr9U8sbw4NfXXnT29VALZGuP2S.jpg",
+      "rating": 7,
+      "genre": [
+        "纪录",
+        "剧情",
+        "爱情",
+        "电视电影"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "tmdbId": 449992,
+      "mediaType": "movie",
+      "title": "嗜人之夜",
+      "titleEn": "The Night Comes For Us",
+      "year": "2018",
+      "releaseDate": "2018-10-05",
+      "poster": "https://image.tmdb.org/t/p/w342/8lI1p5cPqgXN2qrKZrmI3mhKBfs.jpg",
+      "rating": 6.9,
       "genre": [
         "动作",
-        "恐怖",
-        "悬疑",
-        "科幻",
+        "犯罪",
         "惊悚"
       ],
       "source": "rec",
-      "firstSeen": "2026-10-14"
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "tmdbId": 59421,
+      "mediaType": "movie",
+      "title": "金福南杀人事件始末",
+      "titleEn": "김복남 살인사건의 전말",
+      "year": "2010",
+      "releaseDate": "2010-08-19",
+      "poster": "https://image.tmdb.org/t/p/w342/uqvG28xhk34ExPZYu2wRGmKB34h.jpg",
+      "rating": 7.213,
+      "genre": [
+        "惊悚",
+        "犯罪",
+        "剧情",
+        "恐怖"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "tmdbId": 637649,
+      "mediaType": "movie",
+      "title": "人之怒",
+      "titleEn": "Wrath of Man",
+      "year": "2021",
+      "releaseDate": "2021-04-22",
+      "poster": "https://image.tmdb.org/t/p/w342/M7SUK85sKjaStg4TKhlAVyGlz3.jpg",
+      "rating": 7.573,
+      "genre": [
+        "惊悚",
+        "犯罪",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "tmdbId": 85525,
+      "mediaType": "movie",
+      "title": "北村方向",
+      "titleEn": "북촌방향",
+      "year": "2011",
+      "releaseDate": "2011-09-08",
+      "poster": "https://image.tmdb.org/t/p/w342/nYgTNFSFKJMDQF4mq9vt3ieJ7eQ.jpg",
+      "rating": 6.9,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "tmdbId": 9300,
+      "mediaType": "movie",
+      "title": "奥兰多",
+      "titleEn": "Orlando",
+      "year": "1992",
+      "releaseDate": "1992-12-11",
+      "poster": "https://image.tmdb.org/t/p/w342/seRawEs8eQ8rWfkBm6QC39EQEAU.jpg",
+      "rating": 6.953,
+      "genre": [
+        "剧情",
+        "奇幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-15"
     }
   ]
 }
