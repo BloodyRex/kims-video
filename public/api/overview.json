@@ -1,13 +1,31 @@
 {
-  "updated": "2026-10-16",
+  "updated": "2026-10-17",
   "degraded": [],
   "stats": {
-    "moviesReleased": 11,
+    "moviesReleased": 6,
     "tvAiringThisWeek": 20,
     "albumsReleased": 25,
     "trending": 20
   },
   "editorsPicks": [
+    {
+      "tmdbId": 1422041,
+      "title": "黑球",
+      "titleEn": "La bola negra",
+      "originalLanguage": "es",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-10-16",
+      "poster": "https://image.tmdb.org/t/p/w500/vVLxCAnpCIREvNJlfD7urU4Env3.jpg",
+      "rating": 8.4,
+      "genre": [
+        "Drama",
+        "War"
+      ],
+      "summary": "三个同性恋男子在西班牙历史上1932 年、1937 年和 2017 年三个不同时期的故事。",
+      "summaryEn": "The intertwined lives of three men in three different eras, three lives intimately linked by sexuality and desire, pain, and legacy.",
+      "pickCategory": "editors"
+    },
     {
       "tmdbId": 1255833,
       "title": "鲸口脱险",
@@ -17,7 +35,7 @@
       "year": "2026",
       "releaseDate": "2026-10-16",
       "poster": "https://image.tmdb.org/t/p/w500/dGDJlUMPbLPavjrpMwUhmDHCBMB.jpg",
-      "rating": 7.667,
+      "rating": 7.429,
       "genre": [
         "Thriller"
       ],
@@ -41,137 +59,83 @@
       ],
       "summary": "徐福为养家还债远赴中东中餐馆当厨师，在当地结识了大堂经理马俊生。他们以地道中国风味广招八方来客，龙餐馆声名鹊起。然而随着战争爆发，当地形势急转直下，没有人能够独善其身，徐福和马俊生也不例外，他们的命运将何去何从？战火中的龙餐馆又将如何维系？",
       "summaryEn": "Seeking a fresh start, chef Xu Fu travels to the Middle East to support his family and repay his debts. Alongside restaurant manager Ma Junsheng, he transforms the struggling Dragon Restaurant into a ",
-      "pickCategory": "editors"
-    },
-    {
-      "tmdbId": 213,
-      "title": "西北偏北",
-      "titleEn": "North by Northwest",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "1959",
-      "releaseDate": "1959-08-06",
-      "poster": "https://image.tmdb.org/t/p/w500/v7gnTVJUq6YilUrqY63ZMEl4ozE.jpg",
-      "rating": 8,
-      "genre": [
-        "Thriller",
-        "Adventure"
-      ],
-      "summary": "一位时运不济的纽约广告主管被外国间谍误认为政府特工，为寻求生路被迫展开横跨美国的逃亡之旅。",
-      "summaryEn": "Advertising man Roger Thornhill is mistaken for a spy, triggering a deadly cross-country chase.",
       "pickCategory": "gem"
     },
     {
-      "tmdbId": 1377237,
-      "title": "护肝人",
-      "titleEn": "Runner",
+      "tmdbId": 31767,
+      "title": "卢丹的恶魔",
+      "titleEn": "The Devils",
       "originalLanguage": "en",
       "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-09-07",
-      "poster": "https://image.tmdb.org/t/p/w500/bou3s9jCvcZ1iGPiYilD7C0LdLo.jpg",
-      "rating": 8.3,
-      "genre": [
-        "Action",
-        "Comedy"
-      ],
-      "summary": "高端特种押运员汉克·马龙必须在三小时内，将一颗肝脏从洛杉矶国际机场运往圣巴巴拉的一家医院，用于一台紧急移植手术。受赠者是一名濒危的七岁女孩，她拥有全球极为罕见的血型。偏偏南加州最危险犯罪集团的头目，也急需这颗器官。",
-      "summaryEn": "A former soldier is thrown into a brutal race against time when a critical medical delivery makes him and his unlikely partner the targets of a ruthless cartel. As the mission spirals into a deadly ma",
-      "pickCategory": "trending"
-    },
-    {
-      "tmdbId": 1101412,
-      "title": "坠落２：死点",
-      "titleEn": "Fall 2: Deadpoint",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-09-01",
-      "poster": "https://image.tmdb.org/t/p/w500/nsihyCiAHotJ3G4NTSJcBuWLbzg.jpg",
-      "rating": 7.273,
-      "genre": [
-        "Thriller"
-      ],
-      "summary": "痛失姐姐杭特之后，贾克斯与杭特那无畏的好友露斯重聚。两人结伴前往泰国著名的关山山脉疗伤。不料突如其来的山体滑坡将她们逼入绝境，两人被困在一段摇摇欲坠、高耸入云的4000英尺高空栈道上。面对死神的威胁，贾克斯必须直面内心深处的恐惧，在绝壁之上觅得一线生机。",
-      "summaryEn": "On a perilous climb across Thailand's Mount Kwan, two climbers become trapped thousands of feet above the ground, where vertigo-inducing heights, sheer exposure, and impossible odds turn every moment ",
-      "pickCategory": "trending"
-    },
-    {
-      "tmdbId": 1281331,
-      "title": "社交清算",
-      "titleEn": "The Social Reckoning",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-10-09",
-      "poster": "https://image.tmdb.org/t/p/w500/on14cDF7G7lHYiLzxH4yHMKGPsO.jpg",
-      "rating": 6.985,
+      "year": "1971",
+      "releaseDate": "1971-07-16",
+      "poster": "https://image.tmdb.org/t/p/w500/y1k7eiOFc6fzm8XeTa1kNGx6JIs.jpg",
+      "rating": 7.5,
       "genre": [
         "Drama",
-        "Thriller"
+        "History",
+        "Horror"
       ],
-      "summary": "《社交网络》的延续作品，受真实事件启发。年轻的Facebook工程师弗朗西斯·豪根在《华尔街日报》记者杰夫·霍维茨的协助下，踏上一段危险的旅程，揭露这个社交网络最隐秘的内幕。",
-      "summaryEn": "Frances Haugen, a young Facebook engineer, enlists the help of Jeff Horwitz, a Wall Street Journal reporter, to go on a dangerous journey that ends up blowing the whistle on the social network's most ",
-      "pickCategory": "editors"
+      "summary": "编剧阿尔多斯·赫胥黎为导演肯·罗素这部火花四溅的杰作提供了素材。这部影片描述了在17世纪的法国，修女对主教暗生情愫，这种情绪在修道院中蔓延，整个修道院的修女都赤身迎接主教 ，她们被认为被恶魔附身，但除魔方法匪夷所思。导演罗素称这部影片是他所有作品中“唯一的、而且最政治性的 影片”，这一对“洗脑”作出清晰刻画并对政教之间的勾结作出描绘的影片被英国电影分级委员会和华纳影业禁放，华纳影业至今仍宣称这部影",
+      "summaryEn": "编剧阿尔多斯·赫胥黎为导演肯·罗素这部火花四溅的杰作提供了素材。这部影片描述了在17世纪的法国，修女对主教暗生情愫，这种情绪在修道院中蔓延，整个修道院的修女都赤身迎接主教 ，她们被认为被恶魔附身，但除魔方法匪夷所思。导演罗素称这部影片是他所有作品中“唯一的、而且最政治性的 影片”，这一对“洗脑”作出清晰刻画并对政教之间的勾结作出描绘的影片被英国电影分级委员会和华纳影业禁放，华纳影业至今仍宣称这部影",
+      "pickCategory": "gem"
+    },
+    {
+      "tmdbId": 1148365,
+      "title": "火柴盒大电影",
+      "titleEn": "Matchbox the Movie",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-10-05",
+      "poster": "https://image.tmdb.org/t/p/w500/qpLaKSlC9OE3Fk1e48jFIekgr5t.jpg",
+      "rating": 7.913,
+      "genre": [
+        "Action",
+        "Comedy",
+        "Adventure"
+      ],
+      "summary": "一群儿时好友重聚后，生活发生巨变。曾离开家乡的前领袖、中央情报局卧底特工肖恩突然归来，意外将众人卷入一场紧张的国际追逐行动，必须合力拯救世界。",
+      "summaryEn": "When a group of former childhood friends reconnect, their reunion takes a wild turn as they stumble upon a dangerous international plot—and must save the world.",
+      "pickCategory": "trending"
+    },
+    {
+      "tmdbId": 1381078,
+      "title": "你的生命挚爱",
+      "titleEn": "Love of Your Life",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-10-07",
+      "poster": "https://image.tmdb.org/t/p/w500/eEu09K9uy02fO8UcCrAnulDV3US.jpg",
+      "rating": 6.524,
+      "genre": [
+        "Romance",
+        "Drama"
+      ],
+      "summary": "《你的生命挚爱》由瑞秋·莫里森（代表作《内心之火》）执导，本片讲述了玛雅（玛格丽特·库里饰）与查理（加布里埃尔·巴索饰）的一次偶然邂逅开启了一段轰轰烈烈的恋情，也开启了一个远超玛雅想象的未来。当那个未来崩塌，玛雅被抛入一段意想不到的新生活--这段生活将迫使她直面自己是谁、想要什么，以及如何重新去爱的故事。",
+      "summaryEn": "After a chance encounter sparks a sweeping romance, Maya's future is suddenly upended, sending her on an unexpected journey to love and live again.",
+      "pickCategory": "trending"
     }
   ],
   "weeklyHotTv": [
     {
-      "tmdbId": 213375,
-      "title": "幻视任务",
-      "titleEn": "VisionQuest",
-      "originalLanguage": "en",
+      "tmdbId": 231620,
+      "title": "现在就出发",
+      "titleEn": "现在就出发",
+      "originalLanguage": "zh",
       "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-13",
-      "poster": "https://image.tmdb.org/t/p/w500/9rWX1tRNd1wIf0XnTjd8GOUoTlH.jpg",
-      "rating": 9.1,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "幻视在重启后隐姓埋名，为了逃避企图把他变成武器的人。他开始与植入体内的AI对话，包括星期五、伊迪丝、贾维斯，甚至恶名昭彰的奥创。他低调的生活被一笔悬赏令终结，迫使他与托马斯·谢泼德踏上逃亡之路。这少年可能就是他儿子的化身。",
-      "summaryEn": "With a bounty on his head, Vision must confront his nature and resist Ultron's influence to survive.",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 203857,
-      "title": "头号外交官",
-      "titleEn": "The Diplomat",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
+        "CN"
       ],
       "year": "2023",
-      "releaseDate": "2023-04-20",
-      "poster": "https://image.tmdb.org/t/p/w500/rRIpfUcXlHl2fiI8pOOAqJUPGVv.jpg",
-      "rating": 7.6,
+      "releaseDate": "2023-08-13",
+      "poster": "https://image.tmdb.org/t/p/w500/uEoAOCIm4W275u00vx6UmhW6ruA.jpg",
+      "rating": 7.5,
       "genre": [
-        "Drama"
+        "Comedy"
       ],
-      "summary": "一名立场鲜明、行事果断的美国外交官出任驻英国大使，在应对国际危机的同时，还要处理与野心勃勃的政治战略家的婚姻关系。",
-      "summaryEn": "Amid an international crisis, a US diplomat contends with her high-profile job as ambassador to the UK and her strained marriage to a political star.",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 95350,
-      "title": "绿灯军团",
-      "titleEn": "Lanterns",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-08-16",
-      "poster": "https://image.tmdb.org/t/p/w500/5ZmOP60VIEfM2cnt7CpAK1j9mEv.jpg",
-      "rating": 8.258,
-      "genre": [
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "绿灯侠哈尔·乔丹与新晋成员约翰·斯图尔特奉命调查美国小镇的一起神秘命案，却意外发现案件背后隐藏着与外星势力有关的阴谋，两人也在追查真相的过程中面对各自的信念与考验。",
-      "summaryEn": "Two intergalactic cops, new recruit John Stewart and Lantern legend Hal Jordan, are drawn into a dark, Earth-based mystery as they investigate a murder in the American heartland.",
+      "summary": "《现在就出发》是由腾讯视频出品，一生向扬联合出品出的户外真人秀 。节目一方面为观众展现了祖国引人入胜的山河风光、自然美景，另一方面展现出嘉宾们与大自然相处的生活观，带领观众一起逃离都市水泥森林，打造秘境里的充电之旅。",
+      "summaryEn": "《现在就出发》是由腾讯视频出品，一生向扬联合出品出的户外真人秀 。节目一方面为观众展现了祖国引人入胜的山河风光、自然美景，另一方面展现出嘉宾们与大自然相处的生活观，带领观众一起逃离都市水泥森林，打造秘境里的充电之旅。",
       "pickCategory": "tvhot"
     },
     {
@@ -185,7 +149,7 @@
       "year": "2026",
       "releaseDate": "2026-10-11",
       "poster": "https://image.tmdb.org/t/p/w500/pXmJoNdWldb43N8P6EdDzDpsb7u.jpg",
-      "rating": 9.8,
+      "rating": 9.782,
       "genre": [
         "Animation"
       ],
@@ -211,28 +175,86 @@
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 286183,
-      "title": "好莱坞艺术学院",
-      "titleEn": "Hollywood Arts",
+      "tmdbId": 335536,
+      "title": "泰森：拳王传奇",
+      "titleEn": "TYSON",
       "originalLanguage": "en",
       "originCountry": [
         "US"
       ],
       "year": "2026",
-      "releaseDate": "2026-10-15",
-      "poster": "https://image.tmdb.org/t/p/w500/seJH1p7gWvgQBAmzep5xpt3J71a.jpg",
-      "rating": 0,
+      "releaseDate": "2026-10-13",
+      "poster": "https://image.tmdb.org/t/p/w500/bHyUKbN8My4burTpJkls5IPNKYK.jpg",
+      "rating": 10,
       "genre": [
-        "Comedy",
-        "Drama",
-        "Family"
+        "Documentary"
       ],
-      "summary": "好莱坞艺术学院开课啦！自称偶像的特丽娜·维加回归，带领一群才华横溢的青少年追逐明星梦和名望，同时也引发各种爆笑混乱。",
-      "summaryEn": "好莱坞艺术学院开课啦！自称偶像的特丽娜·维加回归，带领一群才华横溢的青少年追逐明星梦和名望，同时也引发各种爆笑混乱。",
+      "summary": "这部扣人心弦的四集纪录片剧集聚焦迈克·泰森这位体育史上最令人敬畏和迷人的人物之一，探寻了他的劲爆人生。",
+      "summaryEn": "这部扣人心弦的四集纪录片剧集聚焦迈克·泰森这位体育史上最令人敬畏和迷人的人物之一，探寻了他的劲爆人生。",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 285322,
+      "title": "暗潮之下",
+      "titleEn": "Below",
+      "originalLanguage": "en",
+      "originCountry": [
+        "CA",
+        "GB"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-08",
+      "poster": "https://image.tmdb.org/t/p/w500/zalCOSxzRZgmZLE7PxYZ9nD6J9z.jpg",
+      "rating": 7.257,
+      "genre": [
+        "Drama",
+        "Mystery"
+      ],
+      "summary": "当一只神秘的海洋生物威胁着纽芬兰的一个小镇时，一位坚韧的渔夫和他的家人奋力保护他们这个紧密相连的社区。",
+      "summaryEn": "When a mysterious sea creature terrorizes a small Newfoundland town, a hard-bitten fisherman and his family fight to protect their close-knit community.",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 95350,
+      "title": "绿灯军团",
+      "titleEn": "Lanterns",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-08-16",
+      "poster": "https://image.tmdb.org/t/p/w500/5ZmOP60VIEfM2cnt7CpAK1j9mEv.jpg",
+      "rating": 8.3,
+      "genre": [
+        "Drama",
+        "Mystery"
+      ],
+      "summary": "绿灯侠哈尔·乔丹与新晋成员约翰·斯图尔特奉命调查美国小镇的一起神秘命案，却意外发现案件背后隐藏着与外星势力有关的阴谋，两人也在追查真相的过程中面对各自的信念与考验。",
+      "summaryEn": "Two intergalactic cops, new recruit John Stewart and Lantern legend Hal Jordan, are drawn into a dark, Earth-based mystery as they investigate a murder in the American heartland.",
       "pickCategory": "tvhot"
     }
   ],
   "comingSoon": [
+    {
+      "tmdbId": 791523,
+      "title": "荒野丛林",
+      "titleEn": "Wildwood",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-10-19",
+      "poster": "https://image.tmdb.org/t/p/w500/z5MMAxbQO2nCvBU8BqHgoY1zKdD.jpg",
+      "rating": 0,
+      "genre": [
+        "Animation",
+        "Adventure",
+        "Fantasy"
+      ],
+      "summary": "普鲁和同班同学柯蒂斯误入一片禁忌魔法森林，林中遍布魔法生灵、忠心伙伴与强大劲敌。二人踏上一场凶险万分的营救之旅，要从神秘女子亚历山德拉统领的鸦群手中，救出被掳走的婴儿弟弟麦克。",
+      "summaryEn": "Prue and her classmate Curtis are drawn into a magical forest filled with enchanted creatures, loyal allies, and formidable adversaries as they embark on a desperate quest to rescue Prue's abducted ba",
+      "daysUntil": 2
+    },
     {
       "tmdbId": 1400940,
       "title": "泥面人",
@@ -242,7 +264,7 @@
       "year": "2026",
       "releaseDate": "2026-10-21",
       "poster": "https://image.tmdb.org/t/p/w500/8AKvV4bJsfUBUZ7cgW41iv3EYaG.jpg",
-      "rating": 8.375,
+      "rating": 8.6,
       "genre": [
         "Horror",
         "Thriller",
@@ -250,26 +272,7 @@
       ],
       "summary": "好莱坞新星马特·哈根遭犯罪头目毁容后，为恢复容貌接受先进治疗，却意外陷入疯狂，走上复仇之路。",
       "summaryEn": "Matt Hagen's meteoric rise from Gotham street kid to Hollywood leading man is tragically cut short when a local crime boss's actions leave him horribly disfigured. Abandoned by his team and with nothi",
-      "daysUntil": 5
-    },
-    {
-      "tmdbId": 858035,
-      "title": "克拉拉与太阳",
-      "titleEn": "Klara and the Sun",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-10-21",
-      "poster": "https://image.tmdb.org/t/p/w500/uzk5UGnX0aUTg4liflF4KhPq6LW.jpg",
-      "rating": 0,
-      "genre": [
-        "Sci-Fi",
-        "Drama",
-        "Comedy"
-      ],
-      "summary": "人工智能机器人克拉拉被设计用于陪伴青少年，防止他们变得孤独。一名母亲和聪明但患有神秘疾病的乔茜买下它，克拉拉帮助这个家庭度过心碎时期，也在此过程中认识到人类爱的力量。",
-      "summaryEn": "An Artificial Friend named Klara finds a deep bond with a troubled young girl, bringing light and hope to a grieving family through her unwavering devotion and innocent wonder.",
-      "daysUntil": 5
+      "daysUntil": 4
     },
     {
       "tmdbId": 1294189,
@@ -287,7 +290,7 @@
       ],
       "summary": "一位被冤枉的战争英雄，一无所有，在昔日特种部队成员的帮助下，与警方展开了一场史诗般的全国汽车追逐，全程电视直播。而着迷的公众则密切关注着他，希望他能安全逃脱。",
       "summaryEn": "A falsely accused war hero with nothing to lose leads police on an epic televised cross-country car chase, helped by members of his former Special Forces Army battalion and closely monitored by a fasc",
-      "daysUntil": 13
+      "daysUntil": 12
     },
     {
       "tmdbId": 1381071,
@@ -306,7 +309,7 @@
       ],
       "summary": "人类的罪与罚。已经，没法归零。战争将日本粉碎至“零”，哥斯拉的袭击更将它推至“负”的绝境。时间来到两年后，人民历尽痛苦磨难仍坚持复苏的步伐，看似终于可以回归正常生活……然而此时，巨兽再次袭来。它彻底摧毁这份希望，将人类推向新的绝望深渊！",
       "summaryEn": "War reduced Japan to zero, and Godzilla plunged it into minus. Two years have passed since then, and the country has faced agonizing struggles to achieve recovery and finally reclaim its daily life. J",
-      "daysUntil": 18
+      "daysUntil": 17
     },
     {
       "tmdbId": 1562642,
@@ -324,7 +327,7 @@
       ],
       "summary": "　　亨利·“菲茨”·菲茨杰拉德，一个有着神秘过往的孤僻男子，在家乡过着与世隔绝的平静生活。然而，当一家实力雄厚的外国公司入侵他的社区，企图强占他和邻居们的土地以牟取暴利时，菲茨挺身而出——他实际上是一名退役特种部队士兵和先进武器研发专家。凭借着前所未见的武器、毕生接受的致命军事训练以及坚定不移的正义准则，菲茨成为了敌人始料未及的存在：一场他们无法取胜的孤胆英雄之战。",
       "summaryEn": "Henry “Fitz” Fitzgerald has spent years living quietly off the grid, hiding from a past few people know anything about. But when a powerful foreign corporation moves into his hometown to seize his nei",
-      "daysUntil": 19
+      "daysUntil": 18
     },
     {
       "tmdbId": 1567605,
@@ -342,7 +345,7 @@
       ],
       "summary": "该改编版本为发生在狄更斯时代伦敦的惊悚鬼故事。圣诞过去、现在与未来的幽灵接连造访这位厌世吝啬商人，试图拯救他免于死后遭受的折磨。",
       "summaryEn": "An elderly miser embarks on a supernatural journey after visits from the ghost of his former business partner and the Spirits of Christmas Past, Present, and Yet to Come force him to confront his past",
-      "daysUntil": 26
+      "daysUntil": 25
     }
   ],
   "comingSoonTv": [
@@ -365,7 +368,7 @@
       ],
       "summary": "该剧讲述了被列为杀人嫌疑人的目中无人财阀三世，与潜伏在其身边担任随行秘书的特种部队出身刑警，两人之间展开的紧密贴身惊悚浪漫故事。",
       "summaryEn": "该剧讲述了被列为杀人嫌疑人的目中无人财阀三世，与潜伏在其身边担任随行秘书的特种部队出身刑警，两人之间展开的紧密贴身惊悚浪漫故事。",
-      "daysUntil": 3
+      "daysUntil": 2
     },
     {
       "tmdbId": 314360,
@@ -377,14 +380,14 @@
       ],
       "year": "2026",
       "releaseDate": "2026-10-23",
-      "poster": "https://image.tmdb.org/t/p/w500/kp8xgZ8SrikHQrPn2lC3hb50KD5.jpg",
+      "poster": "https://image.tmdb.org/t/p/w500/2kxIViR7g3e08ZHLlvNFFJkgJtI.jpg",
       "rating": 0,
       "genre": [
         "Drama"
       ],
       "summary": "私家侦探Rapp来到一座海滨小镇调查Henry Park失踪案，Park来自一个实力强大的渔业家族，是位年轻的继承人。调查过程中，Rapp发现自己面临重重困境：忧虑的当地警探Carson，魅力非凡且偏爱年轻男性的大学教授Catherine，以及神秘嫌疑人、秘密人生和古老魔法组成的迷宫。",
       "summaryEn": "私家侦探Rapp来到一座海滨小镇调查Henry Park失踪案，Park来自一个实力强大的渔业家族，是位年轻的继承人。调查过程中，Rapp发现自己面临重重困境：忧虑的当地警探Carson，魅力非凡且偏爱年轻男性的大学教授Catherine，以及神秘嫌疑人、秘密人生和古老魔法组成的迷宫。",
-      "daysUntil": 7
+      "daysUntil": 6
     },
     {
       "tmdbId": 292741,
@@ -404,7 +407,27 @@
       ],
       "summary": "当臭名昭著的连环杀手尤雷克·沃尔特的一名受害者意外生还时，侦探乔纳·林恩必须争分夺秒找到仍然失踪的那个人，而他的门徒萨加·鲍尔则卧底潜入，从杀手本人那里获取答案。",
       "summaryEn": "当臭名昭著的连环杀手尤雷克·沃尔特的一名受害者意外生还时，侦探乔纳·林恩必须争分夺秒找到仍然失踪的那个人，而他的门徒萨加·鲍尔则卧底潜入，从杀手本人那里获取答案。",
-      "daysUntil": 13
+      "daysUntil": 12
+    },
+    {
+      "tmdbId": 313699,
+      "title": "血刃岛",
+      "titleEn": "Balaraw",
+      "originalLanguage": "tl",
+      "originCountry": [
+        "PH"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-29",
+      "poster": "https://image.tmdb.org/t/p/w500/s1A6UOu8IOmw0kJXohlitMRiwQb.jpg",
+      "rating": 0,
+      "genre": [
+        "Mystery",
+        "Drama"
+      ],
+      "summary": "　　母亲失踪数载之后，萨比娜循着一条神秘线索，奔赴一座地图未曾标记的孤岛。\n\n　　这座海岛裹挟着菲律宾本土民俗的幽暗力量，她于此直面家族深埋已久的黑暗秘辛，同时还要对抗岛上潜伏的超自然威胁，过往的伤痛与世代掩藏的真相在此缓缓揭开。",
+      "summaryEn": "　　母亲失踪数载之后，萨比娜循着一条神秘线索，奔赴一座地图未曾标记的孤岛。\n\n　　这座海岛裹挟着菲律宾本土民俗的幽暗力量，她于此直面家族深埋已久的黑暗秘辛，同时还要对抗岛上潜伏的超自然威胁，过往的伤痛与世代掩藏的真相在此缓缓揭开。",
+      "daysUntil": 12
     },
     {
       "tmdbId": 289517,
@@ -423,7 +446,7 @@
       ],
       "summary": "为摆脱沉重的债务压力，革浚被一张奇怪的传单吸引，上面写着一份“高薪兼职工作”。循着传单上的信息，他来到神秘的“蜘蛛人力事务所”。这里的时薪起步就是最低工资的 50 倍，但有一条铁律：绝不能透露工作期间发生的任何事情。\n\n革浚被派往一家看似普通的便利店，却很快发现，在这个宛如噩梦般的职场里，每一次值班都可能让他丧命。",
       "summaryEn": "为摆脱沉重的债务压力，革浚被一张奇怪的传单吸引，上面写着一份“高薪兼职工作”。循着传单上的信息，他来到神秘的“蜘蛛人力事务所”。这里的时薪起步就是最低工资的 50 倍，但有一条铁律：绝不能透露工作期间发生的任何事情。\n\n革浚被派往一家看似普通的便利店，却很快发现，在这个宛如噩梦般的职场里，每一次值班都可能让他丧命。",
-      "daysUntil": 14
+      "daysUntil": 13
     },
     {
       "tmdbId": 279246,
@@ -442,25 +465,8 @@
       ],
       "summary": "这是一部由完美皇后娜菲尔、皇帝索本修、邻国王子海因里与逃亡奴隶菈丝塔共同谱写的浪漫奇幻史诗巨制。",
       "summaryEn": "这是一部由完美皇后娜菲尔、皇帝索本修、邻国王子海因里与逃亡奴隶菈丝塔共同谱写的浪漫奇幻史诗巨制。",
-      "daysUntil": 19
-    },
-    {
-      "tmdbId": 171802,
-      "title": "银翼杀手2099",
-      "titleEn": "Blade Runner 2099",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-11-25",
-      "poster": "https://image.tmdb.org/t/p/w500/5GBzi1UklAd5n1cEfGuYEo4EJYU.jpg",
-      "rating": 0,
-      "genre": [],
-      "summary": "在2099年的洛杉矶，擅用各种身份掩饰自己的科拉（亨特·莎弗 饰），一生都在躲藏逃亡。为了能给弟弟提供一个稳定的未来，她捏造了最后一种身份，不情愿地跟一位临近生命尽头的银翼杀手奥尔雯（杨紫琼 饰）展开合作。两人卷入了一场愈演愈烈的阴谋当中，它使得这座为重生而战的城市陷入到存亡时刻。",
-      "summaryEn": "在2099年的洛杉矶，擅用各种身份掩饰自己的科拉（亨特·莎弗 饰），一生都在躲藏逃亡。为了能给弟弟提供一个稳定的未来，她捏造了最后一种身份，不情愿地跟一位临近生命尽头的银翼杀手奥尔雯（杨紫琼 饰）展开合作。两人卷入了一场愈演愈烈的阴谋当中，它使得这座为重生而战的城市陷入到存亡时刻。",
-      "daysUntil": 40
+      "daysUntil": 18
     }
   ],
-  "brief": "Today: 11 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
+  "brief": "Today: 6 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
 }
