@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-16T22:00:50Z",
+ "updated": "2026-10-17T00:19:21Z",
  "today": "2026-10-17",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
@@ -9,11 +9,11 @@
   "festivals": 7,
   "blocked": 0,
   "liveToday": 2,
-  "screeningsToday": 44,
+  "screeningsToday": 59,
   "eventsToday": 0,
   "upcoming": 1,
   "changes7d": 1000,
-  "venuesToday": 14
+  "venuesToday": 17
  },
  "festivals": [
   {
@@ -165,7 +165,7 @@
    ],
    "fetchedAt": "2026-10-16T22:00:51Z",
    "lastVerifiedAt": "2026-10-16T22:00:51Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 139,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -246,7 +246,7 @@
    ],
    "fetchedAt": "2026-10-16T22:00:56Z",
    "lastVerifiedAt": "2026-10-16T22:00:56Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 139,
    "changes7d": 18,
    "dataSource": "official"
   },
@@ -327,131 +327,19 @@
     ]
    },
    "today": {
-    "date": "2026-10-16",
-    "screenings": 41,
+    "date": "2026-10-17",
+    "screenings": 56,
     "events": 0,
-    "entries": 41,
-    "venues": 13,
+    "entries": 56,
+    "venues": 16,
     "guestVisits": 0,
     "items": [
      {
-      "id": "bfi-2026-20261016-artificial_16Oct26",
+      "id": "bfi-2026-20261017-anim_17Oct26",
       "kind": "SCREENING",
-      "time": "11:30",
-      "title": "Artificial",
-      "venueName": "Southbank Centre, Royal Festival Hall",
-      "section": "Galas",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=B2206237-2D6B-4038-8754-98B9F9645541&BOparam::WScontent::loadArticle::context_id=97D6B12B-8D01-4A1E-A426-48C4804C3301",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-rogue_16Oct26",
-      "kind": "SCREENING",
-      "time": "12:00",
-      "title": "Rogue Trooper",
-      "venueName": "Curzon Soho Cinema, Screen 1",
-      "section": "Cult",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=4F17E45B-9309-4E11-9684-B89DF082F695&BOparam::WScontent::loadArticle::context_id=293D2FC6-06BF-4CAF-B682-39B535E0B315",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-toom_16Oct26",
-      "kind": "SCREENING",
-      "time": "12:25",
-      "title": "Too Many Beasts",
-      "venueName": "Prince Charles Cinema, Downstairs Screen",
-      "section": "Laugh",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=8374FFDF-8557-4EC1-A7DB-1C2D5FFA4F47&BOparam::WScontent::loadArticle::context_id=E6095650-DB7E-4CC5-BEB9-F09546EBE333",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-elsin_rep_16Oct26",
-      "kind": "SCREENING",
-      "time": "12:30",
-      "title": "Elsinore",
+      "time": "10:00",
+      "title": "Animated Shorts for Younger Audiences",
       "venueName": "BFI Southbank, Screen NFT1",
-      "section": "Galas",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=978B4D3E-B2FB-45AC-B970-81488544C295&BOparam::WScontent::loadArticle::context_id=861546D4-18F8-4364-990E-8819E66E2504",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-life_16Oct26",
-      "kind": "SCREENING",
-      "time": "12:30",
-      "title": "Life / Drawing",
-      "venueName": "Vue West End, EPIC 1",
-      "section": "Shorts",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "LIMITED",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=9B0CA9C3-DC3D-4857-ACCD-4D62A6A3E1A7&BOparam::WScontent::loadArticle::context_id=A7A1F640-6145-468A-B9DD-53859415A2A1",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-look_16Oct26",
-      "kind": "SCREENING",
-      "time": "12:55",
-      "title": "Look Back",
-      "venueName": "Vue West End, EPIC 2",
-      "section": "LFFAWARDS",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=16502BF8-16E5-47A9-B9C3-2926A0E722BF&BOparam::WScontent::loadArticle::context_id=D1EE8E9B-8089-4F63-80E7-ECC048689E09",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-14th_16Oct26",
-      "kind": "SCREENING",
-      "time": "13:25",
-      "title": "14th",
-      "venueName": "BFI Southbank, Screen NFT3",
-      "section": "Special Presentations",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=4864C03F-E110-4590-9C1E-F41EF05CC79A&BOparam::WScontent::loadArticle::context_id=099CE9FD-AEAF-4BAD-AA9D-8C2F1AEA3382",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-iron_16Oct26",
-      "kind": "SCREENING",
-      "time": "13:35",
-      "title": "Iron Boy",
-      "venueName": "BFI Southbank, Screen NFT2",
       "section": "Family",
       "grade": null,
       "subtitle": null,
@@ -459,46 +347,270 @@
       "ticketStatus": "LIMITED",
       "minPrice": "£6.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=73D026E9-FAC6-4A23-A889-884DECBCAFB8&BOparam::WScontent::loadArticle::context_id=360E1D15-7E9C-4863-9CE4-315251030D99",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=5F5D3ED7-A71F-4C68-B0A6-957C60B6919F&BOparam::WScontent::loadArticle::context_id=E39E0335-332C-4AB8-9BEB-D0E1F4B3673E",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-inth_16Oct26",
+      "id": "bfi-2026-20261017-myfr_17Oct26",
       "kind": "SCREENING",
-      "time": "14:45",
-      "title": "In the Shadows",
-      "venueName": "Curzon Soho Cinema, Screen 1",
-      "section": "Journey",
+      "time": "10:45",
+      "title": "My Friend the Sun",
+      "venueName": "BFI Southbank, Screen NFT2",
+      "section": "Family",
       "grade": null,
       "subtitle": null,
       "qa": false,
-      "ticketStatus": "LIMITED",
-      "minPrice": "£10.00",
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£6.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=B76C3CC4-329E-4E69-B36F-1714DC6907CC&BOparam::WScontent::loadArticle::context_id=5C3483D8-C979-4127-843E-0ABBEE032DD0",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=C1C03A00-636B-425E-9D5B-634F61A6273D&BOparam::WScontent::loadArticle::context_id=AF1EE6D6-3284-4EEA-8EDA-2F9A6FA34A92",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-mouse_16Oct26",
+      "id": "bfi-2026-20261017-ray_rep_17Oct26",
       "kind": "SCREENING",
-      "time": "14:45",
-      "title": "Mouse",
-      "venueName": "Prince Charles Cinema, Downstairs Screen",
-      "section": "Love",
+      "time": "11:00",
+      "title": "Ray Gunn",
+      "venueName": "BFI IMAX, Waterloo",
+      "section": "Galas",
       "grade": null,
       "subtitle": null,
       "qa": false,
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=FB6E59BA-9180-46E1-BEFD-DBF4E701006B&BOparam::WScontent::loadArticle::context_id=12726782-77E5-4393-9621-246DE551D240",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=858730E4-5DC0-4780-AEBB-1E85298D2EF1&BOparam::WScontent::loadArticle::context_id=A51204EF-9B70-4D9A-89D8-F6FA2D94F10A",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-klara_rep_16Oct26",
+      "id": "bfi-2026-20261017-beyo_17Oct26",
       "kind": "SCREENING",
-      "time": "14:45",
-      "title": "Klara and the Sun",
+      "time": "11:00",
+      "title": "LFF for Free: Beyond the Screen: How Stories Create Change",
+      "venueName": "BFI Southbank, BFI Reuben Library",
+      "section": "LFF for Free",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£0.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=EAAF99A7-712D-4E6C-9BBD-8D0FB18B908C&BOparam::WScontent::loadArticle::context_id=A7BE6FA7-E324-47A1-8BF4-DA988E453829",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-prima_rep_17Oct26",
+      "kind": "SCREENING",
+      "time": "11:00",
+      "title": "Prima Facie",
+      "venueName": "Southbank Centre, Royal Festival Hall",
+      "section": "Galas",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "LIMITED",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=DC0A9CAE-E2C5-4A8A-B071-7C514B686FE7&BOparam::WScontent::loadArticle::context_id=DA3CBBED-827C-4742-ABE2-189CF9B9286F",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-wildw_rep_17Oct26",
+      "kind": "SCREENING",
+      "time": "11:45",
+      "title": "Wildwood",
+      "venueName": "Prince Charles Cinema, Downstairs Screen",
+      "section": "Galas",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=033AC18C-7586-4A4C-9A08-70EAC8905078&BOparam::WScontent::loadArticle::context_id=80CEA580-1494-4668-BB0C-7681B1499CFC",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-heys_17Oct26",
+      "kind": "SCREENING",
+      "time": "12:00",
+      "title": "Heysel 85",
+      "venueName": "Curzon Soho Cinema, Screen 2",
+      "section": "Thrill",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=7A1EB4B3-DB9E-400B-9B74-38759531861D&BOparam::WScontent::loadArticle::context_id=84090442-6246-417F-ABAC-8FD702C3B7A0",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-tend_rep_17Oct26",
+      "kind": "SCREENING",
+      "time": "12:15",
+      "title": "Tender Loving Care",
+      "venueName": "BFI Southbank, Screen NFT1",
+      "section": "Galas",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=75FF4D53-6113-4D64-B802-6BEA251304A6&BOparam::WScontent::loadArticle::context_id=624F8CF0-EEE8-4A45-8FCA-A0F3F3344212",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-heys_s3_17Oct26",
+      "kind": "SCREENING",
+      "time": "12:15",
+      "title": "Heysel 85",
+      "venueName": "Curzon Soho Cinema, Screen 3",
+      "section": "Thrill",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=7A1EB4B3-DB9E-400B-9B74-38759531861D&BOparam::WScontent::loadArticle::context_id=F009A40B-130A-4296-8C88-9F283D4B9571",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-mahe_17Oct26",
+      "kind": "SCREENING",
+      "time": "12:30",
+      "title": "Screen Talk: Mahershala Ali",
+      "venueName": "Curzon Soho Cinema, Screen 1",
+      "section": "LFFSCREENTALKS",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=D7681259-CF38-4295-9F25-435F7A1FA1EC&BOparam::WScontent::loadArticle::context_id=8D3F8BCC-0ACF-4098-A341-E99DB5E55773",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-elep_17Oct26",
+      "kind": "SCREENING",
+      "time": "12:30",
+      "title": "Elephants in the Fog",
+      "venueName": "Vue West End, EPIC 1",
+      "section": "Thrill",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=366820AA-B286-47DA-B237-A6943243BBD6&BOparam::WScontent::loadArticle::context_id=A7DEB60B-B0AB-4419-865B-246EEF23FDCB",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-blac_17Oct26",
+      "kind": "SCREENING",
+      "time": "12:45",
+      "title": "Black Church Bay",
+      "venueName": "Vue West End, EPIC 2",
+      "section": "Thrill",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=E432AEAB-4740-44EC-9A88-F004B8E022C3&BOparam::WScontent::loadArticle::context_id=C81B7FBA-DC62-4888-8A62-721E4B906105",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-let_17Oct26",
+      "kind": "SCREENING",
+      "time": "12:50",
+      "title": "Let Them Be Seen",
+      "venueName": "BFI Southbank, Screen NFT2",
+      "section": "Dare",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "LIMITED",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=A3588D54-7E42-4C86-BA50-FC984396B336&BOparam::WScontent::loadArticle::context_id=32227905-E33A-4683-918B-8B2CE89E495F",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-life_17Oct26",
+      "kind": "SCREENING",
+      "time": "13:00",
+      "title": "LFF for Free: A Life in Scripts: In Conversation with Andrew Davies",
+      "venueName": "BFI Southbank, BFI Reuben Library",
+      "section": "LFF for Free",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£0.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=C8EE907C-F553-4D07-9DD9-51941887BFBB&BOparam::WScontent::loadArticle::context_id=6F42B44C-D34F-48EC-8C20-4978A91EBC3D",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-every_17Oct26",
+      "kind": "SCREENING",
+      "time": "13:00",
+      "title": "Everytime",
+      "venueName": "BFI Southbank, Screen NFT3",
+      "section": "Dare",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=C98607B9-8674-42FA-8097-E4A2F645E20F&BOparam::WScontent::loadArticle::context_id=CC732CA2-DE9E-4D6D-BB81-510398753EBD",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-jose_17Oct26",
+      "kind": "SCREENING",
+      "time": "13:30",
+      "title": "Josephine",
+      "venueName": "ICA Cinema, Screen 1",
+      "section": "Thrill",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=07786114-EA60-4546-B364-BE34E7B2AD7C&BOparam::WScontent::loadArticle::context_id=7D79DE1B-5A32-465A-BA7F-4005C73D24C6",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-what_17Oct26",
+      "kind": "SCREENING",
+      "time": "14:00",
+      "title": "LFF for Free: What Makes a Man a Man?",
+      "venueName": "BFI Southbank, Screen NFT4",
+      "section": "LFF for Free",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£0.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=AD7E18C1-F327-4F89-8405-7D85D4C2B9B1&BOparam::WScontent::loadArticle::context_id=711EEACC-4220-440F-8FCE-CD9623B86A51",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-fjor_17Oct26_24",
+      "kind": "SCREENING",
+      "time": "14:00",
+      "title": "Fjord",
       "venueName": "Southbank Centre, Royal Festival Hall",
       "section": "Galas",
       "grade": null,
@@ -507,47 +619,127 @@
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=2084DC0D-E60B-4F10-BC22-054FC10EC097&BOparam::WScontent::loadArticle::context_id=4E2ABD23-7013-41E6-A7BB-8883A1F24592",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=53C0DDAB-6573-4065-9C23-4AAC7E8A5306&BOparam::WScontent::loadArticle::context_id=49AA02BE-C3B5-40F5-BEA5-B1E08EDCACA3",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-dao_16Oct26",
+      "id": "bfi-2026-20261017-day_17Oct26",
       "kind": "SCREENING",
-      "time": "14:50",
-      "title": "Dao",
-      "venueName": "ICA Cinema, Screen 1",
-      "section": "Love",
+      "time": "14:15",
+      "title": "A Day in the Life of Jo: Chapter Phaedra",
+      "venueName": "Curzon Soho Cinema, Screen 1",
+      "section": "Dare",
       "grade": null,
       "subtitle": null,
       "qa": false,
       "ticketStatus": "LIMITED",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=6E89186A-BE14-469E-BD05-CAC48BB6F0B6&BOparam::WScontent::loadArticle::context_id=19C0C0F8-039D-4CBA-A62E-1DC89763CD9B",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=2A837E3C-A58D-40A1-A182-F31945104C75&BOparam::WScontent::loadArticle::context_id=051EA1AB-24E1-4B37-919E-C9262BB79345",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-being_rep_16Oct26",
+      "id": "bfi-2026-20261017-long_rep_2_17Oct26",
       "kind": "SCREENING",
-      "time": "14:50",
-      "title": "Being Heumann",
-      "venueName": "Vue West End, EPIC 1",
+      "time": "14:30",
+      "title": "A Long Winter",
+      "venueName": "Curzon Soho Cinema, Screen 2",
       "section": "Galas",
       "grade": null,
       "subtitle": null,
       "qa": false,
-      "ticketStatus": "LIMITED",
+      "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=1EA9539E-4E4D-4FA6-A89E-193446DA9068&BOparam::WScontent::loadArticle::context_id=F3273DB5-FB25-4185-A8B5-2BFD7F3731A5",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=0FAB96ED-8195-49BB-98BB-58696710A5B4&BOparam::WScontent::loadArticle::context_id=D1C4DB1C-C76A-4930-95A9-FCBD721C7031",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-itwill_16Oct26",
+      "id": "bfi-2026-20261017-long_rep_3_17Oct26",
       "kind": "SCREENING",
-      "time": "15:15",
-      "title": "It Will Happen Tonight",
+      "time": "14:45",
+      "title": "A Long Winter",
+      "venueName": "Curzon Soho Cinema, Screen 3",
+      "section": "Galas",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=0FAB96ED-8195-49BB-98BB-58696710A5B4&BOparam::WScontent::loadArticle::context_id=D593BE0A-634C-42FB-AF30-4BC4D64EAC53",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-alte_17Oct26",
+      "kind": "SCREENING",
+      "time": "14:50",
+      "title": "Altered States",
+      "venueName": "BFI Southbank, Screen NFT2",
+      "section": "Shorts",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=5088BF01-1410-42EC-A57E-1AA7861E2801&BOparam::WScontent::loadArticle::context_id=1E40CA04-DE19-4967-9454-AA070A2D4F36",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-into_17Oct26",
+      "kind": "SCREENING",
+      "time": "15:00",
+      "title": "LFF for Free: Into the Web: How Internet Culture is Transforming Filmmaking",
+      "venueName": "BFI Southbank, BFI Reuben Library",
+      "section": "LFF for Free",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£0.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=CC46379E-8322-46FD-9788-49E22433B596&BOparam::WScontent::loadArticle::context_id=09E1B1AE-0D11-43BA-9375-67BDD85D7325",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-woma_17Oct26",
+      "kind": "SCREENING",
+      "time": "15:00",
+      "title": "Woman Unknown",
       "venueName": "BFI Southbank, Screen NFT1",
+      "section": "LFFAWARDS",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=EFA6F6D3-B075-424A-B40C-CF2E9B8AB549&BOparam::WScontent::loadArticle::context_id=628FDA16-6B47-4ADC-A3E6-570D5873A395",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-paper_rep_17Oct26",
+      "kind": "SCREENING",
+      "time": "15:00",
+      "title": "Paper Tiger",
+      "venueName": "Prince Charles Cinema, Downstairs Screen",
+      "section": "Galas",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=3AD3D9E6-E125-4B88-9B96-7A264DA0B7B4&BOparam::WScontent::loadArticle::context_id=35BE2719-B6D6-4990-A282-5C439147815A",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-frank_17Oct26",
+      "kind": "SCREENING",
+      "time": "15:00",
+      "title": "Frank and Percy",
+      "venueName": "Vue West End, EPIC 1",
       "section": "Love",
       "grade": null,
       "subtitle": null,
@@ -555,14 +747,14 @@
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=C35312A4-391C-4AAD-8ED1-771CF4FF0B88&BOparam::WScontent::loadArticle::context_id=7E8DCFFF-9EE1-47E2-A90A-A92DE730BEDE",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=728B509B-4F24-41FA-A9F0-385ED151D17A&BOparam::WScontent::loadArticle::context_id=C9481C50-6A55-4ED3-AEF2-BECDCA41568E",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-behem_rep_16Oct26",
+      "id": "bfi-2026-20261017-klara_rep_17Oct26",
       "kind": "SCREENING",
       "time": "15:20",
-      "title": "Behemoth!",
+      "title": "Klara and the Sun",
       "venueName": "Vue West End, EPIC 2",
       "section": "Galas",
       "grade": null,
@@ -571,47 +763,127 @@
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=BD17B246-EA27-41B9-9CDC-F284E6002A87&BOparam::WScontent::loadArticle::context_id=29EF030D-8496-4BA1-ACAA-30CF5A8647F4",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=2084DC0D-E60B-4F10-BC22-054FC10EC097&BOparam::WScontent::loadArticle::context_id=8ED9C618-30F8-42C1-8649-94EF9E96A85F",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-moon_16Oct26",
+      "id": "bfi-2026-20261017-hist_17Oct26",
       "kind": "SCREENING",
-      "time": "15:50",
-      "title": "Moonglow",
-      "venueName": "BFI Southbank, Screen NFT2",
-      "section": "Thrill",
+      "time": "15:45",
+      "title": "The History of Concrete",
+      "venueName": "BFI Southbank, Screen NFT3",
+      "section": "Laugh",
       "grade": null,
       "subtitle": null,
       "qa": false,
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=233FFBBA-C8AC-491B-B6E4-EBD516C6EC66&BOparam::WScontent::loadArticle::context_id=FD7297CE-5D5E-4C3C-B2EB-E315299B1AF2",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=B920AEC2-1258-4533-83E6-26D74E5D344D&BOparam::WScontent::loadArticle::context_id=3F7964D9-ED1D-4E19-B428-5522389596BD",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-whisp_16Oct26",
+      "id": "bfi-2026-20261017-vers_17Oct26",
       "kind": "SCREENING",
       "time": "16:00",
-      "title": "In a Whisper",
-      "venueName": "BFI Southbank, Screen NFT3",
-      "section": "Love",
+      "title": "LFF for Free: Versions of Me",
+      "venueName": "BFI Southbank, Screen NFT4",
+      "section": "LFF for Free",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£0.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=CADD4F17-4883-4684-B1F3-3DC79666966A&BOparam::WScontent::loadArticle::context_id=31BEEB90-F3CA-456C-9BF3-7543AB317DD6",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-shab_17Oct26",
+      "kind": "SCREENING",
+      "time": "16:15",
+      "title": "Shab-Nameh: Women of Iran’s Forgotten Left",
+      "venueName": "ICA Cinema, Screen 1",
+      "section": "Special Presentations",
       "grade": null,
       "subtitle": null,
       "qa": false,
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=F3927A7C-B37C-4DF6-8020-F8DD5751F71D&BOparam::WScontent::loadArticle::context_id=B3D9E256-D78C-4F80-98BD-34AA4AEDC61D",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=F4BAE171-5E4D-4BAA-A068-6E1035235D3B&BOparam::WScontent::loadArticle::context_id=2A19DC6D-D2D3-4D50-95E5-FAAF3EC7C3FC",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-every_16Oct26",
+      "id": "bfi-2026-20261017-behi_17Oct26",
+      "kind": "SCREENING",
+      "time": "17:00",
+      "title": "LFF for Free: Behind the Screens: The Film Locations Quiz",
+      "venueName": "BFI Southbank, BFI Reuben Library",
+      "section": "LFF for Free",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£0.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=8D4E9A16-9ACE-481C-A857-BABCF925A553&BOparam::WScontent::loadArticle::context_id=5181FCF1-57E9-4C2B-8E9C-2B19BC41AD7C",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-echo_17Oct26",
+      "kind": "SCREENING",
+      "time": "17:15",
+      "title": "The Echo Chamber",
+      "venueName": "Curzon Soho Cinema, Screen 1",
+      "section": "Create",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=9D8B1B72-3CEC-443B-AC0E-1C9CE24C7BDC&BOparam::WScontent::loadArticle::context_id=B13A4063-329F-4379-BF71-66EC220169C6",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-perf_17Oct26",
+      "kind": "SCREENING",
+      "time": "17:20",
+      "title": "Perfect Road",
+      "venueName": "BFI Southbank, Screen NFT2",
+      "section": "Journey",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=E5547DD3-A7B4-4FBD-91A3-8A02E65A6952&BOparam::WScontent::loadArticle::context_id=37231F4F-5E4D-48F1-B88B-6C43BCFA205C",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-masc_17Oct26",
       "kind": "SCREENING",
       "time": "17:30",
-      "title": "Everytime",
-      "venueName": "Curzon Soho Cinema, Screen 1",
+      "title": "Relaxed Screening: Masc",
+      "venueName": "BFI Southbank, NFT4",
+      "section": "LFFAWARDS",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£6.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=06314EEC-EA95-4D68-B28D-5968876E34BE&BOparam::WScontent::loadArticle::context_id=1095AF89-F1F5-4DE6-8E28-39CAD9208ACA",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-filip_17Oct26",
+      "kind": "SCREENING",
+      "time": "17:30",
+      "title": "Filipinana",
+      "venueName": "Vue West End, EPIC 1",
       "section": "Dare",
       "grade": null,
       "subtitle": null,
@@ -619,14 +891,254 @@
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=C98607B9-8674-42FA-8097-E4A2F645E20F&BOparam::WScontent::loadArticle::context_id=78E0F7DF-AF2D-4407-8E18-E0C6E4E9E8A7",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=F17B9C90-3774-4EBB-8334-E80D09E34348&BOparam::WScontent::loadArticle::context_id=4BD56BB7-75BB-4902-A4A8-3842437D048E",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-godz_16Oct26",
+      "id": "bfi-2026-20261017-look_17oct26",
       "kind": "SCREENING",
-      "time": "17:30",
-      "title": "Godzilla Minus Zero",
+      "time": "17:40",
+      "title": "Look Back",
+      "venueName": "Prince Charles Cinema, Downstairs Screen",
+      "section": "LFFAWARDS",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=16502BF8-16E5-47A9-B9C3-2926A0E722BF&BOparam::WScontent::loadArticle::context_id=B06142E7-46A7-40AE-A657-50B1138764A5",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-good_17Oct26",
+      "kind": "SCREENING",
+      "time": "17:45",
+      "title": "A Good Little Soldier",
+      "venueName": "Curzon Soho Cinema, Screen 2",
+      "section": "Debate",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£8.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=1FB3CFC4-39F3-47E0-A142-317E82B71BAD&BOparam::WScontent::loadArticle::context_id=C189D92E-B8F0-4705-A968-841C391350B0",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-your_17Oct26_24",
+      "kind": "SCREENING",
+      "time": "17:45",
+      "title": "Your Mother Your Mother Your Mother",
+      "venueName": "Southbank Centre, Royal Festival Hall",
+      "section": "Galas",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=D6334F71-0AAF-415A-87E4-C0D4EFC6207B&BOparam::WScontent::loadArticle::context_id=66EE0B0D-D2C2-4ABA-8EA3-96AA75E8B35D",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-good_s3_17Oct26",
+      "kind": "SCREENING",
+      "time": "18:00",
+      "title": "A Good Little Soldier",
+      "venueName": "Curzon Soho Cinema, Screen 3",
+      "section": "Debate",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£8.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=1FB3CFC4-39F3-47E0-A142-317E82B71BAD&BOparam::WScontent::loadArticle::context_id=3A210A35-1448-4ED7-88B4-6F1551D232C3",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-bito_17Oct26",
+      "kind": "SCREENING",
+      "time": "18:00",
+      "title": "A Bit of Light",
+      "venueName": "Vue West End, EPIC 2",
+      "section": "Journey",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=CB2D7A06-218D-4916-993A-4AF2A620A169&BOparam::WScontent::loadArticle::context_id=D9B749B1-B710-4778-8627-0E9FABCC525E",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-7mil_17Oct26",
+      "kind": "SCREENING",
+      "time": "18:05",
+      "title": "7 Miles Out",
+      "venueName": "BFI Southbank, Screen NFT1",
+      "section": "LFFAWARDS",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=09A8D275-A6A4-4F2D-AB82-FD6233BBCA50&BOparam::WScontent::loadArticle::context_id=A4BD69A7-6A0D-4401-AE9C-B2B446A828DF",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-swee_17Oct26",
+      "kind": "SCREENING",
+      "time": "18:10",
+      "title": "Sweet Milk Lake",
+      "venueName": "BFI Southbank, Screen NFT3",
+      "section": "Special Presentations",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=41E106D6-B2B8-42AE-BC01-91295DCB62E4&BOparam::WScontent::loadArticle::context_id=E2C7EFF9-817D-46AC-9BDB-9691C458A4BD",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-cade_17Oct26",
+      "kind": "SCREENING",
+      "time": "18:20",
+      "title": "Cadences of Resistance",
+      "venueName": "ICA Cinema, Screen 1",
+      "section": "Experimenta",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=8966D303-90EC-4AAA-8289-CB765BFF4981&BOparam::WScontent::loadArticle::context_id=063AC249-E3CD-4A5D-91F0-046D4150F06B",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-mari_17Oct26",
+      "kind": "SCREENING",
+      "time": "19:30",
+      "title": "Mariinka",
+      "venueName": "BFI Southbank, Screen NFT4",
+      "section": "Debate",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=5C117F0B-50AB-40DF-863A-33B30831577D&BOparam::WScontent::loadArticle::context_id=02C078AC-B3BA-430C-83CF-2C3E0F375AE6",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-mino_rep_17Oct26",
+      "kind": "SCREENING",
+      "time": "20:00",
+      "title": "Minotaur",
+      "venueName": "Curzon Soho Cinema, Screen 1",
+      "section": "Galas",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=B811D4E7-561B-476B-967B-012ED9F0944D&BOparam::WScontent::loadArticle::context_id=99FF6604-B3B9-4BC0-871B-A87D8435DABB",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-alla_17Oct26",
+      "kind": "SCREENING",
+      "time": "20:00",
+      "title": "All About the Money",
+      "venueName": "Vue West End, EPIC 1",
+      "section": "Debate",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=CAB7A563-C8AE-4073-85EE-B4123243DF38&BOparam::WScontent::loadArticle::context_id=CF83B4F4-7102-4351-A30A-C0B010C11653",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-clar_17Oct26",
+      "kind": "SCREENING",
+      "time": "20:10",
+      "title": "Clarissa",
+      "venueName": "BFI Southbank, Screen NFT2",
+      "section": "Journey",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=0104574D-FDF3-474A-A8DC-41DDBAB423A7&BOparam::WScontent::loadArticle::context_id=8B654CF7-0E66-417B-98F3-20ED6F6BCB18",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-atlant_2_17Oct26",
+      "kind": "SCREENING",
+      "time": "20:15",
+      "title": "Atlantic Rhapsody",
+      "venueName": "Curzon Soho Cinema, Screen 2",
+      "section": "Dare",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=28C9D8FC-8508-4A57-B81D-F291EA8D58D0&BOparam::WScontent::loadArticle::context_id=05ED073E-B5DD-4C31-AF44-8D391BF122C8",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-isee_17Oct26",
+      "kind": "SCREENING",
+      "time": "20:30",
+      "title": "I See Myself",
+      "venueName": "BFI Southbank, Screen NFT3",
+      "section": "Shorts",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=58B2D7B9-2556-41FE-B0CB-02A26704BB51&BOparam::WScontent::loadArticle::context_id=38411006-AC09-4356-BC67-9B917571860B",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-atlant_3_17Oct26",
+      "kind": "SCREENING",
+      "time": "20:30",
+      "title": "Atlantic Rhapsody",
+      "venueName": "Curzon Soho Cinema, Screen 3",
+      "section": "Dare",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "minPrice": "£10.00",
+      "ticketUrl": null,
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=28C9D8FC-8508-4A57-B81D-F291EA8D58D0&BOparam::WScontent::loadArticle::context_id=DF83D7CF-61DE-4810-9B24-03E11675905E",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
+     },
+     {
+      "id": "bfi-2026-20261017-face_17Oct26",
+      "kind": "SCREENING",
+      "time": "20:30",
+      "title": "The Face of Horror",
       "venueName": "Prince Charles Cinema, Downstairs Screen",
       "section": "Cult",
       "grade": null,
@@ -635,302 +1147,30 @@
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=9B2BD431-5519-483A-AEF9-D2CA4A701D81&BOparam::WScontent::loadArticle::context_id=BD8ADF0A-3FCB-4720-AEEE-E53DF6A279D6",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=AC43BE8D-8021-4A9B-99D3-FDC8AD3CF261&BOparam::WScontent::loadArticle::context_id=C2C73AFC-14CD-4831-AB2E-248D8A16A98D",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-mino_16Oct26_24",
+      "id": "bfi-2026-20261017-act3_17Oct26",
       "kind": "SCREENING",
-      "time": "17:45",
-      "title": "Minotaur",
-      "venueName": "Southbank Centre, Royal Festival Hall",
-      "section": "Galas",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=B811D4E7-561B-476B-967B-012ED9F0944D&BOparam::WScontent::loadArticle::context_id=91E3F006-E13C-4838-9279-70FB3D778DD5",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-plac_16Oct26",
-      "kind": "SCREENING",
-      "time": "17:45",
-      "title": "A Place to Heal",
-      "venueName": "Vue West End, EPIC 1",
-      "section": "Journey",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "LIMITED",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=ABFBF3D3-D3CC-4058-99AF-5747EC910463&BOparam::WScontent::loadArticle::context_id=FF08EAB1-82AF-4F37-B8CA-2E0FD34414B1",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-myno_16Oct26",
-      "kind": "SCREENING",
-      "time": "18:00",
-      "title": "My Notes on Mars",
-      "venueName": "BFI Southbank, Screen NFT1",
-      "section": "LFFAWARDS",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=C4D6292C-D733-47B2-A10F-FE8D8BE745B0&BOparam::WScontent::loadArticle::context_id=04A40045-6857-40A5-8D19-7C024C057BA0",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-sumo_16Oct26",
-      "kind": "SCREENING",
-      "time": "18:00",
-      "title": "Sumo: Spirit Weighs Nothing",
-      "venueName": "Curzon Soho Cinema, Screen 2",
-      "section": "LFFAWARDS",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=4F7BD72C-1B61-4ED9-83D9-77FE4F547DF6&BOparam::WScontent::loadArticle::context_id=9995A35E-DB4B-4359-A5BD-D584AF4AAD76",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-sumo_s3_16Oct26",
-      "kind": "SCREENING",
-      "time": "18:15",
-      "title": "Sumo: Spirit Weighs Nothing",
-      "venueName": "Curzon Soho Cinema, Screen 3",
-      "section": "LFFAWARDS",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=4F7BD72C-1B61-4ED9-83D9-77FE4F547DF6&BOparam::WScontent::loadArticle::context_id=4A669031-32DC-4E8A-AF1A-740B764C585D",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-dann_16Oct26",
-      "kind": "SCREENING",
-      "time": "18:15",
-      "title": "Screen Talk: Danny Boyle",
-      "venueName": "LFF 2026 HOME, Manchester",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "NOT_ON_SALE",
-      "minPrice": "£0.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=140C7AAE-B5D3-40B5-A59F-B2F5405DE3CD&BOparam::WScontent::loadArticle::context_id=BADD7985-F0E3-4B49-A219-056E15FE5E2C",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-iseem_16Oct26",
-      "kind": "SCREENING",
-      "time": "18:15",
-      "title": "I See Myself",
-      "venueName": "Vue West End, EPIC 2",
-      "section": "Shorts",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=58B2D7B9-2556-41FE-B0CB-02A26704BB51&BOparam::WScontent::loadArticle::context_id=4D62A519-8FAF-41C2-8956-6A3AA08BABA3",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-amaz_16Oct26",
-      "kind": "SCREENING",
-      "time": "18:20",
-      "title": "Amazomania",
-      "venueName": "BFI Southbank, Screen NFT2",
-      "section": "Debate",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=C469088E-19E3-45EA-BFFA-3B8CE6F57087&BOparam::WScontent::loadArticle::context_id=90E4B1DE-B02E-4AF3-9499-372EF836D764",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-pane_16Oct26",
-      "kind": "SCREENING",
-      "time": "18:35",
-      "title": "Panelstory, or How a Housing Development is Born",
-      "venueName": "BFI Southbank, Screen NFT3",
-      "section": "Debate",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=CAFF7908-9739-4DDF-A9E0-A9AADF2EFAB6&BOparam::WScontent::loadArticle::context_id=5312C0F7-A12D-4786-A3A8-FCB333ED568D",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-let_16Oct26",
-      "kind": "SCREENING",
-      "time": "18:40",
-      "title": "Let Them Be Seen",
+      "time": "20:40",
+      "title": "Act 3",
       "venueName": "ICA Cinema, Screen 1",
-      "section": "Dare",
+      "section": "LFFAWARDS",
       "grade": null,
       "subtitle": null,
       "qa": false,
       "ticketStatus": "GOOD",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=A3588D54-7E42-4C86-BA50-FC984396B336&BOparam::WScontent::loadArticle::context_id=E450D2D6-CBB9-4B7C-A248-D6DD66B5411E",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=1180DCE7-A5D5-415E-9CD6-1A4810A608C6&BOparam::WScontent::loadArticle::context_id=1547F1F9-B206-413D-8C92-1932B63A2DAD",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-swee_16Oct26",
-      "kind": "SCREENING",
-      "time": "20:15",
-      "title": "Sweet Milk Lake",
-      "venueName": "Curzon Soho Cinema, Screen 1",
-      "section": "Special Presentations",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=41E106D6-B2B8-42AE-BC01-91295DCB62E4&BOparam::WScontent::loadArticle::context_id=EFD6952D-4B77-4D51-BE54-4A389D68DF86",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-good_16Oct26",
-      "kind": "SCREENING",
-      "time": "20:20",
-      "title": "A Good Little Soldier",
-      "venueName": "Vue West End, EPIC 1",
-      "section": "Debate",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£8.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=1FB3CFC4-39F3-47E0-A142-317E82B71BAD&BOparam::WScontent::loadArticle::context_id=FB0DFB0F-EE00-48EA-984D-0DBB5E13D134",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-perf_16Oct26",
-      "kind": "SCREENING",
-      "time": "20:30",
-      "title": "Perfect Road",
-      "venueName": "Curzon Soho Cinema, Screen 2",
-      "section": "Journey",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=E5547DD3-A7B4-4FBD-91A3-8A02E65A6952&BOparam::WScontent::loadArticle::context_id=5CCC0C77-BAB4-49C7-A66C-A7BC93115DF7",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-idio_16Oct26",
-      "kind": "SCREENING",
-      "time": "20:30",
-      "title": "The Idiot(s)",
-      "venueName": "Prince Charles Cinema, Downstairs Screen",
-      "section": "LFFAWARDS",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=C6DB9418-5B28-4863-BFDA-3B5BCB605B34&BOparam::WScontent::loadArticle::context_id=33C7F4DD-12A1-4E36-9A50-E052C30F5BAD",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-isee_16Oct26",
-      "kind": "SCREENING",
-      "time": "20:40",
-      "title": "I See Buildings Fall Like Lightning",
-      "venueName": "BFI Southbank, Screen NFT1",
-      "section": "Debate",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=C431663D-B135-46D4-B376-D506B32C807B&BOparam::WScontent::loadArticle::context_id=D00BE5BE-DFDC-494B-9916-7F4E9C117436",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-hana_16Oct26",
-      "kind": "SCREENING",
-      "time": "20:40",
-      "title": "Hanabi",
-      "venueName": "ICA Cinema, Screen 1",
-      "section": "Experimenta",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "GOOD",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=C4E10862-6580-415D-9D0B-436089A7E64E&BOparam::WScontent::loadArticle::context_id=D794EF77-4980-49B5-8489-AACAABD24214",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-perf_s3_16Oct26",
+      "id": "bfi-2026-20261017-ilove_rep_17Oct26",
       "kind": "SCREENING",
       "time": "20:45",
-      "title": "Perfect Road",
-      "venueName": "Curzon Soho Cinema, Screen 3",
-      "section": "Journey",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=E5547DD3-A7B4-4FBD-91A3-8A02E65A6952&BOparam::WScontent::loadArticle::context_id=0820516F-3A62-4EBC-BA1E-EC424B4B7B3C",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-atlant_16Oct26",
-      "kind": "SCREENING",
-      "time": "20:50",
-      "title": "Atlantic Rhapsody",
-      "venueName": "BFI Southbank, Screen NFT2",
-      "section": "Dare",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "minPrice": "£10.00",
-      "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=28C9D8FC-8508-4A57-B81D-F291EA8D58D0&BOparam::WScontent::loadArticle::context_id=AE9045B7-8406-4665-9B57-1D688875DA4F",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
-     },
-     {
-      "id": "bfi-2026-20261016-prima_rep_16Oct26",
-      "kind": "SCREENING",
-      "time": "20:50",
-      "title": "Prima Facie",
+      "title": "I Love Boosters",
       "venueName": "Vue West End, EPIC 2",
       "section": "Galas",
       "grade": null,
@@ -939,14 +1179,14 @@
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=DC0A9CAE-E2C5-4A8A-B071-7C514B686FE7&BOparam::WScontent::loadArticle::context_id=B482F2BA-298E-463A-8AC7-D4610B3A910D",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=D856CBE7-F93F-408A-9E42-36927C0D96BF&BOparam::WScontent::loadArticle::context_id=3B5B03B9-A606-4FB9-ABD4-BF565D6DEDF7",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-jour_16Oct26",
+      "id": "bfi-2026-20261017-back_17Oct26",
       "kind": "SCREENING",
       "time": "21:00",
-      "title": "LFF for Free: DJ Night: 7 Miles Out: Journey to The Hacienda",
+      "title": "LFF for Free: DJ Night: Club Labor: Back to 2016",
       "venueName": "BFI Southbank, BFI Bar",
       "section": "LFF",
       "grade": null,
@@ -955,44 +1195,44 @@
       "ticketStatus": "NOT_ON_SALE",
       "minPrice": "£0.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=4F5B8648-4582-48D4-B529-6A262A110BE8&BOparam::WScontent::loadArticle::context_id=5451212F-00CF-4EE1-BA58-8173E5E40A97",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=03FD093A-5BB3-4A6B-8443-A53AEAF675F7&BOparam::WScontent::loadArticle::context_id=BCC59DF4-D405-4AE4-A474-BB11DC40A441",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-carl_16Oct26",
+      "id": "bfi-2026-20261017-club_17Oct26_24",
       "kind": "SCREENING",
       "time": "21:00",
-      "title": "Carl Sagan: We Are Made of Star Stuff",
-      "venueName": "BFI Southbank, Screen NFT3",
-      "section": "Create",
+      "title": "Club Kid",
+      "venueName": "Southbank Centre, Royal Festival Hall",
+      "section": "Galas",
       "grade": null,
       "subtitle": null,
       "qa": false,
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=FD7C9EFB-E6EC-4AB0-AC3D-393E824CC4F2&BOparam::WScontent::loadArticle::context_id=8674F4C6-A815-41B8-A2AF-955D52255639",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=CD8DE2A0-5C42-427D-97C1-B97C8CBCA0AA&BOparam::WScontent::loadArticle::context_id=EEFB4014-D227-4E9C-8692-B28029C57F02",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      },
      {
-      "id": "bfi-2026-20261016-surp_16Oct26_21",
+      "id": "bfi-2026-20261017-trip_17Oct26",
       "kind": "SCREENING",
-      "time": "21:15",
-      "title": "Surprise Film",
-      "venueName": "Southbank Centre, Royal Festival Hall",
-      "section": "LFFEVENTS",
+      "time": "21:10",
+      "title": "The Trip to the Northern Lights",
+      "venueName": "BFI Southbank, Screen NFT1",
+      "section": "Special Presentations",
       "grade": null,
       "subtitle": null,
       "qa": false,
       "ticketStatus": "SOLD_OUT",
       "minPrice": "£10.00",
       "ticketUrl": null,
-      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=6876974C-8DE1-4941-8D2D-8C88284702D0&BOparam::WScontent::loadArticle::context_id=DD243B04-6564-4A37-AE4D-B1A53D250D74",
-      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016"
+      "eventUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?doWork::WScontent::loadArticle=Load&BOparam::WScontent::loadArticle::article_id=9098C971-A426-4FB4-ADAD-7DF8D1ECFFA3&BOparam::WScontent::loadArticle::context_id=D91744A3-9EE2-46B8-B26A-AADEEE84E097",
+      "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017"
      }
     ]
    },
-   "nextScreeningDate": "2026-10-17",
+   "nextScreeningDate": "2026-10-18",
    "sources": [
     {
      "kind": "SCHEDULE",
@@ -1000,7 +1240,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261007",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1008,7 +1248,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261008",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1016,7 +1256,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261009",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1024,7 +1264,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261010",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1032,7 +1272,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261011",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1040,7 +1280,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261012",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1048,7 +1288,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261013",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1056,7 +1296,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261014",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1064,7 +1304,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261015",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1072,7 +1312,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1080,7 +1320,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "SCHEDULE",
@@ -1088,7 +1328,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261018",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "PROGRAMME_CHANGES",
@@ -1096,12 +1336,12 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=programme-changes-lff",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     }
    ],
-   "fetchedAt": "2026-10-16T22:01:16Z",
-   "lastVerifiedAt": "2026-10-16T22:01:16Z",
-   "dataAgeMinutes": 4,
+   "fetchedAt": "2026-10-17T00:19:21Z",
+   "lastVerifiedAt": "2026-10-17T00:19:21Z",
+   "dataAgeMinutes": 0,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -1218,7 +1458,7 @@
      "url": "https://cinefan.hkiff.org.hk/schedule",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "PROGRAMME",
@@ -1226,7 +1466,7 @@
      "url": "https://cinefan.hkiff.org.hk/period/2026/sep-oct-2026",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1234,7 +1474,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1242,7 +1482,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1250,7 +1490,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/bird-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1258,7 +1498,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/changeling-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1266,7 +1506,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1274,7 +1514,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1282,7 +1522,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1290,7 +1530,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1298,7 +1538,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/juror2-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1306,7 +1546,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1314,7 +1554,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1322,7 +1562,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1330,7 +1570,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1338,7 +1578,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1346,7 +1586,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1354,7 +1594,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1362,7 +1602,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1370,7 +1610,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1378,7 +1618,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1386,7 +1626,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1394,7 +1634,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -1402,12 +1642,12 @@
      "url": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-16T22:01:16Z"
+     "fetchedAt": "2026-10-17T00:19:21Z"
     }
    ],
-   "fetchedAt": "2026-10-16T22:01:16Z",
-   "lastVerifiedAt": "2026-10-16T22:01:16Z",
-   "dataAgeMinutes": 4,
+   "fetchedAt": "2026-10-17T00:19:21Z",
+   "lastVerifiedAt": "2026-10-17T00:19:21Z",
+   "dataAgeMinutes": 0,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -1572,7 +1812,7 @@
    ],
    "fetchedAt": "2026-10-16T22:01:38.884Z",
    "lastVerifiedAt": "2026-10-16T22:01:38.884Z",
-   "dataAgeMinutes": 3,
+   "dataAgeMinutes": 138,
    "changes7d": 981,
    "dataSource": "official"
   },
@@ -1665,7 +1905,7 @@
    ],
    "fetchedAt": "2026-10-16T22:01:38Z",
    "lastVerifiedAt": "2026-10-16T22:01:38Z",
-   "dataAgeMinutes": 3,
+   "dataAgeMinutes": 138,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -1750,7 +1990,7 @@
    ],
    "fetchedAt": "2026-10-16T22:05:03Z",
    "lastVerifiedAt": "2026-10-16T22:05:03Z",
-   "dataAgeMinutes": 0,
+   "dataAgeMinutes": 134,
    "changes7d": 0,
    "dataSource": "official"
   }
