@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "movies": [
     {
       "tmdbId": 1058424,
@@ -10,7 +10,7 @@
       "year": "2026",
       "releaseDate": "2026-07-15",
       "poster": "https://image.tmdb.org/t/p/w500/cNdHFtoePvOp5nxqwWNg9BJLQ8g.jpg",
-      "rating": 6.904,
+      "rating": 6.9,
       "genre": [
         "Sci-Fi",
         "Mystery",
@@ -22,42 +22,22 @@
       "trend": "new"
     },
     {
-      "tmdbId": 969681,
-      "title": "蜘蛛侠：崭新之日",
-      "titleEn": "Spider-Man: Brand New Day",
+      "tmdbId": 1561726,
+      "title": "大师计划",
+      "titleEn": "Masterplan",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-07-29",
-      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
-      "rating": 8.468,
+      "releaseDate": "2026-10-16",
+      "poster": "https://image.tmdb.org/t/p/w500/AqZnhdnnoo4YQiFXm4LmwoMaWWw.jpg",
+      "rating": 7.071,
       "genre": [
-        "Sci-Fi",
         "Action",
-        "Adventure"
+        "Thriller"
       ],
-      "summary": "彼得·帕克以蜘蛛侠的身份全职打击犯罪，却发现自己的身体发生了无法控制的变化。与此同时，一股神秘而强大的新威胁正向他和所爱之人逼近。",
-      "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
+      "summary": "老牌神偷罗杰锁定卢浮宫镇馆之宝《蒙娜丽莎》，组建一支背景复杂、彼此猜忌的小队执行这场惊天盗窃。行动危机四伏，严密安保与暗处敌人层层围堵，原定计划接连崩坏，所有人被迫卷入一场凶险的生死博弈。",
+      "summaryEn": "When a legendary thief sets his sights on the Mona Lisa, he recruits two young strangers to help him before revealing they are long-lost siblings… and oh yes, by the way, he is their father. Thrown in",
       "rank": 2,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1153576,
-      "title": "街头霸王",
-      "titleEn": "Street Fighter",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-10-13",
-      "poster": "https://image.tmdb.org/t/p/w500/B7id5YjOBmyvlzIRrlhqA051EW.jpg",
-      "rating": 6.3,
-      "genre": [
-        "Action",
-        "Fantasy"
-      ],
-      "summary": "改编自卡普空同名系列格斗游戏。1993年，昔日形同兄弟的街头格斗家隆与肯因春丽的邀请重返赛场，参加世界格斗王大赛。然而，一场致命阴谋潜伏其中，迫使两人再次面对彼此与各自的过去。",
-      "summaryEn": "In 1993, estranged Street Fighters Ryu and Ken Masters are thrown back into combat when the mysterious Chun-Li recruits them for the next World Warrior Tournament: a brutal clash of fists, fate, and f",
-      "rank": 3,
       "trend": "new"
     },
     {
@@ -69,32 +49,52 @@
       "year": "2026",
       "releaseDate": "2026-10-09",
       "poster": "https://image.tmdb.org/t/p/w500/l1Jj0SAqdlbEwSWa8Ags31D5WiZ.jpg",
-      "rating": 8.143,
+      "rating": 8.312,
       "genre": [
         "Drama",
         "History"
       ],
       "summary": "根据真实事件改编。喜马拉雅登山家丹增·诺盖与新西兰登山家埃德蒙·希拉里携手登顶珠穆朗玛峰，成为首批登顶者。在妻子达瓦和探险队秘书吉尔·亨德森的支持下，丹增争取加入英国登山队，在攀登过程中面对文化差异、阶级矛盾与高山险境。",
       "summaryEn": "A determined man embarks on a high-stakes quest—and defies seemingly impossible odds—to fulfill his dream of being the first to reach the summit of Mount Everest.",
+      "rank": 3,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 969681,
+      "title": "蜘蛛侠：崭新之日",
+      "titleEn": "Spider-Man: Brand New Day",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-07-29",
+      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
+      "rating": 8.5,
+      "genre": [
+        "Sci-Fi",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "彼得·帕克以蜘蛛侠的身份全职打击犯罪，却发现自己的身体发生了无法控制的变化。与此同时，一股神秘而强大的新威胁正向他和所爱之人逼近。",
+      "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
       "rank": 4,
       "trend": "new"
     },
     {
-      "tmdbId": 1561726,
-      "title": "大师计划",
-      "titleEn": "Masterplan",
+      "tmdbId": 1153576,
+      "title": "街头霸王",
+      "titleEn": "Street Fighter",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-10-16",
-      "poster": "https://image.tmdb.org/t/p/w500/AqZnhdnnoo4YQiFXm4LmwoMaWWw.jpg",
-      "rating": 7.272,
+      "releaseDate": "2026-10-13",
+      "poster": "https://image.tmdb.org/t/p/w500/B7id5YjOBmyvlzIRrlhqA051EW.jpg",
+      "rating": 6.284,
       "genre": [
         "Action",
-        "Thriller"
+        "Fantasy"
       ],
-      "summary": "老牌神偷罗杰锁定卢浮宫镇馆之宝《蒙娜丽莎》，组建一支背景复杂、彼此猜忌的小队执行这场惊天盗窃。行动危机四伏，严密安保与暗处敌人层层围堵，原定计划接连崩坏，所有人被迫卷入一场凶险的生死博弈。",
-      "summaryEn": "When a legendary thief sets his sights on the Mona Lisa, he recruits two young strangers to help him before revealing they are long-lost siblings… and oh yes, by the way, he is their father. Thrown in",
+      "summary": "改编自卡普空同名系列格斗游戏。1993年，昔日形同兄弟的街头格斗家隆与肯因春丽的邀请重返赛场，参加世界格斗王大赛。然而，一场致命阴谋潜伏其中，迫使两人再次面对彼此与各自的过去。",
+      "summaryEn": "In 1993, estranged Street Fighters Ryu and Ken Masters are thrown back into combat when the mysterious Chun-Li recruits them for the next World Warrior Tournament: a brutal clash of fists, fate, and f",
       "rank": 5,
       "trend": "new"
     },
@@ -107,7 +107,7 @@
       "year": "2026",
       "releaseDate": "2026-09-09",
       "poster": "https://image.tmdb.org/t/p/w500/bJbQFamy07IPMxZHcPLKCTY4b6t.jpg",
-      "rating": 6.928,
+      "rating": 6.977,
       "genre": [
         "Romance",
         "Fantasy",
@@ -119,20 +119,22 @@
       "trend": "new"
     },
     {
-      "tmdbId": 1255833,
-      "title": "鲸口脱险",
-      "titleEn": "Whalefall",
+      "tmdbId": 1400940,
+      "title": "泥面人",
+      "titleEn": "Clayface",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-10-14",
-      "poster": "https://image.tmdb.org/t/p/w500/dGDJlUMPbLPavjrpMwUhmDHCBMB.jpg",
-      "rating": 6.8,
+      "releaseDate": "2026-10-21",
+      "poster": "https://image.tmdb.org/t/p/w500/8AKvV4bJsfUBUZ7cgW41iv3EYaG.jpg",
+      "rating": 8,
       "genre": [
-        "Thriller"
+        "Horror",
+        "Thriller",
+        "Sci-Fi"
       ],
-      "summary": "一场突如其来的意外，让他被巨鲸吞入腹中。受困于漆黑鲸腹之中，他仅剩 一小时氧气。在与时间赛跑、与恐惧正面交锋的同时，父亲留给他的技能，或许正是他逃出生天的唯一希望。",
-      "summaryEn": "Following the death of his father, Jay Gardiner goes diving off the central Coast of California in search of his remains, but is swallowed by a massive sperm whale. While trapped inside its belly with",
+      "summary": "好莱坞新星马特·哈根遭犯罪头目毁容后，为恢复容貌接受先进治疗，却意外陷入疯狂，走上复仇之路。",
+      "summaryEn": "Matt Hagen's meteoric rise from Gotham street kid to Hollywood leading man is tragically cut short when a local crime boss's actions leave him horribly disfigured. Abandoned by his team and with nothi",
       "rank": 7,
       "trend": "new"
     },
@@ -145,7 +147,7 @@
       "year": "2026",
       "releaseDate": "2026-10-09",
       "poster": "https://image.tmdb.org/t/p/w500/4AK2gnG7V8HnMfQT7uiNJo0yMme.jpg",
-      "rating": 7.043,
+      "rating": 6.989,
       "genre": [
         "Thriller",
         "Drama"
@@ -156,40 +158,40 @@
       "trend": "new"
     },
     {
-      "tmdbId": 1148365,
-      "title": "火柴盒大电影",
-      "titleEn": "Matchbox the Movie",
+      "tmdbId": 1255833,
+      "title": "鲸口脱险",
+      "titleEn": "Whalefall",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-10-05",
-      "poster": "https://image.tmdb.org/t/p/w500/qpLaKSlC9OE3Fk1e48jFIekgr5t.jpg",
-      "rating": 7.783,
+      "releaseDate": "2026-10-14",
+      "poster": "https://image.tmdb.org/t/p/w500/dGDJlUMPbLPavjrpMwUhmDHCBMB.jpg",
+      "rating": 6.689,
       "genre": [
-        "Action",
-        "Comedy",
-        "Adventure"
+        "Thriller"
       ],
-      "summary": "一群儿时好友重聚后，生活发生巨变。曾离开家乡的前领袖、中央情报局卧底特工肖恩突然归来，意外将众人卷入一场紧张的国际追逐行动，必须合力拯救世界。",
-      "summaryEn": "When a group of former childhood friends reconnect, their reunion takes a wild turn as they stumble upon a dangerous international plot—and must save the world.",
+      "summary": "一场突如其来的意外，让他被巨鲸吞入腹中。受困于漆黑鲸腹之中，他仅剩 一小时氧气。在与时间赛跑、与恐惧正面交锋的同时，父亲留给他的技能，或许正是他逃出生天的唯一希望。",
+      "summaryEn": "Following the death of his father, Jay Gardiner goes diving off the central Coast of California in search of his remains, but is swallowed by a massive sperm whale. While trapped inside its belly with",
       "rank": 9,
       "trend": "new"
     },
     {
-      "tmdbId": 1765072,
-      "title": "你能看到一切",
-      "titleEn": "You Can See Everything",
+      "tmdbId": 1514026,
+      "title": "逃出布迪秀",
+      "titleEn": "Buddy",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-10-16",
-      "poster": "https://image.tmdb.org/t/p/w500/5zaoousDbGy7uM1s2OH4GqR0aQy.jpg",
-      "rating": 8.4,
+      "releaseDate": "2026-08-27",
+      "poster": "https://image.tmdb.org/t/p/w500/qG84lCvV5wDVBDYaNFPDFWa9IAl.jpg",
+      "rating": 7.1,
       "genre": [
-        "Documentary"
+        "Horror",
+        "Comedy",
+        "Fantasy"
       ],
-      "summary": "在被判入狱前的34天，臭名昭著的硅谷创始人伊丽莎白·霍姆斯邀请了一支持怀疑态度的摄制组记录她的一举一动。起初这是一部关于神秘罪犯的私密肖像，却演变成一场持续3年、坠入深渊的迷幻之旅。",
-      "summaryEn": "Thirty-four days before she's sent to prison, notorious Silicon Valley founder Elizabeth Holmes invites a skeptical film crew to document her every move. What begins as an intimate portrait of an enig",
+      "summary": "一行人意外坠入诡异老式儿童节目次元。画风酷似玛卡巴卡，软萌橙色独角兽巴迪主持欢乐秀场。一旦拒绝配合演出，便会惨遭猎杀，死者还会被节目直接替换。众人被困虚假片场，一边躲避玩偶的疯狂追杀，一边拼死寻找逃出电视空间的出路。",
+      "summaryEn": "A magical, singing orange unicorn holds his cast hostage in a surreal TV-show dimension, as he becomes more and more demented.",
       "rank": 10,
       "trend": "new"
     }
@@ -206,7 +208,7 @@
       "year": "2021",
       "releaseDate": "2021-04-30",
       "poster": "https://image.tmdb.org/t/p/w500/44cNZ5PmLOwTIOkYwlAewgzn8Bl.jpg",
-      "rating": 8.08,
+      "rating": 8,
       "genre": [
         "Animation",
         "Mystery",
@@ -232,7 +234,7 @@
       "year": "2026",
       "releaseDate": "2026-10-13",
       "poster": "https://image.tmdb.org/t/p/w500/9rWX1tRNd1wIf0XnTjd8GOUoTlH.jpg",
-      "rating": 9,
+      "rating": 8.845,
       "genre": [
         "Drama"
       ],
@@ -256,7 +258,7 @@
       "year": "2026",
       "releaseDate": "2026-10-15",
       "poster": "https://image.tmdb.org/t/p/w500/zHxl1KifN0NcbqInngsTApHeWjc.jpg",
-      "rating": 8.4,
+      "rating": 8.434,
       "genre": [
         "Drama",
         "Mystery"
@@ -267,6 +269,56 @@
       "episode": 8,
       "latestAirDate": "2026-10-15",
       "rank": 3,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 288673,
+      "title": "魔女嘉莉",
+      "titleEn": "Carrie",
+      "originalLanguage": "en",
+      "originCountry": [
+        "CA",
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-07",
+      "poster": "https://image.tmdb.org/t/p/w500/xobpaz7TiODcuGhT9dvENFhhVGw.jpg",
+      "rating": 8.341,
+      "genre": [
+        "Mystery",
+        "Drama"
+      ],
+      "summary": "父亲的突然离世迫使嘉莉进入到了残酷的公立高中，她不得不面对席卷社区的校园霸凌丑闻、社交媒体时代无情的压力和冷酷无情，以及伴随青春期而觉醒的神秘心灵感应能力。",
+      "summaryEn": "After her father's sudden, untimely death thrusts her into the unforgiving ecosystem of public high school, Carrie is forced to navigate a viral bullying scandal that tears through her community, the ",
+      "season": 1,
+      "episode": 8,
+      "latestAirDate": "2026-10-07",
+      "rank": 4,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 285322,
+      "title": "暗潮之下",
+      "titleEn": "Below",
+      "originalLanguage": "en",
+      "originCountry": [
+        "CA",
+        "GB"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-08",
+      "poster": "https://image.tmdb.org/t/p/w500/zalCOSxzRZgmZLE7PxYZ9nD6J9z.jpg",
+      "rating": 7.236,
+      "genre": [
+        "Drama",
+        "Mystery"
+      ],
+      "summary": "当一只神秘的海洋生物威胁着纽芬兰的一个小镇时，一位坚韧的渔夫和他的家人奋力保护他们这个紧密相连的社区。",
+      "summaryEn": "When a mysterious sea creature terrorizes a small Newfoundland town, a hard-bitten fisherman and his family fight to protect their close-knit community.",
+      "season": 1,
+      "episode": 6,
+      "latestAirDate": "2026-10-08",
+      "rank": 5,
       "trend": "new"
     },
     {
@@ -292,7 +344,31 @@
       "season": 4,
       "episode": 1,
       "latestAirDate": "2026-10-16",
-      "rank": 4,
+      "rank": 7,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 312359,
+      "title": "龙珠超：比鲁斯",
+      "titleEn": "Dragon Ball Super: Beerus",
+      "originalLanguage": "ja",
+      "originCountry": [
+        "JP"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-11",
+      "poster": "https://image.tmdb.org/t/p/w500/pXmJoNdWldb43N8P6EdDzDpsb7u.jpg",
+      "rating": 9.723,
+      "genre": [
+        "Animation"
+      ],
+      "summary": "魔人布欧之战结束数年后，地球重归和平。沉睡已久的破坏神比鲁斯苏醒，听闻打败弗利萨的赛亚人孙悟空后，突然现身地球。面对拥有毁灭星球之力的比鲁斯，悟空和伙伴们迎来关乎地球存亡的宇宙级战斗。",
+      "summaryEn": "When Beerus, the God of Destruction, awakens in search of a worthy rival, Goku and his friends face an epic battle to stop him from destroying Earth.\n\nRemastered and re-edited version of Dragon Ball S",
+      "nextAirDate": "2026-10-25",
+      "season": 1,
+      "episode": 2,
+      "latestAirDate": "2026-10-18",
+      "rank": 8,
       "trend": "new"
     },
     {
@@ -316,102 +392,6 @@
       "season": 1,
       "episode": 8,
       "latestAirDate": "2026-10-04",
-      "rank": 5,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 288673,
-      "title": "魔女嘉莉",
-      "titleEn": "Carrie",
-      "originalLanguage": "en",
-      "originCountry": [
-        "CA",
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-07",
-      "poster": "https://image.tmdb.org/t/p/w500/xobpaz7TiODcuGhT9dvENFhhVGw.jpg",
-      "rating": 8.342,
-      "genre": [
-        "Mystery",
-        "Drama"
-      ],
-      "summary": "父亲的突然离世迫使嘉莉进入到了残酷的公立高中，她不得不面对席卷社区的校园霸凌丑闻、社交媒体时代无情的压力和冷酷无情，以及伴随青春期而觉醒的神秘心灵感应能力。",
-      "summaryEn": "After her father's sudden, untimely death thrusts her into the unforgiving ecosystem of public high school, Carrie is forced to navigate a viral bullying scandal that tears through her community, the ",
-      "season": 1,
-      "episode": 8,
-      "latestAirDate": "2026-10-07",
-      "rank": 6,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 2190,
-      "title": "南方公园",
-      "titleEn": "South Park",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "1997",
-      "releaseDate": "1997-08-13",
-      "poster": "https://image.tmdb.org/t/p/w500/aqroh5nCMtxWFKjXEhrqXpe1HPO.jpg",
-      "rating": 8.329,
-      "genre": [
-        "Comedy",
-        "Animation"
-      ],
-      "summary": "讲述科罗拉多州南方公园小镇上，斯坦、凯尔、卡特曼和肯尼四个孩子的生活。他们不断卷入超自然事件、社会冲突和各种荒诞危机，并以孩子的视角面对成年人世界中的政治、宗教、文化和社会问题。",
-      "summaryEn": "Follow the misadventures of four irreverent grade-schoolers in the quiet, dysfunctional town of South Park, Colorado.",
-      "nextAirDate": "2026-10-28",
-      "season": 29,
-      "episode": 3,
-      "latestAirDate": "2026-10-14",
-      "rank": 7,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 37854,
-      "title": "航海王",
-      "titleEn": "One Piece",
-      "originalLanguage": "ja",
-      "originCountry": [
-        "JP"
-      ],
-      "year": "1999",
-      "releaseDate": "1999-10-20",
-      "poster": "https://image.tmdb.org/t/p/w500/f9AFdxegmmWOghgw9E6ebICkstl.jpg",
-      "rating": 8.752,
-      "genre": [
-        "Comedy",
-        "Animation"
-      ],
-      "summary": "拥有财富、名声、势力，拥有整个世界的海贼王 – 哥尔·D·罗杰，他在临刑前的一句话，让人们趋之若鹜奔向大海。“想要我的财宝吗？想要的话可以全部给你，去找吧！我把所有财宝都放在那里。”于是所有男子汉航向伟大的航路追逐梦想，世界开始迎接“大海贼时代”。",
-      "summaryEn": "Years ago, the fearsome Pirate King, Gol D. Roger was executed leaving a huge pile of treasure and the famous \"One Piece\" behind. Whoever claims the \"One Piece\" will be named the new King of the Pirat",
-      "season": 23,
-      "episode": 1180,
-      "latestAirDate": "2026-09-27",
-      "rank": 8,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 333101,
-      "title": "金银岛",
-      "titleEn": "Treasure Island",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-11",
-      "poster": "https://image.tmdb.org/t/p/w500/6UGFQsv7vWuhgj8iTAN7CrMs7M9.jpg",
-      "rating": 6.2,
-      "genre": [],
-      "summary": "改编自罗伯特·路易斯·史蒂文森的经典冒险小说。年轻的吉姆·霍金斯和母亲贝斯得到一张传说中的海盗藏宝图，由此踏上横渡大西洋的致命航程。面对叛变、暴力与背叛，吉姆必须在危机四伏的旅途中成长，而这段经历也将彻底改变他的人生。",
-      "summaryEn": "Young Jim Hawkins and his mother Bess come into possession of a legendary pirate’s treasure map and are drawn into a deadly voyage across the Atlantic, where Jim is forced to navigate mutiny, violence",
-      "nextAirDate": "2026-10-18",
-      "season": 1,
-      "episode": 1,
-      "latestAirDate": "2026-10-11",
       "rank": 9,
       "trend": "new"
     },

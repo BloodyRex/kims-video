@@ -1,35 +1,69 @@
 {
-  "updated": "2026-10-19",
-  "count": 2,
+  "updated": "2026-10-20",
+  "count": 4,
   "movies": [
     {
-      "tmdbId": 1376400,
+      "tmdbId": 1740363,
       "mediaType": "movie",
-      "title": "封锁蛛楼",
-      "titleEn": "Crawlers",
+      "title": "勇敢女孩合唱团",
+      "titleEn": "Unbound Voices",
       "year": "2026",
-      "releaseDate": "2026-10-16",
-      "poster": "https://image.tmdb.org/t/p/w500/lNXeEpg4yLSRwXwOeR5lbPgwbqL.jpg",
-      "rating": 6.364,
+      "releaseDate": "2026-10-20",
+      "poster": "https://image.tmdb.org/t/p/w500/zBu2EmW39MTg4yOEXPgK8dsepP2.jpg",
+      "rating": 0,
       "genre": [
-        "Horror",
-        "Thriller"
+        "Music",
+        "Drama"
       ],
-      "firstSeen": "2026-10-19"
+      "firstSeen": "2026-10-20"
     },
     {
-      "tmdbId": 1288069,
+      "tmdbId": 1796449,
       "mediaType": "movie",
-      "title": "登峰传奇：丹增诺盖",
-      "titleEn": "Tenzing",
+      "title": "战神戚继光之不让江山",
+      "titleEn": "Refuse to Yield the Realm",
       "year": "2026",
-      "releaseDate": "2026-10-09",
-      "poster": "https://image.tmdb.org/t/p/w500/l1Jj0SAqdlbEwSWa8Ags31D5WiZ.jpg",
-      "rating": 8.143,
+      "releaseDate": "2026-10-13",
+      "poster": "https://image.tmdb.org/t/p/w500/14tth7KqMyOwwsTmspQ6kWU7aN6.jpg",
+      "rating": 0,
       "genre": [
-        "Drama",
-        "History"
+        "History",
+        "War",
+        "Drama"
       ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "tmdbId": 1487317,
+      "mediaType": "movie",
+      "title": "非常治疗师",
+      "titleEn": "Therapy Done Right",
+      "year": "2026",
+      "releaseDate": "2026-10-08",
+      "poster": "https://image.tmdb.org/t/p/w500/g6eP3KR3w71WnDaCXkwTIZeuDu3.jpg",
+      "rating": 7.703,
+      "genre": [
+        "Comedy",
+        "Drama"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "tmdbId": 883768,
+      "mediaType": "movie",
+      "title": "机动战士高达：库库鲁斯·多安的岛",
+      "titleEn": "機動戦士ガンダム ククルス・ドアンの島",
+      "year": "2022",
+      "releaseDate": "2022-06-03",
+      "poster": "https://image.tmdb.org/t/p/w342/h59l93jcYhMAgrZYVgCcuAEM7e9.jpg",
+      "rating": 6.9,
+      "genre": [
+        "动画",
+        "剧情",
+        "科幻",
+        "动作"
+      ],
+      "source": "rec",
       "firstSeen": "2026-10-19"
     }
   ]
