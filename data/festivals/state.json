@@ -1,8 +1,8 @@
 {
  "editions": {
   "biff-2026": {
-   "lastFetchedAt": "2026-10-19T00:07:40Z",
-   "lastVerifiedAt": "2026-10-19T00:07:40Z",
+   "lastFetchedAt": "2026-10-19T11:10:45Z",
+   "lastVerifiedAt": "2026-10-19T11:10:45Z",
    "lastChangedAt": "2026-10-15T21:44:12Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
@@ -21,9 +21,9 @@
    "collapsed": 0
   },
   "idfa-2026": {
-   "lastFetchedAt": "2026-10-19T00:07:45Z",
-   "lastVerifiedAt": "2026-10-19T00:07:45Z",
-   "lastChangedAt": "2026-10-19T00:07:40Z",
+   "lastFetchedAt": "2026-10-19T11:10:50Z",
+   "lastVerifiedAt": "2026-10-19T11:10:50Z",
+   "lastChangedAt": "2026-10-19T11:10:45Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -37,12 +37,12 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 2,
+   "changesLastRun": 3,
    "collapsed": 0
   },
   "bfi-2026": {
-   "lastFetchedAt": "2026-10-19T00:08:06Z",
-   "lastVerifiedAt": "2026-10-19T00:08:06Z",
+   "lastFetchedAt": "2026-10-19T11:11:13Z",
+   "lastVerifiedAt": "2026-10-19T11:11:13Z",
    "lastChangedAt": "2026-10-19T00:07:40Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
@@ -57,12 +57,12 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 1,
+   "changesLastRun": 0,
    "collapsed": 0
   },
   "hkiff-cinefan-2026": {
-   "lastFetchedAt": "2026-10-19T05:12:34Z",
-   "lastVerifiedAt": "2026-10-19T05:12:34Z",
+   "lastFetchedAt": "2026-10-19T11:11:13Z",
+   "lastVerifiedAt": "2026-10-19T11:11:13Z",
    "lastChangedAt": "2026-10-13T10:20:17Z",
    "lastStatus": "SCREENING_LIVE",
    "statusDetail": {
@@ -81,9 +81,9 @@
    "collapsed": 0
   },
   "venice-2026": {
-   "lastFetchedAt": "2026-10-19T00:08:33.583Z",
-   "lastVerifiedAt": "2026-10-19T00:08:33.583Z",
-   "lastChangedAt": "2026-10-19T00:07:40Z",
+   "lastFetchedAt": "2026-10-19T11:11:42.844Z",
+   "lastVerifiedAt": "2026-10-19T11:11:42.844Z",
+   "lastChangedAt": "2026-10-19T11:10:45Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -97,12 +97,12 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 141,
+   "changesLastRun": 129,
    "collapsed": 0
   },
   "iffr-2026": {
-   "lastFetchedAt": "2026-10-19T05:15:08Z",
-   "lastVerifiedAt": "2026-10-19T05:15:08Z",
+   "lastFetchedAt": "2026-10-19T11:15:01Z",
+   "lastVerifiedAt": "2026-10-19T11:15:01Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -121,8 +121,8 @@
    "collapsed": 0
   },
   "cannes-2026": {
-   "lastFetchedAt": "2026-10-19T05:12:44Z",
-   "lastVerifiedAt": "2026-10-19T05:12:44Z",
+   "lastFetchedAt": "2026-10-19T11:11:42Z",
+   "lastVerifiedAt": "2026-10-19T11:11:42Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -141,5 +141,5 @@
    "collapsed": 0
   }
  },
- "updated": "2026-10-19T05:12:34Z"
+ "updated": "2026-10-19T11:10:45Z"
 }
