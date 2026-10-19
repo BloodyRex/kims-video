@@ -1,12 +1,12 @@
 {
- "at": "2026-10-18T13:10:15Z",
+ "at": "2026-10-19T00:07:40Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 532min ≥ 360min",
+   "reason": "age 657min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 255,
@@ -25,7 +25,7 @@
   {
    "slug": "idfa-2026",
    "due": true,
-   "reason": "age 532min ≥ 360min",
+   "reason": "age 657min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 260,
@@ -46,12 +46,12 @@
     "2 record(s) look like all-day programme blocks (linked film, > 240min) — kept as EVENT, not screenings"
    ],
    "action": "updated",
-   "changes": 1
+   "changes": 2
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 249min ≥ 30min",
+   "reason": "age 657min ≥ 360min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 242,
@@ -60,17 +60,17 @@
     "days": 12,
     "sourcesOk": 13,
     "sourcesTotal": 13,
-    "status": "SCREENING_LIVE",
-    "lifecycle": "LIVE"
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "ENDED"
    },
    "warnings": [],
    "action": "updated",
-   "changes": 0
+   "changes": 1
   },
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 249min ≥ 30min",
+   "reason": "age 657min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 22,
@@ -91,7 +91,7 @@
   {
    "slug": "venice-2026",
    "due": true,
-   "reason": "age 531min ≥ 360min",
+   "reason": "age 657min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 347,
@@ -105,12 +105,12 @@
    },
    "warnings": [],
    "action": "updated",
-   "changes": 150
+   "changes": 141
   },
   {
    "slug": "cannes-2026",
    "due": true,
-   "reason": "age 249min ≥ 180min",
+   "reason": "age 657min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 150,
@@ -131,7 +131,7 @@
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 245min ≥ 180min",
+   "reason": "age 653min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 496,
@@ -157,12 +157,12 @@
   "stats": {
    "festivals": 7,
    "blocked": 0,
-   "liveToday": 2,
-   "screeningsToday": 59,
+   "liveToday": 1,
+   "screeningsToday": 0,
    "eventsToday": 0,
    "upcoming": 1,
    "changes7d": 1000,
-   "venuesToday": 17
+   "venuesToday": 0
   },
   "detailFiles": [
    "biff-2026",
