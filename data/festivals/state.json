@@ -75,11 +75,11 @@
     "films": 22,
     "screenings": 44
    },
-   "failCount": 1,
+   "failCount": 2,
    "lastError": "entry hkiff-cinefan-2026-20261107-202611071400 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071615 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071830 outside festival range (2026-11-07)",
    "changesLastRun": 0,
    "collapsed": 0,
-   "lastAttemptAt": "2026-10-20T12:01:24Z"
+   "lastAttemptAt": "2026-10-20T16:49:24Z"
   },
   "venice-2026": {
    "lastFetchedAt": "2026-10-20T12:02:26.800Z",
@@ -102,8 +102,8 @@
    "collapsed": 0
   },
   "iffr-2026": {
-   "lastFetchedAt": "2026-10-20T12:06:16Z",
-   "lastVerifiedAt": "2026-10-20T12:06:16Z",
+   "lastFetchedAt": "2026-10-20T16:53:14Z",
+   "lastVerifiedAt": "2026-10-20T16:53:14Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -122,8 +122,8 @@
    "collapsed": 0
   },
   "cannes-2026": {
-   "lastFetchedAt": "2026-10-20T12:02:26Z",
-   "lastVerifiedAt": "2026-10-20T12:02:26Z",
+   "lastFetchedAt": "2026-10-20T16:49:44Z",
+   "lastVerifiedAt": "2026-10-20T16:49:44Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -142,5 +142,5 @@
    "collapsed": 0
   }
  },
- "updated": "2026-10-20T12:01:24Z"
+ "updated": "2026-10-20T16:49:24Z"
 }

@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-20T12:01:24Z",
- "today": "2026-10-20",
+ "updated": "2026-10-20T16:49:24Z",
+ "today": "2026-10-21",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
   "en": "Only festivals with verified official sources. Unannounced schedules are labelled, never left blank."
@@ -64,7 +64,7 @@
     "guestVisits": 312
    },
    "today": {
-    "date": "2026-10-20",
+    "date": "2026-10-21",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -165,7 +165,7 @@
    ],
    "fetchedAt": "2026-10-20T12:01:24Z",
    "lastVerifiedAt": "2026-10-20T12:01:24Z",
-   "dataAgeMinutes": 5,
+   "dataAgeMinutes": 292,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -246,7 +246,7 @@
    ],
    "fetchedAt": "2026-10-20T12:01:29Z",
    "lastVerifiedAt": "2026-10-20T12:01:29Z",
-   "dataAgeMinutes": 5,
+   "dataAgeMinutes": 292,
    "changes7d": 10,
    "dataSource": "official"
   },
@@ -444,7 +444,7 @@
    ],
    "fetchedAt": "2026-10-20T12:01:49Z",
    "lastVerifiedAt": "2026-10-20T12:01:49Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 291,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -499,7 +499,7 @@
     "guestVisits": 7
    },
    "today": {
-    "date": "2026-10-20",
+    "date": "2026-10-21",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -704,7 +704,7 @@
    ],
    "fetchedAt": "2026-10-20T06:30:44Z",
    "lastVerifiedAt": "2026-10-20T06:30:44Z",
-   "dataAgeMinutes": 336,
+   "dataAgeMinutes": 623,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -869,7 +869,7 @@
    ],
    "fetchedAt": "2026-10-20T12:02:26.800Z",
    "lastVerifiedAt": "2026-10-20T12:02:26.800Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 291,
    "changes7d": 989,
    "dataSource": "official"
   },
@@ -941,7 +941,7 @@
      "url": "https://www.festival-cannes.com/en/the-selection/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-20T12:02:26Z"
+     "fetchedAt": "2026-10-20T16:49:44Z"
     },
     {
      "kind": "PROGRAMME",
@@ -949,7 +949,7 @@
      "url": "https://www.festival-cannes.com/en/f/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-20T12:02:26Z"
+     "fetchedAt": "2026-10-20T16:49:44Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -957,11 +957,11 @@
      "url": "https://www.festival-cannes.com/en/",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-20T12:02:26Z"
+     "fetchedAt": "2026-10-20T16:49:44Z"
     }
    ],
-   "fetchedAt": "2026-10-20T12:02:26Z",
-   "lastVerifiedAt": "2026-10-20T12:02:26Z",
+   "fetchedAt": "2026-10-20T16:49:44Z",
+   "lastVerifiedAt": "2026-10-20T16:49:44Z",
    "dataAgeMinutes": 4,
    "changes7d": 0,
    "dataSource": "official"
@@ -1034,7 +1034,7 @@
      "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-20T12:06:16Z"
+     "fetchedAt": "2026-10-20T16:53:14Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -1042,11 +1042,11 @@
      "url": "https://iffr.com/en/iffr/2026",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-20T12:06:16Z"
+     "fetchedAt": "2026-10-20T16:53:14Z"
     }
    ],
-   "fetchedAt": "2026-10-20T12:06:16Z",
-   "lastVerifiedAt": "2026-10-20T12:06:16Z",
+   "fetchedAt": "2026-10-20T16:53:14Z",
+   "lastVerifiedAt": "2026-10-20T16:53:14Z",
    "dataAgeMinutes": 0,
    "changes7d": 0,
    "dataSource": "official"
