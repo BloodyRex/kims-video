@@ -1,57 +1,61 @@
 {
-  "date": "2026-10-21",
-  "headline": "边缘行者领跑影视双榜",
-  "headlineEn": "Edgerunners Leads Both Film and TV Charts",
-  "summary": "今日0部新片上映，本周已有5部新电影入市。《赛博朋克：边缘行者》影视双榜领跑，《时光代理人》《水晶湖》持续高热；电影端《换母疑云》《害群之马》受关注，待映含《哥斯拉-0.0》《猫鼬》《克拉拉与太阳》。",
-  "summaryEn": "No new movie opened today, with 5 new films this week. Cyberpunk: Edgerunners leads both film and TV heat, while Link Click and Crystal Lake stay hot; on the movie side, Mother Swap Mystery and Black Sheep draw attention. Upcoming: Godzilla-0.0, Mongoose, and Klara and the Sun.",
+  "date": "2026-10-22",
+  "headline": "《药屋》领跑今日影视热度",
+  "headlineEn": "Apothecary Diaries Leads Today's Screen Heat",
+  "summary": "今日0部新片上映，本周5部新片入市；《药屋少女的呢喃》领跑影视热度，《泥面人》位列电影焦点，电视端《The Terminal List》紧随。",
+  "summaryEn": "No new movies opened today, with five arrivals this week; The Apothecary Diaries leads screen heat, Clayface is the movie highlight, and The Terminal List follows on TV.",
   "topTrends": [
     {
       "rank": 1,
+      "title": "药屋少女的呢喃",
+      "titleEn": "The Apothecary Diaries",
+      "category": "tv"
+    },
+    {
+      "rank": 2,
+      "title": "The Terminal List",
+      "titleEn": "The Terminal List",
+      "category": "tv"
+    },
+    {
+      "rank": 3,
       "title": "赛博朋克：边缘行者",
       "titleEn": "Cyberpunk: Edgerunners",
       "category": "tv"
     },
     {
-      "rank": 2,
-      "title": "时光代理人",
-      "titleEn": "Link Click",
-      "category": "tv"
-    },
-    {
-      "rank": 3,
-      "title": "换母疑云",
-      "titleEn": "Mother Swap Mystery",
-      "category": "movie"
-    },
-    {
       "rank": 4,
-      "title": "水晶湖",
-      "titleEn": "Crystal Lake",
-      "category": "tv"
+      "title": "泥面人",
+      "titleEn": "Clayface",
+      "category": "movie"
     },
     {
       "rank": 5,
-      "title": "害群之马",
-      "titleEn": "Black Sheep",
-      "category": "movie"
+      "title": "幻视任务",
+      "titleEn": "Vision Quest",
+      "category": "tv"
     }
   ],
   "industryHighlights": [
     {
-      "text": "今日0部新片上映，本周新片累计5部",
-      "en": "Zero new films opened today; 5 new films this week."
+      "text": "今日0部新片上映，本周新增5部电影。",
+      "en": "Zero new movies today; five added this week."
     },
     {
-      "text": "《赛博朋克：边缘行者》同时领跑电影与剧集热度",
-      "en": "Cyberpunk: Edgerunners tops both film and TV heat."
+      "text": "《药屋少女的呢喃》同时居电影与电视热度榜首。",
+      "en": "The Apothecary Diaries tops both movie and TV heat."
     },
     {
-      "text": "《时光代理人》《水晶湖》本周在影视榜持续走热",
-      "en": "Link Click and Crystal Lake remain hot on this week's film and TV charts."
+      "text": "《泥面人》进入今日电影热度前五。",
+      "en": "Clayface enters today's top five movie trends."
     },
     {
-      "text": "待映焦点：《哥斯拉-0.0》《猫鼬》《克拉拉与太阳》",
-      "en": "Upcoming highlights: Godzilla-0.0, Mongoose, and Klara and the Sun."
+      "text": "《水晶湖》位列今日电视热度前五。",
+      "en": "Crystal Lake ranks in today's top five TV trends."
+    },
+    {
+      "text": "待映：《猫鼬》《哥斯拉-0.0》。",
+      "en": "Upcoming: Mongoose and Godzilla-0.0."
     }
   ]
 }

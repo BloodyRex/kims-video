@@ -1,37 +1,73 @@
 {
-  "updated": "2026-10-21",
-  "count": 2,
+  "updated": "2026-10-22",
+  "count": 4,
   "movies": [
     {
-      "tmdbId": 891621,
+      "tmdbId": 22538,
       "mediaType": "movie",
-      "title": "野马九号",
-      "titleEn": "Wild Horse Nine",
-      "year": "2026",
-      "releaseDate": "2026-10-30",
-      "poster": "https://image.tmdb.org/t/p/w500/dNJFRtVg3xLQ7dbNIQ55cmmIniD.jpg",
-      "rating": 0,
+      "title": "歪小子斯科特对抗全世界",
+      "titleEn": "Scott Pilgrim vs. the World",
+      "year": "2010",
+      "releaseDate": "2010-08-12",
+      "poster": "https://image.tmdb.org/t/p/w342/g5IoYeudx9XBEfwNL0fHvSckLBz.jpg",
+      "rating": 7.5,
       "genre": [
-        "Comedy",
-        "Crime",
-        "Thriller"
+        "动作",
+        "喜剧",
+        "爱情"
       ],
+      "source": "rec",
       "firstSeen": "2026-10-21"
     },
     {
-      "tmdbId": 1391239,
+      "tmdbId": 325348,
       "mediaType": "movie",
-      "title": "首演",
-      "titleEn": "The Debut",
-      "year": "2026",
-      "releaseDate": "2026-12-10",
-      "poster": "https://image.tmdb.org/t/p/w500/5CZdxLiBpYMBXwo0rur6YzZTVP4.jpg",
-      "rating": 0,
+      "title": "硬核亨利",
+      "titleEn": "Hardcore Henry",
+      "year": "2015",
+      "releaseDate": "2015-09-12",
+      "poster": "https://image.tmdb.org/t/p/w342/ik1uZyiMSxF9HqrgRKUNfMCfr3z.jpg",
+      "rating": 6.43,
       "genre": [
-        "Music",
-        "Comedy",
-        "Drama"
+        "动作",
+        "冒险",
+        "科幻"
       ],
+      "source": "rec",
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "tmdbId": 550988,
+      "mediaType": "movie",
+      "title": "失控玩家",
+      "titleEn": "Free Guy",
+      "year": "2021",
+      "releaseDate": "2021-08-11",
+      "poster": "https://image.tmdb.org/t/p/w342/dxraF0qPr1OEgJk17ltQTO84kQF.jpg",
+      "rating": 7.429,
+      "genre": [
+        "喜剧",
+        "冒险",
+        "科幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "tmdbId": 624860,
+      "mediaType": "movie",
+      "title": "黑客帝国4：矩阵重启",
+      "titleEn": "The Matrix Resurrections",
+      "year": "2021",
+      "releaseDate": "2021-12-16",
+      "poster": "https://image.tmdb.org/t/p/w342/8c4a8kE7PizaGQQnditMmI1xbRp.jpg",
+      "rating": 6.3,
+      "genre": [
+        "科幻",
+        "动作",
+        "冒险"
+      ],
+      "source": "rec",
       "firstSeen": "2026-10-21"
     }
   ]
