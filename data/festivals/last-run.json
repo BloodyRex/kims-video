@@ -1,33 +1,84 @@
 {
- "at": "2026-10-23T01:24:54Z",
+ "at": "2026-10-23T06:26:32Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
-   "due": false,
-   "reason": "age 358min < 360min",
+   "due": true,
+   "reason": "age 660min ≥ 360min",
    "status": "SCHEDULE_LIVE",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 255,
+    "screenings": 724,
+    "venues": 26,
+    "days": 10,
+    "sourcesOk": 11,
+    "sourcesTotal": 11,
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 0
   },
   {
    "slug": "idfa-2026",
-   "due": false,
-   "reason": "age 358min < 360min",
+   "due": true,
+   "reason": "age 660min ≥ 360min",
    "status": "SCHEDULE_LIVE",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 273,
+    "screenings": 282,
+    "venues": 27,
+    "days": 9,
+    "sourcesOk": 2,
+    "sourcesTotal": 2,
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "UPCOMING"
+   },
+   "warnings": [
+    "schedule covers 9/11 days",
+    "ignored 5 official record(s) outside this edition: 2026-05-06×1, 2026-05-07×1, 2026-05-08×1, 2026-05-09×1, 2026-05-10×1",
+    "official day amounts (59) do not sum to totalHits (55)",
+    "DAY=2026-11-21: official amount 15 != returned 50",
+    "DAY=2026-11-22: official amount 14 != returned 40",
+    "DAY=2026-11-20: official amount 8 != returned 43",
+    "DAY=2026-11-15: official amount 6 != returned 53",
+    "DAY=2026-11-13: official amount 5 != returned 39",
+    "DAY=2026-11-14: official amount 3 != returned 46",
+    "DAY=2026-11-17: official amount 1 != returned 45",
+    "DAY=2026-11-18: official amount 1 != returned 43",
+    "DAY=2026-11-19: official amount 1 != returned 36",
+    "fetched 395 of 54 officially declared in-edition record(s)",
+    "3 record(s) look like all-day programme blocks (linked film, > 240min) — kept as EVENT, not screenings"
+   ],
+   "action": "updated",
+   "changes": 7
   },
   {
    "slug": "bfi-2026",
-   "due": false,
-   "reason": "age 358min < 360min",
+   "due": true,
+   "reason": "age 659min ≥ 360min",
    "status": "SCHEDULE_LIVE",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 242,
+    "screenings": 480,
+    "venues": 20,
+    "days": 12,
+    "sourcesOk": 13,
+    "sourcesTotal": 13,
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 0
   },
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 4014min ≥ 30min",
+   "reason": "age 4316min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 45,
@@ -92,24 +143,64 @@
   },
   {
    "slug": "venice-2026",
-   "due": false,
-   "reason": "age 357min < 360min",
+   "due": true,
+   "reason": "age 659min ≥ 360min",
    "status": "SCHEDULE_LIVE",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 347,
+    "screenings": 350,
+    "venues": 10,
+    "days": 11,
+    "sourcesOk": 12,
+    "sourcesTotal": 12,
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 150
   },
   {
    "slug": "cannes-2026",
-   "due": false,
-   "reason": "age 163min < 180min",
+   "due": true,
+   "reason": "age 465min ≥ 180min",
    "status": "PROGRAM_RELEASED",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 150,
+    "screenings": 0,
+    "venues": 0,
+    "days": 0,
+    "sourcesOk": 3,
+    "sourcesTotal": 3,
+    "status": "PROGRAM_RELEASED",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [
+    "schedule covers 0/12 days"
+   ],
+   "action": "updated",
+   "changes": 0
   },
   {
    "slug": "iffr-2026",
-   "due": false,
-   "reason": "age 160min < 180min",
+   "due": true,
+   "reason": "age 462min ≥ 180min",
    "status": "PROGRAM_RELEASED",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 496,
+    "screenings": 0,
+    "venues": 0,
+    "days": 0,
+    "sourcesOk": 2,
+    "sourcesTotal": 2,
+    "status": "PROGRAM_RELEASED",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [
+    "schedule covers 0/11 days"
+   ],
+   "action": "updated",
+   "changes": 0
   }
  ],
  "errors": [
