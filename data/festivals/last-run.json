@@ -1,33 +1,33 @@
 {
- "at": "2026-10-22T22:41:24Z",
+ "at": "2026-10-23T01:24:54Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": false,
-   "reason": "age 195min < 360min",
+   "reason": "age 358min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "idfa-2026",
    "due": false,
-   "reason": "age 195min < 360min",
+   "reason": "age 358min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "bfi-2026",
    "due": false,
-   "reason": "age 194min < 360min",
+   "reason": "age 358min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 3851min ≥ 30min",
+   "reason": "age 4014min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 45,
@@ -93,51 +93,23 @@
   {
    "slug": "venice-2026",
    "due": false,
-   "reason": "age 194min < 360min",
+   "reason": "age 357min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "cannes-2026",
-   "due": true,
-   "reason": "age 194min ≥ 180min",
+   "due": false,
+   "reason": "age 163min < 180min",
    "status": "PROGRAM_RELEASED",
-   "parsed": {
-    "films": 150,
-    "screenings": 0,
-    "venues": 0,
-    "days": 0,
-    "sourcesOk": 3,
-    "sourcesTotal": 3,
-    "status": "PROGRAM_RELEASED",
-    "lifecycle": "ENDED"
-   },
-   "warnings": [
-    "schedule covers 0/12 days"
-   ],
-   "action": "updated",
-   "changes": 0
+   "action": "skipped (throttled)"
   },
   {
    "slug": "iffr-2026",
-   "due": true,
-   "reason": "age 190min ≥ 180min",
+   "due": false,
+   "reason": "age 160min < 180min",
    "status": "PROGRAM_RELEASED",
-   "parsed": {
-    "films": 496,
-    "screenings": 0,
-    "venues": 0,
-    "days": 0,
-    "sourcesOk": 2,
-    "sourcesTotal": 2,
-    "status": "PROGRAM_RELEASED",
-    "lifecycle": "ENDED"
-   },
-   "warnings": [
-    "schedule covers 0/11 days"
-   ],
-   "action": "updated",
-   "changes": 0
+   "action": "skipped (throttled)"
   }
  ],
  "errors": [
