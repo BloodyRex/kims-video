@@ -1,69 +1,58 @@
 {
-  "updated": "2026-10-24",
-  "count": 4,
+  "updated": "2026-10-25",
+  "count": 3,
   "movies": [
     {
-      "tmdbId": 1633,
+      "tmdbId": 1657630,
       "mediaType": "movie",
-      "title": "油炸绿番茄",
-      "titleEn": "Fried Green Tomatoes",
-      "year": "1991",
-      "releaseDate": "1991-12-27",
-      "poster": "https://image.tmdb.org/t/p/w342/g71l1vbJwyAAYk8zKCkIQQ58qcb.jpg",
-      "rating": 7.654,
+      "title": "El despertar",
+      "titleEn": "The Awakening",
+      "year": "2026",
+      "releaseDate": "2026-10-29",
+      "poster": "https://image.tmdb.org/t/p/w500/w3YJx1PPPC6aiVKusxfc9QA0uYS.jpg",
+      "rating": 6,
       "genre": [
-        "剧情",
-        "喜剧"
+        "Horror",
+        "Action",
+        "War",
+        "Fantasy",
+        "Thriller"
       ],
-      "source": "rec",
-      "firstSeen": "2026-10-23"
+      "firstSeen": "2026-10-25"
     },
     {
-      "tmdbId": 297222,
+      "tmdbId": 679,
       "mediaType": "movie",
-      "title": "我的个神啊",
-      "titleEn": "पीके",
-      "year": "2014",
-      "releaseDate": "2014-12-18",
-      "poster": "https://image.tmdb.org/t/p/w342/z2x2Y4tncefsIU7h82gmUM5vnBJ.jpg",
-      "rating": 7.698,
+      "title": "异形2",
+      "titleEn": "Aliens",
+      "year": "1986",
+      "releaseDate": "1986-07-18",
+      "poster": "https://image.tmdb.org/t/p/w342/r1x5JGpyqZU8PYhbs4UcrO1Xb6x.jpg",
+      "rating": 7.969,
       "genre": [
-        "喜剧",
-        "剧情",
+        "动作",
+        "惊悚",
         "科幻"
       ],
       "source": "rec",
-      "firstSeen": "2026-10-23"
+      "firstSeen": "2026-10-24"
     },
     {
-      "tmdbId": 76493,
+      "tmdbId": 70981,
       "mediaType": "movie",
-      "title": "独裁者",
-      "titleEn": "The Dictator",
+      "title": "普罗米修斯",
+      "titleEn": "Prometheus",
       "year": "2012",
-      "releaseDate": "2012-05-15",
-      "poster": "https://image.tmdb.org/t/p/w342/n0W7kajF4GFMRk2c0wWwMQqTaDM.jpg",
-      "rating": 6.249,
+      "releaseDate": "2012-05-30",
+      "poster": "https://image.tmdb.org/t/p/w342/qsYQflQhOuhDpQ0W2aOcwqgDAeI.jpg",
+      "rating": 6.615,
       "genre": [
-        "喜剧"
+        "科幻",
+        "悬疑",
+        "恐怖"
       ],
       "source": "rec",
-      "firstSeen": "2026-10-23"
-    },
-    {
-      "tmdbId": 9427,
-      "mediaType": "movie",
-      "title": "光猪六壮士",
-      "titleEn": "The Full Monty",
-      "year": "1997",
-      "releaseDate": "1997-08-13",
-      "poster": "https://image.tmdb.org/t/p/w342/fjg4EvzoLZVcZli4BwJIytJ6yjn.jpg",
-      "rating": 7.003,
-      "genre": [
-        "喜剧"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-10-23"
+      "firstSeen": "2026-10-24"
     }
   ]
 }
