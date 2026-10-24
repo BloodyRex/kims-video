@@ -1,33 +1,33 @@
 {
- "at": "2026-10-24T18:57:35Z",
+ "at": "2026-10-24T21:30:30Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": false,
-   "reason": "age 165min < 360min",
+   "reason": "age 318min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "idfa-2026",
    "due": false,
-   "reason": "age 165min < 360min",
+   "reason": "age 318min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "bfi-2026",
    "due": false,
-   "reason": "age 165min < 360min",
+   "reason": "age 318min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 6507min ≥ 30min",
+   "reason": "age 6660min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 45,
@@ -93,23 +93,51 @@
   {
    "slug": "venice-2026",
    "due": false,
-   "reason": "age 164min < 360min",
+   "reason": "age 317min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "cannes-2026",
-   "due": false,
-   "reason": "age 164min < 180min",
+   "due": true,
+   "reason": "age 317min ≥ 180min",
    "status": "PROGRAM_RELEASED",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 150,
+    "screenings": 0,
+    "venues": 0,
+    "days": 0,
+    "sourcesOk": 3,
+    "sourcesTotal": 3,
+    "status": "PROGRAM_RELEASED",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [
+    "schedule covers 0/12 days"
+   ],
+   "action": "updated",
+   "changes": 0
   },
   {
    "slug": "iffr-2026",
-   "due": false,
-   "reason": "age 162min < 180min",
+   "due": true,
+   "reason": "age 315min ≥ 180min",
    "status": "PROGRAM_RELEASED",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 496,
+    "screenings": 0,
+    "venues": 0,
+    "days": 0,
+    "sourcesOk": 2,
+    "sourcesTotal": 2,
+    "status": "PROGRAM_RELEASED",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [
+    "schedule covers 0/11 days"
+   ],
+   "action": "updated",
+   "changes": 0
   }
  ],
  "errors": [
