@@ -1,58 +1,35 @@
 {
-  "updated": "2026-10-25",
-  "count": 3,
+  "updated": "2026-10-26",
+  "count": 2,
   "movies": [
     {
-      "tmdbId": 1657630,
+      "tmdbId": 1780005,
       "mediaType": "movie",
-      "title": "El despertar",
-      "titleEn": "The Awakening",
+      "title": "抗击飓风",
+      "titleEn": "Surviving Hurricane Otis",
       "year": "2026",
-      "releaseDate": "2026-10-29",
-      "poster": "https://image.tmdb.org/t/p/w500/w3YJx1PPPC6aiVKusxfc9QA0uYS.jpg",
-      "rating": 6,
+      "releaseDate": "2026-10-23",
+      "poster": "https://image.tmdb.org/t/p/w500/ucdoFmKmxjGUr2iTM576UcFgEW8.jpg",
+      "rating": 5.31,
       "genre": [
-        "Horror",
-        "Action",
-        "War",
-        "Fantasy",
-        "Thriller"
+        "Drama"
       ],
-      "firstSeen": "2026-10-25"
+      "firstSeen": "2026-10-26"
     },
     {
-      "tmdbId": 679,
+      "tmdbId": 1453407,
       "mediaType": "movie",
-      "title": "异形2",
-      "titleEn": "Aliens",
-      "year": "1986",
-      "releaseDate": "1986-07-18",
-      "poster": "https://image.tmdb.org/t/p/w342/r1x5JGpyqZU8PYhbs4UcrO1Xb6x.jpg",
-      "rating": 7.969,
+      "title": "失控长夜",
+      "titleEn": "Gajab Raat",
+      "year": "2026",
+      "releaseDate": "2026-10-23",
+      "poster": "https://image.tmdb.org/t/p/w500/dMJKqMIvgToRBcIXCAdbfV06MeL.jpg",
+      "rating": 5.9,
       "genre": [
-        "动作",
-        "惊悚",
-        "科幻"
+        "Thriller",
+        "Crime"
       ],
-      "source": "rec",
-      "firstSeen": "2026-10-24"
-    },
-    {
-      "tmdbId": 70981,
-      "mediaType": "movie",
-      "title": "普罗米修斯",
-      "titleEn": "Prometheus",
-      "year": "2012",
-      "releaseDate": "2012-05-30",
-      "poster": "https://image.tmdb.org/t/p/w342/qsYQflQhOuhDpQ0W2aOcwqgDAeI.jpg",
-      "rating": 6.615,
-      "genre": [
-        "科幻",
-        "悬疑",
-        "恐怖"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-10-24"
+      "firstSeen": "2026-10-26"
     }
   ]
 }
