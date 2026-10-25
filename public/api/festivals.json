@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T23:36:49Z",
+ "updated": "2026-10-25T01:36:06Z",
  "today": "2026-10-25",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
@@ -165,7 +165,7 @@
    ],
    "fetchedAt": "2026-10-24T23:36:49Z",
    "lastVerifiedAt": "2026-10-24T23:36:49Z",
-   "dataAgeMinutes": 1,
+   "dataAgeMinutes": 123,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -246,7 +246,7 @@
    ],
    "fetchedAt": "2026-10-24T23:36:55Z",
    "lastVerifiedAt": "2026-10-24T23:36:55Z",
-   "dataAgeMinutes": 1,
+   "dataAgeMinutes": 123,
    "changes7d": 212,
    "dataSource": "official"
   },
@@ -444,7 +444,7 @@
    ],
    "fetchedAt": "2026-10-24T23:37:25Z",
    "lastVerifiedAt": "2026-10-24T23:37:25Z",
-   "dataAgeMinutes": 0,
+   "dataAgeMinutes": 122,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -750,7 +750,7 @@
    ],
    "fetchedAt": "2026-10-20T06:30:44Z",
    "lastVerifiedAt": "2026-10-20T06:30:44Z",
-   "dataAgeMinutes": 6787,
+   "dataAgeMinutes": 6909,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -915,7 +915,7 @@
    ],
    "fetchedAt": "2026-10-24T23:37:52.554Z",
    "lastVerifiedAt": "2026-10-24T23:37:52.554Z",
-   "dataAgeMinutes": 0,
+   "dataAgeMinutes": 122,
    "changes7d": 788,
    "dataSource": "official"
   },
@@ -987,7 +987,7 @@
      "url": "https://www.festival-cannes.com/en/the-selection/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-24T21:30:50Z"
+     "fetchedAt": "2026-10-25T01:36:25Z"
     },
     {
      "kind": "PROGRAMME",
@@ -995,7 +995,7 @@
      "url": "https://www.festival-cannes.com/en/f/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-24T21:30:50Z"
+     "fetchedAt": "2026-10-25T01:36:25Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -1003,12 +1003,12 @@
      "url": "https://www.festival-cannes.com/en/",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-24T21:30:50Z"
+     "fetchedAt": "2026-10-25T01:36:25Z"
     }
    ],
-   "fetchedAt": "2026-10-24T21:30:50Z",
-   "lastVerifiedAt": "2026-10-24T21:30:50Z",
-   "dataAgeMinutes": 127,
+   "fetchedAt": "2026-10-25T01:36:25Z",
+   "lastVerifiedAt": "2026-10-25T01:36:25Z",
+   "dataAgeMinutes": 3,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -1080,7 +1080,7 @@
      "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-24T21:33:27Z"
+     "fetchedAt": "2026-10-25T01:39:41Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -1088,12 +1088,12 @@
      "url": "https://iffr.com/en/iffr/2026",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-24T21:33:27Z"
+     "fetchedAt": "2026-10-25T01:39:41Z"
     }
    ],
-   "fetchedAt": "2026-10-24T21:33:27Z",
-   "lastVerifiedAt": "2026-10-24T21:33:27Z",
-   "dataAgeMinutes": 124,
+   "fetchedAt": "2026-10-25T01:39:41Z",
+   "lastVerifiedAt": "2026-10-25T01:39:41Z",
+   "dataAgeMinutes": 0,
    "changes7d": 0,
    "dataSource": "official"
   }
