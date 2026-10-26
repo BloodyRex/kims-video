@@ -1,33 +1,89 @@
 {
- "at": "2026-10-26T05:12:40Z",
+ "at": "2026-10-26T11:29:08Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
-   "due": false,
-   "reason": "age 305min < 360min",
+   "due": true,
+   "reason": "age 682min ≥ 360min",
    "status": "SCHEDULE_LIVE",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 255,
+    "screenings": 724,
+    "venues": 26,
+    "days": 10,
+    "sourcesOk": 11,
+    "sourcesTotal": 11,
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 0
   },
   {
    "slug": "idfa-2026",
-   "due": false,
-   "reason": "age 305min < 360min",
+   "due": true,
+   "reason": "age 682min ≥ 360min",
    "status": "SCHEDULE_LIVE",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 0,
+    "screenings": 6,
+    "venues": 6,
+    "days": 1,
+    "sourcesOk": 0,
+    "sourcesTotal": 2,
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "UPCOMING"
+   },
+   "warnings": [
+    "schedule covers 1/11 days",
+    "schedule DAY=2026-11-21 failed: Error resolving field",
+    "schedule DAY=2026-11-20 failed: timeout after 25000ms",
+    "schedule DAY=2026-11-18 failed: timeout after 25000ms",
+    "schedule DAY=2026-11-13 failed: timeout after 25000ms",
+    "schedule DAY=2026-11-14 failed: timeout after 25000ms",
+    "schedule DAY=2026-11-15 failed: timeout after 25000ms",
+    "schedule DAY=2026-11-16 failed: timeout after 25000ms",
+    "schedule DAY=2026-11-17 failed: timeout after 25000ms",
+    "schedule DAY=2026-11-22 failed: timeout after 25000ms",
+    "schedule DAY=2026-11-19 failed: timeout after 25000ms",
+    "fetched 6 of 901 officially declared in-edition record(s)",
+    "10 official day query/queries failed — keeping previous data",
+    "programme page 1: timeout after 25000ms"
+   ],
+   "action": "REJECTED (kept previous data)",
+   "errors": [
+    "all official sources failed",
+    "1 official schedule page(s) failed: https://my.idfa.nl/api/graphql/festival",
+    "schedule covers only 1/11 days",
+    "regression: entries 6 vs previous 1472 (<50%)"
+   ]
   },
   {
    "slug": "bfi-2026",
-   "due": false,
-   "reason": "age 304min < 360min",
+   "due": true,
+   "reason": "age 681min ≥ 360min",
    "status": "SCHEDULE_LIVE",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 242,
+    "screenings": 480,
+    "venues": 20,
+    "days": 12,
+    "sourcesOk": 13,
+    "sourcesTotal": 13,
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 0
   },
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 8562min ≥ 30min",
+   "reason": "age 8938min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 45,
@@ -92,15 +148,27 @@
   },
   {
    "slug": "venice-2026",
-   "due": false,
-   "reason": "age 304min < 360min",
+   "due": true,
+   "reason": "age 680min ≥ 360min",
    "status": "SCHEDULE_LIVE",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 347,
+    "screenings": 350,
+    "venues": 10,
+    "days": 11,
+    "sourcesOk": 12,
+    "sourcesTotal": 12,
+    "status": "SCHEDULE_LIVE",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [],
+   "action": "updated",
+   "changes": 143
   },
   {
    "slug": "cannes-2026",
    "due": true,
-   "reason": "age 432min ≥ 180min",
+   "reason": "age 376min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 150,
@@ -121,7 +189,7 @@
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 428min ≥ 180min",
+   "reason": "age 373min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 496,
@@ -141,6 +209,7 @@
   }
  ],
  "errors": [
+  "idfa-2026: all official sources failed | 1 official schedule page(s) failed: https://my.idfa.nl/api/graphql/festival | schedule covers only 1/11 days",
   "hkiff-cinefan-2026: entry hkiff-cinefan-2026-20261107-202611071400 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071615 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071830 outside festival range (2026-11-07)"
  ],
  "blockedEditions": [],

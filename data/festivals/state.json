@@ -1,8 +1,8 @@
 {
  "editions": {
   "biff-2026": {
-   "lastFetchedAt": "2026-10-26T00:07:28Z",
-   "lastVerifiedAt": "2026-10-26T00:07:28Z",
+   "lastFetchedAt": "2026-10-26T11:29:08Z",
+   "lastVerifiedAt": "2026-10-26T11:29:08Z",
    "lastChangedAt": "2026-10-15T21:44:12Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
@@ -35,14 +35,15 @@
     "films": 273,
     "screenings": 1205
    },
-   "failCount": 0,
-   "lastError": null,
+   "failCount": 1,
+   "lastError": "all official sources failed | 1 official schedule page(s) failed: https://my.idfa.nl/api/graphql/festival | schedule covers only 1/11 days",
    "changesLastRun": 1,
-   "collapsed": 0
+   "collapsed": 0,
+   "lastAttemptAt": "2026-10-26T11:29:08Z"
   },
   "bfi-2026": {
-   "lastFetchedAt": "2026-10-26T00:08:12Z",
-   "lastVerifiedAt": "2026-10-26T00:08:12Z",
+   "lastFetchedAt": "2026-10-26T11:42:36Z",
+   "lastVerifiedAt": "2026-10-26T11:42:36Z",
    "lastChangedAt": "2026-10-19T00:07:40Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
@@ -75,16 +76,16 @@
     "films": 22,
     "screenings": 44
    },
-   "failCount": 36,
+   "failCount": 37,
    "lastError": "entry hkiff-cinefan-2026-20261107-202611071400 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071615 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071830 outside festival range (2026-11-07)",
    "changesLastRun": 0,
    "collapsed": 0,
-   "lastAttemptAt": "2026-10-26T05:12:40Z"
+   "lastAttemptAt": "2026-10-26T11:29:08Z"
   },
   "venice-2026": {
-   "lastFetchedAt": "2026-10-26T00:08:49.838Z",
-   "lastVerifiedAt": "2026-10-26T00:08:49.838Z",
-   "lastChangedAt": "2026-10-26T00:07:28Z",
+   "lastFetchedAt": "2026-10-26T11:43:13.246Z",
+   "lastVerifiedAt": "2026-10-26T11:43:13.246Z",
+   "lastChangedAt": "2026-10-26T11:29:08Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -98,12 +99,12 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 109,
+   "changesLastRun": 143,
    "collapsed": 0
   },
   "iffr-2026": {
-   "lastFetchedAt": "2026-10-26T05:15:54Z",
-   "lastVerifiedAt": "2026-10-26T05:15:54Z",
+   "lastFetchedAt": "2026-10-26T11:47:01Z",
+   "lastVerifiedAt": "2026-10-26T11:47:01Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -122,8 +123,8 @@
    "collapsed": 0
   },
   "cannes-2026": {
-   "lastFetchedAt": "2026-10-26T05:12:59Z",
-   "lastVerifiedAt": "2026-10-26T05:12:59Z",
+   "lastFetchedAt": "2026-10-26T11:43:13Z",
+   "lastVerifiedAt": "2026-10-26T11:43:13Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -142,5 +143,5 @@
    "collapsed": 0
   }
  },
- "updated": "2026-10-26T05:12:40Z"
+ "updated": "2026-10-26T11:29:08Z"
 }
