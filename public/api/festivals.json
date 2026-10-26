@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-26T11:29:08Z",
- "today": "2026-10-26",
+ "updated": "2026-10-26T17:36:33Z",
+ "today": "2026-10-27",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
   "en": "Only festivals with verified official sources. Unannounced schedules are labelled, never left blank."
@@ -64,7 +64,7 @@
     "guestVisits": 312
    },
    "today": {
-    "date": "2026-10-26",
+    "date": "2026-10-27",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -80,7 +80,7 @@
      "url": "https://www.biff.kr/eng/html/program/prog_all_list.asp?allYear=2026",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     },
     {
      "kind": "SCHEDULE",
@@ -88,7 +88,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=6",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     },
     {
      "kind": "SCHEDULE",
@@ -96,7 +96,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=7",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     },
     {
      "kind": "SCHEDULE",
@@ -104,7 +104,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     },
     {
      "kind": "SCHEDULE",
@@ -112,7 +112,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=9",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     },
     {
      "kind": "SCHEDULE",
@@ -120,7 +120,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=10",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     },
     {
      "kind": "SCHEDULE",
@@ -128,7 +128,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=11",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     },
     {
      "kind": "SCHEDULE",
@@ -136,7 +136,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=12",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     },
     {
      "kind": "SCHEDULE",
@@ -144,7 +144,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=13",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     },
     {
      "kind": "SCHEDULE",
@@ -152,7 +152,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     },
     {
      "kind": "SCHEDULE",
@@ -160,12 +160,12 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:29:08Z"
+     "fetchedAt": "2026-10-26T17:36:34Z"
     }
    ],
-   "fetchedAt": "2026-10-26T11:29:08Z",
-   "lastVerifiedAt": "2026-10-26T11:29:08Z",
-   "dataAgeMinutes": 18,
+   "fetchedAt": "2026-10-26T17:36:34Z",
+   "lastVerifiedAt": "2026-10-26T17:36:34Z",
+   "dataAgeMinutes": 4,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -208,13 +208,13 @@
     "films": 273,
     "filmsTotal": 273,
     "screenings": 1205,
-    "events": 267,
+    "events": 293,
     "pending": 0,
-    "entries": 1472,
-    "venues": 69,
+    "entries": 1498,
+    "venues": 70,
     "sections": 15,
     "days": 11,
-    "guestVisits": 364
+    "guestVisits": 363
    },
    "today": {
     "date": "2026-10-26",
@@ -233,7 +233,7 @@
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T00:07:34Z"
+     "fetchedAt": "2026-10-26T17:36:39Z"
     },
     {
      "kind": "PROGRAMME",
@@ -241,13 +241,13 @@
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T00:07:34Z"
+     "fetchedAt": "2026-10-26T17:36:39Z"
     }
    ],
-   "fetchedAt": "2026-10-26T00:07:34Z",
-   "lastVerifiedAt": "2026-10-26T00:07:34Z",
-   "dataAgeMinutes": 699,
-   "changes7d": 10,
+   "fetchedAt": "2026-10-26T17:36:39Z",
+   "lastVerifiedAt": "2026-10-26T17:36:39Z",
+   "dataAgeMinutes": 4,
+   "changes7d": 190,
    "dataSource": "official"
   },
   {
@@ -444,7 +444,7 @@
    ],
    "fetchedAt": "2026-10-26T11:42:36Z",
    "lastVerifiedAt": "2026-10-26T11:42:36Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 358,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -499,7 +499,7 @@
     "guestVisits": 7
    },
    "today": {
-    "date": "2026-10-26",
+    "date": "2026-10-27",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -704,7 +704,7 @@
    ],
    "fetchedAt": "2026-10-20T06:30:44Z",
    "lastVerifiedAt": "2026-10-20T06:30:44Z",
-   "dataAgeMinutes": 8956,
+   "dataAgeMinutes": 9310,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -869,8 +869,8 @@
    ],
    "fetchedAt": "2026-10-26T11:43:13.246Z",
    "lastVerifiedAt": "2026-10-26T11:43:13.246Z",
-   "dataAgeMinutes": 4,
-   "changes7d": 990,
+   "dataAgeMinutes": 358,
+   "changes7d": 810,
    "dataSource": "official"
   },
   {
@@ -941,7 +941,7 @@
      "url": "https://www.festival-cannes.com/en/the-selection/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:43:13Z"
+     "fetchedAt": "2026-10-26T17:37:33Z"
     },
     {
      "kind": "PROGRAMME",
@@ -949,7 +949,7 @@
      "url": "https://www.festival-cannes.com/en/f/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:43:13Z"
+     "fetchedAt": "2026-10-26T17:37:33Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -957,12 +957,12 @@
      "url": "https://www.festival-cannes.com/en/",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-26T11:43:13Z"
+     "fetchedAt": "2026-10-26T17:37:33Z"
     }
    ],
-   "fetchedAt": "2026-10-26T11:43:13Z",
-   "lastVerifiedAt": "2026-10-26T11:43:13Z",
-   "dataAgeMinutes": 4,
+   "fetchedAt": "2026-10-26T17:37:33Z",
+   "lastVerifiedAt": "2026-10-26T17:37:33Z",
+   "dataAgeMinutes": 3,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -1034,7 +1034,7 @@
      "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-10-26T11:47:01Z"
+     "fetchedAt": "2026-10-26T17:40:44Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -1042,11 +1042,11 @@
      "url": "https://iffr.com/en/iffr/2026",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-10-26T11:47:01Z"
+     "fetchedAt": "2026-10-26T17:40:44Z"
     }
    ],
-   "fetchedAt": "2026-10-26T11:47:01Z",
-   "lastVerifiedAt": "2026-10-26T11:47:01Z",
+   "fetchedAt": "2026-10-26T17:40:44Z",
+   "lastVerifiedAt": "2026-10-26T17:40:44Z",
    "dataAgeMinutes": 0,
    "changes7d": 0,
    "dataSource": "official"
@@ -1144,28 +1144,28 @@
   },
   "2026-11-12": {
    "screenings": 6,
-   "events": 0,
+   "events": 3,
    "festivals": [
     "idfa-2026"
    ]
   },
   "2026-11-13": {
    "screenings": 112,
-   "events": 11,
+   "events": 17,
    "festivals": [
     "idfa-2026"
    ]
   },
   "2026-11-14": {
    "screenings": 127,
-   "events": 32,
+   "events": 41,
    "festivals": [
     "idfa-2026"
    ]
   },
   "2026-11-15": {
    "screenings": 133,
-   "events": 35,
+   "events": 44,
    "festivals": [
     "idfa-2026"
    ]
@@ -1179,7 +1179,7 @@
   },
   "2026-11-17": {
    "screenings": 132,
-   "events": 36,
+   "events": 35,
    "festivals": [
     "idfa-2026"
    ]
