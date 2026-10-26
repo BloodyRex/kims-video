@@ -41,8 +41,8 @@
    "collapsed": 0
   },
   "bfi-2026": {
-   "lastFetchedAt": "2026-10-26T11:42:36Z",
-   "lastVerifiedAt": "2026-10-26T11:42:36Z",
+   "lastFetchedAt": "2026-10-26T21:50:43Z",
+   "lastVerifiedAt": "2026-10-26T21:50:43Z",
    "lastChangedAt": "2026-10-19T00:07:40Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
@@ -75,16 +75,16 @@
     "films": 22,
     "screenings": 44
    },
-   "failCount": 38,
+   "failCount": 39,
    "lastError": "entry hkiff-cinefan-2026-20261107-202611071400 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071615 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071830 outside festival range (2026-11-07)",
    "changesLastRun": 0,
    "collapsed": 0,
-   "lastAttemptAt": "2026-10-26T17:36:33Z"
+   "lastAttemptAt": "2026-10-26T21:50:43Z"
   },
   "venice-2026": {
-   "lastFetchedAt": "2026-10-26T11:43:13.246Z",
-   "lastVerifiedAt": "2026-10-26T11:43:13.246Z",
-   "lastChangedAt": "2026-10-26T11:29:08Z",
+   "lastFetchedAt": "2026-10-26T21:51:21.674Z",
+   "lastVerifiedAt": "2026-10-26T21:51:21.674Z",
+   "lastChangedAt": "2026-10-26T21:50:43Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -98,12 +98,12 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 143,
+   "changesLastRun": 159,
    "collapsed": 0
   },
   "iffr-2026": {
-   "lastFetchedAt": "2026-10-26T17:40:44Z",
-   "lastVerifiedAt": "2026-10-26T17:40:44Z",
+   "lastFetchedAt": "2026-10-26T21:54:32Z",
+   "lastVerifiedAt": "2026-10-26T21:54:32Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -122,8 +122,8 @@
    "collapsed": 0
   },
   "cannes-2026": {
-   "lastFetchedAt": "2026-10-26T17:37:33Z",
-   "lastVerifiedAt": "2026-10-26T17:37:33Z",
+   "lastFetchedAt": "2026-10-26T21:51:21Z",
+   "lastVerifiedAt": "2026-10-26T21:51:21Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -142,5 +142,5 @@
    "collapsed": 0
   }
  },
- "updated": "2026-10-26T17:36:33Z"
+ "updated": "2026-10-26T21:50:43Z"
 }
