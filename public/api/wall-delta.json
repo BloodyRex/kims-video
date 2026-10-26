@@ -1,34 +1,84 @@
 {
-  "updated": "2026-10-26",
-  "count": 2,
+  "updated": "2026-10-27",
+  "count": 5,
   "movies": [
     {
-      "tmdbId": 1780005,
+      "tmdbId": 222935,
       "mediaType": "movie",
-      "title": "抗击飓风",
-      "titleEn": "Surviving Hurricane Otis",
-      "year": "2026",
-      "releaseDate": "2026-10-23",
-      "poster": "https://image.tmdb.org/t/p/w500/ucdoFmKmxjGUr2iTM576UcFgEW8.jpg",
-      "rating": 5.31,
+      "title": "星运里的错",
+      "titleEn": "The Fault in Our Stars",
+      "year": "2014",
+      "releaseDate": "2014-06-03",
+      "poster": "https://image.tmdb.org/t/p/w342/kcVuktIlrn9SAN1uBmPDnocTQmF.jpg",
+      "rating": 7.587,
       "genre": [
-        "Drama"
+        "爱情",
+        "剧情"
       ],
+      "source": "rec",
       "firstSeen": "2026-10-26"
     },
     {
-      "tmdbId": 1453407,
+      "tmdbId": 408508,
       "mediaType": "movie",
-      "title": "失控长夜",
-      "titleEn": "Gajab Raat",
-      "year": "2026",
-      "releaseDate": "2026-10-23",
-      "poster": "https://image.tmdb.org/t/p/w500/dMJKqMIvgToRBcIXCAdbfV06MeL.jpg",
-      "rating": 5.9,
+      "title": "蓝色杰伊",
+      "titleEn": "Blue Jay",
+      "year": "2016",
+      "releaseDate": "2016-10-07",
+      "poster": "https://image.tmdb.org/t/p/w342/6Xkp4is3hCPXYHu26KLt9giB5pF.jpg",
+      "rating": 7.008,
       "genre": [
-        "Thriller",
-        "Crime"
+        "剧情",
+        "爱情"
       ],
+      "source": "rec",
+      "firstSeen": "2026-10-26"
+    },
+    {
+      "tmdbId": 489243,
+      "mediaType": "movie",
+      "title": "蜂鸟计划",
+      "titleEn": "The Hummingbird Project",
+      "year": "2019",
+      "releaseDate": "2019-03-15",
+      "poster": "https://image.tmdb.org/t/p/w342/cx7CuTtcJvjZAP6ZFWoxylCXKFP.jpg",
+      "rating": 6.173,
+      "genre": [
+        "惊悚",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-26"
+    },
+    {
+      "tmdbId": 60420,
+      "mediaType": "movie",
+      "title": "爱疯了",
+      "titleEn": "Like Crazy",
+      "year": "2011",
+      "releaseDate": "2011-10-28",
+      "poster": "https://image.tmdb.org/t/p/w342/8eIhNKnRfayRwWChx0atZh4vGua.jpg",
+      "rating": 6.355,
+      "genre": [
+        "剧情",
+        "爱情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-10-26"
+    },
+    {
+      "tmdbId": 753799,
+      "mediaType": "movie",
+      "title": "掬水月在手",
+      "titleEn": "掬水月在手",
+      "year": "2020",
+      "releaseDate": "2020-10-16",
+      "poster": "https://image.tmdb.org/t/p/w342/m70JXiQDsriNMv1YYzkkRYvmCio.jpg",
+      "rating": 8,
+      "genre": [
+        "纪录"
+      ],
+      "source": "rec",
       "firstSeen": "2026-10-26"
     }
   ]
