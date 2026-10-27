@@ -1,8 +1,8 @@
 {
  "editions": {
   "biff-2026": {
-   "lastFetchedAt": "2026-10-26T17:36:34Z",
-   "lastVerifiedAt": "2026-10-26T17:36:34Z",
+   "lastFetchedAt": "2026-10-27T01:24:14Z",
+   "lastVerifiedAt": "2026-10-27T01:24:14Z",
    "lastChangedAt": "2026-10-15T21:44:12Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
@@ -21,9 +21,9 @@
    "collapsed": 0
   },
   "idfa-2026": {
-   "lastFetchedAt": "2026-10-26T17:36:39Z",
-   "lastVerifiedAt": "2026-10-26T17:36:39Z",
-   "lastChangedAt": "2026-10-26T17:36:33Z",
+   "lastFetchedAt": "2026-10-27T01:24:20Z",
+   "lastVerifiedAt": "2026-10-27T01:24:20Z",
+   "lastChangedAt": "2026-10-27T01:24:14Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -37,7 +37,7 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 182,
+   "changesLastRun": 26,
    "collapsed": 0
   },
   "bfi-2026": {
@@ -75,11 +75,11 @@
     "films": 22,
     "screenings": 44
    },
-   "failCount": 39,
+   "failCount": 40,
    "lastError": "entry hkiff-cinefan-2026-20261107-202611071400 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071615 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071830 outside festival range (2026-11-07)",
    "changesLastRun": 0,
    "collapsed": 0,
-   "lastAttemptAt": "2026-10-26T21:50:43Z"
+   "lastAttemptAt": "2026-10-27T01:24:14Z"
   },
   "venice-2026": {
    "lastFetchedAt": "2026-10-26T21:51:21.674Z",
@@ -102,8 +102,8 @@
    "collapsed": 0
   },
   "iffr-2026": {
-   "lastFetchedAt": "2026-10-26T21:54:32Z",
-   "lastVerifiedAt": "2026-10-26T21:54:32Z",
+   "lastFetchedAt": "2026-10-27T01:28:59Z",
+   "lastVerifiedAt": "2026-10-27T01:28:59Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -122,8 +122,8 @@
    "collapsed": 0
   },
   "cannes-2026": {
-   "lastFetchedAt": "2026-10-26T21:51:21Z",
-   "lastVerifiedAt": "2026-10-26T21:51:21Z",
+   "lastFetchedAt": "2026-10-27T01:25:16Z",
+   "lastVerifiedAt": "2026-10-27T01:25:16Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -142,5 +142,5 @@
    "collapsed": 0
   }
  },
- "updated": "2026-10-26T21:50:43Z"
+ "updated": "2026-10-27T01:24:14Z"
 }
