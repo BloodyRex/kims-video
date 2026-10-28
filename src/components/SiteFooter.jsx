@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useLocale } from "../i18n";
 
@@ -31,7 +32,7 @@ export default function SiteFooter({ locale } = {}) {
       {FOOTER_LINKS.map((link, i) => {
         const active = isActive(link.to, pathname);
         return (
-          <React.Fragment key={link.id}>
+          <Fragment key={link.id}>
             <Link
               to={link.to}
               aria-current={active ? "page" : undefined}
@@ -40,7 +41,7 @@ export default function SiteFooter({ locale } = {}) {
               {t(link.key)}
             </Link>
             {i < FOOTER_LINKS.length - 1 && <span className="text-gray-600 mx-2">|</span>}
-          </React.Fragment>
+          </Fragment>
         );
       })}
       <span className="text-gray-800 mx-1">·</span>
