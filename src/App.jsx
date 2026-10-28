@@ -24,6 +24,7 @@ import { useMovieEngine } from "./logic/useMovieEngine";
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigationType } from "react-router-dom";
 import { LocaleProvider, useLocale } from "./i18n";
 import ShareButton from "./components/ShareButton";
+import SiteFooter from "./components/SiteFooter";
 
 // Entry portal route — the classic engine home lives here now (new home owns "/")
 const ENTRY_ROUTE = "/recommend";
@@ -511,19 +512,7 @@ function AppContent() {
 
       <LangButtonWrapper />
 
-      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
-        <p>
-          <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t('footer.discover')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">{t('footer.intel')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/wall" className="hover:text-[#ff00ff] transition-colors">{t('footer.wall')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">{t('footer.contact')}</a>
-          <span className="text-gray-800 mx-1">·</span>
-          <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
-        </p>
-      </footer>
+      <SiteFooter locale={locale} />
       </>
       )}
 

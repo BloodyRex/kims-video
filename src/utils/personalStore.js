@@ -11,15 +11,17 @@
  */
 
 const DB_NAME = "kims-video-personal";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_RECOS = "recos";
 const STORE_SEARCHES = "searches";
 const STORE_META = "meta";
+const STORE_FAVS = "favorites";
 
 const EXPORT_FORMAT = "kims-video-personal";
 const EXPORT_VERSION = 1;
 const MAX_SEARCHES = 500;
 const MAX_RECOS = 300;
+const MAX_FAVS = 5000;
 
 /** sourceId -> 缓存载荷（与 sessionStorage 中存的结构完全一致，可直接水合） */
 const recoMirror = new Map();
@@ -82,6 +84,10 @@ function openDB() {
       }
       if (!db.objectStoreNames.contains(STORE_META)) {
         db.createObjectStore(STORE_META, { keyPath: "key" });
+      }
+      if (!db.objectStoreNames.contains(STORE_FAVS)) {
+        const s = db.createObjectStore(STORE_FAVS, { keyPath: "id" });
+        s.createIndex("addedAt", "addedAt", { unique: false });
       }
     };
 
@@ -390,11 +396,83 @@ export async function clearSearches() {
 }
 
 /* ------------------------------------------------------------------ */
+/* 星标收藏（favorites，v2 新增）                                       */
+/* 条目形状：{ id, type, title, titleEn?, year?, poster?, source,        */
+/*            tmdbId?/mbid?, addedAt }；id 为稳定键（tmdb:xx / mbid:xx）。*/
+/* ------------------------------------------------------------------ */
+
+export async function listFavorites() {
+  try {
+    const rows = await getAll(STORE_FAVS);
+    rows.sort((a, b) => (b.addedAt || 0) - (a.addedAt || 0));
+    return rows;
+  } catch (_) {
+    return [];
+  }
+}
+
+/** 收藏则移除、未收藏则加入；返回当前是否为“已收藏”。永不抛错。 */
+export async function toggleFavorite(entry) {
+  try {
+    if (!entry || !entry.id) return false;
+    const existing = await getAll(STORE_FAVS);
+    if (existing.some((f) => f.id === entry.id)) {
+      await withStore(STORE_FAVS, "readwrite", (s) => s.delete(entry.id));
+      emit();
+      return false;
+    }
+    if (existing.length >= MAX_FAVS) {
+      // 容量保护：删掉最旧一条再写入（保持上限）
+      const oldest = existing.reduce(
+        (min, f) => ((f.addedAt || 0) < (min.addedAt || 0) ? f : min),
+        existing[0]
+      );
+      await withStore(STORE_FAVS, "readwrite", (s) => {
+        s.delete(oldest.id);
+        s.put({ ...entry, addedAt: Date.now() });
+      });
+    } else {
+      await withStore(STORE_FAVS, "readwrite", (s) =>
+        s.put({ ...entry, addedAt: entry.addedAt || Date.now() })
+      );
+    }
+    emit();
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+export async function removeFavorite(id) {
+  try {
+    await withStore(STORE_FAVS, "readwrite", (s) => s.delete(id));
+    emit();
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+export async function clearFavorites() {
+  try {
+    await withStore(STORE_FAVS, "readwrite", (s) => s.clear());
+    emit();
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /* 统计                                                               */
 /* ------------------------------------------------------------------ */
 
 export async function getStats() {
-  const [recos, searches] = await Promise.all([listRecos(), listSearches({ limit: 1000 })]);
+  const [recos, searches, favs] = await Promise.all([
+    listRecos(),
+    listSearches({ limit: 1000 }),
+    listFavorites(),
+  ]);
   let usage = null;
   let quota = null;
   try {
@@ -407,6 +485,7 @@ export async function getStats() {
   return {
     recoCount: recos.length,
     searchCount: searches.length,
+    favCount: favs.length,
     lastRecoAt: recos[0]?.updatedAt || null,
     usage,
     quota,
@@ -475,13 +554,14 @@ async function deriveKey(passphrase, salt, iterations = 150000) {
 /* ------------------------------------------------------------------ */
 
 async function collectAll() {
-  const [recos, searches, deviceId] = await Promise.all([
+  const [recos, searches, favorites, deviceId] = await Promise.all([
     listRecos(),
     listSearches({ limit: 1000 }),
+    listFavorites(),
     getDeviceId(),
   ]);
   const prefs = await getMeta("prefs", {});
-  return { recos, searches, meta: { deviceId, prefs } };
+  return { recos, searches, favorites, meta: { deviceId, prefs } };
 }
 
 /**
@@ -496,7 +576,7 @@ export async function exportAll({ passphrase } = {}) {
     version: EXPORT_VERSION,
     app: "kims-video",
     exportedAt: new Date().toISOString(),
-    counts: { recos: recos.length, searches: searches.length },
+    counts: { recos: recos.length, searches: searches.length, favorites: favorites.length },
   };
 
   if (passphrase) {
@@ -517,7 +597,7 @@ export async function exportAll({ passphrase } = {}) {
     return { json, bytes: json.length, encrypted: true };
   }
 
-  const env = { ...base, encrypted: false, recos, searches, meta };
+  const env = { ...base, encrypted: false, recos, searches, favorites, meta };
   const json = JSON.stringify(env, null, 2);
   await setMeta("lastExport", { at: Date.now(), encrypted: false });
   return { json, bytes: json.length, encrypted: false };
@@ -562,10 +642,12 @@ export async function importAll(input, { passphrase, mode = "merge" } = {}) {
 
   const incomingRecos = Array.isArray(env.recos) ? env.recos : [];
   const incomingSearches = Array.isArray(env.searches) ? env.searches : [];
+  const incomingFavs = Array.isArray(env.favorites) ? env.favorites : [];
 
   if (mode === "replace") {
     await clearRecos();
     await clearSearches();
+    await clearFavorites();
   }
 
   const existing = await listRecos();
@@ -628,6 +710,7 @@ export async function importAll(input, { passphrase, mode = "merge" } = {}) {
 
   // 搜索历史按 id 去重
   let searchAdded = 0;
+  let favAdded = 0;
   try {
     const curSearches = mode === "replace" ? [] : await listSearches({ limit: 1000 });
     const seen = new Set(curSearches.map((s) => s.id));
@@ -640,17 +723,30 @@ export async function importAll(input, { passphrase, mode = "merge" } = {}) {
     }
   } catch (_) {}
 
+  // 收藏历史按 id 去重
+  try {
+    const curFavs = mode === "replace" ? [] : await listFavorites();
+    const seenFavs = new Set(curFavs.map((f) => f.id));
+    const addableFavs = incomingFavs.filter((f) => f && f.id && !seenFavs.has(f.id)).slice(0, MAX_FAVS);
+    if (addableFavs.length) {
+      await withStore(STORE_FAVS, "readwrite", (s) => {
+        for (const f of addableFavs) s.put({ ...f, addedAt: f.addedAt || Date.now() });
+      });
+      favAdded = addableFavs.length;
+    }
+  } catch (_) {}
+
   // 合并 meta：本机 deviceId 永不覆盖
   try {
     if (env.meta && env.meta.prefs) {
       const localPrefs = (await getMeta("prefs", {})) || {};
       await setMeta("prefs", { ...(env.meta.prefs || {}), ...localPrefs });
     }
-    await setMeta("lastImport", { at: Date.now(), added, updated, mode });
+    await setMeta("lastImport", { at: Date.now(), added, updated, mode, searches: searchAdded, favorites: favAdded });
   } catch (_) {}
 
   emit();
-  return { ok: true, added, updated, searches: searchAdded };
+  return { ok: true, added, updated, searches: searchAdded, favorites: favAdded };
 }
 
 /** 生成一个可读的备份文件名 */
@@ -734,6 +830,7 @@ export async function wipeAll() {
     await withStore(STORE_RECOS, "readwrite", (s) => s.clear());
     await withStore(STORE_SEARCHES, "readwrite", (s) => s.clear());
     await withStore(STORE_META, "readwrite", (s) => s.clear());
+    await withStore(STORE_FAVS, "readwrite", (s) => s.clear());
     recoMirror.clear();
     warmedUp = true;
     emit();
@@ -755,6 +852,10 @@ export const personalStore = {
   listSearches,
   deleteSearch,
   clearSearches,
+  listFavorites,
+  toggleFavorite,
+  removeFavorite,
+  clearFavorites,
   getMeta,
   setMeta,
   getDeviceId,

@@ -10,6 +10,7 @@ import NewSplash from "./NewSplash";
 import NewInputPage from "./NewInputPage";
 import SplashPage from "./SplashPage";
 import SubscribeSection from "./SubscribeSection";
+import SiteFooter from "./SiteFooter";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "../services/api";
 import { loadResultsFromCache } from "../utils/cache";
@@ -396,24 +397,7 @@ const NewHomePage = () => {
         </button>
       </div>
 
-      {/* Footer (hidden on splash) */}
-      {step !== "splash" && (
-        <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
-          <p>
-            <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t("footer.discover")}</Link>
-            <span className="text-gray-600 mx-2">|</span>
-            <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">{t("footer.intel")}</Link>
-            <span className="text-gray-600 mx-2">|</span>
-            <Link to="/festivals" className="hover:text-[#00ffff] transition-colors">{t("footer.festivals")}</Link>
-            <span className="text-gray-600 mx-2">|</span>
-            <Link to="/wall" className="hover:text-[#ff00ff] transition-colors">{t("footer.wall")}</Link>
-            <span className="text-gray-600 mx-2">|</span>
-            <Link to="/my-data" className="hover:text-[#ffff00] transition-colors">{t("footer.mydata")}</Link>
-            <span className="text-gray-600 mx-2">|</span>
-            <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">{t("footer.contact")}</a>
-          </p>
-        </footer>
-      )}
+      {step !== "splash" && <SiteFooter />}
 
       {showSaveLayout && (
         <div ref={saveContainerRef} style={{ position: "fixed", top: "-9999px", left: 0, width: "800px", zIndex: 9999 }}>

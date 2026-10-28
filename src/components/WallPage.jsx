@@ -6,6 +6,7 @@ import { GENRE_ZH, RatingBadge } from "./Cards";
 import { setCanonical } from "../services/seo";
 import WallDetailView from "./WallDetailView";
 import DetailOverlay from "./DetailOverlay";
+import SiteFooter from "./SiteFooter";
 import SubscribeSection from "./SubscribeSection";
 
 const LANG_BUTTON_STYLE = {
@@ -597,22 +598,7 @@ const WallPage = () => {
         </button>
       </div>
 
-      {/* Footer — same layout as the other pages */}
-      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${zh ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
-        <p>
-          <Link to="/?search=1" className="hover:text-[#ffff00] transition-colors">{t('footer.home')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t('footer.discover')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">{t('footer.intel')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/festivals" className="hover:text-[#00ffff] transition-colors">{t('footer.festivals')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">{t('footer.contact')}</a>
-          <span className="text-gray-800 mx-1">·</span>
-          <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
-        </p>
-      </footer>
+      <SiteFooter />
 
       {/* Detail overlay — full-screen above the wall (site-wide standard, 2026-08-24).
           Closing restores scroll/filter state with zero refetch. */}

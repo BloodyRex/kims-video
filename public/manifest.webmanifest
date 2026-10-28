@@ -1,16 +1,46 @@
 {
+  "id": "/",
   "name": "Kim's Video — AI Movie Recommender",
   "short_name": "Kim's Video",
   "description": "AI-powered movie recommendation engine. Enter films you love, discover hidden gems and cult classics.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#111111",
   "theme_color": "#ffff00",
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Search",
+      "short_name": "AI Search",
+      "url": "/intelligence",
+      "icons": [{ "src": "/pwa-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "我的数据 / My Data",
+      "short_name": "My Data",
+      "url": "/my-data",
+      "icons": [{ "src": "/pwa-192.png", "sizes": "192x192" }]
     }
   ],
   "lang": "zh",

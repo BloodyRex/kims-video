@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocale } from "../i18n";
 import { setCanonical } from "../services/seo";
+import SiteFooter from "./SiteFooter";
 
 /**
  * Entry page — full-viewport 4-card portal (AI Search / Discover / Intelligence / Wall).
@@ -82,6 +83,7 @@ const EntryPage = () => {
           </div>
         </Link>
       ))}
+      <SiteFooter />
     </div>
   );
 };

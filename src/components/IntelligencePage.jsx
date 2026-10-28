@@ -5,6 +5,7 @@ import { useLocale } from "../i18n";
 import { CountdownCard, SpotlightCard, SectionHeader, CardGrid, IntelDetailModal, StarRating, WallStyleCard, albumGenres, GENRE_ZH } from "./Cards";
 import SubscribeSection from "./SubscribeSection";
 import DetailOverlay from "./DetailOverlay";
+import SiteFooter from "./SiteFooter";
 import { setCanonical } from "../services/seo";
 
 const LANG_BUTTON_STYLE = {
@@ -559,24 +560,7 @@ function IntelligencePage() {
         </button>
       </div>
 
-      {/* Footer */}
-      <footer className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}>
-        <p>
-          <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t('footer.discover')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/?search=1" className="hover:text-[#00ffff] transition-colors">{t('footer.home')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/festivals" className="hover:text-[#00ffff] transition-colors">{t('footer.festivals')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/wall" className="hover:text-[#ff00ff] transition-colors">{t('footer.wall')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/my-data" className="hover:text-[#00ffff] transition-colors">{t('footer.mydata')}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">{t('footer.contact')}</a>
-          <span className="text-gray-800 mx-1">·</span>
-          <Link to="/admin" className="text-gray-800 hover:text-[#ffff00] transition-colors text-[8px] opacity-20 hover:opacity-100">·</Link>
-        </p>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

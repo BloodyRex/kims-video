@@ -5,6 +5,7 @@ import { Icons } from "./Icons";
 import { SectionHeader } from "./Cards";
 import { setSocialMeta } from "../services/seo";
 import { CITY_ZH, COUNTRY_ZH, SECTION_ZH, VENUE_ZH, glossSourceLabel } from "./festivalGlossary.js";
+import SiteFooter from "./SiteFooter";
 
 /**
  * FESTIVAL CALENDAR / 全球电影节排片日历
@@ -1632,21 +1633,7 @@ export default function FestivalCalendarPage() {
         </button>
       </div>
 
-      <footer
-        className={`fixed bottom-0 w-full z-10 text-center py-3 bg-black border-t-4 border-[#ffff00] text-white ${
-          locale === "zh" ? "text-sm max-sm:text-xs font-bold tracking-wider" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"
-        }`}
-      >
-        <p>
-          <Link to="/discover" className="hover:text-[#ffff00] transition-colors">{t("footer.discover")}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/intelligence" className="hover:text-[#00ffff] transition-colors">{t("footer.intel")}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <Link to="/wall" className="hover:text-[#ff00ff] transition-colors">{t("footer.wall")}</Link>
-          <span className="text-gray-600 mx-2">|</span>
-          <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">{t("footer.contact")}</a>
-        </p>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

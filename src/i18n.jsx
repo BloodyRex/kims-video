@@ -130,7 +130,6 @@ const messages = {
     "footer.festivals": "电影节日历",
     "festivals.title": "全球电影节排片日历",
     "festivals.subtitle": "全球电影节排片日历 · 官方一手数据",
-    "footer.contact": "联系我",
     "footer.mydata": "我的数据",
 
     // ---- MyDataPage ----
@@ -323,7 +322,6 @@ const messages = {
     "footer.festivals": "Festivals",
     "festivals.title": "Global Festival Calendar",
     "festivals.subtitle": "GLOBAL FESTIVAL CALENDAR · OFFICIAL SOURCES",
-    "footer.contact": "Contact",
     "footer.mydata": "My Data",
 
     // ---- MyDataPage ----

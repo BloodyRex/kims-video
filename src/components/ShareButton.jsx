@@ -66,6 +66,18 @@ const PLATFORMS = [
     ),
     copy: true,
   },
+  {
+    id: "contact",
+    label: { zh: "联系作者", en: "Contact" },
+    icon: () => (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+        <polyline points="22,6 12,13 2,6" />
+      </svg>
+    ),
+    mailto: "rexhr@yahoo.com",
+    "data-fake": true,
+  },
 ];
 
 function getPageTitle(locale, pathname) {
@@ -127,6 +139,11 @@ export default function ShareButton({ locale = "zh" }) {
       setIsOpen(false);
       return;
     }
+    if (platform.mailto) {
+      window.location.href = `mailto:${platform.mailto}`;
+      setIsOpen(false);
+      return;
+    }
     const shareUrl = platform.shareUrl ? platform.shareUrl(url, title) : platform.href;
     window.open(shareUrl, "_blank", "noopener,noreferrer,width=600,height=500");
     setIsOpen(false);
@@ -159,6 +176,7 @@ export default function ShareButton({ locale = "zh" }) {
             {PLATFORMS.map((p) => (
               <button
                 key={p.id}
+                data-fake={p["data-fake"]}
                 onClick={() => handlePlatform(p)}
                 className="w-full flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-1.5 sm:py-2 text-white hover:bg-white/10 transition-colors text-xs sm:text-sm group"
               >

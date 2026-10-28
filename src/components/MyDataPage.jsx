@@ -9,6 +9,7 @@ import {
   wipeAll, getDeviceId, requestPersistence, downloadJSON,
 } from "../utils/personalStore";
 import { createRemoteMigrationCode, fetchRemoteMigrationCode } from "../services/migrationApi";
+import SiteFooter from "./SiteFooter";
 
 const ic = (name, cls) => {
   const C = Icons[name] || Icons.Target;
@@ -333,6 +334,7 @@ export default function MyDataPage() {
           <p className="text-xs text-gray-600 mb-3">{t("mydata.danger.desc")}</p>
           <button onClick={doWipe} disabled={busy} className="pixel-font text-[11px] font-bold border-4 border-black bg-red-500 text-white px-3 py-2 shadow-[4px_4px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_0_#000] transition-all disabled:opacity-40">{t("mydata.danger.btn")}</button>
         </Card>
+        <SiteFooter />
       </div>
     </div>
   );

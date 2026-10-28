@@ -1,0 +1,138 @@
+{
+  "version": "0.2.0",
+  "stage": "1",
+  "description": "壁纸尺寸规则 — 桌面/手机/自动推荐",
+  "provider_constraints": {
+    "provider": "Volcengine Ark Seedream",
+    "endpoint": "https://ark.cn-beijing.volces.com/api/v3/images/generations",
+    "verified_on": "2026-10-14",
+    "official_pixel_range": [
+      921600,
+      4624220
+    ],
+    "official_aspect_range": [
+      0.0625,
+      16
+    ],
+    "notes": "以下尺寸全部以显式 widthxheight 提交（Method 2）。总像素区间按模型档位不同：5.0 pro/4.5 为 [921,600, 4,624,220]，5.0 lite/4.0 为 [3,686,400, 16,777,216]；宽高比均为 [1/16, 16]。本表 8 档按较严的 pro 区间 [921,600, 4,624,220] 校验通过，因此这 8 档同时满足两档。注意：3840x2160 = 8,294,400 仅超出 pro 上限，在 lite 区间内仍合法；因当前默认档位为 pro，已将其移除。",
+    "removed_sizes": [
+      {
+        "width": 3840,
+        "height": 2160,
+        "label": "4K UHD",
+        "reason": "total pixels 8,294,400 exceeds pro ceiling 4,624,220 (would still be legal on lite tier)"
+      }
+    ],
+    "official_pixel_range_by_tier": {
+      "doubao-seedream-5-0-pro-260628": [
+        921600,
+        4624220
+      ],
+      "doubao-seedream-5-0-lite-260128": [
+        3686400,
+        16777216
+      ]
+    }
+  },
+  "sizes": {
+    "desktop": [
+      {
+        "width": 2560,
+        "height": 1440,
+        "label": "QHD",
+        "ratio": "16:9",
+        "recommended": true
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "label": "FHD",
+        "ratio": "16:9",
+        "recommended": false
+      },
+      {
+        "width": 2048,
+        "height": 1152,
+        "label": "2K",
+        "ratio": "16:9",
+        "recommended": false
+      }
+    ],
+    "mobile": [
+      {
+        "width": 1333,
+        "height": 2368,
+        "label": "FHD Tall",
+        "ratio": "9:15.96",
+        "recommended": true
+      },
+      {
+        "width": 1080,
+        "height": 1920,
+        "label": "FHD",
+        "ratio": "9:16",
+        "recommended": false
+      },
+      {
+        "width": 1170,
+        "height": 2080,
+        "label": "iPhone Pro",
+        "ratio": "9:16",
+        "recommended": false
+      },
+      {
+        "width": 1290,
+        "height": 2294,
+        "label": "iPhone Pro Max",
+        "ratio": "9:16",
+        "recommended": false
+      },
+      {
+        "width": 1440,
+        "height": 2560,
+        "label": "QHD Tall",
+        "ratio": "9:16",
+        "recommended": false
+      }
+    ]
+  },
+  "downscale_policy": {
+    "scope": "free preview only",
+    "note": "模型按上游尺寸直出大图；免费预览由 Worker 下采样并加水印，付费下载交付上游原图。"
+  },
+  "auto_recommendation": {
+    "strategy": "userAgent",
+    "rules": [
+      {
+        "match": "Android|iPhone|iPad|Mobile",
+        "type": "mobile",
+        "recommended_size": 0
+      },
+      {
+        "match": "default",
+        "type": "desktop",
+        "recommended_size": 0
+      }
+    ],
+    "fallback": {
+      "type": "desktop",
+      "recommended_size": 0
+    }
+  },
+  "safe_areas": {
+    "desktop": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "note": "全屏壁纸，无系统 UI 遮挡"
+    },
+    "mobile": {
+      "top": 60,
+      "bottom": 60,
+      "left": 0,
+      "right": 0,
+      "note": "顶部状态栏 + 底部 Dock 安全区"
+    }
+  }
+}

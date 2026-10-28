@@ -20,3 +20,12 @@ Promise.race([
   personalStore.warmUp().catch(() => null),
   new Promise((resolve) => setTimeout(resolve, 1500)),
 ]).finally(render);
+
+// Service Worker：让站点可安装（桌面/手机主屏、独立窗口）并缓存应用外壳。
+// 仅在生产且浏览器支持 SW 时注册；失败静默降级，不影响页面。
+if ("serviceWorker" in navigator && import.meta.env.PROD) {
+  window.addEventListener("load", () => {
+    const base = import.meta.env.BASE_URL || "/";
+    navigator.serviceWorker.register(`${base}sw.js`).catch(() => {});
+  });
+}

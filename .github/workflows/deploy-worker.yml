@@ -5,6 +5,13 @@ on:
     paths:
       - "workers-1.4.js"
       - "wrangler.toml"
+      # 壁纸主题/尺寸由构建期 JSON 导入进 bundle，配置变更必须触发重新部署
+      - "config/wallpaper-themes.json"
+      - "config/wallpaper-sizes.json"
+      # 生图客户端与壁纸辅助函数会被打包进 Worker bundle，其变更必须触发重新部署
+      - "scripts/seedream-client.mjs"
+      # Worker 直接 import 的壁纸辅助函数（规格/校验/交付决策/套装结构）
+      - "scripts/wall-worker-helpers.mjs"
     branches: [main]
   workflow_dispatch:
 
