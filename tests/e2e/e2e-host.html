@@ -1,0 +1,563 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><pre id="out">running</pre>
+<script>window.onerror=function(m,s,l,c,e){var o=document.getElementById("out");o.textContent="ONERROR "+m+" | line "+l+" | "+((e&&e.stack)||"");};window.addEventListener("unhandledrejection",function(ev){var o=document.getElementById("out");o.textContent="UNHANDLED_REJECTION "+((ev.reason&&(ev.reason.stack||ev.reason.message))||String(ev.reason));});</script>
+<script>
+(() => {
+  // src/utils/personalStore.js
+  var DB_NAME = "kims-video-personal";
+  var DB_VERSION = 1;
+  var STORE_RECOS = "recos";
+  var STORE_SEARCHES = "searches";
+  var STORE_META = "meta";
+  var EXPORT_FORMAT = "kims-video-personal";
+  var EXPORT_VERSION = 1;
+  var MAX_SEARCHES = 500;
+  var MAX_RECOS = 300;
+  var recoMirror = /* @__PURE__ */ new Map();
+  var listeners = /* @__PURE__ */ new Set();
+  var dbPromise = null;
+  var warmedUp = false;
+  var hasIDB = () => typeof indexedDB !== "undefined";
+  function emit() {
+    for (const fn of listeners) {
+      try {
+        fn();
+      } catch (_) {
+      }
+    }
+  }
+  function uid(prefix = "id") {
+    try {
+      if (typeof crypto !== "undefined" && crypto.randomUUID) {
+        return `${prefix}_${crypto.randomUUID()}`;
+      }
+    } catch (_) {
+    }
+    return `${prefix}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+  }
+  function openDB() {
+    if (!hasIDB()) return Promise.reject(new Error("indexeddb-unavailable"));
+    if (dbPromise) return dbPromise;
+    dbPromise = new Promise((resolve, reject) => {
+      let req;
+      try {
+        req = indexedDB.open(DB_NAME, DB_VERSION);
+      } catch (err) {
+        reject(err);
+        return;
+      }
+      req.onupgradeneeded = () => {
+        const db = req.result;
+        if (!db.objectStoreNames.contains(STORE_RECOS)) {
+          const s = db.createObjectStore(STORE_RECOS, { keyPath: "id" });
+          s.createIndex("sourceId", "sourceId", { unique: false });
+          s.createIndex("updatedAt", "updatedAt", { unique: false });
+        }
+        if (!db.objectStoreNames.contains(STORE_SEARCHES)) {
+          const s = db.createObjectStore(STORE_SEARCHES, { keyPath: "id" });
+          s.createIndex("at", "at", { unique: false });
+        }
+        if (!db.objectStoreNames.contains(STORE_META)) {
+          db.createObjectStore(STORE_META, { keyPath: "key" });
+        }
+      };
+      req.onsuccess = () => {
+        const db = req.result;
+        db.onversionchange = () => {
+          try {
+            db.close();
+          } catch (_) {
+          }
+          dbPromise = null;
+        };
+        resolve(db);
+      };
+      req.onerror = () => reject(req.error || new Error("idb-open-failed"));
+      req.onblocked = () => reject(new Error("idb-blocked"));
+    }).catch((err) => {
+      dbPromise = null;
+      throw err;
+    });
+    return dbPromise;
+  }
+  async function withStore(storeName, mode, fn) {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(storeName, mode);
+      const store = tx.objectStore(storeName);
+      let result;
+      try {
+        result = fn(store);
+      } catch (err) {
+        reject(err);
+        return;
+      }
+      tx.oncomplete = () => resolve(result);
+      tx.onerror = () => reject(tx.error);
+      tx.onabort = () => reject(tx.error || new Error("idb-aborted"));
+    });
+  }
+  async function getAll(storeName) {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(storeName, "readonly");
+      const req = tx.objectStore(storeName).getAll();
+      req.onsuccess = () => resolve(req.result || []);
+      req.onerror = () => reject(req.error);
+    });
+  }
+  async function getMeta(key, fallback = null) {
+    try {
+      const rec = await withStore(STORE_META, "readonly", (s) => {
+        const req = s.get(key);
+        const box = { value: fallback };
+        req.onsuccess = () => {
+          box.value = req.result && req.result.value !== void 0 ? req.result.value : fallback;
+        };
+        return box;
+      });
+      return rec && rec.value !== void 0 ? rec.value : fallback;
+    } catch (_) {
+      return fallback;
+    }
+  }
+  async function setMeta(key, value) {
+    try {
+      await withStore(STORE_META, "readwrite", (s) => s.put({ key, value, at: Date.now() }));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+  async function getDeviceId() {
+    let id = await getMeta("deviceId", null);
+    if (id) return id;
+    id = uid("dev");
+    await setMeta("deviceId", id);
+    return id;
+  }
+  async function warmUp() {
+    if (warmedUp) return { ok: true, count: recoMirror.size };
+    try {
+      const rows = await getAll(STORE_RECOS);
+      for (const row of rows) {
+        if (row && row.sourceId != null && row.payload) {
+          recoMirror.set(String(row.sourceId), row.payload);
+        }
+      }
+      warmedUp = true;
+      return { ok: true, count: rows.length };
+    } catch (_) {
+      warmedUp = true;
+      return { ok: false, count: 0 };
+    }
+  }
+  async function saveReco({ sourceId, payload, locale, modelTag } = {}) {
+    if (sourceId == null || !payload) return false;
+    const key = String(sourceId);
+    recoMirror.set(key, payload);
+    const now = Date.now();
+    const id = `src:${key}`;
+    try {
+      const existing = await withStore(STORE_RECOS, "readonly", (s) => {
+        const req = s.get(id);
+        const box = { value: null };
+        req.onsuccess = () => {
+          box.value = req.result || null;
+        };
+        return box;
+      });
+      const createdAt = existing?.value?.createdAt || now;
+      const record = {
+        id,
+        sourceId: Number(sourceId) || sourceId,
+        sourceTitle: payload?.primaryMovie?.title || "",
+        sourceYear: payload?.primaryMovie?.year || "",
+        count: Array.isArray(payload.recommendations) ? payload.recommendations.length : 0,
+        payload,
+        locale: locale || "zh",
+        modelTag: modelTag || "",
+        createdAt,
+        updatedAt: now
+      };
+      await withStore(STORE_RECOS, "readwrite", (s) => s.put(record));
+      await trimRecos();
+      emit();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+  async function trimRecos() {
+    try {
+      const rows = await getAll(STORE_RECOS);
+      if (rows.length <= MAX_RECOS) return;
+      rows.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+      const drop = rows.slice(MAX_RECOS);
+      await withStore(STORE_RECOS, "readwrite", (s) => {
+        for (const r of drop) s.delete(r.id);
+      });
+    } catch (_) {
+    }
+  }
+  async function listRecos() {
+    try {
+      const rows = await getAll(STORE_RECOS);
+      return rows.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+    } catch (_) {
+      return [];
+    }
+  }
+  async function clearRecos() {
+    try {
+      await withStore(STORE_RECOS, "readwrite", (s) => s.clear());
+      recoMirror.clear();
+      emit();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+  async function addSearch({ scope = "ai_search", query, tmdbId = null } = {}) {
+    const q = (query || "").trim();
+    if (!q) return false;
+    const now = Date.now();
+    try {
+      const rows = await getAll(STORE_SEARCHES);
+      const dup = rows.find(
+        (r) => r.scope === scope && r.query === q && now - (r.at || 0) < 6e4
+      );
+      if (dup) return true;
+      await withStore(
+        STORE_SEARCHES,
+        "readwrite",
+        (s) => s.put({ id: uid("q"), scope, query: q, tmdbId, at: now })
+      );
+      if (rows.length + 1 > MAX_SEARCHES) {
+        const sorted = rows.sort((a, b) => (a.at || 0) - (b.at || 0));
+        const drop = sorted.slice(0, rows.length + 1 - MAX_SEARCHES);
+        await withStore(STORE_SEARCHES, "readwrite", (s) => {
+          for (const r of drop) s.delete(r.id);
+        });
+      }
+      emit();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+  async function listSearches({ limit = 50 } = {}) {
+    try {
+      const rows = await getAll(STORE_SEARCHES);
+      return rows.sort((a, b) => (b.at || 0) - (a.at || 0)).slice(0, limit);
+    } catch (_) {
+      return [];
+    }
+  }
+  async function clearSearches() {
+    try {
+      await withStore(STORE_SEARCHES, "readwrite", (s) => s.clear());
+      emit();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+  var b64 = {
+    encode(bytes) {
+      let s = "";
+      const arr = new Uint8Array(bytes);
+      for (let i = 0; i < arr.length; i++) s += String.fromCharCode(arr[i]);
+      return btoa(s);
+    },
+    decode(str) {
+      const s = atob(str);
+      const out2 = new Uint8Array(s.length);
+      for (let i = 0; i < s.length; i++) out2[i] = s.charCodeAt(i);
+      return out2;
+    }
+  };
+  async function deriveKey(passphrase, salt, iterations = 15e4) {
+    const enc = new TextEncoder();
+    const base = await crypto.subtle.importKey(
+      "raw",
+      enc.encode(passphrase),
+      "PBKDF2",
+      false,
+      ["deriveKey"]
+    );
+    return crypto.subtle.deriveKey(
+      { name: "PBKDF2", salt, iterations, hash: "SHA-256" },
+      base,
+      { name: "AES-GCM", length: 256 },
+      false,
+      ["encrypt", "decrypt"]
+    );
+  }
+  async function collectAll() {
+    const [recos, searches, deviceId] = await Promise.all([
+      listRecos(),
+      listSearches({ limit: 1e3 }),
+      getDeviceId()
+    ]);
+    const prefs = await getMeta("prefs", {});
+    return { recos, searches, meta: { deviceId, prefs } };
+  }
+  async function exportAll({ passphrase } = {}) {
+    const { recos, searches, meta } = await collectAll();
+    const base = {
+      format: EXPORT_FORMAT,
+      version: EXPORT_VERSION,
+      app: "kims-video",
+      exportedAt: (/* @__PURE__ */ new Date()).toISOString(),
+      counts: { recos: recos.length, searches: searches.length }
+    };
+    if (passphrase) {
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const key = await deriveKey(passphrase, salt);
+      const plain = new TextEncoder().encode(JSON.stringify({ recos, searches, meta }));
+      const cipher = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, plain);
+      const env2 = {
+        ...base,
+        encrypted: true,
+        kdf: { name: "PBKDF2", hash: "SHA-256", iterations: 15e4, salt: b64.encode(salt) },
+        iv: b64.encode(iv),
+        data: b64.encode(cipher)
+      };
+      const json2 = JSON.stringify(env2, null, 2);
+      await setMeta("lastExport", { at: Date.now(), encrypted: true });
+      return { json: json2, bytes: json2.length, encrypted: true };
+    }
+    const env = { ...base, encrypted: false, recos, searches, meta };
+    const json = JSON.stringify(env, null, 2);
+    await setMeta("lastExport", { at: Date.now(), encrypted: false });
+    return { json, bytes: json.length, encrypted: false };
+  }
+  async function importAll(input, { passphrase, mode = "merge" } = {}) {
+    let env;
+    try {
+      env = typeof input === "string" ? JSON.parse(input) : input;
+    } catch (_) {
+      return { ok: false, added: 0, updated: 0, searches: 0, error: "invalid-json" };
+    }
+    if (!env || env.format !== EXPORT_FORMAT) {
+      return { ok: false, added: 0, updated: 0, searches: 0, error: "unknown-format" };
+    }
+    if (env.encrypted) {
+      if (!passphrase) {
+        return { ok: false, added: 0, updated: 0, searches: 0, error: "passphrase-required" };
+      }
+      try {
+        const salt = b64.decode(env.kdf.salt);
+        const iv = b64.decode(env.iv);
+        const key = await deriveKey(passphrase, salt, env.kdf.iterations || 15e4);
+        const plain = await crypto.subtle.decrypt(
+          { name: "AES-GCM", iv },
+          key,
+          b64.decode(env.data)
+        );
+        env = { ...env, ...JSON.parse(new TextDecoder().decode(plain)) };
+      } catch (_) {
+        return { ok: false, added: 0, updated: 0, searches: 0, error: "decrypt-failed" };
+      }
+    }
+    const incomingRecos = Array.isArray(env.recos) ? env.recos : [];
+    const incomingSearches = Array.isArray(env.searches) ? env.searches : [];
+    if (mode === "replace") {
+      await clearRecos();
+      await clearSearches();
+    }
+    const existing = await listRecos();
+    const bySource = new Map(existing.map((r) => [String(r.sourceId), r]));
+    let added = 0;
+    let updated = 0;
+    const toWrite = [];
+    for (const inc of incomingRecos) {
+      if (!inc || inc.sourceId == null) continue;
+      const key = String(inc.sourceId);
+      const cur = bySource.get(key);
+      if (!cur) {
+        toWrite.push({ ...inc, id: inc.id || `src:${key}` });
+        added++;
+        continue;
+      }
+      const newer = (inc.updatedAt || 0) > (cur.updatedAt || 0) ? inc : cur;
+      const other = newer === inc ? cur : inc;
+      const mergedTitles = Array.from(
+        /* @__PURE__ */ new Set([
+          ...newer?.payload?.everShownTitles || [],
+          ...other?.payload?.everShownTitles || []
+        ])
+      );
+      if (newer === inc) {
+        toWrite.push({
+          ...inc,
+          id: cur.id,
+          createdAt: Math.min(inc.createdAt || 0, cur.createdAt || 0) || inc.createdAt,
+          payload: {
+            ...inc.payload || {},
+            everShownTitles: mergedTitles
+          }
+        });
+        updated++;
+      } else if (mergedTitles.length !== (cur?.payload?.everShownTitles || []).length) {
+        toWrite.push({
+          ...cur,
+          payload: { ...cur.payload || {}, everShownTitles: mergedTitles }
+        });
+        updated++;
+      }
+    }
+    try {
+      if (toWrite.length) {
+        await withStore(STORE_RECOS, "readwrite", (s) => {
+          for (const r of toWrite) s.put(r);
+        });
+        for (const r of toWrite) {
+          if (r.sourceId != null && r.payload) recoMirror.set(String(r.sourceId), r.payload);
+        }
+      }
+    } catch (err) {
+      return { ok: false, added: 0, updated: 0, searches: 0, error: "write-failed" };
+    }
+    let searchAdded = 0;
+    try {
+      const curSearches = mode === "replace" ? [] : await listSearches({ limit: 1e3 });
+      const seen = new Set(curSearches.map((s) => s.id));
+      const addable = incomingSearches.filter((s) => s && s.id && !seen.has(s.id)).slice(0, MAX_SEARCHES);
+      if (addable.length) {
+        await withStore(STORE_SEARCHES, "readwrite", (s) => {
+          for (const r of addable) s.put(r);
+        });
+        searchAdded = addable.length;
+      }
+    } catch (_) {
+    }
+    try {
+      if (env.meta && env.meta.prefs) {
+        const localPrefs = await getMeta("prefs", {}) || {};
+        await setMeta("prefs", { ...env.meta.prefs || {}, ...localPrefs });
+      }
+      await setMeta("lastImport", { at: Date.now(), added, updated, mode });
+    } catch (_) {
+    }
+    emit();
+    return { ok: true, added, updated, searches: searchAdded };
+  }
+  async function createMigrationCode({ passphrase } = {}) {
+    const { json } = await exportAll({ passphrase });
+    try {
+      const bytes = new TextEncoder().encode(json);
+      if (typeof CompressionStream !== "undefined") {
+        const cs = new CompressionStream("gzip");
+        const stream = new Blob([bytes]).stream().pipeThrough(cs);
+        const buf = await new Response(stream).arrayBuffer();
+        return { code: `KV1G:${b64.encode(new Uint8Array(buf))}`, compressed: true, bytes: json.length };
+      }
+      return { code: `KV1:${b64.encode(bytes)}`, compressed: false, bytes: json.length };
+    } catch (_) {
+      return { code: `KV1:${b64.encode(new TextEncoder().encode(json))}`, compressed: false, bytes: json.length };
+    }
+  }
+  async function importMigrationCode(code, { passphrase } = {}) {
+    const raw = (code || "").trim();
+    if (!raw) return { ok: false, added: 0, updated: 0, searches: 0, error: "empty" };
+    try {
+      if (raw.startsWith("KV1G:")) {
+        const gz = b64.decode(raw.slice(5));
+        const ds = new DecompressionStream("gzip");
+        const stream = new Blob([gz]).stream().pipeThrough(ds);
+        const text = await new Response(stream).text();
+        return importAll(text, { passphrase });
+      }
+      if (raw.startsWith("KV1:")) {
+        return importAll(new TextDecoder().decode(b64.decode(raw.slice(4))), { passphrase });
+      }
+      return importAll(raw, { passphrase });
+    } catch (_) {
+      return { ok: false, added: 0, updated: 0, searches: 0, error: "decode-failed" };
+    }
+  }
+  async function wipeAll() {
+    try {
+      await withStore(STORE_RECOS, "readwrite", (s) => s.clear());
+      await withStore(STORE_SEARCHES, "readwrite", (s) => s.clear());
+      await withStore(STORE_META, "readwrite", (s) => s.clear());
+      recoMirror.clear();
+      warmedUp = true;
+      emit();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  // tests/e2e/personal-store-e2e.test.js
+  var out = document.getElementById("out");
+  var res = [];
+  function flush() {
+    out.textContent = res.join("\n");
+  }
+  var step = (s) => {
+    res.push("STEP  " + s);
+    flush();
+  };
+  var ok = (n, c, extra = "") => {
+    res.push((c ? "PASS  " : "FAIL  ") + n + (c ? "" : " | " + extra));
+    flush();
+  };
+  (async () => {
+    try {
+      step("module loaded; warmUp=" + typeof warmUp);
+      await warmUp();
+      step("warmUp done; listRecos=" + typeof listRecos);
+      await saveReco({ sourceId: "e2e-src-1", payload: { primaryMovie: { title: "E2E One", year: 2026 }, recommendations: [{ title: "r1" }, { title: "r2" }] }, locale: "zh", modelTag: "e2e" });
+      step("saveReco 1 done");
+      await saveReco({ sourceId: "e2e-src-2", payload: { primaryMovie: { title: "E2E Two", year: 2025 }, recommendations: [{ title: "r3" }] }, locale: "zh", modelTag: "e2e" });
+      step("saveReco 2 done");
+      await addSearch({ scope: "ai_search", query: "e2e-query-alpha" });
+      await addSearch({ scope: "tmdb_search", query: "e2e-query-beta", tmdbId: 12345 });
+      step("addSearch x2 done");
+      const recos0 = await listRecos();
+      const searches0 = await listSearches();
+      ok("seed recos == 2", recos0.length === 2, "got " + recos0.length);
+      ok("seed searches == 2", searches0.length === 2, "got " + searches0.length);
+      step("seed verified; creating migration code");
+      const { code, compressed, bytes } = await createMigrationCode();
+      step("createMigrationCode done");
+      ok("code has KV1:/KV1G: prefix", /^KV1G?:/.test(code), code.slice(0, 8));
+      ok("bytes > 0", bytes > 0, "bytes=" + bytes);
+      const body = code.startsWith("KV1G:") ? code.slice(5) : code.slice(4);
+      let b64ok = true;
+      try {
+        atob(body);
+      } catch (e) {
+        b64ok = false;
+      }
+      ok("payload is valid base64 (worker-decodable)", b64ok);
+      res.push("INFO  prefix=" + code.slice(0, 5) + " bytes=" + bytes + " compressed=" + compressed);
+      flush();
+      await wipeAll();
+      step("wipeAll done");
+      ok("wipe -> recos == 0", (await listRecos()).length === 0);
+      ok("wipe -> searches == 0", (await listSearches()).length === 0);
+      const imp = await importMigrationCode(code);
+      step("importMigrationCode done: " + JSON.stringify(imp));
+      ok("import ok:true", imp.ok === true, JSON.stringify(imp));
+      ok("import restored recos == 2", (await listRecos()).length === 2, JSON.stringify(imp));
+      ok("import restored searches == 2", (await listSearches()).length === 2, JSON.stringify(imp));
+      ok("restored payload intact", (await listRecos()).some((r) => r.payload?.primaryMovie?.title === "E2E One"));
+      const imp2 = await importMigrationCode(code);
+      ok("re-import ok:true (merge, idempotent)", imp2.ok === true, JSON.stringify(imp2));
+      ok("re-import recos stay == 2", (await listRecos()).length === 2);
+      await wipeAll();
+      ok("final wipe recos == 0", (await listRecos()).length === 0);
+      out.textContent = "RESULT_START\n" + res.join("\n") + "\nRESULT_END\n" + (res.some((l) => l.startsWith("FAIL")) ? "OVERALL_FAIL" : "OVERALL_PASS");
+    } catch (e) {
+      out.textContent = "RESULT_START\n" + res.join("\n") + "\nERR " + (e && (e.stack || e.message || e)) + "\nRESULT_END\nOVERALL_FAIL";
+    }
+  })();
+})();
+</script>
+<script>var o=document.getElementById("out");if(o.textContent==="running"){o.textContent="SYNC_AFTER_BUNDLE_OK (async still pending)";}</script>
+</body></html>

@@ -3352,6 +3352,75 @@ async function sendDigestToAll(env, opts = {}) {
       return { ok: true, sent, subscriberCount: list.keys.length };
     }
 
+// ── No-account personal-data migration (one-time relay) ─────────────────
+// The client's offline createMigrationCode emits a self-contained "KV1:"/
+// "KV1G:" blob (personal data embedded in the string, standard base64). These
+// routes store that blob in R2 under migrate/<token> so a user can ship their
+// personal data to another device without pasting megabytes. A token is:
+//   high-entropy (24 crypto-random bytes) · short-lived (~24h, purged nightly)
+//   · single-use (R2 object deleted immediately on redemption). It is NOT an
+//   account credential: it grants access only to the blob it was minted for.
+const MIGRATE_PREFIX = "migrate/";
+const MIGRATE_TTL_SECONDS = 86400; // 24h
+const MIGRATE_MAX_BLOB_BYTES = 1500000; // ~1.5 MB encoded cap
+const MIGRATE_TOKEN_RE = /^mig_[A-Za-z0-9_-]{16,80}$/;
+
+/** 24 random bytes → base64url "mig_..." — high-entropy, URL-safe. */
+function migrateRandomToken() {
+  const b = crypto.getRandomValues(new Uint8Array(24));
+  let s = "";
+  for (let i = 0; i < b.length; i++) s += String.fromCharCode(b[i]);
+  return "mig_" + btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+/**
+ * Validate the client migration blob. `code` must be a "KV1:" (plain base64
+ * JSON) or "KV1G:" (base64 gzip) self-contained string, exactly as the client
+ * createMigrationCode produced it. Plain KV1 is fully decoded + verified to be
+ * a kims-video-personal envelope; KV1G is checked for decodable base64 bytes
+ * (the receiving device gunzips + validates on import). Never logs the blob.
+ */
+function migrateValidateBlob(code) {
+  if (typeof code !== "string" || !code.length) return { ok: false, error: "empty" };
+  if (code.length > MIGRATE_MAX_BLOB_BYTES) return { ok: false, error: "too_large" };
+  const isGzip = code.startsWith("KV1G:");
+  const isPlain = code.startsWith("KV1:");
+  if (!isGzip && !isPlain) return { ok: false, error: "bad_prefix" };
+  const body = code.slice(isGzip ? 5 : 4);
+  let bin;
+  try { bin = atob(body); } catch { return { ok: false, error: "bad_base64" }; }
+  if (isGzip) {
+    if (bin.length === 0) return { ok: false, error: "empty_payload" };
+    return { ok: true, format: "kims-video-personal", version: 1, compressed: true };
+  }
+  const json = new TextDecoder("utf-8").decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)));
+  let parsed;
+  try { parsed = JSON.parse(json); } catch { return { ok: false, error: "bad_json" }; }
+  if (!parsed || parsed.format !== "kims-video-personal") return { ok: false, error: "bad_format" };
+  if (!Number.isFinite(parsed.version)) return { ok: false, error: "bad_version" };
+  return { ok: true, format: parsed.format, version: parsed.version, compressed: false };
+}
+
+/** Nightly: reclaim unredeemed migrate/ blobs whose recorded exp has passed. */
+async function migratePurgeExpired(env) {
+  if (!env.DISCOVER_R2) return { purged: 0 };
+  const now = Date.now();
+  let purged = 0;
+  let cursor;
+  do {
+    const page = await env.DISCOVER_R2.list({ prefix: MIGRATE_PREFIX, limit: 1000, cursor });
+    for (const o of page.objects || []) {
+      const exp = Number(o.customMetadata && o.customMetadata.exp) || 0;
+      if (exp && now > exp) {
+        try { await env.DISCOVER_R2.delete(o.key); purged++; } catch (e) {}
+      }
+    }
+    cursor = page.cursor;
+    if (!page.truncated && !cursor) break;
+  } while (cursor);
+  return { purged };
+}
+
 // ── Main ──
 export default {
   async fetch(request, env, ctx) {
@@ -3462,11 +3531,99 @@ export default {
           return Response.json({ key: null }, { headers: corsHeaders });
         }
       }
+      // No-account personal-data migration: redeem a one-time token minted by POST /migrate/create
+      if (method === "GET" && path.startsWith("/migrate/")) {
+        const raw = path.slice("/migrate/".length);
+        let token; try { token = decodeURIComponent(raw); } catch { token = raw; }
+        if (!MIGRATE_TOKEN_RE.test(token)) {
+          return Response.json({ ok: false, error: "invalid_token" }, { status: 400, headers: corsHeaders });
+        }
+        if (!env.DISCOVER_R2) {
+          return Response.json({ ok: false, error: "r2_not_configured" }, { status: 503, headers: corsHeaders });
+        }
+        const key = MIGRATE_PREFIX + token;
+        const obj = await env.DISCOVER_R2.get(key);
+        if (!obj) {
+          // never minted, already redeemed, or already purged — indistinguishable on purpose
+          return Response.json({ ok: false, error: "not_found_or_consumed" }, { status: 404, headers: corsHeaders });
+        }
+        const exp = Number(obj.customMetadata && obj.customMetadata.exp) || 0;
+        const now = Date.now();
+        if (exp && now > exp) {
+          try { await env.DISCOVER_R2.delete(key); } catch (e) {}
+          return Response.json({ ok: false, error: "expired" }, { status: 410, headers: corsHeaders });
+        }
+        // 单次兑换说明（并发兑换权衡，用户已接受）：
+        // - R2 get→delete 不是原子操作；KV claim lock 仅在 DISCOVER_KV 绑定时存在，
+        //   且为短时尽力硬化（expirationTtl 300s），不能构成严格互斥。
+        // - 并发情况下，两个兑换请求都可能在 delete 前都读到相同 blob，即双读都成功；
+        //   本实现**不保证严格一次性（exactly-once）消费**，不得描述为具备原子消费能力。
+        // - 兑换端数据由客户端 import 端完成幂等 merge，双读不会导致数据丢失（重复合并）。
+        // - 迁移码不作为长期凭证；过期由 R2 自定义元数据 exp 与 KV lock TTL 清理。
+        let consumed = false;
+        if (env.DISCOVER_KV) {
+          try {
+            const lock = "miglock:" + token;
+            const taken = await env.DISCOVER_KV.get(lock);
+            if (taken) consumed = true;
+            else ctx.waitUntil(env.DISCOVER_KV.put(lock, String(now), { expirationTtl: 300 }).catch(() => {}));
+          } catch (e) {}
+        }
+        let blob;
+        try {
+          const buf = await obj.arrayBuffer();
+          blob = new TextDecoder("utf-8").decode(buf);
+        } catch (e) {
+          return Response.json({ ok: false, error: "read_failed" }, { status: 500, headers: corsHeaders });
+        }
+        try { await env.DISCOVER_R2.delete(key); } catch (e) {}
+        if (consumed) {
+          return Response.json({ ok: false, error: "already_consumed" }, { status: 410, headers: corsHeaders });
+        }
+        return Response.json({ ok: true, code: blob, oneTime: true }, { status: 200, headers: corsHeaders });
+      }
+
+      // Fallback: health check
       return Response.json({ status: "ok" }, { headers: corsHeaders });
     }
 
     // ── POST routes ──
     if (method === "POST") {
+      // No-account personal-data migration: mint a one-time token for a client blob.
+      // Body: { code: "<KV1:... | KV1G:...>" } — the exact string createMigrationCode produced.
+      // The blob is relayed to R2, never logged, and is deleted when the token is redeemed.
+      if (path === "/migrate/create") {
+        if (!env.DISCOVER_R2) {
+          return Response.json({ ok: false, error: "r2_not_configured" }, { status: 503, headers: corsHeaders });
+        }
+        let body;
+        try { body = await request.json(); } catch (e) { return Response.json({ ok: false, error: "invalid_json" }, { status: 400, headers: corsHeaders }); }
+        const code = (body && typeof body.code === "string") ? body.code.trim() : "";
+        const v = migrateValidateBlob(code);
+        if (!v.ok) {
+          const status = v.error === "too_large" ? 413 : 400;
+          return Response.json({ ok: false, error: v.error }, { status, headers: corsHeaders });
+        }
+        const token = migrateRandomToken();
+        const createdMs = Date.now();
+        const expiresMs = createdMs + MIGRATE_TTL_SECONDS * 1000;
+        try {
+          await env.DISCOVER_R2.put(MIGRATE_PREFIX + token, code, {
+            httpMetadata: { contentType: "text/plain;charset=utf-8" },
+            customMetadata: { exp: String(expiresMs), created: String(createdMs) },
+          });
+        } catch (e) {
+          // surface a storage failure without echoing the blob or a stack trace
+          console.log("migrate:create store failed:", e && e.message);
+          return Response.json({ ok: false, error: "store_failed" }, { status: 502, headers: corsHeaders });
+        }
+        return Response.json({
+          ok: true, code: token, expiresAt: expiresMs,
+          ttlSeconds: MIGRATE_TTL_SECONDS, oneTime: true,
+          compressed: v.compressed, version: v.version,
+        }, { status: 200, headers: corsHeaders });
+      }
+
       // Admin: login
       if (path === "/admin/login") { let b; try { b = await request.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400, headers: corsHeaders }); } if (!env.ADMIN_PASSWORD) return Response.json({ error: "Admin not configured" }, { headers: corsHeaders }); if (b.password !== env.ADMIN_PASSWORD) return Response.json({ error: "Invalid password" }, { headers: corsHeaders }); return Response.json({ token: createAdminToken(env.ADMIN_PASSWORD) }, { headers: corsHeaders }); }
 
@@ -3654,5 +3811,13 @@ export default {
   async scheduled(event, env, ctx) {
     const result = await sendDigestToAll(env);
     console.log("scheduled digest:", JSON.stringify(result));
+    // Reclaim unredeemed, now-expired personal-data migration blobs from R2.
+    // Isolated so a purge failure can never take down the daily digest.
+    try {
+      const purged = await migratePurgeExpired(env);
+      console.log("scheduled migrate-purge:", JSON.stringify(purged));
+    } catch (e) {
+      console.log("scheduled migrate-purge failed:", e && e.message);
+    }
   },
 };

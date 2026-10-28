@@ -408,6 +408,8 @@ const NewHomePage = () => {
             <span className="text-gray-600 mx-2">|</span>
             <Link to="/wall" className="hover:text-[#ff00ff] transition-colors">{t("footer.wall")}</Link>
             <span className="text-gray-600 mx-2">|</span>
+            <Link to="/my-data" className="hover:text-[#ffff00] transition-colors">{t("footer.mydata")}</Link>
+            <span className="text-gray-600 mx-2">|</span>
             <a href="mailto:rexhr@yahoo.com" className="hover:text-[#ffff00] transition-colors">{t("footer.contact")}</a>
           </p>
         </footer>

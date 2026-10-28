@@ -13,6 +13,7 @@ import WallPage from "./components/WallPage";
 import EntryPage from "./components/EntryPage";
 import NewHomePage from "./components/NewHomePage";
 import AdminPage from "./components/AdminPage";
+import MyDataPage from "./components/MyDataPage";
 import FestivalCalendarPage from "./components/FestivalCalendarPage";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "./services/api";
@@ -136,6 +137,7 @@ function App() {
           <Route path="/intelligence/weekly" element={<IntelligencePage />} />
           <Route path="/intelligence/search" element={<IntelligencePage />} />
           <Route path="/wall" element={<WallPage />} />
+          <Route path="/my-data" element={<MyDataPage />} />
           {/* Festival Calendar — TODAY/WEEK/MONTH/FESTIVALS/CHANGES + /festivals/:slug detail */}
           <Route path="/festivals" element={<FestivalCalendarPage />} />
           <Route path="/festivals/week" element={<FestivalCalendarPage />} />

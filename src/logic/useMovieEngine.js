@@ -3,6 +3,7 @@ import { generateAIContent, verifyMovieTmdbId, repairRecommendationFields, fetch
 import { getAiConfig } from "../services/aiConfig";
 import { parseJSON } from "../utils/parseJSON";
 import { saveResultsToCache, loadResultsFromCache } from "../utils/cache";
+import { addSearch } from "../utils/personalStore";
 import { updateUrl } from "../utils/url";
 import { injectStructuredData, resetSeo } from "../services/seo";
 import {
@@ -105,6 +106,15 @@ export function useMovieEngine() {
   });
 
   const selectMovie = (movie, type) => {
+    // 记录“搜索历史”：只有确定选择的片种（主要/次要）才算一次有效搜索，
+    // 避免把输入框里的半截字打进历史。永不抛错。
+    if (movie?.title) {
+      addSearch({
+        scope: "intelligence",
+        query: movie.year ? `${movie.title} (${movie.year})` : movie.title,
+        tmdbId: movie.tmdbId || null,
+      }).catch(() => {});
+    }
     if (type === "primary") {
       setPrimaryMovie({ title: movie.title, year: movie.year, tmdbId: movie.tmdbId || null });
       setShowPrimaryDropdown(false);
