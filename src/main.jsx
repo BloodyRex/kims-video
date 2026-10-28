@@ -4,6 +4,18 @@ import App from "./App";
 import "./App.css";
 import personalStore from "./utils/personalStore";
 
+// 持久化存储默认对所有用户开启：启动时静默请求一次，页面上不再出现开关。
+// 浏览器可能拒绝（未满足参与度启发式），失败静默降级，数据仍照常写入 IndexedDB。
+import { requestPersistence } from "./utils/personalStore";
+
+if ("storage" in navigator && navigator.storage && navigator.storage.persist) {
+  try {
+    navigator.storage.persisted().then((already) => {
+      if (!already) requestPersistence().catch(() => {});
+    }).catch(() => {});
+  } catch (_) {}
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 function render() {

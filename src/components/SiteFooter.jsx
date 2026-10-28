@@ -9,7 +9,6 @@ const FOOTER_LINKS = [
   { id: "intel", key: "footer.intel", to: "/intelligence" },
   { id: "festivals", key: "footer.festivals", to: "/festivals" },
   { id: "wall", key: "footer.wall", to: "/wall" },
-  { id: "mydata", key: "footer.mydata", to: "/my-data" },
 ];
 
 function isActive(to, pathname) {

@@ -211,9 +211,9 @@ export default function MyDataPage() {
         </Card>
 
         <div className="flex flex-wrap gap-2 mb-5">
-          <button onClick={doRequestPersistence} className="pixel-font text-[11px] font-bold border-4 border-black bg-[#00ffff] px-3 py-2 shadow-[4px_4px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_0_#000] transition-all">
-            <span className="inline-flex items-center gap-1">{ic("Target")}{t("mydata.persist.btn")}</span>
-          </button>
+          <span className="pixel-font text-[11px] font-bold border-4 border-black bg-[#00ffff] px-3 py-2 shadow-[4px_4px_0_0_#000]">
+            <span className="inline-flex items-center gap-1">{ic("Target")}{t("panel.persist.on")}</span>
+          </span>
         </div>
 
         <Card icon="Film" title={`${t("mydata.recos.title")}${recos.length ? " · " + recos.length : ""}`}

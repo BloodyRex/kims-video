@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocale } from "../i18n";
 import { Icons } from "./Icons";
+import MyDataPanel from "./MyDataPanel";
 
 /**
  * NewSplash — 四宫格沉浸式开屏（2026-08 新主页设计）
@@ -235,6 +236,9 @@ const NewSplash = ({ onEnterAI }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {CARDS.map((card, i) => renderCard(card, i))}
       </div>
+
+      {/* 我的数据（2026-10-29）：默认持久化，不再走 footer 入口，直接内嵌首页最下方 */}
+      <MyDataPanel />
     </div>
   );
 };

@@ -570,7 +570,7 @@ async function collectAll() {
  * @returns {Promise<{json: string, bytes: number, encrypted: boolean}>}
  */
 export async function exportAll({ passphrase } = {}) {
-  const { recos, searches, meta } = await collectAll();
+  const { recos, searches, favorites, meta } = await collectAll();
   const base = {
     format: EXPORT_FORMAT,
     version: EXPORT_VERSION,
@@ -583,7 +583,7 @@ export async function exportAll({ passphrase } = {}) {
     const salt = crypto.getRandomValues(new Uint8Array(16));
     const iv = crypto.getRandomValues(new Uint8Array(12));
     const key = await deriveKey(passphrase, salt);
-    const plain = new TextEncoder().encode(JSON.stringify({ recos, searches, meta }));
+    const plain = new TextEncoder().encode(JSON.stringify({ recos, searches, favorites, meta }));
     const cipher = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, plain);
     const env = {
       ...base,
