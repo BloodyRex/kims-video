@@ -168,10 +168,11 @@ const MyDataPanel = () => {
       if (res && res.ok) {
         setMsg({
           ok: true,
-          text: t("mydata.import.ok", {
+          text: t("panel.import.ok", {
             added: res.added || 0,
             updated: res.updated || 0,
             searches: res.searches || 0,
+            favorites: res.favorites || 0,
           }),
         });
         setPaste("");
