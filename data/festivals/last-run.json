@@ -1,83 +1,33 @@
 {
- "at": "2026-10-27T22:54:56Z",
+ "at": "2026-10-28T02:07:00Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
-   "due": true,
-   "reason": "age 587min ≥ 360min",
+   "due": false,
+   "reason": "age 192min < 360min",
    "status": "SCHEDULE_LIVE",
-   "parsed": {
-    "films": 255,
-    "screenings": 724,
-    "venues": 26,
-    "days": 10,
-    "sourcesOk": 11,
-    "sourcesTotal": 11,
-    "status": "SCHEDULE_LIVE",
-    "lifecycle": "ENDED"
-   },
-   "warnings": [],
-   "action": "updated",
-   "changes": 0
+   "action": "skipped (throttled)"
   },
   {
    "slug": "idfa-2026",
-   "due": true,
-   "reason": "age 587min ≥ 360min",
+   "due": false,
+   "reason": "age 192min < 360min",
    "status": "SCHEDULE_LIVE",
-   "parsed": {
-    "films": 287,
-    "screenings": 1217,
-    "venues": 70,
-    "days": 11,
-    "sourcesOk": 2,
-    "sourcesTotal": 2,
-    "status": "SCHEDULE_LIVE",
-    "lifecycle": "UPCOMING"
-   },
-   "warnings": [
-    "DAY=2026-11-21: official amount 112 != returned 148",
-    "DAY=2026-11-20: official amount 107 != returned 142",
-    "DAY=2026-11-18: official amount 93 != returned 178",
-    "DAY=2026-11-13: official amount 89 != returned 129",
-    "DAY=2026-11-14: official amount 89 != returned 167",
-    "DAY=2026-11-15: official amount 89 != returned 179",
-    "DAY=2026-11-16: official amount 87 != returned 182",
-    "DAY=2026-11-17: official amount 82 != returned 167",
-    "DAY=2026-11-22: official amount 74 != returned 100",
-    "DAY=2026-11-19: official amount 72 != returned 109",
-    "DAY=2026-11-12: official amount 6 != returned 9",
-    "fetched 1510 of 900 officially declared in-edition record(s)",
-    "5 record(s) look like all-day programme blocks (linked film, > 240min) — kept as EVENT, not screenings"
-   ],
-   "action": "updated",
-   "changes": 149
+   "action": "skipped (throttled)"
   },
   {
    "slug": "bfi-2026",
-   "due": true,
-   "reason": "age 587min ≥ 360min",
+   "due": false,
+   "reason": "age 191min < 360min",
    "status": "SCHEDULE_LIVE",
-   "parsed": {
-    "films": 242,
-    "screenings": 480,
-    "venues": 20,
-    "days": 12,
-    "sourcesOk": 13,
-    "sourcesTotal": 13,
-    "status": "SCHEDULE_LIVE",
-    "lifecycle": "ENDED"
-   },
-   "warnings": [],
-   "action": "updated",
-   "changes": 0
+   "action": "skipped (throttled)"
   },
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 11064min ≥ 30min",
+   "reason": "age 11256min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 45,
@@ -142,27 +92,15 @@
   },
   {
    "slug": "venice-2026",
-   "due": true,
-   "reason": "age 586min ≥ 360min",
+   "due": false,
+   "reason": "age 191min < 360min",
    "status": "SCHEDULE_LIVE",
-   "parsed": {
-    "films": 347,
-    "screenings": 350,
-    "venues": 10,
-    "days": 11,
-    "sourcesOk": 12,
-    "sourcesTotal": 12,
-    "status": "SCHEDULE_LIVE",
-    "lifecycle": "ENDED"
-   },
-   "warnings": [],
-   "action": "updated",
-   "changes": 155
+   "action": "skipped (throttled)"
   },
   {
    "slug": "cannes-2026",
    "due": true,
-   "reason": "age 241min ≥ 180min",
+   "reason": "age 191min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 150,
@@ -183,7 +121,7 @@
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 238min ≥ 180min",
+   "reason": "age 189min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 496,
