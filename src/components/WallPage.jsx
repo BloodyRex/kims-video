@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
-import { GENRE_ZH, RatingBadge } from "./Cards";
+import { GENRE_ZH, RatingBadge, FavoriteButton, makeEntry } from "./Cards";
 import { setCanonical } from "../services/seo";
 import WallDetailView from "./WallDetailView";
 import DetailOverlay from "./DetailOverlay";
@@ -79,6 +79,10 @@ function WallCard({ movie, locale, todayStr, todayTs, onOpen }) {
         </span>
         {/* Rating badge */}
         <RatingBadge score={movie.rating} />
+        {/* Favorite — bottom-LEFT so it never covers the rating badge */}
+        <div className="absolute bottom-1.5 left-1.5 z-20">
+          <FavoriteButton entry={makeEntry(movie, "movie")} size="w-4 h-4" />
+        </div>
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={movie.title}>
@@ -151,6 +155,10 @@ function TvWallCard({ show, locale, todayStr, todayTs, onOpen }) {
         </span>
         {/* Rating badge */}
         <RatingBadge score={show.rating} />
+        {/* Favorite — bottom-LEFT so it never covers the rating badge */}
+        <div className="absolute bottom-1.5 left-1.5 z-20">
+          <FavoriteButton entry={makeEntry(show, "tv")} size="w-4 h-4" />
+        </div>
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={show.title}>{show.title}</h3>

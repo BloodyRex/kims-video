@@ -70,7 +70,7 @@ function DailyPickCard({ pick, locale, onOpen }) {
           {zh ? cat.zh : cat.en}
         </span>
         <RatingBadge score={pick.rating} />
-        <div className="absolute bottom-3 right-1 z-20">
+        <div className="absolute bottom-1.5 left-1.5 z-20">
           <FavoriteButton entry={makeEntry(pick, pick.mediaType || "movie")} size="w-4 h-4" />
         </div>
       </div>
@@ -120,7 +120,7 @@ function PairCard({ pair, posterMap, metaMap, locale, onOpen }) {
           《{srcTitle}》
         </span>
         <RatingBadge score={meta.rating} />
-        <div className="absolute bottom-3 right-1 z-20">
+        <div className="absolute bottom-1.5 left-1.5 z-20">
           <FavoriteButton entry={makeEntry(pair.recommend, "movie")} size="w-4 h-4" />
         </div>
       </div>

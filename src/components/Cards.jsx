@@ -207,13 +207,17 @@ export function FavoriteButton({ entry, size = "w-5 h-5" }) {
   return (
     <button
       onClick={onClick}
-      className={`flex items-center justify-center ${size} border-2 border-black transition-all flex-shrink-0 ${isFav ? "bg-[#ffd700] text-[#ffd700]" : "bg-white text-gray-600 hover:bg-[#ffd700] hover:text-[#ffd700]"}`}
+      className={`flex items-center justify-center ${size} border-2 border-black transition-all flex-shrink-0 ${isFav ? "bg-[#ffd700]" : "bg-white hover:bg-[#fff3b0]"}`}
       title={label}
       aria-label={label}
     >
       <Icons.Star
         className="w-3 h-3"
-        style={{ stroke: isFav ? "#ffd700" : "#9ca3af", strokeWidth: isFav ? 2.5 : 2 }}
+        style={
+          isFav
+            ? { fill: "#000", stroke: "#000", strokeWidth: 2 }
+            : { fill: "none", stroke: "#6b7280", strokeWidth: 2.2 }
+        }
       />
     </button>
   );
@@ -1088,7 +1092,9 @@ export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", sub
           </span>
         )}
         <RatingBadge score={rating} />
-        <div className="absolute bottom-3 right-1 z-20">
+        {/* Favorite — bottom-LEFT of the poster so it never covers the rating
+            badge (bottom-right). Rex 2026-10-28: unified across every card. */}
+        <div className="absolute bottom-1.5 left-1.5 z-20">
           <FavoriteButton entry={makeEntry(item, (item.mbid || item.artist) ? "album" : "movie")} size="w-4 h-4" />
         </div>
       </div>

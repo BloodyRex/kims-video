@@ -27,7 +27,7 @@ export default function SiteFooter({ locale } = {}) {
 
   return (
     <footer
-      className={`fixed bottom-0 left-0 w-full z-20 flex flex-wrap justify-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 border-t-4 border-[#ffff00] bg-black ${zh ? "text-sm max-sm:text-xs" : "pixel-font text-[10px] max-sm:text-[9px] uppercase tracking-widest"}`}
+      className={`fixed bottom-0 left-0 w-full z-20 flex flex-nowrap items-center justify-center gap-1.5 sm:gap-3 px-2 sm:px-4 py-2 sm:py-3 border-t-4 border-[#ffff00] bg-black overflow-x-auto ${zh ? "text-xs sm:text-sm" : "pixel-font text-[9px] sm:text-[10px] uppercase tracking-normal sm:tracking-widest"}`}
     >
       {FOOTER_LINKS.map((link, i) => {
         const active = isActive(link.to, pathname);
@@ -36,11 +36,11 @@ export default function SiteFooter({ locale } = {}) {
             <Link
               to={link.to}
               aria-current={active ? "page" : undefined}
-              className={`transition-colors ${active ? "text-[#00ffff] font-black" : "hover:text-[#ffff00]"}`}
+              className={`transition-colors whitespace-nowrap flex-shrink-0 leading-none py-1 ${active ? "text-[#00ffff] font-black" : "text-white hover:text-[#ffff00]"}`}
             >
               {t(link.key)}
             </Link>
-            {i < FOOTER_LINKS.length - 1 && <span className="text-gray-600 mx-2">|</span>}
+            {i < FOOTER_LINKS.length - 1 && <span className="hidden sm:inline text-gray-600 mx-2 leading-none">|</span>}
           </Fragment>
         );
       })}

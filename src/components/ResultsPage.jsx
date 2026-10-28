@@ -6,6 +6,7 @@ import { publishToDiscover, uploadDiscoverThumbnail } from "../services/discover
 import { fetchMovieByTmdbId } from "../services/api";
 import SaveContent from "./SaveContent";
 import domtoimage from "dom-to-image-more";
+import { FavoriteButton, makeEntry } from "./Cards";
 
 const CATEGORIES = ["科幻", "悬疑", "恐怖", "动画", "战争", "犯罪", "剧情", "奇幻"];
 
@@ -402,6 +403,13 @@ const ResultsPage = ({
                       alt={posterAlt(rec.title, rec.year, rec.originalTitle, locale)}
                       className="w-full h-auto object-cover"
                     />
+                    {/* Favorite — bottom-LEFT of the poster, same anchor as every other card */}
+                    <div className="absolute bottom-1.5 left-1.5 z-20">
+                      <FavoriteButton
+                        entry={makeEntry(rec, /tv|series|show|剧/i.test(String(rec.type || "")) ? "tv" : "movie")}
+                        size="w-5 h-5"
+                      />
+                    </div>
                   </div>
                 ) : (
                   <div className="border-4 border-black bg-gray-800 text-white flex items-center justify-center h-40 text-xs pixel-font shadow-[4px_4px_0_0_#000]">
