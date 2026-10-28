@@ -6,6 +6,8 @@
 // ── Wallpaper (电影主题壁纸 MVP) 配置：构建期 JSON 模块导入 ──
 // 唯一数据源在 config/；wrangler v4 将 JSON 编译进 bundle，Worker 运行时零文件系统依赖。
 // 已验证：wrangler 4.111.0 dev 实跑取回 themes=20 / sizes=2。改动配置后需重新部署才生效。
+// 注：JSON 导入必须带 import 属性 `with { type: "json" }`——CI 的 Node v24 测试与
+// wrangler 4.x 均依赖此语法；wrangler 3.90 的旧 esbuild 不支持，故 CI 须用 wrangler@4。
 import WALL_THEMES from "./config/wallpaper-themes.json" with { type: "json" };
 import WALL_SIZES from "./config/wallpaper-sizes.json" with { type: "json" };
 // 壁纸生图辅助（纯函数：档位校验 / 交付决策 / 套装结构）。不含网络调用与密钥。

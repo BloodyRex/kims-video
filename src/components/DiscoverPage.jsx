@@ -6,7 +6,7 @@ import { useLocale } from "../i18n";
 import { fetchMovieByTmdbId } from "../services/api";
 import { fetchDiscoverResults, likeDiscoverResult } from "../services/discoverApi";
 import { setCanonical } from "../services/seo";
-import { TrailerButtons, StarRating, RatingBadge, GENRE_ZH } from "./Cards";
+import { TrailerButtons, StarRating, RatingBadge, FavoriteButton, makeEntry, GENRE_ZH } from "./Cards";
 import SubscribeSection from "./SubscribeSection";
 import SiteFooter from "./SiteFooter";
 
@@ -70,6 +70,9 @@ function DailyPickCard({ pick, locale, onOpen }) {
           {zh ? cat.zh : cat.en}
         </span>
         <RatingBadge score={pick.rating} />
+        <div className="absolute bottom-3 right-1 z-20">
+          <FavoriteButton entry={makeEntry(pick, pick.mediaType || "movie")} size="w-4 h-4" />
+        </div>
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={title}>{title}</h3>
@@ -117,6 +120,9 @@ function PairCard({ pair, posterMap, metaMap, locale, onOpen }) {
           《{srcTitle}》
         </span>
         <RatingBadge score={meta.rating} />
+        <div className="absolute bottom-3 right-1 z-20">
+          <FavoriteButton entry={makeEntry(pair.recommend, "movie")} size="w-4 h-4" />
+        </div>
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={recTitle}>{recTitle}</h3>

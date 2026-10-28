@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Icons } from "./Icons";
 import { fetchMovieByTmdbId } from "../services/api";
+import { useLocale } from "../i18n";
+import { toggleFavorite, listFavorites } from "../utils/personalStore";
 
 // ── Image proxy helper ──
 function posterUrl(path) {
@@ -155,6 +157,68 @@ function CardShell({ children, className = "" }) {
   );
 }
 
+// ── 星标收藏按钮 ──
+export function makeEntry(item, type) {
+  return {
+    id: item.tmdbId
+      ? `tmdb:${item.tmdbId}`
+      : item.mbid
+      ? `mbid:${item.mbid}`
+      : `${type}:${(item.titleEn || item.title || "")}:${item.year || ""}`,
+    type,
+    title: item.titleEn || item.title || "",
+    titleEn: item.titleEn || undefined,
+    year: item.year || undefined,
+    poster: item.poster || item.cover || undefined,
+    source: "kims-video",
+    ...(item.tmdbId ? { tmdbId: item.tmdbId } : {}),
+    ...(item.mbid ? { mbid: item.mbid } : {}),
+  };
+}
+
+/* 收藏态用金色描边星，未收藏灰色；点击调用数据层 toggleFavorite */
+export function FavoriteButton({ entry, size = "w-5 h-5" }) {
+  const { locale } = useLocale();
+  const [isFav, setIsFav] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const favs = await listFavorites();
+        if (!cancelled) setIsFav(favs.some((f) => f.id === entry.id));
+      } catch (_) {}
+      setMounted(true);
+    })();
+    return () => { cancelled = true; };
+  }, [entry.id]);
+
+  const onClick = async (e) => {
+    e.stopPropagation();
+    const now = await toggleFavorite(entry);
+    setIsFav(now);
+  };
+
+  if (!mounted) return null;
+
+  const label = locale === "zh" ? (isFav ? "已收藏，点击取消" : "收藏") : isFav ? "Favorited, click to remove" : "Favorite";
+
+  return (
+    <button
+      onClick={onClick}
+      className={`flex items-center justify-center ${size} border-2 border-black transition-all flex-shrink-0 ${isFav ? "bg-[#ffd700] text-[#ffd700]" : "bg-white text-gray-600 hover:bg-[#ffd700] hover:text-[#ffd700]"}`}
+      title={label}
+      aria-label={label}
+    >
+      <Icons.Star
+        className="w-3 h-3"
+        style={{ stroke: isFav ? "#ffd700" : "#9ca3af", strokeWidth: isFav ? 2.5 : 2 }}
+      />
+    </button>
+  );
+}
+
 // ── MovieCard ──
 
 export function MovieCard({ movie, locale, onViewDetail }) {
@@ -229,6 +293,7 @@ export function MovieCard({ movie, locale, onViewDetail }) {
             >
               <Icons.Imdb className="w-full h-full" />
             </a>
+            <FavoriteButton entry={makeEntry(movie, "movie")} size="w-5 h-5" />
             <TrailerButtons item={movie} locale={locale} />
           </div>
         </div>
@@ -318,6 +383,7 @@ export function TVCard({ show, locale, onViewDetail }) {
             >
               <Icons.Imdb className="w-full h-full" />
             </a>
+            <FavoriteButton entry={makeEntry(show, "tv")} size="w-5 h-5" />
             <TrailerButtons item={show} locale={locale} />
           </div>
         </div>
@@ -432,6 +498,7 @@ export function AlbumCard({ album, locale, onViewDetail }) {
             >
               <Icons.NeteaseCloudMusic className="w-full h-full" />
             </a>
+            <FavoriteButton entry={makeEntry(album, "album")} size="w-5 h-5" />
           </div>
         </div>
       </div>
@@ -528,6 +595,7 @@ export function CountdownCard({ item, locale, onViewDetail }) {
                 <Icons.Imdb className="w-full h-full" />
               </a>
             )}
+            <FavoriteButton entry={makeEntry(item, item.mediaType || "movie")} size="w-5 h-5" />
             <TrailerButtons item={item} locale={locale} />
           </div>
         </div>
@@ -712,6 +780,7 @@ export function SpotlightCard({ pick, locale, onViewDetail }) {
                 <Icons.Imdb className="w-full h-full" />
               </a>
             )}
+            <FavoriteButton entry={makeEntry(pick, pick.mbid || pick.artist ? "album" : "movie")} size="w-5 h-5" />
             <TrailerButtons item={pick} locale={locale} />
           </div>
         </div>
@@ -1019,6 +1088,9 @@ export function WallStyleCard({ item, locale, badge, badgeColor = "#ffff00", sub
           </span>
         )}
         <RatingBadge score={rating} />
+        <div className="absolute bottom-3 right-1 z-20">
+          <FavoriteButton entry={makeEntry(item, (item.mbid || item.artist) ? "album" : "movie")} size="w-4 h-4" />
+        </div>
       </div>
       <div className="p-2 max-sm:p-1.5">
         <h3 className="text-xs font-black truncate leading-tight" title={title}>{title}</h3>
