@@ -250,7 +250,7 @@ const MyDataPanel = () => {
       aria-label={t("panel.title")}
     >
       {/* 标题条 */}
-      <div className="border-b-8 border-black bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] px-4 py-3 md:px-6 md:py-4 flow-gradient">
+      <div className="px-4 py-3 md:px-6 md:py-4 border-b-4 border-[#111]">
         <div className="flex items-start gap-3 min-w-0">
           <span className="font-mono text-xs px-2 py-1 border border-white/40 bg-black/80 text-white shrink-0">SEC.05</span>
           <div className="min-w-0">
