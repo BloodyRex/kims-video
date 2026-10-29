@@ -378,8 +378,8 @@ const MyDataPanel = () => {
                     return (
                       <div key={r.id} className="py-2">
                         <div className="flex items-start gap-2">
-                          <span className="text-[#ff00ff] mt-0.5 shrink-0">
-                            <Icons.Film className="w-4 h-4" />
+                          <span className="text-[#ff00ff] mt-0.5 shrink-0 text-base leading-none">
+                            {(r.payload?.primaryMovie?.type === "tv" || r.payload?.primaryMovie?.mediaType === "tv") ? "📺" : "🎬"}
                           </span>
                           <div className="flex-1 min-w-0">
                             <div className="font-black text-xs sm:text-base truncate">{r.sourceTitle || "—"}</div>
@@ -402,6 +402,13 @@ const MyDataPanel = () => {
                             onClick={() => deleteReco(r.id)}
                             aria-label={t("mydata.recos.delete")}
                             className="shrink-0 text-[#ff0055] hover:text-white text-lg font-black leading-none px-1"
+                            onTouchStart={(e) => {
+                              if (window.innerWidth < 768) {
+                                e.preventDefault();
+                                const id = r.id;
+                                setTimeout(() => deleteReco(id), 200);
+                              }
+                            }}
                           >
                             ✕
                           </button>
@@ -520,7 +527,11 @@ const MyDataPanel = () => {
                         readOnly
                         value={code}
                         rows={4}
-                        className="w-full bg-black text-[10px] font-mono text-[#00ffff] border-2 border-[#00ffff] p-2 resize-none break-all"
+                        className={`w-full bg-black border-2 p-2 resize-none break-all ${
+                          /^[A-Z0-9]{10}$/.test(code)
+                            ? "text-[#00ffff] border-[#00ffff] text-3xl font-mono leading-tight"
+                            : "text-[10px] font-mono text-[#00ffff] border-[#00ffff] p-2 break-all"
+                        }`}
                       />
                       <div className="flex items-center justify-between gap-2 mt-2">
                         <span className="text-[9px] text-gray-200 font-mono">
@@ -615,12 +626,14 @@ const MyDataPanel = () => {
             if (e.target === e.currentTarget) setDetailFav(null);
           }}
         >
-          <IntelDetailModal
-            item={detailFav}
-            type={detailFav.type || "movie"}
-            locale={locale}
-            onClose={() => setDetailFav(null)}
-          />
+          <div className="w-full max-w-md">
+            <IntelDetailModal
+              item={detailFav}
+              type={detailFav.type || "movie"}
+              locale={locale}
+              onClose={() => setDetailFav(null)}
+            />
+          </div>
         </div>
       )}
     </section>
