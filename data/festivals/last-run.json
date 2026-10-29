@@ -1,12 +1,12 @@
 {
- "at": "2026-10-29T00:19:55Z",
+ "at": "2026-10-29T06:22:29Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 537min ≥ 360min",
+   "reason": "age 363min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 255,
@@ -25,7 +25,7 @@
   {
    "slug": "idfa-2026",
    "due": true,
-   "reason": "age 536min ≥ 360min",
+   "reason": "age 362min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 285,
@@ -53,12 +53,12 @@
     "5 record(s) look like all-day programme blocks (linked film, > 240min) — kept as EVENT, not screenings"
    ],
    "action": "updated",
-   "changes": 54
+   "changes": 2
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 536min ≥ 360min",
+   "reason": "age 362min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 242,
@@ -77,7 +77,7 @@
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 12589min ≥ 30min",
+   "reason": "age 12952min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 45,
@@ -143,7 +143,7 @@
   {
    "slug": "venice-2026",
    "due": true,
-   "reason": "age 535min ≥ 360min",
+   "reason": "age 361min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 347,
@@ -157,12 +157,12 @@
    },
    "warnings": [],
    "action": "updated",
-   "changes": 122
+   "changes": 107
   },
   {
    "slug": "cannes-2026",
    "due": true,
-   "reason": "age 228min ≥ 180min",
+   "reason": "age 361min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 150,
@@ -183,7 +183,7 @@
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 226min ≥ 180min",
+   "reason": "age 358min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 496,
