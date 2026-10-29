@@ -64,21 +64,15 @@ export function favoriteRemoveHandler(fav, onRemove) {
 }
 
 /* 收藏卡片：可点开的详情按钮 + 平级的取消收藏按钮。
-   两个按钮必须是兄弟节点 —— 若把 ✕ 放进详情按钮内部，点击 ✕ 会同时冒泡触发详情。 */
+   两个按钮必须是兄弟节点 —— 若把 ✕ 放进详情按钮内部，点击 ✕ 会同时冒泡触发详情。
+   防误触：点一次 ✕ 只进入待确认态（显示 ✓ / ✕），再点 ✓ 才真正删除。 */
 export function FavoriteCard({ fav, removeLabel, onOpen, onRemove }) {
   const poster = posterProxy(fav.poster || "");
   const [pending, setPending] = useState(false);
 
   const handleRemove = () => {
-    onRemove(fav.id);
     setPending(false);
-  };
-
-  const handleTouchStart = (e) => {
-    if (window.innerWidth < 768) {
-      e.preventDefault();
-      setPending(true);
-    }
+    onRemove(fav.id);
   };
 
   return (
@@ -106,8 +100,10 @@ export function FavoriteCard({ fav, removeLabel, onOpen, onRemove }) {
       {!pending ? (
         <button
           type="button"
-          onTouchStart={handleTouchStart}
-          onClick={favoriteRemoveHandler(fav, onRemove)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setPending(true);
+          }}
           aria-label={removeLabel}
           title={removeLabel}
           className="absolute top-1 right-1 w-6 h-6 bg-black/80 border-2 border-white text-white text-xs font-black leading-none flex items-center justify-center hover:bg-[#ff0055] transition-colors"
@@ -118,15 +114,22 @@ export function FavoriteCard({ fav, removeLabel, onOpen, onRemove }) {
         <div className="absolute top-1 right-1 flex flex-col gap-0.5">
           <button
             type="button"
-            onClick={handleRemove}
-            aria-label={removeLabel}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleRemove();
+            }}
+            aria-label={`${removeLabel}?`}
+            title={removeLabel}
             className="w-6 h-6 bg-[#ff0055] border-2 border-white text-white text-xs font-black leading-none flex items-center justify-center"
           >
             ✓
           </button>
           <button
             type="button"
-            onClick={() => setPending(false)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setPending(false);
+            }}
             aria-label="取消"
             className="w-6 h-6 bg-black/80 border-2 border-gray-500 text-gray-400 text-xs font-black leading-none flex items-center justify-center"
           >
@@ -435,26 +438,24 @@ const MyDataPanel = () => {
                               <Icons.ChevronRight className="w-4 h-4" />
                             </button>
                           )}
-                          {!pendingDeleteId ? (
+                          {!pendingDeleteId || pendingDeleteId !== r.id ? (
                             <button
-                              onClick={() => deleteReco(r.id)}
-                              onTouchStart={(e) => {
-                                if (window.innerWidth < 768) {
-                                  e.preventDefault();
-                                  setPendingDeleteId(r.id);
-                                }
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setPendingDeleteId(r.id);
                               }}
                               aria-label={t("mydata.recos.delete")}
                               className="shrink-0 text-[#ff0055] hover:text-white text-lg font-black leading-none px-1"
                             >
                               ✕
                             </button>
-                          ) : pendingDeleteId === r.id ? (
+                          ) : (
                             <div className="shrink-0 flex flex-col gap-0.5">
                               <button
-                                onClick={() => {
-                                  deleteReco(r.id);
+                                onClick={(e) => {
+                                  e.stopPropagation();
                                   setPendingDeleteId(null);
+                                  deleteReco(r.id);
                                 }}
                                 aria-label="确认删除"
                                 className="w-6 h-6 bg-[#ff0055] border-2 border-white text-white text-sm font-black leading-none flex items-center justify-center"
@@ -462,21 +463,16 @@ const MyDataPanel = () => {
                                 ✓
                               </button>
                               <button
-                                onClick={() => setPendingDeleteId(null)}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setPendingDeleteId(null);
+                                }}
                                 aria-label="取消"
                                 className="w-6 h-6 bg-black/80 border-2 border-gray-500 text-gray-400 text-xs font-black leading-none flex items-center justify-center"
                               >
                                 ✕
                               </button>
                             </div>
-                          ) : (
-                            <button
-                              onClick={() => deleteReco(r.id)}
-                              aria-label={t("mydata.recos.delete")}
-                              className="shrink-0 text-[#ff0055] hover:text-white text-lg font-black leading-none px-1"
-                            >
-                              ✕
-                            </button>
                           )}
                         </div>
                         {open && picks.length > 0 && (
@@ -692,7 +688,7 @@ const MyDataPanel = () => {
             if (e.target === e.currentTarget) setDetailFav(null);
           }}
         >
-          <div className="w-full max-w-4xl">
+          <div className="w-full max-w-4xl bg-black border-8 border-[#ff00ff] shadow-[12px_12px_0_0_#00ffff] my-6">
             <IntelDetailModal
               item={detailFav}
               type={detailFav.type || "movie"}
