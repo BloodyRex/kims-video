@@ -280,6 +280,7 @@ const NewHomePage = () => {
         {step === "splash" && (
           <NewSplash
             onEnterAI={() => {
+              navigate("/search");
               setError("");
               setStep("input");
             }}

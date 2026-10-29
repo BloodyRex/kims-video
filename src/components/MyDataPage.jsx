@@ -146,7 +146,7 @@ export default function MyDataPage() {
       try {
         const res = await createMigrationCode({ passphrase: migratePass || undefined });
         setMigrateCode(res.code); setCopied(false);
-        flash("ok", t("mydata.migrate.done"));
+        flash("err", t("mydata.migrate.remote_fail", { msg: t("mydata.migrate.fallback") }));
       } catch { flash("err", t("mydata.migrate.bad_code")); }
     }
     setBusy(false);
