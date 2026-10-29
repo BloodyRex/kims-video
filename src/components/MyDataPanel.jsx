@@ -67,6 +67,20 @@ export function favoriteRemoveHandler(fav, onRemove) {
    两个按钮必须是兄弟节点 —— 若把 ✕ 放进详情按钮内部，点击 ✕ 会同时冒泡触发详情。 */
 export function FavoriteCard({ fav, removeLabel, onOpen, onRemove }) {
   const poster = posterProxy(fav.poster || "");
+  const [pending, setPending] = useState(false);
+
+  const handleRemove = () => {
+    onRemove(fav.id);
+    setPending(false);
+  };
+
+  const handleTouchStart = (e) => {
+    if (window.innerWidth < 768) {
+      e.preventDefault();
+      setPending(true);
+    }
+  };
+
   return (
     <div className="relative group border-4 border-black bg-[#111] shadow-[4px_4px_0_0_#ffff00] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_#ffff00] active:translate-y-1 active:shadow-none transition-all">
       <button
@@ -89,15 +103,37 @@ export function FavoriteCard({ fav, removeLabel, onOpen, onRemove }) {
           <div className="text-[9px] text-gray-200 font-mono">{fav.year || ""}</div>
         </div>
       </button>
-      <button
-        type="button"
-        onClick={favoriteRemoveHandler(fav, onRemove)}
-        aria-label={removeLabel}
-        title={removeLabel}
-        className="absolute top-1 right-1 w-6 h-6 bg-black/80 border-2 border-white text-white text-xs font-black leading-none flex items-center justify-center hover:bg-[#ff0055] transition-colors"
-      >
-        ✕
-      </button>
+      {!pending ? (
+        <button
+          type="button"
+          onTouchStart={handleTouchStart}
+          onClick={favoriteRemoveHandler(fav, onRemove)}
+          aria-label={removeLabel}
+          title={removeLabel}
+          className="absolute top-1 right-1 w-6 h-6 bg-black/80 border-2 border-white text-white text-xs font-black leading-none flex items-center justify-center hover:bg-[#ff0055] transition-colors"
+        >
+          ✕
+        </button>
+      ) : (
+        <div className="absolute top-1 right-1 flex flex-col gap-0.5">
+          <button
+            type="button"
+            onClick={handleRemove}
+            aria-label={removeLabel}
+            className="w-6 h-6 bg-[#ff0055] border-2 border-white text-white text-xs font-black leading-none flex items-center justify-center"
+          >
+            ✓
+          </button>
+          <button
+            type="button"
+            onClick={() => setPending(false)}
+            aria-label="取消"
+            className="w-6 h-6 bg-black/80 border-2 border-gray-500 text-gray-400 text-xs font-black leading-none flex items-center justify-center"
+          >
+            ✕
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -136,6 +172,7 @@ const MyDataPanel = () => {
   const [paste, setPaste] = useState("");
   const [msg, setMsg] = useState(null); // { ok:boolean, text:string }
   const [detailFav, setDetailFav] = useState(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState(null);
 
   const load = useCallback(async () => {
     const [s, r, f, d] = await Promise.all([
@@ -398,20 +435,49 @@ const MyDataPanel = () => {
                               <Icons.ChevronRight className="w-4 h-4" />
                             </button>
                           )}
-                          <button
-                            onClick={() => deleteReco(r.id)}
-                            aria-label={t("mydata.recos.delete")}
-                            className="shrink-0 text-[#ff0055] hover:text-white text-lg font-black leading-none px-1"
-                            onTouchStart={(e) => {
-                              if (window.innerWidth < 768) {
-                                e.preventDefault();
-                                const id = r.id;
-                                setTimeout(() => deleteReco(id), 200);
-                              }
-                            }}
-                          >
-                            ✕
-                          </button>
+                          {!pendingDeleteId ? (
+                            <button
+                              onClick={() => deleteReco(r.id)}
+                              onTouchStart={(e) => {
+                                if (window.innerWidth < 768) {
+                                  e.preventDefault();
+                                  setPendingDeleteId(r.id);
+                                }
+                              }}
+                              aria-label={t("mydata.recos.delete")}
+                              className="shrink-0 text-[#ff0055] hover:text-white text-lg font-black leading-none px-1"
+                            >
+                              ✕
+                            </button>
+                          ) : pendingDeleteId === r.id ? (
+                            <div className="shrink-0 flex flex-col gap-0.5">
+                              <button
+                                onClick={() => {
+                                  deleteReco(r.id);
+                                  setPendingDeleteId(null);
+                                }}
+                                aria-label="确认删除"
+                                className="w-6 h-6 bg-[#ff0055] border-2 border-white text-white text-sm font-black leading-none flex items-center justify-center"
+                              >
+                                ✓
+                              </button>
+                              <button
+                                onClick={() => setPendingDeleteId(null)}
+                                aria-label="取消"
+                                className="w-6 h-6 bg-black/80 border-2 border-gray-500 text-gray-400 text-xs font-black leading-none flex items-center justify-center"
+                              >
+                                ✕
+                              </button>
+                            </div>
+                          ) : (
+                            <button
+                              onClick={() => deleteReco(r.id)}
+                              aria-label={t("mydata.recos.delete")}
+                              className="shrink-0 text-[#ff0055] hover:text-white text-lg font-black leading-none px-1"
+                            >
+                              ✕
+                            </button>
+                          )}
                         </div>
                         {open && picks.length > 0 && (
                           <div className="mt-2 ml-6 space-y-1">
@@ -626,7 +692,7 @@ const MyDataPanel = () => {
             if (e.target === e.currentTarget) setDetailFav(null);
           }}
         >
-          <div className="w-full max-w-md">
+          <div className="w-full max-w-4xl">
             <IntelDetailModal
               item={detailFav}
               type={detailFav.type || "movie"}
