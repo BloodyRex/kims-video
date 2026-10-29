@@ -163,7 +163,7 @@ export default function MyDataPage() {
   };
 
   return (
-    <div className={`min-h-screen graffiti-bg text-black pb-32 locale-${locale}`}>
+    <div className={`min-h-screen graffiti-bg text-white pb-32 locale-${locale}`}>
       <header className="relative z-10 flex flex-col items-center py-4 mb-4 bg-black border-b-8 border-[#ff00ff] shadow-[0_8px_0_0_rgba(0,255,255,1)]">
         <Link to="/" className="flex items-center justify-center hover:opacity-80 transition-opacity">
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
@@ -180,8 +180,8 @@ export default function MyDataPage() {
           {t("mydata.back")}
         </button>
 
-        <h1 className="pixel-font text-lg sm:text-2xl font-black text-black uppercase tracking-wider mb-1 drop-shadow-[3px_3px_0_#ff00ff]">{t("mydata.title")}</h1>
-        <p className="text-gray-600 text-xs sm:text-sm mb-5 max-w-2xl">{t("mydata.subtitle")}</p>
+        <h1 className="pixel-font text-lg sm:text-2xl font-black text-white uppercase tracking-wider mb-1 drop-shadow-[3px_3px_0_#ff00ff]">{t("mydata.title")}</h1>
+        <p className="text-gray-200 text-xs sm:text-sm mb-5 max-w-2xl">{t("mydata.subtitle")}</p>
 
         {msg && (
           <div className={`border-4 border-black shadow-[4px_4px_0_0_#000] px-3 py-2 mb-4 text-xs font-bold ${msg.type === "ok" ? "bg-[#00ffff]" : "bg-[#ff00ff] text-white"}`}>

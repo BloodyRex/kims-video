@@ -233,7 +233,7 @@ const MyDataPanel = () => {
               </div>
               <div className="px-1.5 py-1">
                 <div className="text-[10px] sm:text-xs font-bold truncate text-white">{f.title || "—"}</div>
-                <div className="text-[9px] text-gray-400 font-mono">{f.year || ""}</div>
+                <div className="text-[9px] text-gray-200 font-mono">{f.year || ""}</div>
               </div>
             </div>
           );
@@ -245,17 +245,17 @@ const MyDataPanel = () => {
 
   return (
     <section
-      className="mt-10 mb-6 border-8 border-black bg-black text-white"
+      className="mt-10 mb-6 border-4 border-[#ff00ff] bg-black text-white"
       style={{ boxShadow: "12px 12px 0 0 #00ffff" }}
       aria-label={t("panel.title")}
     >
-      {/* 标题条 */}
-      <div className="px-4 py-3 md:px-6 md:py-4 border-b-4 border-[#111]">
+      {/* 标题条 —— 对齐电影节 banner 区块：品红外框 + 白色主标题(品红硬阴影) + 白色副标题 */}
+      <div className="px-4 py-3 md:px-6 md:py-4 border-b-4 border-[#ff00ff]/40">
         <div className="flex items-start gap-3 min-w-0">
-          <span className="font-mono text-xs px-2 py-1 border border-white/40 bg-black/80 text-white shrink-0">SEC.05</span>
+          <span className="font-mono text-xs px-2 py-1 border-2 border-black bg-[#ff00ff] text-white font-black shrink-0">SEC.05</span>
           <div className="min-w-0">
             <div className="flex items-start gap-2">
-              <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-black drop-shadow-[3px_3px_0_#fff]">{t("panel.title")}</h3>
+              <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff]">{t("panel.title")}</h3>
               <div className="relative -mt-1">
                 <button
                   onClick={isTouch ? () => setDescOpen(!descOpen) : undefined}
@@ -275,7 +275,7 @@ const MyDataPanel = () => {
                 )}
               </div>
             </div>
-            <h4 className="text-sm md:text-base font-bold text-[#00ffff] mt-1 mb-3 drop-shadow-[1px_1px_0_#000]">{t("panel.subtitle")}</h4>
+            <h4 className="text-sm md:text-base font-bold text-[#ffffff] mt-3 mb-3">{t("panel.subtitle")}</h4>
           </div>
         </div>
       </div>
@@ -300,7 +300,7 @@ const MyDataPanel = () => {
               }
             >
               {favCount === 0 ? (
-                <p className="py-6 text-center text-xs sm:text-sm text-gray-400 font-bold">{t("panel.favs.empty")}</p>
+                <p className="py-6 text-center text-xs sm:text-sm text-gray-200 font-bold">{t("panel.favs.empty")}</p>
               ) : (
                 favTile
               )}
@@ -317,7 +317,7 @@ const MyDataPanel = () => {
               }
             >
               {recoCount === 0 ? (
-                <p className="py-6 text-center text-xs sm:text-sm text-gray-400 font-bold">{t("panel.recos.empty")}</p>
+                <p className="py-6 text-center text-xs sm:text-sm text-gray-200 font-bold">{t("panel.recos.empty")}</p>
               ) : (
                 <div className="divide-y divide-white/15 max-h-[46vh] overflow-y-auto pr-1">
                   {recos.map((r) => {
@@ -331,7 +331,7 @@ const MyDataPanel = () => {
                           </span>
                           <div className="flex-1 min-w-0">
                             <div className="font-black text-xs sm:text-base truncate">{r.sourceTitle || "—"}</div>
-                            <div className="text-[10px] text-gray-400 font-bold">
+                            <div className="text-[10px] text-gray-200 font-bold">
                               {[r.sourceYear, t("mydata.recos.count", { n: r.count || picks.length || 0 }), fmtTime(r.updatedAt, locale)]
                                 .filter(Boolean)
                                 .join(" · ")}
@@ -341,7 +341,7 @@ const MyDataPanel = () => {
                             <button
                               onClick={() => setExpanded(open ? null : r.id)}
                               aria-label={open ? t("mydata.recos.collapse") : t("mydata.recos.expand")}
-                              className={`shrink-0 text-gray-400 hover:text-[#ffff00] transition-colors ${open ? "rotate-90" : ""}`}
+                              className={`shrink-0 text-gray-200 hover:text-[#ffff00] transition-colors ${open ? "rotate-90" : ""}`}
                             >
                               <Icons.ChevronRight className="w-4 h-4" />
                             </button>
@@ -376,24 +376,24 @@ const MyDataPanel = () => {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                 <div className="border-4 border-black bg-[#111] p-2.5 shadow-[3px_3px_0_0_#00ffff]">
                   <div className="text-sm sm:text-lg font-black text-white">{favCount}</div>
-                  <div className="text-[10px] pixel-font font-bold text-gray-400">{t("panel.favs.short")}</div>
+                  <div className="text-[10px] pixel-font font-bold text-gray-200">{t("panel.favs.short")}</div>
                 </div>
                 <div className="border-4 border-black bg-[#111] p-2.5 shadow-[3px_3px_0_0_#00ffff]">
                   <div className="text-sm sm:text-lg font-black text-white">{stats?.recoCount ?? recoCount}</div>
-                  <div className="text-[10px] pixel-font font-bold text-gray-400">{t("mydata.stats.recos")}</div>
+                  <div className="text-[10px] pixel-font font-bold text-gray-200">{t("mydata.stats.recos")}</div>
                 </div>
                 <div className="border-4 border-black bg-[#111] p-2.5 shadow-[3px_3px_0_0_#00ffff]">
                   <div className="text-sm sm:text-lg font-black text-white">
                     {fmtBytes(stats?.usage)}
-                    {stats?.quota ? <span className="text-[10px] text-gray-400"> / {fmtBytes(stats.quota)}</span> : null}
+                    {stats?.quota ? <span className="text-[10px] text-gray-200"> / {fmtBytes(stats.quota)}</span> : null}
                   </div>
-                  <div className="text-[10px] pixel-font font-bold text-gray-400">{t("mydata.stats.size")}</div>
+                  <div className="text-[10px] pixel-font font-bold text-gray-200">{t("mydata.stats.size")}</div>
                 </div>
                 <div className="border-4 border-black bg-[#111] p-2.5 shadow-[3px_3px_0_0_#00ffff]">
                   <div className={`text-xs sm:text-sm font-black ${stats?.persisted ? "text-[#00dd00]" : "text-[#ffff00]"}`}>
                     {stats?.persisted ? t("panel.persist.on") : t("panel.persist.pending")}
                   </div>
-                  <div className="text-[10px] pixel-font font-bold text-gray-400">{t("panel.persist.label")}</div>
+                  <div className="text-[10px] pixel-font font-bold text-gray-200">{t("panel.persist.label")}</div>
                 </div>
               </div>
             </PixelSection>
@@ -471,7 +471,7 @@ const MyDataPanel = () => {
                         className="w-full bg-black text-[10px] font-mono text-[#00ffff] border-2 border-[#00ffff] p-2 resize-none break-all"
                       />
                       <div className="flex items-center justify-between gap-2 mt-2">
-                        <span className="text-[9px] text-gray-500 font-mono">
+                        <span className="text-[9px] text-gray-200 font-mono">
                           {t("mydata.migrate.len", { n: code.length })}
                         </span>
                         <button
@@ -496,7 +496,7 @@ const MyDataPanel = () => {
                     onChange={(e) => setPaste(e.target.value)}
                     rows={5}
                     placeholder={t("mydata.import.paste_ph")}
-                    className="w-full flex-1 bg-black text-[10px] font-mono text-[#ffff00] border-2 border-white/40 p-2 resize-none placeholder:text-gray-600"
+                    className="w-full flex-1 bg-black text-[10px] font-mono text-[#ffff00] border-2 border-white/40 p-2 resize-none placeholder:text-gray-400"
                   />
                   <button
                     onClick={doImport}
