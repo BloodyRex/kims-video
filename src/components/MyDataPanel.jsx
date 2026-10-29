@@ -396,11 +396,6 @@ const MyDataPanel = () => {
                   <div className="text-[10px] pixel-font font-bold text-gray-400">{t("panel.persist.label")}</div>
                 </div>
               </div>
-              {deviceId && (
-                <div className="mt-2 text-[9px] text-gray-600 font-mono truncate">
-                  {t("mydata.device")}: {deviceId}
-                </div>
-              )}
             </PixelSection>
 
             {/* 4. 一左一右两个按钮 */}

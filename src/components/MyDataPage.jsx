@@ -207,7 +207,6 @@ export default function MyDataPage() {
               <div className={`text-xs sm:text-sm font-black ${stats.persisted ? "text-green-600" : "text-red-600"}`}>{stats.persisted ? t("mydata.stats.persisted") : t("mydata.stats.not_persisted")}</div>
             </div>
           </div>
-          {deviceId && <div className="mt-3 text-[10px] text-gray-500 font-mono truncate">{t("mydata.device")}: {deviceId}</div>}
         </Card>
 
         <div className="flex flex-wrap gap-2 mb-5">
