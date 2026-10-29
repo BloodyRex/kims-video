@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useLocale } from "../i18n";
 
 /* 站点统一页脚：固定 6 个入口，当前页 aria-current="page" + cyan 高亮 */
@@ -11,17 +11,21 @@ const FOOTER_LINKS = [
   { id: "wall", key: "footer.wall", to: "/wall" },
 ];
 
-function isActive(to, pathname) {
-  if (to === "/?search=1") {
-    return pathname === "/" || pathname.startsWith("/?");
+function isActive(link, pathname, searchParams, activeId) {
+  // 显式指定当前项优先（首页 spl ash 与 AI 搜索页同为 "/"，只有页面自己知道）
+  if (activeId) return link.id === activeId;
+  // 「AI 推荐」指向 AI 搜索输入页 /?search=1；开屏网格 / 不是当前项
+  if (link.id === "home") {
+    return pathname === "/" && searchParams.get("search") === "1";
   }
-  return pathname === to || pathname.startsWith(`${to}/`);
+  return pathname === link.to || pathname.startsWith(`${link.to}/`);
 }
 
-export default function SiteFooter({ locale } = {}) {
+export default function SiteFooter({ locale, activeId } = {}) {
   const { t, locale: ctxLocale } = useLocale();
   const loc = locale || ctxLocale;
   const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
   const zh = loc === "zh";
 
   return (
@@ -29,7 +33,7 @@ export default function SiteFooter({ locale } = {}) {
       className={`fixed bottom-0 left-0 w-full z-20 flex flex-nowrap items-center justify-center gap-1.5 sm:gap-3 px-2 sm:px-4 py-2 sm:py-3 border-t-4 border-[#ffff00] bg-black overflow-x-auto ${zh ? "text-xs sm:text-sm" : "pixel-font text-[9px] sm:text-[10px] uppercase tracking-normal sm:tracking-widest"}`}
     >
       {FOOTER_LINKS.map((link, i) => {
-        const active = isActive(link.to, pathname);
+        const active = isActive(link, pathname, searchParams, activeId);
         return (
           <Fragment key={link.id}>
             <Link

@@ -171,6 +171,10 @@ export function makeEntry(item, type) {
     year: item.year || undefined,
     poster: item.poster || item.cover || undefined,
     source: "kims-video",
+    summary: item.summary || undefined,
+    summaryEn: item.summaryEn || undefined,
+    highlight: item.highlight || undefined,
+    highlightEn: item.highlightEn || undefined,
     ...(item.tmdbId ? { tmdbId: item.tmdbId } : {}),
     ...(item.mbid ? { mbid: item.mbid } : {}),
   };
@@ -817,6 +821,21 @@ export function CardList({ children }) {
   return <div className="space-y-3">{children}</div>;
 }
 
+/* 收藏详情弹框的摘要取值：优先用保存时写下的文案，其次才用抓回来的 overview。
+   旧收藏（保存时没有 summary）靠 enriched.overview 兜底；音乐没有可信来源时留空。 */
+export function pickSummary(item = {}, locale = "zh", enriched = {}) {
+  return locale === "en"
+    ? (item.summaryEn || item.highlightEn || item.summary || item.highlight || enriched.overview || "")
+    : (item.summary || item.highlight || item.summaryEn || item.highlightEn || enriched.overview || "");
+}
+
+/* 抓详情接口先查电影再回落剧集，TMDB id 撞号时会把另一部作品返回来。
+   收藏详情只接受同类型的返回，避免给剧集显示电影简介。 */
+export function matchesDetailType(type, dataType) {
+  const allowed = type === "tv" ? ["tv", "tv series", "剧集"] : ["movie", "电影"];
+  return allowed.includes(String(dataType || "").toLowerCase());
+}
+
 // ── Intelligence Detail Modal ──
 
 export function IntelDetailModal({ item, type, locale, onClose }) {
@@ -830,7 +849,9 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
     if (music) return;
     let cancelled = false;
     fetchMovieByTmdbId(item.tmdbId, locale).then(data => {
-      if (!cancelled && data) setDetailData(data);
+      if (!cancelled && data && matchesDetailType(type, data.type)) {
+        setDetailData({ id: item.tmdbId, type, locale, data });
+      }
     });
     return () => { cancelled = true; };
   }, [item?.tmdbId, type, locale]);
@@ -843,7 +864,10 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
   // Type chip in the title bar + TrailerButtons lookup — declaration was lost in
   // the earlier restore and crashed every detail view (ReferenceError → black screen)
   const typeLabel = isMusic ? (zh ? "专辑" : "ALBUM") : isTV ? (zh ? "剧集" : "TV") : (zh ? "电影" : "MOVIE");
-  const enriched = detailData || {};
+  const enriched = detailData?.id === item.tmdbId && detailData?.type === type && detailData?.locale === locale ? detailData.data : {};
+  // ponytail: legacy music favourites have no verifiable description source (no mbid/lastfm endpoint),
+  // so they show the explicit "暂无介绍" text; new ones keep the summary saved at save time.
+  const summary = pickSummary(item, locale, enriched);
   const tmdbPath = isTV ? "tv" : "movie";
   const tmdbUrl = `https://www.themoviedb.org/${tmdbPath}/${item.tmdbId}`;
   // Exact IMDb page when imdb_id is available (lazy-loaded), else fallback search
@@ -979,14 +1003,12 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
           </div>
         </div>
 
-        {/* Summary — full width below poster+info */}
-        {item.summary && (
-          <div className="bg-[#f0f0f0] border-4 border-black p-4 mb-4">
-            <p className="text-black font-bold leading-relaxed text-sm sm:text-base">
-              {locale === "en" ? (item.summaryEn || item.summary) : item.summary}
-            </p>
-          </div>
-        )}
+        {/* Summary — full width below poster+info. 无任何文案时明确写"暂无介绍"，不编造 */}
+        <div className="bg-[#f0f0f0] border-4 border-black p-4 mb-4">
+          <p className="text-black font-bold leading-relaxed text-sm sm:text-base">
+            {summary || (zh ? "暂无介绍" : "No synopsis available")}
+          </p>
+        </div>
 
         {/* Action buttons — music: Spotify/Apple Music/NetEase (legacy AlbumCard set);
             film/TV: TMDB + IMDb + YouTube + Bilibili. Uniform lg sizing. */}

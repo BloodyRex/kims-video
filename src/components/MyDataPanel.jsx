@@ -53,6 +53,54 @@ function fmtTime(ts, locale) {
   }
 }
 
+/* 收藏卡片的取消收藏点击处理：先阻断冒泡（否则会连带触发详情弹框），
+   再把收藏 id 交给上层。导出成纯函数，方便在无 DOM 环境下断言行为。 */
+export function favoriteRemoveHandler(fav, onRemove) {
+  return (e) => {
+    e.stopPropagation();
+    onRemove(fav.id);
+  };
+}
+
+/* 收藏卡片：可点开的详情按钮 + 平级的取消收藏按钮。
+   两个按钮必须是兄弟节点 —— 若把 ✕ 放进详情按钮内部，点击 ✕ 会同时冒泡触发详情。 */
+export function FavoriteCard({ fav, removeLabel, onOpen, onRemove }) {
+  const poster = posterProxy(fav.poster || "");
+  return (
+    <div className="relative group border-4 border-black bg-[#111] shadow-[4px_4px_0_0_#ffff00] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_#ffff00] active:translate-y-1 active:shadow-none transition-all">
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label={fav.title || "—"}
+        className="block w-full text-left cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#ffff00]"
+      >
+        <div className="relative h-28 sm:h-36 w-full overflow-hidden bg-[#1a1a1a]">
+          {poster ? (
+            <img src={poster} alt={fav.title || ""} loading="lazy" className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-[#ffff00]">
+              <Icons.Film className="w-6 h-6" />
+            </div>
+          )}
+        </div>
+        <div className="px-1.5 py-1">
+          <div className="text-[10px] sm:text-xs font-bold truncate text-white">{fav.title || "—"}</div>
+          <div className="text-[9px] text-gray-200 font-mono">{fav.year || ""}</div>
+        </div>
+      </button>
+      <button
+        type="button"
+        onClick={favoriteRemoveHandler(fav, onRemove)}
+        aria-label={removeLabel}
+        title={removeLabel}
+        className="absolute top-1 right-1 w-6 h-6 bg-black/80 border-2 border-white text-white text-xs font-black leading-none flex items-center justify-center hover:bg-[#ff0055] transition-colors"
+      >
+        ✕
+      </button>
+    </div>
+  );
+}
+
 const PixelSection = ({ icon, title, right, children }) => (
   <div className="mt-6">
     <div className="flex items-end justify-between gap-3 mb-3 border-b-4 border-white/15 pb-2">
@@ -210,44 +258,21 @@ const MyDataPanel = () => {
   const recoCount = recos.length;
 
   const favTile = useMemo(
-    () => (
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 sm:gap-3">
-        {favs.map((f) => {
-          const poster = posterProxy(f.poster || "");
-          return (
-            <div
+      () => (
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 sm:gap-3">
+          {favs.map((f) => (
+            <FavoriteCard
               key={f.id}
-              onClick={() => setDetailFav(f)}
-              className="relative group border-4 border-black bg-[#111] shadow-[4px_4px_0_0_#ffff00] cursor-pointer hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_#ffff00] active:translate-y-1 active:shadow-none transition-all"
-            >
-              <div className="relative h-28 sm:h-36 w-full overflow-hidden bg-[#1a1a1a]">
-                {poster ? (
-                  <img src={poster} alt={f.title || ""} loading="lazy" className="w-full h-full object-cover" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-[#ffff00]">
-                    <Icons.Film className="w-6 h-6" />
-                  </div>
-                )}
-                <button
-                  onClick={() => removeFavorite(f.id)}
-                  aria-label={t("panel.favs.remove")}
-                  title={t("panel.favs.remove")}
-                  className="absolute top-1 right-1 w-6 h-6 bg-black/80 border-2 border-white text-white text-xs font-black leading-none flex items-center justify-center hover:bg-[#ff0055] transition-colors"
-                >
-                  ✕
-                </button>
-              </div>
-              <div className="px-1.5 py-1">
-                <div className="text-[10px] sm:text-xs font-bold truncate text-white">{f.title || "—"}</div>
-                <div className="text-[9px] text-gray-200 font-mono">{f.year || ""}</div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    ),
-    [favs, t]
-  );
+              fav={f}
+              removeLabel={t("panel.favs.remove")}
+              onOpen={() => setDetailFav(f)}
+              onRemove={(id) => removeFavorite(id)}
+            />
+          ))}
+        </div>
+      ),
+      [favs, t]
+    );
 
   return (
     <section
@@ -256,13 +281,13 @@ const MyDataPanel = () => {
       aria-label={t("panel.title")}
     >
       {/* 标题条 —— 对齐电影节 banner 区块：品红外框 + 白色主标题(品红硬阴影) + 白色副标题 */}
-      <div className="px-4 py-3 md:px-6 md:py-4 border-b-4 border-[#ff00ff]/40">
+      <div className="relative px-4 py-3 md:px-6 md:py-4 border-b-4 border-[#ff00ff]/40">
         <div className="flex items-start gap-3 min-w-0">
           <span className="font-mono text-xs px-2 py-1 border-2 border-black bg-[#ff00ff] text-white font-black shrink-0">SEC.05</span>
           <div className="min-w-0">
             <div className="flex items-start gap-2">
               <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff]">{t("panel.title")}</h3>
-              <div className="relative -mt-1">
+              <div className="sm:relative -mt-1">
                 <button
                   onClick={isTouch ? () => setDescOpen(!descOpen) : undefined}
                   onMouseEnter={!isTouch ? () => setIsHovered(true) : undefined}
@@ -275,7 +300,7 @@ const MyDataPanel = () => {
                   ?
                 </button>
                 {(descOpen || isHovered) && (
-                  <div className="absolute top-full left-0 mt-1 w-max max-w-[min(80vw,360px)] bg-black/90 border-2 border-[#ffff00] text-[#ffff00] px-2 py-1 text-[10px] sm:text-xs font-bold leading-relaxed drop-shadow-[1px_1px_0_#000] z-30 sm:top-0 sm:left-full sm:mt-0 sm:ml-1.5">
+                  <div className="absolute top-full right-2 mt-1 w-max max-w-[calc(100%_-_1rem)] break-words bg-black/90 border-2 border-[#ffff00] text-[#ffff00] px-2 py-1 text-[10px] sm:text-xs font-bold leading-relaxed drop-shadow-[1px_1px_0_#000] z-30 sm:top-0 sm:right-auto sm:left-full sm:mt-0 sm:ml-1.5 sm:max-w-[min(80vw,360px)]">
                     {t("panel.desc")}
                   </div>
                 )}
