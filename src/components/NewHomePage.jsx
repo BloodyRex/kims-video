@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Icons } from "./Icons";
 import Loading from "./Loading";
 import QAPage from "./QAPage";
@@ -62,17 +62,16 @@ const NewHomePage = () => {
     setIsCapturing,
   } = useMovieEngine();
 
-  // 初始步骤：四宫格开屏（覆盖 engine 默认的 "input"）；
-  // 带 ?search=1 时直达 AI search 输入页（footer"AI 推荐"链接目标）
+  // 初始步骤：四宫格开屏；/search 路由直达 AI search 输入页
+  const { pathname } = useLocation();
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("search") === "1") {
+    if (pathname === "/search") {
       setStep("input");
     } else {
       setStep("splash");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pathname]);
 
   // Browser back/forward — keep step in sync with the URL (Rex 2026-08-25:
   // previously the detail overlay stayed open when using the browser back button)
@@ -115,7 +114,7 @@ const NewHomePage = () => {
       setDetailMovieId(null);
       setDetailData(null);
       setSourceTmdbId(null);
-      setStep(params.get("search") === "1" ? "input" : "splash");
+      setStep(pathname === "/search" ? "input" : "splash");
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);

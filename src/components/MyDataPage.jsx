@@ -119,7 +119,8 @@ export default function MyDataPage() {
     setBusy(true);
     try {
       let payload = code;
-      if (code.startsWith("mig_")) {
+      // Accept both legacy mig_ tokens and new short 10-char codes
+      if (code.startsWith("mig_") || /^[A-Z0-9]{10}$/i.test(code)) {
         const r = await fetchRemoteMigrationCode(code);
         payload = r.code;
       }
@@ -127,7 +128,7 @@ export default function MyDataPage() {
       if (res.ok) { flash("ok", t("mydata.import.ok", { added: res.added, updated: res.updated, searches: res.searches })); setMigrateCode(""); setCopied(false); reload(); }
       else flash("err", res.error || t("mydata.migrate.bad_code"));
     } catch (e) {
-      if (code.startsWith("mig_")) flash("err", t("mydata.migrate.remote_fail", { msg: (e && e.message) || "network" }));
+      if (code.startsWith("mig_") || /^[A-Z0-9]{10}$/i.test(code)) flash("err", t("mydata.migrate.remote_fail", { msg: (e && e.message) || "network" }));
       else flash("err", t("mydata.migrate.bad_code"));
     }
     setBusy(false);

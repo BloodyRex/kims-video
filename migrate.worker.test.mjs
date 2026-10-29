@@ -57,7 +57,7 @@ const kv1 = (obj = envelope()) => "KV1:" + Buffer.from(JSON.stringify(obj), "utf
 const kv1g = (obj = envelope()) => "KV1G:" + zlib.gzipSync(Buffer.from(JSON.stringify(obj), "utf8")).toString("base64");
 
 const BASE = "https://api.bloodyrex.xyz";
-const TOKEN_RE = /^mig_[A-Za-z0-9_-]{16,80}$/;
+const TOKEN_RE = /^(?:mig_[A-Za-z0-9_-]{16,80}|[A-Z0-9]{10})$/i;
 let curEnv;
 const post = (path, body) => worker.fetch(new Request(BASE + path, { method: "POST", body: JSON.stringify(body), headers: { "Content-Type": "application/json" } }), curEnv, makeCtx());
 const get = (path) => worker.fetch(new Request(BASE + path, { method: "GET" }), curEnv, makeCtx());
@@ -69,7 +69,7 @@ async function main() {
   const b1 = kv1();
   let r = await post("/migrate/create", { code: b1 }); let j = await J(r);
   ok("create KV1 -> 200", r.status === 200, `status=${r.status} ${JSON.stringify(j)}`);
-  ok("create KV1 -> token format mig_<16-80>", TOKEN_RE.test(j.code || ""), `code=${j.code}`);
+  ok("create KV1 -> token format (short or legacy)", TOKEN_RE.test(j.code || ""), `code=${j.code}`);
   ok("create KV1 -> uncompressed v1 oneTime", j.compressed === false && j.version === 1 && j.oneTime === true, JSON.stringify(j));
   ok("create KV1 -> expiresAt ~24h", Math.abs((j.expiresAt - Date.now()) - 86400000) < 5000, `expiresAt=${j.expiresAt}`);
   const tok1 = j.code;

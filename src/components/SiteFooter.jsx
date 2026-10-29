@@ -4,7 +4,7 @@ import { useLocale } from "../i18n";
 
 /* 站点统一页脚：固定 6 个入口，当前页 aria-current="page" + cyan 高亮 */
 const FOOTER_LINKS = [
-  { id: "home", key: "footer.home", to: "/?search=1" },
+  { id: "home", key: "footer.home", to: "/search" },
   { id: "discover", key: "footer.discover", to: "/discover" },
   { id: "intel", key: "footer.intel", to: "/intelligence" },
   { id: "festivals", key: "footer.festivals", to: "/festivals" },
@@ -12,11 +12,10 @@ const FOOTER_LINKS = [
 ];
 
 function isActive(link, pathname, searchParams, activeId) {
-  // 显式指定当前项优先（首页 spl ash 与 AI 搜索页同为 "/"，只有页面自己知道）
   if (activeId) return link.id === activeId;
-  // 「AI 推荐」指向 AI 搜索输入页 /?search=1；开屏网格 / 不是当前项
+  // 「AI 推荐」指向独立路由 /search；首页 splash 为 /
   if (link.id === "home") {
-    return pathname === "/" && searchParams.get("search") === "1";
+    return pathname === "/search";
   }
   return pathname === link.to || pathname.startsWith(`${link.to}/`);
 }

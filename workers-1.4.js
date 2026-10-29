@@ -3377,14 +3377,13 @@ async function sendDigestToAll(env, opts = {}) {
 const MIGRATE_PREFIX = "migrate/";
 const MIGRATE_TTL_SECONDS = 86400; // 24h
 const MIGRATE_MAX_BLOB_BYTES = 1500000; // ~1.5 MB encoded cap
-const MIGRATE_TOKEN_RE = /^mig_[A-Za-z0-9_-]{16,80}$/;
+// Accept both legacy mig_ tokens and new short 10-char codes (case-insensitive)
+const MIGRATE_TOKEN_RE = /^(?:mig_[A-Za-z0-9_-]{16,80}|[A-Z0-9]{10})$/i;
 
-/** 24 random bytes → base64url "mig_..." — high-entropy, URL-safe. */
+/** 5 random bytes → 10-char uppercase-hex token (e.g. A3F7B2C9D4). */
 function migrateRandomToken() {
-  const b = crypto.getRandomValues(new Uint8Array(24));
-  let s = "";
-  for (let i = 0; i < b.length; i++) s += String.fromCharCode(b[i]);
-  return "mig_" + btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  const b = crypto.getRandomValues(new Uint8Array(5));
+  return Array.from(b, (c) => c.toString(16).padStart(2, "0").toUpperCase()).join("");
 }
 
 /**
