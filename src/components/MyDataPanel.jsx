@@ -144,7 +144,7 @@ export function FavoriteCard({ fav, removeLabel, onOpen, onRemove }) {
 const PixelSection = ({ icon, title, right, children }) => (
   <div className="mt-6">
     <div className="flex items-end justify-between gap-3 mb-3 border-b-4 border-white/15 pb-2">
-      <h4 className="flex items-center gap-2 text-sm sm:text-lg font-black uppercase tracking-wider pixel-font text-white">
+      <h4 className="min-w-0 flex items-center gap-2 text-sm sm:text-lg font-black uppercase tracking-wider pixel-font text-white break-words">
         <span className="text-[#ffff00]">{icon}</span>
         {title}
       </h4>

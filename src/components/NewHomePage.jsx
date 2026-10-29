@@ -315,7 +315,7 @@ const NewHomePage = () => {
                 to="/discover"
                 className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
               >
-                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
+                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"} break-words min-w-0`}>
                   <span className="text-base">🎬</span>
                   {locale === "zh" ? "社区发现" : "CURATED PICKS"}
                 </span>
@@ -324,7 +324,7 @@ const NewHomePage = () => {
                 to="/intelligence"
                 className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
               >
-                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
+                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"} break-words min-w-0`}>
                   <span className="text-base">📊</span>
                   {locale === "zh" ? "全球影音" : "INTELLIGENCE"}
                 </span>
@@ -333,7 +333,7 @@ const NewHomePage = () => {
                 to="/wall"
                 className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
               >
-                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
+                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"} break-words min-w-0`}>
                   <span className="text-base">🧱</span>
                   {locale === "zh" ? "影视墙" : "MOVIE WALL"}
                 </span>
@@ -342,7 +342,7 @@ const NewHomePage = () => {
                 to="/festivals"
                 className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"
               >
-                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"}`}>
+                <span className={`font-black pixel-font uppercase tracking-wider flex items-center justify-center gap-2 text-black relative z-10 ${locale === "en" ? "text-xs" : "text-sm"} break-words min-w-0`}>
                   <span className="text-base">🗓️</span>
                   {locale === "zh" ? "电影节日历" : "FESTIVALS"}
                 </span>
