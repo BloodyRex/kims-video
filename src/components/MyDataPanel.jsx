@@ -77,6 +77,9 @@ const MyDataPanel = () => {
   const [expanded, setExpanded] = useState(null);
 
   const [modal, setModal] = useState(null); // "transfer" | "clear" | null
+  const [descOpen, setDescOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const isTouch = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0);
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -243,24 +246,37 @@ const MyDataPanel = () => {
   return (
     <section
       className="mt-10 mb-6 border-8 border-black bg-black text-white"
-      style={{ boxShadow: "12px 12px 0 0 #ff00ff" }}
+      style={{ boxShadow: "12px 12px 0 0 #00ffff" }}
       aria-label={t("panel.title")}
     >
       {/* 标题条 */}
       <div className="border-b-8 border-black bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] px-4 py-3 md:px-6 md:py-4 flow-gradient">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6">
-          <div className="flex items-center gap-3 min-w-0">
-            <span className="font-mono text-xs px-2 py-1 border-2 border-black bg-black text-[#00ffff] font-black shrink-0">SEC.05</span>
-            <div className="min-w-0">
-              <h3 className="text-xl md:text-3xl font-black uppercase tracking-tight pixel-font text-black drop-shadow-[2px_2px_0_#fff]">
-                {t("panel.title")}
-              </h3>
-              <h4 className="text-xs md:text-sm font-bold text-black/80 mt-0.5">{t("panel.subtitle")}</h4>
+        <div className="flex items-start gap-3 min-w-0">
+          <span className="font-mono text-xs px-2 py-1 border border-white/40 bg-black/80 text-white shrink-0">SEC.05</span>
+          <div className="min-w-0">
+            <div className="flex items-start gap-2">
+              <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-black drop-shadow-[3px_3px_0_#fff]">{t("panel.title")}</h3>
+              <div className="relative -mt-1">
+                <button
+                  onClick={isTouch ? () => setDescOpen(!descOpen) : undefined}
+                  onMouseEnter={!isTouch ? () => setIsHovered(true) : undefined}
+                  onMouseLeave={!isTouch ? () => setIsHovered(false) : undefined}
+                  className="w-4 h-4 sm:w-5 sm:h-5 bg-black border-2 border-[#ffff00] text-[#ffff00] flex items-center justify-center hover:bg-[#ffff00] hover:text-black transition-colors z-20 rounded-full pixel-font shrink-0"
+                  style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace", fontSize: "clamp(6px, 1.6vw, 9px)" }}
+                  title={t("app.info")}
+                  aria-label={t("app.info")}
+                >
+                  ?
+                </button>
+                {(descOpen || isHovered) && (
+                  <div className="absolute top-full left-0 mt-1 w-max max-w-[min(80vw,360px)] bg-black/90 border-2 border-[#ffff00] text-[#ffff00] px-2 py-1 text-[10px] sm:text-xs font-bold leading-relaxed drop-shadow-[1px_1px_0_#000] z-30 sm:top-0 sm:left-full sm:mt-0 sm:ml-1.5">
+                    {t("panel.desc")}
+                  </div>
+                )}
+              </div>
             </div>
+            <h4 className="text-sm md:text-base font-bold text-[#00ffff] mt-1 mb-3 drop-shadow-[1px_1px_0_#000]">{t("panel.subtitle")}</h4>
           </div>
-          <p className="text-[11px] sm:text-xs font-bold text-black bg-white/80 border-l-4 border-black px-2.5 py-1.5 max-w-md">
-            {t("panel.desc")}
-          </p>
         </div>
       </div>
 

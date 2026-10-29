@@ -24,7 +24,7 @@ const CARDS = [
     v: "/entry/ai-search-v.png",
     badgeBg: "bg-[#ff00ff]",
     shadowColor: "#ff00ff",
-    accent: "text-[#00ffff]",
+    accent: "text-[#ffffff]",
     to: null, // handled by onEnterAI
   },
   {
@@ -38,8 +38,8 @@ const CARDS = [
     h: "/entry/discover-h.png",
     v: "/entry/discover-v.png",
     badgeBg: "bg-[#00ffff]",
-    shadowColor: "#00ffff",
-    accent: "text-[#ffff00]",
+    shadowColor: "#ff00ff",
+    accent: "text-[#ffffff]",
     to: "/discover",
   },
   {
@@ -54,7 +54,7 @@ const CARDS = [
     v: "/entry/intelligence-v.png",
     badgeBg: "bg-[#ffff00]",
     shadowColor: "#ffff00",
-    accent: "text-[#ff00ff]",
+    accent: "text-[#ffffff]",
     to: "/intelligence",
   },
   {
@@ -68,8 +68,8 @@ const CARDS = [
     h: "/entry/wall-h.png",
     v: "/entry/wall-v.png",
     badgeBg: "bg-[#00dd00]",
-    shadowColor: "#00dd00",
-    accent: "text-[#00ffff]",
+    shadowColor: "#ffff00",
+    accent: "text-[#ffffff]",
     to: "/wall",
   },
 ];
@@ -143,7 +143,7 @@ const NewSplash = ({ onEnterAI }) => {
           <div>
             {/* Rex 2026-08-25: fixed bilingual pairing on every card, both languages:
                 big EN title over small CN subtitle — never switches with locale */}
-            <h3 className="text-3xl md:text-4xl font-black mb-1 uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#000]">
+            <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff]">
               {card.title}
             </h3>
             <h4 className={`text-sm md:text-base font-bold mb-3 ${card.accent}`}>
@@ -154,13 +154,10 @@ const NewSplash = ({ onEnterAI }) => {
             </p>
           </div>
 
-          <div className="flex items-center justify-between pt-2 border-t border-white/20">
-            <span className="text-xs font-bold text-[#ffff00] uppercase tracking-wider pixel-font group-hover:translate-x-2 transition-transform inline-flex items-center">
+          <div className="flex items-center pt-2 border-t border-white/20">
+            <span className="text-xs font-bold text-[#00ffff] uppercase tracking-wider pixel-font group-hover:translate-x-2 transition-transform inline-flex items-center">
               {zh ? "点击进入系统 >>" : "Enter System >>"}
             </span>
-            <div className="w-8 h-8 bg-white text-black border-2 border-black flex items-center justify-center font-black group-hover:bg-[#ffff00] transition-colors">
-              <Icons.ChevronRight className="w-5 h-5" />
-            </div>
           </div>
         </div>
       </div>
@@ -211,10 +208,10 @@ const NewSplash = ({ onEnterAI }) => {
             NEW
           </span>
           <div className="min-w-0">
-            <h3 className="text-xl md:text-3xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff]">
+            <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff]">
               {FESTIVAL_ENTRY.title}
             </h3>
-            <h4 className="text-xs md:text-sm font-bold text-[#00ffff] mt-0.5">
+            <h4 className="text-sm md:text-base font-bold text-[#ffffff] mt-3">
               {FESTIVAL_ENTRY.subtitleZh}
             </h4>
             <p className="text-gray-300 text-xs md:text-sm font-medium line-clamp-2 bg-black/60 p-2.5 border-l-4 border-[#ff00ff] mt-2">
@@ -223,12 +220,9 @@ const NewSplash = ({ onEnterAI }) => {
           </div>
         </div>
         <div className="flex items-center gap-3 shrink-0">
-          <span className="text-xs font-bold text-[#ffff00] uppercase tracking-wider pixel-font group-hover:translate-x-2 transition-transform hidden sm:inline">
+          <span className="text-xs font-bold text-[#00ffff] uppercase tracking-wider pixel-font group-hover:translate-x-2 transition-transform hidden sm:inline">
             {zh ? "点击进入系统 >>" : "Enter System >>"}
           </span>
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-white text-black border-2 border-black flex items-center justify-center font-black group-hover:bg-[#ffff00] transition-colors shrink-0">
-            <Icons.ChevronRight className="w-5 h-5" />
-          </div>
         </div>
       </Link>
 
