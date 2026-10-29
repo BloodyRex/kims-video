@@ -382,9 +382,8 @@ const NewHomePage = () => {
         )}
       </main>
 
-      {/* Daily digest subscribe — same block as the other pages (Rex 2026-08-25);
-          hidden on splash (full-bleed grid) */}
-      {step !== "splash" && <SubscribeSection locale={locale} />}
+      {/* Daily digest subscribe — always visible */}
+      <SubscribeSection locale={locale} />
 
       {/* 语言切换按钮（与其他子页面一致） */}
       <div className="fixed bottom-[116px] sm:bottom-[128px] right-3 sm:right-4 z-40">
@@ -397,7 +396,7 @@ const NewHomePage = () => {
         </button>
       </div>
 
-      {step !== "splash" && <SiteFooter />}
+      <SiteFooter />
 
       {showSaveLayout && (
         <div ref={saveContainerRef} style={{ position: "fixed", top: "-9999px", left: 0, width: "800px", zIndex: 9999 }}>

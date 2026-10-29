@@ -14,6 +14,7 @@ import {
   wipeAll,
   subscribe,
 } from "../utils/personalStore";
+import { IntelDetailModal } from "./Cards";
 
 /**
  * MyDataPanel — 主页（开屏四宫格页）最下方的「我的数据」大框（2026-10-29）
@@ -85,6 +86,7 @@ const MyDataPanel = () => {
   const [copied, setCopied] = useState(false);
   const [paste, setPaste] = useState("");
   const [msg, setMsg] = useState(null); // { ok:boolean, text:string }
+  const [detailFav, setDetailFav] = useState(null);
 
   const load = useCallback(async () => {
     const [s, r, f, d] = await Promise.all([
@@ -213,7 +215,11 @@ const MyDataPanel = () => {
         {favs.map((f) => {
           const poster = posterProxy(f.poster || "");
           return (
-            <div key={f.id} className="relative group border-4 border-black bg-[#111] shadow-[4px_4px_0_0_#ffff00]">
+            <div
+              key={f.id}
+              onClick={() => setDetailFav(f)}
+              className="relative group border-4 border-black bg-[#111] shadow-[4px_4px_0_0_#ffff00] cursor-pointer hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_#ffff00] active:translate-y-1 active:shadow-none transition-all"
+            >
               <div className="relative h-28 sm:h-36 w-full overflow-hidden bg-[#1a1a1a]">
                 {poster ? (
                   <img src={poster} alt={f.title || ""} loading="lazy" className="w-full h-full object-cover" />
@@ -550,6 +556,25 @@ const MyDataPanel = () => {
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* 收藏卡片详情弹框 */}
+      {detailFav && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto"
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setDetailFav(null);
+          }}
+        >
+          <IntelDetailModal
+            item={detailFav}
+            type={detailFav.type || "movie"}
+            locale={locale}
+            onClose={() => setDetailFav(null)}
+          />
         </div>
       )}
     </section>
