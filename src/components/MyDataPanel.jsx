@@ -14,6 +14,7 @@ import {
   wipeAll,
   subscribe,
 } from "../utils/personalStore";
+import { createRemoteMigrationCode, fetchRemoteMigrationCode } from "../services/migrationApi";
 import { IntelDetailModal } from "./Cards";
 
 /**
@@ -185,9 +186,25 @@ const MyDataPanel = () => {
     setBusy(true);
     setMsg(null);
     try {
-      const res = await createMigrationCode();
-      setCode(res?.code || "");
-      setMsg({ ok: true, text: t("panel.transfer.done_short") });
+      // Step 1: build local blob (always needed; remote caller takes this as input)
+      const local = await createMigrationCode();
+      const localCode = local?.code || "";
+      if (!localCode) {
+        setMsg({ ok: false, text: t("mydata.migrate.bad_code") });
+        return;
+      }
+      // Step 2: try cloud relay → returns short 10-char token on success
+      try {
+        const res = await createRemoteMigrationCode(localCode);
+        setCode(res?.code || localCode);
+        setMsg({ ok: true, text: t("panel.transfer.done_short") });
+        return;
+      } catch (_) {
+        // fall through to local fallback
+      }
+      // Step 3: fallback — display long offline blob, surface notice
+      setCode(localCode);
+      setMsg({ ok: false, text: `${t("mydata.migrate.fallback")}。${t("panel.transfer.done_short")}` });
     } catch (_) {
       setMsg({ ok: false, text: t("mydata.migrate.bad_code") });
     } finally {
@@ -217,7 +234,11 @@ const MyDataPanel = () => {
     setBusy(true);
     setMsg(null);
     try {
-      const res = await importMigrationCode(paste);
+      const trimmed = paste.trim();
+      // Cloud short token (10 uppercase chars) or mig_ prefix → fetch the real blob first
+      const isShortToken = /^[A-Z0-9]{10}$/.test(trimmed) || trimmed.startsWith("mig_");
+      const blobToImport = isShortToken ? (await fetchRemoteMigrationCode(trimmed))?.code || trimmed : trimmed;
+      const res = await importMigrationCode(blobToImport);
       if (res && res.ok) {
         setMsg({
           ok: true,
