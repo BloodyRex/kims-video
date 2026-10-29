@@ -134,11 +134,22 @@ export default function MyDataPage() {
     setBusy(false);
   };
   const doMigrate = async () => {
+    setBusy(true);
     try {
-      const res = await createMigrationCode({ passphrase: migratePass || undefined });
-      setMigrateCode(res.code); setCopied(false);
+      // 优先走云端：生成 10 位短码，方便手动输入
+      const localBlob = await createMigrationCode({ passphrase: migratePass || undefined });
+      const remote = await createRemoteMigrationCode(localBlob.code);
+      setMigrateCode(remote.code); setCopied(false);
       flash("ok", t("mydata.migrate.done"));
-    } catch { flash("err", t("mydata.migrate.bad_code")); }
+    } catch {
+      // 网络不可用时降级为本地长码（KV1:/KV1G: 直贴）
+      try {
+        const res = await createMigrationCode({ passphrase: migratePass || undefined });
+        setMigrateCode(res.code); setCopied(false);
+        flash("ok", t("mydata.migrate.done"));
+      } catch { flash("err", t("mydata.migrate.bad_code")); }
+    }
+    setBusy(false);
   };
   const doMigrateRemote = async () => {
     setBusy(true);

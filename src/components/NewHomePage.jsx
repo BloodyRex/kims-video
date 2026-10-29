@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Icons } from "./Icons";
 import Loading from "./Loading";
 import QAPage from "./QAPage";
@@ -256,7 +256,8 @@ const NewHomePage = () => {
     return () => { cancelled = true; };
   }, [step, detailMovieId, setDetailLoading, setDetailData, locale]);
 
-  const goToSplash = () => setStep("splash");
+  const navigate = useNavigate();
+  const goToSplash = () => { navigate("/"); setStep("splash"); };
 
   return (
     <div className={`min-h-screen text-black selection:bg-[#ffff00] selection:text-black overflow-x-hidden pb-20 locale-${locale} graffiti-bg`}>
