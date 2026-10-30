@@ -141,9 +141,9 @@ export function FavoriteCard({ fav, removeLabel, onOpen, onRemove }) {
   );
 }
 
-const PixelSection = ({ icon, title, right, children }) => (
+const PixelSection = ({ icon, title, right, children, borderClass = "border-white/15" }) => (
   <div className="mt-6">
-    <div className="flex items-end justify-between gap-3 mb-3 border-b-4 border-white/15 pb-2">
+    <div className={`flex w-full items-end justify-between gap-3 mb-3 border-b-4 ${borderClass} pb-2`}>
       <h4 className="min-w-0 flex items-center gap-2 text-sm sm:text-lg font-black uppercase tracking-wider pixel-font text-white break-words">
         <span className="text-[#ffff00]">{icon}</span>
         {title}
@@ -166,8 +166,6 @@ const MyDataPanel = () => {
   const [expanded, setExpanded] = useState(null);
 
   const [modal, setModal] = useState(null); // "transfer" | "clear" | null
-  const [descOpen, setDescOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const isTouch = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0);
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);
@@ -342,37 +340,26 @@ const MyDataPanel = () => {
       aria-label={t("panel.title")}
     >
       {/* 标题条 —— 对齐电影节 banner 区块：品红外框 + 白色主标题(品红硬阴影) + 白色副标题 */}
-      <div className="relative px-4 py-3 md:px-6 md:py-4 border-b-4 border-[#ff00ff]/40">
-        <div className="flex items-start gap-3 min-w-0">
-          <span className="font-mono text-xs px-2 py-1 border-2 border-black bg-[#ff00ff] text-white font-black shrink-0">SEC.05</span>
-          <div className="min-w-0">
-            <div className="flex items-start gap-2">
-              <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff]">{t("panel.title")}</h3>
-              <div className="sm:relative -mt-1">
-                <button
-                  onClick={isTouch ? () => setDescOpen(!descOpen) : undefined}
-                  onMouseEnter={!isTouch ? () => setIsHovered(true) : undefined}
-                  onMouseLeave={!isTouch ? () => setIsHovered(false) : undefined}
-                  className="w-4 h-4 sm:w-5 sm:h-5 bg-black border-2 border-[#ffff00] text-[#ffff00] flex items-center justify-center hover:bg-[#ffff00] hover:text-black transition-colors z-20 rounded-full pixel-font shrink-0"
-                  style={{ fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace", fontSize: "clamp(6px, 1.6vw, 9px)" }}
-                  title={t("app.info")}
-                  aria-label={t("app.info")}
-                >
-                  ?
-                </button>
-                {(descOpen || isHovered) && (
-                  <div className="absolute top-full right-2 mt-1 w-max max-w-[calc(100%_-_1rem)] break-words bg-black/90 border-2 border-[#ffff00] text-[#ffff00] px-2 py-1 text-[10px] sm:text-xs font-bold leading-relaxed drop-shadow-[1px_1px_0_#000] z-30 sm:top-0 sm:right-auto sm:left-full sm:mt-0 sm:ml-1.5 sm:max-w-[min(80vw,360px)]">
-                    {t("panel.desc")}
-                  </div>
-                )}
-              </div>
-            </div>
-            <h4 className="text-sm md:text-base font-bold text-[#ffffff] mt-3 mb-3">{t("panel.subtitle")}</h4>
-          </div>
+      <div className="relative p-6 md:p-8 flex flex-col justify-start h-[280px]">
+        <div className="flex justify-start items-start">
+          <span className="font-mono text-xs px-2 py-1 border border-white/40 bg-black/80 text-white self-start shrink-0">
+            SEC.05
+          </span>
+        </div>
+        <div className="min-w-0 mt-[28px]">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff] break-words min-w-0 whitespace-nowrap">
+            {t("panel.title")}
+          </h3>
+          <h4 className="text-sm md:text-base font-bold text-[#00ffff] mb-3">{t("panel.subtitle")}</h4>
+          {/* 原 ? 按钮悬浮提示改为常显备注，位置与电影节 banner 描述一致 */}
+          <p className="text-gray-300 text-xs md:text-sm font-medium p-2.5 border-l-4 border-[#ff00ff]">
+            {t("panel.desc")}
+          </p>
+          <div className="w-full border-b-4 border-[#ff00ff]/30 mb-4 mt-[40px]"></div>
         </div>
       </div>
 
-      <div className="px-4 py-4 md:px-6 md:py-6">
+      <div className="max-sm:px-0 max-sm:py-0 sm:px-6 sm:py-6">
         {!ready ? (
           <div className="py-10 flex justify-center text-[#ffff00]">
             <span className="inline-block animate-spin">
@@ -383,20 +370,18 @@ const MyDataPanel = () => {
           <>
             {/* 1. 我收藏的卡片 */}
             <PixelSection
-              icon={<Icons.Star className="w-4 h-4" fill="#ffff00" stroke="#ffff00" />}
-              title={t("panel.favs.title")}
-              right={
-                <span className="text-[10px] sm:text-xs font-black text-[#00ffff] bg-black border-2 border-[#00ffff] px-2 py-0.5 whitespace-nowrap">
-                  {t("panel.favs.count", { n: favCount })}
-                </span>
-              }
-            >
-              {favCount === 0 ? (
-                <p className="py-6 text-center text-xs sm:text-sm text-gray-200 font-bold">{t("panel.favs.empty")}</p>
-              ) : (
-                favTile
-              )}
-            </PixelSection>
+                icon={<Icons.Star className="w-4 h-4" fill="#ffff00" stroke="#ffff00" />}
+                title={t("panel.favs.title")}
+                right={
+                  <span className="text-[10px] sm:text-xs font-black text-[#00ffff] bg-black border-2 border-[#00ffff] px-2 py-0.5 whitespace-nowrap">
+                    {t("panel.favs.count", { n: favCount })}
+                  </span>
+                }>{favCount === 0 ? (
+                  <p className="py-6 text-center text-xs sm:text-sm text-gray-200 font-bold">{t("panel.favs.empty")}</p>
+                ) : (
+                  favTile
+                )}
+              </PixelSection>
 
             {/* 2. 我的推荐历史 */}
             <PixelSection
@@ -406,9 +391,7 @@ const MyDataPanel = () => {
                 <span className="text-[10px] sm:text-xs font-black text-[#00ffff] bg-black border-2 border-[#00ffff] px-2 py-0.5 whitespace-nowrap">
                   {recoCount}
                 </span>
-              }
-            >
-              {recoCount === 0 ? (
+              }>{recoCount === 0 ? (
                 <p className="py-6 text-center text-xs sm:text-sm text-gray-200 font-bold">{t("panel.recos.empty")}</p>
               ) : (
                 <div className="divide-y divide-white/15 max-h-[46vh] overflow-y-auto pr-1">
@@ -493,8 +476,7 @@ const MyDataPanel = () => {
             </PixelSection>
 
             {/* 3. 存储概览 */}
-            <PixelSection icon={<Icons.Target className="w-4 h-4" />} title={t("mydata.stats.title")}>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+            <PixelSection icon={<Icons.Target className="w-4 h-4" />} title={t("mydata.stats.title")}><div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                 <div className="border-4 border-black bg-[#111] p-2.5 shadow-[3px_3px_0_0_#00ffff]">
                   <div className="text-sm sm:text-lg font-black text-white">{favCount}</div>
                   <div className="text-[10px] pixel-font font-bold text-gray-200">{t("panel.favs.short")}</div>

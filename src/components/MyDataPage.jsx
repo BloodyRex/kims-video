@@ -64,7 +64,7 @@ export default function MyDataPage() {
         <h2 className="pixel-font text-[11px] sm:text-xs font-black uppercase tracking-wider flex-1">{title}</h2>
         {action}
       </div>
-      <div className="p-3">{children}</div>
+      <div className="max-sm:p-0 sm:p-3">{children}</div>
     </section>
   );
 
@@ -187,7 +187,7 @@ export default function MyDataPage() {
         </Link>
       </header>
 
-      <div className="max-w-3xl mx-auto px-4 pt-4">
+      <div className="mx-auto w-full max-w-4xl px-2 max-sm:px-3 sm:px-4 pt-4">
         <button onClick={() => window.history.back()} className="pixel-font text-[10px] font-bold border-4 border-black bg-white px-3 py-2 shadow-[3px_3px_0_0_#000] mb-4 hover:-translate-y-0.5 transition-transform inline-flex items-center gap-1">
           {t("mydata.back")}
         </button>

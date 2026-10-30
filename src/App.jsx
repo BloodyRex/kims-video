@@ -424,7 +424,7 @@ function AppContent() {
         <p className="text-gray-500 text-[10px] max-sm:text-[9px] pixel-font mt-1 tracking-wider">{t('tagline')}</p>
       </header>
 
-      <main className="relative z-10 container mx-auto px-4 md:py-8">
+      <main className="relative z-10 max-w-4xl mx-auto px-2 max-sm:px-3 sm:px-4 md:py-8">
         {step === "input" && (
           <>
             <InputPage
@@ -448,7 +448,7 @@ function AppContent() {
               locale={locale}
             />
             {/* Entry buttons */}
-            <div className="max-w-2xl mx-auto mt-6 mb-4 flex flex-col sm:flex-row gap-3 max-sm:mx-3">
+            <div className="mt-6 mb-4 flex flex-col sm:flex-row gap-3">
               <Link
                 to="/discover"
                 className="flex-1 block border-4 border-black px-4 py-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all text-center group relative overflow-hidden bg-gradient-to-r from-[#ff00ff] via-[#ffff00] to-[#00ffff] flow-gradient"

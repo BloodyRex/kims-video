@@ -533,7 +533,7 @@ function IntelligencePage() {
         {/* Main content — list stays mounted; detail renders as a full-screen
             overlay above it (site-wide standard, 2026-08-24). Closing restores
             scroll/tab/filter state with zero refetch. */}
-        <main className="flex-1 p-4 sm:p-6 min-w-0">
+        <main className="flex-1 px-3 sm:px-6 py-4 sm:py-6 min-w-0">
           <>
             {activeNav === "overview" && <OverviewView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type)} />}
             {activeNav === "movies" && <MoviesView locale={locale} onViewDetail={(item, type) => handleViewDetail(item, type || "movie")} />}

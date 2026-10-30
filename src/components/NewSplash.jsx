@@ -111,7 +111,7 @@ const NewSplash = ({ onEnterAI }) => {
   const renderCard = (card, index) => {
     const inner = (
       <div
-        className="group relative h-[280px] md:h-[320px] border-8 border-black overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 bg-[#111]"
+        className="group relative h-[280px] border-8 border-black overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 bg-[#111]"
         style={{ boxShadow: `12px 12px 0 0 ${card.shadowColor}` }}
       >
         {/* Landscape (desktop) — 本地横屏图 */}
@@ -140,24 +140,17 @@ const NewSplash = ({ onEnterAI }) => {
             </span>
           </div>
 
-          <div>
-            {/* Rex 2026-08-25: fixed bilingual pairing on every card, both languages:
-                big EN title over small CN subtitle — never switches with locale */}
-            <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff]">
+          <div className="min-w-0 mt-4">
+            {/* 固定双语搭配；break-words 让 INTELLIGENCE 在窄屏换行而非被裁切 */}
+            {/* 固定双语搭配；whitespace-nowrap 与 Festival 保持一致，避免宽屏换行导致间距偏差 */}<h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff] whitespace-nowrap">
               {card.title}
             </h3>
-            <h4 className={`text-sm md:text-base font-bold mb-3 ${card.accent}`}>
+            <h4 className={`text-sm md:text-base font-bold mb-3 text-[#00ffff]`}>
               {card.subtitleZh}
             </h4>
             <p className="text-gray-300 text-xs md:text-sm font-medium line-clamp-2 bg-black/60 p-2.5 border-l-4 border-[#ff00ff]">
               {zh ? card.descZh : card.descEn}
             </p>
-          </div>
-
-          <div className="flex items-center pt-2 border-t border-white/20">
-            <span className="text-xs font-bold text-[#00ffff] uppercase tracking-wider pixel-font group-hover:translate-x-2 transition-transform inline-flex items-center">
-              {zh ? "点击进入系统 >>" : "Enter System >>"}
-            </span>
           </div>
         </div>
       </div>
@@ -178,7 +171,7 @@ const NewSplash = ({ onEnterAI }) => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 min-h-[85vh] flex flex-col justify-center">
+    <div className="mx-auto py-8 min-h-[85vh] flex flex-col justify-center">
       {/* 顶栏精简标题 */}
       <div className="text-center mb-12">
         <h2
@@ -200,29 +193,21 @@ const NewSplash = ({ onEnterAI }) => {
           像素字体，不改动既有四张卡片。徽章用 NEW 而非 SEC.05，避免打乱 SEC.01–04 编号） */}
       <Link
         to="/festivals"
-        className="group mb-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-6 bg-black border-4 border-[#ff00ff] px-4 py-3 md:px-6 md:py-4 transition-transform duration-300 hover:-translate-y-1"
+        className="group mb-6 relative flex flex-col items-stretch bg-black border-4 border-[#ff00ff] h-[220px] transition-transform duration-300 hover:-translate-y-1"
         style={{ boxShadow: "12px 12px 0 0 #00ffff" }}
       >
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 min-w-0">
-          <span className="font-mono text-xs px-2 py-1 border-2 border-black bg-[#ff00ff] text-white font-black self-start shrink-0">
-            NEW
-          </span>
-          <div className="min-w-0">
-            <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff]">
+        <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
+          <div className="min-w-0 mt-[20px]">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff] whitespace-nowrap">
               {FESTIVAL_ENTRY.title}
             </h3>
-            <h4 className="text-sm md:text-base font-bold text-[#ffffff] mt-3">
+            <h4 className="text-sm md:text-base font-bold text-[#00ffff] mb-3">
               {FESTIVAL_ENTRY.subtitleZh}
             </h4>
-            <p className="text-gray-300 text-xs md:text-sm font-medium line-clamp-2 bg-black/60 p-2.5 border-l-4 border-[#ff00ff] mt-2">
+            <p className="text-gray-300 text-xs md:text-sm font-medium line-clamp-2 bg-black/60 p-2.5 border-l-4 border-[#ff00ff]">
               {zh ? FESTIVAL_ENTRY.descZh : FESTIVAL_ENTRY.descEn}
             </p>
           </div>
-        </div>
-        <div className="flex items-center gap-3 shrink-0">
-          <span className="text-xs font-bold text-[#00ffff] uppercase tracking-wider pixel-font group-hover:translate-x-2 transition-transform hidden sm:inline">
-            {zh ? "点击进入系统 >>" : "Enter System >>"}
-          </span>
         </div>
       </Link>
 

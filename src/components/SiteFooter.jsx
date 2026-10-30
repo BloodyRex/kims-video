@@ -38,11 +38,13 @@ export default function SiteFooter({ locale, activeId } = {}) {
             <Link
               to={link.to}
               aria-current={active ? "page" : undefined}
-              className={`transition-colors whitespace-nowrap flex-shrink-0 leading-none py-1 ${active ? "text-[#00ffff] font-black" : "text-white hover:text-[#ffff00]"}`}
+              className={`transition-colors whitespace-nowrap flex-shrink-0 leading-none py-1 font-black ${active ? "text-[#00ffff]" : "text-white hover:text-[#ffff00]"}`}
             >
               {t(link.key)}
             </Link>
-            {i < FOOTER_LINKS.length - 1 && <span className="hidden sm:inline text-gray-600 mx-2 leading-none">|</span>}
+            {i < FOOTER_LINKS.length - 1 && (
+              <span className="text-gray-600 mx-1 sm:mx-2 leading-none font-black">|</span>
+            )}
           </Fragment>
         );
       })}

@@ -50,7 +50,7 @@ const NewInputPage = ({
   }, [quotes]);
 
   return (
-    <div className="max-w-2xl mx-auto bg-white border-8 max-sm:border-4 border-black p-8 max-sm:p-4 shadow-[16px_16px_0_0_rgba(0,0,0,1)] max-sm:shadow-[8px_8px_0_0_rgba(0,0,0,1)] relative retro-container max-sm:mx-3">
+    <div className="w-full bg-white border-8 max-sm:border-4 border-black p-8 max-sm:px-0 max-sm:py-4 shadow-[16px_16px_0_0_rgba(0,0,0,1)] max-sm:shadow-[8px_8px_0_0_rgba(0,0,0,1)] relative retro-container">
       <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#ff00ff] rounded-full mix-blend-multiply filter blur-2xl opacity-50 pointer-events-none"></div>
       <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#00ffff] rounded-full mix-blend-multiply filter blur-2xl opacity-50 pointer-events-none"></div>
 

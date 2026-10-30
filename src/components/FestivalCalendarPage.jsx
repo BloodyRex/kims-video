@@ -435,7 +435,7 @@ function FestivalCard({ card, locale, onOpen }) {
   return (
     <div className="border-4 border-black bg-black" style={{ boxShadow: `6px 6px 0 0 ${s.color}` }}>
       {/* head */}
-      <div className="p-3 border-b-4 border-black" style={{ background: isLive ? "#0b0b0b" : "#000" }}>
+      <div className="max-sm:p-0 sm:p-3 border-b-4 border-black" style={{ background: isLive ? "#0b0b0b" : "#000" }}>
         <div className="flex flex-wrap items-center gap-2 mb-1">
           <StatusBadge status={card.status} locale={locale} />
           {card.changes7d > 0 ? (
@@ -566,7 +566,7 @@ function TodayView({ locale, onOpen }) {
 
   return (
     <div className="space-y-6">
-      <div className="border-4 border-black bg-black p-3" style={{ boxShadow: "6px 6px 0 0 #ff00ff" }}>
+      <div className="border-4 border-black bg-black max-sm:p-0 sm:p-3" style={{ boxShadow: "6px 6px 0 0 #ff00ff" }}>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 className="text-sm sm:text-lg font-black pixel-font text-white uppercase">
             {locale === "zh" ? `今天 · ${fmtDate(data.today, locale)}` : `TODAY · ${fmtDate(data.today, locale)}`}
@@ -612,7 +612,7 @@ function TodayView({ locale, onOpen }) {
                 <button
                   key={c.slug}
                   onClick={() => onOpen(c.slug)}
-                  className="text-left border-4 border-black bg-black p-3 hover:bg-gray-950 transition-colors"
+                  className="text-left border-4 border-black bg-black max-sm:p-0 sm:p-3 hover:bg-gray-950 transition-colors"
                   style={{ boxShadow: `4px 4px 0 0 ${s.color}` }}
                 >
                   <div className="flex items-center gap-2 mb-1">
@@ -649,7 +649,7 @@ function TodayView({ locale, onOpen }) {
                 <button
                   key={c.slug}
                   onClick={() => onOpen(c.slug)}
-                  className="text-left border-4 border-black bg-black p-3 hover:bg-gray-950 transition-colors opacity-80"
+                  className="text-left border-4 border-black bg-black max-sm:p-0 sm:p-3 hover:bg-gray-950 transition-colors opacity-80"
                   style={{ boxShadow: `4px 4px 0 0 ${s.color}` }}
                 >
                   <div className="flex items-center gap-2 mb-1">
@@ -696,7 +696,7 @@ function WeekView({ locale, onOpen }) {
 
   return (
     <div className="space-y-4">
-      <div className="border-4 border-black bg-black p-3" style={{ boxShadow: "6px 6px 0 0 #ffff00" }}>
+      <div className="border-4 border-black bg-black max-sm:p-0 sm:p-3" style={{ boxShadow: "6px 6px 0 0 #ffff00" }}>
         <h2 className="text-sm sm:text-lg font-black pixel-font text-white uppercase">
           {locale === "zh" ? `本周 · ${fmtDateRange(start, end, locale)}` : `WEEK · ${fmtDateRange(start, end, locale)}`}
         </h2>
@@ -817,7 +817,7 @@ function MonthView({ locale, onOpen }) {
 
   return (
     <div className="space-y-4">
-      <div className="border-4 border-black bg-black p-3" style={{ boxShadow: "6px 6px 0 0 #00ffff" }}>
+      <div className="border-4 border-black bg-black max-sm:p-0 sm:p-3" style={{ boxShadow: "6px 6px 0 0 #00ffff" }}>
         <div className="flex items-center justify-between gap-2">
           <h2 className="text-sm sm:text-lg font-black pixel-font text-white uppercase">
             {locale === "zh" ? `${y} 年 ${MONTH_ZH[m - 1]}` : `${MONTH_EN[m - 1]} ${y}`}
@@ -878,7 +878,7 @@ function MonthView({ locale, onOpen }) {
       </div>
 
       {picked ? (
-        <div className="border-4 border-black bg-black p-3" style={{ boxShadow: "4px 4px 0 0 #ffff00" }}>
+        <div className="border-4 border-black bg-black max-sm:p-0 sm:p-3" style={{ boxShadow: "4px 4px 0 0 #ffff00" }}>
           <div className="text-xs font-black pixel-font text-white uppercase mb-2">
             {dayOfWeek(picked, locale)} {fmtDate(picked, locale)}
           </div>
@@ -938,7 +938,7 @@ function FestivalsView({ locale, onOpen }) {
 
   return (
     <div className="space-y-4">
-      <div className="border-4 border-black bg-black p-3" style={{ boxShadow: "6px 6px 0 0 #ff00ff" }}>
+      <div className="border-4 border-black bg-black max-sm:p-0 sm:p-3" style={{ boxShadow: "6px 6px 0 0 #ff00ff" }}>
         <h2 className="text-sm sm:text-lg font-black pixel-font text-white uppercase">
           {locale === "zh" ? "电影节库" : "FESTIVAL DATABASE"} · {filtered.length}/{cards.length}
         </h2>
@@ -980,7 +980,7 @@ function FestivalsView({ locale, onOpen }) {
               <button
                 key={c.slug}
                 onClick={() => onOpen(c.slug)}
-                className="text-left border-4 border-black bg-black p-3 hover:bg-gray-950 transition-colors"
+                className="text-left border-4 border-black bg-black max-sm:p-0 sm:p-3 hover:bg-gray-950 transition-colors"
                 style={{ boxShadow: `4px 4px 0 0 ${s.color}` }}
               >
                 <div className="flex flex-wrap items-center gap-2 mb-1">
@@ -1012,7 +1012,7 @@ function FestivalsView({ locale, onOpen }) {
 function ChangeCard({ change, locale }) {
   const k = CHANGE_KIND[change.kind] || CHANGE_KIND.CHANGED;
   return (
-    <div className="border-4 border-black bg-black p-3" style={{ boxShadow: `4px 4px 0 0 ${k.color}` }}>
+    <div className="border-4 border-black bg-black max-sm:p-0 sm:p-3" style={{ boxShadow: `4px 4px 0 0 ${k.color}` }}>
       <div className="flex flex-wrap items-center gap-2 mb-1">
         <span className="px-1.5 py-0.5 border-2 border-black text-[8px] font-black pixel-font uppercase" style={{ background: k.color, color: "#000" }}>
           {change.kind === "SUMMARY" ? (locale === "zh" ? "汇总" : "SUMMARY") : `⚠ ${locale === "zh" ? k.zh : k.en}`}
@@ -1057,7 +1057,7 @@ function ChangesView({ locale }) {
 
   return (
     <div className="space-y-4">
-      <div className="border-4 border-black bg-black p-3" style={{ boxShadow: "6px 6px 0 0 #ffff00" }}>
+      <div className="border-4 border-black bg-black max-sm:p-0 sm:p-3" style={{ boxShadow: "6px 6px 0 0 #ffff00" }}>
         <h2 className="text-sm sm:text-lg font-black pixel-font text-white uppercase">
           {locale === "zh" ? `变更 · ${data.count7d ?? 0} / 7 天` : `CHANGES · ${data.count7d ?? 0} / 7D`}
         </h2>
@@ -1606,7 +1606,7 @@ export default function FestivalCalendarPage() {
           </nav>
         </aside>
 
-        <main className="flex-1 p-4 sm:p-6 min-w-0">
+        <main className="flex-1 px-3 sm:px-6 py-4 sm:py-6 min-w-0">
           {slug ? (
             <DetailView slug={slug} locale={locale} onBack={() => navigate("/festivals/all")} />
           ) : active === "today" ? (
