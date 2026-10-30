@@ -1,12 +1,12 @@
 {
- "at": "2026-10-30T09:52:27Z",
+ "at": "2026-10-30T16:40:11Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 620min ≥ 360min",
+   "reason": "age 408min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 255,
@@ -25,10 +25,10 @@
   {
    "slug": "idfa-2026",
    "due": true,
-   "reason": "age 620min ≥ 360min",
+   "reason": "age 408min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
-    "films": 260,
+    "films": 261,
     "screenings": 1218,
     "venues": 70,
     "days": 11,
@@ -53,12 +53,12 @@
     "5 record(s) look like all-day programme blocks (linked film, > 240min) — kept as EVENT, not screenings"
    ],
    "action": "updated",
-   "changes": 19
+   "changes": 40
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 620min ≥ 360min",
+   "reason": "age 407min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 242,
@@ -77,7 +77,7 @@
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 14602min ≥ 30min",
+   "reason": "age 15009min ≥ 30min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 45,
@@ -143,7 +143,7 @@
   {
    "slug": "venice-2026",
    "due": true,
-   "reason": "age 619min ≥ 360min",
+   "reason": "age 407min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 347,
@@ -157,12 +157,12 @@
    },
    "warnings": [],
    "action": "updated",
-   "changes": 135
+   "changes": 145
   },
   {
    "slug": "cannes-2026",
    "due": true,
-   "reason": "age 420min ≥ 180min",
+   "reason": "age 407min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 150,
@@ -183,7 +183,7 @@
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 1647min ≥ 180min",
+   "reason": "age 2055min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "action": "fetch failed",
    "error": "iffr feed yielded 0 films (parse warnings: feed fetch failed: HTTP 403; feed parse failed: Unexpected end of JSON input)"
@@ -200,11 +200,11 @@
    "festivals": 7,
    "blocked": 0,
    "liveToday": 1,
-   "screeningsToday": 0,
+   "screeningsToday": 3,
    "eventsToday": 0,
    "upcoming": 1,
    "changes7d": 1000,
-   "venuesToday": 0
+   "venuesToday": 1
   },
   "detailFiles": [
    "biff-2026",
