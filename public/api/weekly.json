@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "movies": [
     {
       "tmdbId": 1283515,
@@ -10,7 +10,7 @@
       "year": "2026",
       "releaseDate": "2026-09-30",
       "poster": "https://image.tmdb.org/t/p/w500/zzJaCowELQcslovzG4RF9QUplH6.jpg",
-      "rating": 6.518,
+      "rating": 6.657,
       "genre": [
         "Mystery",
         "Thriller"
@@ -29,7 +29,7 @@
       "year": "2026",
       "releaseDate": "2026-08-26",
       "poster": "https://image.tmdb.org/t/p/w500/wRayQFDXZZfZ0kj0ESniCgEh66a.jpg",
-      "rating": 6.985,
+      "rating": 7.033,
       "genre": [
         "Action",
         "Thriller",
@@ -49,7 +49,7 @@
       "year": "2026",
       "releaseDate": "2026-10-19",
       "poster": "https://image.tmdb.org/t/p/w500/8AKvV4bJsfUBUZ7cgW41iv3EYaG.jpg",
-      "rating": 7.463,
+      "rating": 7.445,
       "genre": [
         "Horror",
         "Thriller",
@@ -69,7 +69,7 @@
       "year": "2026",
       "releaseDate": "2026-10-09",
       "poster": "https://image.tmdb.org/t/p/w500/v5VQQKvwmVm8K60jWVJIr7gkUrs.jpg",
-      "rating": 6.9,
+      "rating": 6.3,
       "genre": [
         "Action",
         "Thriller",
@@ -81,46 +81,6 @@
       "trend": "new"
     },
     {
-      "tmdbId": 791523,
-      "title": "荒野丛林",
-      "titleEn": "Wildwood",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-10-19",
-      "poster": "https://image.tmdb.org/t/p/w500/z5MMAxbQO2nCvBU8BqHgoY1zKdD.jpg",
-      "rating": 8.644,
-      "genre": [
-        "Animation",
-        "Adventure",
-        "Fantasy"
-      ],
-      "summary": "普鲁和同班同学柯蒂斯误入一片禁忌魔法森林，林中遍布魔法生灵、忠心伙伴与强大劲敌。二人踏上一场凶险万分的营救之旅，要从神秘女子亚历山德拉统领的鸦群手中，救出被掳走的婴儿弟弟麦克。",
-      "summaryEn": "Prue and her classmate Curtis are drawn into a magical forest filled with enchanted creatures, loyal allies, and formidable adversaries as they embark on a desperate quest to rescue Prue's abducted ba",
-      "rank": 5,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1290418,
-      "title": "尸变",
-      "titleEn": "The Cycle",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-09-24",
-      "poster": "https://image.tmdb.org/t/p/w500/e5x2eLPY5vOqmzI2mEgOzyYQNq8.jpg",
-      "rating": 6.824,
-      "genre": [
-        "Horror",
-        "Thriller",
-        "Mystery"
-      ],
-      "summary": "一名失踪36年的男子尸体在一桩骇人命案现场被发现，他的女儿梅格由此追查父亲隐秘的黑暗过往。",
-      "summaryEn": "A daughter unravels her father's dark past after his body, missing for 36 years, is found at a horrific crime scene.",
-      "rank": 6,
-      "trend": "new"
-    },
-    {
       "tmdbId": 1465063,
       "title": "忘却之岛",
       "titleEn": "Forgotten Island",
@@ -129,7 +89,7 @@
       "year": "2026",
       "releaseDate": "2026-09-10",
       "poster": "https://image.tmdb.org/t/p/w500/2O3b5ey8xITyzz5KuaaRTj6bONx.jpg",
-      "rating": 7.587,
+      "rating": 7.653,
       "genre": [
         "Animation",
         "Adventure",
@@ -139,7 +99,27 @@
       ],
       "summary": "好友乔与拉伊萨高中毕业即将分别，她们打算相伴度过最后一夜，却意外被传送到奇幻岛屿纳卡利。二人得知重返家园的代价是抹去关于彼此的全部记忆，她们必须抓紧时间，在遗忘对方找到方法离开这座岛屿。",
       "summaryEn": "While celebrating their last night together, high school graduates and best friends Jo and Raissa stumble upon a mysterious portal that transports them to the fantastical island of Nakali. When they d",
-      "rank": 7,
+      "rank": 5,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 791523,
+      "title": "荒野丛林",
+      "titleEn": "Wildwood",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-10-19",
+      "poster": "https://image.tmdb.org/t/p/w500/z5MMAxbQO2nCvBU8BqHgoY1zKdD.jpg",
+      "rating": 8.66,
+      "genre": [
+        "Animation",
+        "Adventure",
+        "Fantasy"
+      ],
+      "summary": "普鲁和同班同学柯蒂斯误入一片禁忌魔法森林，林中遍布魔法生灵、忠心伙伴与强大劲敌。二人踏上一场凶险万分的营救之旅，要从神秘女子亚历山德拉统领的鸦群手中，救出被掳走的婴儿弟弟麦克。",
+      "summaryEn": "Prue and her classmate Curtis are drawn into a magical forest filled with enchanted creatures, loyal allies, and formidable adversaries as they embark on a desperate quest to rescue Prue's abducted ba",
+      "rank": 6,
       "trend": "new"
     },
     {
@@ -151,33 +131,33 @@
       "year": "2026",
       "releaseDate": "2026-10-22",
       "poster": "https://image.tmdb.org/t/p/w500/xMjlcgAoz79h4JAgksle7eTI1Zp.jpg",
-      "rating": 6.144,
+      "rating": 6.064,
       "genre": [
         "Comedy"
       ],
       "summary": "过了二十年\"躺平\"、\"嗨天嗨地\"的生活后，阿里·G在震惊中得知他的长期女友朱莉已怀孕八个月。家里多了一张吃饭的嘴，阿里·G放弃了傻乐的日子，前往美国试图重拾昔日的辉煌。但他很快就遇到了对手，这个对手最终将威胁到他和他孩子的生存。",
       "summaryEn": "After twenty years spent \"chillin', tokin' and bonin'\", Ali G is shocked to discover that his long-term girlfriend, Julie, is 8 months pregnant. Faced with an extra mouth to feed, he gets off his batt",
-      "rank": 8,
+      "rank": 7,
       "trend": "new"
     },
     {
-      "tmdbId": 1058424,
-      "title": "希望",
-      "titleEn": "Hope",
-      "originalLanguage": "ko",
+      "tmdbId": 1003596,
+      "title": "复仇者联盟5",
+      "titleEn": "Avengers: Doomsday",
+      "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-07-15",
-      "poster": "https://image.tmdb.org/t/p/w500/cNdHFtoePvOp5nxqwWNg9BJLQ8g.jpg",
-      "rating": 6.782,
+      "releaseDate": "2026-12-16",
+      "poster": "https://image.tmdb.org/t/p/w500/1CXOvSlK8R0dqc4u1QqDDZkH3ql.jpg",
+      "rating": 0,
       "genre": [
         "Sci-Fi",
-        "Mystery",
-        "Action"
+        "Action",
+        "Adventure"
       ],
-      "summary": "支援人员前往扑救山火，通讯也随之中断。湖浦派出所所长范锡与警员成爱奋力保护村中老人，而进入山中追踪怪物的成基等人反遭猎杀。由无知引发的灾难逐渐演变为一场席卷宇宙的悲剧.",
-      "summaryEn": "In the remote South Korean village of Hope Harbor, police chief Bum-seok and officer Sung-ae are called to investigate a mysterious creature wreaking havoc on the community. But all is not as it seems",
-      "rank": 9,
+      "summary": "来自三个截然不同宇宙的传奇英雄们，将被推向一场生死对决，并最终直面一股前所未见、足以撼动万物存亡的终极威胁。",
+      "summaryEn": "Beloved heroes from three distinct universes are set on a deadly collision course and face an existential threat unlike anything they've ever encountered.",
+      "rank": 8,
       "trend": "new"
     },
     {
@@ -196,11 +176,81 @@
       ],
       "summary": "一个渴望爱情的浪漫主义者打破神秘的“许愿柳”，希望赢得心仪之人的芳心。当愿望如愿实现，他却发现，有些欲望背后隐藏着黑暗而可怕的代价。",
       "summaryEn": "After breaking the mysterious \"One Wish Willow\" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinis",
+      "rank": 9,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 969681,
+      "title": "蜘蛛侠：崭新之日",
+      "titleEn": "Spider-Man: Brand New Day",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-07-29",
+      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
+      "rating": 8.5,
+      "genre": [
+        "Sci-Fi",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "彼得·帕克以蜘蛛侠的身份全职打击犯罪，但在一个无人记得他的世界里，看着昔日好友各自开启新生活的压力，正引发他无法掌控的变化。而这场蜕变，或许也是阻止威胁城市及他所爱之人的强大隐形反派的唯一希望。",
+      "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
       "rank": 10,
       "trend": "new"
     }
   ],
   "tv": [
+    {
+      "tmdbId": 213375,
+      "title": "幻视任务",
+      "titleEn": "VisionQuest",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-13",
+      "poster": "https://image.tmdb.org/t/p/w500/9rWX1tRNd1wIf0XnTjd8GOUoTlH.jpg",
+      "rating": 8.6,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "重启后的幻视隐居避世，试图摆脱将他武器化的人，并通过与体内的AI人格交流寻找存在意义，其中包括恶名昭彰的奥创。然而高额悬赏打破了平静，他被迫与神秘少年托马斯·谢泼德一同逃亡，后者或许是他重生后的儿子。",
+      "summaryEn": "With a bounty on his head, Vision must confront his nature and resist Ultron's influence to survive.",
+      "nextAirDate": "2026-11-03",
+      "season": 1,
+      "episode": 6,
+      "latestAirDate": "2026-10-27",
+      "rank": 2,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 292741,
+      "title": "夜曲",
+      "titleEn": "Nocturne",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-29",
+      "poster": "https://image.tmdb.org/t/p/w500/mHlARApb69J39NfmqKHseOghFJO.jpg",
+      "rating": 7,
+      "genre": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "summary": "改编自拉尔斯·克卜勒的小说《拉撒路》和《睡魔》。恶名昭彰的连环杀手尤里克·沃尔特的一名受害者意外生还，警探乔纳·林分秒必争务求找出唯一仍然失踪的人，同时他的徒弟萨加·鲍尔则充当卧底，试图从杀手身上获得答案。",
+      "summaryEn": "When a victim of notorious serial killer Jurek Walter unexpectedly turns up alive, detective Jonah Lynn races against time to find the one person still missing, while his protégé Saga Bauer goes under",
+      "nextAirDate": "2026-11-05",
+      "season": 1,
+      "episode": 2,
+      "latestAirDate": "2026-10-29",
+      "rank": 3,
+      "trend": "new"
+    },
     {
       "tmdbId": 289517,
       "title": "末路兼职",
@@ -212,17 +262,16 @@
       "year": "2026",
       "releaseDate": "2026-10-30",
       "poster": "https://image.tmdb.org/t/p/w500/34Z1vlsow72njbGBNYCaxqFFGjP.jpg",
-      "rating": 7.7,
+      "rating": 7.9,
       "genre": [
         "Mystery"
       ],
       "summary": "负债累累的年轻男子接下了一家神秘机构提供的高薪兼职工作，却发现为了赚更多钱干的这份差事竟变成了一场噩梦。",
       "summaryEn": "Drowning in debt, a young man takes lucrative part-time jobs from a mysterious agency — only to find his hustle for more money turning nightmarish.",
-      "nextAirDate": "2026-10-30",
       "season": 1,
-      "episode": 1,
+      "episode": 8,
       "latestAirDate": "2026-10-30",
-      "rank": 2,
+      "rank": 4,
       "trend": "new"
     },
     {
@@ -248,82 +297,53 @@
       "season": 1,
       "episode": 10,
       "latestAirDate": "2025-09-07",
-      "rank": 3,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 292741,
-      "title": "夜曲",
-      "titleEn": "Nocturne",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-29",
-      "poster": "https://image.tmdb.org/t/p/w500/mHlARApb69J39NfmqKHseOghFJO.jpg",
-      "rating": 5.8,
-      "genre": [
-        "Crime",
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "改编自拉尔斯·克卜勒的小说《拉撒路》和《睡魔》。恶名昭彰的连环杀手尤里克·沃尔特的一名受害者意外生还，警探乔纳·林分秒必争务求找出唯一仍然失踪的人，同时他的徒弟萨加·鲍尔则充当卧底，试图从杀手身上获得答案。",
-      "summaryEn": "When a victim of notorious serial killer Jurek Walter unexpectedly turns up alive, detective Jonah Lynn races against time to find the one person still missing, while his protégé Saga Bauer goes under",
-      "nextAirDate": "2026-11-05",
-      "season": 1,
-      "episode": 2,
-      "latestAirDate": "2026-10-29",
-      "rank": 4,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 213375,
-      "title": "幻视任务",
-      "titleEn": "VisionQuest",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-13",
-      "poster": "https://image.tmdb.org/t/p/w500/9rWX1tRNd1wIf0XnTjd8GOUoTlH.jpg",
-      "rating": 8.7,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "重启后的幻视隐居避世，试图摆脱将他武器化的人，并通过与体内的AI人格交流寻找存在意义，其中包括恶名昭彰的奥创。然而高额悬赏打破了平静，他被迫与神秘少年托马斯·谢泼德一同逃亡，后者或许是他重生后的儿子。",
-      "summaryEn": "With a bounty on his head, Vision must confront his nature and resist Ultron's influence to survive.",
-      "nextAirDate": "2026-11-03",
-      "season": 1,
-      "episode": 6,
-      "latestAirDate": "2026-10-27",
       "rank": 5,
       "trend": "new"
     },
     {
-      "tmdbId": 220542,
-      "title": "药屋少女的呢喃",
-      "titleEn": "The Apothecary Diaries",
+      "tmdbId": 30984,
+      "title": "死神",
+      "titleEn": "Bleach",
       "originalLanguage": "ja",
       "originCountry": [
         "JP"
       ],
-      "year": "2023",
-      "releaseDate": "2023-10-22",
-      "poster": "https://image.tmdb.org/t/p/w500/nUFTbH417TqmCbw2b2mPSAESoTb.jpg",
-      "rating": 8.655,
+      "year": "2004",
+      "releaseDate": "2004-10-05",
+      "poster": "https://image.tmdb.org/t/p/w500/uZM8PIaimoRxQ3vYqzpZOifGE6Y.jpg",
+      "rating": 8.353,
       "genre": [
-        "Animation",
+        "Animation"
+      ],
+      "summary": "高中生黑崎一护意外获得死神之力，从此卷入现世、尸魂界与虚圈之间的纷争。在守护同伴的战斗中，他逐渐揭开自己的身世，并迎来决定三界命运的最终决战。",
+      "summaryEn": "For as long as he can remember, Ichigo Kurosaki has been able to see ghosts. But when he meets Rukia, a Soul Reaper who battles evil spirits known as Hollows, he finds his life is changed forever. Now",
+      "season": 2,
+      "episode": 50,
+      "latestAirDate": "2026-10-27",
+      "rank": 6,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 213562,
+      "title": "水晶湖",
+      "titleEn": "Crystal Lake",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-15",
+      "poster": "https://image.tmdb.org/t/p/w500/zHxl1KifN0NcbqInngsTApHeWjc.jpg",
+      "rating": 8.687,
+      "genre": [
         "Drama",
         "Mystery"
       ],
-      "summary": "花街出身的药师少女猫猫被拐入后宫做下人，凭借对毒药与药物的丰富知识和敏锐的洞察力，卷入宫中接连发生的疑难事件，并与神秘宦官壬氏一同揭开重重谜团。",
-      "summaryEn": "Maomao lived a peaceful life with her apothecary father. Until one day, she's sold as a lowly servant to the emperor's palace. But she wasn't meant for a compliant life among royalty. So when imperial",
-      "nextAirDate": "2026-10-30",
+      "summary": "《十三号星期五》系列电影的前传剧集。一年前，单亲母亲帕姆·沃赫斯的年幼儿子杰森在湖中溺亡，她始终无法走出丧子之痛。两名陌生人登门调查她的过去，一连串诡异事件随之发生，令水晶湖镇的居民开始怀疑：帕姆·沃赫斯究竟是什么人？",
+      "summaryEn": "Single mother Pam Voorhees has been unable to shake her grief after her young, sickly son Jason tragically drowned in the town lake almost a year before. When two strangers arrive at Pam's door diggin",
       "season": 1,
-      "episode": 52,
-      "latestAirDate": "2026-10-23",
+      "episode": 8,
+      "latestAirDate": "2026-10-15",
       "rank": 7,
       "trend": "new"
     },
@@ -350,31 +370,7 @@
       "season": 2,
       "episode": 10,
       "latestAirDate": "2026-10-20",
-      "rank": 8,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 314360,
-      "title": "雅嘎疑云",
-      "titleEn": "YAGA",
-      "originalLanguage": "en",
-      "originCountry": [
-        "CA"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-10-23",
-      "poster": "https://image.tmdb.org/t/p/w500/9nXYkXfEsMQoCxEpZ0d15qWWKAq.jpg",
-      "rating": 7.231,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "改编自凯特·桑德勒创作的同名舞台剧，并重新演绎巴巴雅嘎的民间传说。私家侦探拉普来到一座海滨小镇，调查大型渔业企业继承人亨利·朴的失踪案。随着调查深入，他与当地警探卡森及迷人的大学教授凯瑟琳发生冲突，并逐渐陷入充满神秘嫌疑人、隐秘生活与古老魔法的迷局。",
-      "summaryEn": "While a private investigator probes the disappearance of the young heir to a powerful fishery, he finds himself at odds with an apprehensive local detective, a charismatic university professor with a ",
-      "nextAirDate": "2026-10-30",
-      "season": 1,
-      "episode": 2,
-      "latestAirDate": "2026-10-23",
-      "rank": 10,
+      "rank": 9,
       "trend": "new"
     }
   ],
