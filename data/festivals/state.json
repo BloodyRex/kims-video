@@ -75,11 +75,11 @@
     "films": 22,
     "screenings": 44
    },
-   "failCount": 58,
+   "failCount": 59,
    "lastError": "entry hkiff-cinefan-2026-20261107-202611071400 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071615 outside festival range (2026-11-07) | entry hkiff-cinefan-2026-20261107-202611071830 outside festival range (2026-11-07)",
    "changesLastRun": 0,
    "collapsed": 0,
-   "lastAttemptAt": "2026-10-31T00:59:29Z"
+   "lastAttemptAt": "2026-10-31T06:53:54Z"
   },
   "venice-2026": {
    "lastFetchedAt": "2026-10-31T01:00:24.288Z",
@@ -116,15 +116,15 @@
     "films": 496,
     "screenings": 0
    },
-   "failCount": 8,
+   "failCount": 9,
    "lastError": "iffr feed yielded 0 films (parse warnings: feed fetch failed: HTTP 403; feed parse failed: Unexpected end of JSON input)",
    "changesLastRun": 0,
    "collapsed": 0,
-   "lastAttemptAt": "2026-10-31T00:59:29Z"
+   "lastAttemptAt": "2026-10-31T06:53:54Z"
   },
   "cannes-2026": {
-   "lastFetchedAt": "2026-10-31T01:00:24Z",
-   "lastVerifiedAt": "2026-10-31T01:00:24Z",
+   "lastFetchedAt": "2026-10-31T06:54:13Z",
+   "lastVerifiedAt": "2026-10-31T06:54:13Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -143,5 +143,5 @@
    "collapsed": 0
   }
  },
- "updated": "2026-10-31T00:59:29Z"
+ "updated": "2026-10-31T06:53:54Z"
 }
