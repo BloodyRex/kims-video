@@ -1,67 +1,86 @@
 {
-  "updated": "2026-11-01",
-  "count": 4,
+  "updated": "2026-11-02",
+  "count": 5,
   "movies": [
     {
-      "tmdbId": 1571955,
+      "tmdbId": 1813355,
       "mediaType": "movie",
-      "title": "失控撞劫",
-      "titleEn": "Collision Course",
+      "title": "小丑回魂：德里故事",
+      "titleEn": "A Story of Derry",
+      "year": "2026",
+      "releaseDate": "2026-10-31",
+      "poster": "https://image.tmdb.org/t/p/w500/yj23XQ4w0WjluzSWVUf4K8FlaXm.jpg",
+      "rating": 6.6,
+      "genre": [
+        "Drama",
+        "Horror",
+        "Mystery"
+      ],
+      "firstSeen": "2026-11-02"
+    },
+    {
+      "tmdbId": 1789549,
+      "mediaType": "movie",
+      "title": "生日礼物",
+      "titleEn": "The Birthday​ Gift​",
       "year": "2026",
       "releaseDate": "2026-10-30",
-      "poster": "https://image.tmdb.org/t/p/w500/AjhWhX0FONW4dBb9OEhtG74aTwp.jpg",
-      "rating": 6.9,
+      "poster": "https://image.tmdb.org/t/p/w500/5jA6IuyiifAvJ6fV31NqoLUeh3O.jpg",
+      "rating": 7.1,
       "genre": [
-        "Drama",
-        "Action",
-        "Crime"
-      ],
-      "firstSeen": "2026-11-01"
-    },
-    {
-      "tmdbId": 1541477,
-      "mediaType": "movie",
-      "title": "我们好一点",
-      "titleEn": "You, Me, Us",
-      "year": "2026",
-      "releaseDate": "2026-10-29",
-      "poster": "https://image.tmdb.org/t/p/w500/mfSdUGDbR6RzbnPhWQ9h97R8oXE.jpg",
-      "rating": 5.7,
-      "genre": [
-        "Drama",
         "Comedy"
       ],
-      "firstSeen": "2026-11-01"
+      "firstSeen": "2026-11-02"
     },
     {
-      "tmdbId": 358807,
+      "tmdbId": 1507696,
       "mediaType": "movie",
-      "title": "抽搐症候群",
-      "titleEn": "The Fits",
-      "year": "2016",
-      "releaseDate": "2016-06-03",
-      "poster": "https://image.tmdb.org/t/p/w342/ujK85shn2lY3yJrleXa8wThgVrI.jpg",
-      "rating": 6.4,
+      "title": "天启Z：新世界",
+      "titleEn": "Apocalypse Z: New World",
+      "year": "2026",
+      "releaseDate": "2026-10-09",
+      "poster": "https://image.tmdb.org/t/p/w500/v5VQQKvwmVm8K60jWVJIr7gkUrs.jpg",
+      "rating": 6.018,
       "genre": [
-        "剧情"
+        "Action",
+        "Thriller",
+        "Horror"
       ],
-      "source": "rec",
-      "firstSeen": "2026-11-01"
+      "firstSeen": "2026-11-02"
     },
     {
-      "tmdbId": 8841,
+      "tmdbId": 104,
       "mediaType": "movie",
-      "title": "墙壁之间",
-      "titleEn": "Entre les murs",
-      "year": "2008",
-      "releaseDate": "2008-09-24",
-      "poster": "https://image.tmdb.org/t/p/w342/8yFgK1YgfrnbsRXTg4Hko98nIUt.jpg",
-      "rating": 6.994,
+      "title": "罗拉快跑",
+      "titleEn": "Lola rennt",
+      "year": "1998",
+      "releaseDate": "1998-08-20",
+      "poster": "https://image.tmdb.org/t/p/w342/v0giIi4bTILVhNhJajet3WWY3FA.jpg",
+      "rating": 7.302,
       "genre": [
-        "剧情"
+        "动作",
+        "剧情",
+        "惊悚"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-01"
+      "firstSeen": "2026-11-02"
+    },
+    {
+      "tmdbId": 64131,
+      "mediaType": "movie",
+      "title": "坏血",
+      "titleEn": "Mauvais Sang",
+      "year": "1986",
+      "releaseDate": "1986-11-26",
+      "poster": "https://image.tmdb.org/t/p/w342/yjUmAFx8Z3E0K1IUpQSyUilL5P9.jpg",
+      "rating": 7.1,
+      "genre": [
+        "剧情",
+        "爱情",
+        "犯罪"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-02"
     }
   ]
 }
