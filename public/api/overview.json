@@ -1,142 +1,185 @@
 {
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "degraded": [],
   "stats": {
-    "moviesReleased": 1,
+    "moviesReleased": 3,
     "tvAiringThisWeek": 20,
     "albumsReleased": 25,
     "trending": 20
   },
   "editorsPicks": [
     {
-      "tmdbId": 1294189,
-      "title": "猫鼬",
-      "titleEn": "The Mongoose",
+      "tmdbId": 1381071,
+      "title": "哥斯拉-0.0",
+      "titleEn": "Godzilla Minus Zero",
+      "originalLanguage": "ja",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-11-03",
+      "poster": "https://image.tmdb.org/t/p/w500/51RBWzkFd4zEsOGg4ZIqYlNszHc.jpg",
+      "rating": 9.3,
+      "genre": [
+        "Sci-Fi",
+        "Horror",
+        "Action"
+      ],
+      "summary": "人类的罪与罚。已经，没法归零。战争将日本粉碎至“零”，哥斯拉的袭击更将它推至“负”的绝境。时间来到两年后，人民历尽痛苦磨难仍坚持复苏的步伐，看似终于可以回归正常生活……然而此时，巨兽再次袭来。它彻底摧毁这份希望，将人类推向新的绝望深渊！",
+      "summaryEn": "War reduced Japan to zero, and Godzilla plunged it into minus. Two years have passed since then, and the country has faced agonizing struggles to achieve recovery and finally reclaim its daily life. J",
+      "pickCategory": "editors"
+    },
+    {
+      "tmdbId": 939541,
+      "title": "圣诞邪邻",
+      "titleEn": "Christmas at the Kringles",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
       "releaseDate": "2026-10-30",
-      "poster": "https://image.tmdb.org/t/p/w500/m1vBxr5hLklqgMZQogEEsexzyEQ.jpg",
-      "rating": 7.7,
+      "poster": "https://image.tmdb.org/t/p/w500/oVxkhheRVWSacimUZBuMemQX85E.jpg",
+      "rating": 6.1,
       "genre": [
         "Action",
-        "Thriller"
+        "Horror",
+        "Comedy"
       ],
-      "summary": "一位被冤枉的战争英雄，一无所有，在昔日特种部队成员的帮助下，与警方展开了一场史诗般的全国汽车追逐，全程电视直播。而着迷的公众则密切关注着他，希望他能安全逃脱。",
-      "summaryEn": "A falsely accused war hero with nothing to lose leads police on an epic televised cross-country car chase, helped by members of his former Special Forces Army battalion and closely monitored by a fasc",
+      "summary": "塞弗森一家搬进郊区新居，发现邻居克林格一家全年庆祝圣诞节。随着儿子与邻居日渐亲近，父母逐渐察觉异样。当马克发现这家人企图催眠并洗脑自己的家人时，他必须联手一名落魄的圣诞老人展开营救。",
+      "summaryEn": "After moving to a quiet suburban neighborhood, the Seversons meet the Kringles, a family that celebrates Christmas year-round. When Mark, the father, discovers the Kringles' sinister yuletide intentio",
       "pickCategory": "editors"
     },
     {
-      "tmdbId": 29154,
-      "title": "为人师表",
-      "titleEn": "Stand and Deliver",
+      "tmdbId": 1783073,
+      "title": "最后一单",
+      "titleEn": "Repo",
       "originalLanguage": "en",
       "originCountry": [],
-      "year": "1988",
-      "releaseDate": "1988-03-11",
-      "poster": "https://image.tmdb.org/t/p/w500/6PM8We41I68GkzpsN771EK3quqJ.jpg",
-      "rating": 7.816,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "故事背景是以南美移民子女为主的洛杉矶加菲莆高中。原来任职电脑公司的伊斯克兰特为施展抱负到该校任教，因该校经费拮据没有电脑，只好改教数学。他用强悍的教学方式台阶驯服了以菲利浦为首的顽劣学生，并帮他们以高分通过了越级考试，不料竟被人怀疑为集体作弊。学生们为了澄清误会决定重考，师生之间合作无间，终创下合格人数之最高纪录，也为该校争取到购卖电脑的经费",
-      "summaryEn": "Jaime Escalante is a mathematics teacher in a school in a hispanic neighbourhood. Convinced that his students have potential, he adopts unconventional teaching methods to try and turn gang members and",
-      "pickCategory": "gem"
-    },
-    {
-      "tmdbId": 1234139,
-      "title": "狱卒2",
-      "titleEn": "Jailer 2",
-      "originalLanguage": "ta",
-      "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-10-14",
-      "poster": "https://image.tmdb.org/t/p/w500/cNlCTdDVKeYfXgJZANgHYFAcpqK.jpg",
-      "rating": 8.05,
+      "releaseDate": "2026-10-02",
+      "poster": "https://image.tmdb.org/t/p/w500/xKp4mHSksjDamItoF7sI132S26J.jpg",
+      "rating": 10,
       "genre": [
+        "Crime",
         "Action",
         "Comedy",
-        "Drama"
+        "Adventure"
       ],
-      "summary": "退役狱警“老虎”穆图维尔·潘迪安隐姓埋名，与家人过着平静生活。随着昔日犯罪集团追查瓦尔曼之死及失踪的古代雕像，他的行踪意外暴露。为保护家人，穆图维尔再度迎战新的敌人。",
-      "summaryEn": "When a dangerous syndicate expands its reach to threaten his family's peace, retired jailer Tiger Muthuvel Pandian goes undercover as a driver. Operating from the shadows, he takes on ruthless new ene",
+      "summary": "一名想退出犯罪圈的掮客约翰，因老板拒绝支付尾款，被迫在再做最后一单与空手离开之间做出选择。",
+      "summaryEn": "After his last job went wrong, local fixer John is trying to get out of the game. His criminal boss, Indiana Slim, refuses to give John his final payment unless he does one final job, leaving John wit",
       "pickCategory": "gem"
     },
     {
-      "tmdbId": 1727734,
-      "title": "阿里·G：我是谁？",
-      "titleEn": "Ali G: Who Iz I?",
+      "tmdbId": 656908,
+      "title": "罗摩衍那：王子传奇",
+      "titleEn": "Ramayana: Rise of a Legend",
+      "originalLanguage": "hi",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-11-04",
+      "poster": "https://image.tmdb.org/t/p/w500/gOWnXaBxqT6k2y40hKfYU6c0Ym.jpg",
+      "rating": 10,
+      "genre": [
+        "Fantasy",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "　　阿逾陀国的王子罗摩本应继承王位，但为了维护父亲的誓言，他甘愿放弃王权，带着妻子悉多和弟弟罗什曼那被流放森林十四年。在流放期间，罗摩一家在山林中苦修并斩妖除魔。然而，平静被打破——十首魔王罗波那因贪婪和邪念，化身苦行僧诱骗并掳走了悉多。罗摩在寻找妻子的过程中，结识了神猴哈奴曼与猴王须羯哩婆，组建了强大的盟军，准备跨海远征楞伽（罗波那的王国），誓要从魔王手中夺回爱妻。",
+      "summaryEn": "An ancient epic follows a young prince and princess whose marriage and subsequent exile mark the beginning of a legendary journey. Their story of love, duty and destiny sets the stage for greater chal",
+      "pickCategory": "gem"
+    },
+    {
+      "tmdbId": 1300968,
+      "title": "饥饿游戏：收获日出",
+      "titleEn": "The Hunger Games: Sunrise on the Reaping",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-11-20",
+      "poster": "https://image.tmdb.org/t/p/w500/xdtMZkNcoVgMfsoAJxXDozMQd3n.jpg",
+      "rating": 0,
+      "genre": [
+        "Sci-Fi",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "改编自苏珊·柯林斯的同名小说。故事发生在《饥饿游戏》事件发生前24年，讲述第50届饥饿游戏（第二次四分区叛乱纪念赛）抽签日当天，年轻的黑密斯·阿伯纳西被选中参赛的故事。",
+      "summaryEn": "Return to the world of Panem 24 years before the events of The Hunger Games, starting on the morning of the reaping of the 50th Hunger Games, also known as the Second Quarter Quell.",
+      "pickCategory": "trending"
+    },
+    {
+      "tmdbId": 791523,
+      "title": "荒野丛林",
+      "titleEn": "Wildwood",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
       "releaseDate": "2026-10-23",
-      "poster": "https://image.tmdb.org/t/p/w500/xMjlcgAoz79h4JAgksle7eTI1Zp.jpg",
-      "rating": 5.884,
+      "poster": "https://image.tmdb.org/t/p/w500/z5MMAxbQO2nCvBU8BqHgoY1zKdD.jpg",
+      "rating": 8.596,
       "genre": [
-        "Comedy"
-      ],
-      "summary": "过了二十年\"躺平\"、\"嗨天嗨地\"的生活后，阿里·G在震惊中得知他的长期女友朱莉已怀孕八个月。家里多了一张吃饭的嘴，阿里·G放弃了傻乐的日子，前往美国试图重拾昔日的辉煌。但他很快就遇到了对手，这个对手最终将威胁到他和他孩子的生存。",
-      "summaryEn": "After twenty years spent \"chillin', tokin' and bonin'\", Ali G is shocked to discover that his long-term girlfriend, Julie, is 8 months pregnant. Faced with an extra mouth to feed, he gets off his batt",
-      "pickCategory": "trending"
-    },
-    {
-      "tmdbId": 1290418,
-      "title": "尸变",
-      "titleEn": "The Cycle",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-09-24",
-      "poster": "https://image.tmdb.org/t/p/w500/e5x2eLPY5vOqmzI2mEgOzyYQNq8.jpg",
-      "rating": 6.747,
-      "genre": [
-        "Horror",
-        "Thriller",
-        "Mystery"
-      ],
-      "summary": "一名失踪36年的男子尸体在一桩骇人命案现场被发现，他的女儿梅格由此追查父亲隐秘的黑暗过往。",
-      "summaryEn": "A daughter unravels her father's dark past after his body, missing for 36 years, is found at a horrific crime scene.",
-      "pickCategory": "trending"
-    },
-    {
-      "tmdbId": 1669915,
-      "title": "天使与恶徒",
-      "titleEn": "Angel and the Badman",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-10-09",
-      "poster": "https://image.tmdb.org/t/p/w500/mJe53zlhGBdcjtN1GqncNZ5Unm0.jpg",
-      "rating": 9,
-      "genre": [
-        "Western",
-        "Action",
+        "Animation",
         "Adventure",
-        "Romance"
+        "Fantasy"
       ],
-      "summary": "翻拍自1947年同名西部电影。亡命枪手奎特·埃文斯身负枪伤，倒在一位牧场主的土地上，原以为自己必死无疑，却意外得到宽恕。牧场主的女儿佩妮给了他摆脱暴力、重新生活的机会。然而，随着警长步步逼近，亡命帮派也威胁要烧毁牧场，奎特必须决定自己究竟要成为怎样的人。",
-      "summaryEn": "A wounded outlaw finds unexpected mercy in the care of a rancher's daughter. The hope of love pulls him toward a different life until the law, and his violent past, close in on his new home. Now he mu",
-      "pickCategory": "gem"
+      "summary": "普鲁和同班同学柯蒂斯误入一片禁忌魔法森林，林中遍布魔法生灵、忠心伙伴与强大劲敌。二人踏上一场凶险万分的营救之旅，要从神秘女子亚历山德拉统领的鸦群手中，救出被掳走的婴儿弟弟麦克。",
+      "summaryEn": "After her baby brother is abducted by a murder of crows, headstrong teenager Prue McKeel launches a desperate rescue mission into the Impassable Wilderness, an enchanted forest hidden just beyond Port",
+      "pickCategory": "trending"
     }
   ],
   "weeklyHotTv": [
     {
-      "tmdbId": 316702,
-      "title": "最后的餐桌",
-      "titleEn": "Final Table",
-      "originalLanguage": "ko",
+      "tmdbId": 200875,
+      "title": "小丑回魂：欢迎来到德里镇",
+      "titleEn": "IT: Welcome to Derry",
+      "originalLanguage": "en",
       "originCountry": [
-        "KR"
+        "US"
       ],
-      "year": "2026",
-      "releaseDate": "2026-10-24",
-      "poster": "https://image.tmdb.org/t/p/w500/wUmX9siOEJEHGUFD80xaQdYzHqC.jpg",
-      "rating": 8.2,
+      "year": "2025",
+      "releaseDate": "2025-10-26",
+      "poster": "https://image.tmdb.org/t/p/w500/AsDuKfzTe9ylu9lIQGSy6TUWd6I.jpg",
+      "rating": 8.263,
       "genre": [
-        "Drama"
+        "Drama",
+        "Mystery"
       ],
-      "summary": "为角逐韩国顶尖厨师称号，来自世界各地的韩国厨师齐聚烹饪大赛“餐桌：K主厨2026”，各展厨艺，也揭开各自的人生故事。",
-      "summaryEn": "The Table: K-Chef 2026 brings together Korea's top chefs to compete for the title of the country's best chef. Mysterious world-renowned chef Chris K., also known as Kang Han, Song-yi, who is fighting ",
+      "summary": "1962年，当地发生了一系列儿童神秘失踪事件，一群性格迥异的朋友开始怀疑某种深埋于地下的邪恶力量正在暗中酝酿。孩子们着手调查真相，而日益增长的不安情绪促使几位镇民携手合作，力图恢复和平——与此同时，一支美国军队正试图利用德里镇来实现其自身目的。",
+      "summaryEn": "In 1962, amid a spate of unexplained disappearances of local children, a group of misfit friends begin to suspect a long-buried ancient evil lurking. As the kids set out to determine what's really goi",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 84773,
+      "title": "指环王：力量之戒",
+      "titleEn": "The Lord of the Rings: The Rings of Power",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2022",
+      "releaseDate": "2022-09-01",
+      "poster": "https://image.tmdb.org/t/p/w500/x4puqjv2DJL5JnicLzEl8YmEkNc.jpg",
+      "rating": 7.214,
+      "genre": [],
+      "summary": "强大的力量锻造成型，王国辉煌崛起又陨落成尘，让人意想不到的英雄遭受考验，而强大的反派势要让整个世界蒙上黑暗。\n\n一组为人熟悉的人物和全新的角色，他们必须对抗邪恶势力在中土世界再度崛起。从迷雾山脉的最深处、林顿壮丽的森林、努曼诺尔的海岛王国到地图的最边缘，这些领土和角色将联手创造传奇，即使他们不在人世后仍流芳百世。\n\n本剧设定在托尔金的《霍比特人》和《指环王》事件前的数千年，将带领观众回到那个年代。",
+      "summaryEn": "Beginning in a time of relative peace, we follow an ensemble cast of characters as they confront the re-emergence of evil to Middle-earth. From the darkest depths of the Misty Mountains, to the majest",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 456,
+      "title": "辛普森一家",
+      "titleEn": "The Simpsons",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "1989",
+      "releaseDate": "1989-12-17",
+      "poster": "https://image.tmdb.org/t/p/w500/muSolUGIvAjrH7VynyJwOyMAtsY.jpg",
+      "rating": 8.027,
+      "genre": [
+        "Animation",
+        "Comedy"
+      ],
+      "summary": "辛普森一家是来自美国普通的五口之家，荷马是春田镇核能工厂的安全检查员，母亲马芝曾经是一个很有思想的女性，自从嫁给荷马后渐渐地适应了主妇生活的定式。巴特是家中的长子，天性顽皮的巴特经常爱玩一些恶作剧，以至于经常惹麻烦。妹妹丽莎是一个很聪明的孩子，同时还是素食主义者，佛教徒，爵士乐。小女马姬是一个永远长不大的孩子。故事设定于虚构小镇春田镇，从许多角度对美国的文化与社会、人的条件和电视本身进行了幽默的嘲",
+      "summaryEn": "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands",
       "pickCategory": "tvhot"
     },
     {
@@ -151,7 +194,7 @@
       "year": "2026",
       "releaseDate": "2026-10-07",
       "poster": "https://image.tmdb.org/t/p/w500/xobpaz7TiODcuGhT9dvENFhhVGw.jpg",
-      "rating": 8.276,
+      "rating": 8.285,
       "genre": [
         "Mystery",
         "Drama"
@@ -161,22 +204,23 @@
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 213375,
-      "title": "幻视任务",
-      "titleEn": "VisionQuest",
+      "tmdbId": 213562,
+      "title": "水晶湖",
+      "titleEn": "Crystal Lake",
       "originalLanguage": "en",
       "originCountry": [
         "US"
       ],
       "year": "2026",
-      "releaseDate": "2026-10-13",
-      "poster": "https://image.tmdb.org/t/p/w500/9rWX1tRNd1wIf0XnTjd8GOUoTlH.jpg",
-      "rating": 8.669,
+      "releaseDate": "2026-10-15",
+      "poster": "https://image.tmdb.org/t/p/w500/zHxl1KifN0NcbqInngsTApHeWjc.jpg",
+      "rating": 8.653,
       "genre": [
-        "Drama"
+        "Drama",
+        "Mystery"
       ],
-      "summary": "重启后的幻视隐居避世，试图摆脱将他武器化的人，并通过与体内的AI人格交流寻找存在意义，其中包括恶名昭彰的奥创。然而高额悬赏打破了平静，他被迫与神秘少年托马斯·谢泼德一同逃亡，后者或许是他重生后的儿子。",
-      "summaryEn": "With a bounty on his head, Vision must confront his nature and resist Ultron's influence to survive.",
+      "summary": "《十三号星期五》系列电影的前传剧集。一年前，单亲母亲帕姆·沃赫斯的年幼儿子杰森在湖中溺亡，她始终无法走出丧子之痛。两名陌生人登门调查她的过去，一连串诡异事件随之发生，令水晶湖镇的居民开始怀疑：帕姆·沃赫斯究竟是什么人？",
+      "summaryEn": "Single mother Pam Voorhees has been unable to shake her grief after her young, sickly son Jason tragically drowned in the town lake almost a year before. When two strangers arrive at Pam's door diggin",
       "pickCategory": "tvhot"
     },
     {
@@ -190,54 +234,13 @@
       "year": "1999",
       "releaseDate": "1999-10-20",
       "poster": "https://image.tmdb.org/t/p/w500/f9AFdxegmmWOghgw9E6ebICkstl.jpg",
-      "rating": 8.756,
+      "rating": 8.8,
       "genre": [
         "Comedy",
         "Animation"
       ],
       "summary": "拥有财富、名声、势力，拥有整个世界的海贼王 – 哥尔·D·罗杰，他在临刑前的一句话，让人们趋之若鹜奔向大海。“想要我的财宝吗？想要的话可以全部给你，去找吧！我把所有财宝都放在那里。”于是所有男子汉航向伟大的航路追逐梦想，世界开始迎接“大海贼时代”。",
       "summaryEn": "Years ago, the fearsome Pirate King, Gol D. Roger was executed leaving a huge pile of treasure and the famous \"One Piece\" behind. Whoever claims the \"One Piece\" will be named the new King of the Pirat",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 259909,
-      "title": "嗜血法医：杀魔复生",
-      "titleEn": "Dexter: Resurrection",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2025",
-      "releaseDate": "2025-07-13",
-      "poster": "https://image.tmdb.org/t/p/w500/7VEnzLC07bIlOtSxnNKrXd5vMWO.jpg",
-      "rating": 8.5,
-      "genre": [
-        "Crime",
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "迈阿密血迹分析师德克斯特·摩根以连环杀手为目标，在隐藏真实身份的同时，继续遵循自己的杀戮准则，并面对儿子哈里森及过往带来的种种纠葛。",
-      "summaryEn": "Set 10 weeks after Dexter: New Blood, Dexter Morgan chases a missing Harrison to New York City, where Captain Angel Batista is hot on their trail from way down in Miami.",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 200875,
-      "title": "小丑回魂：欢迎来到德里镇",
-      "titleEn": "IT: Welcome to Derry",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2025",
-      "releaseDate": "2025-10-26",
-      "poster": "https://image.tmdb.org/t/p/w500/nm7GOWyait2IUr757RnaPxyLm07.jpg",
-      "rating": 8.251,
-      "genre": [
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "1962年，当地发生了一系列儿童神秘失踪事件，一群性格迥异的朋友开始怀疑某种深埋于地下的邪恶力量正在暗中酝酿。孩子们着手调查真相，而日益增长的不安情绪促使几位镇民携手合作，力图恢复和平——与此同时，一支美国军队正试图利用德里镇来实现其自身目的。",
-      "summaryEn": "In 1962, amid a spate of unexplained disappearances of local children, a group of misfit friends begin to suspect a long-buried ancient evil lurking. As the kids set out to determine what's really goi",
       "pickCategory": "tvhot"
     }
   ],
@@ -251,7 +254,7 @@
       "year": "2026",
       "releaseDate": "2026-11-03",
       "poster": "https://image.tmdb.org/t/p/w500/51RBWzkFd4zEsOGg4ZIqYlNszHc.jpg",
-      "rating": 0,
+      "rating": 9.8,
       "genre": [
         "Sci-Fi",
         "Horror",
@@ -259,6 +262,24 @@
       ],
       "summary": "人类的罪与罚。已经，没法归零。战争将日本粉碎至“零”，哥斯拉的袭击更将它推至“负”的绝境。时间来到两年后，人民历尽痛苦磨难仍坚持复苏的步伐，看似终于可以回归正常生活……然而此时，巨兽再次袭来。它彻底摧毁这份希望，将人类推向新的绝望深渊！",
       "summaryEn": "War reduced Japan to zero, and Godzilla plunged it into minus. Two years have passed since then, and the country has faced agonizing struggles to achieve recovery and finally reclaim its daily life. J",
+      "daysUntil": 0
+    },
+    {
+      "tmdbId": 1562642,
+      "title": "鬼影战士",
+      "titleEn": "Ghost Soldier",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-11-04",
+      "poster": "https://image.tmdb.org/t/p/w500/8Y4oJ5iUs3hgPcDB3SIEmsNYjZk.jpg",
+      "rating": 7,
+      "genre": [
+        "Action",
+        "Thriller"
+      ],
+      "summary": "　　亨利·“菲茨”·菲茨杰拉德，一个有着神秘过往的孤僻男子，在家乡过着与世隔绝的平静生活。然而，当一家实力雄厚的外国公司入侵他的社区，企图强占他和邻居们的土地以牟取暴利时，菲茨挺身而出——他实际上是一名退役特种部队士兵和先进武器研发专家。凭借着前所未见的武器、毕生接受的致命军事训练以及坚定不移的正义准则，菲茨成为了敌人始料未及的存在：一场他们无法取胜的孤胆英雄之战。",
+      "summaryEn": "Henry “Fitz” Fitzgerald has spent years living quietly off the grid, hiding from a past few people know anything about. But when a powerful foreign corporation moves into his hometown to seize his nei",
       "daysUntil": 1
     },
     {
@@ -278,25 +299,7 @@
       ],
       "summary": "　　阿逾陀国的王子罗摩本应继承王位，但为了维护父亲的誓言，他甘愿放弃王权，带着妻子悉多和弟弟罗什曼那被流放森林十四年。在流放期间，罗摩一家在山林中苦修并斩妖除魔。然而，平静被打破——十首魔王罗波那因贪婪和邪念，化身苦行僧诱骗并掳走了悉多。罗摩在寻找妻子的过程中，结识了神猴哈奴曼与猴王须羯哩婆，组建了强大的盟军，准备跨海远征楞伽（罗波那的王国），誓要从魔王手中夺回爱妻。",
       "summaryEn": "An ancient epic follows a young prince and princess whose marriage and subsequent exile mark the beginning of a legendary journey. Their story of love, duty and destiny sets the stage for greater chal",
-      "daysUntil": 2
-    },
-    {
-      "tmdbId": 1562642,
-      "title": "鬼影战士",
-      "titleEn": "Ghost Soldier",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-11-04",
-      "poster": "https://image.tmdb.org/t/p/w500/8Y4oJ5iUs3hgPcDB3SIEmsNYjZk.jpg",
-      "rating": 7,
-      "genre": [
-        "Action",
-        "Thriller"
-      ],
-      "summary": "　　亨利·“菲茨”·菲茨杰拉德，一个有着神秘过往的孤僻男子，在家乡过着与世隔绝的平静生活。然而，当一家实力雄厚的外国公司入侵他的社区，企图强占他和邻居们的土地以牟取暴利时，菲茨挺身而出——他实际上是一名退役特种部队士兵和先进武器研发专家。凭借着前所未见的武器、毕生接受的致命军事训练以及坚定不移的正义准则，菲茨成为了敌人始料未及的存在：一场他们无法取胜的孤胆英雄之战。",
-      "summaryEn": "Henry “Fitz” Fitzgerald has spent years living quietly off the grid, hiding from a past few people know anything about. But when a powerful foreign corporation moves into his hometown to seize his nei",
-      "daysUntil": 2
+      "daysUntil": 1
     },
     {
       "tmdbId": 1117898,
@@ -317,7 +320,7 @@
       ],
       "summary": "改编自苏斯博士创作的同名儿童绘本。一只古灵精怪的猫接到最艰巨的任务：帮助一对因搬家而闷闷不乐的兄妹加比和塞巴斯蒂安重拾快乐。这场充满魔法与恶作剧的冒险，也可能成为他证明自己的最后机会，否则就将失去魔法帽。",
       "summaryEn": "Assigned his toughest mission yet, the Cat must cheer up siblings Gabby and Sebastian as they adjust to life in a new town. Known for pushing boundaries, this agent of chaos must prove himself or risk",
-      "daysUntil": 2
+      "daysUntil": 1
     },
     {
       "tmdbId": 1567605,
@@ -335,7 +338,7 @@
       ],
       "summary": "改编自查尔斯·狄更斯小说《圣诞颂歌》。一位年迈的吝啬商人遭遇故友亡灵及圣诞过去、现在与未来的幽灵造访，被迫直面自己的过往，并踏上一段寻求幸福与救赎的超自然旅程。",
       "summaryEn": "An elderly miser embarks on a supernatural journey after visits from the ghost of his former business partner and the Spirits of Christmas Past, Present, and Yet to Come force him to confront his past",
-      "daysUntil": 9
+      "daysUntil": 8
     },
     {
       "tmdbId": 1300968,
@@ -354,7 +357,7 @@
       ],
       "summary": "改编自苏珊·柯林斯的同名小说。故事发生在《饥饿游戏》事件发生前24年，讲述第50届饥饿游戏（第二次四分区叛乱纪念赛）抽签日当天，年轻的黑密斯·阿伯纳西被选中参赛的故事。",
       "summaryEn": "Return to the world of Panem 24 years before the events of The Hunger Games, starting on the morning of the reaping of the 50th Hunger Games, also known as the Second Quarter Quell.",
-      "daysUntil": 16
+      "daysUntil": 15
     }
   ],
   "comingSoonTv": [
@@ -375,7 +378,7 @@
       ],
       "summary": "这是一部由完美皇后娜菲尔、皇帝索本修、邻国王子海因里与逃亡奴隶菈丝塔共同谱写的浪漫奇幻史诗巨制。",
       "summaryEn": "这是一部由完美皇后娜菲尔、皇帝索本修、邻国王子海因里与逃亡奴隶菈丝塔共同谱写的浪漫奇幻史诗巨制。",
-      "daysUntil": 2
+      "daysUntil": 1
     },
     {
       "tmdbId": 171802,
@@ -392,7 +395,7 @@
       "genre": [],
       "summary": "科拉曾是一名逃亡者，后成为\"银翼杀手\"；她与命不久矣的复制人奥尔文联手，在重获新生的洛杉矶城中追捕一名逃亡者。在此过程中，她们揭开了一个足以摧毁这座脆弱城市的真相。",
       "summaryEn": "科拉曾是一名逃亡者，后成为\"银翼杀手\"；她与命不久矣的复制人奥尔文联手，在重获新生的洛杉矶城中追捕一名逃亡者。在此过程中，她们揭开了一个足以摧毁这座脆弱城市的真相。",
-      "daysUntil": 23
+      "daysUntil": 22
     },
     {
       "tmdbId": 288672,
@@ -411,7 +414,7 @@
       ],
       "summary": "改编自简·奥斯汀的同名小说。富有的宾格利来到乡间，班纳特家的五姐妹必须在爱情与世俗期待中抉择。简与宾格利渐生好感，伊丽莎白则和傲慢的达西冲突不断。接连的变故，让伊丽莎白重新认清心意，读懂爱情。",
       "summaryEn": "改编自简·奥斯汀的同名小说。富有的宾格利来到乡间，班纳特家的五姐妹必须在爱情与世俗期待中抉择。简与宾格利渐生好感，伊丽莎白则和傲慢的达西冲突不断。接连的变故，让伊丽莎白重新认清心意，读懂爱情。",
-      "daysUntil": 31
+      "daysUntil": 30
     },
     {
       "tmdbId": 256726,
@@ -430,7 +433,7 @@
       ],
       "summary": "在镇压与恐惧交织的岁月，韩国娱乐圈的镁光灯不曾熄灭，梦想不曾止息。众人竞逐舞台的一席之地，企盼不懈努力终能开花结果。",
       "summaryEn": "在镇压与恐惧交织的岁月，韩国娱乐圈的镁光灯不曾熄灭，梦想不曾止息。众人竞逐舞台的一席之地，企盼不懈努力终能开花结果。",
-      "daysUntil": 39
+      "daysUntil": 38
     },
     {
       "tmdbId": 224377,
@@ -450,7 +453,7 @@
       ],
       "summary": "少年哈利·波特进入霍格沃茨魔法学校，在魔法世界结识伙伴、学习魔法，并逐渐发现自己的身世与黑魔王伏地魔之间的联系。随着成长，他与朋友们共同面对接连而来的危险与挑战。",
       "summaryEn": "少年哈利·波特进入霍格沃茨魔法学校，在魔法世界结识伙伴、学习魔法，并逐渐发现自己的身世与黑魔王伏地魔之间的联系。随着成长，他与朋友们共同面对接连而来的危险与挑战。",
-      "daysUntil": 53
+      "daysUntil": 52
     },
     {
       "tmdbId": 215528,
@@ -469,8 +472,8 @@
       ],
       "summary": "改编自威廉·吉布森的同名科幻小说。一位声名扫地的顶级黑客凯斯与一名刀锋女刺客莫莉受雇执行一场生死攸关的劫案，目标是一个坐拥巨额财富、并誓死守护秘密的强大企业王朝。",
       "summaryEn": "改编自威廉·吉布森的同名科幻小说。一位声名扫地的顶级黑客凯斯与一名刀锋女刺客莫莉受雇执行一场生死攸关的劫案，目标是一个坐拥巨额财富、并誓死守护秘密的强大企业王朝。",
-      "daysUntil": 80
+      "daysUntil": 79
     }
   ],
-  "brief": "Today: 1 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
+  "brief": "Today: 3 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
 }
