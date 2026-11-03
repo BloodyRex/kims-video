@@ -268,6 +268,16 @@ button,select,input{font-family:inherit}.look-btn{cursor:pointer;background:#fff
 
 <style id="evolution-game-embed">
 .evolution-game-frame{width:100%;height:100%;position:relative;overflow:hidden;background:#071723;display:flex;align-items:center;justify-content:center;}
+/* 全屏游戏（真全屏 + iOS 伪全屏共用）：只留游戏画面，页面其余部分让位 */
+body.game-fs{overflow:hidden!important;background:#050a12!important;margin:0!important;padding:0!important}
+body.game-fs .topbar,body.game-fs .controlbar,body.game-fs .stage-controls,body.game-fs .cursor-hint{display:none!important}
+body.game-fs .shell{width:100vw!important;height:100vh!important;border:0!important;box-shadow:none!important;background:#050a12!important;overflow:hidden!important}
+body.game-fs .main{width:100vw!important;height:100vh!important;padding:0!important;margin:0!important;gap:0!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#050a12!important}
+body.game-fs .main>*{display:none!important}
+body.game-fs .main>.stage-frame{display:flex!important;flex:1 1 auto!important;width:100vw!important;height:100vh!important;border:0!important;box-shadow:none!important;background:#050a12!important;align-items:center!important;justify-content:center!important}
+body.game-fs .stage-frame{width:100vw!important;height:100vh!important;border:0!important;box-shadow:none!important;background:#050a12!important}
+body.game-fs .stage{width:100vw!important;height:100vh!important;min-height:0!important;aspect-ratio:auto!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#050a12!important;overflow:hidden!important;outline:none!important}
+body.game-fs .evolution-game-frame{width:100%!important;height:100%!important;background:transparent!important}
 .evolution-game-frame canvas{display:block;width:100%!important;height:auto!important;max-height:100%;aspect-ratio:16/9;image-rendering:auto;touch-action:none;outline:none;background:#082538;}
 </style>
 </head>
@@ -2182,8 +2192,65 @@ setInterval(()=>{window.updateWorld(performance.now());},16);
     };
   }
   var startState=readStart();
-  try{game=EvolutionGame.mount(frame,{startLevel:startState.stage,startEnergy:startState.energy});}catch(e){console.error('EvolutionGame mount failed:',e);return;}
+  try{game=EvolutionGame.mount(frame,{startLevel:startState.stage,startEnergy:startState.energy,onFullscreenRequest:requestFs});}catch(e){console.error('EvolutionGame mount failed:',e);return;}
   window.gameInstance=game;
+
+  // ——— 全屏键（画布 HUD 内）的动作：优先真 Fullscreen API；iOS Safari 不支持则退伪全屏 ———
+  var pseudoFs=false;
+  function fsEl(){return document.fullscreenElement||document.webkitFullscreenElement||null;}
+  function reportFs(on){try{if(window.parent&&window.parent!==window)window.parent.postMessage({type:'pixel-avatar:fullscreen',on:!!on},'*');}catch(e){}}
+  // 全屏时把画布按 16:9 换算成最大可容纳尺寸，保证坐标映射不变形
+  function fitCanvas(){
+    var c=document.getElementById('evolution-canvas');if(!c)return;
+    if(!(pseudoFs||fsEl())){['width','height','max-height'].forEach(function(k){try{c.style.removeProperty(k);}catch(e){}});return;}
+    var W=window.innerWidth||document.documentElement.clientWidth||360;
+    var H=window.innerHeight||document.documentElement.clientHeight||640;
+    var s=Math.min(W/640,H/360);
+    c.style.setProperty('width',Math.max(160,Math.round(640*s))+'px','important');
+    c.style.setProperty('height',Math.max(90,Math.round(360*s))+'px','important');
+    c.style.setProperty('max-height','none','important');
+  }
+  function applyFs(on){
+    document.body.classList.toggle('game-fs',!!on);
+    if(window.gameInstance&&window.gameInstance.setFullscreenState)window.gameInstance.setFullscreenState(!!on);
+    fitCanvas();
+    if(on)setTimeout(fitCanvas,90);
+  }
+  function enterPseudo(){pseudoFs=true;reportFs(true);applyFs(true);}
+  function requestFs(on){
+    if(on){
+      if(fsEl()){applyFs(true);return;}
+      var el=document.querySelector('.main')||frame,p=null;
+      try{ p=el.requestFullscreen?el.requestFullscreen({navigationUI:'hide'}):(el.webkitRequestFullscreen?el.webkitRequestFullscreen():null); }catch(e){p=null;}
+      if(p&&typeof p.then==='function'){
+        p.then(function(){
+          applyFs(true);
+          try{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(function(){});}catch(e){}
+        }).catch(function(){enterPseudo();});
+      }else if(p){
+        setTimeout(function(){if(fsEl())applyFs(true);else enterPseudo();},90);
+      }else{
+        enterPseudo();
+      }
+    }else{
+      var q=null;
+      if(fsEl()){try{q=document.exitFullscreen?document.exitFullscreen():(document.webkitExitFullscreen?document.webkitExitFullscreen():(document.webkitCancelFullScreen?document.webkitCancelFullScreen():null));}catch(e){}}
+      if(q&&typeof q.then==='function')q.catch(function(){});
+      if(pseudoFs){pseudoFs=false;reportFs(false);}
+      applyFs(false);
+      try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}
+    }
+  }
+  if(window.gameInstance&&window.gameInstance.setFullscreenHandler)window.gameInstance.setFullscreenHandler(requestFs);
+  // 用户按 Esc / 系统手势退出全屏时，把按钮图标同步回来
+  ['fullscreenchange','webkitfullscreenchange'].forEach(function(ev){
+    document.addEventListener(ev,function(){
+      if(fsEl())applyFs(true);else if(!pseudoFs)applyFs(false);
+    });
+  });
+  window.addEventListener('resize',function(){if(pseudoFs||fsEl())fitCanvas();});
+  window.addEventListener('orientationchange',function(){if(pseudoFs||fsEl())setTimeout(fitCanvas,150);});
+  window.pixelFullscreen={request:requestFs,isFull:function(){return !!(pseudoFs||fsEl());}};
 
   // 网站等级变化时同步开局生物阶段与起始能量（外部 ?level= 与内部调试滑块都走这里）。
   function syncGameLevel(){

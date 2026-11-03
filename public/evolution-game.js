@@ -19,6 +19,9 @@
     restart: { x: 320, y: 235, w: 148, h: 34 },
     music: { x: 386, y: 33.5, w: 31, h: 15 },
     pause: { x: 386, y: 15, w: 31, h: 15 },
+    // 全屏键：手机端用，占 HUD 顶部左侧那条空白（画面上方），比暂停/音乐键明显大一档。
+    // 左边 322 起留给物种名（最长 CHOANOFLAGELLATE COLONY 约到 300），右边与暂停键 370.5 起不重叠。
+    fullscreen: { x: 340, y: 25, w: 44, h: 38 },
     debugSlider: { x1: 220, x2: 448, y: 70, y1: 51, y2: 82 }
   };
   const CARD_FIRST_X = 8;
@@ -558,6 +561,9 @@
     // startEnergy=1 表示"满能量开局"：能量取到 need-1，视觉上是满条、再吃一口即进化。
     let startLevel=clamp(Math.round(Number(opts&&opts.startLevel)||0),0,SEA_SPECIES.length-1);
     let startEnergy=clamp(Number(opts&&opts.startEnergy)||0,0,1);
+    // 全屏由外层页面（pixel-avatar-v16.html）实现：游戏只负责按钮与状态，
+    // 真实 requestFullscreen / iOS 伪全屏都由宿主回调处理，然后回写 setFullscreenState。
+    let fullscreenRequest=opts&&typeof opts.onFullscreenRequest==='function'?opts.onFullscreenRequest:null;
 
     const words=()=>UI[language];
     const getSpecies=()=>speciesFor(state.scene);
@@ -604,6 +610,7 @@
       return {scene:'sea',player:{x:290,y:155,vx:0,vy:0,facing:1,level:0,energy:0,progress:0,r:SEA_SPECIES[0].baseR,sameHit:0},
         entities:[],particles:[],popups:[],elapsed:0,spawnTimer:.35,score:0,shieldTime:0,shieldCD:0,over:false,won:false,endingReady:false,endingComplete:false,finalBlackHole:false,debugEnabled:false,debugDragging:false,paused:false,
         toast:'',toastTime:0,flash:0,bumpFlash:0,transition:null,
+        fullscreen:false,
         discovered:{sea:new Set([0]),land:new Set()},cardDetail:null};
     }
     function applyStartLevel(){
@@ -644,6 +651,13 @@
     }
     function setPaused(on){state.paused=!!on;state.debugDragging=false;clearKeys();releaseStick();return state.paused;}
     function togglePause(){return setPaused(!state.paused);}
+    function setFullscreenState(on){const next=!!on;if(state.fullscreen===next)return next;state.fullscreen=next;clearKeys();releaseStick();return next;}
+    function toggleFullscreen(){
+      const next=!state.fullscreen;
+      if(fullscreenRequest){try{fullscreenRequest(next);}catch(_){setFullscreenState(next);}}
+      else setFullscreenState(next);
+      return next;
+    }
     function clearKeys(){keys.up=keys.down=keys.left=keys.right=false;}
     function addParticles(x,y,color,count){for(let i=0;i<(count||8);i++)state.particles.push({x,y,vx:rand(-42,42),vy:rand(-42,42),life:rand(.3,.8),max:.8,color,size:rand(1.5,3.5)});}
     function addFloatingText(x,y,label,color){state.popups.push({x,y,label,color:color||'#d9f5b0',life:.78,max:.78,vy:-25});}
@@ -1071,14 +1085,15 @@
       if(state.bumpFlash>0){ctx.save();ctx.globalAlpha=state.bumpFlash*2;ctx.strokeStyle='#d8f6ff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(p.x,p.y,p.r+7,0,Math.PI*2);ctx.stroke();ctx.restore();}
       drawOrganism(ctx,p.level,p.x,p.y+Math.sin(t*3.2)*1.2,s,t,{scene:state.scene,player:true,facing:p.facing});
     }
-    function text(str,x,y,size,color,align){ctx.save();ctx.font='600 '+size+'px "Microsoft YaHei","Noto Sans CJK SC",system-ui,Consolas,sans-serif';ctx.fillStyle=color||'#e8f7f4';ctx.textAlign=align||'left';ctx.textBaseline='middle';ctx.fillText(String(str),x,y);ctx.restore();}
+    function text(str,x,y,size,color,align,maxWidth){ctx.save();ctx.font='600 '+size+'px "Microsoft YaHei","Noto Sans CJK SC",system-ui,Consolas,sans-serif';ctx.fillStyle=color||'#e8f7f4';ctx.textAlign=align||'left';ctx.textBaseline='middle';if(maxWidth>0)ctx.fillText(String(str),x,y,maxWidth);else ctx.fillText(String(str),x,y);ctx.restore();}
     function drawHUD(t){
       const p=state.player,sp=currentSpec(),sceneName=state.scene==='sea'?words().sea:words().land;
       ctx.fillStyle='rgba(4,22,37,.28)';ctx.fillRect(7,5,626,40);
       text(words().title,17,15,8.5,'#c4e9e8');
       text(sceneName+' · '+words().stage+' '+String(p.level+1).padStart(2,'0')+'/09',17,32,6.5,'#8cbac7');
       const label=language==='zh'?sp.name:sp.en;
-      text(label,158,15,9.5,'#fff3c7');
+      // maxWidth 150：物种名最长者也不许压到右侧的全屏键
+      text(label,158,15,9.5,'#fff3c7','left',150);
       text(language==='zh'?sp.era:sp.eraEn,158,32,6.2,'#9bc7d0');
       text(words().energy,420,12,6.2,'#a9cbd2');
       text(Math.floor(p.energy)+'/'+requiredEnergy(p.level),620,12,6.2,'#e9d59b','right');
@@ -1116,6 +1131,20 @@
       const b=CONTROL.music;ctx.save();
       drawPanel(ctx,b.x-b.w/2,b.y-b.h/2,b.w,b.h,musicEnabled?'rgba(23,73,89,.95)':'rgba(12,37,53,.84)',musicEnabled?'#8edfcf':'#587989');
       text(musicEnabled?'♪':'×',b.x,b.y+1,7.6,musicEnabled?'#d4fff0':'#9fbdc6','center');ctx.restore();
+    }
+    // 手机端全屏键：比暂停/音乐键大一圈，图标=四角外扩/内收，下面补一行小字说明当前状态
+    function drawFullscreenButton(){
+      const b=CONTROL.fullscreen,on=!!state.fullscreen,ix=b.x,iy=b.y-4,s=8,k=4.2;
+      ctx.save();
+      drawPanel(ctx,b.x-b.w/2,b.y-b.h/2,b.w,b.h,on?'rgba(42,96,108,.96)':'rgba(15,44,62,.9)',on?'#f3cf79':'#7fc9d6');
+      // 四角括号：未全屏朝外（展开），已全屏朝内（还原）
+      const c=[];
+      if(!on)c.push([ix-s,iy-s,1,1],[ix+s,iy-s,-1,1],[ix-s,iy+s,1,-1],[ix+s,iy+s,-1,-1]);
+      else c.push([ix-k,iy-k,-1,-1],[ix+k,iy-k,1,-1],[ix-k,iy+k,-1,1],[ix+k,iy+k,1,1]);
+      ctx.strokeStyle=on?'#ffe4a1':'#bdeef4';ctx.lineWidth=1.7;ctx.lineCap='square';
+      c.forEach(([x,y,dx,dy])=>{ctx.beginPath();ctx.moveTo(x+dx*5,y);ctx.lineTo(x,y);ctx.lineTo(x,y+dy*5);ctx.stroke();});
+      text(language==='zh'?(on?'还原':'全屏'):(on?'EXIT':'FULL'),b.x,b.y+13,5.4,on?'#ffe4a1':'#c8eef2','center');
+      ctx.restore();
     }
     function drawSpeciesCards(){
       const S=CARD_STRIP;
@@ -1207,6 +1236,8 @@
       if(state.flash>0&&!cinematic){ctx.save();ctx.globalAlpha=state.flash*.3;ctx.fillStyle='#e6fff1';ctx.fillRect(0,0,W,H);ctx.restore();}
       if(state.paused&&!cinematic)drawPauseOverlay();
       if(state.over||state.won)drawEndScreen();
+      // 全屏键画在最上层：暂停/结算覆盖层上也保持可见、可点
+      if(!cinematic)drawFullscreenButton();
     }
 
     function playTone(freq,when,duration,volume,type){
@@ -1254,6 +1285,7 @@
     function releaseStick(){STICK.active=false;STICK.id=null;STICK.dx=0;STICK.dy=0;clearKeys();}
     function pointerDown(ev){
       ev.preventDefault();ensureAudio();const q=pointFromEvent(ev);if(canvas.setPointerCapture)canvas.setPointerCapture(ev.pointerId);
+      if(hitBox(q,CONTROL.fullscreen,4)){toggleFullscreen();return;}
       if(state.over||state.won){if(inRect(q,CONTROL.restart))reset();return;}
       if(hitBox(q,CONTROL.pause,6)){togglePause();return;}
       if(hitBox(q,CONTROL.music,7)){setMusicEnabled(!musicEnabled);return;}
@@ -1292,6 +1324,8 @@
       destroy(){destroyed=true;cancelAnimationFrame(raf);if(observer)observer.disconnect();window.removeEventListener('app-language-change',onLanguageEvent);window.removeEventListener('app:languagechange',onLanguageEvent);document.removeEventListener('app-language-change',onLanguageEvent);window.removeEventListener('languagechange',onRootLangChange);canvas.removeEventListener('pointerdown',pointerDown);canvas.removeEventListener('pointermove',pointerMove);canvas.removeEventListener('pointerup',pointerUp);canvas.removeEventListener('pointercancel',pointerUp);canvas.removeEventListener('lostpointercapture',pointerUp);window.removeEventListener('keydown',keyDown);window.removeEventListener('keyup',keyUp);window.removeEventListener('blur',clearKeys);if(audioCtx){audioCtx.close();audioCtx=null;}},
       restart:reset,getState(){return state;},setLanguage,setMusicEnabled,setDebugEnabled,setDebugLevel,
       setPaused,togglePause,isPaused(){return !!state.paused;},setStartLevel,getStartLevel(){return startLevel;},getStartEnergy(){return startEnergy;},
+      toggleFullscreen,setFullscreenState,isFullscreen(){return !!state.fullscreen;},
+      setFullscreenHandler(fn){fullscreenRequest=typeof fn==='function'?fn:null;return !!fullscreenRequest;},
       getLanguage(){return language;},getSpecies(){return getSpecies();}
     };
   }

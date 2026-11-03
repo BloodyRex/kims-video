@@ -19,11 +19,18 @@ export default function PixelAvatar({ styleHint = FALLBACK_STYLE, level = 1, sta
   const lvl = Math.max(1, Math.min(10, Number(level) || 1));
   // 内嵌页会把「内容真实高度」postMessage 上来，避免固定 760px 时底部档案被裁切
   const [frameH, setFrameH] = useState(DEFAULT_FRAME_H);
+  // iOS Safari 无法对非视频元素真全屏，内嵌页改发 pseudo 全屏消息，这里把 iframe 铺满视口
+  const [pseudoFs, setPseudoFs] = useState(false);
 
   useEffect(() => {
     const onMessage = (e) => {
       const data = e.data;
-      if (!data || data.type !== "pixel-avatar:height") return;
+      if (!data || typeof data !== "object") return;
+      if (data.type === "pixel-avatar:fullscreen") {
+        setPseudoFs(Boolean(data.on));
+        return;
+      }
+      if (data.type !== "pixel-avatar:height") return;
       const next = Number(data.height);
       if (!Number.isFinite(next)) return;
       setFrameH(Math.min(MAX_FRAME_H, Math.max(MIN_FRAME_H, Math.round(next))));
@@ -31,6 +38,16 @@ export default function PixelAvatar({ styleHint = FALLBACK_STYLE, level = 1, sta
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
   }, []);
+
+  // 伪全屏期间锁住页面滚动，退出时还原
+  useEffect(() => {
+    if (!pseudoFs) return undefined;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [pseudoFs]);
 
   const src = useMemo(() => {
     const params = new URLSearchParams();
@@ -52,12 +69,19 @@ export default function PixelAvatar({ styleHint = FALLBACK_STYLE, level = 1, sta
     <section
       className="relative w-full border-4 border-black bg-black text-white overflow-hidden"
       aria-label={zh ? "像素游戏" : "Pixel Game"}
+      style={
+        pseudoFs
+          ? { position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 2147483000, borderWidth: 0 }
+          : undefined
+      }
     >
       <iframe
         src={src}
         title={zh ? "像素游戏" : "Pixel Game"}
         className="block w-full"
-        style={{ height: `${frameH}px`, border: "0" }}
+        style={{ height: pseudoFs ? "100vh" : `${frameH}px`, border: "0" }}
+        allow="fullscreen; accelerometer; gyroscope"
+        allowFullScreen
         loading="eager"
       />
     </section>
