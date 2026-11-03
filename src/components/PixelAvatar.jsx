@@ -58,6 +58,8 @@ export default function PixelAvatar({ styleHint = FALLBACK_STYLE, level = 1, sta
     if (Number.isFinite(startStage)) params.set("st", String(Math.max(0, Math.round(startStage))));
     if (Number.isFinite(startEnergy)) params.set("er", String(Math.max(0, Math.min(1, startEnergy))));
     params.set("lang", zh ? "zh" : "en");
+    // v = 内嵌页与游戏引擎的缓存版本号，改动 public/pixel-avatar-v16.html 或 public/evolution-game.js 后必须同步升级
+    params.set("v", "20261103a");
     return `/pixel-avatar-v16.html?${params.toString()}`;
   }, [style, lvl, startStage, startEnergy, zh]);
 
