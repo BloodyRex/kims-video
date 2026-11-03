@@ -1,162 +1,57 @@
 {
-  "updated": "2026-11-03",
-  "count": 10,
+  "updated": "2026-11-04",
+  "count": 3,
   "movies": [
     {
-      "tmdbId": 1707626,
+      "tmdbId": 17445,
       "mediaType": "movie",
-      "title": "梦寻苏毗女儿国",
-      "titleEn": "Sumpa Kingdom",
-      "year": "2026",
-      "releaseDate": "2026-11-03",
-      "poster": "https://image.tmdb.org/t/p/w500/vSnLnMbXnSJWOLAGAEGqffZslO0.jpg",
-      "rating": 0,
+      "title": "绿灯侠：首次飞行",
+      "titleEn": "Green Lantern: First Flight",
+      "year": "2009",
+      "releaseDate": "2009-07-28",
+      "poster": "https://image.tmdb.org/t/p/w342/ii48ohKJrDPyrGGOBVJ8XSxr5Xk.jpg",
+      "rating": 6.9,
       "genre": [
-        "Drama",
-        "Romance"
+        "动作",
+        "冒险",
+        "科幻",
+        "动画"
       ],
+      "source": "rec",
       "firstSeen": "2026-11-03"
     },
     {
-      "tmdbId": 1792914,
+      "tmdbId": 383709,
       "mediaType": "movie",
-      "title": "日志15",
-      "titleEn": "Log 15",
-      "year": "2026",
-      "releaseDate": "2026-10-29",
-      "poster": "https://image.tmdb.org/t/p/w500/6MqBwshl0Lu9a5ImgFbdBX7aA69.jpg",
-      "rating": 0,
-      "genre": [
-        "Horror"
-      ],
-      "firstSeen": "2026-11-03"
-    },
-    {
-      "tmdbId": 1777,
-      "mediaType": "movie",
-      "title": "华氏911",
-      "titleEn": "Fahrenheit 9/11",
-      "year": "2004",
-      "releaseDate": "2004-06-25",
-      "poster": "https://image.tmdb.org/t/p/w342/9Fha6OFqFBL9bPRLJPhJFmAwib6.jpg",
-      "rating": 7.1,
-      "genre": [
-        "纪录"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-02"
-    },
-    {
-      "tmdbId": 1786,
-      "mediaType": "movie",
-      "title": "再见，孩子们",
-      "titleEn": "Au revoir les enfants",
-      "year": "1987",
-      "releaseDate": "1987-10-07",
-      "poster": "https://image.tmdb.org/t/p/w342/lXP90Vx7OcviBfbbokcaG6zVnPG.jpg",
-      "rating": 7.532,
-      "genre": [
-        "剧情",
-        "战争"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-02"
-    },
-    {
-      "tmdbId": 223946,
-      "mediaType": "movie",
-      "title": "都市女孩",
-      "titleEn": "Les Gazelles",
-      "year": "2014",
-      "releaseDate": "2014-03-26",
-      "poster": "https://image.tmdb.org/t/p/w342/qqlzbmw32y9d3nxv9sU7sbd1315.jpg",
-      "rating": 5,
-      "genre": [
-        "喜剧"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-02"
-    },
-    {
-      "tmdbId": 31026,
-      "mediaType": "movie",
-      "title": "远方",
-      "titleEn": "Uzak",
-      "year": "2002",
-      "releaseDate": "2002-12-20",
-      "poster": "https://image.tmdb.org/t/p/w342/7XKGrHh1BRnMiIRMRYRsWPQDJfh.jpg",
-      "rating": 7.11,
-      "genre": [
-        "剧情"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-02"
-    },
-    {
-      "tmdbId": 37952,
-      "mediaType": "movie",
-      "title": "哭泣的草原",
-      "titleEn": "Το Λιβάδι που δακρύζει",
-      "year": "2004",
-      "releaseDate": "2004-02-20",
-      "poster": "https://image.tmdb.org/t/p/w342/4lXTXN5i9rqO55uSQ6dqdAln5i9.jpg",
-      "rating": 7.6,
-      "genre": [
-        "剧情",
-        "历史"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-02"
-    },
-    {
-      "tmdbId": 429417,
-      "mediaType": "movie",
-      "title": "鬼故事",
-      "titleEn": "Ghost Stories",
-      "year": "2018",
-      "releaseDate": "2018-01-20",
-      "poster": "https://image.tmdb.org/t/p/w342/7a0sai9k5jr7YJRP5S3YIDErMVY.jpg",
-      "rating": 6.4,
-      "genre": [
-        "恐怖",
-        "剧情"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-02"
-    },
-    {
-      "tmdbId": 451955,
-      "mediaType": "movie",
-      "title": "双面情人",
-      "titleEn": "L'Amant double",
+      "title": "寂静中的惊奇",
+      "titleEn": "Wonderstruck",
       "year": "2017",
-      "releaseDate": "2017-05-26",
-      "poster": "https://image.tmdb.org/t/p/w342/x1KEFLE8cthmuXs0ESxfwbcziN4.jpg",
+      "releaseDate": "2017-10-13",
+      "poster": "https://image.tmdb.org/t/p/w342/7hPnW1yWlIJcKCEQ5Kbr5dMtrDp.jpg",
       "rating": 6.1,
       "genre": [
-        "爱情",
-        "惊悚",
         "剧情"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-02"
+      "firstSeen": "2026-11-03"
     },
     {
-      "tmdbId": 76758,
+      "tmdbId": 508947,
       "mediaType": "movie",
-      "title": "金陵十三钗",
-      "titleEn": "金陵十三釵",
-      "year": "2011",
-      "releaseDate": "2011-12-15",
-      "poster": "https://image.tmdb.org/t/p/w342/7NVgVX663tdareijAiv0eLiLn6d.jpg",
-      "rating": 7.419,
+      "title": "青春变形记",
+      "titleEn": "Turning Red",
+      "year": "2022",
+      "releaseDate": "2022-03-10",
+      "poster": "https://image.tmdb.org/t/p/w342/qsdjk9oAKSQMWs0Vt5Pyfh6O4GZ.jpg",
+      "rating": 7.322,
       "genre": [
-        "剧情",
-        "历史",
-        "战争"
+        "动画",
+        "家庭",
+        "喜剧",
+        "奇幻"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-02"
+      "firstSeen": "2026-11-03"
     }
   ]
 }

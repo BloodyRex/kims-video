@@ -1,44 +1,6 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-04",
   "gems": [
-    {
-      "tmdbId": 791523,
-      "title": "荒野丛林",
-      "titleEn": "Wildwood",
-      "poster": "https://image.tmdb.org/t/p/w500/z5MMAxbQO2nCvBU8BqHgoY1zKdD.jpg",
-      "genre": [
-        "Animation",
-        "Adventure",
-        "Fantasy"
-      ],
-      "summary": "普鲁和同班同学柯蒂斯误入一片禁忌魔法森林，林中遍布魔法生灵、忠心伙伴与强大劲敌。二人踏上一场凶险万分的营救之旅，要从神秘女子亚历山德拉统领的鸦群手中，救出被掳走的婴儿弟弟麦克。",
-      "summaryEn": "After her baby brother is abducted by a murder of crows, headstrong teenager Prue McKeel launches a desperate rescue mission into the Impassable Wilderness, an enchanted forest hidden just beyond Port",
-      "rating": 8.637,
-      "year": "2026",
-      "releaseDate": "2026-10-23",
-      "mediaType": "movie",
-      "season": null,
-      "episode": null,
-      "whyWatch": "高口碑奇幻冒险动画，禁忌森林与营救旅程兼具童趣和暗黑想象力。",
-      "whyWatchEn": "A high-rated fantasy adventure with a forbidden forest rescue that balances childlike wonder and dark imagination.",
-      "aiScore": 8.7,
-      "tags": [
-        "奇幻冒险",
-        "动画",
-        "森林",
-        "营救",
-        "成长"
-      ],
-      "tagsEn": [
-        "Fantasy Adventure",
-        "Animation",
-        "Forest",
-        "Rescue",
-        "Coming-of-Age"
-      ],
-      "audience": "喜欢暗黑童话与家庭冒险的观众。",
-      "audienceEn": "Viewers who enjoy dark fairytales and family adventure."
-    },
     {
       "tmdbId": 1765072,
       "title": "你能看到一切",
@@ -55,25 +17,63 @@
       "mediaType": "movie",
       "season": null,
       "episode": null,
-      "whyWatch": "硅谷骗局主角入狱前34天的贴身纪录，私密、荒诞又令人不安。",
-      "whyWatchEn": "An intimate, absurd, and unsettling record of the Silicon Valley fraudster's final 34 days before prison.",
-      "aiScore": 9,
+      "whyWatch": "纪录片以罕见贴身视角记录霍姆斯入狱前的三年，既猎奇又冷峻，是年度最具争议与反思性的非虚构影像。",
+      "whyWatchEn": "A rare, intimate three-year record of Holmes before prison—sensational yet chilling, and one of the year's most provocative nonfiction portraits.",
+      "aiScore": 9.1,
       "tags": [
         "纪录片",
-        "真实犯罪",
-        "硅谷",
+        "真实罪案",
         "人物肖像",
-        "荒诞"
+        "硅谷",
+        "争议"
       ],
       "tagsEn": [
         "Documentary",
         "True Crime",
+        "Character Portrait",
         "Silicon Valley",
-        "Portrait",
-        "Absurdity"
+        "Controversial"
       ],
-      "audience": "关注科技伦理、真实犯罪与权力人格的观众。",
-      "audienceEn": "Viewers interested in tech ethics, true crime, and power personalities."
+      "audience": "真实罪案与科技伦理爱好者",
+      "audienceEn": "Fans of true crime and tech ethics"
+    },
+    {
+      "tmdbId": 791523,
+      "title": "荒野丛林",
+      "titleEn": "Wildwood",
+      "poster": "https://image.tmdb.org/t/p/w500/z5MMAxbQO2nCvBU8BqHgoY1zKdD.jpg",
+      "genre": [
+        "Animation",
+        "Adventure",
+        "Fantasy"
+      ],
+      "summary": "普鲁和同班同学柯蒂斯误入一片禁忌魔法森林，林中遍布魔法生灵、忠心伙伴与强大劲敌。二人踏上一场凶险万分的营救之旅，要从神秘女子亚历山德拉统领的鸦群手中，救出被掳走的婴儿弟弟麦克。",
+      "summaryEn": "After her baby brother is abducted by a murder of crows, headstrong teenager Prue McKeel launches a desperate rescue mission into the Impassable Wilderness, an enchanted forest hidden just beyond Port",
+      "rating": 8.524,
+      "year": "2026",
+      "releaseDate": "2026-10-23",
+      "mediaType": "movie",
+      "season": null,
+      "episode": null,
+      "whyWatch": "魔法森林与营救冒险构成的原创动画，生物设计和奇幻氛围充满想象力，值得合家欢观众发现。",
+      "whyWatchEn": "An original animated adventure through a forbidden magical forest, with imaginative creatures and visuals—a family-friendly fantasy that deserves discovery.",
+      "aiScore": 8.7,
+      "tags": [
+        "动画",
+        "奇幻冒险",
+        "魔法森林",
+        "营救",
+        "合家欢"
+      ],
+      "tagsEn": [
+        "Animation",
+        "Fantasy Adventure",
+        "Magical Forest",
+        "Rescue",
+        "Family"
+      ],
+      "audience": "动画奇幻与合家欢观众",
+      "audienceEn": "Animation fantasy and family audiences"
     },
     {
       "tmdbId": 1422041,
@@ -86,144 +86,142 @@
       ],
       "summary": "三个同性恋男子在西班牙历史上1932 年、1937 年和 2017 年三个不同时期的故事。",
       "summaryEn": "The intertwined lives of three men in three different eras, three lives intimately linked by sexuality and desire, pain, and legacy.",
-      "rating": 8.087,
+      "rating": 8.062,
       "year": "2026",
       "releaseDate": "2026-10-16",
       "mediaType": "movie",
       "season": null,
       "episode": null,
-      "whyWatch": "横跨三个时代的同性恋者命运切片，战争与欲望交织成隐秘史诗。",
-      "whyWatchEn": "A triptych of gay lives across three eras, weaving war and desire into a hidden epic.",
-      "aiScore": 8.4,
+      "whyWatch": "以三个时代交织三段同性爱情与战争记忆，历史纵深与情感浓度兼具，是被低估的西班牙叙事。",
+      "whyWatchEn": "Three gay men across 1932, 1937, and 2017 weave love, war, and memory into a deeply layered Spanish drama that deserves wider notice.",
+      "aiScore": 8.6,
       "tags": [
         "历史",
         "战争",
         "LGBTQ+",
-        "时代",
-        "剧情"
+        "西班牙",
+        "多时代"
       ],
       "tagsEn": [
         "History",
         "War",
         "LGBTQ+",
-        "Era",
-        "Drama"
+        "Spain",
+        "Multi-era"
       ],
-      "audience": "喜欢历史语境下边缘群体叙事的观众。",
-      "audienceEn": "Viewers drawn to marginalized-community stories within historical contexts."
+      "audience": "历史剧情与LGBTQ+题材观众",
+      "audienceEn": "Viewers of historical drama and LGBTQ+ stories"
     },
     {
-      "tmdbId": 1288069,
-      "title": "登峰传奇：丹增诺盖",
-      "titleEn": "Tenzing",
-      "poster": "https://image.tmdb.org/t/p/w500/3J4gRr16fTAzznQeDhwc8FPYtsE.jpg",
+      "tmdbId": 1195803,
+      "title": "柳条人",
+      "titleEn": "Wicker",
+      "poster": "https://image.tmdb.org/t/p/w500/r5ZDSYCXik8sDyGeiQxwISqbjjf.jpg",
       "genre": [
-        "Drama",
-        "History"
-      ],
-      "summary": "根据真实事件改编。喜马拉雅登山家丹增·诺盖与新西兰登山家埃德蒙·希拉里携手登顶珠穆朗玛峰，成为首批登顶者。在妻子达瓦和探险队秘书吉尔·亨德森的支持下，丹增争取加入英国登山队，在攀登过程中面对文化差异、阶级矛盾与高山险境。",
-      "summaryEn": "A determined man embarks on a high-stakes quest—and defies seemingly impossible odds—to fulfill his dream of being the first to reach the summit of Mount Everest.",
-      "rating": 8.26,
-      "year": "2026",
-      "releaseDate": "2026-10-09",
-      "mediaType": "movie",
-      "season": null,
-      "episode": null,
-      "whyWatch": "从被忽视的本地登山家视角重述珠峰首登，历史厚度与人性挣扎并存。",
-      "whyWatchEn": "Retells the first Everest ascent from the overlooked local climber's perspective, blending historical weight with human struggle.",
-      "aiScore": 8.5,
-      "tags": [
-        "传记",
-        "登山",
-        "历史",
-        "文化冲突",
-        "真实事件"
-      ],
-      "tagsEn": [
-        "Biopic",
-        "Mountaineering",
-        "History",
-        "Culture Clash",
-        "True Story"
-      ],
-      "audience": "喜欢真实探险传记和历史议题的观众。",
-      "audienceEn": "Fans of true adventure biopics and historical issues."
-    },
-    {
-      "tmdbId": 656908,
-      "title": "罗摩衍那：王子传奇",
-      "titleEn": "Ramayana: Rise of a Legend",
-      "poster": "https://image.tmdb.org/t/p/w500/gOWnXaBxqT6k2y40hKfYU6c0Ym.jpg",
-      "genre": [
+        "Romance",
         "Fantasy",
-        "Action",
-        "Adventure"
-      ],
-      "summary": "　　阿逾陀国的王子罗摩本应继承王位，但为了维护父亲的誓言，他甘愿放弃王权，带着妻子悉多和弟弟罗什曼那被流放森林十四年。在流放期间，罗摩一家在山林中苦修并斩妖除魔。然而，平静被打破——十首魔王罗波那因贪婪和邪念，化身苦行僧诱骗并掳走了悉多。罗摩在寻找妻子的过程中，结识了神猴哈奴曼与猴王须羯哩婆，组建了强大的盟军，准备跨海远征楞伽（罗波那的王国），誓要从魔王手中夺回爱妻。",
-      "summaryEn": "An ancient epic follows a young prince and princess whose marriage and subsequent exile mark the beginning of a legendary journey. Their story of love, duty and destiny sets the stage for greater chal",
-      "rating": 10,
-      "year": "2026",
-      "releaseDate": "2026-11-04",
-      "mediaType": "movie",
-      "season": null,
-      "episode": null,
-      "whyWatch": "印度史诗的奇幻动作化改编，流放、神魔与王子成长构成宏大冒险。",
-      "whyWatchEn": "A fantasy-action adaptation of the Indian epic, with exile, demons, and princely growth forming a grand adventure.",
-      "aiScore": 8.8,
-      "tags": [
-        "史诗",
-        "神话",
-        "奇幻",
-        "动作",
-        "流放"
-      ],
-      "tagsEn": [
-        "Epic",
-        "Mythology",
-        "Fantasy",
-        "Action",
-        "Exile"
-      ],
-      "audience": "神话题材与东方史诗冒险爱好者。",
-      "audienceEn": "Mythology fans and lovers of Eastern epic adventure."
-    },
-    {
-      "tmdbId": 79744,
-      "title": "菜鸟老警",
-      "titleEn": "The Rookie",
-      "poster": "https://image.tmdb.org/t/p/w500/8Q7RFUOxaZzJMXc5MZExfaUm22y.jpg",
-      "genre": [
-        "Crime",
-        "Drama",
         "Comedy"
       ],
-      "summary": "　　Alexi Hawley执笔﹑Liz Friedlander导演的ABC警察剧《菜鸟老警 The Rookie》过去被直接预订成剧，由《灵书妙探 Castle》男主Nathan Fillion主演。《菜鸟老警》根据真人真事改编，Nathan Fillion饰演主角John Nolan，他是洛杉矶警局里最老的菜鸟警察。John离开了舒适的小城镇，来到洛杉矶追求自己的警察梦；此刻他身边的其他菜鸟都",
-      "summaryEn": "　　Alexi Hawley执笔﹑Liz Friedlander导演的ABC警察剧《菜鸟老警 The Rookie》过去被直接预订成剧，由《灵书妙探 Castle》男主Nathan Fillion主演。《菜鸟老警》根据真人真事改编，Nathan Fillion饰演主角John Nolan，他是洛杉矶警局里最老的菜鸟警察。John离开了舒适的小城镇，来到洛杉矶追求自己的警察梦；此刻他身边的其他菜鸟都",
-      "rating": 8.537,
-      "year": "2018",
-      "releaseDate": "2018-10-16",
+      "summary": "海边小镇里有一个身上散发臭味的打渔女，饱受狭隘的邻居嘲讽，而她为自己找了个柳条做成的丈夫。这段离经叛道的爱情在保守的小镇里引起了怒火、嫉妒和轩然大波。",
+      "summaryEn": "On the outskirts of a village by the sea, lives a Fisherwoman; smelly, single and perpetually ridiculed. One day, fed up with her stuffy, small-minded neighbours, she commissions herself a husband to ",
+      "rating": 7.558,
+      "year": "2026",
+      "releaseDate": "2026-10-23",
+      "mediaType": "movie",
+      "season": null,
+      "episode": null,
+      "whyWatch": "怪诞又温柔的民间寓言，用“柳条丈夫”戳破小镇偏见，在奇幻喜剧外壳下藏着锋利的人性观察。",
+      "whyWatchEn": "A weirdly tender folk fable about a wicker husband exposing small-town prejudice—sharp human observation beneath a fantasy-comedy shell.",
+      "aiScore": 8.3,
+      "tags": [
+        "奇幻",
+        "爱情",
+        "黑色喜剧",
+        "小镇",
+        "民间寓言"
+      ],
+      "tagsEn": [
+        "Fantasy",
+        "Romance",
+        "Dark Comedy",
+        "Small Town",
+        "Folk Fable"
+      ],
+      "audience": "怪诞爱情与独立奇幻爱好者",
+      "audienceEn": "Fans of offbeat romance and indie fantasy"
+    },
+    {
+      "tmdbId": 108978,
+      "title": "侠探杰克",
+      "titleEn": "Reacher",
+      "poster": "https://image.tmdb.org/t/p/w500/dt5XNeYjR46lmVHQKiwfAmDHy9d.jpg",
+      "genre": [
+        "Crime"
+      ],
+      "summary": "退役宪兵杰克·雷彻独自游走各地，凭借敏锐头脑与强悍身手追查案件，在一次次危机中揭开隐藏于罪案背后的阴谋。",
+      "summaryEn": "退役宪兵杰克·雷彻独自游走各地，凭借敏锐头脑与强悍身手追查案件，在一次次危机中揭开隐藏于罪案背后的阴谋。",
+      "rating": 8.131,
+      "year": "2022",
+      "releaseDate": "2022-02-03",
       "mediaType": "tv",
       "season": null,
       "episode": null,
-      "whyWatch": "高龄菜鸟警察的成长线与单元案件轻快互补，是耐看的职业群像下饭剧。",
-      "whyWatchEn": "An older rookie cop's growth arc pairs briskly with case-of-the-week stories, making an easy-watch workplace ensemble.",
-      "aiScore": 8.3,
+      "whyWatch": "硬汉侦探剧的稳健回归，案件推进利落、动作干脆，雷彻式正义感依旧上头。",
+      "whyWatchEn": "A solid return for the hard-boiled detective series: brisk cases, clean action, and Reacher's satisfying brand of justice.",
+      "aiScore": 8.2,
       "tags": [
-        "警匪",
-        "成长",
-        "轻喜剧",
-        "群像",
-        "单元剧"
+        "犯罪",
+        "侦探",
+        "动作",
+        "硬汉",
+        "系列剧"
       ],
       "tagsEn": [
         "Crime",
-        "Growth",
-        "Light Comedy",
-        "Ensemble",
-        "Procedural"
+        "Detective",
+        "Action",
+        "Hard-boiled",
+        "Series"
       ],
-      "audience": "喜欢轻松警匪剧和温暖群像的观众。",
-      "audienceEn": "Fans of light crime procedurals and warm ensembles."
+      "audience": "犯罪动作剧与硬汉探案迷",
+      "audienceEn": "Crime-action and hard-boiled detective fans"
+    },
+    {
+      "tmdbId": 124364,
+      "title": "梦魇绝镇",
+      "titleEn": "FROM",
+      "poster": "https://image.tmdb.org/t/p/w500/y8ZYIY6YCNZMIkqjqNFIZlo9xt8.jpg",
+      "genre": [
+        "Mystery",
+        "Drama"
+      ],
+      "summary": "一群陌生人误入一座无法逃离的小镇，白天寻找出路，夜晚则必须躲避森林中出现的怪物。博伊德带领居民求生，同时调查小镇的诡异规则、失踪者与隐藏在背后的神秘力量。",
+      "summaryEn": "一群陌生人误入一座无法逃离的小镇，白天寻找出路，夜晚则必须躲避森林中出现的怪物。博伊德带领居民求生，同时调查小镇的诡异规则、失踪者与隐藏在背后的神秘力量。",
+      "rating": 8.492,
+      "year": "2022",
+      "releaseDate": "2022-02-20",
+      "mediaType": "tv",
+      "season": null,
+      "episode": null,
+      "whyWatch": "封闭小镇与夜行怪物构成高概念悬疑，规则层层加码，群像求生和谜团推进让人持续追看。",
+      "whyWatchEn": "A high-concept mystery of a trapped town and nocturnal monsters, with escalating rules and ensemble survival that keeps pulling you in.",
+      "aiScore": 8.7,
+      "tags": [
+        "悬疑",
+        "惊悚",
+        "小镇",
+        "怪物",
+        "群像"
+      ],
+      "tagsEn": [
+        "Mystery",
+        "Thriller",
+        "Small Town",
+        "Monsters",
+        "Ensemble"
+      ],
+      "audience": "高概念悬疑与惊悚剧观众",
+      "audienceEn": "High-concept mystery and thriller viewers"
     },
     {
       "tmdbId": 200875,
@@ -236,68 +234,31 @@
       ],
       "summary": "1962年，当地发生了一系列儿童神秘失踪事件，一群性格迥异的朋友开始怀疑某种深埋于地下的邪恶力量正在暗中酝酿。孩子们着手调查真相，而日益增长的不安情绪促使几位镇民携手合作，力图恢复和平——与此同时，一支美国军队正试图利用德里镇来实现其自身目的。",
       "summaryEn": "1962年，当地发生了一系列儿童神秘失踪事件，一群性格迥异的朋友开始怀疑某种深埋于地下的邪恶力量正在暗中酝酿。孩子们着手调查真相，而日益增长的不安情绪促使几位镇民携手合作，力图恢复和平——与此同时，一支美国军队正试图利用德里镇来实现其自身目的。",
-      "rating": 8.263,
+      "rating": 8.269,
       "year": "2025",
       "releaseDate": "2025-10-26",
       "mediaType": "tv",
       "season": null,
       "episode": null,
-      "whyWatch": "以1962年小镇失踪案铺开恐怖前史，儿童群像与地下邪恶共同制造压迫感。",
-      "whyWatchEn": "A prequel horror mystery built around 1962 disappearances, where a kids' ensemble and underground evil create creeping dread.",
+      "whyWatch": "把“德里镇”的诅咒前史拍成1962年群像调查，恐怖氛围与青春冒险并重，是IP衍生中扎实的世界观扩展。",
+      "whyWatchEn": "A 1962-set ensemble investigation into Derry's curse, balancing horror atmosphere with youthful adventure—an unusually solid world-building expansion of the IP.",
       "aiScore": 8.5,
       "tags": [
         "恐怖",
         "悬疑",
+        "前传",
         "小镇",
-        "儿童群像",
-        "前传"
+        "青少年"
       ],
       "tagsEn": [
         "Horror",
         "Mystery",
+        "Prequel",
         "Small Town",
-        "Kids Ensemble",
-        "Prequel"
+        "Teens"
       ],
-      "audience": "喜欢《小丑回魂》世界观与慢热悬疑恐怖的观众。",
-      "audienceEn": "Fans of the It universe and slow-burn mystery horror."
-    },
-    {
-      "tmdbId": 1413,
-      "title": "美国恐怖故事",
-      "titleEn": "American Horror Story",
-      "poster": "https://image.tmdb.org/t/p/w500/j2Uix4JYiunJhoiS2DLPYSkOZ8Q.jpg",
-      "genre": [
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "从闹鬼的豪宅到精神病院，从女巫、马戏团到酒店、邪教、末日与外星人，每一季都讲述一个全新的恐怖故事。它不只是制造鬼魂、杀人狂与怪物，更将恐惧藏进家庭、欲望、宗教、政治、疾病与人性之中。看似彼此独立的故事，又通过人物、地点与事件悄然连接，最终构成一个庞大的“美国恐怖宇宙”。",
-      "summaryEn": "从闹鬼的豪宅到精神病院，从女巫、马戏团到酒店、邪教、末日与外星人，每一季都讲述一个全新的恐怖故事。它不只是制造鬼魂、杀人狂与怪物，更将恐惧藏进家庭、欲望、宗教、政治、疾病与人性之中。看似彼此独立的故事，又通过人物、地点与事件悄然连接，最终构成一个庞大的“美国恐怖宇宙”。",
-      "rating": 8.079,
-      "year": "2011",
-      "releaseDate": "2011-10-05",
-      "mediaType": "tv",
-      "season": null,
-      "episode": null,
-      "whyWatch": "每季换题的恐怖寓言，把家庭、欲望、宗教与政治都变成怪诞恐惧。",
-      "whyWatchEn": "An anthology of horror fables that turns family, desire, religion, and politics into grotesque fear.",
-      "aiScore": 8.2,
-      "tags": [
-        "恐怖",
-        "选集",
-        "社会议题",
-        "怪诞",
-        "心理"
-      ],
-      "tagsEn": [
-        "Horror",
-        "Anthology",
-        "Social Issues",
-        "Grotesque",
-        "Psychological"
-      ],
-      "audience": "恐怖类型迷与偏好社会寓言式惊吓的观众。",
-      "audienceEn": "Horror genre fans and viewers who prefer socially allegorical scares."
+      "audience": "恐怖悬疑与斯蒂芬·金宇宙粉丝",
+      "audienceEn": "Horror-mystery and Stephen King universe fans"
     }
   ]
 }
