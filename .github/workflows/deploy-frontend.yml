@@ -7,7 +7,7 @@ on:
       - "index.html"
       - "vite.config.*"
       - "package.json"
-      - "public/api/**"
+      - "public/**"
       - ".github/workflows/deploy-frontend.yml"
     branches: [main]
   workflow_run:
@@ -60,3 +60,14 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # 线上真身是 Cloudflare Pages 项目 kims-video（bloodyrex.xyz 由它提供），
+      # GitHub Pages 只是旁路。缺这一步会导致产物只进 GH Pages、线上一直是旧版本。
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          command: pages deploy dist --project-name kims-video --branch main --commit-dirty=true
+
