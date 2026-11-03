@@ -1573,7 +1573,7 @@ export default function FestivalCalendarPage() {
             <span className="text-black transform rotate-90"><Icons.Play /></span>
           </div>
           <h1
-            className="text-lg sm:text-2xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap"
+            className="text-base sm:text-2xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] max-sm:whitespace-normal sm:whitespace-nowrap break-words overflow-anywhere leading-tight"
             style={{ fontFamily: "'Press Start 2P','Courier New',Courier,monospace" }}
           >
             KIM'S <span className="text-[#00ffff]">VIDEO</span>

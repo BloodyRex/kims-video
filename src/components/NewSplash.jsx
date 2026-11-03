@@ -131,7 +131,7 @@ const NewSplash = ({ onEnterAI }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
         <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#ffff00] transition-colors pointer-events-none z-10"></div>
 
-        <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between z-20">
+        <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-start z-20">
           <div className="flex justify-start items-start">
             {/* Rex 2026-08-25: "ARCHIVE ENTRY" badge removed; the SEC.NN frame
                 moved here (top-left) as its replacement */}
@@ -140,9 +140,8 @@ const NewSplash = ({ onEnterAI }) => {
             </span>
           </div>
 
-          <div className="min-w-0 mt-4">
-            {/* 固定双语搭配；break-words 让 INTELLIGENCE 在窄屏换行而非被裁切 */}
-            {/* 固定双语搭配；whitespace-nowrap 与 Festival 保持一致，避免宽屏换行导致间距偏差 */}<h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff] whitespace-nowrap">
+          <div className="min-w-0 mt-[28px]">
+            {/* 固定双语搭配；break-words 强制英文单词按字符边界换行，匹配容器宽度 */}<h3 className="text-[clamp(17px,5.6vw,36px)] md:text-[clamp(17px,2.9vw,36px)] font-black uppercase tracking-tight leading-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff] whitespace-normal break-words">
               {card.title}
             </h3>
             <h4 className={`text-sm md:text-base font-bold mb-3 text-[#00ffff]`}>
@@ -198,7 +197,7 @@ const NewSplash = ({ onEnterAI }) => {
       >
         <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
           <div className="min-w-0 mt-[20px]">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff] whitespace-nowrap">
+            <h3 className="text-[clamp(17px,5.6vw,36px)] md:text-[clamp(17px,2.9vw,36px)] font-black uppercase tracking-tight leading-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff] whitespace-normal break-words">
               {FESTIVAL_ENTRY.title}
             </h3>
             <h4 className="text-sm md:text-base font-bold text-[#00ffff] mb-3">

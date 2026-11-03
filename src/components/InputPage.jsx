@@ -60,7 +60,7 @@ const InputPage = ({
 
       <div className="mb-8 text-center relative z-10">
         <h2
-          className="text-4xl font-black mb-3 text-black tracking-tighter uppercase whitespace-nowrap"
+          className="text-4xl font-black mb-3 text-black tracking-tighter uppercase max-sm:whitespace-normal sm:whitespace-nowrap break-words leading-tight"
           style={{
             fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
             fontSize: "clamp(1rem, 4vw, 1.5rem)",

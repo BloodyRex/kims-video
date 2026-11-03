@@ -7,6 +7,7 @@ import {
   getDeviceId,
   listRecos,
   listFavorites,
+  listSearches,
   removeFavorite,
   deleteReco,
   createMigrationCode,
@@ -16,6 +17,9 @@ import {
 } from "../utils/personalStore";
 import { createRemoteMigrationCode, fetchRemoteMigrationCode } from "../services/migrationApi";
 import { IntelDetailModal } from "./Cards";
+import PixelAvatar from "./PixelAvatar";
+import { analyzeStylePreference, rankStyles, overallLevel, overallXpLevel, siteLevelFromUser, SITE_LEVEL_XP, gameStartForSiteLevel } from "../utils/stylePreference";
+import { classifyGenre, categoryToStyle } from "../utils/discoverGenre";
 
 /**
  * MyDataPanel — 主页（开屏四宫格页）最下方的「我的数据」大框（2026-10-29）
@@ -167,25 +171,28 @@ const MyDataPanel = () => {
 
   const [modal, setModal] = useState(null); // "transfer" | "clear" | null
   const isTouch = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  const urlLevel = typeof window !== "undefined" ? Number(new URLSearchParams(window.location.search).get("level")) || null : null;
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState(false);
   const [paste, setPaste] = useState("");
   const [msg, setMsg] = useState(null); // { ok:boolean, text:string }
   const [detailFav, setDetailFav] = useState(null);
+  const [searches, setSearches] = useState([]);
   const [pendingDeleteId, setPendingDeleteId] = useState(null);
-
   const load = useCallback(async () => {
-    const [s, r, f, d] = await Promise.all([
+    const [s, r, f, d, q] = await Promise.all([
       getStats().catch(() => null),
       listRecos().catch(() => []),
       listFavorites().catch(() => []),
       getDeviceId().catch(() => ""),
+      listSearches().catch(() => []),
     ]);
     setStats(s);
     setRecos(r || []);
     setFavs(f || []);
     setDeviceId(d || "");
+    setSearches(q || []);
     setReady(true);
   }, []);
 
@@ -316,6 +323,38 @@ const MyDataPanel = () => {
   const favCount = favs.length;
   const recoCount = recos.length;
 
+  const stylePref = useMemo(() => {
+    try {
+      return analyzeStylePreference({ searches, favorites: favs, recos });
+    } catch (e) {
+      return {
+        style: "sci-fi",
+        scores: {},
+        evidence: [],
+        deduped: 0,
+        totalSamples: 0,
+        fallback: true,
+        reason: "error:" + (e && e.message ? e.message : e),
+      };
+    }
+  }, [searches, favs, recos]);
+
+  const rankedStyles = useMemo(() => rankStyles(stylePref.scores), [stylePref]);
+
+  // 网站等级（1–10）：由收藏/搜索/推荐历史算出，直接作为游戏内生物的起始等级
+  const siteLv = useMemo(() => {
+    try {
+      return siteLevelFromUser({ searches, favorites: favs, recos });
+    } catch (e) {
+      return { xp: 0, favorites: 0, searches: 0, recos: 0, level: 1, current: 0, need: SITE_LEVEL_XP[1], ratio: 0 };
+    }
+  }, [searches, favs, recos]);
+  const gameLevel = urlLevel ? Math.max(1, Math.min(10, urlLevel)) : siteLv.level;
+  // 网站等级 → 游戏开局：10 档压缩到 5 个生物阶段，满级从第 5 阶段满能量开局
+  const gameStart = useMemo(() => gameStartForSiteLevel(gameLevel), [gameLevel]);
+  const styleDebugOpen =
+    typeof window !== "undefined" && /[?&]pxdebug=1/.test(window.location.search);
+
   const favTile = useMemo(
       () => (
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 sm:gap-3">
@@ -347,7 +386,7 @@ const MyDataPanel = () => {
           </span>
         </div>
         <div className="min-w-0 mt-[28px]">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff] break-words min-w-0 whitespace-nowrap">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight leading-tight pixel-font text-white drop-shadow-[3px_3px_0_#ff00ff] whitespace-normal break-all">
             {t("panel.title")}
           </h3>
           <h4 className="text-sm md:text-base font-bold text-[#00ffff] mb-3">{t("panel.subtitle")}</h4>
@@ -359,7 +398,7 @@ const MyDataPanel = () => {
         </div>
       </div>
 
-      <div className="max-sm:px-0 max-sm:py-0 sm:px-6 sm:py-6">
+      <div className="max-sm:px-3 max-sm:py-4 sm:px-6 sm:py-6">
         {!ready ? (
           <div className="py-10 flex justify-center text-[#ffff00]">
             <span className="inline-block animate-spin">
@@ -368,6 +407,30 @@ const MyDataPanel = () => {
           </div>
         ) : (
           <>
+            {/* 0. 像素游戏（P0，主要展示内容，置顶） */}
+            <PixelSection
+              icon={<Icons.User className="w-4 h-4" />}
+              title={t("pixel.avatar.title")}
+              right={
+                <span className="text-[10px] sm:text-xs font-black text-[#ffff00] bg-black border-2 border-[#ffff00] px-2 py-0.5 whitespace-nowrap">
+                  Lv.{urlLevel ? gameLevel : siteLv.level}
+                  {urlLevel
+                    ? " · 调试"
+                    : siteLv.need
+                    ? ` · ${Math.round(siteLv.current)}/${siteLv.need}`
+                    : " · MAX"}
+                </span>
+              }
+            >
+              <PixelAvatar
+                styleHint={stylePref.style}
+                level={gameLevel}
+                startStage={gameStart.stage}
+                startEnergy={gameStart.energy}
+                debug={styleDebugOpen}
+              />
+            </PixelSection>
+
             {/* 1. 我收藏的卡片 */}
             <PixelSection
                 icon={<Icons.Star className="w-4 h-4" fill="#ffff00" stroke="#ffff00" />}
@@ -476,42 +539,42 @@ const MyDataPanel = () => {
             </PixelSection>
 
             {/* 3. 存储概览 */}
-            <PixelSection icon={<Icons.Target className="w-4 h-4" />} title={t("mydata.stats.title")}><div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
-                <div className="border-4 border-black bg-[#111] p-2.5 shadow-[3px_3px_0_0_#00ffff]">
-                  <div className="text-sm sm:text-lg font-black text-white">{favCount}</div>
-                  <div className="text-[10px] pixel-font font-bold text-gray-200">{t("panel.favs.short")}</div>
+            <PixelSection icon={<Icons.Target className="w-4 h-4" />} title={t("mydata.stats.title")}><div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="border-4 border-black bg-[#111] p-2 sm:p-3 shadow-[2px_2px_0_0_#00ffff] sm:shadow-[3px_3px_0_0_#00ffff] w-full">
+                  <div className="text-xs sm:text-lg font-black text-white">{favCount}</div>
+                  <div className="text-[9px] leading-tight sm:text-[10px] pixel-font font-bold text-gray-200">{t("panel.favs.short")}</div>
                 </div>
-                <div className="border-4 border-black bg-[#111] p-2.5 shadow-[3px_3px_0_0_#00ffff]">
-                  <div className="text-sm sm:text-lg font-black text-white">{stats?.recoCount ?? recoCount}</div>
-                  <div className="text-[10px] pixel-font font-bold text-gray-200">{t("mydata.stats.recos")}</div>
+                <div className="border-4 border-black bg-[#111] p-2 sm:p-3 shadow-[2px_2px_0_0_#00ffff] sm:shadow-[3px_3px_0_0_#00ffff] w-full">
+                  <div className="text-xs sm:text-lg font-black text-white">{stats?.recoCount ?? recoCount}</div>
+                  <div className="text-[9px] leading-tight sm:text-[10px] pixel-font font-bold text-gray-200">{t("mydata.stats.recos")}</div>
                 </div>
-                <div className="border-4 border-black bg-[#111] p-2.5 shadow-[3px_3px_0_0_#00ffff]">
-                  <div className="text-sm sm:text-lg font-black text-white">
-                    {fmtBytes(stats?.usage)}
+                <div className="border-4 border-black bg-[#111] p-2 sm:p-3 shadow-[2px_2px_0_0_#00ffff] sm:shadow-[3px_3px_0_0_#00ffff] w-full">
+                  <div className="text-[11px] leading-tight sm:text-lg font-black text-white break-words">
+                                      {fmtBytes(stats?.usage)}
                     {stats?.quota ? <span className="text-[10px] text-gray-200"> / {fmtBytes(stats.quota)}</span> : null}
                   </div>
-                  <div className="text-[10px] pixel-font font-bold text-gray-200">{t("mydata.stats.size")}</div>
+                  <div className="text-[9px] leading-tight sm:text-[10px] pixel-font font-bold text-gray-200">{t("mydata.stats.size")}</div>
                 </div>
-                <div className="border-4 border-black bg-[#111] p-2.5 shadow-[3px_3px_0_0_#00ffff]">
+                <div className="border-4 border-black bg-[#111] p-2 sm:p-3 shadow-[2px_2px_0_0_#00ffff] sm:shadow-[3px_3px_0_0_#00ffff] w-full">
                   <div className={`text-xs sm:text-sm font-black ${stats?.persisted ? "text-[#00dd00]" : "text-[#ffff00]"}`}>
                     {stats?.persisted ? t("panel.persist.on") : t("panel.persist.pending")}
                   </div>
-                  <div className="text-[10px] pixel-font font-bold text-gray-200">{t("panel.persist.label")}</div>
+                  <div className="text-[9px] leading-tight sm:text-[10px] pixel-font font-bold text-gray-200">{t("panel.persist.label")}</div>
                 </div>
               </div>
             </PixelSection>
 
             {/* 4. 一左一右两个按钮 */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-6">
+            <div className="grid grid-cols-2 gap-3 mt-6 sm:gap-4">
               <button
                 onClick={openTransfer}
-                className="border-4 border-black bg-[#ffff00] text-black px-3 py-3 sm:py-4 font-black pixel-font uppercase tracking-wider text-xs sm:text-base shadow-[6px_6px_0_0_#00ffff] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_#00ffff] active:translate-y-1 active:shadow-none transition-all"
+                className="border-4 border-black bg-[#ffff00] text-black px-2 py-2.5 sm:px-3 sm:py-4 font-black pixel-font uppercase tracking-wider text-[11px] sm:text-base shadow-[3px_3px_0_0_#00ffff] sm:shadow-[6px_6px_0_0_#00ffff] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_#00ffff] active:translate-y-1 active:shadow-none transition-all w-full"
               >
                 {t("panel.transfer")}
               </button>
               <button
                 onClick={openClear}
-                className="border-4 border-black bg-[#ff0055] text-white px-3 py-3 sm:py-4 font-black pixel-font uppercase tracking-wider text-xs sm:text-base shadow-[6px_6px_0_0_#ffff00] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_#ffff00] active:translate-y-1 active:shadow-none transition-all"
+                className="border-4 border-black bg-[#ff0055] text-white px-2 py-2.5 sm:px-3 sm:py-4 font-black pixel-font uppercase tracking-wider text-[11px] sm:text-base shadow-[3px_3px_0_0_#ffff00] sm:shadow-[6px_6px_0_0_#ffff00] hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_#ffff00] active:translate-y-1 active:shadow-none transition-all w-full"
               >
                 {t("panel.clear")}
               </button>

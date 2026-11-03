@@ -27,7 +27,7 @@ const SaveContent = ({ recommendations, primaryMovie, secondaryMovie }) => {
             <Icons.Play className="text-black transform rotate-90" />
           </div>
           <h1
-            className="text-3xl font-black text-white pixel-font uppercase tracking-widest whitespace-nowrap"
+            className="text-2xl sm:text-3xl font-black text-white pixel-font uppercase tracking-widest max-sm:whitespace-normal sm:whitespace-nowrap break-words leading-tight"
             style={{ textShadow: "3px 3px 0 #ff00ff" }}
           >
             KIM'S <span className="text-[#00ffff]">VIDEO</span>

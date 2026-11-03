@@ -372,7 +372,7 @@ const WallPage = () => {
           <div className="bg-[#ffff00] p-2 border-4 border-black mr-4 transform -rotate-6">
             <span className="text-black transform rotate-90"><Icons.Play /></span>
           </div>
-          <h1 className="text-lg sm:text-2xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] whitespace-nowrap" style={LANG_BUTTON_STYLE}>
+          <h1 className="text-base sm:text-2xl font-black text-white pixel-font uppercase tracking-widest drop-shadow-[4px_4px_0_#ff00ff] max-sm:whitespace-normal sm:whitespace-nowrap break-words leading-tight" style={LANG_BUTTON_STYLE}>
             KIM'S <span className="text-[#00ffff]">VIDEO</span>
           </h1>
         </Link>
