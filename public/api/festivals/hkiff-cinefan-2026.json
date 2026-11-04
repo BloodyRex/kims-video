@@ -31,9 +31,12 @@
   "timezone": "Asia/Hong_Kong",
   "dayCount": 50,
   "officialUrl": "https://cinefan.hkiff.org.hk/",
-  "coverageMinDays": 10
+  "coverageMinDays": 10,
+  "registryEndDate": "2026-10-31",
+  "endDateExtended": false,
+  "dataEndDate": "2026-10-31"
  },
- "lifecycle": "LIVE",
+ "lifecycle": "ENDED",
  "status": "SCREENING_LIVE",
  "statusDetail": {
   "dates": "CONFIRMED",
@@ -286,6 +289,7 @@
  "films": [
   {
    "id": "hkiff-cinefan-2026-f2",
+   "idx": 2,
    "cIdx": 83003,
    "title": "A River Called Titas",
    "director": "Ritwik Ghatak",
@@ -297,6 +301,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f5",
+   "idx": 5,
    "cIdx": 83003,
    "title": "E-Flat",
    "director": "Ritwik Ghatak",
@@ -308,6 +313,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f16",
+   "idx": 16,
    "cIdx": 83003,
    "title": "The Cloud-Capped Star",
    "director": "Ritwik Ghatak",
@@ -319,6 +325,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f17",
+   "idx": 17,
    "cIdx": 83003,
    "title": "The Golden Line",
    "director": "Ritwik Ghatak",
@@ -330,6 +337,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f21",
+   "idx": 21,
    "cIdx": 83003,
    "title": "The Runaway",
    "director": "Ritwik Ghatak",
@@ -341,6 +349,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f1",
+   "idx": 1,
    "cIdx": 83004,
    "title": "A Fistful of Dollars",
    "director": "Sergio Leone",
@@ -352,6 +361,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f6",
+   "idx": 6,
    "cIdx": 83004,
    "title": "For a Few Dollars More",
    "director": "Sergio Leone",
@@ -363,6 +373,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f18",
+   "idx": 18,
    "cIdx": 83004,
    "title": "The Good, the Bad and the Ugly",
    "director": "Sergio Leone",
@@ -374,6 +385,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f3",
+   "idx": 3,
    "cIdx": 83005,
    "title": "Bird",
    "director": "Clint Eastwood",
@@ -385,6 +397,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f4",
+   "idx": 4,
    "cIdx": 83005,
    "title": "Changeling",
    "director": "Clint Eastwood",
@@ -396,6 +409,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f7",
+   "idx": 7,
    "cIdx": 83005,
    "title": "Gran Torino",
    "director": "Clint Eastwood",
@@ -407,6 +421,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f9",
+   "idx": 9,
    "cIdx": 83005,
    "title": "Juror #2",
    "director": "Clint Eastwood",
@@ -418,6 +433,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f11",
+   "idx": 11,
    "cIdx": 83005,
    "title": "Million Dollar Baby",
    "director": "Clint Eastwood",
@@ -429,6 +445,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f12",
+   "idx": 12,
    "cIdx": 83005,
    "title": "Mystic River",
    "director": "Clint Eastwood",
@@ -440,6 +457,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f13",
+   "idx": 13,
    "cIdx": 83005,
    "title": "Pale Rider",
    "director": "Clint Eastwood",
@@ -451,6 +469,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f15",
+   "idx": 15,
    "cIdx": 83005,
    "title": "The Bridges of Madison County",
    "director": "Clint Eastwood",
@@ -462,6 +481,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f20",
+   "idx": 20,
    "cIdx": 83005,
    "title": "The Outlaw Josey Wales",
    "director": "Clint Eastwood",
@@ -473,6 +493,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f22",
+   "idx": 22,
    "cIdx": 83005,
    "title": "Unforgiven",
    "director": "Clint Eastwood",
@@ -484,6 +505,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f10",
+   "idx": 10,
    "cIdx": 83002,
    "title": "Lost Paradise",
    "director": "Morita Yoshimitsu",
@@ -495,6 +517,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f14",
+   "idx": 14,
    "cIdx": 83002,
    "title": "Swallowtail Butterfly",
    "director": "Iwai Shunji",
@@ -506,6 +529,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f8",
+   "idx": 8,
    "cIdx": 83001,
    "title": "How Green Was My Valley",
    "director": "John Ford",
@@ -517,6 +541,7 @@
   },
   {
    "id": "hkiff-cinefan-2026-f19",
+   "idx": 19,
    "cIdx": 83001,
    "title": "The Man Who Shot Liberty Valance",
    "director": "John Ford",
@@ -1631,6 +1656,7 @@
    "items": 3
   }
  ],
+ "warnings": [],
  "fetchedAt": "2026-10-20T06:30:44Z",
  "lastVerifiedAt": "2026-10-20T06:30:44Z",
  "dataSource": "official"

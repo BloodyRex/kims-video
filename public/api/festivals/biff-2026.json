@@ -28,7 +28,10 @@
   "timezone": "Asia/Seoul",
   "dayCount": 10,
   "officialUrl": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8",
-  "coverageMinDays": null
+  "coverageMinDays": null,
+  "registryEndDate": "2026-10-15",
+  "endDateExtended": false,
+  "dataEndDate": "2026-10-15"
  },
  "lifecycle": "ENDED",
  "status": "SCHEDULE_LIVE",
@@ -317,6 +320,7 @@
  "films": [
   {
    "id": "biff-2026-f90091",
+   "idx": 90091,
    "cIdx": 432,
    "title": "9 Temples to Heaven",
    "director": "Sompot CHIDGASORNPONGSE",
@@ -328,6 +332,7 @@
   },
   {
    "id": "biff-2026-f91126",
+   "idx": 91126,
    "cIdx": 432,
    "title": "A Girl Unknown",
    "director": "ZOU Jing",
@@ -339,6 +344,7 @@
   },
   {
    "id": "biff-2026-f91198",
+   "idx": 91198,
    "cIdx": 432,
    "title": "About an Intimate Matter",
    "director": "Sandeep Kumar PAUL",
@@ -350,6 +356,7 @@
   },
   {
    "id": "biff-2026-f91106",
+   "idx": 91106,
    "cIdx": 432,
    "title": "Big Little Things",
    "director": "Michelle ZHOU",
@@ -361,6 +368,7 @@
   },
   {
    "id": "biff-2026-f90577",
+   "idx": 90577,
    "cIdx": 432,
    "title": "Birds on Ice",
    "director": "Sahil H. SHAH",
@@ -372,6 +380,7 @@
   },
   {
    "id": "biff-2026-f83938",
+   "idx": 83938,
    "cIdx": 432,
    "title": "Dhara",
    "director": "Anuruddha JAYASINGHA",
@@ -383,6 +392,7 @@
   },
   {
    "id": "biff-2026-f91190",
+   "idx": 91190,
    "cIdx": 432,
    "title": "Diary of a Mad Old Man",
    "director": "Wayne WANG",
@@ -394,6 +404,7 @@
   },
   {
    "id": "biff-2026-f90096",
+   "idx": 90096,
    "cIdx": 432,
    "title": "Elephants in the Fog",
    "director": "Abinash Bikram SHAH",
@@ -405,6 +416,7 @@
   },
   {
    "id": "biff-2026-f89840",
+   "idx": 89840,
    "cIdx": 432,
    "title": "Filipiñana",
    "director": "Rafael MANUEL",
@@ -416,6 +428,7 @@
   },
   {
    "id": "biff-2026-f91183",
+   "idx": 91183,
    "cIdx": 432,
    "title": "Four Seasons in Java",
    "director": "Kamila ANDINI",
@@ -427,6 +440,7 @@
   },
   {
    "id": "biff-2026-f90867",
+   "idx": 90867,
    "cIdx": 432,
    "title": "Gu Shi",
    "director": "Amie SONG",
@@ -438,6 +452,7 @@
   },
   {
    "id": "biff-2026-f91164",
+   "idx": 91164,
    "cIdx": 432,
    "title": "Happily Ever After",
    "director": "Feng-I Fiona ROAN",
@@ -449,6 +464,7 @@
   },
   {
    "id": "biff-2026-f91102",
+   "idx": 91102,
    "cIdx": 432,
    "title": "Head to Head",
    "director": "Ghasideh GOLMAKANI",
@@ -460,6 +476,7 @@
   },
   {
    "id": "biff-2026-f90097",
+   "idx": 90097,
    "cIdx": 432,
    "title": "Hearing",
    "director": "LÊ Bảo",
@@ -471,6 +488,7 @@
   },
   {
    "id": "biff-2026-f89329",
+   "idx": 89329,
    "cIdx": 432,
    "title": "In My Father′s Room",
    "director": "HARADA Maha",
@@ -482,6 +500,7 @@
   },
   {
    "id": "biff-2026-f91235",
+   "idx": 91235,
    "cIdx": 432,
    "title": "In Winter",
    "director": "Yerlan NURMUKHAMBETOV, Nursultan NUSKABEKOV",
@@ -493,6 +512,7 @@
   },
   {
    "id": "biff-2026-f90770",
+   "idx": 90770,
    "cIdx": 432,
    "title": "Khoriya",
    "director": "Vishwendra SINGH",
@@ -504,6 +524,7 @@
   },
   {
    "id": "biff-2026-f91161",
+   "idx": 91161,
    "cIdx": 432,
    "title": "Lovers in the Blue Night",
    "director": "Anuparna ROY",
@@ -515,6 +536,7 @@
   },
   {
    "id": "biff-2026-f89768",
+   "idx": 89768,
    "cIdx": 432,
    "title": "No Good Men",
    "director": "Shahrbanoo SADAT",
@@ -526,6 +548,7 @@
   },
   {
    "id": "biff-2026-f89841",
+   "idx": 89841,
    "cIdx": 432,
    "title": "Not a Hero",
    "director": "Rima DAS",
@@ -537,6 +560,7 @@
   },
   {
    "id": "biff-2026-f89788",
+   "idx": 89788,
    "cIdx": 432,
    "title": "Promised Spaces",
    "director": "Ivan MARKOVIĆ",
@@ -548,6 +572,7 @@
   },
   {
    "id": "biff-2026-f91205",
+   "idx": 91205,
    "cIdx": 432,
    "title": "Spirit Guardians: The Last Secret Of The First Emperor",
    "director": "NGUYEN PHAN Quang Binh",
@@ -559,6 +584,7 @@
   },
   {
    "id": "biff-2026-f91174",
+   "idx": 91174,
    "cIdx": 432,
    "title": "The Burning Giants",
    "director": "Phuttiphong AROONPHENG",
@@ -570,6 +596,7 @@
   },
   {
    "id": "biff-2026-f90720",
+   "idx": 90720,
    "cIdx": 432,
    "title": "The Gate of Murder",
    "director": "KANAI Ko",
@@ -581,6 +608,7 @@
   },
   {
    "id": "biff-2026-f91128",
+   "idx": 91128,
    "cIdx": 432,
    "title": "The Soul Whisperer",
    "director": "Leo THADDEUS",
@@ -592,6 +620,7 @@
   },
   {
    "id": "biff-2026-f89822",
+   "idx": 89822,
    "cIdx": 432,
    "title": "Will You Still Be My Friend",
    "director": "LU Po-Shun",
@@ -603,6 +632,7 @@
   },
   {
    "id": "biff-2026-f90388",
+   "idx": 90388,
    "cIdx": 432,
    "title": "You, Like a Star",
    "director": "FUJII Michihito",
@@ -614,6 +644,7 @@
   },
   {
    "id": "biff-2026-f91170",
+   "idx": 91170,
    "cIdx": 442,
    "title": "Beach Fictions",
    "director": "LIM Hayeon",
@@ -625,6 +656,7 @@
   },
   {
    "id": "biff-2026-f84521",
+   "idx": 84521,
    "cIdx": 442,
    "title": "Between Two Lovers",
    "director": "HIROSE Nanako",
@@ -636,6 +668,7 @@
   },
   {
    "id": "biff-2026-f90003",
+   "idx": 90003,
    "cIdx": 442,
    "title": "Hilol",
    "director": "Botir ABDURAKHMANOV",
@@ -647,6 +680,7 @@
   },
   {
    "id": "biff-2026-f90984",
+   "idx": 90984,
    "cIdx": 442,
    "title": "IBUKU",
    "director": "Eddie CAHYONO",
@@ -658,6 +692,7 @@
   },
   {
    "id": "biff-2026-f91045",
+   "idx": 91045,
    "cIdx": 442,
    "title": "Long Long Night",
    "director": "YOUM Kyubock",
@@ -669,6 +704,7 @@
   },
   {
    "id": "biff-2026-f89787",
+   "idx": 89787,
    "cIdx": 442,
    "title": "Midday Meal",
    "director": "Majid MAJIDI",
@@ -680,6 +716,7 @@
   },
   {
    "id": "biff-2026-f89725",
+   "idx": 89725,
    "cIdx": 442,
    "title": "Satoko Always",
    "director": "OKITA Shuichi",
@@ -691,6 +728,7 @@
   },
   {
    "id": "biff-2026-f91136",
+   "idx": 91136,
    "cIdx": 442,
    "title": "Shaving",
    "director": "KIM Jung-hoon",
@@ -702,6 +740,7 @@
   },
   {
    "id": "biff-2026-f89875",
+   "idx": 89875,
    "cIdx": 442,
    "title": "silver express",
    "director": "TANAKA Miki",
@@ -713,6 +752,7 @@
   },
   {
    "id": "biff-2026-f90841",
+   "idx": 90841,
    "cIdx": 442,
    "title": "The Day After Sunday",
    "director": "KATO Takuya",
@@ -724,6 +764,7 @@
   },
   {
    "id": "biff-2026-f91147",
+   "idx": 91147,
    "cIdx": 442,
    "title": "The First Taste of Loneliness",
    "director": "GU You",
@@ -735,6 +776,7 @@
   },
   {
    "id": "biff-2026-f91155",
+   "idx": 91155,
    "cIdx": 442,
    "title": "The Sea Speaks His Name",
    "director": "Yosep Anggi NOEN",
@@ -746,6 +788,7 @@
   },
   {
    "id": "biff-2026-f89795",
+   "idx": 89795,
    "cIdx": 442,
    "title": "To Be Ordinary",
    "director": "LEE Yun Chan",
@@ -757,6 +800,7 @@
   },
   {
    "id": "biff-2026-f91234",
+   "idx": 91234,
    "cIdx": 435,
    "title": "A Day in the Life of Jo: Chapter Phaedra",
    "director": "Jacqueline LENTZOU",
@@ -768,6 +812,7 @@
   },
   {
    "id": "biff-2026-f89988",
+   "idx": 89988,
    "cIdx": 435,
    "title": "A Man of His Time",
    "director": "Emmanuel MARRE",
@@ -779,6 +824,7 @@
   },
   {
    "id": "biff-2026-f90242",
+   "idx": 90242,
    "cIdx": 435,
    "title": "Bedford Park",
    "director": "Stephanie AHN",
@@ -790,6 +836,7 @@
   },
   {
    "id": "biff-2026-f91089",
+   "idx": 91089,
    "cIdx": 435,
    "title": "Black Church Bay",
    "director": "Rhys Marc JONES",
@@ -801,6 +848,7 @@
   },
   {
    "id": "biff-2026-f91162",
+   "idx": 91162,
    "cIdx": 435,
    "title": "Eklipse",
    "director": "Manuel WETSCHER",
@@ -812,6 +860,7 @@
   },
   {
    "id": "biff-2026-f91185",
+   "idx": 91185,
    "cIdx": 435,
    "title": "Föa - Once Upon A Future",
    "director": "Margherita FERRARI",
@@ -823,6 +872,7 @@
   },
   {
    "id": "biff-2026-f90249",
+   "idx": 90249,
    "cIdx": 435,
    "title": "La Bola Negra",
    "director": "Javier CALVO, Javier AMBROSSI",
@@ -834,6 +884,7 @@
   },
   {
    "id": "biff-2026-f91153",
+   "idx": 91153,
    "cIdx": 435,
    "title": "Oasis",
    "director": "Jannis LENZ",
@@ -845,6 +896,7 @@
   },
   {
    "id": "biff-2026-f89773",
+   "idx": 89773,
    "cIdx": 435,
    "title": "Sad Girlz",
    "director": "Fernanda TOVAR",
@@ -856,6 +908,7 @@
   },
   {
    "id": "biff-2026-f90095",
+   "idx": 90095,
    "cIdx": 435,
    "title": "The Meltdown",
    "director": "Manuela MARTELLI",
@@ -867,6 +920,7 @@
   },
   {
    "id": "biff-2026-f91138",
+   "idx": 91138,
    "cIdx": 435,
    "title": "Titanic Ocean",
    "director": "Konstantina KOTZAMANI",
@@ -878,6 +932,7 @@
   },
   {
    "id": "biff-2026-f91188",
+   "idx": 91188,
    "cIdx": 435,
    "title": "What Belongs to Others",
    "director": "Grzegorz DĘBOWSKI",
@@ -889,6 +944,7 @@
   },
   {
    "id": "biff-2026-f91245",
+   "idx": 91245,
    "cIdx": 429,
    "title": "A Girl′s Story",
    "director": "Judith GODRÈCHE",
@@ -900,6 +956,7 @@
   },
   {
    "id": "biff-2026-f91182",
+   "idx": 91182,
    "cIdx": 429,
    "title": "All About Corinne",
    "director": "Marc FITOUSSI",
@@ -911,6 +968,7 @@
   },
   {
    "id": "biff-2026-f91134",
+   "idx": 91134,
    "cIdx": 429,
    "title": "Dora",
    "director": "July JUNG",
@@ -922,6 +980,7 @@
   },
   {
    "id": "biff-2026-f91125",
+   "idx": 91125,
    "cIdx": 429,
    "title": "It′s My Time",
    "director": "BAI Xue",
@@ -933,6 +992,7 @@
   },
   {
    "id": "biff-2026-f91123",
+   "idx": 91123,
    "cIdx": 429,
    "title": "Look Back",
    "director": "KOREEDA Hirokazu",
@@ -944,6 +1004,7 @@
   },
   {
    "id": "biff-2026-f91279",
+   "idx": 91279,
    "cIdx": 429,
    "title": "PARADISE LOST",
    "director": "YEON Sang-ho",
@@ -955,6 +1016,7 @@
   },
   {
    "id": "biff-2026-f91192",
+   "idx": 91192,
    "cIdx": 430,
    "title": "A Long Winter",
    "director": "Andrew HAIGH",
@@ -966,6 +1028,7 @@
   },
   {
    "id": "biff-2026-f91097",
+   "idx": 91097,
    "cIdx": 430,
    "title": "All of a Sudden",
    "director": "HAMAGUCHI Ryusuke",
@@ -977,6 +1040,7 @@
   },
   {
    "id": "biff-2026-f91144",
+   "idx": 91144,
    "cIdx": 430,
    "title": "Back to Buenos Aires",
    "director": "Marco BECHIS",
@@ -988,6 +1052,7 @@
   },
   {
    "id": "biff-2026-f90119",
+   "idx": 90119,
    "cIdx": 430,
    "title": "Bitter Christmas",
    "director": "Pedro ALMODÓVAR",
@@ -999,6 +1064,7 @@
   },
   {
    "id": "biff-2026-f91151",
+   "idx": 91151,
    "cIdx": 430,
    "title": "Bucking Fastard",
    "director": "Werner HERZOG",
@@ -1010,6 +1076,7 @@
   },
   {
    "id": "biff-2026-f90305",
+   "idx": 90305,
    "cIdx": 430,
    "title": "Coward",
    "director": "Lukas DHONT",
@@ -1021,6 +1088,7 @@
   },
   {
    "id": "biff-2026-f91206",
+   "idx": 91206,
    "cIdx": 430,
    "title": "Dust",
    "director": "TSAI Ming-liang",
@@ -1032,6 +1100,7 @@
   },
   {
    "id": "biff-2026-f90251",
+   "idx": 90251,
    "cIdx": 430,
    "title": "Fatherland",
    "director": "Paweł PAWLIKOWSKI",
@@ -1043,6 +1112,7 @@
   },
   {
    "id": "biff-2026-f90300",
+   "idx": 90300,
    "cIdx": 430,
    "title": "Fjord",
    "director": "Cristian MUNGIU",
@@ -1054,6 +1124,7 @@
   },
   {
    "id": "biff-2026-f91152",
+   "idx": 91152,
    "cIdx": 430,
    "title": "From Inside Out - The Architecture of Peter Zumthor",
    "director": "Wim WENDERS",
@@ -1065,6 +1136,7 @@
   },
   {
    "id": "biff-2026-f91201",
+   "idx": 91201,
    "cIdx": 430,
    "title": "It Will Happen Tonight",
    "director": "Nanni MORETTI",
@@ -1076,6 +1148,7 @@
   },
   {
    "id": "biff-2026-f91195",
+   "idx": 91195,
    "cIdx": 430,
    "title": "Let Us Through, Dear Ancestors",
    "director": "Lav DIAZ",
@@ -1087,6 +1160,7 @@
   },
   {
    "id": "biff-2026-f90312",
+   "idx": 90312,
    "cIdx": 430,
    "title": "Minotaur",
    "director": "Andrey ZVYAGINTSEV",
@@ -1098,6 +1172,7 @@
   },
   {
    "id": "biff-2026-f91159",
+   "idx": 91159,
    "cIdx": 430,
    "title": "Mother Mary",
    "director": "David LOWERY",
@@ -1109,6 +1184,7 @@
   },
   {
    "id": "biff-2026-f90250",
+   "idx": 90250,
    "cIdx": 430,
    "title": "Moulin",
    "director": "László NEMES",
@@ -1120,6 +1196,7 @@
   },
   {
    "id": "biff-2026-f89793",
+   "idx": 89793,
    "cIdx": 430,
    "title": "My Wife Cries",
    "director": "Angela SCHANELEC",
@@ -1131,6 +1208,7 @@
   },
   {
    "id": "biff-2026-f90715",
+   "idx": 90715,
    "cIdx": 430,
    "title": "Nagi Notes",
    "director": "FUKADA Koji",
@@ -1142,6 +1220,7 @@
   },
   {
    "id": "biff-2026-f91135",
+   "idx": 91135,
    "cIdx": 430,
    "title": "Nowhere to Lay My Eyes",
    "director": "HONG Sangsoo",
@@ -1153,6 +1232,7 @@
   },
   {
    "id": "biff-2026-f89993",
+   "idx": 89993,
    "cIdx": 430,
    "title": "Orange-Flavoured Wedding",
    "director": "Christophe HONORÉ",
@@ -1164,6 +1244,7 @@
   },
   {
    "id": "biff-2026-f89791",
+   "idx": 89791,
    "cIdx": 430,
    "title": "Paper Tiger",
    "director": "James GRAY",
@@ -1175,6 +1256,7 @@
   },
   {
    "id": "biff-2026-f90245",
+   "idx": 90245,
    "cIdx": 430,
    "title": "Parallel Tales",
    "director": "Asghar FARHADI",
@@ -1186,6 +1268,7 @@
   },
   {
    "id": "biff-2026-f91115",
+   "idx": 91115,
    "cIdx": 430,
    "title": "Possible Love",
    "director": "LEE Chang-dong",
@@ -1197,6 +1280,7 @@
   },
   {
    "id": "biff-2026-f91167",
+   "idx": 91167,
    "cIdx": 430,
    "title": "Ray Gunn",
    "director": "Brad BIRD",
@@ -1208,6 +1292,7 @@
   },
   {
    "id": "biff-2026-f89990",
+   "idx": 89990,
    "cIdx": 430,
    "title": "Red Rocks",
    "director": "Bruno DUMONT",
@@ -1219,6 +1304,7 @@
   },
   {
    "id": "biff-2026-f91150",
+   "idx": 91150,
    "cIdx": 430,
    "title": "Roma Elastica",
    "director": "Bertrand MANDICO",
@@ -1230,6 +1316,7 @@
   },
   {
    "id": "biff-2026-f91160",
+   "idx": 91160,
    "cIdx": 430,
    "title": "Tender Loving Care",
    "director": "Mike LEIGH",
@@ -1241,6 +1328,7 @@
   },
   {
    "id": "biff-2026-f91157",
+   "idx": 91157,
    "cIdx": 430,
    "title": "Thanks for Coming",
    "director": "Alain CAVALIER",
@@ -1252,6 +1340,7 @@
   },
   {
    "id": "biff-2026-f90564",
+   "idx": 90564,
    "cIdx": 430,
    "title": "The Beloved",
    "director": "Rodrigo SOROGOYEN",
@@ -1263,6 +1352,7 @@
   },
   {
    "id": "biff-2026-f91119",
+   "idx": 91119,
    "cIdx": 430,
    "title": "The Diary of a Chambermaid",
    "director": "Radu JUDE",
@@ -1274,6 +1364,7 @@
   },
   {
    "id": "biff-2026-f91095",
+   "idx": 91095,
    "cIdx": 430,
    "title": "The Echo Chamber",
    "director": "Andrea PALLAORO",
@@ -1285,6 +1376,7 @@
   },
   {
    "id": "biff-2026-f91139",
+   "idx": 91139,
    "cIdx": 430,
    "title": "The Man I Love",
    "director": "Ira SACHS",
@@ -1296,6 +1388,7 @@
   },
   {
    "id": "biff-2026-f90120",
+   "idx": 90120,
    "cIdx": 430,
    "title": "The Unknown",
    "director": "Arthur HARARI",
@@ -1307,6 +1400,7 @@
   },
   {
    "id": "biff-2026-f90557",
+   "idx": 90557,
    "cIdx": 430,
    "title": "Wild Horse Nine",
    "director": "Martin MCDONAGH",
@@ -1318,6 +1412,7 @@
   },
   {
    "id": "biff-2026-f89839",
+   "idx": 89839,
    "cIdx": 430,
    "title": "Yellow Letters",
    "director": "İlker ÇATAK",
@@ -1329,6 +1424,7 @@
   },
   {
    "id": "biff-2026-f90752",
+   "idx": 90752,
    "cIdx": 430,
    "title": "zi",
    "director": "Kogonada",
@@ -1340,6 +1436,7 @@
   },
   {
    "id": "biff-2026-f90758",
+   "idx": 90758,
    "cIdx": 433,
    "title": "Final Interview",
    "director": "KIM Joung-hoon",
@@ -1351,6 +1448,7 @@
   },
   {
    "id": "biff-2026-f91187",
+   "idx": 91187,
    "cIdx": 433,
    "title": "HOPE",
    "director": "NA Hong-jin",
@@ -1362,6 +1460,7 @@
   },
   {
    "id": "biff-2026-f90780",
+   "idx": 90780,
    "cIdx": 433,
    "title": "SINNER",
    "director": "HONG Sung-min",
@@ -1373,6 +1472,7 @@
   },
   {
    "id": "biff-2026-f91230",
+   "idx": 91230,
    "cIdx": 433,
    "title": "Still Shining",
    "director": "SONG Il-gon",
@@ -1384,6 +1484,7 @@
   },
   {
    "id": "biff-2026-f91158",
+   "idx": 91158,
    "cIdx": 433,
    "title": "The World Before",
    "director": "YOON Dan-bi",
@@ -1395,6 +1496,7 @@
   },
   {
    "id": "biff-2026-f86121",
+   "idx": 86121,
    "cIdx": 433,
    "title": "Ugly Duckling Ms. Maeng",
    "director": "LEE Yong-jae",
@@ -1406,6 +1508,7 @@
   },
   {
    "id": "biff-2026-f91120",
+   "idx": 91120,
    "cIdx": 433,
    "title": "Cattle Run",
    "director": "KIM Ji-hyun",
@@ -1417,6 +1520,7 @@
   },
   {
    "id": "biff-2026-f90357",
+   "idx": 90357,
    "cIdx": 433,
    "title": "Sapiens",
    "director": "LEE Hu-bin",
@@ -1428,6 +1532,7 @@
   },
   {
    "id": "biff-2026-f90313",
+   "idx": 90313,
    "cIdx": 433,
    "title": "The Sorry Generation",
    "director": "KIM Sung-yoon",
@@ -1439,6 +1544,7 @@
   },
   {
    "id": "biff-2026-f91178",
+   "idx": 91178,
    "cIdx": 438,
    "title": "Angel′s Egg",
    "director": "OSHII Mamoru",
@@ -1450,6 +1556,7 @@
   },
   {
    "id": "biff-2026-f91133",
+   "idx": 91133,
    "cIdx": 438,
    "title": "Jim Queen",
    "director": "Marco NGUYEN, Nicolas ATHANÉ",
@@ -1461,6 +1568,7 @@
   },
   {
    "id": "biff-2026-f91197",
+   "idx": 91197,
    "cIdx": 438,
    "title": "L’Autre",
    "director": "Alexandre FRANCHI",
@@ -1472,6 +1580,7 @@
   },
   {
    "id": "biff-2026-f91241",
+   "idx": 91241,
    "cIdx": 438,
    "title": "Red Thread",
    "director": "Ham TRAN",
@@ -1483,6 +1592,7 @@
   },
   {
    "id": "biff-2026-f90357",
+   "idx": 90357,
    "cIdx": 438,
    "title": "Sapiens",
    "director": "LEE Hu-bin",
@@ -1494,6 +1604,7 @@
   },
   {
    "id": "biff-2026-f89770",
+   "idx": 89770,
    "cIdx": 438,
    "title": "The Chain of Roses",
    "director": "SATO Sakichi",
@@ -1505,6 +1616,7 @@
   },
   {
    "id": "biff-2026-f91181",
+   "idx": 91181,
    "cIdx": 438,
    "title": "The Scar-Faced Cat: Way of Asura",
    "director": "WANG I-Fan",
@@ -1516,6 +1628,7 @@
   },
   {
    "id": "biff-2026-f91100",
+   "idx": 91100,
    "cIdx": 438,
    "title": "The Spiral",
    "director": "Paolo STRIPPOLI",
@@ -1527,6 +1640,7 @@
   },
   {
    "id": "biff-2026-f89479",
+   "idx": 89479,
    "cIdx": 438,
    "title": "Welcome to Dolly′s House",
    "director": "Seven YCH, Rady FU, Tree MUTA",
@@ -1538,6 +1652,7 @@
   },
   {
    "id": "biff-2026-f91114",
+   "idx": 91114,
    "cIdx": 439,
    "title": "Dead-End Job",
    "director": "KIM Da-min",
@@ -1549,6 +1664,7 @@
   },
   {
    "id": "biff-2026-f91109",
+   "idx": 91109,
    "cIdx": 439,
    "title": "The Blue Road",
    "director": "HAN Jun-hee",
@@ -1560,6 +1676,7 @@
   },
   {
    "id": "biff-2026-f91107",
+   "idx": 91107,
    "cIdx": 439,
    "title": "The Remarried Empress",
    "director": "CHO Suwon",
@@ -1571,6 +1688,7 @@
   },
   {
    "id": "biff-2026-f91182",
+   "idx": 91182,
    "cIdx": 437,
    "title": "All About Corinne",
    "director": "Marc FITOUSSI",
@@ -1582,6 +1700,7 @@
   },
   {
    "id": "biff-2026-f91127",
+   "idx": 91127,
    "cIdx": 437,
    "title": "In the Clear Moonlit Dusk",
    "director": "TAKEMURA Kentaro",
@@ -1593,6 +1712,7 @@
   },
   {
    "id": "biff-2026-f91180",
+   "idx": 91180,
    "cIdx": 437,
    "title": "Inherit",
    "director": "Banjong PISANTHANAKUN",
@@ -1604,6 +1724,7 @@
   },
   {
    "id": "biff-2026-f91156",
+   "idx": 91156,
    "cIdx": 437,
    "title": "Just an Illusion",
    "director": "Éric TOLEDANO, Olivier NAKACHE",
@@ -1615,6 +1736,7 @@
   },
   {
    "id": "biff-2026-f91123",
+   "idx": 91123,
    "cIdx": 437,
    "title": "Look Back",
    "director": "KOREEDA Hirokazu",
@@ -1626,6 +1748,7 @@
   },
   {
    "id": "biff-2026-f90313",
+   "idx": 90313,
    "cIdx": 437,
    "title": "The Sorry Generation",
    "director": "KIM Sung-yoon",
@@ -1637,6 +1760,7 @@
   },
   {
    "id": "biff-2026-f91100",
+   "idx": 91100,
    "cIdx": 437,
    "title": "The Spiral",
    "director": "Paolo STRIPPOLI",
@@ -1648,6 +1772,7 @@
   },
   {
    "id": "biff-2026-f87906",
+   "idx": 87906,
    "cIdx": 437,
    "title": "The Violinist",
    "director": "Ervin HAN, Raúl GARCÍA",
@@ -1659,6 +1784,7 @@
   },
   {
    "id": "biff-2026-f91137",
+   "idx": 91137,
    "cIdx": 428,
    "title": "The Table: Day and Night",
    "director": "KIM Jong-kwan",
@@ -1670,6 +1796,7 @@
   },
   {
    "id": "biff-2026-f91165",
+   "idx": 91165,
    "cIdx": 440,
    "title": "Everything Everywhere All at Once",
    "director": "Daniel KWAN, Daniel SCHEINERT",
@@ -1681,6 +1808,7 @@
   },
   {
    "id": "biff-2026-f91125",
+   "idx": 91125,
    "cIdx": 440,
    "title": "It′s My Time",
    "director": "BAI Xue",
@@ -1692,6 +1820,7 @@
   },
   {
    "id": "biff-2026-f91169",
+   "idx": 91169,
    "cIdx": 440,
    "title": "Reign of Assassins",
    "director": "SU Chao-Pin, John WOO",
@@ -1703,6 +1832,7 @@
   },
   {
    "id": "biff-2026-f91166",
+   "idx": 91166,
    "cIdx": 440,
    "title": "Sandiwara",
    "director": "Sean BAKER",
@@ -1714,6 +1844,7 @@
   },
   {
    "id": "biff-2026-f91098",
+   "idx": 91098,
    "cIdx": 440,
    "title": "A New Dawn",
    "director": "SHINOMIYA Yoshitoshi",
@@ -1725,6 +1856,7 @@
   },
   {
    "id": "biff-2026-f91178",
+   "idx": 91178,
    "cIdx": 440,
    "title": "Angel′s Egg",
    "director": "OSHII Mamoru",
@@ -1736,6 +1868,7 @@
   },
   {
    "id": "biff-2026-f91236",
+   "idx": 91236,
    "cIdx": 440,
    "title": "Belladonna of Sadness",
    "director": "YAMAMOTO Eiichi",
@@ -1747,6 +1880,7 @@
   },
   {
    "id": "biff-2026-f91154",
+   "idx": 91154,
    "cIdx": 440,
    "title": "ghost – end of night",
    "director": "NATSUME Shingo",
@@ -1758,6 +1892,7 @@
   },
   {
    "id": "biff-2026-f91238",
+   "idx": 91238,
    "cIdx": 440,
    "title": "Kakurenbo",
    "director": "MORITA Shuhei",
@@ -1769,6 +1904,7 @@
   },
   {
    "id": "biff-2026-f91247",
+   "idx": 91247,
    "cIdx": 440,
    "title": "MEMORIES",
    "director": "OTOMO Katsuhiro, MORIMOTO Koji, OKAMURA Tensai",
@@ -1780,6 +1916,7 @@
   },
   {
    "id": "biff-2026-f91246",
+   "idx": 91246,
    "cIdx": 440,
    "title": "Metropolis",
    "director": "Rintaro",
@@ -1791,6 +1928,7 @@
   },
   {
    "id": "biff-2026-f91177",
+   "idx": 91177,
    "cIdx": 440,
    "title": "MIND GAME",
    "director": "YUASA Masaaki",
@@ -1802,6 +1940,7 @@
   },
   {
    "id": "biff-2026-f91200",
+   "idx": 91200,
    "cIdx": 440,
    "title": "Phoenix 2772（Space Firebird）",
    "director": "TEZUKA Osamu",
@@ -1813,6 +1952,7 @@
   },
   {
    "id": "biff-2026-f91099",
+   "idx": 91099,
    "cIdx": 440,
    "title": "Shiranui",
    "director": "KATANOSAKA Ryo",
@@ -1824,6 +1964,7 @@
   },
   {
    "id": "biff-2026-f91176",
+   "idx": 91176,
    "cIdx": 440,
    "title": "The King and the Mockingbird",
    "director": "Paul GRIMAULT",
@@ -1835,6 +1976,7 @@
   },
   {
    "id": "biff-2026-f91146",
+   "idx": 91146,
    "cIdx": 440,
    "title": "The White Snake Enchantress",
    "director": "YABUSHITA Taiji",
@@ -1846,6 +1988,7 @@
   },
   {
    "id": "biff-2026-f91143",
+   "idx": 91143,
    "cIdx": 440,
    "title": "We Are Aliens",
    "director": "KADOWAKI Kohei",
@@ -1857,6 +2000,7 @@
   },
   {
    "id": "biff-2026-f90034",
+   "idx": 90034,
    "cIdx": 440,
    "title": "A Fine, Windy Day",
    "director": "LEE Jang-ho",
@@ -1868,6 +2012,7 @@
   },
   {
    "id": "biff-2026-f90037",
+   "idx": 90037,
    "cIdx": 440,
    "title": "Chil-su and Man-su",
    "director": "PARK Kwang-su",
@@ -1879,6 +2024,7 @@
   },
   {
    "id": "biff-2026-f91204",
+   "idx": 91204,
    "cIdx": 440,
    "title": "Festival",
    "director": "IM Kwon-taek",
@@ -1890,6 +2036,7 @@
   },
   {
    "id": "biff-2026-f90038",
+   "idx": 90038,
    "cIdx": 440,
    "title": "Gagman",
    "director": "LEE Myung-Se",
@@ -1901,6 +2048,7 @@
   },
   {
    "id": "biff-2026-f90036",
+   "idx": 90036,
    "cIdx": 440,
    "title": "Whale Hunting",
    "director": "BAE Chang-ho",
@@ -1912,6 +2060,7 @@
   },
   {
    "id": "biff-2026-f90039",
+   "idx": 90039,
    "cIdx": 440,
    "title": "White Badge",
    "director": "CHUNG Jiyoung",
@@ -1923,6 +2072,7 @@
   },
   {
    "id": "biff-2026-f91189",
+   "idx": 91189,
    "cIdx": 441,
    "title": "Bus Stop",
    "director": "Joshua LOGAN",
@@ -1934,6 +2084,7 @@
   },
   {
    "id": "biff-2026-f91257",
+   "idx": 91257,
    "cIdx": 441,
    "title": "Cold War 1994",
    "director": "Longman LEUNG",
@@ -1945,6 +2096,7 @@
   },
   {
    "id": "biff-2026-f89213",
+   "idx": 89213,
    "cIdx": 441,
    "title": "Flesh Impact",
    "director": "Maggie GYLLENHAAL",
@@ -1956,6 +2108,7 @@
   },
   {
    "id": "biff-2026-f91282",
+   "idx": 91282,
    "cIdx": 441,
    "title": "Gravity",
    "director": "Alfonso CUARÓN",
@@ -1967,6 +2120,7 @@
   },
   {
    "id": "biff-2026-f91113",
+   "idx": 91113,
    "cIdx": 441,
    "title": "M (4K Remastering)",
    "director": "LEE Myung-Se",
@@ -1978,6 +2132,7 @@
   },
   {
    "id": "biff-2026-f91239",
+   "idx": 91239,
    "cIdx": 441,
    "title": "Mad Max",
    "director": "George MILLER",
@@ -1989,6 +2144,7 @@
   },
   {
    "id": "biff-2026-f91280",
+   "idx": 91280,
    "cIdx": 441,
    "title": "Melancholia",
    "director": "Lars von TRIER",
@@ -2000,6 +2156,7 @@
   },
   {
    "id": "biff-2026-f91243",
+   "idx": 91243,
    "cIdx": 441,
    "title": "The Handmaiden",
    "director": "PARK Chan-wook",
@@ -2011,6 +2168,7 @@
   },
   {
    "id": "biff-2026-f91242",
+   "idx": 91242,
    "cIdx": 441,
    "title": "Three Colours: Blue",
    "director": "Krzysztof KIESLOWSKI",
@@ -2022,6 +2180,7 @@
   },
   {
    "id": "biff-2026-f90515",
+   "idx": 90515,
    "cIdx": 431,
    "title": "1982",
    "director": "NGUYỄN Hoàng điệp",
@@ -2033,6 +2192,7 @@
   },
   {
    "id": "biff-2026-f90187",
+   "idx": 90187,
    "cIdx": 431,
    "title": "After the Song",
    "director": "KUMAMOTO Ryohei",
@@ -2044,6 +2204,7 @@
   },
   {
    "id": "biff-2026-f90501",
+   "idx": 90501,
    "cIdx": 431,
    "title": "Birds in the Dark",
    "director": "Shashank WALIA",
@@ -2055,6 +2216,7 @@
   },
   {
    "id": "biff-2026-f91202",
+   "idx": 91202,
    "cIdx": 431,
    "title": "Bua",
    "director": "Inthira CHAROENPURA, Phensiri KLANGSURIN",
@@ -2066,6 +2228,7 @@
   },
   {
    "id": "biff-2026-f89759",
+   "idx": 89759,
    "cIdx": 431,
    "title": "Dead End",
    "director": "Isabella LAM Lok-hin",
@@ -2077,6 +2240,7 @@
   },
   {
    "id": "biff-2026-f84111",
+   "idx": 84111,
    "cIdx": 431,
    "title": "Hinotama: Ball of Fire",
    "director": "YAZA Takenoshin",
@@ -2088,6 +2252,7 @@
   },
   {
    "id": "biff-2026-f91175",
+   "idx": 91175,
    "cIdx": 431,
    "title": "Ria",
    "director": "Arvin BELARMINO",
@@ -2099,6 +2264,7 @@
   },
   {
    "id": "biff-2026-f91096",
+   "idx": 91096,
    "cIdx": 431,
    "title": "Selvi",
    "director": "Sailesh RATHNAKUMAR",
@@ -2110,6 +2276,7 @@
   },
   {
    "id": "biff-2026-f90060",
+   "idx": 90060,
    "cIdx": 431,
    "title": "Slumber",
    "director": "Mani MOGHADDAM",
@@ -2121,6 +2288,7 @@
   },
   {
    "id": "biff-2026-f89688",
+   "idx": 89688,
    "cIdx": 431,
    "title": "The Cord",
    "director": "Darkhan TULEGENOV",
@@ -2132,6 +2300,7 @@
   },
   {
    "id": "biff-2026-f91124",
+   "idx": 91124,
    "cIdx": 431,
    "title": "There Will Be Snow",
    "director": "CHEN Jianying (Story)",
@@ -2143,6 +2312,7 @@
   },
   {
    "id": "biff-2026-f87783",
+   "idx": 87783,
    "cIdx": 431,
    "title": "Zogsool",
    "director": "SAKHYA Byamba",
@@ -2154,6 +2324,7 @@
   },
   {
    "id": "biff-2026-f85132",
+   "idx": 85132,
    "cIdx": 431,
    "title": "BALER",
    "director": "OH Sehyeon",
@@ -2165,6 +2336,7 @@
   },
   {
    "id": "biff-2026-f91030",
+   "idx": 91030,
    "cIdx": 431,
    "title": "Beyond Love′s Horizon",
    "director": "PARK Songyeol",
@@ -2176,6 +2348,7 @@
   },
   {
    "id": "biff-2026-f90791",
+   "idx": 90791,
    "cIdx": 431,
    "title": "Cosmic Trace",
    "director": "JANG Woojin",
@@ -2187,6 +2360,7 @@
   },
   {
    "id": "biff-2026-f91171",
+   "idx": 91171,
    "cIdx": 431,
    "title": "Earbug",
    "director": "KIM Hyomi",
@@ -2198,6 +2372,7 @@
   },
   {
    "id": "biff-2026-f91173",
+   "idx": 91173,
    "cIdx": 431,
    "title": "FULL MOON",
    "director": "JEONG Jihye",
@@ -2209,6 +2384,7 @@
   },
   {
    "id": "biff-2026-f91112",
+   "idx": 91112,
    "cIdx": 431,
    "title": "Not for You",
    "director": "SHIN Dongmin",
@@ -2220,6 +2396,7 @@
   },
   {
    "id": "biff-2026-f90308",
+   "idx": 90308,
    "cIdx": 431,
    "title": "Nothing Has Happened Yet",
    "director": "SHIN Sun",
@@ -2231,6 +2408,7 @@
   },
   {
    "id": "biff-2026-f91111",
+   "idx": 91111,
    "cIdx": 431,
    "title": "Some Detective",
    "director": "KIM Miyoung",
@@ -2242,6 +2420,7 @@
   },
   {
    "id": "biff-2026-f90158",
+   "idx": 90158,
    "cIdx": 431,
    "title": "Space",
    "director": "PARK Hong-min",
@@ -2253,6 +2432,7 @@
   },
   {
    "id": "biff-2026-f91073",
+   "idx": 91073,
    "cIdx": 431,
    "title": "The Birds",
    "director": "SOHN Hyun-lok",
@@ -2264,6 +2444,7 @@
   },
   {
    "id": "biff-2026-f91172",
+   "idx": 91172,
    "cIdx": 431,
    "title": "The Flower",
    "director": "KIM Si-jin",
@@ -2275,6 +2456,7 @@
   },
   {
    "id": "biff-2026-f89762",
+   "idx": 89762,
    "cIdx": 431,
    "title": "Things I Left at the Theater",
    "director": "PARK Kun-young",
@@ -2286,6 +2468,7 @@
   },
   {
    "id": "biff-2026-f84442",
+   "idx": 84442,
    "cIdx": 436,
    "title": "Beneath the Barren",
    "director": "Rajendra BUDHA",
@@ -2297,6 +2480,7 @@
   },
   {
    "id": "biff-2026-f87638",
+   "idx": 87638,
    "cIdx": 436,
    "title": "Chumpa: A Doll Under the Basket",
    "director": "Rajesh Prasad KHATRI",
@@ -2308,6 +2492,7 @@
   },
   {
    "id": "biff-2026-f87113",
+   "idx": 87113,
    "cIdx": 436,
    "title": "Downwind",
    "director": "CHEN Hung",
@@ -2319,6 +2504,7 @@
   },
   {
    "id": "biff-2026-f87001",
+   "idx": 87001,
    "cIdx": 436,
    "title": "Fatima",
    "director": "Soroush SHAHPOURI",
@@ -2330,6 +2516,7 @@
   },
   {
    "id": "biff-2026-f85457",
+   "idx": 85457,
    "cIdx": 436,
    "title": "In Our Panic",
    "director": "XU Jianming",
@@ -2341,6 +2528,7 @@
   },
   {
    "id": "biff-2026-f83436",
+   "idx": 83436,
    "cIdx": 436,
    "title": "Salt Electric",
    "director": "Paromita DHAR",
@@ -2352,6 +2540,7 @@
   },
   {
    "id": "biff-2026-f86619",
+   "idx": 86619,
    "cIdx": 436,
    "title": "She Said",
    "director": "Ivan TAN",
@@ -2363,6 +2552,7 @@
   },
   {
    "id": "biff-2026-f86452",
+   "idx": 86452,
    "cIdx": 436,
    "title": "The Things That Vanish",
    "director": "IKEDA Kenta",
@@ -2374,6 +2564,7 @@
   },
   {
    "id": "biff-2026-f88893",
+   "idx": 88893,
    "cIdx": 436,
    "title": "Wild No More",
    "director": "CHANG Ting Wei",
@@ -2385,6 +2576,7 @@
   },
   {
    "id": "biff-2026-f87852",
+   "idx": 87852,
    "cIdx": 436,
    "title": "αLPα",
    "director": "Dhiwangkara SETA",
@@ -2396,6 +2588,7 @@
   },
   {
    "id": "biff-2026-f83554",
+   "idx": 83554,
    "cIdx": 436,
    "title": "771 Days",
    "director": "Zainab ENTEZAR",
@@ -2407,6 +2600,7 @@
   },
   {
    "id": "biff-2026-f91028",
+   "idx": 91028,
    "cIdx": 436,
    "title": "A Woman Dancing on the Waves",
    "director": "CHOI Se-dam",
@@ -2418,6 +2612,7 @@
   },
   {
    "id": "biff-2026-f90746",
+   "idx": 90746,
    "cIdx": 436,
    "title": "ACROSS: Anatomy of the Forgotten War",
    "director": "KIM Ji",
@@ -2429,6 +2624,7 @@
   },
   {
    "id": "biff-2026-f90137",
+   "idx": 90137,
    "cIdx": 436,
    "title": "AGAAR",
    "director": "YANG Bo",
@@ -2440,6 +2636,7 @@
   },
   {
    "id": "biff-2026-f91015",
+   "idx": 91015,
    "cIdx": 436,
    "title": "Can I Talk to You?",
    "director": "YI Seungjun",
@@ -2451,6 +2648,7 @@
   },
   {
    "id": "biff-2026-f88907",
+   "idx": 88907,
    "cIdx": 436,
    "title": "Dreams of the Wild Oaks",
    "director": "Marjan KHOSRAVI",
@@ -2462,6 +2660,7 @@
   },
   {
    "id": "biff-2026-f91191",
+   "idx": 91191,
    "cIdx": 436,
    "title": "On the Road with Abbas Kiarostami",
    "director": "Seifollah SAMADIAN",
@@ -2473,6 +2672,7 @@
   },
   {
    "id": "biff-2026-f86111",
+   "idx": 86111,
    "cIdx": 436,
    "title": "Recovery",
    "director": "IM Yeonjeong",
@@ -2484,6 +2684,7 @@
   },
   {
    "id": "biff-2026-f86416",
+   "idx": 86416,
    "cIdx": 436,
    "title": "Revolving Lanterns",
    "director": "MATSUI Itaru",
@@ -2495,6 +2696,7 @@
   },
   {
    "id": "biff-2026-f90598",
+   "idx": 90598,
    "cIdx": 436,
    "title": "Soundweave",
    "director": "YOON Juyoung",
@@ -2506,6 +2708,7 @@
   },
   {
    "id": "biff-2026-f83199",
+   "idx": 83199,
    "cIdx": 436,
    "title": "58th",
    "director": "Carl Joseph PAPA",
@@ -2517,6 +2720,7 @@
   },
   {
    "id": "biff-2026-f91237",
+   "idx": 91237,
    "cIdx": 436,
    "title": "A Life of an Artist: Kwon Jinkyu",
    "director": "MIN Hwanki",
@@ -2528,6 +2732,7 @@
   },
   {
    "id": "biff-2026-f91019",
+   "idx": 91019,
    "cIdx": 436,
    "title": "Annyeong, Stellar",
    "director": "AHN Jee-hwan",
@@ -2539,6 +2744,7 @@
   },
   {
    "id": "biff-2026-f90424",
+   "idx": 90424,
    "cIdx": 436,
    "title": "Baby Jackfruit Baby Guava",
    "director": "NONG Nhat Quang",
@@ -2550,6 +2756,7 @@
   },
   {
    "id": "biff-2026-f89789",
+   "idx": 89789,
    "cIdx": 436,
    "title": "Birds of War",
    "director": "Janay BOULOS, Abd ALKADER HABAK",
@@ -2561,6 +2768,7 @@
   },
   {
    "id": "biff-2026-f91232",
+   "idx": 91232,
    "cIdx": 436,
    "title": "Colors of White Rock",
    "director": "Khoroldorj CHOIJOOVANCHIG",
@@ -2572,6 +2780,7 @@
   },
   {
    "id": "biff-2026-f91233",
+   "idx": 91233,
    "cIdx": 436,
    "title": "From Dawn to Dawn",
    "director": "Xisi Sofia YE CHEN",
@@ -2583,6 +2792,7 @@
   },
   {
    "id": "biff-2026-f90558",
+   "idx": 90558,
    "cIdx": 436,
    "title": "Gabin",
    "director": "Maxence VOISEUX",
@@ -2594,6 +2804,7 @@
   },
   {
    "id": "biff-2026-f91108",
+   "idx": 91108,
    "cIdx": 436,
    "title": "Homesick",
    "director": "Taekyung Tanja Inwol SØRENSEN",
@@ -2605,6 +2816,7 @@
   },
   {
    "id": "biff-2026-f91010",
+   "idx": 91010,
    "cIdx": 436,
    "title": "Kim Yun Shin Punches In",
    "director": "LIM Sun-ae",
@@ -2616,6 +2828,7 @@
   },
   {
    "id": "biff-2026-f90923",
+   "idx": 90923,
    "cIdx": 436,
    "title": "Our Wish, Our Colors",
    "director": "LEE Yeojin",
@@ -2627,6 +2840,7 @@
   },
   {
    "id": "biff-2026-f91148",
+   "idx": 91148,
    "cIdx": 436,
    "title": "Rehearsals for a Revolution",
    "director": "Pegah AHANGARANI",
@@ -2638,6 +2852,7 @@
   },
   {
    "id": "biff-2026-f90781",
+   "idx": 90781,
    "cIdx": 436,
    "title": "The Best Days",
    "director": "KIM Byoungsoo",
@@ -2649,6 +2864,7 @@
   },
   {
    "id": "biff-2026-f91163",
+   "idx": 91163,
    "cIdx": 436,
    "title": "Time and Tide",
    "director": "Vee SHI",
@@ -2660,6 +2876,7 @@
   },
   {
    "id": "biff-2026-f91193",
+   "idx": 91193,
    "cIdx": 436,
    "title": "Union Town",
    "director": "Barbara KOPPLE",
@@ -2671,6 +2888,7 @@
   },
   {
    "id": "biff-2026-f89439",
+   "idx": 89439,
    "cIdx": 436,
    "title": "Afternoon on the Bridge",
    "director": "HA Ji-hyung",
@@ -2682,6 +2900,7 @@
   },
   {
    "id": "biff-2026-f91110",
+   "idx": 91110,
    "cIdx": 436,
    "title": "All of Her",
    "director": "KIM Nam-hyeon",
@@ -2693,6 +2912,7 @@
   },
   {
    "id": "biff-2026-f89274",
+   "idx": 89274,
    "cIdx": 436,
    "title": "Amateur Energy",
    "director": "TAE Jiwon",
@@ -2704,6 +2924,7 @@
   },
   {
    "id": "biff-2026-f89248",
+   "idx": 89248,
    "cIdx": 436,
    "title": "An Uninvited Neighbor",
    "director": "CHO Haein",
@@ -2715,6 +2936,7 @@
   },
   {
    "id": "biff-2026-f89057",
+   "idx": 89057,
    "cIdx": 436,
    "title": "Baby Doe",
    "director": "CHO Heesoo",
@@ -2726,6 +2948,7 @@
   },
   {
    "id": "biff-2026-f86259",
+   "idx": 86259,
    "cIdx": 436,
    "title": "Dear Sunshine",
    "director": "GOO Jiyoon",
@@ -2737,6 +2960,7 @@
   },
   {
    "id": "biff-2026-f89025",
+   "idx": 89025,
    "cIdx": 436,
    "title": "Tale of Tails",
    "director": "SHIM Sujeong",
@@ -2748,6 +2972,7 @@
   },
   {
    "id": "biff-2026-f88809",
+   "idx": 88809,
    "cIdx": 436,
    "title": "The Boy Who Fell to Earth",
    "director": "JUNG Jaeseo",
@@ -2759,6 +2984,7 @@
   },
   {
    "id": "biff-2026-f88164",
+   "idx": 88164,
    "cIdx": 436,
    "title": "The Distant Home",
    "director": "GONG Seonjeong",
@@ -2770,6 +2996,7 @@
   },
   {
    "id": "biff-2026-f88759",
+   "idx": 88759,
    "cIdx": 436,
    "title": "The Variety",
    "director": "CHANG Hyungyun",
@@ -2781,6 +3008,7 @@
   },
   {
    "id": "biff-2026-f89453",
+   "idx": 89453,
    "cIdx": 436,
    "title": "TOE′S",
    "director": "YUN Taerang",
@@ -2792,6 +3020,7 @@
   },
   {
    "id": "biff-2026-f86296",
+   "idx": 86296,
    "cIdx": 436,
    "title": "Tomato Pasta Recipe",
    "director": "AN Whae",
@@ -2803,6 +3032,7 @@
   },
   {
    "id": "biff-2026-f91131",
+   "idx": 91131,
    "cIdx": 434,
    "title": "A Good Little Soldier",
    "director": "Stéphane BRIZÉ",
@@ -2814,6 +3044,7 @@
   },
   {
    "id": "biff-2026-f91130",
+   "idx": 91130,
    "cIdx": 434,
    "title": "A Place to Heal",
    "director": "Cédric KAHN",
@@ -2825,6 +3056,7 @@
   },
   {
    "id": "biff-2026-f90026",
+   "idx": 90026,
    "cIdx": 434,
    "title": "Ben′imana",
    "director": "Marie-Clémentine DUSABEJAMBO",
@@ -2836,6 +3068,7 @@
   },
   {
    "id": "biff-2026-f91203",
+   "idx": 91203,
    "cIdx": 434,
    "title": "By Any Means",
    "director": "Elegance BRATTON",
@@ -2847,6 +3080,7 @@
   },
   {
    "id": "biff-2026-f91142",
+   "idx": 91142,
    "cIdx": 434,
    "title": "Campeón Gabacho",
    "director": "Jonás CUARÓN",
@@ -2858,6 +3092,7 @@
   },
   {
    "id": "biff-2026-f91132",
+   "idx": 91132,
    "cIdx": 434,
    "title": "Clarissa",
    "director": "Arie ESIRI, Chuko ESIRI",
@@ -2869,6 +3104,7 @@
   },
   {
    "id": "biff-2026-f91104",
+   "idx": 91104,
    "cIdx": 434,
    "title": "Club Kid",
    "director": "Jordan FIRSTMAN",
@@ -2880,6 +3116,7 @@
   },
   {
    "id": "biff-2026-f91168",
+   "idx": 91168,
    "cIdx": 434,
    "title": "Deep Blue",
    "director": "Ernesto Maria CENSORI",
@@ -2891,6 +3128,7 @@
   },
   {
    "id": "biff-2026-f91103",
+   "idx": 91103,
    "cIdx": 434,
    "title": "Everybody Digs Bill Evans",
    "director": "Grant GEE",
@@ -2902,6 +3140,7 @@
   },
   {
    "id": "biff-2026-f89989",
+   "idx": 89989,
    "cIdx": 434,
    "title": "Everytime",
    "director": "Sandra WOLLNER",
@@ -2913,6 +3152,7 @@
   },
   {
    "id": "biff-2026-f90241",
+   "idx": 90241,
    "cIdx": 434,
    "title": "Gentle Monster",
    "director": "Marie KREUTZER",
@@ -2924,6 +3164,7 @@
   },
   {
    "id": "biff-2026-f91054",
+   "idx": 91054,
    "cIdx": 434,
    "title": "Goodbye Cruel World",
    "director": "Félix DE GIVRY",
@@ -2935,6 +3176,7 @@
   },
   {
    "id": "biff-2026-f91231",
+   "idx": 91231,
    "cIdx": 434,
    "title": "I Rarely Wake Up Dreaming",
    "director": "Isabelle STEVER",
@@ -2946,6 +3188,7 @@
   },
   {
    "id": "biff-2026-f91105",
+   "idx": 91105,
    "cIdx": 434,
    "title": "In Waves",
    "director": "NGUYEN Phuong Mai",
@@ -2957,6 +3200,7 @@
   },
   {
    "id": "biff-2026-f91057",
+   "idx": 91057,
    "cIdx": 434,
    "title": "Iron Boy",
    "director": "Louis CLICHY",
@@ -2968,6 +3212,7 @@
   },
   {
    "id": "biff-2026-f91133",
+   "idx": 91133,
    "cIdx": 434,
    "title": "Jim Queen",
    "director": "Marco NGUYEN, Nicolas ATHANÉ",
@@ -2979,6 +3224,7 @@
   },
   {
    "id": "biff-2026-f90315",
+   "idx": 90315,
    "cIdx": 434,
    "title": "La Gradiva",
    "director": "Marine ATLAN",
@@ -2990,6 +3236,7 @@
   },
   {
    "id": "biff-2026-f89879",
+   "idx": 89879,
    "cIdx": 434,
    "title": "La Perra",
    "director": "Dominga SOTOMAYOR",
@@ -3001,6 +3248,7 @@
   },
   {
    "id": "biff-2026-f91199",
+   "idx": 91199,
    "cIdx": 434,
    "title": "Pressure",
    "director": "Anthony MARAS",
@@ -3012,6 +3260,7 @@
   },
   {
    "id": "biff-2026-f89792",
+   "idx": 89792,
    "cIdx": 434,
    "title": "Queen at Sea",
    "director": "Lance HAMMER",
@@ -3023,6 +3272,7 @@
   },
   {
    "id": "biff-2026-f91149",
+   "idx": 91149,
    "cIdx": 434,
    "title": "Rose",
    "director": "Markus SCHLEINZER",
@@ -3034,6 +3284,7 @@
   },
   {
    "id": "biff-2026-f89769",
+   "idx": 89769,
    "cIdx": 434,
    "title": "Salvation",
    "director": "Emin ALPER",
@@ -3045,6 +3296,7 @@
   },
   {
    "id": "biff-2026-f90592",
+   "idx": 90592,
    "cIdx": 434,
    "title": "Sense and Sensibility",
    "director": "Georgia OAKLEY",
@@ -3056,6 +3308,7 @@
   },
   {
    "id": "biff-2026-f91186",
+   "idx": 91186,
    "cIdx": 434,
    "title": "Skintown",
    "director": "Kieron J WALSH",
@@ -3067,6 +3320,7 @@
   },
   {
    "id": "biff-2026-f91145",
+   "idx": 91145,
    "cIdx": 434,
    "title": "The Fire Within You",
    "director": "Edoardo DE ANGELIS",
@@ -3078,6 +3332,7 @@
   },
   {
    "id": "biff-2026-f91101",
+   "idx": 91101,
    "cIdx": 434,
    "title": "The Guest",
    "director": "Mads MENGEL",
@@ -3089,6 +3344,7 @@
   },
   {
    "id": "biff-2026-f90240",
+   "idx": 90240,
    "cIdx": 434,
    "title": "Too Many Beasts",
    "director": "Sarah ARNOLD",
@@ -3100,6 +3356,7 @@
   },
   {
    "id": "biff-2026-f91069",
+   "idx": 91069,
    "cIdx": 434,
    "title": "Viva Carmen",
    "director": "Sébastien LAUDENBACH",
@@ -3111,6 +3368,7 @@
   },
   {
    "id": "biff-2026-f91240",
+   "idx": 91240,
    "cIdx": 434,
    "title": "Woman Unknown",
    "director": "May EL-TOUKHY",
@@ -19717,6 +19975,7 @@
    "items": 7
   }
  ],
+ "warnings": [],
  "fetchedAt": "2026-10-31T13:34:26Z",
  "lastVerifiedAt": "2026-10-31T13:34:26Z",
  "dataSource": "official"

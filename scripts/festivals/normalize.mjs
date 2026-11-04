@@ -154,7 +154,13 @@ export function normalize({ festival, edition, raw }) {
 
   // ── 状态 ──
   const today = new Date().toLocaleDateString("en-CA", { timeZone: tz });
-  const lifecycle = today < edition.startDate ? "UPCOMING" : today > edition.endDate ? "ENDED" : "LIVE";
+  // Keep the registry start date as the baseline, but allow the actually
+  // observed schedule to extend the effective end date (official sites often
+  // announce later sessions before registry.json is updated).
+  const observedDates = screenings.map((s) => s.date).filter(Boolean).sort();
+  const observedEndDate = observedDates.at(-1) || edition.endDate;
+  const effectiveEndDate = observedEndDate > edition.endDate ? observedEndDate : edition.endDate;
+  const lifecycle = today < edition.startDate ? "UPCOMING" : today > effectiveEndDate ? "ENDED" : "LIVE";
   const datesStatus = "CONFIRMED";
   const programmeStatus = films.some((f) => f.inProgramme) ? "RELEASED" : "PENDING";
   const hasSchedule = screenings.some((s) => s.kind === "SCREENING");
@@ -189,9 +195,12 @@ export function normalize({ festival, edition, raw }) {
       id: edition.id,
       year: edition.year,
       startDate: edition.startDate,
-      endDate: edition.endDate,
+      endDate: effectiveEndDate,
       timezone: tz,
-      dayCount: daysBetween(edition.startDate, edition.endDate) + 1,
+      dayCount: daysBetween(edition.startDate, effectiveEndDate) + 1,
+      registryEndDate: edition.endDate,
+      endDateExtended: effectiveEndDate > edition.endDate,
+      dataEndDate: observedEndDate,
       officialUrl: edition.officialUrl || festival.officialUrl,
       // 用 ?? 而非 ||：programme-only 届次需显式设置 coverageMinDays: 0（0 不能被吞成 null）
       coverageMinDays: edition.coverageMinDays ?? null,
@@ -267,8 +276,14 @@ export function validate(store, previous) {
   for (const s of store.screenings) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(s.date)) errors.push(`bad date on ${s.id}: ${s.date}`);
     if (!/^\d{2}:\d{2}$/.test(s.localTime)) errors.push(`bad time on ${s.id}: ${s.localTime}`);
-    if (startDate && (s.date < startDate || s.date > endDate))
-      errors.push(`entry ${s.id} outside festival range (${s.date})`);
+    // Registered dates are a baseline, not a hard window. Only reject dates
+    // that are implausibly far from the registered period (likely parse errors).
+    if (startDate && (s.date < startDate || s.date > endDate)) {
+      const outsideDays = s.date < startDate
+        ? (Date.parse(startDate + "T00:00:00Z") - Date.parse(s.date + "T00:00:00Z")) / 86400000
+        : (Date.parse(s.date + "T00:00:00Z") - Date.parse(endDate + "T00:00:00Z")) / 86400000;
+      if (outsideDays > 365) errors.push(`entry ${s.id} outside festival range (${s.date})`);
+    }
     if (s.kind === "SCREENING" && !filmIds.has(s.filmId))
       errors.push(`screening ${s.id} references unknown film ${s.filmId}`);
     if (s.kind !== "SCREENING" && !s.title) errors.push(`entry ${s.id} (${s.kind}) has no title`);

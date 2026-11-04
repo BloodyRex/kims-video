@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-31T13:34:26Z",
- "today": "2026-10-31",
+ "updated": "2026-11-04T18:38:27.955Z",
+ "today": "2026-11-05",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
   "en": "Only festivals with verified official sources. Unannounced schedules are labelled, never left blank."
@@ -8,248 +8,14 @@
  "stats": {
   "festivals": 7,
   "blocked": 0,
-  "liveToday": 1,
-  "screeningsToday": 3,
+  "liveToday": 0,
+  "screeningsToday": 0,
   "eventsToday": 0,
   "upcoming": 1,
   "changes7d": 1000,
-  "venuesToday": 1
+  "venuesToday": 0
  },
  "festivals": [
-  {
-   "slug": "biff-2026",
-   "festivalId": "biff",
-   "name": {
-    "zh": "釜山国际电影节",
-    "en": "Busan International Film Festival"
-   },
-   "city": "Busan",
-   "country": "Korea, Republic of",
-   "countryCode": "KR",
-   "region": "ASIA",
-   "types": [
-    "FEATURE",
-    "DOCUMENTARY",
-    "ANIMATION",
-    "SHORT"
-   ],
-   "authorization": "testing",
-   "year": 2026,
-   "startDate": "2026-10-06",
-   "endDate": "2026-10-15",
-   "dayCount": 10,
-   "timezone": "Asia/Seoul",
-   "officialUrl": "https://www.biff.kr/eng/",
-   "lifecycle": "ENDED",
-   "status": "SCHEDULE_LIVE",
-   "statusDetail": {
-    "dates": "CONFIRMED",
-    "programme": "RELEASED",
-    "schedule": "LIVE"
-   },
-   "statusNote": {
-    "zh": null,
-    "en": null
-   },
-   "stats": {
-    "films": 255,
-    "filmsTotal": 255,
-    "screenings": 724,
-    "events": 18,
-    "pending": 8,
-    "entries": 750,
-    "venues": 26,
-    "sections": 15,
-    "days": 10,
-    "guestVisits": 312
-   },
-   "today": {
-    "date": "2026-10-31",
-    "screenings": 0,
-    "events": 0,
-    "entries": 0,
-    "venues": 0,
-    "guestVisits": 0,
-    "items": []
-   },
-   "nextScreeningDate": null,
-   "sources": [
-    {
-     "kind": "PROGRAMME",
-     "label": "Official programme (all films)",
-     "url": "https://www.biff.kr/eng/html/program/prog_all_list.asp?allYear=2026",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    },
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule — day1=6",
-     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=6",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    },
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule — day1=7",
-     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=7",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    },
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule — day1=8",
-     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    },
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule — day1=9",
-     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=9",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    },
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule — day1=10",
-     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=10",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    },
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule — day1=11",
-     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=11",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    },
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule — day1=12",
-     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=12",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    },
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule — day1=13",
-     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=13",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    },
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule — day1=14",
-     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    },
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule — day1=15",
-     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:26Z"
-    }
-   ],
-   "fetchedAt": "2026-10-31T13:34:26Z",
-   "lastVerifiedAt": "2026-10-31T13:34:26Z",
-   "dataAgeMinutes": 4,
-   "changes7d": 0,
-   "dataSource": "official"
-  },
-  {
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "name": {
-    "zh": "阿姆斯特丹国际纪录片电影节",
-    "en": "International Documentary Film Festival Amsterdam"
-   },
-   "city": "Amsterdam",
-   "country": "Netherlands",
-   "countryCode": "NL",
-   "region": "EUROPE",
-   "types": [
-    "FEATURE",
-    "DOCUMENTARY",
-    "SHORT",
-    "IMMERSIVE"
-   ],
-   "authorization": "testing",
-   "year": 2026,
-   "startDate": "2026-11-12",
-   "endDate": "2026-11-22",
-   "dayCount": 11,
-   "timezone": "Europe/Amsterdam",
-   "officialUrl": "https://festival.idfa.nl/en/",
-   "lifecycle": "UPCOMING",
-   "status": "SCHEDULE_LIVE",
-   "statusDetail": {
-    "dates": "CONFIRMED",
-    "programme": "RELEASED",
-    "schedule": "LIVE"
-   },
-   "statusNote": {
-    "zh": null,
-    "en": null
-   },
-   "stats": {
-    "films": 261,
-    "filmsTotal": 285,
-    "screenings": 1218,
-    "events": 294,
-    "pending": 0,
-    "entries": 1512,
-    "venues": 70,
-    "sections": 15,
-    "days": 11,
-    "guestVisits": 390
-   },
-   "today": {
-    "date": "2026-10-31",
-    "screenings": 0,
-    "events": 0,
-    "entries": 0,
-    "venues": 0,
-    "guestVisits": 0,
-    "items": []
-   },
-   "nextScreeningDate": "2026-11-12",
-   "sources": [
-    {
-     "kind": "SCHEDULE",
-     "label": "Official schedule (GraphQL, DAY × 11)",
-     "url": "https://my.idfa.nl/api/graphql/festival",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:32Z"
-    },
-    {
-     "kind": "PROGRAMME",
-     "label": "Official programme (GraphQL, searchFestivalFilms)",
-     "url": "https://my.idfa.nl/api/graphql/festival",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:34:32Z"
-    }
-   ],
-   "fetchedAt": "2026-10-31T13:34:32Z",
-   "lastVerifiedAt": "2026-10-31T13:34:32Z",
-   "dataAgeMinutes": 4,
-   "changes7d": 158,
-   "dataSource": "official"
-  },
   {
    "slug": "bfi-2026",
    "festivalId": "bfi",
@@ -275,6 +41,11 @@
    "timezone": "Europe/London",
    "officialUrl": "https://whatson.bfi.org.uk/lff/",
    "lifecycle": "ENDED",
+   "archive": {
+    "archived": true,
+    "archivedAt": "2026-10-18",
+    "dataEndDate": "2026-10-18"
+   },
    "status": "SCHEDULE_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -327,7 +98,7 @@
     ]
    },
    "today": {
-    "date": "2026-10-31",
+    "date": "2026-11-04",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -444,7 +215,263 @@
    ],
    "fetchedAt": "2026-10-31T13:34:42Z",
    "lastVerifiedAt": "2026-10-31T13:34:42Z",
-   "dataAgeMinutes": 3,
+   "dataAgeMinutes": 6064,
+   "changes7d": 0,
+   "dataSource": "official"
+  },
+  {
+   "slug": "biff-2026",
+   "festivalId": "biff",
+   "name": {
+    "zh": "釜山国际电影节",
+    "en": "Busan International Film Festival"
+   },
+   "city": "Busan",
+   "country": "Korea, Republic of",
+   "countryCode": "KR",
+   "region": "ASIA",
+   "types": [
+    "FEATURE",
+    "DOCUMENTARY",
+    "ANIMATION",
+    "SHORT"
+   ],
+   "authorization": "testing",
+   "year": 2026,
+   "startDate": "2026-10-06",
+   "endDate": "2026-10-15",
+   "dayCount": 10,
+   "timezone": "Asia/Seoul",
+   "officialUrl": "https://www.biff.kr/eng/",
+   "lifecycle": "ENDED",
+   "archive": {
+    "archived": true,
+    "archivedAt": "2026-10-15",
+    "dataEndDate": "2026-10-15"
+   },
+   "status": "SCHEDULE_LIVE",
+   "statusDetail": {
+    "dates": "CONFIRMED",
+    "programme": "RELEASED",
+    "schedule": "LIVE"
+   },
+   "statusNote": {
+    "zh": null,
+    "en": null
+   },
+   "stats": {
+    "films": 255,
+    "filmsTotal": 255,
+    "screenings": 724,
+    "events": 18,
+    "pending": 8,
+    "entries": 750,
+    "venues": 26,
+    "sections": 15,
+    "days": 10,
+    "guestVisits": 312
+   },
+   "today": {
+    "date": "2026-11-05",
+    "screenings": 0,
+    "events": 0,
+    "entries": 0,
+    "venues": 0,
+    "guestVisits": 0,
+    "items": []
+   },
+   "nextScreeningDate": null,
+   "sources": [
+    {
+     "kind": "PROGRAMME",
+     "label": "Official programme (all films)",
+     "url": "https://www.biff.kr/eng/html/program/prog_all_list.asp?allYear=2026",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule — day1=6",
+     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=6",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule — day1=7",
+     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=7",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule — day1=8",
+     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule — day1=9",
+     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=9",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule — day1=10",
+     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=10",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule — day1=11",
+     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=11",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule — day1=12",
+     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=12",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule — day1=13",
+     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=13",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule — day1=14",
+     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    },
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule — day1=15",
+     "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:26Z"
+    }
+   ],
+   "fetchedAt": "2026-10-31T13:34:26Z",
+   "lastVerifiedAt": "2026-10-31T13:34:26Z",
+   "dataAgeMinutes": 6064,
+   "changes7d": 0,
+   "dataSource": "official"
+  },
+  {
+   "slug": "cannes-2026",
+   "festivalId": "cannes",
+   "name": {
+    "zh": "戛纳电影节",
+    "en": "Festival de Cannes"
+   },
+   "city": "Cannes",
+   "country": "France",
+   "countryCode": "FR",
+   "region": "EUROPE",
+   "types": [
+    "FEATURE",
+    "DOCUMENTARY",
+    "ANIMATION",
+    "SHORT"
+   ],
+   "authorization": "testing",
+   "authorizationNote": {
+    "zh": "授权待定：Cannes 法律声明明文禁止提取、复用、存储、复制其数据库全部或部分内容，以及任何未经授权的再发布。数据由离线快照生成（仅影片元数据与简介，不含图片/票价），raw HTML 不入库；正式上线前需取得 Festival de Cannes 书面授权。",
+    "en": "Authorization pending: the Cannes legal notice explicitly forbids extracting, reusing, stocking or reproducing all or part of its database contents, and any unauthorised reproduction or distribution. Data generated from offline snapshots (film metadata + synopsis only; no images/prices), raw HTML not committed; written authorization from the Festival de Cannes required before going live."
+   },
+   "year": 2026,
+   "startDate": "2026-05-12",
+   "endDate": "2026-05-23",
+   "dayCount": 12,
+   "timezone": "Europe/Paris",
+   "officialUrl": "https://www.festival-cannes.com/en/",
+   "lifecycle": "ENDED",
+   "archive": {
+    "archived": true,
+    "archivedAt": "2026-05-23",
+    "dataEndDate": "2026-05-23"
+   },
+   "status": "PROGRAM_RELEASED",
+   "statusDetail": {
+    "dates": "CONFIRMED",
+    "programme": "RELEASED",
+    "schedule": "PENDING"
+   },
+   "statusNote": {
+    "zh": "官方已公布节目，具体排片尚未公布",
+    "en": "Programme announced, screening schedule pending"
+   },
+   "stats": {
+    "films": 150,
+    "filmsTotal": 150,
+    "screenings": 0,
+    "events": 0,
+    "pending": 0,
+    "entries": 0,
+    "venues": 0,
+    "sections": 9,
+    "days": 0,
+    "guestVisits": 0
+   },
+   "today": {
+    "date": "2026-11-04",
+    "screenings": 0,
+    "events": 0,
+    "entries": 0,
+    "venues": 0,
+    "guestVisits": 0,
+    "items": []
+   },
+   "nextScreeningDate": null,
+   "sources": [
+    {
+     "kind": "PROGRAMME",
+     "label": "Official selection (all films & sections)",
+     "url": "https://www.festival-cannes.com/en/the-selection/",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:35:16Z"
+    },
+    {
+     "kind": "PROGRAMME",
+     "label": "Official film detail pages (150/150)",
+     "url": "https://www.festival-cannes.com/en/f/",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:35:16Z"
+    },
+    {
+     "kind": "OFFICIAL_SITE",
+     "label": "Festival de Cannes official site",
+     "url": "https://www.festival-cannes.com/en/",
+     "ok": true,
+     "httpStatus": null,
+     "fetchedAt": "2026-10-31T13:35:16Z"
+    }
+   ],
+   "fetchedAt": "2026-10-31T13:35:16Z",
+   "lastVerifiedAt": "2026-10-31T13:35:16Z",
+   "dataAgeMinutes": 6063,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -475,7 +502,12 @@
    "dayCount": 50,
    "timezone": "Asia/Hong_Kong",
    "officialUrl": "https://cinefan.hkiff.org.hk/",
-   "lifecycle": "LIVE",
+   "lifecycle": "ENDED",
+   "archive": {
+    "archived": true,
+    "archivedAt": "2026-10-31",
+    "dataEndDate": "2026-10-31"
+   },
    "status": "SCREENING_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -499,59 +531,13 @@
     "guestVisits": 7
    },
    "today": {
-    "date": "2026-10-31",
-    "screenings": 3,
+    "date": "2026-11-05",
+    "screenings": 0,
     "events": 0,
-    "entries": 3,
-    "venues": 1,
+    "entries": 0,
+    "venues": 0,
     "guestVisits": 0,
-    "items": [
-     {
-      "id": "hkiff-cinefan-2026-20261031-202610311300",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "Swallowtail Butterfly",
-      "venueName": "EMP Cinemas Times Square",
-      "section": "RESTORED CLASSICS",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "Full House",
-      "ticketUrl": null,
-      "eventUrl": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
-      "officialUrl": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26"
-     },
-     {
-      "id": "hkiff-cinefan-2026-20261031-202610311600",
-      "kind": "SCREENING",
-      "time": "16:00",
-      "title": "Bird",
-      "venueName": "EMP Cinemas Times Square",
-      "section": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://www.urbtix.hk/event-detail/15516/",
-      "eventUrl": "https://cinefan.hkiff.org.hk/movie/bird-26",
-      "officialUrl": "https://cinefan.hkiff.org.hk/movie/bird-26"
-     },
-     {
-      "id": "hkiff-cinefan-2026-20261031-202610311915",
-      "kind": "SCREENING",
-      "time": "19:15",
-      "title": "Juror #2",
-      "venueName": "EMP Cinemas Times Square",
-      "section": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": "https://www.urbtix.hk/event-detail/15516/",
-      "eventUrl": "https://cinefan.hkiff.org.hk/movie/juror2-26",
-      "officialUrl": "https://cinefan.hkiff.org.hk/movie/juror2-26"
-     }
-    ]
+    "items": []
    },
    "nextScreeningDate": null,
    "sources": [
@@ -750,7 +736,183 @@
    ],
    "fetchedAt": "2026-10-20T06:30:44Z",
    "lastVerifiedAt": "2026-10-20T06:30:44Z",
-   "dataAgeMinutes": 16267,
+   "dataAgeMinutes": 22328,
+   "changes7d": 0,
+   "dataSource": "official"
+  },
+  {
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "name": {
+    "zh": "阿姆斯特丹国际纪录片电影节",
+    "en": "International Documentary Film Festival Amsterdam"
+   },
+   "city": "Amsterdam",
+   "country": "Netherlands",
+   "countryCode": "NL",
+   "region": "EUROPE",
+   "types": [
+    "FEATURE",
+    "DOCUMENTARY",
+    "SHORT",
+    "IMMERSIVE"
+   ],
+   "authorization": "testing",
+   "year": 2026,
+   "startDate": "2026-11-12",
+   "endDate": "2026-11-22",
+   "dayCount": 11,
+   "timezone": "Europe/Amsterdam",
+   "officialUrl": "https://festival.idfa.nl/en/",
+   "lifecycle": "UPCOMING",
+   "archive": {
+    "archived": false,
+    "archivedAt": null,
+    "dataEndDate": "2026-11-22"
+   },
+   "status": "SCHEDULE_LIVE",
+   "statusDetail": {
+    "dates": "CONFIRMED",
+    "programme": "RELEASED",
+    "schedule": "LIVE"
+   },
+   "statusNote": {
+    "zh": null,
+    "en": null
+   },
+   "stats": {
+    "films": 261,
+    "filmsTotal": 285,
+    "screenings": 1218,
+    "events": 294,
+    "pending": 0,
+    "entries": 1512,
+    "venues": 70,
+    "sections": 15,
+    "days": 11,
+    "guestVisits": 390
+   },
+   "today": {
+    "date": "2026-11-04",
+    "screenings": 0,
+    "events": 0,
+    "entries": 0,
+    "venues": 0,
+    "guestVisits": 0,
+    "items": []
+   },
+   "nextScreeningDate": "2026-11-12",
+   "sources": [
+    {
+     "kind": "SCHEDULE",
+     "label": "Official schedule (GraphQL, DAY × 11)",
+     "url": "https://my.idfa.nl/api/graphql/festival",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:32Z"
+    },
+    {
+     "kind": "PROGRAMME",
+     "label": "Official programme (GraphQL, searchFestivalFilms)",
+     "url": "https://my.idfa.nl/api/graphql/festival",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-31T13:34:32Z"
+    }
+   ],
+   "fetchedAt": "2026-10-31T13:34:32Z",
+   "lastVerifiedAt": "2026-10-31T13:34:32Z",
+   "dataAgeMinutes": 6064,
+   "changes7d": 158,
+   "dataSource": "official"
+  },
+  {
+   "slug": "iffr-2026",
+   "festivalId": "iffr",
+   "name": {
+    "zh": "鹿特丹国际电影节",
+    "en": "International Film Festival Rotterdam"
+   },
+   "city": "Rotterdam",
+   "country": "Netherlands",
+   "countryCode": "NL",
+   "region": "EUROPE",
+   "types": [
+    "FEATURE",
+    "DOCUMENTARY",
+    "ANIMATION",
+    "SHORT"
+   ],
+   "authorization": "testing",
+   "authorizationNote": {
+    "zh": "授权待定：iffr.com/en/disclaimer 明文禁止未经 IFFR 事先书面许可复制内容或将其公开。数据由离线快照生成（仅影片元数据与简介，不含图片/票价），raw JSON 不入库；正式上线前需取得 IFFR 书面授权。",
+    "en": "Authorization pending: iffr.com/en/disclaimer explicitly states it is not permitted to reproduce the Content or make it public without prior written permission from IFFR. Data generated from offline snapshots (film metadata + synopsis only; no images/prices), raw JSON not committed; written authorization from IFFR required before going live."
+   },
+   "year": 2026,
+   "startDate": "2026-01-29",
+   "endDate": "2026-02-08",
+   "dayCount": 11,
+   "timezone": "Europe/Amsterdam",
+   "officialUrl": "https://iffr.com/en",
+   "lifecycle": "ENDED",
+   "archive": {
+    "archived": true,
+    "archivedAt": "2026-02-08",
+    "dataEndDate": "2026-02-08"
+   },
+   "status": "PROGRAM_RELEASED",
+   "statusDetail": {
+    "dates": "CONFIRMED",
+    "programme": "RELEASED",
+    "schedule": "PENDING"
+   },
+   "statusNote": {
+    "zh": "官方已公布节目，具体排片尚未公布",
+    "en": "Programme announced, screening schedule pending"
+   },
+   "stats": {
+    "films": 496,
+    "filmsTotal": 496,
+    "screenings": 0,
+    "events": 0,
+    "pending": 0,
+    "entries": 0,
+    "venues": 0,
+    "sections": 21,
+    "days": 0,
+    "guestVisits": 0
+   },
+   "today": {
+    "date": "2026-11-04",
+    "screenings": 0,
+    "events": 0,
+    "entries": 0,
+    "venues": 0,
+    "guestVisits": 0,
+    "items": []
+   },
+   "nextScreeningDate": null,
+   "sources": [
+    {
+     "kind": "PROGRAMME",
+     "label": "Official IFFR film catalogue (static JSON feed)",
+     "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
+     "ok": true,
+     "httpStatus": 200,
+     "fetchedAt": "2026-10-29T06:25:06Z"
+    },
+    {
+     "kind": "OFFICIAL_SITE",
+     "label": "IFFR official site",
+     "url": "https://iffr.com/en/iffr/2026",
+     "ok": true,
+     "httpStatus": null,
+     "fetchedAt": "2026-10-29T06:25:06Z"
+    }
+   ],
+   "fetchedAt": "2026-10-29T06:25:06Z",
+   "lastVerifiedAt": "2026-10-29T06:25:06Z",
+   "dataAgeMinutes": 9373,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -783,6 +945,11 @@
    "timezone": "Europe/Rome",
    "officialUrl": "https://www.labiennale.org/en/cinema",
    "lifecycle": "ENDED",
+   "archive": {
+    "archived": true,
+    "archivedAt": "2026-09-11",
+    "dataEndDate": "2026-09-11"
+   },
    "status": "SCHEDULE_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -806,7 +973,7 @@
     "guestVisits": 0
    },
    "today": {
-    "date": "2026-10-31",
+    "date": "2026-11-04",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -915,198 +1082,12 @@
    ],
    "fetchedAt": "2026-10-31T13:35:16.254Z",
    "lastVerifiedAt": "2026-10-31T13:35:16.254Z",
-   "dataAgeMinutes": 3,
+   "dataAgeMinutes": 6063,
    "changes7d": 842,
-   "dataSource": "official"
-  },
-  {
-   "slug": "cannes-2026",
-   "festivalId": "cannes",
-   "name": {
-    "zh": "戛纳电影节",
-    "en": "Festival de Cannes"
-   },
-   "city": "Cannes",
-   "country": "France",
-   "countryCode": "FR",
-   "region": "EUROPE",
-   "types": [
-    "FEATURE",
-    "DOCUMENTARY",
-    "ANIMATION",
-    "SHORT"
-   ],
-   "authorization": "testing",
-   "authorizationNote": {
-    "zh": "授权待定：Cannes 法律声明明文禁止提取、复用、存储、复制其数据库全部或部分内容，以及任何未经授权的再发布。数据由离线快照生成（仅影片元数据与简介，不含图片/票价），raw HTML 不入库；正式上线前需取得 Festival de Cannes 书面授权。",
-    "en": "Authorization pending: the Cannes legal notice explicitly forbids extracting, reusing, stocking or reproducing all or part of its database contents, and any unauthorised reproduction or distribution. Data generated from offline snapshots (film metadata + synopsis only; no images/prices), raw HTML not committed; written authorization from the Festival de Cannes required before going live."
-   },
-   "year": 2026,
-   "startDate": "2026-05-12",
-   "endDate": "2026-05-23",
-   "dayCount": 12,
-   "timezone": "Europe/Paris",
-   "officialUrl": "https://www.festival-cannes.com/en/",
-   "lifecycle": "ENDED",
-   "status": "PROGRAM_RELEASED",
-   "statusDetail": {
-    "dates": "CONFIRMED",
-    "programme": "RELEASED",
-    "schedule": "PENDING"
-   },
-   "statusNote": {
-    "zh": "官方已公布节目，具体排片尚未公布",
-    "en": "Programme announced, screening schedule pending"
-   },
-   "stats": {
-    "films": 150,
-    "filmsTotal": 150,
-    "screenings": 0,
-    "events": 0,
-    "pending": 0,
-    "entries": 0,
-    "venues": 0,
-    "sections": 9,
-    "days": 0,
-    "guestVisits": 0
-   },
-   "today": {
-    "date": "2026-10-31",
-    "screenings": 0,
-    "events": 0,
-    "entries": 0,
-    "venues": 0,
-    "guestVisits": 0,
-    "items": []
-   },
-   "nextScreeningDate": null,
-   "sources": [
-    {
-     "kind": "PROGRAMME",
-     "label": "Official selection (all films & sections)",
-     "url": "https://www.festival-cannes.com/en/the-selection/",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:35:16Z"
-    },
-    {
-     "kind": "PROGRAMME",
-     "label": "Official film detail pages (150/150)",
-     "url": "https://www.festival-cannes.com/en/f/",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-31T13:35:16Z"
-    },
-    {
-     "kind": "OFFICIAL_SITE",
-     "label": "Festival de Cannes official site",
-     "url": "https://www.festival-cannes.com/en/",
-     "ok": true,
-     "httpStatus": null,
-     "fetchedAt": "2026-10-31T13:35:16Z"
-    }
-   ],
-   "fetchedAt": "2026-10-31T13:35:16Z",
-   "lastVerifiedAt": "2026-10-31T13:35:16Z",
-   "dataAgeMinutes": 3,
-   "changes7d": 0,
-   "dataSource": "official"
-  },
-  {
-   "slug": "iffr-2026",
-   "festivalId": "iffr",
-   "name": {
-    "zh": "鹿特丹国际电影节",
-    "en": "International Film Festival Rotterdam"
-   },
-   "city": "Rotterdam",
-   "country": "Netherlands",
-   "countryCode": "NL",
-   "region": "EUROPE",
-   "types": [
-    "FEATURE",
-    "DOCUMENTARY",
-    "ANIMATION",
-    "SHORT"
-   ],
-   "authorization": "testing",
-   "authorizationNote": {
-    "zh": "授权待定：iffr.com/en/disclaimer 明文禁止未经 IFFR 事先书面许可复制内容或将其公开。数据由离线快照生成（仅影片元数据与简介，不含图片/票价），raw JSON 不入库；正式上线前需取得 IFFR 书面授权。",
-    "en": "Authorization pending: iffr.com/en/disclaimer explicitly states it is not permitted to reproduce the Content or make it public without prior written permission from IFFR. Data generated from offline snapshots (film metadata + synopsis only; no images/prices), raw JSON not committed; written authorization from IFFR required before going live."
-   },
-   "year": 2026,
-   "startDate": "2026-01-29",
-   "endDate": "2026-02-08",
-   "dayCount": 11,
-   "timezone": "Europe/Amsterdam",
-   "officialUrl": "https://iffr.com/en",
-   "lifecycle": "ENDED",
-   "status": "PROGRAM_RELEASED",
-   "statusDetail": {
-    "dates": "CONFIRMED",
-    "programme": "RELEASED",
-    "schedule": "PENDING"
-   },
-   "statusNote": {
-    "zh": "官方已公布节目，具体排片尚未公布",
-    "en": "Programme announced, screening schedule pending"
-   },
-   "stats": {
-    "films": 496,
-    "filmsTotal": 496,
-    "screenings": 0,
-    "events": 0,
-    "pending": 0,
-    "entries": 0,
-    "venues": 0,
-    "sections": 21,
-    "days": 0,
-    "guestVisits": 0
-   },
-   "today": {
-    "date": "2026-10-31",
-    "screenings": 0,
-    "events": 0,
-    "entries": 0,
-    "venues": 0,
-    "guestVisits": 0,
-    "items": []
-   },
-   "nextScreeningDate": null,
-   "sources": [
-    {
-     "kind": "PROGRAMME",
-     "label": "Official IFFR film catalogue (static JSON feed)",
-     "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
-     "ok": true,
-     "httpStatus": 200,
-     "fetchedAt": "2026-10-29T06:25:06Z"
-    },
-    {
-     "kind": "OFFICIAL_SITE",
-     "label": "IFFR official site",
-     "url": "https://iffr.com/en/iffr/2026",
-     "ok": true,
-     "httpStatus": null,
-     "fetchedAt": "2026-10-29T06:25:06Z"
-    }
-   ],
-   "fetchedAt": "2026-10-29T06:25:06Z",
-   "lastVerifiedAt": "2026-10-29T06:25:06Z",
-   "dataAgeMinutes": 3313,
-   "changes7d": 0,
    "dataSource": "official"
   }
  ],
  "calendar": {
-  "2026-10-06": {
-   "screenings": 1,
-   "events": 0,
-   "festivals": [
-    "biff-2026",
-    "hkiff-cinefan-2026"
-   ]
-  },
   "2026-10-07": {
    "screenings": 80,
    "events": 0,
@@ -1188,83 +1169,6 @@
     "hkiff-cinefan-2026"
    ]
   },
-  "2026-11-12": {
-   "screenings": 6,
-   "events": 3,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
-  "2026-11-13": {
-   "screenings": 112,
-   "events": 17,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
-  "2026-11-14": {
-   "screenings": 127,
-   "events": 41,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
-  "2026-11-15": {
-   "screenings": 134,
-   "events": 44,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
-  "2026-11-16": {
-   "screenings": 140,
-   "events": 43,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
-  "2026-11-17": {
-   "screenings": 132,
-   "events": 35,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
-  "2026-11-18": {
-   "screenings": 145,
-   "events": 33,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
-  "2026-11-19": {
-   "screenings": 98,
-   "events": 11,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
-  "2026-11-20": {
-   "screenings": 122,
-   "events": 20,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
-  "2026-11-21": {
-   "screenings": 121,
-   "events": 28,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
-  "2026-11-22": {
-   "screenings": 81,
-   "events": 19,
-   "festivals": [
-    "idfa-2026"
-   ]
-  },
   "2026-10-16": {
    "screenings": 41,
    "events": 0,
@@ -1287,6 +1191,98 @@
    "festivals": [
     "bfi-2026",
     "hkiff-cinefan-2026"
+   ]
+  },
+  "2026-10-06": {
+   "screenings": 1,
+   "events": 0,
+   "festivals": [
+    "biff-2026",
+    "hkiff-cinefan-2026"
+   ]
+  },
+  "2026-05-12": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-13": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-14": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-15": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-16": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-17": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-18": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-19": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-20": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-21": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-22": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
+   ]
+  },
+  "2026-05-23": {
+   "screenings": 0,
+   "events": 0,
+   "festivals": [
+    "cannes-2026"
    ]
   },
   "2026-09-12": {
@@ -1548,165 +1544,81 @@
     "hkiff-cinefan-2026"
    ]
   },
-  "2026-09-01": {
-   "screenings": 1,
-   "events": 0,
+  "2026-11-12": {
+   "screenings": 6,
+   "events": 3,
    "festivals": [
-    "venice-2026"
+    "idfa-2026"
    ]
   },
-  "2026-09-02": {
-   "screenings": 5,
-   "events": 0,
+  "2026-11-13": {
+   "screenings": 112,
+   "events": 17,
    "festivals": [
-    "venice-2026"
+    "idfa-2026"
    ]
   },
-  "2026-09-03": {
-   "screenings": 34,
-   "events": 0,
+  "2026-11-14": {
+   "screenings": 127,
+   "events": 41,
    "festivals": [
-    "venice-2026"
+    "idfa-2026"
    ]
   },
-  "2026-09-04": {
-   "screenings": 33,
-   "events": 0,
+  "2026-11-15": {
+   "screenings": 134,
+   "events": 44,
    "festivals": [
-    "venice-2026"
+    "idfa-2026"
    ]
   },
-  "2026-09-05": {
-   "screenings": 37,
-   "events": 0,
+  "2026-11-16": {
+   "screenings": 140,
+   "events": 43,
    "festivals": [
-    "venice-2026"
+    "idfa-2026"
    ]
   },
-  "2026-09-06": {
-   "screenings": 34,
-   "events": 0,
+  "2026-11-17": {
+   "screenings": 132,
+   "events": 35,
    "festivals": [
-    "venice-2026"
+    "idfa-2026"
    ]
   },
-  "2026-09-07": {
-   "screenings": 38,
-   "events": 0,
+  "2026-11-18": {
+   "screenings": 145,
+   "events": 33,
    "festivals": [
-    "venice-2026"
+    "idfa-2026"
    ]
   },
-  "2026-09-08": {
-   "screenings": 41,
-   "events": 0,
+  "2026-11-19": {
+   "screenings": 98,
+   "events": 11,
    "festivals": [
-    "venice-2026"
+    "idfa-2026"
    ]
   },
-  "2026-09-09": {
-   "screenings": 34,
-   "events": 0,
+  "2026-11-20": {
+   "screenings": 122,
+   "events": 20,
    "festivals": [
-    "venice-2026"
+    "idfa-2026"
    ]
   },
-  "2026-09-10": {
-   "screenings": 41,
-   "events": 0,
+  "2026-11-21": {
+   "screenings": 121,
+   "events": 28,
    "festivals": [
-    "venice-2026"
+    "idfa-2026"
    ]
   },
-  "2026-09-11": {
-   "screenings": 52,
-   "events": 0,
+  "2026-11-22": {
+   "screenings": 81,
+   "events": 19,
    "festivals": [
-    "venice-2026"
-   ]
-  },
-  "2026-05-12": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-13": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-14": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-15": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-16": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-17": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-18": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-19": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-20": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-21": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-22": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
-   ]
-  },
-  "2026-05-23": {
-   "screenings": 0,
-   "events": 0,
-   "festivals": [
-    "cannes-2026"
+    "idfa-2026"
    ]
   },
   "2026-01-29": {
@@ -1784,6 +1696,83 @@
    "events": 0,
    "festivals": [
     "iffr-2026"
+   ]
+  },
+  "2026-09-01": {
+   "screenings": 1,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-02": {
+   "screenings": 5,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-03": {
+   "screenings": 34,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-04": {
+   "screenings": 33,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-05": {
+   "screenings": 37,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-06": {
+   "screenings": 34,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-07": {
+   "screenings": 38,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-08": {
+   "screenings": 41,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-09": {
+   "screenings": 34,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-10": {
+   "screenings": 41,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
+   ]
+  },
+  "2026-09-11": {
+   "screenings": 52,
+   "events": 0,
+   "festivals": [
+    "venice-2026"
    ]
   }
  }

@@ -648,6 +648,10 @@ async function main() {
   for (const f of index.festivals || []) {
     ok(f.slug && f.startDate && f.endDate, `card ${f.slug}: missing dates`);
     ok(f.startDate <= f.endDate, `card ${f.slug}: start > end`);
+    if (f.lifecycle === "ENDED") {
+      ok(f.archive?.archived === true, `card ${f.slug}: ENDED edition must remain archived`);
+      ok(!!f.archive?.dataEndDate, `card ${f.slug}: archived edition must retain dataEndDate`);
+    }
     ok(!!f.officialUrl, `card ${f.slug}: no official URL`);
     ok(!!f.status, `card ${f.slug}: no status`);
     ok(!!f.statusDetail?.schedule, `card ${f.slug}: schedule status not explicit`);

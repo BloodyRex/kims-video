@@ -186,6 +186,9 @@ function cardOf(store, { today, changes }) {
     timezone: tz,
     officialUrl: store.festival.officialUrl,
     lifecycle: store.lifecycle,
+    archive: store.lifecycle === "ENDED"
+      ? { archived: true, archivedAt: store.edition.endDate, dataEndDate: store.edition.dataEndDate || store.edition.endDate }
+      : { archived: false, archivedAt: null, dataEndDate: store.edition.dataEndDate || store.edition.endDate },
     status: store.status,
     statusDetail: store.statusDetail,
     statusNote: store.statusNote,
@@ -244,7 +247,7 @@ export function buildPublished({ stores, changes, now = new Date().toISOString()
 
   const today = localDay(now, "Asia/Shanghai");
   const liveToday = cards.filter(
-    (c) => c.lifecycle === "LIVE" || (c.startDate <= today && c.endDate >= today)
+    (c) => c.startDate <= today && c.endDate >= today
   );
   const upcoming = cards.filter((c) => c.startDate > today).sort((a, b) => a.startDate.localeCompare(b.startDate));
   const recentChanges = (changes || []).filter((c) => Date.parse(c.at) > Date.now() - 7 * DAY);

@@ -32,7 +32,10 @@
   "timezone": "Europe/Amsterdam",
   "dayCount": 11,
   "officialUrl": "https://iffr.com/en/iffr/2026/films",
-  "coverageMinDays": 0
+  "coverageMinDays": 0,
+  "registryEndDate": "2026-02-08",
+  "endDateExtended": false,
+  "dataEndDate": "2026-02-08"
  },
  "lifecycle": "ENDED",
  "status": "PROGRAM_RELEASED",
@@ -174,6 +177,7 @@
  "films": [
   {
    "id": "iffr-2026-f28",
+   "idx": 28,
    "cIdx": 1244,
    "title": "After the Game",
    "director": "Jana Stallein",
@@ -187,6 +191,7 @@
   },
   {
    "id": "iffr-2026-f86",
+   "idx": 86,
    "cIdx": 1244,
    "title": "Cycle (Work in Progress)",
    "director": "Amit Palgi",
@@ -200,6 +205,7 @@
   },
   {
    "id": "iffr-2026-f182",
+   "idx": 182,
    "cIdx": 1244,
    "title": "If You See a Cat",
    "director": "Atsushi Wada",
@@ -213,6 +219,7 @@
   },
   {
    "id": "iffr-2026-f387",
+   "idx": 387,
    "cIdx": 1244,
    "title": "The Great Escape",
    "director": "Joren Vandenbroucke",
@@ -226,6 +233,7 @@
   },
   {
    "id": "iffr-2026-f389",
+   "idx": 389,
    "cIdx": 1244,
    "title": "The Great Orator",
    "director": "Daniel Ernst",
@@ -239,6 +247,7 @@
   },
   {
    "id": "iffr-2026-f425",
+   "idx": 425,
    "cIdx": 1244,
    "title": "The World Came Flooding In",
    "director": "Isobel Knowles, Van Sowerwine",
@@ -252,6 +261,7 @@
   },
   {
    "id": "iffr-2026-f8",
+   "idx": 8,
    "cIdx": 1243,
    "title": "3 Scenes from a Marriage",
    "director": "Leopold Emmen",
@@ -265,6 +275,7 @@
   },
   {
    "id": "iffr-2026-f35",
+   "idx": 35,
    "cIdx": 1243,
    "title": "Alterity",
    "director": "Jacco Gardner",
@@ -278,6 +289,7 @@
   },
   {
    "id": "iffr-2026-f67",
+   "idx": 67,
    "cIdx": 1243,
    "title": "Café Kuba: Who Dared to Awaken the Dead Memory",
    "director": "David Shongo",
@@ -291,6 +303,7 @@
   },
   {
    "id": "iffr-2026-f166",
+   "idx": 166,
    "cIdx": 1243,
    "title": "Homecoming",
    "director": "Mark Dorf",
@@ -304,6 +317,7 @@
   },
   {
    "id": "iffr-2026-f202",
+   "idx": 202,
    "cIdx": 1243,
    "title": "Krakatoa",
    "director": "Carlos Casas",
@@ -317,6 +331,7 @@
   },
   {
    "id": "iffr-2026-f252",
+   "idx": 252,
    "cIdx": 1243,
    "title": "My Sweet Elora",
    "director": "Luuk Van Raamsdonk",
@@ -330,6 +345,7 @@
   },
   {
    "id": "iffr-2026-f301",
+   "idx": 301,
    "cIdx": 1243,
    "title": "Preludio",
    "director": "Silvia Gatti",
@@ -343,6 +359,7 @@
   },
   {
    "id": "iffr-2026-f312",
+   "idx": 312,
    "cIdx": 1243,
    "title": "Raftsmen and Canoeists",
    "director": null,
@@ -356,6 +373,7 @@
   },
   {
    "id": "iffr-2026-f315",
+   "idx": 315,
    "cIdx": 1243,
    "title": "Reflection 2.0",
    "director": null,
@@ -369,6 +387,7 @@
   },
   {
    "id": "iffr-2026-f2",
+   "idx": 2,
    "cIdx": 1266,
    "title": "“It’s too cold for the spirits to live here”",
    "director": "Tosca Schift",
@@ -382,6 +401,7 @@
   },
   {
    "id": "iffr-2026-f105",
+   "idx": 105,
    "cIdx": 1266,
    "title": "DIsINCARNATE (I-III)",
    "director": "Cinzia Nistico",
@@ -395,6 +415,7 @@
   },
   {
    "id": "iffr-2026-f116",
+   "idx": 116,
    "cIdx": 1266,
    "title": "Echoes Between Seeing #3",
    "director": "Nan Wang",
@@ -408,6 +429,7 @@
   },
   {
    "id": "iffr-2026-f293",
+   "idx": 293,
    "cIdx": 1266,
    "title": "Pedra e Montanha",
    "director": "Tetsuya Maruyama",
@@ -421,6 +443,7 @@
   },
   {
    "id": "iffr-2026-f467",
+   "idx": 467,
    "cIdx": 1266,
    "title": "VJ Emmy: Ugandan live dubbing",
    "director": "VJ Emmy",
@@ -434,6 +457,7 @@
   },
   {
    "id": "iffr-2026-f496",
+   "idx": 496,
    "cIdx": 1266,
    "title": "水托邦 (Hydrotopia)",
    "director": "Chiemi Shimada, Jamie Man",
@@ -447,6 +471,7 @@
   },
   {
    "id": "iffr-2026-f6",
+   "idx": 6,
    "cIdx": 1283,
    "title": "2m²",
    "director": "Volkan Üce",
@@ -460,6 +485,7 @@
   },
   {
    "id": "iffr-2026-f65",
+   "idx": 65,
    "cIdx": 1283,
    "title": "Butterfly",
    "director": "Itonje Søimer Guttormsen",
@@ -473,6 +499,7 @@
   },
   {
    "id": "iffr-2026-f87",
+   "idx": 87,
    "cIdx": 1283,
    "title": "Cyclone",
    "director": "Philip Yung",
@@ -486,6 +513,7 @@
   },
   {
    "id": "iffr-2026-f163",
+   "idx": 163,
    "cIdx": 1283,
    "title": "Home",
    "director": "Marijana Janković",
@@ -499,6 +527,7 @@
   },
   {
    "id": "iffr-2026-f235",
+   "idx": 235,
    "cIdx": 1283,
    "title": "Master",
    "director": "Rezwan Shahriar Sumit",
@@ -512,6 +541,7 @@
   },
   {
    "id": "iffr-2026-f243",
+   "idx": 243,
    "cIdx": 1283,
    "title": "Moonglow",
    "director": "Isabel Sandoval",
@@ -525,6 +555,7 @@
   },
   {
    "id": "iffr-2026-f265",
+   "idx": 265,
    "cIdx": 1283,
    "title": "Now I Met Her",
    "director": "Luxi Xiao",
@@ -538,6 +569,7 @@
   },
   {
    "id": "iffr-2026-f305",
+   "idx": 305,
    "cIdx": 1283,
    "title": "Projecto Global",
    "director": "Ivo M. Ferreira",
@@ -551,6 +583,7 @@
   },
   {
    "id": "iffr-2026-f372",
+   "idx": 372,
    "cIdx": 1283,
    "title": "Talking to a Stranger",
    "director": "Adrián García Bogliano",
@@ -564,6 +597,7 @@
   },
   {
    "id": "iffr-2026-f375",
+   "idx": 375,
    "cIdx": 1283,
    "title": "Tell Me What You Feel",
    "director": "Łukasz Ronduda",
@@ -577,6 +611,7 @@
   },
   {
    "id": "iffr-2026-f377",
+   "idx": 377,
    "cIdx": 1283,
    "title": "The Arab",
    "director": "Malek Bensmail",
@@ -590,6 +625,7 @@
   },
   {
    "id": "iffr-2026-f384",
+   "idx": 384,
    "cIdx": 1283,
    "title": "The Fall of Sir Douglas Weatherford",
    "director": "Sean Dunn",
@@ -603,6 +639,7 @@
   },
   {
    "id": "iffr-2026-f30",
+   "idx": 30,
    "cIdx": 1250,
    "title": "Ah Girl",
    "director": "Ang Geck Geck Priscilla",
@@ -616,6 +653,7 @@
   },
   {
    "id": "iffr-2026-f75",
+   "idx": 75,
    "cIdx": 1250,
    "title": "Chronovisor",
    "director": "Kevin Walker, Jack Auen",
@@ -629,6 +667,7 @@
   },
   {
    "id": "iffr-2026-f77",
+   "idx": 77,
    "cIdx": 1250,
    "title": "Complaint No. 713317",
    "director": "Yasser Shafiey",
@@ -642,6 +681,7 @@
   },
   {
    "id": "iffr-2026-f92",
+   "idx": 92,
    "cIdx": 1250,
    "title": "Dead Dogs Don’t Bite",
    "director": "Nuri Cihan Özdoğan",
@@ -655,6 +695,7 @@
   },
   {
    "id": "iffr-2026-f99",
+   "idx": 99,
    "cIdx": 1250,
    "title": "Delupi",
    "director": "Mohammad Touqir Islam",
@@ -668,6 +709,7 @@
   },
   {
    "id": "iffr-2026-f144",
+   "idx": 144,
    "cIdx": 1250,
    "title": "Gamer Girls",
    "director": "Veronica Bassetto, Sophie Yang",
@@ -681,6 +723,7 @@
   },
   {
    "id": "iffr-2026-f167",
+   "idx": 167,
    "cIdx": 1250,
    "title": "Honey Bunny",
    "director": "Igor Jelinović",
@@ -694,6 +737,7 @@
   },
   {
    "id": "iffr-2026-f176",
+   "idx": 176,
    "cIdx": 1250,
    "title": "i grew an inch when my father died",
    "director": "P. R. Monencillo Patindol",
@@ -707,6 +751,7 @@
   },
   {
    "id": "iffr-2026-f180",
+   "idx": 180,
    "cIdx": 1250,
    "title": "IAI",
    "director": "Sakai Zenzo",
@@ -720,6 +765,7 @@
   },
   {
    "id": "iffr-2026-f218",
+   "idx": 218,
    "cIdx": 1250,
    "title": "Let Them Be Seen",
    "director": "Nolitha Refilwe Mkulisi",
@@ -733,6 +779,7 @@
   },
   {
    "id": "iffr-2026-f237",
+   "idx": 237,
    "cIdx": 1250,
    "title": "Mayilaa",
    "director": "Semmalar Annam",
@@ -746,6 +793,7 @@
   },
   {
    "id": "iffr-2026-f343",
+   "idx": 343,
    "cIdx": 1250,
    "title": "Sicko",
    "director": "Aitore Zholdaskali",
@@ -759,6 +807,7 @@
   },
   {
    "id": "iffr-2026-f374",
+   "idx": 374,
    "cIdx": 1250,
    "title": "TEKENCHU: THE RITE OF THE NAHUALES",
    "director": "Carlos Matienzo Serment",
@@ -772,6 +821,7 @@
   },
   {
    "id": "iffr-2026-f451",
+   "idx": 451,
    "cIdx": 1250,
    "title": "Tycoon",
    "director": "Charlotte Zhang",
@@ -785,6 +835,7 @@
   },
   {
    "id": "iffr-2026-f480",
+   "idx": 480,
    "cIdx": 1250,
    "title": "White Lies",
    "director": "Alba Zari",
@@ -798,6 +849,7 @@
   },
   {
    "id": "iffr-2026-f483",
+   "idx": 483,
    "cIdx": 1250,
    "title": "Why Do I See You in Everything?",
    "director": "Rand Abou Fakher",
@@ -811,6 +863,7 @@
   },
   {
    "id": "iffr-2026-f484",
+   "idx": 484,
    "cIdx": 1250,
    "title": "Why hasn’t everything disappeared yet",
    "director": "Stefan Koutzev",
@@ -824,6 +877,7 @@
   },
   {
    "id": "iffr-2026-f487",
+   "idx": 487,
    "cIdx": 1250,
    "title": "WOLFGANG",
    "director": "Filmsaaz",
@@ -837,6 +891,7 @@
   },
   {
    "id": "iffr-2026-f19",
+   "idx": 19,
    "cIdx": 1258,
    "title": "A Philological Quandary, Kenneth Anger’s ¡Que Viva Mexico! (1950)",
    "director": "Bruce Posner",
@@ -850,6 +905,7 @@
   },
   {
    "id": "iffr-2026-f26",
+   "idx": 26,
    "cIdx": 1258,
    "title": "ADGIN PRRX",
    "director": "Norbert Pfaffenbichler",
@@ -863,6 +919,7 @@
   },
   {
    "id": "iffr-2026-f31",
+   "idx": 31,
    "cIdx": 1258,
    "title": "Aimless Walk",
    "director": "Alexander Hackenschmied",
@@ -876,6 +933,7 @@
   },
   {
    "id": "iffr-2026-f38",
+   "idx": 38,
    "cIdx": 1258,
    "title": "Amrum",
    "director": "Fatih Akin",
@@ -889,6 +947,7 @@
   },
   {
    "id": "iffr-2026-f42",
+   "idx": 42,
    "cIdx": 1258,
    "title": "Appunti per un’Orestiade africana",
    "director": "Pier Paolo Pasolini",
@@ -902,6 +961,7 @@
   },
   {
    "id": "iffr-2026-f45",
+   "idx": 45,
    "cIdx": 1258,
    "title": "Atom of Eternity",
    "director": "Cenek Zahradnícek, Vladimír Šmejkal",
@@ -915,6 +975,7 @@
   },
   {
    "id": "iffr-2026-f55",
+   "idx": 55,
    "cIdx": 1258,
    "title": "Between Arms",
    "director": "Robin Nevis",
@@ -928,6 +989,7 @@
   },
   {
    "id": "iffr-2026-f133",
+   "idx": 133,
    "cIdx": 1258,
    "title": "FETISH",
    "director": "Malga Kubiak",
@@ -941,6 +1003,7 @@
   },
   {
    "id": "iffr-2026-f156",
+   "idx": 156,
    "cIdx": 1258,
    "title": "Habibi Hussein",
    "director": "Alex Bakri",
@@ -954,6 +1017,7 @@
   },
   {
    "id": "iffr-2026-f157",
+   "idx": 157,
    "cIdx": 1258,
    "title": "Hands on Tuesday",
    "director": "Cenek Zahradnícek, Vladimír Šmejkal",
@@ -967,6 +1031,7 @@
   },
   {
    "id": "iffr-2026-f162",
+   "idx": 162,
    "cIdx": 1258,
    "title": "Holofiction",
    "director": "Michal Kosakowski",
@@ -980,6 +1045,7 @@
   },
   {
    "id": "iffr-2026-f205",
+   "idx": 205,
    "cIdx": 1258,
    "title": "L’ammiratrice",
    "director": "Romano Scandariato",
@@ -993,6 +1059,7 @@
   },
   {
    "id": "iffr-2026-f231",
+   "idx": 231,
    "cIdx": 1258,
    "title": "Máj (May)",
    "director": "Cenek Zahradnícek, E.F. Burian",
@@ -1006,6 +1073,7 @@
   },
   {
    "id": "iffr-2026-f232",
+   "idx": 232,
    "cIdx": 1258,
    "title": "Marcel et Monsieur Pagnol",
    "director": "Sylvain Chomet",
@@ -1019,6 +1087,7 @@
   },
   {
    "id": "iffr-2026-f233",
+   "idx": 233,
    "cIdx": 1258,
    "title": "Marius",
    "director": "Alexander Korda",
@@ -1032,6 +1101,7 @@
   },
   {
    "id": "iffr-2026-f240",
+   "idx": 240,
    "cIdx": 1258,
    "title": "Mickey & Richard",
    "director": "Ryan A. White, A.P. Pickle",
@@ -1045,6 +1115,7 @@
   },
   {
    "id": "iffr-2026-f246",
+   "idx": 246,
    "cIdx": 1258,
    "title": "Mrs 21 seiki (Mrs. 21st Century)",
    "director": "Tatsuo Takahashi",
@@ -1058,6 +1129,7 @@
   },
   {
    "id": "iffr-2026-f247",
+   "idx": 247,
    "cIdx": 1258,
    "title": "Muñecos infernales",
    "director": "Benito Alazraki",
@@ -1071,6 +1143,7 @@
   },
   {
    "id": "iffr-2026-f258",
+   "idx": 258,
    "cIdx": 1258,
    "title": "Nino. 18 giorni",
    "director": "Toni D'Angelo",
@@ -1084,6 +1157,7 @@
   },
   {
    "id": "iffr-2026-f263",
+   "idx": 263,
    "cIdx": 1258,
    "title": "Nordsee ist Mordsee",
    "director": "Hark Bohm",
@@ -1097,6 +1171,7 @@
   },
   {
    "id": "iffr-2026-f277",
+   "idx": 277,
    "cIdx": 1258,
    "title": "one minute movies: Die Billigzeitmaschine",
    "director": "Nicolas Mahler, Stefan Holaus",
@@ -1110,6 +1185,7 @@
   },
   {
    "id": "iffr-2026-f278",
+   "idx": 278,
    "cIdx": 1258,
    "title": "one minute movies: Frankenstein’s Human Resources",
    "director": "Nicolas Mahler, Stefan Holaus",
@@ -1123,6 +1199,7 @@
   },
   {
    "id": "iffr-2026-f279",
+   "idx": 279,
    "cIdx": 1258,
    "title": "one minute movies: The Wolf Ma’am",
    "director": "Nicolas Mahler, Stefan Holaus",
@@ -1136,6 +1213,7 @@
   },
   {
    "id": "iffr-2026-f285",
+   "idx": 285,
    "cIdx": 1258,
    "title": "Out of Order",
    "director": "Antti Tuomikoski",
@@ -1149,6 +1227,7 @@
   },
   {
    "id": "iffr-2026-f290",
+   "idx": 290,
    "cIdx": 1258,
    "title": "Para hacer una película solo hace falta un arma",
    "director": "Santiago Sein",
@@ -1162,6 +1241,7 @@
   },
   {
    "id": "iffr-2026-f295",
+   "idx": 295,
    "cIdx": 1258,
    "title": "peter kammerer/Pasolini",
    "director": "Antonia Weiße",
@@ -1175,6 +1255,7 @@
   },
   {
    "id": "iffr-2026-f328",
+   "idx": 328,
    "cIdx": 1258,
    "title": "Rum",
    "director": "Claes Söderquist",
@@ -1188,6 +1269,7 @@
   },
   {
    "id": "iffr-2026-f334",
+   "idx": 334,
    "cIdx": 1258,
    "title": "School Assignment",
    "director": "Alexander Hackenschmied, Elmar Klos",
@@ -1201,6 +1283,7 @@
   },
   {
    "id": "iffr-2026-f355",
+   "idx": 355,
    "cIdx": 1258,
    "title": "Soldier’s Story",
    "director": "Cenek Zahradnícek, Vladimír Šmejkal",
@@ -1214,6 +1297,7 @@
   },
   {
    "id": "iffr-2026-f380",
+   "idx": 380,
    "cIdx": 1258,
    "title": "The Brig",
    "director": "Norman Yonemoto",
@@ -1227,6 +1311,7 @@
   },
   {
    "id": "iffr-2026-f381",
+   "idx": 381,
    "cIdx": 1258,
    "title": "The Devil and the Beauty",
    "director": "Lee Yong-min",
@@ -1240,6 +1325,7 @@
   },
   {
    "id": "iffr-2026-f408",
+   "idx": 408,
    "cIdx": 1258,
    "title": "The Prague Castle",
    "director": "Alexander Hackenschmied",
@@ -1253,6 +1339,7 @@
   },
   {
    "id": "iffr-2026-f418",
+   "idx": 418,
    "cIdx": 1258,
    "title": "The Thing in the Coffin",
    "director": "Péter Lichter",
@@ -1266,6 +1353,7 @@
   },
   {
    "id": "iffr-2026-f434",
+   "idx": 434,
    "cIdx": 1258,
    "title": "Tiki Tiki",
    "director": "Gerald Potterton",
@@ -1279,6 +1367,7 @@
   },
   {
    "id": "iffr-2026-f435",
+   "idx": 435,
    "cIdx": 1258,
    "title": "Time Will Not Tell",
    "director": "Htoo Lwin Myo",
@@ -1292,6 +1381,7 @@
   },
   {
    "id": "iffr-2026-f441",
+   "idx": 441,
    "cIdx": 1258,
    "title": "Tracing to Expo ’70",
    "director": "Liao Hsiang-Hsiung",
@@ -1305,6 +1395,7 @@
   },
   {
    "id": "iffr-2026-f461",
+   "idx": 461,
    "cIdx": 1258,
    "title": "Vento Norte",
    "director": "Salomão Scliar",
@@ -1318,6 +1409,7 @@
   },
   {
    "id": "iffr-2026-f482",
+   "idx": 482,
    "cIdx": 1258,
    "title": "Who Killed Teddy Bear",
    "director": "Joseph Cates",
@@ -1331,6 +1423,7 @@
   },
   {
    "id": "iffr-2026-f33",
+   "idx": 33,
    "cIdx": 1286,
    "title": "Allies in Exile",
    "director": "Hasan Kattan",
@@ -1344,6 +1437,7 @@
   },
   {
    "id": "iffr-2026-f326",
+   "idx": 326,
    "cIdx": 1286,
    "title": "Rotation",
    "director": "Maryna Er Gorbach",
@@ -1357,6 +1451,7 @@
   },
   {
    "id": "iffr-2026-f337",
+   "idx": 337,
    "cIdx": 1286,
    "title": "Sense of Water",
    "director": "Mohammad Rasoulof",
@@ -1370,6 +1465,7 @@
   },
   {
    "id": "iffr-2026-f367",
+   "idx": 367,
    "cIdx": 1286,
    "title": "Super Afghan Gym",
    "director": "Shahrbanoo Sadat",
@@ -1383,6 +1479,7 @@
   },
   {
    "id": "iffr-2026-f479",
+   "idx": 479,
    "cIdx": 1286,
    "title": "Whispers of a Burning Scent",
    "director": "Mo Harawe",
@@ -1396,6 +1493,7 @@
   },
   {
    "id": "iffr-2026-f34",
+   "idx": 34,
    "cIdx": 1279,
    "title": "Als ik later rijk ben",
    "director": "Lucas Camps",
@@ -1409,6 +1507,7 @@
   },
   {
    "id": "iffr-2026-f37",
+   "idx": 37,
    "cIdx": 1279,
    "title": "Amelia’s Closet",
    "director": "Halima Lucas",
@@ -1422,6 +1521,7 @@
   },
   {
    "id": "iffr-2026-f49",
+   "idx": 49,
    "cIdx": 1279,
    "title": "backflip",
    "director": "Nikita Diakur",
@@ -1435,6 +1535,7 @@
   },
   {
    "id": "iffr-2026-f51",
+   "idx": 51,
    "cIdx": 1279,
    "title": "Barbed Wire",
    "director": "Gustavo de Carvalho",
@@ -1448,6 +1549,7 @@
   },
   {
    "id": "iffr-2026-f74",
+   "idx": 74,
    "cIdx": 1279,
    "title": "Christy",
    "director": "Brendan Canty",
@@ -1461,6 +1563,7 @@
   },
   {
    "id": "iffr-2026-f90",
+   "idx": 90,
    "cIdx": 1279,
    "title": "De fantastische vliegwedstrijd",
    "director": "John Croezen",
@@ -1474,6 +1577,7 @@
   },
   {
    "id": "iffr-2026-f100",
+   "idx": 100,
    "cIdx": 1279,
    "title": "Der Stachel im Po",
    "director": "Elena Walf",
@@ -1487,6 +1591,7 @@
   },
   {
    "id": "iffr-2026-f101",
+   "idx": 101,
    "cIdx": 1279,
    "title": "Desi Oon",
    "director": "Suresh Eriyat",
@@ -1500,6 +1605,7 @@
   },
   {
    "id": "iffr-2026-f137",
+   "idx": 137,
    "cIdx": 1279,
    "title": "Forevergreen",
    "director": "Nathan Engelhardt, Jeremy Spears",
@@ -1513,6 +1619,7 @@
   },
   {
    "id": "iffr-2026-f201",
+   "idx": 201,
    "cIdx": 1279,
    "title": "Kleingeld",
    "director": "Daniel Bakker",
@@ -1526,6 +1633,7 @@
   },
   {
    "id": "iffr-2026-f227",
+   "idx": 227,
    "cIdx": 1279,
    "title": "Ma doi, hungry ghost",
    "director": "Ludivine bidoire",
@@ -1539,6 +1647,7 @@
   },
   {
    "id": "iffr-2026-f242",
+   "idx": 242,
    "cIdx": 1279,
    "title": "Mojappi – it’s mine",
    "director": "Nijitaro",
@@ -1552,6 +1661,7 @@
   },
   {
    "id": "iffr-2026-f250",
+   "idx": 250,
    "cIdx": 1279,
    "title": "My Homeland",
    "director": "Tabarak Abbas",
@@ -1565,6 +1675,7 @@
   },
   {
    "id": "iffr-2026-f253",
+   "idx": 253,
    "cIdx": 1279,
    "title": "Ñam",
    "director": "Elena Duque",
@@ -1578,6 +1689,7 @@
   },
   {
    "id": "iffr-2026-f275",
+   "idx": 275,
    "cIdx": 1279,
    "title": "Once Upon a Time in Dragonville",
    "director": "Marika Herz",
@@ -1591,6 +1703,7 @@
   },
   {
    "id": "iffr-2026-f284",
+   "idx": 284,
    "cIdx": 1279,
    "title": "Ostrich",
    "director": "Marie Kenov",
@@ -1604,6 +1717,7 @@
   },
   {
    "id": "iffr-2026-f292",
+   "idx": 292,
    "cIdx": 1279,
    "title": "Patch",
    "director": "Gerd Gockell",
@@ -1617,6 +1731,7 @@
   },
   {
    "id": "iffr-2026-f329",
+   "idx": 329,
    "cIdx": 1279,
    "title": "Sandstorm",
    "director": "Seemab  Gul",
@@ -1630,6 +1745,7 @@
   },
   {
    "id": "iffr-2026-f349",
+   "idx": 349,
    "cIdx": 1279,
    "title": "Slurp",
    "director": "Florent Hill",
@@ -1643,6 +1759,7 @@
   },
   {
    "id": "iffr-2026-f371",
+   "idx": 371,
    "cIdx": 1279,
    "title": "T-rex",
    "director": "Julia Ocker",
@@ -1656,6 +1773,7 @@
   },
   {
    "id": "iffr-2026-f388",
+   "idx": 388,
    "cIdx": 1279,
    "title": "The Great Feat",
    "director": "Luber Yesid Zuñiga Ordoñez",
@@ -1669,6 +1787,7 @@
   },
   {
    "id": "iffr-2026-f401",
+   "idx": 401,
    "cIdx": 1279,
    "title": "The Little Bird and the Bees",
    "director": "Lena von Döhren",
@@ -1682,6 +1801,7 @@
   },
   {
    "id": "iffr-2026-f416",
+   "idx": 416,
    "cIdx": 1279,
    "title": "The Stroke",
    "director": "Vincent de Boer",
@@ -1695,6 +1815,7 @@
   },
   {
    "id": "iffr-2026-f433",
+   "idx": 433,
    "cIdx": 1279,
    "title": "Tiger",
    "director": "Kariem Saleh",
@@ -1708,6 +1829,7 @@
   },
   {
    "id": "iffr-2026-f438",
+   "idx": 438,
    "cIdx": 1279,
    "title": "Touching Darkness",
    "director": "Jamaica Kindlova",
@@ -1721,6 +1843,7 @@
   },
   {
    "id": "iffr-2026-f469",
+   "idx": 469,
    "cIdx": 1279,
    "title": "Warrior Heart",
    "director": "Marianne Ulrichsen",
@@ -1734,6 +1857,7 @@
   },
   {
    "id": "iffr-2026-f476",
+   "idx": 476,
    "cIdx": 1279,
    "title": "Wheelie Boys",
    "director": "Aisha Adepoju",
@@ -1747,6 +1871,7 @@
   },
   {
    "id": "iffr-2026-f478",
+   "idx": 478,
    "cIdx": 1279,
    "title": "Where the Wind Comes From",
    "director": "Amel Guellaty",
@@ -1760,6 +1885,7 @@
   },
   {
    "id": "iffr-2026-f488",
+   "idx": 488,
    "cIdx": 1279,
    "title": "Wolfie",
    "director": "Philippe Kastner",
@@ -1773,6 +1899,7 @@
   },
   {
    "id": "iffr-2026-f127",
+   "idx": 127,
    "cIdx": 1255,
    "title": "Faire-part",
    "director": "Collectif Faire-Part",
@@ -1786,6 +1913,7 @@
   },
   {
    "id": "iffr-2026-f186",
+   "idx": 186,
    "cIdx": 1255,
    "title": "In vele handen",
    "director": "Collectif Faire-Part",
@@ -1799,6 +1927,7 @@
   },
   {
    "id": "iffr-2026-f198",
+   "idx": 198,
    "cIdx": 1255,
    "title": "Kingongolo Kiniata",
    "director": "Mozalisi Nizar Saleh",
@@ -1812,6 +1941,7 @@
   },
   {
    "id": "iffr-2026-f206",
+   "idx": 206,
    "cIdx": 1255,
    "title": "L’escale",
    "director": "Collectif Faire-Part",
@@ -1825,6 +1955,7 @@
   },
   {
    "id": "iffr-2026-f363",
+   "idx": 363,
    "cIdx": 1255,
    "title": "Speech for a Melting Statue",
    "director": "Collectif Faire-Part",
@@ -1838,6 +1969,7 @@
   },
   {
    "id": "iffr-2026-f475",
+   "idx": 475,
    "cIdx": 1255,
    "title": "What We Said to Brussels Airlines",
    "director": "Collectif Faire-Part",
@@ -1851,6 +1983,7 @@
   },
   {
    "id": "iffr-2026-f103",
+   "idx": 103,
    "cIdx": 1246,
    "title": "Diamond Dust",
    "director": "Marwan Hamed",
@@ -1864,6 +1997,7 @@
   },
   {
    "id": "iffr-2026-f118",
+   "idx": 118,
    "cIdx": 1246,
    "title": "El Sett",
    "director": "Marwan Hamed",
@@ -1877,6 +2011,7 @@
   },
   {
    "id": "iffr-2026-f181",
+   "idx": 181,
    "cIdx": 1246,
    "title": "Ibrahim Labyad",
    "director": "Marwan Hamed",
@@ -1890,6 +2025,7 @@
   },
   {
    "id": "iffr-2026-f199",
+   "idx": 199,
    "cIdx": 1246,
    "title": "Kira & El Gin",
    "director": "Marwan Hamed",
@@ -1903,6 +2039,7 @@
   },
   {
    "id": "iffr-2026-f378",
+   "idx": 378,
    "cIdx": 1246,
    "title": "The Blue Elephant",
    "director": "Marwan Hamed",
@@ -1916,6 +2053,7 @@
   },
   {
    "id": "iffr-2026-f379",
+   "idx": 379,
    "cIdx": 1246,
    "title": "The Blue Elephant 2",
    "director": "Marwan Hamed",
@@ -1929,6 +2067,7 @@
   },
   {
    "id": "iffr-2026-f405",
+   "idx": 405,
    "cIdx": 1246,
    "title": "The Originals",
    "director": "Marwan Hamed",
@@ -1942,6 +2081,7 @@
   },
   {
    "id": "iffr-2026-f426",
+   "idx": 426,
    "cIdx": 1246,
    "title": "The Yacoubian Building",
    "director": "Marwan Hamed",
@@ -1955,6 +2095,7 @@
   },
   {
    "id": "iffr-2026-f40",
+   "idx": 40,
    "cIdx": 1257,
    "title": "ANTFILM",
    "director": "Tetsuya Maruyama",
@@ -1968,6 +2109,7 @@
   },
   {
    "id": "iffr-2026-f80",
+   "idx": 80,
    "cIdx": 1257,
    "title": "Corredor",
    "director": "Tetsuya Maruyama",
@@ -1981,6 +2123,7 @@
   },
   {
    "id": "iffr-2026-f94",
+   "idx": 94,
    "cIdx": 1257,
    "title": "Dead See",
    "director": "Tetsuya Maruyama",
@@ -1994,6 +2137,7 @@
   },
   {
    "id": "iffr-2026-f139",
+   "idx": 139,
    "cIdx": 1257,
    "title": "FOTOGRAFAR",
    "director": "Tetsuya Maruyama",
@@ -2007,6 +2151,7 @@
   },
   {
    "id": "iffr-2026-f150",
+   "idx": 150,
    "cIdx": 1257,
    "title": "GIRA 2",
    "director": "Tetsuya Maruyama",
@@ -2020,6 +2165,7 @@
   },
   {
    "id": "iffr-2026-f204",
+   "idx": 204,
    "cIdx": 1257,
    "title": "L.O.V.E.S.O.N.G",
    "director": "Tetsuya Maruyama",
@@ -2033,6 +2179,7 @@
   },
   {
    "id": "iffr-2026-f280",
+   "idx": 280,
    "cIdx": 1257,
    "title": "One more performance that unfolds a space",
    "director": "Tetsuya Maruyama",
@@ -2046,6 +2193,7 @@
   },
   {
    "id": "iffr-2026-f310",
+   "idx": 310,
    "cIdx": 1257,
    "title": "Q&A",
    "director": "Tetsuya Maruyama",
@@ -2059,6 +2207,7 @@
   },
   {
    "id": "iffr-2026-f339",
+   "idx": 339,
    "cIdx": 1257,
    "title": "Shashin no Ma",
    "director": "Tetsuya Maruyama",
@@ -2072,6 +2221,7 @@
   },
   {
    "id": "iffr-2026-f347",
+   "idx": 347,
    "cIdx": 1257,
    "title": "Situation-Cinema",
    "director": "Tetsuya Maruyama",
@@ -2085,6 +2235,7 @@
   },
   {
    "id": "iffr-2026-f429",
+   "idx": 429,
    "cIdx": 1257,
    "title": "Third Mountain",
    "director": "Tetsuya Maruyama",
@@ -2098,6 +2249,7 @@
   },
   {
    "id": "iffr-2026-f457",
+   "idx": 457,
    "cIdx": 1257,
    "title": "Untitled (three moons)",
    "director": "Tetsuya Maruyama",
@@ -2111,6 +2263,7 @@
   },
   {
    "id": "iffr-2026-f48",
+   "idx": 48,
    "cIdx": 1260,
    "title": "B-Girl Rhapsody",
    "director": "Lillian Hunt, James R. Connell",
@@ -2124,6 +2277,7 @@
   },
   {
    "id": "iffr-2026-f53",
+   "idx": 53,
    "cIdx": 1260,
    "title": "believe in it",
    "director": "Yonesho Maya",
@@ -2137,6 +2291,7 @@
   },
   {
    "id": "iffr-2026-f57",
+   "idx": 57,
    "cIdx": 1260,
    "title": "Blanca Putica. A Girl in Love",
    "director": "Miñuca Villaverde",
@@ -2150,6 +2305,7 @@
   },
   {
    "id": "iffr-2026-f66",
+   "idx": 66,
    "cIdx": 1260,
    "title": "Button",
    "director": "Teresa Badzian",
@@ -2163,6 +2319,7 @@
   },
   {
    "id": "iffr-2026-f70",
+   "idx": 70,
    "cIdx": 1260,
    "title": "Casting Tapes",
    "director": "Ulrike Putzer, Matthias van Baaren",
@@ -2176,6 +2333,7 @@
   },
   {
    "id": "iffr-2026-f72",
+   "idx": 72,
    "cIdx": 1260,
    "title": "Challenge for Change: “… and They Lived Happily Ever After”",
    "director": "Kathleen Shannon, Irene Angelico, Anne Henderson",
@@ -2189,6 +2347,7 @@
   },
   {
    "id": "iffr-2026-f76",
+   "idx": 76,
    "cIdx": 1260,
    "title": "Cinemartyrs",
    "director": "Sari Lluch Dalena",
@@ -2202,6 +2361,7 @@
   },
   {
    "id": "iffr-2026-f84",
+   "idx": 84,
    "cIdx": 1260,
    "title": "Crocus",
    "director": "Suzan Pitt",
@@ -2215,6 +2375,7 @@
   },
   {
    "id": "iffr-2026-f88",
+   "idx": 88,
    "cIdx": 1260,
    "title": "Dancers Only",
    "director": "Siiri Selin",
@@ -2228,6 +2389,7 @@
   },
   {
    "id": "iffr-2026-f110",
+   "idx": 110,
    "cIdx": 1260,
    "title": "Drawing Lessons",
    "director": "Maureen Selwood",
@@ -2241,6 +2403,7 @@
   },
   {
    "id": "iffr-2026-f113",
+   "idx": 113,
    "cIdx": 1260,
    "title": "Dump",
    "director": "Christina Friedrich",
@@ -2254,6 +2417,7 @@
   },
   {
    "id": "iffr-2026-f121",
+   "idx": 121,
    "cIdx": 1260,
    "title": "Elles",
    "director": "Hortense Guillemard, Joanna Quinn",
@@ -2267,6 +2431,7 @@
   },
   {
    "id": "iffr-2026-f122",
+   "idx": 122,
    "cIdx": 1260,
    "title": "Enkel der Geschichte",
    "director": "Laura Laabs",
@@ -2280,6 +2445,7 @@
   },
   {
    "id": "iffr-2026-f123",
+   "idx": 123,
    "cIdx": 1260,
    "title": "Etc…",
    "director": "Katarzyna Latałło",
@@ -2293,6 +2459,7 @@
   },
   {
    "id": "iffr-2026-f140",
+   "idx": 140,
    "cIdx": 1260,
    "title": "From Your Head",
    "director": "Sally Cruikshank",
@@ -2306,6 +2473,7 @@
   },
   {
    "id": "iffr-2026-f152",
+   "idx": 152,
    "cIdx": 1260,
    "title": "Goddess Remembered",
    "director": "Donna Read",
@@ -2319,6 +2487,7 @@
   },
   {
    "id": "iffr-2026-f154",
+   "idx": 154,
    "cIdx": 1260,
    "title": "Granny’s Sexual Life",
    "director": "Urška Djukić, Émilie Pigeard",
@@ -2332,6 +2501,7 @@
   },
   {
    "id": "iffr-2026-f158",
+   "idx": 158,
    "cIdx": 1260,
    "title": "Happy Ending",
    "director": "EunJu Ara Choi",
@@ -2345,6 +2515,7 @@
   },
   {
    "id": "iffr-2026-f170",
+   "idx": 170,
    "cIdx": 1260,
    "title": "How to Be at Home",
    "director": "Andrea Dorfman, Tanya Davis",
@@ -2358,6 +2529,7 @@
   },
   {
    "id": "iffr-2026-f172",
+   "idx": 172,
    "cIdx": 1260,
    "title": "Hra",
    "director": null,
@@ -2371,6 +2543,7 @@
   },
   {
    "id": "iffr-2026-f177",
+   "idx": 177,
    "cIdx": 1260,
    "title": "I Like Life a Lot",
    "director": "Katalin Macskássy",
@@ -2384,6 +2557,7 @@
   },
   {
    "id": "iffr-2026-f192",
+   "idx": 192,
    "cIdx": 1260,
    "title": "Interview",
    "director": "Caroline Leaf, Veronika Soul",
@@ -2397,6 +2571,7 @@
   },
   {
    "id": "iffr-2026-f196",
+   "idx": 196,
    "cIdx": 1260,
    "title": "Jugend und Sexualität",
    "director": "Tula Roy, Madeleine Hirsiger, Marianne Jäggi, Ellen Meyrat, Lili Sommer",
@@ -2410,6 +2585,7 @@
   },
   {
    "id": "iffr-2026-f209",
+   "idx": 209,
    "cIdx": 1260,
    "title": "La Mort n’a pas voulu de moi – Portrait de Lotte Eisner",
    "director": "Carole Roussopoulos, Carine Varène, Michel Célémenski",
@@ -2423,6 +2599,7 @@
   },
   {
    "id": "iffr-2026-f213",
+   "idx": 213,
    "cIdx": 1260,
    "title": "Lake Monsters",
    "director": "Mizushima Hiné",
@@ -2436,6 +2613,7 @@
   },
   {
    "id": "iffr-2026-f219",
+   "idx": 219,
    "cIdx": 1260,
    "title": "Let’s Make a Film",
    "director": "Yvonne Anderson",
@@ -2449,6 +2627,7 @@
   },
   {
    "id": "iffr-2026-f226",
+   "idx": 226,
    "cIdx": 1260,
    "title": "Lotus",
    "director": "Signe Birkova",
@@ -2462,6 +2641,7 @@
   },
   {
    "id": "iffr-2026-f257",
+   "idx": 257,
    "cIdx": 1260,
    "title": "Nine Lives",
    "director": "Karen Aqua",
@@ -2475,6 +2655,7 @@
   },
   {
    "id": "iffr-2026-f273",
+   "idx": 273,
    "cIdx": 1260,
    "title": "Ombres de soie",
    "director": "Mary Stephen",
@@ -2488,6 +2669,7 @@
   },
   {
    "id": "iffr-2026-f308",
+   "idx": 308,
    "cIdx": 1260,
    "title": "Pussy",
    "director": "Renata Gąsiorowska",
@@ -2501,6 +2683,7 @@
   },
   {
    "id": "iffr-2026-f309",
+   "idx": 309,
    "cIdx": 1260,
    "title": "Pussy Pumps Up",
    "director": "Antoinette Starkiewicz",
@@ -2514,6 +2697,7 @@
   },
   {
    "id": "iffr-2026-f322",
+   "idx": 322,
    "cIdx": 1260,
    "title": "Rødstrømper – en kavalkade af kvindefilm",
    "director": "Mette Knudsen",
@@ -2527,6 +2711,7 @@
   },
   {
    "id": "iffr-2026-f341",
+   "idx": 341,
    "cIdx": 1260,
    "title": "She-Bop",
    "director": "Joanna Priestley",
@@ -2540,6 +2725,7 @@
   },
   {
    "id": "iffr-2026-f348",
+   "idx": 348,
    "cIdx": 1260,
    "title": "Skittish Brothers",
    "director": "Hermína Týrlová",
@@ -2553,6 +2739,7 @@
   },
   {
    "id": "iffr-2026-f399",
+   "idx": 399,
    "cIdx": 1260,
    "title": "The Light Fantastic Picture Show",
    "director": "Lillian Somersaulter Moats, JP Somersaulter",
@@ -2566,6 +2753,7 @@
   },
   {
    "id": "iffr-2026-f407",
+   "idx": 407,
    "cIdx": 1260,
    "title": "The Passionate Stranger",
    "director": "Muriel Box",
@@ -2579,6 +2767,7 @@
   },
   {
    "id": "iffr-2026-f415",
+   "idx": 415,
    "cIdx": 1260,
    "title": "The Stitches Speak",
    "director": "Nina Sabnani",
@@ -2592,6 +2781,7 @@
   },
   {
    "id": "iffr-2026-f420",
+   "idx": 420,
    "cIdx": 1260,
    "title": "The Trouble with Angels",
    "director": "Ida Lupino",
@@ -2605,6 +2795,7 @@
   },
   {
    "id": "iffr-2026-f424",
+   "idx": 424,
    "cIdx": 1260,
    "title": "The Woman’s Film (Newsreel #55)",
    "director": "Newsreel",
@@ -2618,6 +2809,7 @@
   },
   {
    "id": "iffr-2026-f431",
+   "idx": 431,
    "cIdx": 1260,
    "title": "Three Ways of Returning",
    "director": "Mania Akbari, Xiaolu Guo, Andrea Luka Zimmerman",
@@ -2631,6 +2823,7 @@
   },
   {
    "id": "iffr-2026-f456",
+   "idx": 456,
    "cIdx": 1260,
    "title": "UNSERE NATUR",
    "director": "Marlene Denningmann",
@@ -2644,6 +2837,7 @@
   },
   {
    "id": "iffr-2026-f468",
+   "idx": 468,
    "cIdx": 1260,
    "title": "Voices",
    "director": "Joanna Priestley",
@@ -2657,6 +2851,7 @@
   },
   {
    "id": "iffr-2026-f471",
+   "idx": 471,
    "cIdx": 1260,
    "title": "We Aim to Please",
    "director": "Margot Nash, Robin Laurie",
@@ -2670,6 +2865,7 @@
   },
   {
    "id": "iffr-2026-f473",
+   "idx": 473,
    "cIdx": 1260,
    "title": "Wellen Wende",
    "director": "Josephine Ahnelt",
@@ -2683,6 +2879,7 @@
   },
   {
    "id": "iffr-2026-f486",
+   "idx": 486,
    "cIdx": 1260,
    "title": "Witch Madness",
    "director": "Faith Hubley, Emily Hubley",
@@ -2696,6 +2893,7 @@
   },
   {
    "id": "iffr-2026-f493",
+   "idx": 493,
    "cIdx": 1260,
    "title": "Yentl",
    "director": "Barbra Streisand",
@@ -2709,6 +2907,7 @@
   },
   {
    "id": "iffr-2026-f16",
+   "idx": 16,
    "cIdx": 1252,
    "title": "A Haunted School",
    "director": "Tsuruta Norio",
@@ -2722,6 +2921,7 @@
   },
   {
    "id": "iffr-2026-f22",
+   "idx": 22,
    "cIdx": 1252,
    "title": "A Weapon in My Heart",
    "director": "Aoyama Shinji",
@@ -2735,6 +2935,7 @@
   },
   {
    "id": "iffr-2026-f41",
+   "idx": 41,
    "cIdx": 1252,
    "title": "Anxious Virgin: One More Time, I Love You",
    "director": "Nakahara Shun",
@@ -2748,6 +2949,7 @@
   },
   {
    "id": "iffr-2026-f54",
+   "idx": 54,
    "cIdx": 1252,
    "title": "Betrayal Tomorrow",
    "director": "Kudo Eiichi",
@@ -2761,6 +2963,7 @@
   },
   {
    "id": "iffr-2026-f81",
+   "idx": 81,
    "cIdx": 1252,
    "title": "Crime Hunter 2: Bullets of Betrayal",
    "director": "Ōkawa Toshimichi",
@@ -2774,6 +2977,7 @@
   },
   {
    "id": "iffr-2026-f82",
+   "idx": 82,
    "cIdx": 1252,
    "title": "Crime Hunter 3: Killing Bullet",
    "director": "Ōkawa Toshimichi",
@@ -2787,6 +2991,7 @@
   },
   {
    "id": "iffr-2026-f83",
+   "idx": 83,
    "cIdx": 1252,
    "title": "Crime Hunter: Bullets of Rage",
    "director": "Ōkawa Toshimichi",
@@ -2800,6 +3005,7 @@
   },
   {
    "id": "iffr-2026-f112",
+   "idx": 112,
    "cIdx": 1252,
    "title": "Drug Connection",
    "director": "Baba Shōkaku",
@@ -2813,6 +3019,7 @@
   },
   {
    "id": "iffr-2026-f132",
+   "idx": 132,
    "cIdx": 1252,
    "title": "Female Teacher: Forbidden Sex",
    "director": "Nakata Hideo",
@@ -2826,6 +3033,7 @@
   },
   {
    "id": "iffr-2026-f141",
+   "idx": 141,
    "cIdx": 1252,
    "title": "Fudoh: The New Generation",
    "director": "Miike Takashi",
@@ -2839,6 +3047,7 @@
   },
   {
    "id": "iffr-2026-f282",
+   "idx": 282,
    "cIdx": 1252,
    "title": "Orchids Under the Moon",
    "director": "Ishii Takashi",
@@ -2852,6 +3061,7 @@
   },
   {
    "id": "iffr-2026-f307",
+   "idx": 307,
    "cIdx": 1252,
    "title": "Psychic Vision: Jaganrei",
    "director": "Ishii Teruyoshi",
@@ -2865,6 +3075,7 @@
   },
   {
    "id": "iffr-2026-f333",
+   "idx": 333,
    "cIdx": 1252,
    "title": "Scary True Stories: Second Night",
    "director": "Tsuruta Norio",
@@ -2878,6 +3089,7 @@
   },
   {
    "id": "iffr-2026-f366",
+   "idx": 366,
    "cIdx": 1252,
    "title": "Suit Yourself or Shoot Yourself!! VI: The Hero",
    "director": "Kurosawa Kiyoshi",
@@ -2891,6 +3103,7 @@
   },
   {
    "id": "iffr-2026-f395",
+   "idx": 395,
    "cIdx": 1252,
    "title": "The King of Minami",
    "director": "Haginiwa Sadaaki",
@@ -2904,6 +3117,7 @@
   },
   {
    "id": "iffr-2026-f396",
+   "idx": 396,
    "cIdx": 1252,
    "title": "The King of Minami: Special Ver. 50",
    "director": "Haginiwa Sadaaki",
@@ -2917,6 +3131,7 @@
   },
   {
    "id": "iffr-2026-f447",
+   "idx": 447,
    "cIdx": 1252,
    "title": "Tuff: Part 1",
    "director": "Masato Harada",
@@ -2930,6 +3145,7 @@
   },
   {
    "id": "iffr-2026-f491",
+   "idx": 491,
    "cIdx": 1252,
    "title": "XX Beautiful Weapon",
    "director": "Komizu Kazuo",
@@ -2943,6 +3159,7 @@
   },
   {
    "id": "iffr-2026-f10",
+   "idx": 10,
    "cIdx": 1249,
    "title": "4 Tigers",
    "director": "Kongkiat Komesiri",
@@ -2956,6 +3173,7 @@
   },
   {
    "id": "iffr-2026-f12",
+   "idx": 12,
    "cIdx": 1249,
    "title": "58th",
    "director": "Carl Joseph E. Papa",
@@ -2969,6 +3187,7 @@
   },
   {
    "id": "iffr-2026-f20",
+   "idx": 20,
    "cIdx": 1249,
    "title": "A Survivor’s Tale",
    "director": "Micha Wald",
@@ -2982,6 +3201,7 @@
   },
   {
    "id": "iffr-2026-f21",
+   "idx": 21,
    "cIdx": 1249,
    "title": "A Useful Ghost",
    "director": "Ratchapoom Boonbunchachoke",
@@ -2995,6 +3215,7 @@
   },
   {
    "id": "iffr-2026-f24",
+   "idx": 24,
    "cIdx": 1249,
    "title": "Accept Our Sincere Apologies",
    "director": "Juja Dobrachkous",
@@ -3008,6 +3229,7 @@
   },
   {
    "id": "iffr-2026-f27",
+   "idx": 27,
    "cIdx": 1249,
    "title": "After the Cities",
    "director": "Xacio Baño",
@@ -3021,6 +3243,7 @@
   },
   {
    "id": "iffr-2026-f43",
+   "idx": 43,
    "cIdx": 1249,
    "title": "Art Is Dark and Full of Horrors",
    "director": "Artemio Narro",
@@ -3034,6 +3257,7 @@
   },
   {
    "id": "iffr-2026-f60",
+   "idx": 60,
    "cIdx": 1249,
    "title": "Bowels of Hell",
    "director": "Gustavo Vinagre, Gurcius Gewdner",
@@ -3047,6 +3271,7 @@
   },
   {
    "id": "iffr-2026-f68",
+   "idx": 68,
    "cIdx": 1249,
    "title": "Calle Málaga",
    "director": "Maryam Touzani",
@@ -3060,6 +3285,7 @@
   },
   {
    "id": "iffr-2026-f71",
+   "idx": 71,
    "cIdx": 1249,
    "title": "Cauchemar conseil",
    "director": "Renaud Després-Larose, Ana Tapia Rousiouk",
@@ -3073,6 +3299,7 @@
   },
   {
    "id": "iffr-2026-f79",
+   "idx": 79,
    "cIdx": 1249,
    "title": "Conrad & Crab – Idiotic Gems",
    "director": "Claude Schmitz",
@@ -3086,6 +3313,7 @@
   },
   {
    "id": "iffr-2026-f95",
+   "idx": 95,
    "cIdx": 1249,
    "title": "Dead Souls",
    "director": "Alex Cox",
@@ -3099,6 +3327,7 @@
   },
   {
    "id": "iffr-2026-f108",
+   "idx": 108,
    "cIdx": 1249,
    "title": "Dolores",
    "director": "Maria Clara Escobar, Marcelo Gomes",
@@ -3112,6 +3341,7 @@
   },
   {
    "id": "iffr-2026-f115",
+   "idx": 115,
    "cIdx": 1249,
    "title": "Earth Song",
    "director": "Erol Mintaş",
@@ -3125,6 +3355,7 @@
   },
   {
    "id": "iffr-2026-f120",
+   "idx": 120,
    "cIdx": 1249,
    "title": "Elements of(f) Balance",
    "director": "Othmar Schmiderer",
@@ -3138,6 +3369,7 @@
   },
   {
    "id": "iffr-2026-f128",
+   "idx": 128,
    "cIdx": 1249,
    "title": "Far from Maine",
    "director": "Roy Cohen",
@@ -3151,6 +3383,7 @@
   },
   {
    "id": "iffr-2026-f134",
+   "idx": 134,
    "cIdx": 1249,
    "title": "First Days",
    "director": "Kim Allamand, Michael Karrer",
@@ -3164,6 +3397,7 @@
   },
   {
    "id": "iffr-2026-f135",
+   "idx": 135,
    "cIdx": 1249,
    "title": "First Light",
    "director": "James J. Robinson",
@@ -3177,6 +3411,7 @@
   },
   {
    "id": "iffr-2026-f136",
+   "idx": 136,
    "cIdx": 1249,
    "title": "Fish, Fists and Ambergris",
    "director": "Dương Minh Chiến",
@@ -3190,6 +3425,7 @@
   },
   {
    "id": "iffr-2026-f145",
+   "idx": 145,
    "cIdx": 1249,
    "title": "Gatillero",
    "director": "Cris Tapia Marchiori",
@@ -3203,6 +3439,7 @@
   },
   {
    "id": "iffr-2026-f146",
+   "idx": 146,
    "cIdx": 1249,
    "title": "Gaua",
    "director": "Paul Urkijo Alijo",
@@ -3216,6 +3453,7 @@
   },
   {
    "id": "iffr-2026-f160",
+   "idx": 160,
    "cIdx": 1249,
    "title": "Heart of Light – eleven songs for Fiji",
    "director": "Cynthia Beatt",
@@ -3229,6 +3467,7 @@
   },
   {
    "id": "iffr-2026-f164",
+   "idx": 164,
    "cIdx": 1249,
    "title": "Home Bitter Home",
    "director": "Ghina Abboud, Naïm El Hajj, Salim Mrad, Aline Ouais, Jihad Saade, Marie-Rose Osta",
@@ -3242,6 +3481,7 @@
   },
   {
    "id": "iffr-2026-f173",
+   "idx": 173,
    "cIdx": 1249,
    "title": "Hungry",
    "director": "Susanne Brandstaetter",
@@ -3255,6 +3495,7 @@
   },
   {
    "id": "iffr-2026-f191",
+   "idx": 191,
    "cIdx": 1249,
    "title": "Interior apartamento día",
    "director": "Israel Cárdenas, Laura Amelia Guzmán",
@@ -3268,6 +3509,7 @@
   },
   {
    "id": "iffr-2026-f193",
+   "idx": 193,
    "cIdx": 1249,
    "title": "Isan Odyssey",
    "director": "Thunska Pansittivorakul",
@@ -3281,6 +3523,7 @@
   },
   {
    "id": "iffr-2026-f203",
+   "idx": 203,
    "cIdx": 1249,
    "title": "Krakatoa",
    "director": "Carlos Casas",
@@ -3294,6 +3537,7 @@
   },
   {
    "id": "iffr-2026-f212",
+   "idx": 212,
    "cIdx": 1249,
    "title": "Labyrinth Under Cyclone",
    "director": "Achitaphon Piansukprasert",
@@ -3307,6 +3551,7 @@
   },
   {
    "id": "iffr-2026-f224",
+   "idx": 224,
    "cIdx": 1249,
    "title": "Lone Samurai",
    "director": "Josh C. Waller",
@@ -3320,6 +3565,7 @@
   },
   {
    "id": "iffr-2026-f225",
+   "idx": 225,
    "cIdx": 1249,
    "title": "Los domingos",
    "director": "Alauda Ruiz de Azúa",
@@ -3333,6 +3579,7 @@
   },
   {
    "id": "iffr-2026-f228",
+   "idx": 228,
    "cIdx": 1249,
    "title": "Maddie’s Secret",
    "director": "John Early",
@@ -3346,6 +3593,7 @@
   },
   {
    "id": "iffr-2026-f229",
+   "idx": 229,
    "cIdx": 1249,
    "title": "Magellan",
    "director": "Lav Diaz",
@@ -3359,6 +3607,7 @@
   },
   {
    "id": "iffr-2026-f236",
+   "idx": 236,
    "cIdx": 1249,
    "title": "Master Bantoo",
    "director": "Arsh Jain",
@@ -3372,6 +3621,7 @@
   },
   {
    "id": "iffr-2026-f238",
+   "idx": 238,
    "cIdx": 1249,
    "title": "Mergen",
    "director": "Chingiz Narynov",
@@ -3385,6 +3635,7 @@
   },
   {
    "id": "iffr-2026-f244",
+   "idx": 244,
    "cIdx": 1249,
    "title": "Motherwitch",
    "director": "Minos Papas",
@@ -3398,6 +3649,7 @@
   },
   {
    "id": "iffr-2026-f266",
+   "idx": 266,
    "cIdx": 1249,
    "title": "Nox",
    "director": "Matti Harju",
@@ -3411,6 +3663,7 @@
   },
   {
    "id": "iffr-2026-f267",
+   "idx": 267,
    "cIdx": 1249,
    "title": "Nuestra tierra",
    "director": "Lucrecia Martel",
@@ -3424,6 +3677,7 @@
   },
   {
    "id": "iffr-2026-f296",
+   "idx": 296,
    "cIdx": 1249,
    "title": "Phra Ruang: Rise of the Empire",
    "director": "Chartchai Ketnust",
@@ -3437,6 +3691,7 @@
   },
   {
    "id": "iffr-2026-f298",
+   "idx": 298,
    "cIdx": 1249,
    "title": "Pillion",
    "director": "Harry Lighton",
@@ -3450,6 +3705,7 @@
   },
   {
    "id": "iffr-2026-f300",
+   "idx": 300,
    "cIdx": 1249,
    "title": "Poetries from the Bookstores: Somewhere I Belong",
    "director": "Hou Chi-jan",
@@ -3463,6 +3719,7 @@
   },
   {
    "id": "iffr-2026-f320",
+   "idx": 320,
    "cIdx": 1249,
    "title": "Ripples in the Mist",
    "director": "Clara Law",
@@ -3476,6 +3733,7 @@
   },
   {
    "id": "iffr-2026-f321",
+   "idx": 321,
    "cIdx": 1249,
    "title": "Rock, Weed and Wheels",
    "director": "J.M Cravioto",
@@ -3489,6 +3747,7 @@
   },
   {
    "id": "iffr-2026-f346",
+   "idx": 346,
    "cIdx": 1249,
    "title": "Sirāt",
    "director": "Oliver Laxe",
@@ -3502,6 +3761,7 @@
   },
   {
    "id": "iffr-2026-f352",
+   "idx": 352,
    "cIdx": 1249,
    "title": "Snake milkers and the miserable lady",
    "director": "Vahid Alvandifar",
@@ -3515,6 +3775,7 @@
   },
   {
    "id": "iffr-2026-f357",
+   "idx": 357,
    "cIdx": 1249,
    "title": "Songs of Hope and Despair. Performed by Bundschuh, Fish, Fox Tail, Rainbow, Dead Drummer, Muse-Leaving Germany and by other agencies",
    "director": "Tsaplya Olga Egorova",
@@ -3528,6 +3789,7 @@
   },
   {
    "id": "iffr-2026-f382",
+   "idx": 382,
    "cIdx": 1249,
    "title": "The End",
    "director": "Albert Oehlen, Niklas Weise",
@@ -3541,6 +3803,7 @@
   },
   {
    "id": "iffr-2026-f383",
+   "idx": 383,
    "cIdx": 1249,
    "title": "The Exposure",
    "director": "Thomas Imbach",
@@ -3554,6 +3817,7 @@
   },
   {
    "id": "iffr-2026-f392",
+   "idx": 392,
    "cIdx": 1249,
    "title": "The Hole, 309 Days to the Bloodiest Tragedy",
    "director": "Hanung Bramantyo",
@@ -3567,6 +3831,7 @@
   },
   {
    "id": "iffr-2026-f394",
+   "idx": 394,
    "cIdx": 1249,
    "title": "The Killing of Meghnad",
    "director": "Ashish Avikunthak",
@@ -3580,6 +3845,7 @@
   },
   {
    "id": "iffr-2026-f402",
+   "idx": 402,
    "cIdx": 1249,
    "title": "The Misconceived",
    "director": "James N. Kienitz Wilkins",
@@ -3593,6 +3859,7 @@
   },
   {
    "id": "iffr-2026-f406",
+   "idx": 406,
    "cIdx": 1249,
    "title": "The Passion According to G.H.B.",
    "director": "Gustavo Vinagre, Vinicius Couto",
@@ -3606,6 +3873,7 @@
   },
   {
    "id": "iffr-2026-f412",
+   "idx": 412,
    "cIdx": 1249,
    "title": "The Seoul Guardians",
    "director": "Kim Jong-woo, Kim Shin-wan, Cho Chul-young",
@@ -3619,6 +3887,7 @@
   },
   {
    "id": "iffr-2026-f421",
+   "idx": 421,
    "cIdx": 1249,
    "title": "The Waves Saga",
    "director": "Badrul Munir",
@@ -3632,6 +3901,7 @@
   },
   {
    "id": "iffr-2026-f428",
+   "idx": 428,
    "cIdx": 1249,
    "title": "There Was Such a Thing Before",
    "director": "Matsui Yoshihiko",
@@ -3645,6 +3915,7 @@
   },
   {
    "id": "iffr-2026-f436",
+   "idx": 436,
    "cIdx": 1249,
    "title": "To Die a Frenchman",
    "director": "Pankaj Rishi Kumar",
@@ -3658,6 +3929,7 @@
   },
   {
    "id": "iffr-2026-f453",
+   "idx": 453,
    "cIdx": 1249,
    "title": "Under Current",
    "director": "Alan Mak",
@@ -3671,6 +3943,7 @@
   },
   {
    "id": "iffr-2026-f464",
+   "idx": 464,
    "cIdx": 1249,
    "title": "Victor comme tout le monde",
    "director": "Pascal Bonitzer",
@@ -3684,6 +3957,7 @@
   },
   {
    "id": "iffr-2026-f4",
+   "idx": 4,
    "cIdx": 1248,
    "title": "100 Nights of Hero",
    "director": "Julia Jackman",
@@ -3697,6 +3971,7 @@
   },
   {
    "id": "iffr-2026-f7",
+   "idx": 7,
    "cIdx": 1248,
    "title": "3 Days in September",
    "director": "Tudor Giurgiu",
@@ -3710,6 +3985,7 @@
   },
   {
    "id": "iffr-2026-f50",
+   "idx": 50,
    "cIdx": 1248,
    "title": "Badak",
    "director": "M. Raihan Halim",
@@ -3723,6 +3999,7 @@
   },
   {
    "id": "iffr-2026-f52",
+   "idx": 52,
    "cIdx": 1248,
    "title": "Bazaar (Murder in the Building)",
    "director": "Rémi Bezançon",
@@ -3736,6 +4013,7 @@
   },
   {
    "id": "iffr-2026-f73",
+   "idx": 73,
    "cIdx": 1248,
    "title": "ChaO",
    "director": "Aoki Yasuhiro",
@@ -3749,6 +4027,7 @@
   },
   {
    "id": "iffr-2026-f93",
+   "idx": 93,
    "cIdx": 1248,
    "title": "Dead Man’s Wire",
    "director": "Gus Van Sant",
@@ -3762,6 +4041,7 @@
   },
   {
    "id": "iffr-2026-f96",
+   "idx": 96,
    "cIdx": 1248,
    "title": "Deadline",
    "director": "Kiwi Chow",
@@ -3775,6 +4055,7 @@
   },
   {
    "id": "iffr-2026-f125",
+   "idx": 125,
    "cIdx": 1248,
    "title": "Exit 8",
    "director": "Kawamura Genki",
@@ -3788,6 +4069,7 @@
   },
   {
    "id": "iffr-2026-f126",
+   "idx": 126,
    "cIdx": 1248,
    "title": "Fackham Hall",
    "director": "Jim O'Hanlon",
@@ -3801,6 +4083,7 @@
   },
   {
    "id": "iffr-2026-f129",
+   "idx": 129,
    "cIdx": 1248,
    "title": "Father Mother Sister Brother",
    "director": "Jim Jarmusch",
@@ -3814,6 +4097,7 @@
   },
   {
    "id": "iffr-2026-f142",
+   "idx": 142,
    "cIdx": 1248,
    "title": "Fuori",
    "director": "Mario Martone",
@@ -3827,6 +4111,7 @@
   },
   {
    "id": "iffr-2026-f147",
+   "idx": 147,
    "cIdx": 1248,
    "title": "Gavagai",
    "director": "Ulrich Köhler",
@@ -3840,6 +4125,7 @@
   },
   {
    "id": "iffr-2026-f161",
+   "idx": 161,
    "cIdx": 1248,
    "title": "Hi-Five",
    "director": "Kang Hyeong-cheol",
@@ -3853,6 +4139,7 @@
   },
   {
    "id": "iffr-2026-f178",
+   "idx": 178,
    "cIdx": 1248,
    "title": "I Swear",
    "director": "Kirk Jones",
@@ -3866,6 +4153,7 @@
   },
   {
    "id": "iffr-2026-f183",
+   "idx": 183,
    "cIdx": 1248,
    "title": "Il Maestro",
    "director": "Andrea Di Stefano",
@@ -3879,6 +4167,7 @@
   },
   {
    "id": "iffr-2026-f207",
+   "idx": 207,
    "cIdx": 1248,
    "title": "L’étranger",
    "director": "François Ozon",
@@ -3892,6 +4181,7 @@
   },
   {
    "id": "iffr-2026-f210",
+   "idx": 210,
    "cIdx": 1248,
    "title": "La petite dernière",
    "director": "Hafsia Herzi",
@@ -3905,6 +4195,7 @@
   },
   {
    "id": "iffr-2026-f217",
+   "idx": 217,
    "cIdx": 1248,
    "title": "Late Fame",
    "director": "Kent Jones",
@@ -3918,6 +4209,7 @@
   },
   {
    "id": "iffr-2026-f221",
+   "idx": 221,
    "cIdx": 1248,
    "title": "Life Is Life",
    "director": "Riccardo Milani",
@@ -3931,6 +4223,7 @@
   },
   {
    "id": "iffr-2026-f239",
+   "idx": 239,
    "cIdx": 1248,
    "title": "Mi amor",
    "director": "Guillaume Nicloux",
@@ -3944,6 +4237,7 @@
   },
   {
    "id": "iffr-2026-f248",
+   "idx": 248,
    "cIdx": 1248,
    "title": "My Daughter Is a Zombie",
    "director": "Pil Gam-Sung",
@@ -3957,6 +4251,7 @@
   },
   {
    "id": "iffr-2026-f259",
+   "idx": 259,
    "cIdx": 1248,
    "title": "No Hit Wonder",
    "director": "Florian Dietrich",
@@ -3970,6 +4265,7 @@
   },
   {
    "id": "iffr-2026-f260",
+   "idx": 260,
    "cIdx": 1248,
    "title": "No Other Choice",
    "director": "Park Chan-wook",
@@ -3983,6 +4279,7 @@
   },
   {
    "id": "iffr-2026-f288",
+   "idx": 288,
    "cIdx": 1248,
    "title": "Palestine 36",
    "director": "Annemarie Jacir",
@@ -3996,6 +4293,7 @@
   },
   {
    "id": "iffr-2026-f291",
+   "idx": 291,
    "cIdx": 1248,
    "title": "Parasakthi",
    "director": "Sudha Kongara",
@@ -4009,6 +4307,7 @@
   },
   {
    "id": "iffr-2026-f294",
+   "idx": 294,
    "cIdx": 1248,
    "title": "Peleliu: Guernica of Paradise",
    "director": "Kuji Goro",
@@ -4022,6 +4321,7 @@
   },
   {
    "id": "iffr-2026-f306",
+   "idx": 306,
    "cIdx": 1248,
    "title": "Providence and the Guitar",
    "director": "João Nicolau",
@@ -4035,6 +4335,7 @@
   },
   {
    "id": "iffr-2026-f311",
+   "idx": 311,
    "cIdx": 1248,
    "title": "Quezon",
    "director": "Jerrold Tarog",
@@ -4048,6 +4349,7 @@
   },
   {
    "id": "iffr-2026-f313",
+   "idx": 313,
    "cIdx": 1248,
    "title": "Rangga & Cinta",
    "director": "Riri Riza",
@@ -4061,6 +4363,7 @@
   },
   {
    "id": "iffr-2026-f319",
+   "idx": 319,
    "cIdx": 1248,
    "title": "Return to Silent Hill",
    "director": "Christophe Gans",
@@ -4074,6 +4377,7 @@
   },
   {
    "id": "iffr-2026-f324",
+   "idx": 324,
    "cIdx": 1248,
    "title": "Romería",
    "director": "Carla Simón",
@@ -4087,6 +4391,7 @@
   },
   {
    "id": "iffr-2026-f332",
+   "idx": 332,
    "cIdx": 1248,
    "title": "Scarlet",
    "director": "Hosoda Mamoru",
@@ -4100,6 +4405,7 @@
   },
   {
    "id": "iffr-2026-f342",
+   "idx": 342,
    "cIdx": 1248,
    "title": "Siapa Dia",
    "director": "Garin Nugroho",
@@ -4113,6 +4419,7 @@
   },
   {
    "id": "iffr-2026-f345",
+   "idx": 345,
    "cIdx": 1248,
    "title": "Silent Friend",
    "director": "Ildikó Enyedi",
@@ -4126,6 +4433,7 @@
   },
   {
    "id": "iffr-2026-f358",
+   "idx": 358,
    "cIdx": 1248,
    "title": "Sore: A Wife from the Future",
    "director": "Yandy Laurens",
@@ -4139,6 +4447,7 @@
   },
   {
    "id": "iffr-2026-f360",
+   "idx": 360,
    "cIdx": 1248,
    "title": "Sound of Falling",
    "director": "Mascha Schilinski",
@@ -4152,6 +4461,7 @@
   },
   {
    "id": "iffr-2026-f362",
+   "idx": 362,
    "cIdx": 1248,
    "title": "Special Unit – The First Murder",
    "director": "Christoffer Boe",
@@ -4165,6 +4475,7 @@
   },
   {
    "id": "iffr-2026-f391",
+   "idx": 391,
    "cIdx": 1248,
    "title": "The History of Sound",
    "director": "Oliver Hermanus",
@@ -4178,6 +4489,7 @@
   },
   {
    "id": "iffr-2026-f393",
+   "idx": 393,
    "cIdx": 1248,
    "title": "The Kidnapping of a President",
    "director": "Samuli Valkama",
@@ -4191,6 +4503,7 @@
   },
   {
    "id": "iffr-2026-f411",
+   "idx": 411,
    "cIdx": 1248,
    "title": "The Secret Agent",
    "director": "Kleber Mendonça Filho",
@@ -4204,6 +4517,7 @@
   },
   {
    "id": "iffr-2026-f413",
+   "idx": 413,
    "cIdx": 1248,
    "title": "The Shadow’s Edge",
    "director": "Larry Yang",
@@ -4217,6 +4531,7 @@
   },
   {
    "id": "iffr-2026-f417",
+   "idx": 417,
    "cIdx": 1248,
    "title": "The Testament of Ann Lee",
    "director": "Mona Fastvold",
@@ -4230,6 +4545,7 @@
   },
   {
    "id": "iffr-2026-f422",
+   "idx": 422,
    "cIdx": 1248,
    "title": "The Wizard of the Kremlin",
    "director": "Olivier Assayas",
@@ -4243,6 +4559,7 @@
   },
   {
    "id": "iffr-2026-f423",
+   "idx": 423,
    "cIdx": 1248,
    "title": "The Wolf, the Fox & the Leopard",
    "director": "David Verbeek",
@@ -4256,6 +4573,7 @@
   },
   {
    "id": "iffr-2026-f437",
+   "idx": 437,
    "cIdx": 1248,
    "title": "Tokyo Taxi",
    "director": "Yoji Yamada",
@@ -4269,6 +4587,7 @@
   },
   {
    "id": "iffr-2026-f443",
+   "idx": 443,
    "cIdx": 1248,
    "title": "Treat Her Like a Lady",
    "director": "Paloma Aguilera Valdebenito",
@@ -4282,6 +4601,7 @@
   },
   {
    "id": "iffr-2026-f448",
+   "idx": 448,
    "cIdx": 1248,
    "title": "Tunnels: Sun in the Dark",
    "director": "Bùi Thạc Chuyên",
@@ -4295,6 +4615,7 @@
   },
   {
    "id": "iffr-2026-f449",
+   "idx": 449,
    "cIdx": 1248,
    "title": "Tussen broers (Between Brothers)",
    "director": "Tom Fassaert",
@@ -4308,6 +4629,7 @@
   },
   {
    "id": "iffr-2026-f450",
+   "idx": 450,
    "cIdx": 1248,
    "title": "Two Prosecutors",
    "director": "Sergei Loznitsa",
@@ -4321,6 +4643,7 @@
   },
   {
    "id": "iffr-2026-f481",
+   "idx": 481,
    "cIdx": 1248,
    "title": "Whitetail",
    "director": "Nanouk Leopold",
@@ -4334,6 +4657,7 @@
   },
   {
    "id": "iffr-2026-f171",
+   "idx": 171,
    "cIdx": 1281,
    "title": "How to Dance",
    "director": "Aileen Ye",
@@ -4347,6 +4671,7 @@
   },
   {
    "id": "iffr-2026-f179",
+   "idx": 179,
    "cIdx": 1281,
    "title": "I Used to Call That Man Home",
    "director": "Mel Nocetti",
@@ -4360,6 +4685,7 @@
   },
   {
    "id": "iffr-2026-f220",
+   "idx": 220,
    "cIdx": 1281,
    "title": "Lethe",
    "director": "Huang Liang-Hsin",
@@ -4373,6 +4699,7 @@
   },
   {
    "id": "iffr-2026-f230",
+   "idx": 230,
    "cIdx": 1281,
    "title": "Magpie",
    "director": "Sylvia Hoeks",
@@ -4386,6 +4713,7 @@
   },
   {
    "id": "iffr-2026-f327",
+   "idx": 327,
    "cIdx": 1281,
    "title": "Rui Carlos",
    "director": "Margarida Paias",
@@ -4399,6 +4727,7 @@
   },
   {
    "id": "iffr-2026-f330",
+   "idx": 330,
    "cIdx": 1281,
    "title": "Sara & Fatima",
    "director": "Romy Boutin St-Pierre, Nada Cheddadi, Karima Zouhair",
@@ -4412,6 +4741,7 @@
   },
   {
    "id": "iffr-2026-f446",
+   "idx": 446,
    "cIdx": 1281,
    "title": "Trolsk",
    "director": "Edith Morris",
@@ -4425,6 +4755,7 @@
   },
   {
    "id": "iffr-2026-f1",
+   "idx": 1,
    "cIdx": 1278,
    "title": "“A Good Man”",
    "director": "Kjettil Gerritsen",
@@ -4438,6 +4769,7 @@
   },
   {
    "id": "iffr-2026-f23",
+   "idx": 23,
    "cIdx": 1278,
    "title": "Abduction",
    "director": "Yana Lineva",
@@ -4451,6 +4783,7 @@
   },
   {
    "id": "iffr-2026-f62",
+   "idx": 62,
    "cIdx": 1278,
    "title": "Broken",
    "director": "Hyewon Jung",
@@ -4464,6 +4797,7 @@
   },
   {
    "id": "iffr-2026-f63",
+   "idx": 63,
    "cIdx": 1278,
    "title": "bubble bubble",
    "director": "Vincent Boy Kars, Rutger Nijkamp",
@@ -4477,6 +4811,7 @@
   },
   {
    "id": "iffr-2026-f64",
+   "idx": 64,
    "cIdx": 1278,
    "title": "Burnt Toast",
    "director": "Helen Anna Flanagan",
@@ -4490,6 +4825,7 @@
   },
   {
    "id": "iffr-2026-f89",
+   "idx": 89,
    "cIdx": 1278,
    "title": "De Albatros",
    "director": "Ilya Vierhout",
@@ -4503,6 +4839,7 @@
   },
   {
    "id": "iffr-2026-f98",
+   "idx": 98,
    "cIdx": 1278,
    "title": "Dear Orchid",
    "director": "Hana Selena Sokolović",
@@ -4516,6 +4853,7 @@
   },
   {
    "id": "iffr-2026-f114",
+   "idx": 114,
    "cIdx": 1278,
    "title": "Dutch Dreams",
    "director": "Flo Meijer",
@@ -4529,6 +4867,7 @@
   },
   {
    "id": "iffr-2026-f148",
+   "idx": 148,
    "cIdx": 1278,
    "title": "Gedoetjes",
    "director": "Chris de Krijger",
@@ -4542,6 +4881,7 @@
   },
   {
    "id": "iffr-2026-f169",
+   "idx": 169,
    "cIdx": 1278,
    "title": "How Now, House?",
    "director": "Tess Martin",
@@ -4555,6 +4895,7 @@
   },
   {
    "id": "iffr-2026-f185",
+   "idx": 185,
    "cIdx": 1278,
    "title": "In This Together",
    "director": "Lisette Olsthoorn",
@@ -4568,6 +4909,7 @@
   },
   {
    "id": "iffr-2026-f187",
+   "idx": 187,
    "cIdx": 1278,
    "title": "Inheemse Surinamers in Rotterdam",
    "director": "Demis Rolador",
@@ -4581,6 +4923,7 @@
   },
   {
    "id": "iffr-2026-f188",
+   "idx": 188,
    "cIdx": 1278,
    "title": "Inn a State of Siege",
    "director": "Qali Nur",
@@ -4594,6 +4937,7 @@
   },
   {
    "id": "iffr-2026-f189",
+   "idx": 189,
    "cIdx": 1278,
    "title": "Insomnia",
    "director": "Vita Soul Wilmering, Luuk Wilmering",
@@ -4607,6 +4951,7 @@
   },
   {
    "id": "iffr-2026-f194",
+   "idx": 194,
    "cIdx": 1278,
    "title": "Jackpot",
    "director": "Abid Chand",
@@ -4620,6 +4965,7 @@
   },
   {
    "id": "iffr-2026-f234",
+   "idx": 234,
    "cIdx": 1278,
    "title": "Marsh Birds of the Upper Nile",
    "director": "Enrico Piffer",
@@ -4633,6 +4979,7 @@
   },
   {
    "id": "iffr-2026-f245",
+   "idx": 245,
    "cIdx": 1278,
    "title": "Movement Song",
    "director": "Mayis Rukel",
@@ -4646,6 +4993,7 @@
   },
   {
    "id": "iffr-2026-f262",
+   "idx": 262,
    "cIdx": 1278,
    "title": "Nog even goeie vrienden",
    "director": "Jorn Koning",
@@ -4659,6 +5007,7 @@
   },
   {
    "id": "iffr-2026-f264",
+   "idx": 264,
    "cIdx": 1278,
    "title": "Not Built to Last",
    "director": "Deniz Arikan",
@@ -4672,6 +5021,7 @@
   },
   {
    "id": "iffr-2026-f281",
+   "idx": 281,
    "cIdx": 1278,
    "title": "Ontsnappingskist",
    "director": "André Schreuders",
@@ -4685,6 +5035,7 @@
   },
   {
    "id": "iffr-2026-f287",
+   "idx": 287,
    "cIdx": 1278,
    "title": "Oxygen",
    "director": "Vanessa",
@@ -4698,6 +5049,7 @@
   },
   {
    "id": "iffr-2026-f289",
+   "idx": 289,
    "cIdx": 1278,
    "title": "Panorama Chemours – River reflections",
    "director": "Michiel van Bakel",
@@ -4711,6 +5063,7 @@
   },
   {
    "id": "iffr-2026-f302",
+   "idx": 302,
    "cIdx": 1278,
    "title": "Pretpark Hennie",
    "director": "Max Ploeg",
@@ -4724,6 +5077,7 @@
   },
   {
    "id": "iffr-2026-f316",
+   "idx": 316,
    "cIdx": 1278,
    "title": "Regen in Augustus",
    "director": "Ashley Röttjers",
@@ -4737,6 +5091,7 @@
   },
   {
    "id": "iffr-2026-f318",
+   "idx": 318,
    "cIdx": 1278,
    "title": "Resurrect Me as a Parasite",
    "director": "Lou Lou Sainsbury, Gabi Dao",
@@ -4750,6 +5105,7 @@
   },
   {
    "id": "iffr-2026-f340",
+   "idx": 340,
    "cIdx": 1278,
    "title": "She Cries (The Holy Water)",
    "director": "Panida Petchara",
@@ -4763,6 +5119,7 @@
   },
   {
    "id": "iffr-2026-f353",
+   "idx": 353,
    "cIdx": 1278,
    "title": "SO(N)R",
    "director": "Christine AYO",
@@ -4776,6 +5133,7 @@
   },
   {
    "id": "iffr-2026-f361",
+   "idx": 361,
    "cIdx": 1278,
    "title": "Sovereign Son",
    "director": "Cindy Jansen",
@@ -4789,6 +5147,7 @@
   },
   {
    "id": "iffr-2026-f385",
+   "idx": 385,
    "cIdx": 1278,
    "title": "The Garden",
    "director": "Isabel Legate",
@@ -4802,6 +5161,7 @@
   },
   {
    "id": "iffr-2026-f400",
+   "idx": 400,
    "cIdx": 1278,
    "title": "The Liminal Zone",
    "director": "Rutger Wolfson",
@@ -4815,6 +5175,7 @@
   },
   {
    "id": "iffr-2026-f427",
+   "idx": 427,
    "cIdx": 1278,
    "title": "There Was One, There Was None",
    "director": "Yasmin Shahbahrami",
@@ -4828,6 +5189,7 @@
   },
   {
    "id": "iffr-2026-f430",
+   "idx": 430,
    "cIdx": 1278,
    "title": "This Is Your Captain Speaking",
    "director": "Nienke Deutz, Digna van der Put",
@@ -4841,6 +5203,7 @@
   },
   {
    "id": "iffr-2026-f455",
+   "idx": 455,
    "cIdx": 1278,
    "title": "Unruly, Undead, Un Un: a place safe from all of this chaos",
    "director": "Riccardo Santalucia",
@@ -4854,6 +5217,7 @@
   },
   {
    "id": "iffr-2026-f458",
+   "idx": 458,
    "cIdx": 1278,
    "title": "Vannacht logeerde ik in mijzelf en vanochtend besloot ik er te blijven wonen",
    "director": "Fé Baan",
@@ -4867,6 +5231,7 @@
   },
   {
    "id": "iffr-2026-f470",
+   "idx": 470,
    "cIdx": 1278,
    "title": "WASTE",
    "director": "Reyndert Guiljam",
@@ -4880,6 +5245,7 @@
   },
   {
    "id": "iffr-2026-f472",
+   "idx": 472,
    "cIdx": 1278,
    "title": "Welcome to Set",
    "director": "Cyan Bae",
@@ -4893,6 +5259,7 @@
   },
   {
    "id": "iffr-2026-f474",
+   "idx": 474,
    "cIdx": 1278,
    "title": "What is left behind",
    "director": "Katja Verheul",
@@ -4906,6 +5273,7 @@
   },
   {
    "id": "iffr-2026-f477",
+   "idx": 477,
    "cIdx": 1278,
    "title": "Where Comes Mulan",
    "director": "Tianyi Zheng",
@@ -4919,6 +5287,7 @@
   },
   {
    "id": "iffr-2026-f3",
+   "idx": 3,
    "cIdx": 1277,
    "title": "(for once I dreamed of you)",
    "director": "Kate Solar",
@@ -4932,6 +5301,7 @@
   },
   {
    "id": "iffr-2026-f5",
+   "idx": 5,
    "cIdx": 1277,
    "title": "20/68 Schatzi",
    "director": "Kurt Kren",
@@ -4945,6 +5315,7 @@
   },
   {
    "id": "iffr-2026-f9",
+   "idx": 9,
    "cIdx": 1277,
    "title": "3cm of Complexity",
    "director": "Anna Vasof",
@@ -4958,6 +5329,7 @@
   },
   {
    "id": "iffr-2026-f11",
+   "idx": 11,
    "cIdx": 1277,
    "title": "44 Houses",
    "director": "Kari Fisher, Isaac Forsland",
@@ -4971,6 +5343,7 @@
   },
   {
    "id": "iffr-2026-f15",
+   "idx": 15,
    "cIdx": 1277,
    "title": "A Flock of Rotations",
    "director": "Jung An Tagen",
@@ -4984,6 +5357,7 @@
   },
   {
    "id": "iffr-2026-f17",
+   "idx": 17,
    "cIdx": 1277,
    "title": "A Letter from Elli",
    "director": "Elina Saloranta",
@@ -4997,6 +5371,7 @@
   },
   {
    "id": "iffr-2026-f29",
+   "idx": 29,
    "cIdx": 1277,
    "title": "Afternoon Hearsay",
    "director": "Peng Zuqiang",
@@ -5010,6 +5385,7 @@
   },
   {
    "id": "iffr-2026-f32",
+   "idx": 32,
    "cIdx": 1277,
    "title": "Ako Kantu",
    "director": "Ganza Moise",
@@ -5023,6 +5399,7 @@
   },
   {
    "id": "iffr-2026-f36",
+   "idx": 36,
    "cIdx": 1277,
    "title": "Am I Mourning What I Never Lost?",
    "director": "R. James Edwards",
@@ -5036,6 +5413,7 @@
   },
   {
    "id": "iffr-2026-f39",
+   "idx": 39,
    "cIdx": 1277,
    "title": "An Impossible Address",
    "director": "Suneil Sanzgiri",
@@ -5049,6 +5427,7 @@
   },
   {
    "id": "iffr-2026-f44",
+   "idx": 44,
    "cIdx": 1277,
    "title": "Ashes and Echoes",
    "director": "Koraphat Cheeradit",
@@ -5062,6 +5441,7 @@
   },
   {
    "id": "iffr-2026-f46",
+   "idx": 46,
    "cIdx": 1277,
    "title": "Au hasard",
    "director": "Darren Dominique Heroux",
@@ -5075,6 +5455,7 @@
   },
   {
    "id": "iffr-2026-f47",
+   "idx": 47,
    "cIdx": 1277,
    "title": "Awake Before Your Gaze",
    "director": "Lin Yi-Chi",
@@ -5088,6 +5469,7 @@
   },
   {
    "id": "iffr-2026-f56",
+   "idx": 56,
    "cIdx": 1277,
    "title": "Black Strangers",
    "director": "Dan Guthrie",
@@ -5101,6 +5483,7 @@
   },
   {
    "id": "iffr-2026-f59",
+   "idx": 59,
    "cIdx": 1277,
    "title": "Bolero rojo",
    "director": "Ángel Molina",
@@ -5114,6 +5497,7 @@
   },
   {
    "id": "iffr-2026-f61",
+   "idx": 61,
    "cIdx": 1277,
    "title": "Branches from Concrete",
    "director": "Zhou Zhenyu",
@@ -5127,6 +5511,7 @@
   },
   {
    "id": "iffr-2026-f78",
+   "idx": 78,
    "cIdx": 1277,
    "title": "Concrete Kids",
    "director": "Saulius Baradinskas",
@@ -5140,6 +5525,7 @@
   },
   {
    "id": "iffr-2026-f91",
+   "idx": 91,
    "cIdx": 1277,
    "title": "De wolkenfabriek",
    "director": "Digna Sinke",
@@ -5153,6 +5539,7 @@
   },
   {
    "id": "iffr-2026-f97",
+   "idx": 97,
    "cIdx": 1277,
    "title": "Dear Kankan",
    "director": "Hana Zhang, Eugene Lee",
@@ -5166,6 +5553,7 @@
   },
   {
    "id": "iffr-2026-f102",
+   "idx": 102,
    "cIdx": 1277,
    "title": "DETRITUS",
    "director": "Deborah S. Phillips, Zuzanna Marczak",
@@ -5179,6 +5567,7 @@
   },
   {
    "id": "iffr-2026-f104",
+   "idx": 104,
    "cIdx": 1277,
    "title": "Diary of the ghost",
    "director": "Daigo Hariya, Yosuke Kobayashi",
@@ -5192,6 +5581,7 @@
   },
   {
    "id": "iffr-2026-f107",
+   "idx": 107,
    "cIdx": 1277,
    "title": "Dogma 65",
    "director": "Seth Cheong",
@@ -5205,6 +5595,7 @@
   },
   {
    "id": "iffr-2026-f111",
+   "idx": 111,
    "cIdx": 1277,
    "title": "Dream up the title",
    "director": "Klaudia Fortuniak",
@@ -5218,6 +5609,7 @@
   },
   {
    "id": "iffr-2026-f117",
+   "idx": 117,
    "cIdx": 1277,
    "title": "El Cuerpo de Cristo",
    "director": "Bea Lema",
@@ -5231,6 +5623,7 @@
   },
   {
    "id": "iffr-2026-f119",
+   "idx": 119,
    "cIdx": 1277,
    "title": "El sistema",
    "director": null,
@@ -5244,6 +5637,7 @@
   },
   {
    "id": "iffr-2026-f124",
+   "idx": 124,
    "cIdx": 1277,
    "title": "Evacuations",
    "director": "Lilli Carré",
@@ -5257,6 +5651,7 @@
   },
   {
    "id": "iffr-2026-f130",
+   "idx": 130,
    "cIdx": 1277,
    "title": "Feeling Defensive (Part 1)",
    "director": "Pilvi Takala",
@@ -5270,6 +5665,7 @@
   },
   {
    "id": "iffr-2026-f131",
+   "idx": 131,
    "cIdx": 1277,
    "title": "FELT",
    "director": "Blake Williams",
@@ -5283,6 +5679,7 @@
   },
   {
    "id": "iffr-2026-f138",
+   "idx": 138,
    "cIdx": 1277,
    "title": "Forget the Director, This Is Emmy’s Cut!",
    "director": "Marion Desmaret",
@@ -5296,6 +5693,7 @@
   },
   {
    "id": "iffr-2026-f149",
+   "idx": 149,
    "cIdx": 1277,
    "title": "gestures toward Plant Vision",
    "director": "Sarah Abbott",
@@ -5309,6 +5707,7 @@
   },
   {
    "id": "iffr-2026-f151",
+   "idx": 151,
    "cIdx": 1277,
    "title": "God Sleeps on Sundays",
    "director": "Naishe Nyamubaya",
@@ -5322,6 +5721,7 @@
   },
   {
    "id": "iffr-2026-f155",
+   "idx": 155,
    "cIdx": 1277,
    "title": "Greetings from Rhodes",
    "director": "Viera Čákanyová",
@@ -5335,6 +5735,7 @@
   },
   {
    "id": "iffr-2026-f159",
+   "idx": 159,
    "cIdx": 1277,
    "title": "happy eyescream",
    "director": "Okada Shiika",
@@ -5348,6 +5749,7 @@
   },
   {
    "id": "iffr-2026-f168",
+   "idx": 168,
    "cIdx": 1277,
    "title": "Horsepower",
    "director": "Tittel Del Mar",
@@ -5361,6 +5763,7 @@
   },
   {
    "id": "iffr-2026-f175",
+   "idx": 175,
    "cIdx": 1277,
    "title": "I Am the Film Motherfucker, but I’m Real",
    "director": "MeowX2",
@@ -5374,6 +5777,7 @@
   },
   {
    "id": "iffr-2026-f184",
+   "idx": 184,
    "cIdx": 1277,
    "title": "Imagine Me Like a Country of Love",
    "director": "Thana Faroq",
@@ -5387,6 +5791,7 @@
   },
   {
    "id": "iffr-2026-f190",
+   "idx": 190,
    "cIdx": 1277,
    "title": "Interface",
    "director": "Kawazoe Aya",
@@ -5400,6 +5805,7 @@
   },
   {
    "id": "iffr-2026-f197",
+   "idx": 197,
    "cIdx": 1277,
    "title": "JUGGERNAUT",
    "director": "NEOZOON",
@@ -5413,6 +5819,7 @@
   },
   {
    "id": "iffr-2026-f200",
+   "idx": 200,
    "cIdx": 1277,
    "title": "Klee",
    "director": "Gavin Baird",
@@ -5426,6 +5833,7 @@
   },
   {
    "id": "iffr-2026-f211",
+   "idx": 211,
    "cIdx": 1277,
    "title": "La Smorfia",
    "director": "Jean Ruggirello",
@@ -5439,6 +5847,7 @@
   },
   {
    "id": "iffr-2026-f214",
+   "idx": 214,
    "cIdx": 1277,
    "title": "Last Night I Dreamed It Was Raining Fish",
    "director": "Shraddha Khanna",
@@ -5452,6 +5861,7 @@
   },
   {
    "id": "iffr-2026-f216",
+   "idx": 216,
    "cIdx": 1277,
    "title": "Late August 1993",
    "director": null,
@@ -5465,6 +5875,7 @@
   },
   {
    "id": "iffr-2026-f223",
+   "idx": 223,
    "cIdx": 1277,
    "title": "Lodo",
    "director": "Joseph Specker Nys",
@@ -5478,6 +5889,7 @@
   },
   {
    "id": "iffr-2026-f249",
+   "idx": 249,
    "cIdx": 1277,
    "title": "My God, My Country",
    "director": "Kristóf Sólyom",
@@ -5491,6 +5903,7 @@
   },
   {
    "id": "iffr-2026-f255",
+   "idx": 255,
    "cIdx": 1277,
    "title": "Natimorto",
    "director": "Ibrahem Hasan, Leandro HBL",
@@ -5504,6 +5917,7 @@
   },
   {
    "id": "iffr-2026-f261",
+   "idx": 261,
    "cIdx": 1277,
    "title": "No-da-ji Land",
    "director": "Izzy Lee",
@@ -5517,6 +5931,7 @@
   },
   {
    "id": "iffr-2026-f268",
+   "idx": 268,
    "cIdx": 1277,
    "title": "o",
    "director": "Francisca Alarcão",
@@ -5530,6 +5945,7 @@
   },
   {
    "id": "iffr-2026-f270",
+   "idx": 270,
    "cIdx": 1277,
    "title": "Obi Is a Boy",
    "director": "Dika Ofoma",
@@ -5543,6 +5959,7 @@
   },
   {
    "id": "iffr-2026-f272",
+   "idx": 272,
    "cIdx": 1277,
    "title": "Oh Be a Fine Girl Kiss Me",
    "director": "Alice dos Reis",
@@ -5556,6 +5973,7 @@
   },
   {
    "id": "iffr-2026-f274",
+   "idx": 274,
    "cIdx": 1277,
    "title": "Omen",
    "director": "Peter Rose",
@@ -5569,6 +5987,7 @@
   },
   {
    "id": "iffr-2026-f286",
+   "idx": 286,
    "cIdx": 1277,
    "title": "OVERWORK",
    "director": "Céline Berger",
@@ -5582,6 +6001,7 @@
   },
   {
    "id": "iffr-2026-f297",
+   "idx": 297,
    "cIdx": 1277,
    "title": "Piccin gemellone",
    "director": "Tibor Koehne",
@@ -5595,6 +6015,7 @@
   },
   {
    "id": "iffr-2026-f299",
+   "idx": 299,
    "cIdx": 1277,
    "title": "Planetario",
    "director": "Sofía Poncini",
@@ -5608,6 +6029,7 @@
   },
   {
    "id": "iffr-2026-f314",
+   "idx": 314,
    "cIdx": 1277,
    "title": "RE:EXPOSURE",
    "director": "Vicky Smith",
@@ -5621,6 +6043,7 @@
   },
   {
    "id": "iffr-2026-f325",
+   "idx": 325,
    "cIdx": 1277,
    "title": "Roseblood",
    "director": "Sharon Couzin",
@@ -5634,6 +6057,7 @@
   },
   {
    "id": "iffr-2026-f331",
+   "idx": 331,
    "cIdx": 1277,
    "title": "Scaling",
    "director": "Mike Hoolboom",
@@ -5647,6 +6071,7 @@
   },
   {
    "id": "iffr-2026-f335",
+   "idx": 335,
    "cIdx": 1277,
    "title": "Scrub Solo 1: Soloneliness",
    "director": "Antonin De Bemels",
@@ -5660,6 +6085,7 @@
   },
   {
    "id": "iffr-2026-f336",
+   "idx": 336,
    "cIdx": 1277,
    "title": "See Through the Hollowed Blue Hellebore",
    "director": "Jiayi Chen",
@@ -5673,6 +6099,7 @@
   },
   {
    "id": "iffr-2026-f338",
+   "idx": 338,
    "cIdx": 1277,
    "title": "Shadows",
    "director": "Sreileak Prum",
@@ -5686,6 +6113,7 @@
   },
   {
    "id": "iffr-2026-f344",
+   "idx": 344,
    "cIdx": 1277,
    "title": "SightNotSeeing",
    "director": "Sheungman Yim",
@@ -5699,6 +6127,7 @@
   },
   {
    "id": "iffr-2026-f350",
+   "idx": 350,
    "cIdx": 1277,
    "title": "Smoke & Mirrors",
    "director": "Tris Vonna-Michell",
@@ -5712,6 +6141,7 @@
   },
   {
    "id": "iffr-2026-f354",
+   "idx": 354,
    "cIdx": 1277,
    "title": "Sola Fata",
    "director": "Timoteus Anggawan Kusno",
@@ -5725,6 +6155,7 @@
   },
   {
    "id": "iffr-2026-f356",
+   "idx": 356,
    "cIdx": 1277,
    "title": "Soñar una serpiente",
    "director": "Mária Carolina Ardila, Liliana Correa",
@@ -5738,6 +6169,7 @@
   },
   {
    "id": "iffr-2026-f359",
+   "idx": 359,
    "cIdx": 1277,
    "title": "Soudain l’été",
    "director": "Axelle Vinassac",
@@ -5751,6 +6183,7 @@
   },
   {
    "id": "iffr-2026-f364",
+   "idx": 364,
    "cIdx": 1277,
    "title": "Statues Also Die?",
    "director": "Thais Fernandes",
@@ -5764,6 +6197,7 @@
   },
   {
    "id": "iffr-2026-f365",
+   "idx": 365,
    "cIdx": 1277,
    "title": "Submergido",
    "director": "Ariel Añez",
@@ -5777,6 +6211,7 @@
   },
   {
    "id": "iffr-2026-f368",
+   "idx": 368,
    "cIdx": 1277,
    "title": "Super, Natural",
    "director": "Kyath Battie",
@@ -5790,6 +6225,7 @@
   },
   {
    "id": "iffr-2026-f373",
+   "idx": 373,
    "cIdx": 1277,
    "title": "Tamashi",
    "director": "Ashima Shiraishi, Jess X. Snow",
@@ -5803,6 +6239,7 @@
   },
   {
    "id": "iffr-2026-f386",
+   "idx": 386,
    "cIdx": 1277,
    "title": "The Ghost of Wittgenstein",
    "director": "Ira Schneider",
@@ -5816,6 +6253,7 @@
   },
   {
    "id": "iffr-2026-f397",
+   "idx": 397,
    "cIdx": 1277,
    "title": "The Laptop Is Purring on My Lap and I Am Lonely Like a Cat",
    "director": "Ariela Bergman",
@@ -5829,6 +6267,7 @@
   },
   {
    "id": "iffr-2026-f398",
+   "idx": 398,
    "cIdx": 1277,
    "title": "The Last Jiangshi",
    "director": "Yu Chih-chieh",
@@ -5842,6 +6281,7 @@
   },
   {
    "id": "iffr-2026-f403",
+   "idx": 403,
    "cIdx": 1277,
    "title": "The Muscles Are Tense",
    "director": "Mahshid Mahboubifar",
@@ -5855,6 +6295,7 @@
   },
   {
    "id": "iffr-2026-f414",
+   "idx": 414,
    "cIdx": 1277,
    "title": "The Stench of Eternal Bog",
    "director": "David Tse, Rory Pippan",
@@ -5868,6 +6309,7 @@
   },
   {
    "id": "iffr-2026-f432",
+   "idx": 432,
    "cIdx": 1277,
    "title": "Thunderhead",
    "director": "Una Jongenelis",
@@ -5881,6 +6323,7 @@
   },
   {
    "id": "iffr-2026-f439",
+   "idx": 439,
    "cIdx": 1277,
    "title": "Tra Fasi",
    "director": "Charity Charly",
@@ -5894,6 +6337,7 @@
   },
   {
    "id": "iffr-2026-f440",
+   "idx": 440,
    "cIdx": 1277,
    "title": "TRACE",
    "director": "Alexandra Pavlovskaya-Lokchine",
@@ -5907,6 +6351,7 @@
   },
   {
    "id": "iffr-2026-f442",
+   "idx": 442,
    "cIdx": 1277,
    "title": "Transformation by Holding Time (Landscape)",
    "director": "Paul de Nooijer",
@@ -5920,6 +6365,7 @@
   },
   {
    "id": "iffr-2026-f444",
+   "idx": 444,
    "cIdx": 1277,
    "title": "Trivakra",
    "director": "Sofia Angst",
@@ -5933,6 +6379,7 @@
   },
   {
    "id": "iffr-2026-f445",
+   "idx": 445,
    "cIdx": 1277,
    "title": "Trizas",
    "director": "Luciana Decker Orozco",
@@ -5946,6 +6393,7 @@
   },
   {
    "id": "iffr-2026-f452",
+   "idx": 452,
    "cIdx": 1277,
    "title": "Última vez hace mucho tiempo",
    "director": "Santiago Martín",
@@ -5959,6 +6407,7 @@
   },
   {
    "id": "iffr-2026-f460",
+   "idx": 460,
    "cIdx": 1277,
    "title": "Venezia Diorama",
    "director": "Nicolas Piret",
@@ -5972,6 +6421,7 @@
   },
   {
    "id": "iffr-2026-f462",
+   "idx": 462,
    "cIdx": 1277,
    "title": "Verdigris",
    "director": "Chloe Brenan",
@@ -5985,6 +6435,7 @@
   },
   {
    "id": "iffr-2026-f463",
+   "idx": 463,
    "cIdx": 1277,
    "title": "Veronique (Ein Friseursalon in Paris aus dem Barbieland)",
    "director": "Friedl vom Gröller",
@@ -5998,6 +6449,7 @@
   },
   {
    "id": "iffr-2026-f465",
+   "idx": 465,
    "cIdx": 1277,
    "title": "Virtual Spectres",
    "director": "Sarah Boo",
@@ -6011,6 +6463,7 @@
   },
   {
    "id": "iffr-2026-f466",
+   "idx": 466,
    "cIdx": 1277,
    "title": "VITA",
    "director": "Mox Mäkelä",
@@ -6024,6 +6477,7 @@
   },
   {
    "id": "iffr-2026-f485",
+   "idx": 485,
    "cIdx": 1277,
    "title": "Wind Beneath the Wings",
    "director": "Sonja Tarokić",
@@ -6037,6 +6491,7 @@
   },
   {
    "id": "iffr-2026-f489",
+   "idx": 489,
    "cIdx": 1277,
    "title": "Wounded Edges",
    "director": "Yannick Mosimann",
@@ -6050,6 +6505,7 @@
   },
   {
    "id": "iffr-2026-f490",
+   "idx": 490,
    "cIdx": 1277,
    "title": "XTENDED RELEASE",
    "director": "Joshua Gen Solondz",
@@ -6063,6 +6519,7 @@
   },
   {
    "id": "iffr-2026-f494",
+   "idx": 494,
    "cIdx": 1277,
    "title": "You Do Not Exist",
    "director": "Dwayne LeBlanc",
@@ -6076,6 +6533,7 @@
   },
   {
    "id": "iffr-2026-f495",
+   "idx": 495,
    "cIdx": 1277,
    "title": "You were standing on the shore",
    "director": "Tilek Yrysbek",
@@ -6089,6 +6547,7 @@
   },
   {
    "id": "iffr-2026-f69",
+   "idx": 69,
    "cIdx": 1276,
    "title": "Car Aircon Electrical Autocartoons",
    "director": "Gertjan Zuilhof",
@@ -6102,6 +6561,7 @@
   },
   {
    "id": "iffr-2026-f195",
+   "idx": 195,
    "cIdx": 1276,
    "title": "Jimpa",
    "director": "Sophie Hyde",
@@ -6115,6 +6575,7 @@
   },
   {
    "id": "iffr-2026-f303",
+   "idx": 303,
    "cIdx": 1276,
    "title": "Previous films by DFF filmmakers: The Village Next to Paradise",
    "director": "Mo Harawe",
@@ -6128,6 +6589,7 @@
   },
   {
    "id": "iffr-2026-f304",
+   "idx": 304,
    "cIdx": 1276,
    "title": "Previous films by DFF filmmakers: Wolf and Sheep",
    "director": "Shahrbanoo Sadat",
@@ -6141,6 +6603,7 @@
   },
   {
    "id": "iffr-2026-f370",
+   "idx": 370,
    "cIdx": 1276,
    "title": "Surprise Film",
    "director": null,
@@ -6154,6 +6617,7 @@
   },
   {
    "id": "iffr-2026-f409",
+   "idx": 409,
    "cIdx": 1276,
    "title": "The Road to Fenix",
    "director": "Mark Bakker",
@@ -6167,6 +6631,7 @@
   },
   {
    "id": "iffr-2026-f14",
+   "idx": 14,
    "cIdx": 1284,
    "title": "A Fading Man",
    "director": "Welf Reinhart",
@@ -6180,6 +6645,7 @@
   },
   {
    "id": "iffr-2026-f18",
+   "idx": 18,
    "cIdx": 1284,
    "title": "A Messy Tribute to Motherly Love",
    "director": "Dan Geesin",
@@ -6193,6 +6659,7 @@
   },
   {
    "id": "iffr-2026-f208",
+   "idx": 208,
    "cIdx": 1284,
    "title": "La belle année",
    "director": "Angelica Ruffier",
@@ -6206,6 +6673,7 @@
   },
   {
    "id": "iffr-2026-f251",
+   "idx": 251,
    "cIdx": 1284,
    "title": "My Semba",
    "director": "Hugo Salvaterra",
@@ -6219,6 +6687,7 @@
   },
   {
    "id": "iffr-2026-f254",
+   "idx": 254,
    "cIdx": 1284,
    "title": "Nangong Cheng",
    "director": "Shao Pan",
@@ -6232,6 +6701,7 @@
   },
   {
    "id": "iffr-2026-f269",
+   "idx": 269,
    "cIdx": 1284,
    "title": "O profeta",
    "director": "Ique Langa",
@@ -6245,6 +6715,7 @@
   },
   {
    "id": "iffr-2026-f323",
+   "idx": 323,
    "cIdx": 1284,
    "title": "Roid",
    "director": "Mejbaur Rahman Sumon",
@@ -6258,6 +6729,7 @@
   },
   {
    "id": "iffr-2026-f369",
+   "idx": 369,
    "cIdx": 1284,
    "title": "Supporting Role",
    "director": "Ana Urushadze",
@@ -6271,6 +6743,7 @@
   },
   {
    "id": "iffr-2026-f390",
+   "idx": 390,
    "cIdx": 1284,
    "title": "The Gymnast",
    "director": "Charlotte Glynn",
@@ -6284,6 +6757,7 @@
   },
   {
    "id": "iffr-2026-f454",
+   "idx": 454,
    "cIdx": 1284,
    "title": "Unerasable!",
    "director": "Socrates Saint-Wulfstan Drakos",
@@ -6297,6 +6771,7 @@
   },
   {
    "id": "iffr-2026-f459",
+   "idx": 459,
    "cIdx": 1284,
    "title": "Variations on a Theme",
    "director": "Jason Jacobs, Devon Delmar",
@@ -6310,6 +6785,7 @@
   },
   {
    "id": "iffr-2026-f492",
+   "idx": 492,
    "cIdx": 1284,
    "title": "Yellow Cake",
    "director": "Tiago Melo",
@@ -6323,6 +6799,7 @@
   },
   {
    "id": "iffr-2026-f13",
+   "idx": 13,
    "cIdx": 1282,
    "title": "A donde nos lleva la fe de José Gerónimo",
    "director": "Juliano Kunert",
@@ -6336,6 +6813,7 @@
   },
   {
    "id": "iffr-2026-f25",
+   "idx": 25,
    "cIdx": 1282,
    "title": "Acid City",
    "director": "Jack Wedge, Will Freudenheim",
@@ -6349,6 +6827,7 @@
   },
   {
    "id": "iffr-2026-f58",
+   "idx": 58,
    "cIdx": 1282,
    "title": "Body, remember…",
    "director": "Matthew Berka",
@@ -6362,6 +6841,7 @@
   },
   {
    "id": "iffr-2026-f85",
+   "idx": 85,
    "cIdx": 1282,
    "title": "CUL-DE-SAC !",
    "director": "Clyde Gates, Gabriel Sanson",
@@ -6375,6 +6855,7 @@
   },
   {
    "id": "iffr-2026-f106",
+   "idx": 106,
    "cIdx": 1282,
    "title": "DISSONANCE",
    "director": "Jordan Strafer",
@@ -6388,6 +6869,7 @@
   },
   {
    "id": "iffr-2026-f109",
+   "idx": 109,
    "cIdx": 1282,
    "title": "Domestic Demon",
    "director": "Anahid Yahjian",
@@ -6401,6 +6883,7 @@
   },
   {
    "id": "iffr-2026-f143",
+   "idx": 143,
    "cIdx": 1282,
    "title": "Futuros luminosos",
    "director": "Ismael García Ramírez",
@@ -6414,6 +6897,7 @@
   },
   {
    "id": "iffr-2026-f153",
+   "idx": 153,
    "cIdx": 1282,
    "title": "Golden Island",
    "director": "Arief Budiman",
@@ -6427,6 +6911,7 @@
   },
   {
    "id": "iffr-2026-f165",
+   "idx": 165,
    "cIdx": 1282,
    "title": "Home is where the heart is",
    "director": "Timothée Engasser",
@@ -6440,6 +6925,7 @@
   },
   {
    "id": "iffr-2026-f174",
+   "idx": 174,
    "cIdx": 1282,
    "title": "I am a River",
    "director": "Heidi Piiroinen",
@@ -6453,6 +6939,7 @@
   },
   {
    "id": "iffr-2026-f215",
+   "idx": 215,
    "cIdx": 1282,
    "title": "Last Shot",
    "director": "Parham Rahimzadeh",
@@ -6466,6 +6953,7 @@
   },
   {
    "id": "iffr-2026-f222",
+   "idx": 222,
    "cIdx": 1282,
    "title": "like moths to light",
    "director": "Gala Hernández López",
@@ -6479,6 +6967,7 @@
   },
   {
    "id": "iffr-2026-f241",
+   "idx": 241,
    "cIdx": 1282,
    "title": "Mirror Martyr Mirror Moon",
    "director": "Jesse Jones",
@@ -6492,6 +6981,7 @@
   },
   {
    "id": "iffr-2026-f256",
+   "idx": 256,
    "cIdx": 1282,
    "title": "Ndjimu",
    "director": "Petna Ndaliko Katondolo",
@@ -6505,6 +6995,7 @@
   },
   {
    "id": "iffr-2026-f271",
+   "idx": 271,
    "cIdx": 1282,
    "title": "Objet d’énigme",
    "director": "Chiara Caterina",
@@ -6518,6 +7009,7 @@
   },
   {
    "id": "iffr-2026-f283",
+   "idx": 283,
    "cIdx": 1282,
    "title": "Orla",
    "director": "Marie Lukáčová",
@@ -6531,6 +7023,7 @@
   },
   {
    "id": "iffr-2026-f317",
+   "idx": 317,
    "cIdx": 1282,
    "title": "RELUCESCO",
    "director": "Shannon Lynn Harris",
@@ -6544,6 +7037,7 @@
   },
   {
    "id": "iffr-2026-f351",
+   "idx": 351,
    "cIdx": 1282,
    "title": "Smriti~",
    "director": "Shahi A J",
@@ -6557,6 +7051,7 @@
   },
   {
    "id": "iffr-2026-f376",
+   "idx": 376,
    "cIdx": 1282,
    "title": "The Apple Doesn’t Fall…",
    "director": "Dean Wei",
@@ -6570,6 +7065,7 @@
   },
   {
    "id": "iffr-2026-f404",
+   "idx": 404,
    "cIdx": 1282,
    "title": "The Next World",
    "director": "Grau Del Grau",
@@ -6583,6 +7079,7 @@
   },
   {
    "id": "iffr-2026-f410",
+   "idx": 410,
    "cIdx": 1282,
    "title": "The Second Skin",
    "director": "Mariia Lapidus",
@@ -6596,6 +7093,7 @@
   },
   {
    "id": "iffr-2026-f419",
+   "idx": 419,
    "cIdx": 1282,
    "title": "The Tragic Movement of the Spheres",
    "director": "Simon Rieth",
@@ -6609,6 +7107,7 @@
   },
   {
    "id": "iffr-2026-f276",
+   "idx": 276,
    "cIdx": null,
    "title": "One Drawing a Day: A Retrospective Exhibition of Auto Cartoons by Gertjan Zuilhof",
    "director": "Gertjan Zuilhof",
@@ -6635,6 +7134,7 @@
   "guestVisits": 0
  },
  "days": [],
+ "warnings": [],
  "fetchedAt": "2026-10-29T06:25:06Z",
  "lastVerifiedAt": "2026-10-29T06:25:06Z",
  "dataSource": "official"

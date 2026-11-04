@@ -32,7 +32,10 @@
   "timezone": "Europe/Rome",
   "dayCount": 11,
   "officialUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public",
-  "coverageMinDays": 6
+  "coverageMinDays": 6,
+  "registryEndDate": "2026-09-11",
+  "endDateExtended": false,
+  "dataEndDate": "2026-09-11"
  },
  "lifecycle": "ENDED",
  "status": "SCHEDULE_LIVE",
@@ -225,6 +228,7 @@
  "films": [
   {
    "id": "venice-2026-f34",
+   "idx": 34,
    "cIdx": 7,
    "title": "Demetra in esilio",
    "director": "Maria Giovanna Cicciari",
@@ -236,6 +240,7 @@
   },
   {
    "id": "venice-2026-f41",
+   "idx": 41,
    "cIdx": 7,
    "title": "Demetra in esilio",
    "director": "Maria Giovanna Cicciari",
@@ -247,6 +252,7 @@
   },
   {
    "id": "venice-2026-f61",
+   "idx": 61,
    "cIdx": 7,
    "title": "Gu shi",
    "director": "Amie Song",
@@ -258,6 +264,7 @@
   },
   {
    "id": "venice-2026-f76",
+   "idx": 76,
    "cIdx": 7,
    "title": "Gu shi",
    "director": "Amie Song",
@@ -269,6 +276,7 @@
   },
   {
    "id": "venice-2026-f134",
+   "idx": 134,
    "cIdx": 7,
    "title": "Moonfish",
    "director": "Daniel Zvereff",
@@ -280,6 +288,7 @@
   },
   {
    "id": "venice-2026-f146",
+   "idx": 146,
    "cIdx": 7,
    "title": "Moonfish",
    "director": "Daniel Zvereff",
@@ -291,6 +300,7 @@
   },
   {
    "id": "venice-2026-f99",
+   "idx": 99,
    "cIdx": 7,
    "title": "Tijuana, todavía",
    "director": "Gabriel Gutierrez Morales",
@@ -302,6 +312,7 @@
   },
   {
    "id": "venice-2026-f111",
+   "idx": 111,
    "cIdx": 7,
    "title": "Tijuana, todavía",
    "director": "Gabriel Gutierrez Morales",
@@ -313,6 +324,7 @@
   },
   {
    "id": "venice-2026-f94",
+   "idx": 94,
    "cIdx": null,
    "title": "#31 Discipline",
    "director": "Mona Fastvold",
@@ -324,6 +336,7 @@
   },
   {
    "id": "venice-2026-f149",
+   "idx": 149,
    "cIdx": null,
    "title": "A veces me entra tristeza, otras veces rebelión",
    "director": "María Aparicio",
@@ -335,6 +348,7 @@
   },
   {
    "id": "venice-2026-f220",
+   "idx": 220,
    "cIdx": null,
    "title": "A veces me entra tristeza, otras veces rebelión",
    "director": "María Aparicio",
@@ -346,6 +360,7 @@
   },
   {
    "id": "venice-2026-f129",
+   "idx": 129,
    "cIdx": null,
    "title": "Agata The Writer",
    "director": "Kuba Dorabialski",
@@ -357,6 +372,7 @@
   },
   {
    "id": "venice-2026-f307",
+   "idx": 307,
    "cIdx": null,
    "title": "Agata The Writer",
    "director": "Kuba Dorabialski",
@@ -368,6 +384,7 @@
   },
   {
    "id": "venice-2026-f9",
+   "idx": 9,
    "cIdx": null,
    "title": "Al Baraneya",
    "director": "Ashgan El-Hamus",
@@ -379,6 +396,7 @@
   },
   {
    "id": "venice-2026-f60",
+   "idx": 60,
    "cIdx": null,
    "title": "Balcanica",
    "director": "Nicola Sorcinelli",
@@ -390,6 +408,7 @@
   },
   {
    "id": "venice-2026-f294",
+   "idx": 294,
    "cIdx": null,
    "title": "Balcanica",
    "director": "Nicola Sorcinelli",
@@ -401,6 +420,7 @@
   },
   {
    "id": "venice-2026-f242",
+   "idx": 242,
    "cIdx": null,
    "title": "Camouflage",
    "director": "Mykyta Gibalenko",
@@ -412,6 +432,7 @@
   },
   {
    "id": "venice-2026-f115",
+   "idx": 115,
    "cIdx": null,
    "title": "Carla Lonzi, dentro e fuori dal mondo",
    "director": "Francesca Archibugi",
@@ -423,6 +444,7 @@
   },
   {
    "id": "venice-2026-f270",
+   "idx": 270,
    "cIdx": null,
    "title": "Dear Ajayi",
    "director": "Damilola Orimogunje",
@@ -434,6 +456,7 @@
   },
   {
    "id": "venice-2026-f259",
+   "idx": 259,
    "cIdx": null,
    "title": "El fantasma",
    "director": "Ignacio Masllorens, David Lamelas",
@@ -445,6 +468,7 @@
   },
   {
    "id": "venice-2026-f33",
+   "idx": 33,
    "cIdx": null,
    "title": "I plant my hand in the garden",
    "director": "Boris Hadžija, Hoda Taheri",
@@ -456,6 +480,7 @@
   },
   {
    "id": "venice-2026-f186",
+   "idx": 186,
    "cIdx": null,
    "title": "Il massacro",
    "director": "Cosimo Messeri",
@@ -467,6 +492,7 @@
   },
   {
    "id": "venice-2026-f93",
+   "idx": 93,
    "cIdx": null,
    "title": "Les Indes",
    "director": "Pauline Julier, Nicolas Chapoulier",
@@ -478,6 +504,7 @@
   },
   {
    "id": "venice-2026-f303",
+   "idx": 303,
    "cIdx": null,
    "title": "Les Indes",
    "director": "Pauline Julier, Nicolas Chapoulier",
@@ -489,6 +516,7 @@
   },
   {
    "id": "venice-2026-f3",
+   "idx": 3,
    "cIdx": null,
    "title": "My Notes On Mars",
    "director": "Lili Horvát",
@@ -500,6 +528,7 @@
   },
   {
    "id": "venice-2026-f80",
+   "idx": 80,
    "cIdx": null,
    "title": "My Notes On Mars",
    "director": "Lili Horvát",
@@ -511,6 +540,7 @@
   },
   {
    "id": "venice-2026-f319",
+   "idx": 319,
    "cIdx": null,
    "title": "Peau d'homme",
    "director": "Léa Domenach",
@@ -522,6 +552,7 @@
   },
   {
    "id": "venice-2026-f196",
+   "idx": 196,
    "cIdx": null,
    "title": "Salón de belleza",
    "director": "Nathalia Acevedo",
@@ -533,6 +564,7 @@
   },
   {
    "id": "venice-2026-f346",
+   "idx": 346,
    "cIdx": null,
    "title": "Salón de belleza",
    "director": "Nathalia Acevedo",
@@ -544,6 +576,7 @@
   },
   {
    "id": "venice-2026-f227",
+   "idx": 227,
    "cIdx": null,
    "title": "Se venisse anche l’inferno",
    "director": "Samuele Rossi",
@@ -555,6 +588,7 @@
   },
   {
    "id": "venice-2026-f164",
+   "idx": 164,
    "cIdx": null,
    "title": "Une femme aujourd'hui",
    "director": "Robert Guediguian",
@@ -566,6 +600,7 @@
   },
   {
    "id": "venice-2026-f266",
+   "idx": 266,
    "cIdx": 3,
    "title": "Cudze rzeczy (What belongs to others)",
    "director": "Grzegorz Dębowski",
@@ -577,6 +612,7 @@
   },
   {
    "id": "venice-2026-f314",
+   "idx": 314,
    "cIdx": 3,
    "title": "Cudze rzeczy (What belongs to others)",
    "director": "Grzegorz Dębowski",
@@ -588,6 +624,7 @@
   },
   {
    "id": "venice-2026-f282",
+   "idx": 282,
    "cIdx": 3,
    "title": "Do kraja dana (Until the day ends)",
    "director": "Jelena Maksimović",
@@ -599,6 +636,7 @@
   },
   {
    "id": "venice-2026-f318",
+   "idx": 318,
    "cIdx": 3,
    "title": "Do kraja dana (Until the day ends)",
    "director": "Jelena Maksimović",
@@ -610,6 +648,7 @@
   },
   {
    "id": "venice-2026-f329",
+   "idx": 329,
    "cIdx": 3,
    "title": "Do kraja dana (Until the day ends)",
    "director": "Jelena Maksimović",
@@ -621,6 +660,7 @@
   },
   {
    "id": "venice-2026-f83",
+   "idx": 83,
    "cIdx": 3,
    "title": "Eklipse",
    "director": "Manuel Wetscher",
@@ -632,6 +672,7 @@
   },
   {
    "id": "venice-2026-f126",
+   "idx": 126,
    "cIdx": 3,
    "title": "Eklipse",
    "director": "Manuel Wetscher",
@@ -643,6 +684,7 @@
   },
   {
    "id": "venice-2026-f133",
+   "idx": 133,
    "cIdx": 3,
    "title": "Eklipse",
    "director": "Manuel Wetscher",
@@ -654,6 +696,7 @@
   },
   {
    "id": "venice-2026-f315",
+   "idx": 315,
    "cIdx": 3,
    "title": "Huangyan shenghuo (Big Little Things)",
    "director": "Michelle Zhou",
@@ -665,6 +708,7 @@
   },
   {
    "id": "venice-2026-f168",
+   "idx": 168,
    "cIdx": 3,
    "title": "I figli della scimmia",
    "director": "Tommaso Landucci",
@@ -676,6 +720,7 @@
   },
   {
    "id": "venice-2026-f192",
+   "idx": 192,
    "cIdx": 3,
    "title": "I figli della scimmia",
    "director": "Tommaso Landucci",
@@ -687,6 +732,7 @@
   },
   {
    "id": "venice-2026-f56",
+   "idx": 56,
    "cIdx": 3,
    "title": "La città dei vivi",
    "director": "Edoardo Gabbriellini",
@@ -698,6 +744,7 @@
   },
   {
    "id": "venice-2026-f88",
+   "idx": 88,
    "cIdx": 3,
    "title": "La città dei vivi",
    "director": "Edoardo Gabbriellini",
@@ -709,6 +756,7 @@
   },
   {
    "id": "venice-2026-f49",
+   "idx": 49,
    "cIdx": 3,
    "title": "La maison du vent",
    "director": "Auguste Bernard Kouemo Yanghu",
@@ -720,6 +768,7 @@
   },
   {
    "id": "venice-2026-f90",
+   "idx": 90,
    "cIdx": 3,
    "title": "La maison du vent",
    "director": "Auguste Bernard Kouemo Yanghu",
@@ -731,6 +780,7 @@
   },
   {
    "id": "venice-2026-f91",
+   "idx": 91,
    "cIdx": 3,
    "title": "La maison du vent",
    "director": "Auguste Bernard Kouemo Yanghu",
@@ -742,6 +792,7 @@
   },
   {
    "id": "venice-2026-f232",
+   "idx": 232,
    "cIdx": 3,
    "title": "La Moula",
    "director": "Jérôme Pierrat",
@@ -753,6 +804,7 @@
   },
   {
    "id": "venice-2026-f268",
+   "idx": 268,
    "cIdx": 3,
    "title": "La Moula",
    "director": "Jérôme Pierrat",
@@ -764,6 +816,7 @@
   },
   {
    "id": "venice-2026-f2",
+   "idx": 2,
    "cIdx": 3,
    "title": "La ragazza con la Leica",
    "director": "Alina Marazzi",
@@ -775,6 +828,7 @@
   },
   {
    "id": "venice-2026-f6",
+   "idx": 6,
    "cIdx": 3,
    "title": "La ragazza con la Leica",
    "director": "Alina Marazzi",
@@ -786,6 +840,7 @@
   },
   {
    "id": "venice-2026-f32",
+   "idx": 32,
    "cIdx": 3,
    "title": "La ragazza con la Leica",
    "director": "Alina Marazzi",
@@ -797,6 +852,7 @@
   },
   {
    "id": "venice-2026-f69",
+   "idx": 69,
    "cIdx": 3,
    "title": "La ragazza con la Leica",
    "director": "Alina Marazzi",
@@ -808,6 +864,7 @@
   },
   {
    "id": "venice-2026-f333",
+   "idx": 333,
    "cIdx": 3,
    "title": "Lovers in the Blue Night",
    "director": "Anuparna Roy",
@@ -819,6 +876,7 @@
   },
   {
    "id": "venice-2026-f188",
+   "idx": 188,
    "cIdx": 3,
    "title": "Mia mera sti zoi tis tzo: kefalaio Faidra (A day in the life of Jo: Chapter Phaedra)",
    "director": "Jacqueline Lentzou",
@@ -830,6 +888,7 @@
   },
   {
    "id": "venice-2026-f240",
+   "idx": 240,
    "cIdx": 3,
    "title": "Mia mera sti zoi tis tzo: kefalaio Faidra (A day in the life of Jo: Chapter Phaedra)",
    "director": "Jacqueline Lentzou",
@@ -841,6 +900,7 @@
   },
   {
    "id": "venice-2026-f244",
+   "idx": 244,
    "cIdx": 3,
    "title": "Mia mera sti zoi tis tzo: kefalaio Faidra (A day in the life of Jo: Chapter Phaedra)",
    "director": "Jacqueline Lentzou",
@@ -852,6 +912,7 @@
   },
   {
    "id": "venice-2026-f14",
+   "idx": 14,
    "cIdx": 3,
    "title": "Moragheb (Falling House)",
    "director": "Mohsen Gharaei",
@@ -863,6 +924,7 @@
   },
   {
    "id": "venice-2026-f53",
+   "idx": 53,
    "cIdx": 3,
    "title": "Moragheb (Falling House)",
    "director": "Mohsen Gharaei",
@@ -874,6 +936,7 @@
   },
   {
    "id": "venice-2026-f128",
+   "idx": 128,
    "cIdx": 3,
    "title": "Oase (Oasis)",
    "director": "Jannis Lenz",
@@ -885,6 +948,7 @@
   },
   {
    "id": "venice-2026-f147",
+   "idx": 147,
    "cIdx": 3,
    "title": "Oase (Oasis)",
    "director": "Jannis Lenz",
@@ -896,6 +960,7 @@
   },
   {
    "id": "venice-2026-f239",
+   "idx": 239,
    "cIdx": 3,
    "title": "The Color of the Sun",
    "director": "Xavier Tera",
@@ -907,6 +972,7 @@
   },
   {
    "id": "venice-2026-f271",
+   "idx": 271,
    "cIdx": 3,
    "title": "The Color of the Sun",
    "director": "Xavier Tera",
@@ -918,6 +984,7 @@
   },
   {
    "id": "venice-2026-f283",
+   "idx": 283,
    "cIdx": 3,
    "title": "The Color of the Sun",
    "director": "Xavier Tera",
@@ -929,6 +996,7 @@
   },
   {
    "id": "venice-2026-f122",
+   "idx": 122,
    "cIdx": 3,
    "title": "The Difficult Bride",
    "director": "Rubaiyat Hossain",
@@ -940,6 +1008,7 @@
   },
   {
    "id": "venice-2026-f163",
+   "idx": 163,
    "cIdx": 3,
    "title": "The Difficult Bride",
    "director": "Rubaiyat Hossain",
@@ -951,6 +1020,7 @@
   },
   {
    "id": "venice-2026-f166",
+   "idx": 166,
    "cIdx": 3,
    "title": "The Difficult Bride",
    "director": "Rubaiyat Hossain",
@@ -962,6 +1032,7 @@
   },
   {
    "id": "venice-2026-f35",
+   "idx": 35,
    "cIdx": 3,
    "title": "Too Much Sugar",
    "director": "Robert Greene",
@@ -973,6 +1044,7 @@
   },
   {
    "id": "venice-2026-f55",
+   "idx": 55,
    "cIdx": 3,
    "title": "Too Much Sugar",
    "director": "Robert Greene",
@@ -984,6 +1056,7 @@
   },
   {
    "id": "venice-2026-f62",
+   "idx": 62,
    "cIdx": 3,
    "title": "Too Much Sugar",
    "director": "Robert Greene",
@@ -995,6 +1068,7 @@
   },
   {
    "id": "venice-2026-f92",
+   "idx": 92,
    "cIdx": 3,
    "title": "Un détour par Diane",
    "director": "Ann Sirot, Raphaël Balboni",
@@ -1006,6 +1080,7 @@
   },
   {
    "id": "venice-2026-f124",
+   "idx": 124,
    "cIdx": 3,
    "title": "Un détour par Diane",
    "director": "Ann Sirot, Raphaël Balboni",
@@ -1017,6 +1092,7 @@
   },
   {
    "id": "venice-2026-f195",
+   "idx": 195,
    "cIdx": 3,
    "title": "Una storia",
    "director": "Anna Foglietta",
@@ -1028,6 +1104,7 @@
   },
   {
    "id": "venice-2026-f235",
+   "idx": 235,
    "cIdx": 3,
    "title": "Una storia",
    "director": "Anna Foglietta",
@@ -1039,6 +1116,7 @@
   },
   {
    "id": "venice-2026-f156",
+   "idx": 156,
    "cIdx": 3,
    "title": "Yak mai (The Burning Giants)",
    "director": "Phuttiphong Aroonpheng",
@@ -1050,6 +1128,7 @@
   },
   {
    "id": "venice-2026-f198",
+   "idx": 198,
    "cIdx": 3,
    "title": "Yak mai (The Burning Giants)",
    "director": "Phuttiphong Aroonpheng",
@@ -1061,6 +1140,7 @@
   },
   {
    "id": "venice-2026-f203",
+   "idx": 203,
    "cIdx": 3,
    "title": "Yak mai (The Burning Giants)",
    "director": "Phuttiphong Aroonpheng",
@@ -1072,6 +1152,7 @@
   },
   {
    "id": "venice-2026-f19",
+   "idx": 19,
    "cIdx": null,
    "title": "Angelo azzurro (My First Day of Summer)",
    "director": "Tommaso Acquarone",
@@ -1083,6 +1164,7 @@
   },
   {
    "id": "venice-2026-f272",
+   "idx": 272,
    "cIdx": null,
    "title": "Angelo azzurro (My First Day of Summer)",
    "director": "Tommaso Acquarone",
@@ -1094,6 +1176,7 @@
   },
   {
    "id": "venice-2026-f297",
+   "idx": 297,
    "cIdx": null,
    "title": "Angelo azzurro (My First Day of Summer)",
    "director": "Tommaso Acquarone",
@@ -1105,6 +1188,7 @@
   },
   {
    "id": "venice-2026-f15",
+   "idx": 15,
    "cIdx": null,
    "title": "Bleu au loin (Distant Blue)",
    "director": "Amir Houshang Moein",
@@ -1116,6 +1200,7 @@
   },
   {
    "id": "venice-2026-f278",
+   "idx": 278,
    "cIdx": null,
    "title": "Bleu au loin (Distant Blue)",
    "director": "Amir Houshang Moein",
@@ -1127,6 +1212,7 @@
   },
   {
    "id": "venice-2026-f301",
+   "idx": 301,
    "cIdx": null,
    "title": "Bleu au loin (Distant Blue)",
    "director": "Amir Houshang Moein",
@@ -1138,6 +1224,7 @@
   },
   {
    "id": "venice-2026-f24",
+   "idx": 24,
    "cIdx": null,
    "title": "Head of a Camel",
    "director": "Shannon Lee",
@@ -1149,6 +1236,7 @@
   },
   {
    "id": "venice-2026-f327",
+   "idx": 327,
    "cIdx": null,
    "title": "Head of a Camel",
    "director": "Shannon Lee",
@@ -1160,6 +1248,7 @@
   },
   {
    "id": "venice-2026-f23",
+   "idx": 23,
    "cIdx": null,
    "title": "Los poderes",
    "director": "Salim Jaller",
@@ -1171,6 +1260,7 @@
   },
   {
    "id": "venice-2026-f326",
+   "idx": 326,
    "cIdx": null,
    "title": "Los poderes",
    "director": "Salim Jaller",
@@ -1182,6 +1272,7 @@
   },
   {
    "id": "venice-2026-f16",
+   "idx": 16,
    "cIdx": null,
    "title": "Man made lake",
    "director": "Annie Ning",
@@ -1193,6 +1284,7 @@
   },
   {
    "id": "venice-2026-f279",
+   "idx": 279,
    "cIdx": null,
    "title": "Man made lake",
    "director": "Annie Ning",
@@ -1204,6 +1296,7 @@
   },
   {
    "id": "venice-2026-f302",
+   "idx": 302,
    "cIdx": null,
    "title": "Man made lake",
    "director": "Annie Ning",
@@ -1215,6 +1308,7 @@
   },
   {
    "id": "venice-2026-f20",
+   "idx": 20,
    "cIdx": null,
    "title": "Mothmama",
    "director": "Jessica DiCosta",
@@ -1226,6 +1320,7 @@
   },
   {
    "id": "venice-2026-f273",
+   "idx": 273,
    "cIdx": null,
    "title": "Mothmama",
    "director": "Jessica DiCosta",
@@ -1237,6 +1332,7 @@
   },
   {
    "id": "venice-2026-f299",
+   "idx": 299,
    "cIdx": null,
    "title": "Mothmama",
    "director": "Jessica DiCosta",
@@ -1248,6 +1344,7 @@
   },
   {
    "id": "venice-2026-f17",
+   "idx": 17,
    "cIdx": null,
    "title": "Paper Plane",
    "director": "Saoirse Ronan",
@@ -1259,6 +1356,7 @@
   },
   {
    "id": "venice-2026-f280",
+   "idx": 280,
    "cIdx": null,
    "title": "Paper Plane",
    "director": "Saoirse Ronan",
@@ -1270,6 +1368,7 @@
   },
   {
    "id": "venice-2026-f304",
+   "idx": 304,
    "cIdx": null,
    "title": "Paper Plane",
    "director": "Saoirse Ronan",
@@ -1281,6 +1380,7 @@
   },
   {
    "id": "venice-2026-f27",
+   "idx": 27,
    "cIdx": null,
    "title": "Quelques instants de bonheur",
    "director": "Shaden Safieddine Tazi",
@@ -1292,6 +1392,7 @@
   },
   {
    "id": "venice-2026-f331",
+   "idx": 331,
    "cIdx": null,
    "title": "Quelques instants de bonheur",
    "director": "Shaden Safieddine Tazi",
@@ -1303,6 +1404,7 @@
   },
   {
    "id": "venice-2026-f26",
+   "idx": 26,
    "cIdx": null,
    "title": "Sasso, carta, forbici",
    "director": "Virginia Mori",
@@ -1314,6 +1416,7 @@
   },
   {
    "id": "venice-2026-f330",
+   "idx": 330,
    "cIdx": null,
    "title": "Sasso, carta, forbici",
    "director": "Virginia Mori",
@@ -1325,6 +1428,7 @@
   },
   {
    "id": "venice-2026-f28",
+   "idx": 28,
    "cIdx": null,
    "title": "Silence",
    "director": "Pavlo Shpegun",
@@ -1336,6 +1440,7 @@
   },
   {
    "id": "venice-2026-f321",
+   "idx": 321,
    "cIdx": null,
    "title": "Silence",
    "director": "Pavlo Shpegun",
@@ -1347,6 +1452,7 @@
   },
   {
    "id": "venice-2026-f30",
+   "idx": 30,
    "cIdx": null,
    "title": "Tesztpálya (Test Track)",
    "director": "Lydia Cornett",
@@ -1358,6 +1464,7 @@
   },
   {
    "id": "venice-2026-f324",
+   "idx": 324,
    "cIdx": null,
    "title": "Tesztpálya (Test Track)",
    "director": "Lydia Cornett",
@@ -1369,6 +1476,7 @@
   },
   {
    "id": "venice-2026-f25",
+   "idx": 25,
    "cIdx": null,
    "title": "Tropikos tou thrinountos gkeko (Tropic of the mourning gecko)",
    "director": "Stavros Markoulakis",
@@ -1380,6 +1488,7 @@
   },
   {
    "id": "venice-2026-f328",
+   "idx": 328,
    "cIdx": null,
    "title": "Tropikos tou thrinountos gkeko (Tropic of the mourning gecko)",
    "director": "Stavros Markoulakis",
@@ -1391,6 +1500,7 @@
   },
   {
    "id": "venice-2026-f21",
+   "idx": 21,
    "cIdx": null,
    "title": "Una fortaleza",
    "director": "Alba Gaviraghi",
@@ -1402,6 +1512,7 @@
   },
   {
    "id": "venice-2026-f275",
+   "idx": 275,
    "cIdx": null,
    "title": "Una fortaleza",
    "director": "Alba Gaviraghi",
@@ -1413,6 +1524,7 @@
   },
   {
    "id": "venice-2026-f300",
+   "idx": 300,
    "cIdx": null,
    "title": "Una fortaleza",
    "director": "Alba Gaviraghi",
@@ -1424,6 +1536,7 @@
   },
   {
    "id": "venice-2026-f18",
+   "idx": 18,
    "cIdx": null,
    "title": "Il senso della Terra",
    "director": "Alessandro Ingaria, Simone Massi",
@@ -1435,6 +1548,7 @@
   },
   {
    "id": "venice-2026-f281",
+   "idx": 281,
    "cIdx": null,
    "title": "Il senso della Terra",
    "director": "Alessandro Ingaria, Simone Massi",
@@ -1446,6 +1560,7 @@
   },
   {
    "id": "venice-2026-f296",
+   "idx": 296,
    "cIdx": null,
    "title": "Il senso della Terra",
    "director": "Alessandro Ingaria, Simone Massi",
@@ -1457,6 +1572,7 @@
   },
   {
    "id": "venice-2026-f29",
+   "idx": 29,
    "cIdx": null,
    "title": "Sounds from home",
    "director": "Nathan Silver",
@@ -1468,6 +1584,7 @@
   },
   {
    "id": "venice-2026-f322",
+   "idx": 322,
    "cIdx": null,
    "title": "Sounds from home",
    "director": "Nathan Silver",
@@ -1479,6 +1596,7 @@
   },
   {
    "id": "venice-2026-f152",
+   "idx": 152,
    "cIdx": null,
    "title": "Dove le lacrime aspettano (Where tears await)",
    "director": "Caterina Bertini, Blu Diego Fasoli",
@@ -1490,6 +1608,7 @@
   },
   {
    "id": "venice-2026-f211",
+   "idx": 211,
    "cIdx": null,
    "title": "Dove le lacrime aspettano (Where tears await)",
    "director": "Caterina Bertini, Blu Diego Fasoli",
@@ -1501,6 +1620,7 @@
   },
   {
    "id": "venice-2026-f47",
+   "idx": 47,
    "cIdx": null,
    "title": "E-I-E-I-O",
    "director": "Noemi Arfuso",
@@ -1512,6 +1632,7 @@
   },
   {
    "id": "venice-2026-f102",
+   "idx": 102,
    "cIdx": null,
    "title": "E-I-E-I-O",
    "director": "Noemi Arfuso",
@@ -1523,6 +1644,7 @@
   },
   {
    "id": "venice-2026-f262",
+   "idx": 262,
    "cIdx": null,
    "title": "El fin de los tiempos",
    "director": "Bibiana Rojas Gómez, Juan David Cárdenas",
@@ -1534,6 +1656,7 @@
   },
   {
    "id": "venice-2026-f335",
+   "idx": 335,
    "cIdx": null,
    "title": "El fin de los tiempos",
    "director": "Bibiana Rojas Gómez, Juan David Cárdenas",
@@ -1545,6 +1668,7 @@
   },
   {
    "id": "venice-2026-f46",
+   "idx": 46,
    "cIdx": null,
    "title": "Fa xian zhi lü (Zoom In, Zoom Out)",
    "director": "Dong Jie",
@@ -1556,6 +1680,7 @@
   },
   {
    "id": "venice-2026-f103",
+   "idx": 103,
    "cIdx": null,
    "title": "Fa xian zhi lü (Zoom In, Zoom Out)",
    "director": "Dong Jie",
@@ -1567,6 +1692,7 @@
   },
   {
    "id": "venice-2026-f230",
+   "idx": 230,
    "cIdx": null,
    "title": "Granchità (Crabkind)",
    "director": "Anaïs Landriscina, Chiara Toffoletto",
@@ -1578,6 +1704,7 @@
   },
   {
    "id": "venice-2026-f288",
+   "idx": 288,
    "cIdx": null,
    "title": "Granchità (Crabkind)",
    "director": "Anaïs Landriscina, Chiara Toffoletto",
@@ -1589,6 +1716,7 @@
   },
   {
    "id": "venice-2026-f81",
+   "idx": 81,
    "cIdx": null,
    "title": "Gusci (Eggshells)",
    "director": "Elisa Chiari, Francesca Trovato",
@@ -1600,6 +1728,7 @@
   },
   {
    "id": "venice-2026-f138",
+   "idx": 138,
    "cIdx": null,
    "title": "Gusci (Eggshells)",
    "director": "Elisa Chiari, Francesca Trovato",
@@ -1611,6 +1740,7 @@
   },
   {
    "id": "venice-2026-f229",
+   "idx": 229,
    "cIdx": null,
    "title": "Halaa (The H@llow Man)",
    "director": "Kamel Laaridhi",
@@ -1622,6 +1752,7 @@
   },
   {
    "id": "venice-2026-f287",
+   "idx": 287,
    "cIdx": null,
    "title": "Halaa (The H@llow Man)",
    "director": "Kamel Laaridhi",
@@ -1633,6 +1764,7 @@
   },
   {
    "id": "venice-2026-f10",
+   "idx": 10,
    "cIdx": null,
    "title": "Il grande Giaffa (Giaffa the Great)",
    "director": "Marco Santi",
@@ -1644,6 +1776,7 @@
   },
   {
    "id": "venice-2026-f65",
+   "idx": 65,
    "cIdx": null,
    "title": "Il grande Giaffa (Giaffa the Great)",
    "director": "Marco Santi",
@@ -1655,6 +1788,7 @@
   },
   {
    "id": "venice-2026-f11",
+   "idx": 11,
    "cIdx": null,
    "title": "Les métamorphoses, au féminin",
    "director": "Maria Giménez Cavallo",
@@ -1666,6 +1800,7 @@
   },
   {
    "id": "venice-2026-f66",
+   "idx": 66,
    "cIdx": null,
    "title": "Les métamorphoses, au féminin",
    "director": "Maria Giménez Cavallo",
@@ -1677,6 +1812,7 @@
   },
   {
    "id": "venice-2026-f117",
+   "idx": 117,
    "cIdx": null,
    "title": "London",
    "director": "Márcio Picoli, Victor Di Marco",
@@ -1688,6 +1824,7 @@
   },
   {
    "id": "venice-2026-f172",
+   "idx": 172,
    "cIdx": null,
    "title": "London",
    "director": "Márcio Picoli, Victor Di Marco",
@@ -1699,6 +1836,7 @@
   },
   {
    "id": "venice-2026-f189",
+   "idx": 189,
    "cIdx": null,
    "title": "Meteorito",
    "director": "Sebastián Múnera",
@@ -1710,6 +1848,7 @@
   },
   {
    "id": "venice-2026-f246",
+   "idx": 246,
    "cIdx": null,
    "title": "Meteorito",
    "director": "Sebastián Múnera",
@@ -1721,6 +1860,7 @@
   },
   {
    "id": "venice-2026-f82",
+   "idx": 82,
    "cIdx": null,
    "title": "Our Share of Sand",
    "director": "Shalini Adnani",
@@ -1732,6 +1872,7 @@
   },
   {
    "id": "venice-2026-f136",
+   "idx": 136,
    "cIdx": null,
    "title": "Our Share of Sand",
    "director": "Shalini Adnani",
@@ -1743,6 +1884,7 @@
   },
   {
    "id": "venice-2026-f151",
+   "idx": 151,
    "cIdx": null,
    "title": "Prima della guerra (Before The War)",
    "director": "Tommaso Usberti",
@@ -1754,6 +1896,7 @@
   },
   {
    "id": "venice-2026-f210",
+   "idx": 210,
    "cIdx": null,
    "title": "Prima della guerra (Before The War)",
    "director": "Tommaso Usberti",
@@ -1765,6 +1908,7 @@
   },
   {
    "id": "venice-2026-f190",
+   "idx": 190,
    "cIdx": null,
    "title": "Puca",
    "director": "Sara Scalera",
@@ -1776,6 +1920,7 @@
   },
   {
    "id": "venice-2026-f247",
+   "idx": 247,
    "cIdx": null,
    "title": "Puca",
    "director": "Sara Scalera",
@@ -1787,6 +1932,7 @@
   },
   {
    "id": "venice-2026-f118",
+   "idx": 118,
    "cIdx": null,
    "title": "Revolver",
    "director": "Paoli De Luca",
@@ -1798,6 +1944,7 @@
   },
   {
    "id": "venice-2026-f174",
+   "idx": 174,
    "cIdx": null,
    "title": "Revolver",
    "director": "Paoli De Luca",
@@ -1809,6 +1956,7 @@
   },
   {
    "id": "venice-2026-f309",
+   "idx": 309,
    "cIdx": null,
    "title": "Rider",
    "director": "Roan Johnson, Davide Pavanello",
@@ -1820,6 +1968,7 @@
   },
   {
    "id": "venice-2026-f263",
+   "idx": 263,
    "cIdx": null,
    "title": "Se mai le cose (If things could ever talk)",
    "director": "Giulia Cosentino",
@@ -1831,6 +1980,7 @@
   },
   {
    "id": "venice-2026-f337",
+   "idx": 337,
    "cIdx": null,
    "title": "Se mai le cose (If things could ever talk)",
    "director": "Giulia Cosentino",
@@ -1842,6 +1992,7 @@
   },
   {
    "id": "venice-2026-f310",
+   "idx": 310,
    "cIdx": null,
    "title": "Un breve incontro (A brief encounter)",
    "director": "Liryc Dela Cruz",
@@ -1853,6 +2004,7 @@
   },
   {
    "id": "venice-2026-f206",
+   "idx": 206,
    "cIdx": 8,
    "title": "Il primo della classe",
    "director": "Andrea Ricciotti",
@@ -1864,6 +2016,7 @@
   },
   {
    "id": "venice-2026-f323",
+   "idx": 323,
    "cIdx": 8,
    "title": "Dai nostri inviati. La Rai racconta la Mostra del Cinema di Venezia 2001-2012",
    "director": "Giuseppe Giannotti, Enrico Salvatori, Nicoletta Berardi",
@@ -1875,6 +2028,7 @@
   },
   {
    "id": "venice-2026-f58",
+   "idx": 58,
    "cIdx": 1,
    "title": "15/18 (A Place To Heal)",
    "director": "Cédric Kahn",
@@ -1886,6 +2040,7 @@
   },
   {
    "id": "venice-2026-f67",
+   "idx": 67,
    "cIdx": 1,
    "title": "15/18 (A Place To Heal)",
    "director": "Cédric Kahn",
@@ -1897,6 +2052,7 @@
   },
   {
    "id": "venice-2026-f31",
+   "idx": 31,
    "cIdx": 1,
    "title": "Bucking Fastard",
    "director": "Werner Herzog",
@@ -1908,6 +2064,7 @@
   },
   {
    "id": "venice-2026-f57",
+   "idx": 57,
    "cIdx": 1,
    "title": "Bucking Fastard",
    "director": "Werner Herzog",
@@ -1919,6 +2076,7 @@
   },
   {
    "id": "venice-2026-f209",
+   "idx": 209,
    "cIdx": 1,
    "title": "Bunker",
    "director": "Florian Zeller",
@@ -1930,6 +2088,7 @@
   },
   {
    "id": "venice-2026-f213",
+   "idx": 213,
    "cIdx": 1,
    "title": "Bunker",
    "director": "Florian Zeller",
@@ -1941,6 +2100,7 @@
   },
   {
    "id": "venice-2026-f218",
+   "idx": 218,
    "cIdx": 1,
    "title": "Company",
    "director": "Casey Affleck",
@@ -1952,6 +2112,7 @@
   },
   {
    "id": "venice-2026-f219",
+   "idx": 219,
    "cIdx": 1,
    "title": "Company",
    "director": "Casey Affleck",
@@ -1963,6 +2124,7 @@
   },
   {
    "id": "venice-2026-f221",
+   "idx": 221,
    "cIdx": 1,
    "title": "Company",
    "director": "Casey Affleck",
@@ -1974,6 +2136,7 @@
   },
   {
    "id": "venice-2026-f237",
+   "idx": 237,
    "cIdx": 1,
    "title": "Dau",
    "director": "Ilya Khrzhanovsky",
@@ -1985,6 +2148,7 @@
   },
   {
    "id": "venice-2026-f339",
+   "idx": 339,
    "cIdx": 1,
    "title": "Dau",
    "director": "Ilya Khrzhanovsky",
@@ -1996,6 +2160,7 @@
   },
   {
    "id": "venice-2026-f127",
+   "idx": 127,
    "cIdx": 1,
    "title": "Ga-neung-han sa-rang (Possible love)",
    "director": "Lee Chang-dong",
@@ -2007,6 +2172,7 @@
   },
   {
    "id": "venice-2026-f155",
+   "idx": 155,
    "cIdx": 1,
    "title": "Ga-neung-han sa-rang (Possible love)",
    "director": "Lee Chang-dong",
@@ -2018,6 +2184,7 @@
   },
   {
    "id": "venice-2026-f254",
+   "idx": 254,
    "cIdx": 1,
    "title": "Il fuoco che ti porti dentro (The Fire Within You)",
    "director": "Edoardo De Angelis",
@@ -2029,6 +2196,7 @@
   },
   {
    "id": "venice-2026-f255",
+   "idx": 255,
    "cIdx": 1,
    "title": "Il fuoco che ti porti dentro (The Fire Within You)",
    "director": "Edoardo De Angelis",
@@ -2040,6 +2208,7 @@
   },
   {
    "id": "venice-2026-f4",
+   "idx": 4,
    "cIdx": 1,
    "title": "Ink",
    "director": "Danny Boyle",
@@ -2051,6 +2220,7 @@
   },
   {
    "id": "venice-2026-f5",
+   "idx": 5,
    "cIdx": 1,
    "title": "Ink",
    "director": "Danny Boyle",
@@ -2062,6 +2232,7 @@
   },
   {
    "id": "venice-2026-f332",
+   "idx": 332,
    "cIdx": 1,
    "title": "Kami nour (A bit of light)",
    "director": "Ali Asgari",
@@ -2073,6 +2244,7 @@
   },
   {
    "id": "venice-2026-f347",
+   "idx": 347,
    "cIdx": 1,
    "title": "Kami nour (A bit of light)",
    "director": "Ali Asgari",
@@ -2084,6 +2256,7 @@
   },
   {
    "id": "venice-2026-f143",
+   "idx": 143,
    "cIdx": 1,
    "title": "Kvinde Ukendt (Woman Unknown)",
    "director": "May el-Toukhy",
@@ -2095,6 +2268,7 @@
   },
   {
    "id": "venice-2026-f144",
+   "idx": 144,
    "cIdx": 1,
    "title": "Kvinde Ukendt (Woman Unknown)",
    "director": "May el-Toukhy",
@@ -2106,6 +2280,7 @@
   },
   {
    "id": "venice-2026-f169",
+   "idx": 169,
    "cIdx": 1,
    "title": "Kvinde Ukendt (Woman Unknown)",
    "director": "May el-Toukhy",
@@ -2117,6 +2292,7 @@
   },
   {
    "id": "venice-2026-f173",
+   "idx": 173,
    "cIdx": 1,
    "title": "L’estranea",
    "director": "Paolo Strippoli",
@@ -2128,6 +2304,7 @@
   },
   {
    "id": "venice-2026-f180",
+   "idx": 180,
    "cIdx": 1,
    "title": "L’estranea",
    "director": "Paolo Strippoli",
@@ -2139,6 +2316,7 @@
   },
   {
    "id": "venice-2026-f167",
+   "idx": 167,
    "cIdx": 1,
    "title": "Look Back",
    "director": "Hirokazu Koreeda",
@@ -2150,6 +2328,7 @@
   },
   {
    "id": "venice-2026-f175",
+   "idx": 175,
    "cIdx": 1,
    "title": "Look Back",
    "director": "Hirokazu Koreeda",
@@ -2161,6 +2340,7 @@
   },
   {
    "id": "venice-2026-f284",
+   "idx": 284,
    "cIdx": 1,
    "title": "NAZA",
    "director": "Yuval Abraham, Rachel Szor",
@@ -2172,6 +2352,7 @@
   },
   {
    "id": "venice-2026-f325",
+   "idx": 325,
    "cIdx": 1,
    "title": "NAZA",
    "director": "Yuval Abraham, Rachel Szor",
@@ -2183,6 +2364,7 @@
   },
   {
    "id": "venice-2026-f64",
+   "idx": 64,
    "cIdx": 1,
    "title": "Nelson san, anata wa hito wo koroshimashitaka? (Mr. Nelson, Did You Kill People?)",
    "director": "Shinya Tsukamoto",
@@ -2194,6 +2376,7 @@
   },
   {
    "id": "venice-2026-f72",
+   "idx": 72,
    "cIdx": 1,
    "title": "Nelson san, anata wa hito wo koroshimashitaka? (Mr. Nelson, Did You Kill People?)",
    "director": "Shinya Tsukamoto",
@@ -2205,6 +2388,7 @@
   },
   {
    "id": "venice-2026-f98",
+   "idx": 98,
    "cIdx": 1,
    "title": "Primetime",
    "director": "Lance Oppenheim",
@@ -2216,6 +2400,7 @@
   },
   {
    "id": "venice-2026-f132",
+   "idx": 132,
    "cIdx": 1,
    "title": "Primetime",
    "director": "Lance Oppenheim",
@@ -2227,6 +2412,7 @@
   },
   {
    "id": "venice-2026-f336",
+   "idx": 336,
    "cIdx": 1,
    "title": "Ritorno a Buenos Aires",
    "director": "Marco Bechis",
@@ -2238,6 +2424,7 @@
   },
   {
    "id": "venice-2026-f338",
+   "idx": 338,
    "cIdx": 1,
    "title": "Ritorno a Buenos Aires",
    "director": "Marco Bechis",
@@ -2249,6 +2436,7 @@
   },
   {
    "id": "venice-2026-f101",
+   "idx": 101,
    "cIdx": 1,
    "title": "Succederà questa notte (It will happen tonight)",
    "director": "Nanni Moretti",
@@ -2260,6 +2448,7 @@
   },
   {
    "id": "venice-2026-f104",
+   "idx": 104,
    "cIdx": 1,
    "title": "Succederà questa notte (It will happen tonight)",
    "director": "Nanni Moretti",
@@ -2271,6 +2460,7 @@
   },
   {
    "id": "venice-2026-f137",
+   "idx": 137,
    "cIdx": 1,
    "title": "The Echo Chamber",
    "director": "Andrea Pallaoro",
@@ -2282,6 +2472,7 @@
   },
   {
    "id": "venice-2026-f139",
+   "idx": 139,
    "cIdx": 1,
    "title": "The Echo Chamber",
    "director": "Andrea Pallaoro",
@@ -2293,6 +2484,7 @@
   },
   {
    "id": "venice-2026-f248",
+   "idx": 248,
    "cIdx": 1,
    "title": "Un bon petit soldat",
    "director": "Stéphane Brizé",
@@ -2304,6 +2496,7 @@
   },
   {
    "id": "venice-2026-f251",
+   "idx": 251,
    "cIdx": 1,
    "title": "Un bon petit soldat",
    "director": "Stéphane Brizé",
@@ -2315,6 +2508,7 @@
   },
   {
    "id": "venice-2026-f286",
+   "idx": 286,
    "cIdx": 1,
    "title": "Un peu avant minuit",
    "director": "Nicolas Pariser",
@@ -2326,6 +2520,7 @@
   },
   {
    "id": "venice-2026-f290",
+   "idx": 290,
    "cIdx": 1,
    "title": "Un peu avant minuit",
    "director": "Nicolas Pariser",
@@ -2337,6 +2532,7 @@
   },
   {
    "id": "venice-2026-f36",
+   "idx": 36,
    "cIdx": 1,
    "title": "Wild Horse Nine",
    "director": "Martin McDonagh",
@@ -2348,6 +2544,7 @@
   },
   {
    "id": "venice-2026-f37",
+   "idx": 37,
    "cIdx": 1,
    "title": "Wild Horse Nine",
    "director": "Martin McDonagh",
@@ -2359,6 +2556,7 @@
   },
   {
    "id": "venice-2026-f44",
+   "idx": 44,
    "cIdx": 5,
    "title": "Abschied von gestern (Yesterday Girl)",
    "director": "Alexander Kluge",
@@ -2370,6 +2568,7 @@
   },
   {
    "id": "venice-2026-f79",
+   "idx": 79,
    "cIdx": 5,
    "title": "Abschied von gestern (Yesterday Girl)",
    "director": "Alexander Kluge",
@@ -2381,6 +2580,7 @@
   },
   {
    "id": "venice-2026-f234",
+   "idx": 234,
    "cIdx": 5,
    "title": "Brutti, sporchi e cattivi (Ugly, Dirty and Bad)",
    "director": "Ettore Scola",
@@ -2392,6 +2592,7 @@
   },
   {
    "id": "venice-2026-f1",
+   "idx": 1,
    "cIdx": 5,
    "title": "Col cuore in gola (Deadly Sweet)",
    "director": "Tinto Brass",
@@ -2403,6 +2604,7 @@
   },
   {
    "id": "venice-2026-f7",
+   "idx": 7,
    "cIdx": 5,
    "title": "Col cuore in gola (Deadly Sweet)",
    "director": "Tinto Brass",
@@ -2414,6 +2616,7 @@
   },
   {
    "id": "venice-2026-f121",
+   "idx": 121,
    "cIdx": 5,
    "title": "Cul-de-sac",
    "director": "Roman Polanski",
@@ -2425,6 +2628,7 @@
   },
   {
    "id": "venice-2026-f160",
+   "idx": 160,
    "cIdx": 5,
    "title": "Cul-de-sac",
    "director": "Roman Polanski",
@@ -2436,6 +2640,7 @@
   },
   {
    "id": "venice-2026-f225",
+   "idx": 225,
    "cIdx": 5,
    "title": "English, August",
    "director": "Dev Benegal",
@@ -2447,6 +2652,7 @@
   },
   {
    "id": "venice-2026-f261",
+   "idx": 261,
    "cIdx": 5,
    "title": "English, August",
    "director": "Dev Benegal",
@@ -2458,6 +2664,7 @@
   },
   {
    "id": "venice-2026-f13",
+   "idx": 13,
    "cIdx": 5,
    "title": "Gyoei no mure (The Catch)",
    "director": "Shinji Sōmai",
@@ -2469,6 +2676,7 @@
   },
   {
    "id": "venice-2026-f51",
+   "idx": 51,
    "cIdx": 5,
    "title": "Gyoei no mure (The Catch)",
    "director": "Shinji Sōmai",
@@ -2480,6 +2688,7 @@
   },
   {
    "id": "venice-2026-f193",
+   "idx": 193,
    "cIdx": 5,
    "title": "La ilusión viaja en tranvía (Illusion travels by streetcar)",
    "director": "Luis Buñuel",
@@ -2491,6 +2700,7 @@
   },
   {
    "id": "venice-2026-f233",
+   "idx": 233,
    "cIdx": 5,
    "title": "La ilusión viaja en tranvía (Illusion travels by streetcar)",
    "director": "Luis Buñuel",
@@ -2502,6 +2712,7 @@
   },
   {
    "id": "venice-2026-f116",
+   "idx": 116,
    "cIdx": 5,
    "title": "La lunga notte del '43 (Long Night of 1943)",
    "director": "Florestano Vancini",
@@ -2513,6 +2724,7 @@
   },
   {
    "id": "venice-2026-f311",
+   "idx": 311,
    "cIdx": 5,
    "title": "Lo zio di Brooklyn (The uncle from Brooklyn)",
    "director": "Daniele Ciprì, Franco Maresco",
@@ -2524,6 +2736,7 @@
   },
   {
    "id": "venice-2026-f260",
+   "idx": 260,
    "cIdx": 5,
    "title": "Los de la mesa 10",
    "director": "Simón Feldman",
@@ -2535,6 +2748,7 @@
   },
   {
    "id": "venice-2026-f308",
+   "idx": 308,
    "cIdx": 5,
    "title": "Los de la mesa 10",
    "director": "Simón Feldman",
@@ -2546,6 +2760,7 @@
   },
   {
    "id": "venice-2026-f185",
+   "idx": 185,
    "cIdx": 5,
    "title": "Minjing gushi (On the beat)",
    "director": "Ning Ying",
@@ -2557,6 +2772,7 @@
   },
   {
    "id": "venice-2026-f226",
+   "idx": 226,
    "cIdx": 5,
    "title": "Minjing gushi (On the beat)",
    "director": "Ning Ying",
@@ -2568,6 +2784,7 @@
   },
   {
    "id": "venice-2026-f8",
+   "idx": 8,
    "cIdx": 5,
    "title": "Minnie and Moskowitz",
    "director": "John Cassavetes",
@@ -2579,6 +2796,7 @@
   },
   {
    "id": "venice-2026-f43",
+   "idx": 43,
    "cIdx": 5,
    "title": "Minnie and Moskowitz",
    "director": "John Cassavetes",
@@ -2590,6 +2808,7 @@
   },
   {
    "id": "venice-2026-f154",
+   "idx": 154,
    "cIdx": 5,
    "title": "Popiół i diament (Ashes and Diamonds)",
    "director": "Andrzej Wajda",
@@ -2601,6 +2820,7 @@
   },
   {
    "id": "venice-2026-f264",
+   "idx": 264,
    "cIdx": 5,
    "title": "The Wild Angels",
    "director": "Roger Corman",
@@ -2612,6 +2832,7 @@
   },
   {
    "id": "venice-2026-f313",
+   "idx": 313,
    "cIdx": 5,
    "title": "The Wild Angels",
    "director": "Roger Corman",
@@ -2623,6 +2844,7 @@
   },
   {
    "id": "venice-2026-f50",
+   "idx": 50,
    "cIdx": 5,
    "title": "To be or not to be",
    "director": "Ernst Lubitsch",
@@ -2634,6 +2856,7 @@
   },
   {
    "id": "venice-2026-f84",
+   "idx": 84,
    "cIdx": 5,
    "title": "To be or not to be",
    "director": "Ernst Lubitsch",
@@ -2645,6 +2868,7 @@
   },
   {
    "id": "venice-2026-f78",
+   "idx": 78,
    "cIdx": 5,
    "title": "Udju azul di Yonta (The blue eyes of Yonta)",
    "director": "Flora Gomes",
@@ -2656,6 +2880,7 @@
   },
   {
    "id": "venice-2026-f114",
+   "idx": 114,
    "cIdx": 5,
    "title": "Udju azul di Yonta (The blue eyes of Yonta)",
    "director": "Flora Gomes",
@@ -2667,6 +2892,7 @@
   },
   {
    "id": "venice-2026-f150",
+   "idx": 150,
    "cIdx": 5,
    "title": "Valerie a týden divů (Valerie and her week of wonders)",
    "director": "Jaromil Jireš",
@@ -2678,6 +2904,7 @@
   },
   {
    "id": "venice-2026-f187",
+   "idx": 187,
    "cIdx": 5,
    "title": "Valerie a týden divů (Valerie and her week of wonders)",
    "director": "Jaromil Jireš",
@@ -2689,6 +2916,7 @@
   },
   {
    "id": "venice-2026-f85",
+   "idx": 85,
    "cIdx": 5,
    "title": "Viaggio in Italia (Journey to Italy)",
    "director": "Roberto Rossellini",
@@ -2700,6 +2928,7 @@
   },
   {
    "id": "venice-2026-f123",
+   "idx": 123,
    "cIdx": 5,
    "title": "Viaggio in Italia (Journey to Italy)",
    "director": "Roberto Rossellini",
@@ -2711,6 +2940,7 @@
   },
   {
    "id": "venice-2026-f306",
+   "idx": 306,
    "cIdx": 5,
    "title": "Woo Yuet dik goo si (The Story of Woo Viet)",
    "director": "Ann Hui",
@@ -2722,6 +2952,7 @@
   },
   {
    "id": "venice-2026-f96",
+   "idx": 96,
    "cIdx": 2,
    "title": "Al mowaten Osama (Citizen Osama)",
    "director": "Ahmed Hassouna",
@@ -2733,6 +2964,7 @@
   },
   {
    "id": "venice-2026-f119",
+   "idx": 119,
    "cIdx": 2,
    "title": "Al mowaten Osama (Citizen Osama)",
    "director": "Ahmed Hassouna",
@@ -2744,6 +2976,7 @@
   },
   {
    "id": "venice-2026-f179",
+   "idx": 179,
    "cIdx": 2,
    "title": "Arrested Memory",
    "director": "Sabu",
@@ -2755,6 +2988,7 @@
   },
   {
    "id": "venice-2026-f199",
+   "idx": 199,
    "cIdx": 2,
    "title": "Arrested Memory",
    "director": "Sabu",
@@ -2766,6 +3000,7 @@
   },
   {
    "id": "venice-2026-f267",
+   "idx": 267,
    "cIdx": 2,
    "title": "Be Brave",
    "director": "Francesco Carrozzini",
@@ -2777,6 +3012,7 @@
   },
   {
    "id": "venice-2026-f320",
+   "idx": 320,
    "cIdx": 2,
    "title": "Be Brave",
    "director": "Francesco Carrozzini",
@@ -2788,6 +3024,7 @@
   },
   {
    "id": "venice-2026-f334",
+   "idx": 334,
    "cIdx": 2,
    "title": "Be Brave",
    "director": "Francesco Carrozzini",
@@ -2799,6 +3036,7 @@
   },
   {
    "id": "venice-2026-f343",
+   "idx": 343,
    "cIdx": 2,
    "title": "Be Brave",
    "director": "Francesco Carrozzini",
@@ -2810,6 +3048,7 @@
   },
   {
    "id": "venice-2026-f125",
+   "idx": 125,
    "cIdx": 2,
    "title": "Biografía de Jorge Luis Borges (Part 1)",
    "director": "Mariano Llinás",
@@ -2821,6 +3060,7 @@
   },
   {
    "id": "venice-2026-f148",
+   "idx": 148,
    "cIdx": 2,
    "title": "Biografía de Jorge Luis Borges (Part 1)",
    "director": "Mariano Llinás",
@@ -2832,6 +3072,7 @@
   },
   {
    "id": "venice-2026-f177",
+   "idx": 177,
    "cIdx": 2,
    "title": "Biografía de Jorge Luis Borges (Part 1)",
    "director": "Mariano Llinás",
@@ -2843,6 +3084,7 @@
   },
   {
    "id": "venice-2026-f161",
+   "idx": 161,
    "cIdx": 2,
    "title": "Biografía de Jorge Luis Borges (Parts 2-3)",
    "director": "Mariano Llinás",
@@ -2854,6 +3096,7 @@
   },
   {
    "id": "venice-2026-f162",
+   "idx": 162,
    "cIdx": 2,
    "title": "Biografía de Jorge Luis Borges (Parts 2-3)",
    "director": "Mariano Llinás",
@@ -2865,6 +3108,7 @@
   },
   {
    "id": "venice-2026-f184",
+   "idx": 184,
    "cIdx": 2,
    "title": "Biografía de Jorge Luis Borges (Parts 2-3)",
    "director": "Mariano Llinás",
@@ -2876,6 +3120,7 @@
   },
   {
    "id": "venice-2026-f212",
+   "idx": 212,
    "cIdx": 2,
    "title": "Biografía de Jorge Luis Borges (Parts 2-3)",
    "director": "Mariano Llinás",
@@ -2887,6 +3132,7 @@
   },
   {
    "id": "venice-2026-f165",
+   "idx": 165,
    "cIdx": 2,
    "title": "Boatbuilders",
    "director": "Luke Lorentzen",
@@ -2898,6 +3144,7 @@
   },
   {
    "id": "venice-2026-f191",
+   "idx": 191,
    "cIdx": 2,
    "title": "Boatbuilders",
    "director": "Luke Lorentzen",
@@ -2909,6 +3156,7 @@
   },
   {
    "id": "venice-2026-f22",
+   "idx": 22,
    "cIdx": 2,
    "title": "Burgundy",
    "director": "Michael Dweck, Gregory Kershaw",
@@ -2920,6 +3168,7 @@
   },
   {
    "id": "venice-2026-f48",
+   "idx": 48,
    "cIdx": 2,
    "title": "Burgundy",
    "director": "Michael Dweck, Gregory Kershaw",
@@ -2931,6 +3180,7 @@
   },
   {
    "id": "venice-2026-f12",
+   "idx": 12,
    "cIdx": 2,
    "title": "Everest: The Other Side",
    "director": "Elizabeth Chai Vasarhelyi, Jimmy Chin",
@@ -2942,6 +3192,7 @@
   },
   {
    "id": "venice-2026-f59",
+   "idx": 59,
    "cIdx": 2,
    "title": "Everest: The Other Side",
    "director": "Elizabeth Chai Vasarhelyi, Jimmy Chin",
@@ -2953,6 +3204,7 @@
   },
   {
    "id": "venice-2026-f63",
+   "idx": 63,
    "cIdx": 2,
    "title": "Everest: The Other Side",
    "director": "Elizabeth Chai Vasarhelyi, Jimmy Chin",
@@ -2964,6 +3216,7 @@
   },
   {
    "id": "venice-2026-f70",
+   "idx": 70,
    "cIdx": 2,
    "title": "Everest: The Other Side",
    "director": "Elizabeth Chai Vasarhelyi, Jimmy Chin",
@@ -2975,6 +3228,7 @@
   },
   {
    "id": "venice-2026-f110",
+   "idx": 110,
    "cIdx": 2,
    "title": "Father Joe",
    "director": "Barthélémy Grossmann",
@@ -2986,6 +3240,7 @@
   },
   {
    "id": "venice-2026-f176",
+   "idx": 176,
    "cIdx": 2,
    "title": "Father Joe",
    "director": "Barthélémy Grossmann",
@@ -2997,6 +3252,7 @@
   },
   {
    "id": "venice-2026-f277",
+   "idx": 277,
    "cIdx": 2,
    "title": "Father Joe",
    "director": "Barthélémy Grossmann",
@@ -3008,6 +3264,7 @@
   },
   {
    "id": "venice-2026-f157",
+   "idx": 157,
    "cIdx": 2,
    "title": "Flesh Impact",
    "director": "Maggie Gyllenhaal",
@@ -3019,6 +3276,7 @@
   },
   {
    "id": "venice-2026-f204",
+   "idx": 204,
    "cIdx": 2,
    "title": "Flesh Impact",
    "director": "Maggie Gyllenhaal",
@@ -3030,6 +3288,7 @@
   },
   {
    "id": "venice-2026-f205",
+   "idx": 205,
    "cIdx": 2,
    "title": "Flesh Impact",
    "director": "Maggie Gyllenhaal",
@@ -3041,6 +3300,7 @@
   },
   {
    "id": "venice-2026-f214",
+   "idx": 214,
    "cIdx": 2,
    "title": "Flesh Impact",
    "director": "Maggie Gyllenhaal",
@@ -3052,6 +3312,7 @@
   },
   {
    "id": "venice-2026-f120",
+   "idx": 120,
    "cIdx": 2,
    "title": "From Inside Out – The Architecture of Peter Zumthor",
    "director": "Wim Wenders",
@@ -3063,6 +3324,7 @@
   },
   {
    "id": "venice-2026-f158",
+   "idx": 158,
    "cIdx": 2,
    "title": "Halayon (Wild Asparagus)",
    "director": "Avi Mograbi",
@@ -3074,6 +3336,7 @@
   },
   {
    "id": "venice-2026-f200",
+   "idx": 200,
    "cIdx": 2,
    "title": "Halayon (Wild Asparagus)",
    "director": "Avi Mograbi",
@@ -3085,6 +3348,7 @@
   },
   {
    "id": "venice-2026-f207",
+   "idx": 207,
    "cIdx": 2,
    "title": "Halayon (Wild Asparagus)",
    "director": "Avi Mograbi",
@@ -3096,6 +3360,7 @@
   },
   {
    "id": "venice-2026-f215",
+   "idx": 215,
    "cIdx": 2,
    "title": "Halayon (Wild Asparagus)",
    "director": "Avi Mograbi",
@@ -3107,6 +3372,7 @@
   },
   {
    "id": "venice-2026-f131",
+   "idx": 131,
    "cIdx": 2,
    "title": "Holy Wood Dust",
    "director": "Victor Kossakovsky",
@@ -3118,6 +3384,7 @@
   },
   {
    "id": "venice-2026-f153",
+   "idx": 153,
    "cIdx": 2,
    "title": "Holy Wood Dust",
    "director": "Victor Kossakovsky",
@@ -3129,6 +3396,7 @@
   },
   {
    "id": "venice-2026-f87",
+   "idx": 87,
    "cIdx": 2,
    "title": "Imperium",
    "director": "Sergei Loznitsa",
@@ -3140,6 +3408,7 @@
   },
   {
    "id": "venice-2026-f317",
+   "idx": 317,
    "cIdx": 2,
    "title": "Intermission",
    "director": "Yonfan",
@@ -3151,6 +3420,7 @@
   },
   {
    "id": "venice-2026-f342",
+   "idx": 342,
    "cIdx": 2,
    "title": "Intermission",
    "director": "Yonfan",
@@ -3162,6 +3432,7 @@
   },
   {
    "id": "venice-2026-f194",
+   "idx": 194,
    "cIdx": 2,
    "title": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 1)",
    "director": "Luca Guadagnino",
@@ -3173,6 +3444,7 @@
   },
   {
    "id": "venice-2026-f224",
+   "idx": 224,
    "cIdx": 2,
    "title": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 1)",
    "director": "Luca Guadagnino",
@@ -3184,6 +3456,7 @@
   },
   {
    "id": "venice-2026-f250",
+   "idx": 250,
    "cIdx": 2,
    "title": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 1)",
    "director": "Luca Guadagnino",
@@ -3195,6 +3468,7 @@
   },
   {
    "id": "venice-2026-f252",
+   "idx": 252,
    "cIdx": 2,
    "title": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 1)",
    "director": "Luca Guadagnino",
@@ -3206,6 +3480,7 @@
   },
   {
    "id": "venice-2026-f236",
+   "idx": 236,
    "cIdx": 2,
    "title": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 2)",
    "director": "Luca Guadagnino",
@@ -3217,6 +3492,7 @@
   },
   {
    "id": "venice-2026-f258",
+   "idx": 258,
    "cIdx": 2,
    "title": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 2)",
    "director": "Luca Guadagnino",
@@ -3228,6 +3504,7 @@
   },
   {
    "id": "venice-2026-f289",
+   "idx": 289,
    "cIdx": 2,
    "title": "JOIE DE VIVRE. Notes, thoughts, words, reflections, faces, visions, around Bernardo Bertolucci and the cinephilia of the 20th century that is no more (part 2)",
    "director": "Luca Guadagnino",
@@ -3239,6 +3516,7 @@
   },
   {
    "id": "venice-2026-f73",
+   "idx": 73,
    "cIdx": 2,
    "title": "Jupiter",
    "director": "Alexandre Smia",
@@ -3250,6 +3528,7 @@
   },
   {
    "id": "venice-2026-f171",
+   "idx": 171,
    "cIdx": 2,
    "title": "Jupiter",
    "director": "Alexandre Smia",
@@ -3261,6 +3540,7 @@
   },
   {
    "id": "venice-2026-f243",
+   "idx": 243,
    "cIdx": 2,
    "title": "Jupiter",
    "director": "Alexandre Smia",
@@ -3272,6 +3552,7 @@
   },
   {
    "id": "venice-2026-f202",
+   "idx": 202,
    "cIdx": 2,
    "title": "Juso per ferie",
    "director": "Karen Di Porto",
@@ -3283,6 +3564,7 @@
   },
   {
    "id": "venice-2026-f231",
+   "idx": 231,
    "cIdx": 2,
    "title": "Juso per ferie",
    "director": "Karen Di Porto",
@@ -3294,6 +3576,7 @@
   },
   {
    "id": "venice-2026-f245",
+   "idx": 245,
    "cIdx": 2,
    "title": "Listy (Letters from the Silenced Country)",
    "director": "Andrei Kutsila",
@@ -3305,6 +3588,7 @@
   },
   {
    "id": "venice-2026-f265",
+   "idx": 265,
    "cIdx": 2,
    "title": "Listy (Letters from the Silenced Country)",
    "director": "Andrei Kutsila",
@@ -3316,6 +3600,7 @@
   },
   {
    "id": "venice-2026-f340",
+   "idx": 340,
    "cIdx": 2,
    "title": "Makikiraan po (Let us through, dear ancestors)",
    "director": "Lav Diaz",
@@ -3327,6 +3612,7 @@
   },
   {
    "id": "venice-2026-f238",
+   "idx": 238,
    "cIdx": 2,
    "title": "Musk",
    "director": "Alex Gibney",
@@ -3338,6 +3624,7 @@
   },
   {
    "id": "venice-2026-f249",
+   "idx": 249,
    "cIdx": 2,
    "title": "Musk",
    "director": "Alex Gibney",
@@ -3349,6 +3636,7 @@
   },
   {
    "id": "venice-2026-f45",
+   "idx": 45,
    "cIdx": 2,
    "title": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3-4-5)",
    "director": "Julia Loktev",
@@ -3360,6 +3648,7 @@
   },
   {
    "id": "venice-2026-f77",
+   "idx": 77,
    "cIdx": 2,
    "title": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3)",
    "director": "Julia Loktev",
@@ -3371,6 +3660,7 @@
   },
   {
    "id": "venice-2026-f105",
+   "idx": 105,
    "cIdx": 2,
    "title": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3)",
    "director": "Julia Loktev",
@@ -3382,6 +3672,7 @@
   },
   {
    "id": "venice-2026-f113",
+   "idx": 113,
    "cIdx": 2,
    "title": "My Undesirable Friends: Part II – Exile (Ch. 4-5)",
    "director": "Julia Loktev",
@@ -3393,6 +3684,7 @@
   },
   {
    "id": "venice-2026-f142",
+   "idx": 142,
    "cIdx": 2,
    "title": "My Undesirable Friends: Part II – Exile (Ch. 4-5)",
    "director": "Julia Loktev",
@@ -3404,6 +3696,7 @@
   },
   {
    "id": "venice-2026-f39",
+   "idx": 39,
    "cIdx": 2,
    "title": "Nessun dolore",
    "director": "Gianni Amelio",
@@ -3415,6 +3708,7 @@
   },
   {
    "id": "venice-2026-f40",
+   "idx": 40,
    "cIdx": 2,
    "title": "Nessun dolore",
    "director": "Gianni Amelio",
@@ -3426,6 +3720,7 @@
   },
   {
    "id": "venice-2026-f316",
+   "idx": 316,
    "cIdx": 2,
    "title": "Nino - Un film su Nino Rota",
    "director": "Walter Fasano",
@@ -3437,6 +3732,7 @@
   },
   {
    "id": "venice-2026-f181",
+   "idx": 181,
    "cIdx": 2,
    "title": "No paradise if you are killed by a woman",
    "director": "Halkawt Mustafa",
@@ -3448,6 +3744,7 @@
   },
   {
    "id": "venice-2026-f341",
+   "idx": 341,
    "cIdx": 2,
    "title": "No paradise if you are killed by a woman",
    "director": "Halkawt Mustafa",
@@ -3459,6 +3756,7 @@
   },
   {
    "id": "venice-2026-f108",
+   "idx": 108,
    "cIdx": 2,
    "title": "Oasis: Don’t Look Back in Anger",
    "director": "Dylan Southern, Will Lovelace",
@@ -3470,6 +3768,7 @@
   },
   {
    "id": "venice-2026-f109",
+   "idx": 109,
    "cIdx": 2,
    "title": "Oasis: Don’t Look Back in Anger",
    "director": "Dylan Southern, Will Lovelace",
@@ -3481,6 +3780,7 @@
   },
   {
    "id": "venice-2026-f269",
+   "idx": 269,
    "cIdx": 2,
    "title": "Peccato",
    "director": "Valerio Vestoso",
@@ -3492,6 +3792,7 @@
   },
   {
    "id": "venice-2026-f305",
+   "idx": 305,
    "cIdx": 2,
    "title": "Peccato",
    "director": "Valerio Vestoso",
@@ -3503,6 +3804,7 @@
   },
   {
    "id": "venice-2026-f241",
+   "idx": 241,
    "cIdx": 2,
    "title": "Place to be",
    "director": "Kornél Mundruczó",
@@ -3514,6 +3816,7 @@
   },
   {
    "id": "venice-2026-f256",
+   "idx": 256,
    "cIdx": 2,
    "title": "Place to be",
    "director": "Kornél Mundruczó",
@@ -3525,6 +3828,7 @@
   },
   {
    "id": "venice-2026-f52",
+   "idx": 52,
    "cIdx": 2,
    "title": "Queer Edward II",
    "director": "Theo Rollason",
@@ -3536,6 +3840,7 @@
   },
   {
    "id": "venice-2026-f97",
+   "idx": 97,
    "cIdx": 2,
    "title": "Queer Edward II",
    "director": "Theo Rollason",
@@ -3547,6 +3852,7 @@
   },
   {
    "id": "venice-2026-f100",
+   "idx": 100,
    "cIdx": 2,
    "title": "Queer Edward II",
    "director": "Theo Rollason",
@@ -3558,6 +3864,7 @@
   },
   {
    "id": "venice-2026-f107",
+   "idx": 107,
    "cIdx": 2,
    "title": "Queer Edward II",
    "director": "Theo Rollason",
@@ -3569,6 +3876,7 @@
   },
   {
    "id": "venice-2026-f293",
+   "idx": 293,
    "cIdx": 2,
    "title": "Scherzetto",
    "director": "Mario Martone",
@@ -3580,6 +3888,7 @@
   },
   {
    "id": "venice-2026-f295",
+   "idx": 295,
    "cIdx": 2,
    "title": "Scherzetto",
    "director": "Mario Martone",
@@ -3591,6 +3900,7 @@
   },
   {
    "id": "venice-2026-f54",
+   "idx": 54,
    "cIdx": 2,
    "title": "Shumei: The living legacy of Kabuki",
    "director": "Takashi Miike",
@@ -3602,6 +3912,7 @@
   },
   {
    "id": "venice-2026-f86",
+   "idx": 86,
    "cIdx": 2,
    "title": "Shumei: The living legacy of Kabuki",
    "director": "Takashi Miike",
@@ -3613,6 +3924,7 @@
   },
   {
    "id": "venice-2026-f71",
+   "idx": 71,
    "cIdx": 2,
    "title": "The Basics of Philosophy",
    "director": "Paul Schrader",
@@ -3624,6 +3936,7 @@
   },
   {
    "id": "venice-2026-f95",
+   "idx": 95,
    "cIdx": 2,
    "title": "The Basics of Philosophy",
    "director": "Paul Schrader",
@@ -3635,6 +3948,7 @@
   },
   {
    "id": "venice-2026-f170",
+   "idx": 170,
    "cIdx": 2,
    "title": "The Pervert’s Guide to Utopias",
    "director": "Sophie Fiennes",
@@ -3646,6 +3960,7 @@
   },
   {
    "id": "venice-2026-f182",
+   "idx": 182,
    "cIdx": 2,
    "title": "The Pervert’s Guide to Utopias",
    "director": "Sophie Fiennes",
@@ -3657,6 +3972,7 @@
   },
   {
    "id": "venice-2026-f89",
+   "idx": 89,
    "cIdx": 2,
    "title": "The road to Jericho",
    "director": "Amos Gitai",
@@ -3668,6 +3984,7 @@
   },
   {
    "id": "venice-2026-f130",
+   "idx": 130,
    "cIdx": 2,
    "title": "The road to Jericho",
    "director": "Amos Gitai",
@@ -3679,6 +3996,7 @@
   },
   {
    "id": "venice-2026-f135",
+   "idx": 135,
    "cIdx": 2,
    "title": "The road to Jericho",
    "director": "Amos Gitai",
@@ -3690,6 +4008,7 @@
   },
   {
    "id": "venice-2026-f140",
+   "idx": 140,
    "cIdx": 2,
    "title": "The road to Jericho",
    "director": "Amos Gitai",
@@ -3701,6 +4020,7 @@
   },
   {
    "id": "venice-2026-f159",
+   "idx": 159,
    "cIdx": 2,
    "title": "They’re Here",
    "director": "Laura Poitras, Rachel Lauren Mueller",
@@ -3712,6 +4032,7 @@
   },
   {
    "id": "venice-2026-f201",
+   "idx": 201,
    "cIdx": 2,
    "title": "They’re Here",
    "director": "Laura Poitras, Rachel Lauren Mueller",
@@ -3723,6 +4044,7 @@
   },
   {
    "id": "venice-2026-f208",
+   "idx": 208,
    "cIdx": 2,
    "title": "They’re Here",
    "director": "Laura Poitras, Rachel Lauren Mueller",
@@ -3734,6 +4056,7 @@
   },
   {
    "id": "venice-2026-f216",
+   "idx": 216,
    "cIdx": 2,
    "title": "They’re Here",
    "director": "Laura Poitras, Rachel Lauren Mueller",
@@ -3745,6 +4068,7 @@
   },
   {
    "id": "venice-2026-f274",
+   "idx": 274,
    "cIdx": 2,
    "title": "Twist &amp; Shoot Mister Suzuki",
    "director": "Yves Montmayeur",
@@ -3756,6 +4080,7 @@
   },
   {
    "id": "venice-2026-f312",
+   "idx": 312,
    "cIdx": 2,
    "title": "Twist &amp; Shoot Mister Suzuki",
    "director": "Yves Montmayeur",
@@ -3767,6 +4092,7 @@
   },
   {
    "id": "venice-2026-f345",
+   "idx": 345,
    "cIdx": 2,
    "title": "Un bon avocat",
    "director": "Tristan Seguela",
@@ -3778,6 +4104,7 @@
   },
   {
    "id": "venice-2026-f228",
+   "idx": 228,
    "cIdx": 2,
    "title": "Union Town",
    "director": "Barbara Kopple",
@@ -3789,6 +4116,7 @@
   },
   {
    "id": "venice-2026-f276",
+   "idx": 276,
    "cIdx": 2,
    "title": "Union Town",
    "director": "Barbara Kopple",
@@ -3800,6 +4128,7 @@
   },
   {
    "id": "venice-2026-f285",
+   "idx": 285,
    "cIdx": 2,
    "title": "Union Town",
    "director": "Barbara Kopple",
@@ -3811,6 +4140,7 @@
   },
   {
    "id": "venice-2026-f292",
+   "idx": 292,
    "cIdx": 2,
    "title": "Union Town",
    "director": "Barbara Kopple",
@@ -3822,6 +4152,7 @@
   },
   {
    "id": "venice-2026-f197",
+   "idx": 197,
    "cIdx": 2,
    "title": "Weichen (Dust)",
    "director": "Tsai Ming-liang",
@@ -3833,6 +4164,7 @@
   },
   {
    "id": "venice-2026-f223",
+   "idx": 223,
    "cIdx": 2,
    "title": "Weichen (Dust)",
    "director": "Tsai Ming-liang",
@@ -3844,6 +4176,7 @@
   },
   {
    "id": "venice-2026-f344",
+   "idx": 344,
    "cIdx": 2,
    "title": "What Love Builds",
    "director": "Russell Crowe",
@@ -3855,6 +4188,7 @@
   },
   {
    "id": "venice-2026-f217",
+   "idx": 217,
    "cIdx": 4,
    "title": "Eu contez (I matter)",
    "director": "Alina Şerban",
@@ -3866,6 +4200,7 @@
   },
   {
    "id": "venice-2026-f222",
+   "idx": 222,
    "cIdx": 4,
    "title": "Eu contez (I matter)",
    "director": "Alina Şerban",
@@ -3877,6 +4212,7 @@
   },
   {
    "id": "venice-2026-f291",
+   "idx": 291,
    "cIdx": 4,
    "title": "Földszint (Ground floor)",
    "director": "Gábor Reisz",
@@ -3888,6 +4224,7 @@
   },
   {
    "id": "venice-2026-f298",
+   "idx": 298,
    "cIdx": 4,
    "title": "Földszint (Ground floor)",
    "director": "Gábor Reisz",
@@ -3899,6 +4236,7 @@
   },
   {
    "id": "venice-2026-f68",
+   "idx": 68,
    "cIdx": 4,
    "title": "Furies",
    "director": "Rami Kodeih",
@@ -3910,6 +4248,7 @@
   },
   {
    "id": "venice-2026-f74",
+   "idx": 74,
    "cIdx": 4,
    "title": "Furies",
    "director": "Rami Kodeih",
@@ -3921,6 +4260,7 @@
   },
   {
    "id": "venice-2026-f75",
+   "idx": 75,
    "cIdx": 4,
    "title": "Furies",
    "director": "Rami Kodeih",
@@ -3932,6 +4272,7 @@
   },
   {
    "id": "venice-2026-f253",
+   "idx": 253,
    "cIdx": 4,
    "title": "Guria",
    "director": "Levan Koguashvili",
@@ -3943,6 +4284,7 @@
   },
   {
    "id": "venice-2026-f257",
+   "idx": 257,
    "cIdx": 4,
    "title": "Guria",
    "director": "Levan Koguashvili",
@@ -3954,6 +4296,7 @@
   },
   {
    "id": "venice-2026-f178",
+   "idx": 178,
    "cIdx": 4,
    "title": "Hiwar ma’ albahr (Conversation With The Sea)",
    "director": "Muayad Alayan",
@@ -3965,6 +4308,7 @@
   },
   {
    "id": "venice-2026-f183",
+   "idx": 183,
    "cIdx": 4,
    "title": "Hiwar ma’ albahr (Conversation With The Sea)",
    "director": "Muayad Alayan",
@@ -3976,6 +4320,7 @@
   },
   {
    "id": "venice-2026-f141",
+   "idx": 141,
    "cIdx": 4,
    "title": "Hombre al agua",
    "director": "Gael García Bernal",
@@ -3987,6 +4332,7 @@
   },
   {
    "id": "venice-2026-f145",
+   "idx": 145,
    "cIdx": 4,
    "title": "Hombre al agua",
    "director": "Gael García Bernal",
@@ -3998,6 +4344,7 @@
   },
   {
    "id": "venice-2026-f106",
+   "idx": 106,
    "cIdx": 4,
    "title": "Serpenti",
    "director": "Roberto De Paolis Maino",
@@ -4009,6 +4356,7 @@
   },
   {
    "id": "venice-2026-f112",
+   "idx": 112,
    "cIdx": 4,
    "title": "Serpenti",
    "director": "Roberto De Paolis Maino",
@@ -4020,6 +4368,7 @@
   },
   {
    "id": "venice-2026-f38",
+   "idx": 38,
    "cIdx": 4,
    "title": "Sumo: Spirit Weighs Nothing",
    "director": "Erik Shirai",
@@ -4031,6 +4380,7 @@
   },
   {
    "id": "venice-2026-f42",
+   "idx": 42,
    "cIdx": 4,
    "title": "Sumo: Spirit Weighs Nothing",
    "director": "Erik Shirai",
@@ -11856,6 +12206,7 @@
    "venues": 10
   }
  ],
+ "warnings": [],
  "fetchedAt": "2026-10-31T13:35:16.254Z",
  "lastVerifiedAt": "2026-10-31T13:35:16.254Z",
  "dataSource": "official"

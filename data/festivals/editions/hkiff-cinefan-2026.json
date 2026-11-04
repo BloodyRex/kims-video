@@ -31,9 +31,12 @@
   "timezone": "Asia/Hong_Kong",
   "dayCount": 50,
   "officialUrl": "https://cinefan.hkiff.org.hk/",
-  "coverageMinDays": 10
+  "coverageMinDays": 10,
+  "registryEndDate": "2026-10-31",
+  "endDateExtended": false,
+  "dataEndDate": "2026-10-31"
  },
- "lifecycle": "LIVE",
+ "lifecycle": "ENDED",
  "status": "SCREENING_LIVE",
  "statusDetail": {
   "dates": "CONFIRMED",

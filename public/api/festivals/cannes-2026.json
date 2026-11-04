@@ -32,7 +32,10 @@
   "timezone": "Europe/Paris",
   "dayCount": 12,
   "officialUrl": "https://www.festival-cannes.com/en/the-selection/",
-  "coverageMinDays": 0
+  "coverageMinDays": 0,
+  "registryEndDate": "2026-05-23",
+  "endDateExtended": false,
+  "dataEndDate": "2026-05-23"
  },
  "lifecycle": "ENDED",
  "status": "PROGRAM_RELEASED",
@@ -122,6 +125,7 @@
  "films": [
   {
    "id": "cannes-2026-f106",
+   "idx": 106,
    "cIdx": 8,
    "title": "AMMA ARIYAN",
    "director": "John ABRAHAM",
@@ -135,6 +139,7 @@
   },
   {
    "id": "cannes-2026-f107",
+   "idx": 107,
    "cIdx": 8,
    "title": "BAWANG BIEJI",
    "director": "Kaige CHEN",
@@ -148,6 +153,7 @@
   },
   {
    "id": "cannes-2026-f108",
+   "idx": 108,
    "cIdx": 8,
    "title": "CZŁOWIEK Z ŻELAZA",
    "director": "Andrzej WAJDA",
@@ -161,6 +167,7 @@
   },
   {
    "id": "cannes-2026-f109",
+   "idx": 109,
    "cIdx": 8,
    "title": "DERNSIE: THE AMAZING LIFE OF BRUCE DERN",
    "director": "Mike MENDEZ",
@@ -174,6 +181,7 @@
   },
   {
    "id": "cannes-2026-f110",
+   "idx": 110,
    "cIdx": 8,
    "title": "DU LING ZHI YING",
    "director": "JIA Zhang-Ke",
@@ -187,6 +195,7 @@
   },
   {
    "id": "cannes-2026-f111",
+   "idx": 111,
    "cIdx": 8,
    "title": "EVA",
    "director": "Maria PLYTA",
@@ -200,6 +209,7 @@
   },
   {
    "id": "cannes-2026-f112",
+   "idx": 112,
    "cIdx": 8,
    "title": "FESTIVAL DE CANNES 1947",
    "director": "Adrien Fred MAURY",
@@ -213,6 +223,7 @@
   },
   {
    "id": "cannes-2026-f113",
+   "idx": 113,
    "cIdx": 8,
    "title": "GOODNIGHT LAMBY",
    "director": "Dustin YELLIN",
@@ -226,6 +237,7 @@
   },
   {
    "id": "cannes-2026-f114",
+   "idx": 114,
    "cIdx": 8,
    "title": "KEN RUSSELL’S THE DEVILS",
    "director": "Ken RUSSELL",
@@ -239,6 +251,7 @@
   },
   {
    "id": "cannes-2026-f116",
+   "idx": 116,
    "cIdx": 8,
    "title": "L’ÂGE D’OR",
    "director": "Bérenger THOUIN",
@@ -252,6 +265,7 @@
   },
   {
    "id": "cannes-2026-f115",
+   "idx": 115,
    "cIdx": 8,
    "title": "L’INNOCENTE",
    "director": "Luchino VISCONTI",
@@ -265,6 +279,7 @@
   },
   {
    "id": "cannes-2026-f117",
+   "idx": 117,
    "cIdx": 8,
    "title": "LA CASA DEL ÁNGEL",
    "director": "Leopoldo TORRE NILSSON",
@@ -278,6 +293,7 @@
   },
   {
    "id": "cannes-2026-f118",
+   "idx": 118,
    "cIdx": 8,
    "title": "LA CIOCIARA",
    "director": "Vittorio DE SICA",
@@ -291,6 +307,7 @@
   },
   {
    "id": "cannes-2026-f119",
+   "idx": 119,
    "cIdx": 8,
    "title": "LA DÉRIVE",
    "director": "Paula DELSOL",
@@ -304,6 +321,7 @@
   },
   {
    "id": "cannes-2026-f120",
+   "idx": 120,
    "cIdx": 8,
    "title": "LA SYMPHONIE PASTORALE",
    "director": "Jean DELANNOY",
@@ -317,6 +335,7 @@
   },
   {
    "id": "cannes-2026-f121",
+   "idx": 121,
    "cIdx": 8,
    "title": "MACHINE GUN KELLY",
    "director": "Roger CORMAN",
@@ -330,6 +349,7 @@
   },
   {
    "id": "cannes-2026-f122",
+   "idx": 122,
    "cIdx": 8,
    "title": "MAVERICK – THE EPIC ADVENTURES OF DAVID LEAN",
    "director": "Barnaby THOMPSON",
@@ -343,6 +363,7 @@
   },
   {
    "id": "cannes-2026-f123",
+   "idx": 123,
    "cIdx": 8,
    "title": "MEEUWEN STERVEN IN DE HAVEN",
    "director": "Rik KUYPERS, Roland VERHAVERT, Ivo MICHIELS",
@@ -356,6 +377,7 @@
   },
   {
    "id": "cannes-2026-f124",
+   "idx": 124,
    "cIdx": 8,
    "title": "METTI UNA SERA A CENA",
    "director": "Giuseppe PATRONI GRIFFI",
@@ -369,6 +391,7 @@
   },
   {
    "id": "cannes-2026-f125",
+   "idx": 125,
    "cIdx": 8,
    "title": "MON COLUCHE A MOI",
    "director": "Michel DENISOT, Julie LAZARE, Camille BRUERE",
@@ -382,6 +405,7 @@
   },
   {
    "id": "cannes-2026-f126",
+   "idx": 126,
    "cIdx": 8,
    "title": "MOONLIGHTING",
    "director": "Jerzy SKOLIMOWSKI",
@@ -395,6 +419,7 @@
   },
   {
    "id": "cannes-2026-f127",
+   "idx": 127,
    "cIdx": 8,
    "title": "NOSTALGIA FOR THE FUTURE",
    "director": "Brecht DEBACKERE",
@@ -408,6 +433,7 @@
   },
   {
    "id": "cannes-2026-f128",
+   "idx": 128,
    "cIdx": 8,
    "title": "PAN’S LABYRINTH",
    "director": "Guillermo DEL TORO",
@@ -421,6 +447,7 @@
   },
   {
    "id": "cannes-2026-f129",
+   "idx": 129,
    "cIdx": 8,
    "title": "PELECHIAN PROJECT",
    "director": "Artavazd PELECHIAN",
@@ -434,6 +461,7 @@
   },
   {
    "id": "cannes-2026-f130",
+   "idx": 130,
    "cIdx": 8,
    "title": "SIERRA DE TERUEL",
    "director": "André MALRAUX",
@@ -447,6 +475,7 @@
   },
   {
    "id": "cannes-2026-f131",
+   "idx": 131,
    "cIdx": 8,
    "title": "SUGATA SANSHIRO",
    "director": "Akira KUROSAWA",
@@ -460,6 +489,7 @@
   },
   {
    "id": "cannes-2026-f132",
+   "idx": 132,
    "cIdx": 8,
    "title": "THE DULL-ICE FLOWER",
    "director": "YANG Li-Kuo",
@@ -473,6 +503,7 @@
   },
   {
    "id": "cannes-2026-f133",
+   "idx": 133,
    "cIdx": 8,
    "title": "THE FAST AND THE FURIOUS",
    "director": "Rob COHEN",
@@ -486,6 +517,7 @@
   },
   {
    "id": "cannes-2026-f134",
+   "idx": 134,
    "cIdx": 8,
    "title": "THE STORY OF DOCUMENTARY FILM (THE 1970S)",
    "director": "Mark COUSINS",
@@ -499,6 +531,7 @@
   },
   {
    "id": "cannes-2026-f135",
+   "idx": 135,
    "cIdx": 8,
    "title": "THE STRANGER",
    "director": "Orson WELLES",
@@ -512,6 +545,7 @@
   },
   {
    "id": "cannes-2026-f136",
+   "idx": 136,
    "cIdx": 8,
    "title": "TILAÏ",
    "director": "Idrissa OUEDRAOGO",
@@ -525,6 +559,7 @@
   },
   {
    "id": "cannes-2026-f137",
+   "idx": 137,
    "cIdx": 8,
    "title": "UNE VIE MANIFESTE",
    "director": "Jean-Gabriel PÉRIOT",
@@ -538,6 +573,7 @@
   },
   {
    "id": "cannes-2026-f138",
+   "idx": 138,
    "cIdx": 8,
    "title": "VITTORIO DE SICA – LA VITA IN SCENA",
    "director": "Francesco ZIPPEL",
@@ -551,6 +587,7 @@
   },
   {
    "id": "cannes-2026-f139",
+   "idx": 139,
    "cIdx": 8,
    "title": "ZAMINE BAZI",
    "director": "Amirhossein SHOJAEI",
@@ -564,6 +601,7 @@
   },
   {
    "id": "cannes-2026-f54",
+   "idx": 54,
    "cIdx": 4,
    "title": "AQUÍ",
    "director": "Tiago GUEDES",
@@ -577,6 +615,7 @@
   },
   {
    "id": "cannes-2026-f55",
+   "idx": 55,
    "cIdx": 4,
    "title": "HEIMSUCHUNG",
    "director": "Volker SCHLÖNDORFF",
@@ -590,6 +629,7 @@
   },
   {
    "id": "cannes-2026-f56",
+   "idx": 56,
    "cIdx": 4,
    "title": "KOKUROJO",
    "director": "KUROSAWA Kiyoshi",
@@ -603,6 +643,7 @@
   },
   {
    "id": "cannes-2026-f57",
+   "idx": 57,
    "cIdx": 4,
    "title": "LA TROISIÈME NUIT",
    "director": "Daniel AUTEUIL",
@@ -616,6 +657,7 @@
   },
   {
    "id": "cannes-2026-f58",
+   "idx": 58,
    "cIdx": 4,
    "title": "MARIAGE AU GOÛT D’ORANGE",
    "director": "Christophe HONORÉ",
@@ -629,6 +671,7 @@
   },
   {
    "id": "cannes-2026-f59",
+   "idx": 59,
    "cIdx": 4,
    "title": "MARIE MADELEINE",
    "director": "Géssica GÉNÉUS",
@@ -642,6 +685,7 @@
   },
   {
    "id": "cannes-2026-f60",
+   "idx": 60,
    "cIdx": 4,
    "title": "PROPELLER ONE-WAY NIGHT COACH",
    "director": "John TRAVOLTA",
@@ -655,6 +699,7 @@
   },
   {
    "id": "cannes-2026-f61",
+   "idx": 61,
    "cIdx": 4,
    "title": "SI TU PENSES BIEN",
    "director": "Géraldine NAKACHE",
@@ -668,6 +713,7 @@
   },
   {
    "id": "cannes-2026-f62",
+   "idx": 62,
    "cIdx": 4,
    "title": "THE END OF IT",
    "director": "Maria MARTÍNEZ BAYONA",
@@ -681,6 +727,7 @@
   },
   {
    "id": "cannes-2026-f63",
+   "idx": 63,
    "cIdx": 4,
    "title": "THE MATCH",
    "director": "Juan CABRAL, Santiago FRANCO",
@@ -694,6 +741,7 @@
   },
   {
    "id": "cannes-2026-f140",
+   "idx": 140,
    "cIdx": 9,
    "title": "ALL THE PRESIDENT’S MEN",
    "director": "Alan J. PAKULA",
@@ -707,6 +755,7 @@
   },
   {
    "id": "cannes-2026-f141",
+   "idx": 141,
    "cIdx": 9,
    "title": "CRÍA CUERVOS",
    "director": "Carlos SAURA",
@@ -720,6 +769,7 @@
   },
   {
    "id": "cannes-2026-f142",
+   "idx": 142,
    "cIdx": 9,
    "title": "JE HAIS LES ACTEURS",
    "director": "Gérard KRAWCZYK",
@@ -733,6 +783,7 @@
   },
   {
    "id": "cannes-2026-f143",
+   "idx": 143,
    "cIdx": 9,
    "title": "LAND AND FREEDOM",
    "director": "Ken LOACH",
@@ -746,6 +797,7 @@
   },
   {
    "id": "cannes-2026-f144",
+   "idx": 144,
    "cIdx": 9,
    "title": "LES CAPRICES DE L’ENFANT ROI",
    "director": "Michel LECLERC",
@@ -759,6 +811,7 @@
   },
   {
    "id": "cannes-2026-f145",
+   "idx": 145,
    "cIdx": 9,
    "title": "MON ONCLE",
    "director": "Jacques TATI",
@@ -772,6 +825,7 @@
   },
   {
    "id": "cannes-2026-f146",
+   "idx": 146,
    "cIdx": 9,
    "title": "SHINKANSEN DAIBAKUHA",
    "director": "Junya SATO",
@@ -785,6 +839,7 @@
   },
   {
    "id": "cannes-2026-f147",
+   "idx": 147,
    "cIdx": 9,
    "title": "SIGNORE & SIGNORI",
    "director": "Pietro GERMI",
@@ -798,6 +853,7 @@
   },
   {
    "id": "cannes-2026-f148",
+   "idx": 148,
    "cIdx": 9,
    "title": "TOP GUN",
    "director": "Tony SCOTT",
@@ -811,6 +867,7 @@
   },
   {
    "id": "cannes-2026-f149",
+   "idx": 149,
    "cIdx": 9,
    "title": "UN HOMME ET UNE FEMME",
    "director": "Claude LELOUCH",
@@ -824,6 +881,7 @@
   },
   {
    "id": "cannes-2026-f150",
+   "idx": 150,
    "cIdx": 9,
    "title": "VIVA MARIA !",
    "director": "Louis MALLE",
@@ -837,6 +895,7 @@
   },
   {
    "id": "cannes-2026-f1",
+   "idx": 1,
    "cIdx": 1,
    "title": "AMARGA NAVIDAD",
    "director": "Pedro ALMODÓVAR",
@@ -850,6 +909,7 @@
   },
   {
    "id": "cannes-2026-f2",
+   "idx": 2,
    "cIdx": 1,
    "title": "COWARD",
    "director": "Lukas DHONT",
@@ -863,6 +923,7 @@
   },
   {
    "id": "cannes-2026-f3",
+   "idx": 3,
    "cIdx": 1,
    "title": "DAS GETRÄUMTE ABENTEUER",
    "director": "Valeska GRISEBACH",
@@ -876,6 +937,7 @@
   },
   {
    "id": "cannes-2026-f4",
+   "idx": 4,
    "cIdx": 1,
    "title": "EL SER QUERIDO",
    "director": "Rodrigo SOROGOYEN",
@@ -889,6 +951,7 @@
   },
   {
    "id": "cannes-2026-f5",
+   "idx": 5,
    "cIdx": 1,
    "title": "FATHERLAND",
    "director": "Pawel PAWLIKOWSKI",
@@ -902,6 +965,7 @@
   },
   {
    "id": "cannes-2026-f6",
+   "idx": 6,
    "cIdx": 1,
    "title": "FJORD",
    "director": "Cristian MUNGIU",
@@ -915,6 +979,7 @@
   },
   {
    "id": "cannes-2026-f7",
+   "idx": 7,
    "cIdx": 1,
    "title": "GARANCE",
    "director": "Jeanne HERRY",
@@ -928,6 +993,7 @@
   },
   {
    "id": "cannes-2026-f8",
+   "idx": 8,
    "cIdx": 1,
    "title": "GENTLE MONSTER",
    "director": "Marie KREUTZER",
@@ -941,6 +1007,7 @@
   },
   {
    "id": "cannes-2026-f9",
+   "idx": 9,
    "cIdx": 1,
    "title": "HISTOIRES DE LA NUIT",
    "director": "Léa MYSIUS",
@@ -954,6 +1021,7 @@
   },
   {
    "id": "cannes-2026-f10",
+   "idx": 10,
    "cIdx": 1,
    "title": "HISTOIRES PARALLÈLES",
    "director": "Asghar FARHADI",
@@ -967,6 +1035,7 @@
   },
   {
    "id": "cannes-2026-f11",
+   "idx": 11,
    "cIdx": 1,
    "title": "HOPE",
    "director": "NA Hong-Jin",
@@ -980,6 +1049,7 @@
   },
   {
    "id": "cannes-2026-f12",
+   "idx": 12,
    "cIdx": 1,
    "title": "L’INCONNUE",
    "director": "Arthur HARARI",
@@ -993,6 +1063,7 @@
   },
   {
    "id": "cannes-2026-f13",
+   "idx": 13,
    "cIdx": 1,
    "title": "LA BOLA NEGRA",
    "director": "Javier CALVO, Javier AMBROSSI",
@@ -1006,6 +1077,7 @@
   },
   {
    "id": "cannes-2026-f14",
+   "idx": 14,
    "cIdx": 1,
    "title": "LA VIE D’UNE FEMME",
    "director": "Charline BOURGEOIS-TACQUET",
@@ -1019,6 +1091,7 @@
   },
   {
    "id": "cannes-2026-f15",
+   "idx": 15,
    "cIdx": 1,
    "title": "MINOTAUR",
    "director": "Andreï ZVIAGUINTSEV",
@@ -1032,6 +1105,7 @@
   },
   {
    "id": "cannes-2026-f16",
+   "idx": 16,
    "cIdx": 1,
    "title": "MOULIN",
    "director": "László NEMES",
@@ -1045,6 +1119,7 @@
   },
   {
    "id": "cannes-2026-f17",
+   "idx": 17,
    "cIdx": 1,
    "title": "NAGI NOTES",
    "director": "FUKADA Koji",
@@ -1058,6 +1133,7 @@
   },
   {
    "id": "cannes-2026-f18",
+   "idx": 18,
    "cIdx": 1,
    "title": "NOTRE SALUT",
    "director": "Emmanuel MARRE",
@@ -1071,6 +1147,7 @@
   },
   {
    "id": "cannes-2026-f19",
+   "idx": 19,
    "cIdx": 1,
    "title": "PAPER TIGER",
    "director": "James GRAY",
@@ -1084,6 +1161,7 @@
   },
   {
    "id": "cannes-2026-f20",
+   "idx": 20,
    "cIdx": 1,
    "title": "SHEEP IN THE BOX",
    "director": "KOREEDA Hirokazu",
@@ -1097,6 +1175,7 @@
   },
   {
    "id": "cannes-2026-f21",
+   "idx": 21,
    "cIdx": 1,
    "title": "SOUDAIN",
    "director": "HAMAGUCHI Ryusuke",
@@ -1110,6 +1189,7 @@
   },
   {
    "id": "cannes-2026-f22",
+   "idx": 22,
    "cIdx": 1,
    "title": "THE MAN I LOVE",
    "director": "Ira SACHS",
@@ -1123,6 +1203,7 @@
   },
   {
    "id": "cannes-2026-f77",
+   "idx": 77,
    "cIdx": 6,
    "title": "ALGUMAS COISAS QUE ACONTECEM AO LADO DE UM RIO",
    "director": "Daniel SOARES",
@@ -1136,6 +1217,7 @@
   },
   {
    "id": "cannes-2026-f78",
+   "idx": 78,
    "cIdx": 6,
    "title": "DERNIER PRINTEMPS",
    "director": "Mathilde BÉDOUET",
@@ -1149,6 +1231,7 @@
   },
   {
    "id": "cannes-2026-f79",
+   "idx": 79,
    "cIdx": 6,
    "title": "GIẤC MƠ LÀ ỐC SÊN",
    "director": "Thien An NGUYEN",
@@ -1162,6 +1245,7 @@
   },
   {
    "id": "cannes-2026-f80",
+   "idx": 80,
    "cIdx": 6,
    "title": "LE BAIN DES SIRÈNES",
    "director": "Lola DEGOVE",
@@ -1175,6 +1259,7 @@
   },
   {
    "id": "cannes-2026-f81",
+   "idx": 81,
    "cIdx": 6,
    "title": "NIKO NIŠTA NIJE REKAO",
    "director": "Tamara TODOROVIC",
@@ -1188,6 +1273,7 @@
   },
   {
    "id": "cannes-2026-f82",
+   "idx": 82,
    "cIdx": 6,
    "title": "NOUVEL HAIR",
    "director": "Hadrien BELS",
@@ -1201,6 +1287,7 @@
   },
   {
    "id": "cannes-2026-f83",
+   "idx": 83,
    "cIdx": 6,
    "title": "PARA LOS CONTRINCANTES",
    "director": "Federico LUIS",
@@ -1214,6 +1301,7 @@
   },
   {
    "id": "cannes-2026-f84",
+   "idx": 84,
    "cIdx": 6,
    "title": "PELOTON TRUENO",
    "director": "Theo MONTOYA",
@@ -1227,6 +1315,7 @@
   },
   {
    "id": "cannes-2026-f85",
+   "idx": 85,
    "cIdx": 6,
    "title": "SPIRITUS SANCTUS",
    "director": "Michal TOCZEK",
@@ -1240,6 +1329,7 @@
   },
   {
    "id": "cannes-2026-f86",
+   "idx": 86,
    "cIdx": 6,
    "title": "THE END",
    "director": "Niki LINDROTH VON BAHR",
@@ -1253,6 +1343,7 @@
   },
   {
    "id": "cannes-2026-f87",
+   "idx": 87,
    "cIdx": 7,
    "title": "ALDRIG NOK",
    "director": "Julius LAGOUTTE LARSEN",
@@ -1266,6 +1357,7 @@
   },
   {
    "id": "cannes-2026-f88",
+   "idx": 88,
    "cIdx": 7,
    "title": "ALWAYS WANTED TO BE GOD, NEVER WANTED TO DO GOOD",
    "director": "Noa EPARS, Marvin MERKEL",
@@ -1279,6 +1371,7 @@
   },
   {
    "id": "cannes-2026-f89",
+   "idx": 89,
    "cIdx": 7,
    "title": "BIRD RHAPSODY",
    "director": "Wonjung CHOI",
@@ -1292,6 +1385,7 @@
   },
   {
    "id": "cannes-2026-f90",
+   "idx": 90,
    "cIdx": 7,
    "title": "GROWING STONES, FLYING PAPERS",
    "director": "Roozbeh GEZERSEH, Soraya SHAMSI",
@@ -1305,6 +1399,7 @@
   },
   {
    "id": "cannes-2026-f91",
+   "idx": 91,
    "cIdx": 7,
    "title": "LASER-GATO",
    "director": "Lucas ACHER",
@@ -1318,6 +1413,7 @@
   },
   {
    "id": "cannes-2026-f92",
+   "idx": 92,
    "cIdx": 7,
    "title": "LEFT BEHIND, STILL STANDING",
    "director": "Vida SKERK",
@@ -1331,6 +1427,7 @@
   },
   {
    "id": "cannes-2026-f93",
+   "idx": 93,
    "cIdx": 7,
    "title": "ONDE NASCEM OS PIRILAMPOS",
    "director": "Clara VIEIRA",
@@ -1344,6 +1441,7 @@
   },
   {
    "id": "cannes-2026-f94",
+   "idx": 94,
    "cIdx": 7,
    "title": "PHOTOGRAPH OF AN INSANE WOMAN TO SHOW THE CONDITION OF HER HAIR",
    "director": "Arwen AZNAG",
@@ -1357,6 +1455,7 @@
   },
   {
    "id": "cannes-2026-f95",
+   "idx": 95,
    "cIdx": 7,
    "title": "PICKLED",
    "director": "Fanny CAPU",
@@ -1370,6 +1469,7 @@
   },
   {
    "id": "cannes-2026-f96",
+   "idx": 96,
    "cIdx": 7,
    "title": "PREKO PRAGA",
    "director": "Tara GAJOVIĆ",
@@ -1383,6 +1483,7 @@
   },
   {
    "id": "cannes-2026-f97",
+   "idx": 97,
    "cIdx": 7,
    "title": "SHADOWS OF THE MOONLESS NIGHTS",
    "director": "Mehar MALHOTRA",
@@ -1396,6 +1497,7 @@
   },
   {
    "id": "cannes-2026-f98",
+   "idx": 98,
    "cIdx": 7,
    "title": "SILENT VOICES",
    "director": "Nadine Misong JIN",
@@ -1409,6 +1511,7 @@
   },
   {
    "id": "cannes-2026-f99",
+   "idx": 99,
    "cIdx": 7,
    "title": "SOMEWHERE I BELONG",
    "director": "Youssef HANDOUSE",
@@ -1422,6 +1525,7 @@
   },
   {
    "id": "cannes-2026-f100",
+   "idx": 100,
    "cIdx": 7,
    "title": "SUNDAY’S CHILDREN",
    "director": "Reuben HAMLYN",
@@ -1435,6 +1539,7 @@
   },
   {
    "id": "cannes-2026-f101",
+   "idx": 101,
    "cIdx": 7,
    "title": "TIAN TIAN DE MI MI",
    "director": "Lenti LIANG",
@@ -1448,6 +1553,7 @@
   },
   {
    "id": "cannes-2026-f102",
+   "idx": 102,
    "cIdx": 7,
    "title": "TJ28",
    "director": "Yasmin NAJJAR",
@@ -1461,6 +1567,7 @@
   },
   {
    "id": "cannes-2026-f103",
+   "idx": 103,
    "cIdx": 7,
    "title": "TRAKCJE",
    "director": "Jakub KRZYSZPIN",
@@ -1474,6 +1581,7 @@
   },
   {
    "id": "cannes-2026-f104",
+   "idx": 104,
    "cIdx": 7,
    "title": "TÚ, YO Y LA VACA",
    "director": "Aina CALLEJÓN",
@@ -1487,6 +1595,7 @@
   },
   {
    "id": "cannes-2026-f105",
+   "idx": 105,
    "cIdx": 7,
    "title": "WILL IT RAIN AGAIN TODAY",
    "director": "WONG Chau-Hong",
@@ -1500,6 +1609,7 @@
   },
   {
    "id": "cannes-2026-f42",
+   "idx": 42,
    "cIdx": 3,
    "title": "DIAMOND",
    "director": "Andy GARCIA",
@@ -1513,6 +1623,7 @@
   },
   {
    "id": "cannes-2026-f43",
+   "idx": 43,
    "cIdx": 3,
    "title": "FULL PHIL",
    "director": "Quentin DUPIEUX",
@@ -1526,6 +1637,7 @@
   },
   {
    "id": "cannes-2026-f44",
+   "idx": 44,
    "cIdx": 3,
    "title": "GUN-CHE",
    "director": "YEON Sang-Ho",
@@ -1539,6 +1651,7 @@
   },
   {
    "id": "cannes-2026-f45",
+   "idx": 45,
    "cIdx": 3,
    "title": "HER PRIVATE HELL",
    "director": "Nicolas WINDING REFN",
@@ -1552,6 +1665,7 @@
   },
   {
    "id": "cannes-2026-f46",
+   "idx": 46,
    "cIdx": 3,
    "title": "JIM QUEEN",
    "director": "Marco NGUYEN, Nicolas ATHANÉ",
@@ -1565,6 +1679,7 @@
   },
   {
    "id": "cannes-2026-f47",
+   "idx": 47,
    "cIdx": 3,
    "title": "KARMA",
    "director": "Guillaume CANET",
@@ -1578,6 +1693,7 @@
   },
   {
    "id": "cannes-2026-f48",
+   "idx": 48,
    "cIdx": 3,
    "title": "L’ABANDON",
    "director": "Vincent GARENQ",
@@ -1591,6 +1707,7 @@
   },
   {
    "id": "cannes-2026-f51",
+   "idx": 51,
    "cIdx": 3,
    "title": "L’OBJET DU DÉLIT",
    "director": "Agnès JAOUI",
@@ -1604,6 +1721,7 @@
   },
   {
    "id": "cannes-2026-f49",
+   "idx": 49,
    "cIdx": 3,
    "title": "LA BATAILLE DE GAULLE : L’ÂGE DE FER",
    "director": "Antonin BAUDRY",
@@ -1617,6 +1735,7 @@
   },
   {
    "id": "cannes-2026-f50",
+   "idx": 50,
    "cIdx": 3,
    "title": "LA VÉNUS ÉLECTRIQUE",
    "director": "Pierre SALVADORI",
@@ -1630,6 +1749,7 @@
   },
   {
    "id": "cannes-2026-f52",
+   "idx": 52,
    "cIdx": 3,
    "title": "ROMA ELASTICA",
    "director": "Bertrand MANDICO",
@@ -1643,6 +1763,7 @@
   },
   {
    "id": "cannes-2026-f53",
+   "idx": 53,
    "cIdx": 3,
    "title": "SANGUINE",
    "director": "Marion LE CORROLLER",
@@ -1656,6 +1777,7 @@
   },
   {
    "id": "cannes-2026-f64",
+   "idx": 64,
    "cIdx": 5,
    "title": "AVEDON",
    "director": "Ron HOWARD",
@@ -1669,6 +1791,7 @@
   },
   {
    "id": "cannes-2026-f65",
+   "idx": 65,
    "cIdx": 5,
    "title": "CANTONA",
    "director": "David TRYHORN, Ben NICHOLAS",
@@ -1682,6 +1805,7 @@
   },
   {
    "id": "cannes-2026-f66",
+   "idx": 66,
    "cIdx": 5,
    "title": "CENIZA EN LA BOCA",
    "director": "Diego LUNA",
@@ -1695,6 +1819,7 @@
   },
   {
    "id": "cannes-2026-f67",
+   "idx": 67,
    "cIdx": 5,
    "title": "GROUNDSWELL",
    "director": "Josh TICKELL, Rebecca TICKELL",
@@ -1708,6 +1833,7 @@
   },
   {
    "id": "cannes-2026-f68",
+   "idx": 68,
    "cIdx": 5,
    "title": "JOHN LENNON : THE LAST INTERVIEW",
    "director": "Steven SODERBERGH",
@@ -1721,6 +1847,7 @@
   },
   {
    "id": "cannes-2026-f69",
+   "idx": 69,
    "cIdx": 5,
    "title": "L’AFFAIRE MARIE-CLAIRE",
    "director": "Lauriane ESCAFFRE, Yvo MULLER",
@@ -1734,6 +1861,7 @@
   },
   {
    "id": "cannes-2026-f70",
+   "idx": 70,
    "cIdx": 5,
    "title": "LE TRIANGLE D’OR",
    "director": "Hélène ROSSELET-RUIZ",
@@ -1747,6 +1875,7 @@
   },
   {
    "id": "cannes-2026-f71",
+   "idx": 71,
    "cIdx": 5,
    "title": "LES MATINS MERVEILLEUX",
    "director": "Avril BESSON",
@@ -1760,6 +1889,7 @@
   },
   {
    "id": "cannes-2026-f72",
+   "idx": 72,
    "cIdx": 5,
    "title": "LES SURVIVANTS DU CHE",
    "director": "Christophe Dimitri RÉVEILLE",
@@ -1773,6 +1903,7 @@
   },
   {
    "id": "cannes-2026-f73",
+   "idx": 73,
    "cIdx": 5,
    "title": "LUCY LOST",
    "director": "Olivier CLERT",
@@ -1786,6 +1917,7 @@
   },
   {
    "id": "cannes-2026-f74",
+   "idx": 74,
    "cIdx": 5,
    "title": "REHEARSALS FOR A REVOLUTION",
    "director": "Pegah AHANGARANI",
@@ -1799,6 +1931,7 @@
   },
   {
    "id": "cannes-2026-f75",
+   "idx": 75,
    "cIdx": 5,
    "title": "TANGLES",
    "director": "Leah NELSON",
@@ -1812,6 +1945,7 @@
   },
   {
    "id": "cannes-2026-f76",
+   "idx": 76,
    "cIdx": 5,
    "title": "VESNA",
    "director": "Rostislav KIRPICENKO",
@@ -1825,6 +1959,7 @@
   },
   {
    "id": "cannes-2026-f23",
+   "idx": 23,
    "cIdx": 2,
    "title": "BEN’IMANA",
    "director": "Marie-Clémentine DUSABEJAMBO",
@@ -1838,6 +1973,7 @@
   },
   {
    "id": "cannes-2026-f24",
+   "idx": 24,
    "cIdx": 2,
    "title": "CLUB KID",
    "director": "Jordan FIRSTMAN",
@@ -1851,6 +1987,7 @@
   },
   {
    "id": "cannes-2026-f25",
+   "idx": 25,
    "cIdx": 2,
    "title": "CONGO BOY",
    "director": "Rafiki FARIALA",
@@ -1864,6 +2001,7 @@
   },
   {
    "id": "cannes-2026-f26",
+   "idx": 26,
    "cIdx": 2,
    "title": "EL DESHIELO",
    "director": "Manuela MARTELLI",
@@ -1877,6 +2015,7 @@
   },
   {
    "id": "cannes-2026-f27",
+   "idx": 27,
    "cIdx": 2,
    "title": "ELEPHANTS IN THE FOG",
    "director": "Abinash BIKRAM SHAH",
@@ -1890,6 +2029,7 @@
   },
   {
    "id": "cannes-2026-f28",
+   "idx": 28,
    "cIdx": 2,
    "title": "EVERYTIME",
    "director": "Sandra WOLLNER",
@@ -1903,6 +2043,7 @@
   },
   {
    "id": "cannes-2026-f29",
+   "idx": 29,
    "cIdx": 2,
    "title": "I’LL BE GONE IN JUNE",
    "director": "Katharina RIVILIS",
@@ -1916,6 +2057,7 @@
   },
   {
    "id": "cannes-2026-f30",
+   "idx": 30,
    "cIdx": 2,
    "title": "LA MÁS DULCE",
    "director": "Laïla MARRAKCHI",
@@ -1929,6 +2071,7 @@
   },
   {
    "id": "cannes-2026-f31",
+   "idx": 31,
    "cIdx": 2,
    "title": "LE CORSET",
    "director": "Louis CLICHY",
@@ -1942,6 +2085,7 @@
   },
   {
    "id": "cannes-2026-f32",
+   "idx": 32,
    "cIdx": 2,
    "title": "MEMOIRE DE FILLE",
    "director": "Judith GODRÈCHE",
@@ -1955,6 +2099,7 @@
   },
   {
    "id": "cannes-2026-f33",
+   "idx": 33,
    "cIdx": 2,
    "title": "QUELQUES MOTS D’AMOUR",
    "director": "Rudi ROSENBERG",
@@ -1968,6 +2113,7 @@
   },
   {
    "id": "cannes-2026-f34",
+   "idx": 34,
    "cIdx": 2,
    "title": "SIEMPRE SOY TU ANIMAL MATERNO",
    "director": "Valentina MAUREL",
@@ -1981,6 +2127,7 @@
   },
   {
    "id": "cannes-2026-f35",
+   "idx": 35,
    "cIdx": 2,
    "title": "SUBETE MAYONAKA NO KOIBITOTACHI",
    "director": "SODE Yukiko",
@@ -1994,6 +2141,7 @@
   },
   {
    "id": "cannes-2026-f36",
+   "idx": 36,
    "cIdx": 2,
    "title": "TEENAGE SEX AND DEATH AT CAMP MIASMA",
    "director": "Jane SCHOENBRUN",
@@ -2007,6 +2155,7 @@
   },
   {
    "id": "cannes-2026-f37",
+   "idx": 37,
    "cIdx": 2,
    "title": "TITANIC OCEAN",
    "director": "Konstantina KOTZAMANI",
@@ -2020,6 +2169,7 @@
   },
   {
    "id": "cannes-2026-f39",
+   "idx": 39,
    "cIdx": 2,
    "title": "UĻA",
    "director": "Viesturs KAIRIŠS",
@@ -2033,6 +2183,7 @@
   },
   {
    "id": "cannes-2026-f38",
+   "idx": 38,
    "cIdx": 2,
    "title": "ULYSSE",
    "director": "Laetitia MASSON",
@@ -2046,6 +2197,7 @@
   },
   {
    "id": "cannes-2026-f40",
+   "idx": 40,
    "cIdx": 2,
    "title": "VICTORIAN PSYCHO",
    "director": "Zachary WIGON",
@@ -2059,6 +2211,7 @@
   },
   {
    "id": "cannes-2026-f41",
+   "idx": 41,
    "cIdx": 2,
    "title": "YESTERDAY THE EYE DIDN’T SLEEP",
    "director": "Rakan MAYASI",
@@ -2085,6 +2238,7 @@
   "guestVisits": 0
  },
  "days": [],
+ "warnings": [],
  "fetchedAt": "2026-10-31T13:35:16Z",
  "lastVerifiedAt": "2026-10-31T13:35:16Z",
  "dataSource": "official"

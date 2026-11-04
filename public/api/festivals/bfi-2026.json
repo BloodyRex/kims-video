@@ -28,7 +28,10 @@
   "timezone": "Europe/London",
   "dayCount": 12,
   "officialUrl": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=films-events",
-  "coverageMinDays": null
+  "coverageMinDays": null,
+  "registryEndDate": "2026-10-18",
+  "endDateExtended": false,
+  "dataEndDate": "2026-10-18"
  },
  "lifecycle": "ENDED",
  "status": "SCHEDULE_LIVE",
@@ -329,6 +332,7 @@
  "films": [
   {
    "id": "bfi-2026-f4",
+   "idx": 4,
    "cIdx": "LFFCREATE",
    "title": "Cameron Winter at Carnegie Hall",
    "director": null,
@@ -340,6 +344,7 @@
   },
   {
    "id": "bfi-2026-f169",
+   "idx": 169,
    "cIdx": "LFFCREATE",
    "title": "Carl Sagan: We Are Made of Star Stuff",
    "director": null,
@@ -351,6 +356,7 @@
   },
   {
    "id": "bfi-2026-f117",
+   "idx": 117,
    "cIdx": "LFFCREATE",
    "title": "Congo Boy",
    "director": null,
@@ -362,6 +368,7 @@
   },
   {
    "id": "bfi-2026-f137",
+   "idx": 137,
    "cIdx": "LFFCREATE",
    "title": "Easter",
    "director": null,
@@ -373,6 +380,7 @@
   },
   {
    "id": "bfi-2026-f100",
+   "idx": 100,
    "cIdx": "LFFCREATE",
    "title": "Joy of Joys",
    "director": null,
@@ -384,6 +392,7 @@
   },
   {
    "id": "bfi-2026-f11",
+   "idx": 11,
    "cIdx": "LFFCREATE",
    "title": "Making Marie Antoinette",
    "director": null,
@@ -395,6 +404,7 @@
   },
   {
    "id": "bfi-2026-f1",
+   "idx": 1,
    "cIdx": "LFFCREATE",
    "title": "Supporting Role",
    "director": null,
@@ -406,6 +416,7 @@
   },
   {
    "id": "bfi-2026-f217",
+   "idx": 217,
    "cIdx": "LFFCREATE",
    "title": "The Echo Chamber",
    "director": null,
@@ -417,6 +428,7 @@
   },
   {
    "id": "bfi-2026-f96",
+   "idx": 96,
    "cIdx": "LFFCREATE",
    "title": "The Friend’s House Is Here",
    "director": null,
@@ -428,6 +440,7 @@
   },
   {
    "id": "bfi-2026-f17",
+   "idx": 17,
    "cIdx": "LFFCREATE",
    "title": "The Man I Love",
    "director": null,
@@ -439,6 +452,7 @@
   },
   {
    "id": "bfi-2026-f111",
+   "idx": 111,
    "cIdx": "LFFCREATE",
    "title": "The Story of Documentary Film (The 1990s)",
    "director": null,
@@ -450,6 +464,7 @@
   },
   {
    "id": "bfi-2026-f104",
+   "idx": 104,
    "cIdx": "LFFCREATE",
    "title": "Zero Intention of Living Quietly",
    "director": null,
@@ -461,6 +476,7 @@
   },
   {
    "id": "bfi-2026-f154",
+   "idx": 154,
    "cIdx": "LFFCULT",
    "title": "Godzilla Minus Zero",
    "director": null,
@@ -472,6 +488,7 @@
   },
   {
    "id": "bfi-2026-f86",
+   "idx": 86,
    "cIdx": "LFFCULT",
    "title": "Hot Spot",
    "director": null,
@@ -483,6 +500,7 @@
   },
   {
    "id": "bfi-2026-f48",
+   "idx": 48,
    "cIdx": "LFFCULT",
    "title": "Inherit",
    "director": null,
@@ -494,6 +512,7 @@
   },
   {
    "id": "bfi-2026-f46",
+   "idx": 46,
    "cIdx": "LFFCULT",
    "title": "Ken Russell’s The Devils",
    "director": null,
@@ -505,6 +524,7 @@
   },
   {
    "id": "bfi-2026-f51",
+   "idx": 51,
    "cIdx": "LFFCULT",
    "title": "Nightborn",
    "director": null,
@@ -516,6 +536,7 @@
   },
   {
    "id": "bfi-2026-f45",
+   "idx": 45,
    "cIdx": "LFFCULT",
    "title": "Rogue Trooper",
    "director": null,
@@ -527,6 +548,7 @@
   },
   {
    "id": "bfi-2026-f25",
+   "idx": 25,
    "cIdx": "LFFCULT",
    "title": "The Blood Countess",
    "director": null,
@@ -538,6 +560,7 @@
   },
   {
    "id": "bfi-2026-f175",
+   "idx": 175,
    "cIdx": "LFFCULT",
    "title": "The Face of Horror",
    "director": null,
@@ -549,6 +572,7 @@
   },
   {
    "id": "bfi-2026-f161",
+   "idx": 161,
    "cIdx": "LFFCULT",
    "title": "The Unknown",
    "director": null,
@@ -560,6 +584,7 @@
   },
   {
    "id": "bfi-2026-f211",
+   "idx": 211,
    "cIdx": "LFFDARE",
    "title": "A Day in the Life of Jo: Chapter Phaedra",
    "director": null,
@@ -571,6 +596,7 @@
   },
   {
    "id": "bfi-2026-f79",
+   "idx": 79,
    "cIdx": "LFFDARE",
    "title": "A Man of His Time",
    "director": null,
@@ -582,6 +608,7 @@
   },
   {
    "id": "bfi-2026-f114",
+   "idx": 114,
    "cIdx": "LFFDARE",
    "title": "At Night",
    "director": null,
@@ -593,6 +620,7 @@
   },
   {
    "id": "bfi-2026-f200",
+   "idx": 200,
    "cIdx": "LFFDARE",
    "title": "Atlantic Rhapsody",
    "director": null,
@@ -604,6 +632,7 @@
   },
   {
    "id": "bfi-2026-f151",
+   "idx": 151,
    "cIdx": "LFFDARE",
    "title": "Chronicles from the Siege",
    "director": null,
@@ -615,6 +644,7 @@
   },
   {
    "id": "bfi-2026-f49",
+   "idx": 49,
    "cIdx": "LFFDARE",
    "title": "Chronovisor",
    "director": null,
@@ -626,6 +656,7 @@
   },
   {
    "id": "bfi-2026-f186",
+   "idx": 186,
    "cIdx": "LFFDARE",
    "title": "Everytime",
    "director": null,
@@ -637,6 +668,7 @@
   },
   {
    "id": "bfi-2026-f219",
+   "idx": 219,
    "cIdx": "LFFDARE",
    "title": "Filipinana",
    "director": null,
@@ -648,6 +680,7 @@
   },
   {
    "id": "bfi-2026-f129",
+   "idx": 129,
    "cIdx": "LFFDARE",
    "title": "French Girls",
    "director": null,
@@ -659,6 +692,7 @@
   },
   {
    "id": "bfi-2026-f162",
+   "idx": 162,
    "cIdx": "LFFDARE",
    "title": "Hearing",
    "director": null,
@@ -670,6 +704,7 @@
   },
   {
    "id": "bfi-2026-f88",
+   "idx": 88,
    "cIdx": "LFFDARE",
    "title": "I Plant My Hand in The Garden",
    "director": null,
@@ -681,6 +716,7 @@
   },
   {
    "id": "bfi-2026-f194",
+   "idx": 194,
    "cIdx": "LFFDARE",
    "title": "Let Them Be Seen",
    "director": null,
@@ -692,6 +728,7 @@
   },
   {
    "id": "bfi-2026-f75",
+   "idx": 75,
    "cIdx": "LFFDARE",
    "title": "Life of Jorge Luis Borges",
    "director": null,
@@ -703,6 +740,7 @@
   },
   {
    "id": "bfi-2026-f62",
+   "idx": 62,
    "cIdx": "LFFDARE",
    "title": "Marie Madeleine",
    "director": null,
@@ -714,6 +752,7 @@
   },
   {
    "id": "bfi-2026-f74",
+   "idx": 74,
    "cIdx": "LFFDARE",
    "title": "My Wife Cries",
    "director": null,
@@ -725,6 +764,7 @@
   },
   {
    "id": "bfi-2026-f81",
+   "idx": 81,
    "cIdx": "LFFDARE",
    "title": "Revolutionaries Never Die",
    "director": null,
@@ -736,6 +776,7 @@
   },
   {
    "id": "bfi-2026-f142",
+   "idx": 142,
    "cIdx": "LFFDARE",
    "title": "Rose",
    "director": null,
@@ -747,6 +788,7 @@
   },
   {
    "id": "bfi-2026-f196",
+   "idx": 196,
    "cIdx": "LFFDEBATE",
    "title": "A Good Little Soldier",
    "director": null,
@@ -758,6 +800,7 @@
   },
   {
    "id": "bfi-2026-f224",
+   "idx": 224,
    "cIdx": "LFFDEBATE",
    "title": "All About the Money",
    "director": null,
@@ -769,6 +812,7 @@
   },
   {
    "id": "bfi-2026-f192",
+   "idx": 192,
    "cIdx": "LFFDEBATE",
    "title": "Amazomania",
    "director": null,
@@ -780,6 +824,7 @@
   },
   {
    "id": "bfi-2026-f72",
+   "idx": 72,
    "cIdx": "LFFDEBATE",
    "title": "Gentle Monster",
    "director": null,
@@ -791,6 +836,7 @@
   },
   {
    "id": "bfi-2026-f198",
+   "idx": 198,
    "cIdx": "LFFDEBATE",
    "title": "I See Buildings Fall Like Lightning",
    "director": null,
@@ -802,6 +848,7 @@
   },
   {
    "id": "bfi-2026-f10",
+   "idx": 10,
    "cIdx": "LFFDEBATE",
    "title": "Mariinka",
    "director": null,
@@ -813,6 +860,7 @@
   },
   {
    "id": "bfi-2026-f35",
+   "idx": 35,
    "cIdx": "LFFDEBATE",
    "title": "Musk",
    "director": null,
@@ -824,6 +872,7 @@
   },
   {
    "id": "bfi-2026-f153",
+   "idx": 153,
    "cIdx": "LFFDEBATE",
    "title": "My Undesirable Friends: Part II – Exile",
    "director": null,
@@ -835,6 +884,7 @@
   },
   {
    "id": "bfi-2026-f193",
+   "idx": 193,
    "cIdx": "LFFDEBATE",
    "title": "Panelstory, or How a Housing Development is Born",
    "director": null,
@@ -846,6 +896,7 @@
   },
   {
    "id": "bfi-2026-f168",
+   "idx": 168,
    "cIdx": "LFFDEBATE",
    "title": "Rebellion",
    "director": null,
@@ -857,6 +908,7 @@
   },
   {
    "id": "bfi-2026-f119",
+   "idx": 119,
    "cIdx": "LFFDEBATE",
    "title": "The Whisper of Sunlight",
    "director": null,
@@ -868,6 +920,7 @@
   },
   {
    "id": "bfi-2026-f149",
+   "idx": 149,
    "cIdx": "LFFEXPERIMENTA",
    "title": "Az Zeeb",
    "director": null,
@@ -879,6 +932,7 @@
   },
   {
    "id": "bfi-2026-f223",
+   "idx": 223,
    "cIdx": "LFFEXPERIMENTA",
    "title": "Cadences of Resistance",
    "director": null,
@@ -890,6 +944,7 @@
   },
   {
    "id": "bfi-2026-f145",
+   "idx": 145,
    "cIdx": "LFFEXPERIMENTA",
    "title": "Compressed Distances",
    "director": null,
@@ -901,6 +956,7 @@
   },
   {
    "id": "bfi-2026-f199",
+   "idx": 199,
    "cIdx": "LFFEXPERIMENTA",
    "title": "Hanabi",
    "director": null,
@@ -912,6 +968,7 @@
   },
   {
    "id": "bfi-2026-f237",
+   "idx": 237,
    "cIdx": "LFFEXPERIMENTA",
    "title": "Reconstruction Sites",
    "director": null,
@@ -923,6 +980,7 @@
   },
   {
    "id": "bfi-2026-f176",
+   "idx": 176,
    "cIdx": "LFFEXPERIMENTA",
    "title": "The Chorus That Carries",
    "director": null,
@@ -934,6 +992,7 @@
   },
   {
    "id": "bfi-2026-f181",
+   "idx": 181,
    "cIdx": "LFFEXPERIMENTA",
    "title": "Tracing Islands",
    "director": null,
@@ -945,6 +1004,7 @@
   },
   {
    "id": "bfi-2026-f131",
+   "idx": 131,
    "cIdx": "LFFEXPERIMENTA",
    "title": "Tropical Fractals",
    "director": null,
@@ -956,6 +1016,7 @@
   },
   {
    "id": "bfi-2026-f58",
+   "idx": 58,
    "cIdx": "LFFFAMILY",
    "title": "A Mighty Adventure",
    "director": null,
@@ -967,6 +1028,7 @@
   },
   {
    "id": "bfi-2026-f203",
+   "idx": 203,
    "cIdx": "LFFFAMILY",
    "title": "Animated Shorts for Younger Audiences",
    "director": null,
@@ -978,6 +1040,7 @@
   },
   {
    "id": "bfi-2026-f91",
+   "idx": 91,
    "cIdx": "LFFFAMILY",
    "title": "Iron Boy",
    "director": null,
@@ -989,6 +1052,7 @@
   },
   {
    "id": "bfi-2026-f55",
+   "idx": 55,
    "cIdx": "LFFFAMILY",
    "title": "Julian",
    "director": null,
@@ -1000,6 +1064,7 @@
   },
   {
    "id": "bfi-2026-f238",
+   "idx": 238,
    "cIdx": "LFFFAMILY",
    "title": "Koschka",
    "director": null,
@@ -1011,6 +1076,7 @@
   },
   {
    "id": "bfi-2026-f204",
+   "idx": 204,
    "cIdx": "LFFFAMILY",
    "title": "My Friend the Sun",
    "director": null,
@@ -1022,6 +1088,7 @@
   },
   {
    "id": "bfi-2026-f160",
+   "idx": 160,
    "cIdx": "LFFFAMILY",
    "title": "Relaxed Screening: A Mighty Adventure",
    "director": null,
@@ -1033,6 +1100,7 @@
   },
   {
    "id": "bfi-2026-f167",
+   "idx": 167,
    "cIdx": "LFFGALA",
    "title": "A Long Winter",
    "director": null,
@@ -1044,6 +1112,7 @@
   },
   {
    "id": "bfi-2026-f122",
+   "idx": 122,
    "cIdx": "LFFGALA",
    "title": "Artificial",
    "director": null,
@@ -1055,6 +1124,7 @@
   },
   {
    "id": "bfi-2026-f141",
+   "idx": 141,
    "cIdx": "LFFGALA",
    "title": "Behemoth!",
    "director": null,
@@ -1066,6 +1136,7 @@
   },
   {
    "id": "bfi-2026-f126",
+   "idx": 126,
    "cIdx": "LFFGALA",
    "title": "Being Heumann",
    "director": null,
@@ -1077,6 +1148,7 @@
   },
   {
    "id": "bfi-2026-f241",
+   "idx": 241,
    "cIdx": "LFFGALA",
    "title": "BFI London Film Festival: Closing Night Gala 2026 – The Debut (fundraising ticket)",
    "director": null,
@@ -1088,6 +1160,7 @@
   },
   {
    "id": "bfi-2026-f80",
+   "idx": 80,
    "cIdx": "LFFGALA",
    "title": "Bunker",
    "director": null,
@@ -1099,6 +1172,7 @@
   },
   {
    "id": "bfi-2026-f225",
+   "idx": 225,
    "cIdx": "LFFGALA",
    "title": "Club Kid",
    "director": null,
@@ -1110,6 +1184,7 @@
   },
   {
    "id": "bfi-2026-f6",
+   "idx": 6,
    "cIdx": "LFFGALA",
    "title": "Elsinore",
    "director": null,
@@ -1121,6 +1196,7 @@
   },
   {
    "id": "bfi-2026-f158",
+   "idx": 158,
    "cIdx": "LFFGALA",
    "title": "Fatherland",
    "director": null,
@@ -1132,6 +1208,7 @@
   },
   {
    "id": "bfi-2026-f210",
+   "idx": 210,
    "cIdx": "LFFGALA",
    "title": "Fjord",
    "director": null,
@@ -1143,6 +1220,7 @@
   },
   {
    "id": "bfi-2026-f52",
+   "idx": 52,
    "cIdx": "LFFGALA",
    "title": "I Love Boosters",
    "director": null,
@@ -1154,6 +1232,7 @@
   },
   {
    "id": "bfi-2026-f138",
+   "idx": 138,
    "cIdx": "LFFGALA",
    "title": "Ink",
    "director": null,
@@ -1165,6 +1244,7 @@
   },
   {
    "id": "bfi-2026-f184",
+   "idx": 184,
    "cIdx": "LFFGALA",
    "title": "Klara and the Sun",
    "director": null,
@@ -1176,6 +1256,7 @@
   },
   {
    "id": "bfi-2026-f32",
+   "idx": 32,
    "cIdx": "LFFGALA",
    "title": "La Bola Negra",
    "director": null,
@@ -1187,6 +1268,7 @@
   },
   {
    "id": "bfi-2026-f188",
+   "idx": 188,
    "cIdx": "LFFGALA",
    "title": "Minotaur",
    "director": null,
@@ -1198,6 +1280,7 @@
   },
   {
    "id": "bfi-2026-f90",
+   "idx": 90,
    "cIdx": "LFFGALA",
    "title": "Paper Tiger",
    "director": null,
@@ -1209,6 +1292,7 @@
   },
   {
    "id": "bfi-2026-f109",
+   "idx": 109,
    "cIdx": "LFFGALA",
    "title": "Possible Love",
    "director": null,
@@ -1220,6 +1304,7 @@
   },
   {
    "id": "bfi-2026-f152",
+   "idx": 152,
    "cIdx": "LFFGALA",
    "title": "Prima Facie",
    "director": null,
@@ -1231,6 +1316,7 @@
   },
   {
    "id": "bfi-2026-f67",
+   "idx": 67,
    "cIdx": "LFFGALA",
    "title": "Ray Gunn",
    "director": null,
@@ -1242,6 +1328,7 @@
   },
   {
    "id": "bfi-2026-f14",
+   "idx": 14,
    "cIdx": "LFFGALAREPEAT",
    "title": "Relaxed Screening: Elsinore",
    "director": null,
@@ -1253,6 +1340,7 @@
   },
   {
    "id": "bfi-2026-f172",
+   "idx": 172,
    "cIdx": "LFFGALA",
    "title": "Tender Loving Care",
    "director": null,
@@ -1264,6 +1352,7 @@
   },
   {
    "id": "bfi-2026-f18",
+   "idx": 18,
    "cIdx": "LFFGALA",
    "title": "The Beloved",
    "director": null,
@@ -1275,6 +1364,7 @@
   },
   {
    "id": "bfi-2026-f242",
+   "idx": 242,
    "cIdx": "LFFGALA",
    "title": "The Debut",
    "director": null,
@@ -1286,6 +1376,7 @@
   },
   {
    "id": "bfi-2026-f37",
+   "idx": 37,
    "cIdx": "LFFGALA",
    "title": "Wild Horse Nine",
    "director": null,
@@ -1297,6 +1388,7 @@
   },
   {
    "id": "bfi-2026-f101",
+   "idx": 101,
    "cIdx": "LFFGALA",
    "title": "Wildwood",
    "director": null,
@@ -1308,6 +1400,7 @@
   },
   {
    "id": "bfi-2026-f220",
+   "idx": 220,
    "cIdx": "LFFGALA",
    "title": "Your Mother Your Mother Your Mother",
    "director": null,
@@ -1319,6 +1412,7 @@
   },
   {
    "id": "bfi-2026-f221",
+   "idx": 221,
    "cIdx": "LFFJOURNEY",
    "title": "A Bit of Light",
    "director": null,
@@ -1330,6 +1424,7 @@
   },
   {
    "id": "bfi-2026-f44",
+   "idx": 44,
    "cIdx": "LFFJOURNEY",
    "title": "A Girl Unknown",
    "director": null,
@@ -1341,6 +1436,7 @@
   },
   {
    "id": "bfi-2026-f187",
+   "idx": 187,
    "cIdx": "LFFJOURNEY",
    "title": "A Place to Heal",
    "director": null,
@@ -1352,6 +1448,7 @@
   },
   {
    "id": "bfi-2026-f150",
+   "idx": 150,
    "cIdx": "LFFJOURNEY",
    "title": "Ana, en Passant",
    "director": null,
@@ -1363,6 +1460,7 @@
   },
   {
    "id": "bfi-2026-f134",
+   "idx": 134,
    "cIdx": "LFFJOURNEY",
    "title": "Clarissa",
    "director": null,
@@ -1374,6 +1472,7 @@
   },
   {
    "id": "bfi-2026-f63",
+   "idx": 63,
    "cIdx": "LFFJOURNEY",
    "title": "Everest: The Other Side",
    "director": null,
@@ -1385,6 +1484,7 @@
   },
   {
    "id": "bfi-2026-f33",
+   "idx": 33,
    "cIdx": "LFFJOURNEY",
    "title": "FLORID",
    "director": null,
@@ -1396,6 +1496,7 @@
   },
   {
    "id": "bfi-2026-f40",
+   "idx": 40,
    "cIdx": "LFFJOURNEY",
    "title": "In the Shadows",
    "director": null,
@@ -1407,6 +1508,7 @@
   },
   {
    "id": "bfi-2026-f85",
+   "idx": 85,
    "cIdx": "LFFJOURNEY",
    "title": "Isabel",
    "director": null,
@@ -1418,6 +1520,7 @@
   },
   {
    "id": "bfi-2026-f185",
+   "idx": 185,
    "cIdx": "LFFJOURNEY",
    "title": "La Derive",
    "director": null,
@@ -1429,6 +1532,7 @@
   },
   {
    "id": "bfi-2026-f36",
+   "idx": 36,
    "cIdx": "LFFJOURNEY",
    "title": "La Gradiva",
    "director": null,
@@ -1440,6 +1544,7 @@
   },
   {
    "id": "bfi-2026-f8",
+   "idx": 8,
    "cIdx": "LFFJOURNEY",
    "title": "La Perra",
    "director": null,
@@ -1451,6 +1556,7 @@
   },
   {
    "id": "bfi-2026-f130",
+   "idx": 130,
    "cIdx": "LFFJOURNEY",
    "title": "Misty Green",
    "director": null,
@@ -1462,6 +1568,7 @@
   },
   {
    "id": "bfi-2026-f20",
+   "idx": 20,
    "cIdx": "LFFJOURNEY",
    "title": "No Good Men",
    "director": null,
@@ -1473,6 +1580,7 @@
   },
   {
    "id": "bfi-2026-f197",
+   "idx": 197,
    "cIdx": "LFFJOURNEY",
    "title": "Perfect Road",
    "director": null,
@@ -1484,6 +1592,7 @@
   },
   {
    "id": "bfi-2026-f159",
+   "idx": 159,
    "cIdx": "LFFJOURNEY",
    "title": "The Secret Lives of Baba Segi’s Wives",
    "director": null,
@@ -1495,6 +1604,7 @@
   },
   {
    "id": "bfi-2026-f26",
+   "idx": 26,
    "cIdx": "LFFJOURNEY",
    "title": "The Station",
    "director": null,
@@ -1506,6 +1616,7 @@
   },
   {
    "id": "bfi-2026-f65",
+   "idx": 65,
    "cIdx": "LFFJOURNEY",
    "title": "Tutu",
    "director": null,
@@ -1517,6 +1628,7 @@
   },
   {
    "id": "bfi-2026-f127",
+   "idx": 127,
    "cIdx": "LFFJOURNEY",
    "title": "VisionQuest",
    "director": null,
@@ -1528,6 +1640,7 @@
   },
   {
    "id": "bfi-2026-f2",
+   "idx": 2,
    "cIdx": "LFFLAUGH",
    "title": "Hot Water",
    "director": null,
@@ -1539,6 +1652,7 @@
   },
   {
    "id": "bfi-2026-f170",
+   "idx": 170,
    "cIdx": "LFFLAUGH",
    "title": "It Gets Worse",
    "director": null,
@@ -1550,6 +1664,7 @@
   },
   {
    "id": "bfi-2026-f9",
+   "idx": 9,
    "cIdx": "LFFLAUGH",
    "title": "Lali",
    "director": null,
@@ -1561,6 +1676,7 @@
   },
   {
    "id": "bfi-2026-f166",
+   "idx": 166,
    "cIdx": "LFFLAUGH",
    "title": "Relaxed Screening: The History of Concrete",
    "director": null,
@@ -1572,6 +1688,7 @@
   },
   {
    "id": "bfi-2026-f163",
+   "idx": 163,
    "cIdx": "LFFLAUGH",
    "title": "The Banning Curse",
    "director": null,
@@ -1583,6 +1700,7 @@
   },
   {
    "id": "bfi-2026-f47",
+   "idx": 47,
    "cIdx": "LFFLAUGH",
    "title": "The Fox",
    "director": null,
@@ -1594,6 +1712,7 @@
   },
   {
    "id": "bfi-2026-f143",
+   "idx": 143,
    "cIdx": "LFFLAUGH",
    "title": "The History of Concrete",
    "director": null,
@@ -1605,6 +1724,7 @@
   },
   {
    "id": "bfi-2026-f156",
+   "idx": 156,
    "cIdx": "LFFLAUGH",
    "title": "Too Many Beasts",
    "director": null,
@@ -1616,6 +1736,7 @@
   },
   {
    "id": "bfi-2026-f16",
+   "idx": 16,
    "cIdx": "LFFLAUGH",
    "title": "Wicker",
    "director": null,
@@ -1627,6 +1748,7 @@
   },
   {
    "id": "bfi-2026-f201",
+   "idx": 201,
    "cIdx": "LFF",
    "title": "LFF for Free: DJ Night: 7 Miles Out: Journey to The Hacienda",
    "director": null,
@@ -1638,6 +1760,7 @@
   },
   {
    "id": "bfi-2026-f226",
+   "idx": 226,
    "cIdx": "LFF",
    "title": "LFF for Free: DJ Night: Club Labor: Back to 2016",
    "director": null,
@@ -1649,6 +1772,7 @@
   },
   {
    "id": "bfi-2026-f50",
+   "idx": 50,
    "cIdx": "LFF",
    "title": "LFF for Free: DJ Night: NYC After Dark",
    "director": null,
@@ -1660,6 +1784,7 @@
   },
   {
    "id": "bfi-2026-f87",
+   "idx": 87,
    "cIdx": "LFF",
    "title": "LFF for Free: DJ Night: Ritmos de America Latina",
    "director": null,
@@ -1671,6 +1796,7 @@
   },
   {
    "id": "bfi-2026-f208",
+   "idx": 208,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: A Life in Scripts: In Conversation with Andrew Davies",
    "director": null,
@@ -1682,6 +1808,7 @@
   },
   {
    "id": "bfi-2026-f230",
+   "idx": 230,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Adam Pearson: Zero Intention of Living Quietly",
    "director": null,
@@ -1693,6 +1820,7 @@
   },
   {
    "id": "bfi-2026-f216",
+   "idx": 216,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Behind the Screens: The Film Locations Quiz",
    "director": null,
@@ -1704,6 +1832,7 @@
   },
   {
    "id": "bfi-2026-f205",
+   "idx": 205,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Beyond the Screen: How Stories Create Change",
    "director": null,
@@ -1715,6 +1844,7 @@
   },
   {
    "id": "bfi-2026-f53",
+   "idx": 53,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Build a Bug",
    "director": null,
@@ -1726,6 +1856,7 @@
   },
   {
    "id": "bfi-2026-f180",
+   "idx": 180,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Campaigns for Justice: From the Bradford 12 to Today",
    "director": null,
@@ -1737,6 +1868,7 @@
   },
   {
    "id": "bfi-2026-f92",
+   "idx": 92,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Declare Independence: Film Publishing Beyond the Mainstream",
    "director": null,
@@ -1748,6 +1880,7 @@
   },
   {
    "id": "bfi-2026-f34",
+   "idx": 34,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Displacement Film Fund",
    "director": null,
@@ -1759,6 +1892,7 @@
   },
   {
    "id": "bfi-2026-f102",
+   "idx": 102,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Editing the Auteur",
    "director": null,
@@ -1770,6 +1904,7 @@
   },
   {
    "id": "bfi-2026-f76",
+   "idx": 76,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Embracing (Bad) Taste with Polyester Zine",
    "director": null,
@@ -1781,6 +1916,7 @@
   },
   {
    "id": "bfi-2026-f229",
+   "idx": 229,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: From Console to Cinema",
    "director": null,
@@ -1792,6 +1928,7 @@
   },
   {
    "id": "bfi-2026-f139",
+   "idx": 139,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Girls On Film Podcast – Live at LFF",
    "director": null,
@@ -1803,6 +1940,7 @@
   },
   {
    "id": "bfi-2026-f64",
+   "idx": 64,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Helen McCarthy: A Life in Manga and Anime",
    "director": null,
@@ -1814,6 +1952,7 @@
   },
   {
    "id": "bfi-2026-f59",
+   "idx": 59,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: How to Start a Podcast - Passion Podcasting and Fan Shows",
    "director": null,
@@ -1825,6 +1964,7 @@
   },
   {
    "id": "bfi-2026-f231",
+   "idx": 231,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: In Praise of Stillness: Exploring the Beauty of Slow Cinema",
    "director": null,
@@ -1836,6 +1976,7 @@
   },
   {
    "id": "bfi-2026-f212",
+   "idx": 212,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Into the Web: How Internet Culture is Transforming Filmmaking",
    "director": null,
@@ -1847,6 +1988,7 @@
   },
   {
    "id": "bfi-2026-f95",
+   "idx": 95,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Into the Woods: Wildwood Mask Making",
    "director": null,
@@ -1858,6 +2000,7 @@
   },
   {
    "id": "bfi-2026-f239",
+   "idx": 239,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Made of Many: Reclaiming Identity Through Storytelling",
    "director": null,
@@ -1869,6 +2012,7 @@
   },
   {
    "id": "bfi-2026-f57",
+   "idx": 57,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Mark Cousins: The Story of Documentary Film",
    "director": null,
@@ -1880,6 +2024,7 @@
   },
   {
    "id": "bfi-2026-f232",
+   "idx": 232,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Monstrous? Rethinking Disability in Horror",
    "director": null,
@@ -1891,6 +2036,7 @@
   },
   {
    "id": "bfi-2026-f235",
+   "idx": 235,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: No Way Out? Institutions and Black British Screen Stories",
    "director": null,
@@ -1902,6 +2048,7 @@
   },
   {
    "id": "bfi-2026-f69",
+   "idx": 69,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Out Now: A Queer Journey Through Modern Television",
    "director": null,
@@ -1913,6 +2060,7 @@
   },
   {
    "id": "bfi-2026-f240",
+   "idx": 240,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Queens of The Night: Female Vampires on Screen",
    "director": null,
@@ -1924,6 +2072,7 @@
   },
   {
    "id": "bfi-2026-f107",
+   "idx": 107,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Reality Check: True Crime and our Obsession with Real Stories",
    "director": null,
@@ -1935,6 +2084,7 @@
   },
   {
    "id": "bfi-2026-f236",
+   "idx": 236,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: The Cinema That Changed Everything",
    "director": null,
@@ -1946,6 +2096,7 @@
   },
   {
    "id": "bfi-2026-f56",
+   "idx": 56,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: The Criticism That Made Me",
    "director": null,
@@ -1957,6 +2108,7 @@
   },
   {
    "id": "bfi-2026-f99",
+   "idx": 99,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: The Edges of Cinema",
    "director": null,
@@ -1968,6 +2120,7 @@
   },
   {
    "id": "bfi-2026-f108",
+   "idx": 108,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: The Evolution of Horror",
    "director": null,
@@ -1979,6 +2132,7 @@
   },
   {
    "id": "bfi-2026-f234",
+   "idx": 234,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: The Laughter of the Unheard: How Moving Image Shapes Collective Joy",
    "director": null,
@@ -1990,6 +2144,7 @@
   },
   {
    "id": "bfi-2026-f43",
+   "idx": 43,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: The Man I Love: Remembering the AIDS Crisis",
    "director": null,
@@ -2001,6 +2156,7 @@
   },
   {
    "id": "bfi-2026-f60",
+   "idx": 60,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: The Mermaid Parade",
    "director": null,
@@ -2012,6 +2168,7 @@
   },
   {
    "id": "bfi-2026-f66",
+   "idx": 66,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: The Politics of Looking Good",
    "director": null,
@@ -2023,6 +2180,7 @@
   },
   {
    "id": "bfi-2026-f73",
+   "idx": 73,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: The Shape of Water: XR, Immersive Art and Environmental Storytelling",
    "director": null,
@@ -2034,6 +2192,7 @@
   },
   {
    "id": "bfi-2026-f214",
+   "idx": 214,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: Versions of Me",
    "director": null,
@@ -2045,6 +2204,7 @@
   },
   {
    "id": "bfi-2026-f94",
+   "idx": 94,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: We Are Family",
    "director": null,
@@ -2056,6 +2216,7 @@
   },
   {
    "id": "bfi-2026-f209",
+   "idx": 209,
    "cIdx": "LFFFREE",
    "title": "LFF for Free: What Makes a Man a Man?",
    "director": null,
@@ -2067,6 +2228,7 @@
   },
   {
    "id": "bfi-2026-f222",
+   "idx": 222,
    "cIdx": "LFFAWARDS",
    "title": "7 Miles Out",
    "director": null,
@@ -2078,6 +2240,7 @@
   },
   {
    "id": "bfi-2026-f105",
+   "idx": 105,
    "cIdx": "LFFAWARDS",
    "title": "9 Temples to Heaven",
    "director": null,
@@ -2089,6 +2252,7 @@
   },
   {
    "id": "bfi-2026-f120",
+   "idx": 120,
    "cIdx": "LFFAWARDS",
    "title": "A Common Story",
    "director": null,
@@ -2100,6 +2264,7 @@
   },
   {
    "id": "bfi-2026-f171",
+   "idx": 171,
    "cIdx": "LFFAWARDS",
    "title": "Act 3",
    "director": null,
@@ -2111,6 +2276,7 @@
   },
   {
    "id": "bfi-2026-f115",
+   "idx": 115,
    "cIdx": "LFFAWARDS",
    "title": "ANIMOL",
    "director": null,
@@ -2122,6 +2288,7 @@
   },
   {
    "id": "bfi-2026-f19",
+   "idx": 19,
    "cIdx": "LFFAWARDS",
    "title": "Ba’s Book",
    "director": null,
@@ -2133,6 +2300,7 @@
   },
   {
    "id": "bfi-2026-f125",
+   "idx": 125,
    "cIdx": "LFFAWARDS",
    "title": "Ben’Imana",
    "director": null,
@@ -2144,6 +2312,7 @@
   },
   {
    "id": "bfi-2026-f30",
+   "idx": 30,
    "cIdx": "LFFAWARDS",
    "title": "Concrete Land",
    "director": null,
@@ -2155,6 +2324,7 @@
   },
   {
    "id": "bfi-2026-f118",
+   "idx": 118,
    "cIdx": "LFFAWARDS",
    "title": "Concrete Turned to Sand",
    "director": null,
@@ -2166,6 +2336,7 @@
   },
   {
    "id": "bfi-2026-f106",
+   "idx": 106,
    "cIdx": "LFFAWARDS",
    "title": "Dependence",
    "director": null,
@@ -2177,6 +2348,7 @@
   },
   {
    "id": "bfi-2026-f135",
+   "idx": 135,
    "cIdx": "LFFAWARDS",
    "title": "Forest High",
    "director": null,
@@ -2188,6 +2360,7 @@
   },
   {
    "id": "bfi-2026-f157",
+   "idx": 157,
    "cIdx": "LFFAWARDS",
    "title": "Fruit Gathering",
    "director": null,
@@ -2199,6 +2372,7 @@
   },
   {
    "id": "bfi-2026-f133",
+   "idx": 133,
    "cIdx": "LFFAWARDS",
    "title": "Glaxo",
    "director": null,
@@ -2210,6 +2384,7 @@
   },
   {
    "id": "bfi-2026-f103",
+   "idx": 103,
    "cIdx": "LFFAWARDS",
    "title": "Imperium",
    "director": null,
@@ -2221,6 +2396,7 @@
   },
   {
    "id": "bfi-2026-f38",
+   "idx": 38,
    "cIdx": "LFFAWARDS",
    "title": "Kettice",
    "director": null,
@@ -2232,6 +2408,7 @@
   },
   {
    "id": "bfi-2026-f89",
+   "idx": 89,
    "cIdx": "LFFAWARDS",
    "title": "Lady",
    "director": null,
@@ -2243,6 +2420,7 @@
   },
   {
    "id": "bfi-2026-f155",
+   "idx": 155,
    "cIdx": "LFFAWARDS",
    "title": "Look Back",
    "director": null,
@@ -2254,6 +2432,7 @@
   },
   {
    "id": "bfi-2026-f23",
+   "idx": 23,
    "cIdx": "LFFAWARDS",
    "title": "Masc",
    "director": null,
@@ -2265,6 +2444,7 @@
   },
   {
    "id": "bfi-2026-f189",
+   "idx": 189,
    "cIdx": "LFFAWARDS",
    "title": "My Notes on Mars",
    "director": null,
@@ -2276,6 +2456,7 @@
   },
   {
    "id": "bfi-2026-f70",
+   "idx": 70,
    "cIdx": "LFFAWARDS",
    "title": "Once Upon a Time in Harlem",
    "director": null,
@@ -2287,6 +2468,7 @@
   },
   {
    "id": "bfi-2026-f77",
+   "idx": 77,
    "cIdx": "LFFAWARDS",
    "title": "Our Share of Sand",
    "director": null,
@@ -2298,6 +2480,7 @@
   },
   {
    "id": "bfi-2026-f112",
+   "idx": 112,
    "cIdx": "LFFAWARDS",
    "title": "Queer Edward II",
    "director": null,
@@ -2309,6 +2492,7 @@
   },
   {
    "id": "bfi-2026-f218",
+   "idx": 218,
    "cIdx": "LFFAWARDS",
    "title": "Relaxed Screening: Masc",
    "director": null,
@@ -2320,6 +2504,7 @@
   },
   {
    "id": "bfi-2026-f144",
+   "idx": 144,
    "cIdx": "LFFAWARDS",
    "title": "Sumo: Spirit Weighs Nothing",
    "director": null,
@@ -2331,6 +2516,7 @@
   },
   {
    "id": "bfi-2026-f28",
+   "idx": 28,
    "cIdx": "LFFAWARDS",
    "title": "The Calf Doll",
    "director": null,
@@ -2342,6 +2528,7 @@
   },
   {
    "id": "bfi-2026-f121",
+   "idx": 121,
    "cIdx": "LFFAWARDS",
    "title": "The Difficult Bride",
    "director": null,
@@ -2353,6 +2540,7 @@
   },
   {
    "id": "bfi-2026-f165",
+   "idx": 165,
    "cIdx": "LFFAWARDS",
    "title": "The Idiot(s)",
    "director": null,
@@ -2364,6 +2552,7 @@
   },
   {
    "id": "bfi-2026-f24",
+   "idx": 24,
    "cIdx": "LFFAWARDS",
    "title": "The Last Day",
    "director": null,
@@ -2375,6 +2564,7 @@
   },
   {
    "id": "bfi-2026-f213",
+   "idx": 213,
    "cIdx": "LFFAWARDS",
    "title": "Woman Unknown",
    "director": null,
@@ -2386,6 +2576,7 @@
   },
   {
    "id": "bfi-2026-f202",
+   "idx": 202,
    "cIdx": "LFFEVENTS",
    "title": "Surprise Film",
    "director": null,
@@ -2397,6 +2588,7 @@
   },
   {
    "id": "bfi-2026-f12",
+   "idx": 12,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: Andrew Scott",
    "director": null,
@@ -2408,6 +2600,7 @@
   },
   {
    "id": "bfi-2026-f123",
+   "idx": 123,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: Ava DuVernay",
    "director": null,
@@ -2419,6 +2612,7 @@
   },
   {
    "id": "bfi-2026-f15",
+   "idx": 15,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: Brad Bird",
    "director": null,
@@ -2430,6 +2624,7 @@
   },
   {
    "id": "bfi-2026-f124",
+   "idx": 124,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: Cynthia Erivo",
    "director": null,
@@ -2441,6 +2636,7 @@
   },
   {
    "id": "bfi-2026-f97",
+   "idx": 97,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: James Gray",
    "director": null,
@@ -2452,6 +2648,7 @@
   },
   {
    "id": "bfi-2026-f93",
+   "idx": 93,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: Javier Bardem",
    "director": null,
@@ -2463,6 +2660,7 @@
   },
   {
    "id": "bfi-2026-f233",
+   "idx": 233,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: Jesse Eisenberg",
    "director": null,
@@ -2474,6 +2672,7 @@
   },
   {
    "id": "bfi-2026-f98",
+   "idx": 98,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: John Malkovich",
    "director": null,
@@ -2485,6 +2684,7 @@
   },
   {
    "id": "bfi-2026-f206",
+   "idx": 206,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: Mahershala Ali",
    "director": null,
@@ -2496,6 +2696,7 @@
   },
   {
    "id": "bfi-2026-f54",
+   "idx": 54,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: Naomi Ackie",
    "director": null,
@@ -2507,6 +2708,7 @@
   },
   {
    "id": "bfi-2026-f110",
+   "idx": 110,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: Robert Eggers",
    "director": null,
@@ -2518,6 +2720,7 @@
   },
   {
    "id": "bfi-2026-f13",
+   "idx": 13,
    "cIdx": "LFFSCREENTALKS",
    "title": "Screen Talk: Sofia Coppola",
    "director": null,
@@ -2529,6 +2732,7 @@
   },
   {
    "id": "bfi-2026-f82",
+   "idx": 82,
    "cIdx": "LFFLOVE",
    "title": "All of a Sudden",
    "director": null,
@@ -2540,6 +2744,7 @@
   },
   {
    "id": "bfi-2026-f182",
+   "idx": 182,
    "cIdx": "LFFLOVE",
    "title": "Coward",
    "director": null,
@@ -2551,6 +2756,7 @@
   },
   {
    "id": "bfi-2026-f179",
+   "idx": 179,
    "cIdx": "LFFLOVE",
    "title": "Dao",
    "director": null,
@@ -2562,6 +2768,7 @@
   },
   {
    "id": "bfi-2026-f116",
+   "idx": 116,
    "cIdx": "LFFLOVE",
    "title": "Flies",
    "director": null,
@@ -2573,6 +2780,7 @@
   },
   {
    "id": "bfi-2026-f148",
+   "idx": 148,
    "cIdx": "LFFLOVE",
    "title": "Frank and Percy",
    "director": null,
@@ -2584,6 +2792,7 @@
   },
   {
    "id": "bfi-2026-f68",
+   "idx": 68,
    "cIdx": "LFFLOVE",
    "title": "Ha-Chan, Shake Your Booty!",
    "director": null,
@@ -2595,6 +2804,7 @@
   },
   {
    "id": "bfi-2026-f22",
+   "idx": 22,
    "cIdx": "LFFLOVE",
    "title": "House of the Wind",
    "director": null,
@@ -2606,6 +2816,7 @@
   },
   {
    "id": "bfi-2026-f183",
+   "idx": 183,
    "cIdx": "LFFLOVE",
    "title": "In a Whisper",
    "director": null,
@@ -2617,6 +2828,7 @@
   },
   {
    "id": "bfi-2026-f173",
+   "idx": 173,
    "cIdx": "LFFLOVE",
    "title": "It Will Happen Tonight",
    "director": null,
@@ -2628,6 +2840,7 @@
   },
   {
    "id": "bfi-2026-f39",
+   "idx": 39,
    "cIdx": "LFFLOVE",
    "title": "Ivan & Hadoum",
    "director": null,
@@ -2639,6 +2852,7 @@
   },
   {
    "id": "bfi-2026-f61",
+   "idx": 61,
    "cIdx": "LFFLOVE",
    "title": "Lemonade",
    "director": null,
@@ -2650,6 +2864,7 @@
   },
   {
    "id": "bfi-2026-f164",
+   "idx": 164,
    "cIdx": "LFFLOVE",
    "title": "Mouse",
    "director": null,
@@ -2661,6 +2876,7 @@
   },
   {
    "id": "bfi-2026-f228",
+   "idx": 228,
    "cIdx": "LFFLOVE",
    "title": "Pakeezah",
    "director": null,
@@ -2672,6 +2888,7 @@
   },
   {
    "id": "bfi-2026-f5",
+   "idx": 5,
    "cIdx": "LFFLOVE",
    "title": "Petrolheads",
    "director": null,
@@ -2683,6 +2900,7 @@
   },
   {
    "id": "bfi-2026-f132",
+   "idx": 132,
    "cIdx": "LFFLOVE",
    "title": "Relaxed Screening: Ha-Chan, Shake Your Booty!",
    "director": null,
@@ -2694,6 +2912,7 @@
   },
   {
    "id": "bfi-2026-f136",
+   "idx": 136,
    "cIdx": "LFFLOVE",
    "title": "The Slightest Touch",
    "director": null,
@@ -2705,6 +2924,7 @@
   },
   {
    "id": "bfi-2026-f42",
+   "idx": 42,
    "cIdx": "LFFLOVE",
    "title": "To Hold a Mountain",
    "director": null,
@@ -2716,6 +2936,7 @@
   },
   {
    "id": "bfi-2026-f31",
+   "idx": 31,
    "cIdx": "LFFLOVE",
    "title": "Variations on a Theme",
    "director": null,
@@ -2727,6 +2948,7 @@
   },
   {
    "id": "bfi-2026-f140",
+   "idx": 140,
    "cIdx": "LFFSHORTS",
    "title": "Altered States",
    "director": null,
@@ -2738,6 +2960,7 @@
   },
   {
    "id": "bfi-2026-f71",
+   "idx": 71,
    "cIdx": "LFFSHORTS",
    "title": "As the Years Roll By",
    "director": null,
@@ -2749,6 +2972,7 @@
   },
   {
    "id": "bfi-2026-f27",
+   "idx": 27,
    "cIdx": "LFFSHORTS",
    "title": "Call Your Bluff",
    "director": null,
@@ -2760,6 +2984,7 @@
   },
   {
    "id": "bfi-2026-f191",
+   "idx": 191,
    "cIdx": "LFFSHORTS",
    "title": "I See Myself",
    "director": null,
@@ -2771,6 +2996,7 @@
   },
   {
    "id": "bfi-2026-f7",
+   "idx": 7,
    "cIdx": "LFFSHORTS",
    "title": "Land of Hope and Gory",
    "director": null,
@@ -2782,6 +3008,7 @@
   },
   {
    "id": "bfi-2026-f41",
+   "idx": 41,
    "cIdx": "LFFSHORTS",
    "title": "Life / Drawing",
    "director": null,
@@ -2793,6 +3020,7 @@
   },
   {
    "id": "bfi-2026-f128",
+   "idx": 128,
    "cIdx": "LFFSPECIALPRESENTATIONS",
    "title": "14th",
    "director": null,
@@ -2804,6 +3032,7 @@
   },
   {
    "id": "bfi-2026-f3",
+   "idx": 3,
    "cIdx": "LFFSPECIALPRESENTATIONS",
    "title": "Gone to Earth",
    "director": null,
@@ -2815,6 +3044,7 @@
   },
   {
    "id": "bfi-2026-f215",
+   "idx": 215,
    "cIdx": "LFFSPECIALPRESENTATIONS",
    "title": "Shab-Nameh: Women of Iran’s Forgotten Left",
    "director": null,
@@ -2826,6 +3056,7 @@
   },
   {
    "id": "bfi-2026-f195",
+   "idx": 195,
    "cIdx": "LFFSPECIALPRESENTATIONS",
    "title": "Sweet Milk Lake",
    "director": null,
@@ -2837,6 +3068,7 @@
   },
   {
    "id": "bfi-2026-f227",
+   "idx": 227,
    "cIdx": "LFFSPECIALPRESENTATIONS",
    "title": "The Trip to the Northern Lights",
    "director": null,
@@ -2848,6 +3080,7 @@
   },
   {
    "id": "bfi-2026-f178",
+   "idx": 178,
    "cIdx": "LFFTHRILL",
    "title": "Black Church Bay",
    "director": null,
@@ -2859,6 +3092,7 @@
   },
   {
    "id": "bfi-2026-f207",
+   "idx": 207,
    "cIdx": "LFFTHRILL",
    "title": "Elephants in the Fog",
    "director": null,
@@ -2870,6 +3104,7 @@
   },
   {
    "id": "bfi-2026-f83",
+   "idx": 83,
    "cIdx": "LFFTHRILL",
    "title": "Furies",
    "director": null,
@@ -2881,6 +3116,7 @@
   },
   {
    "id": "bfi-2026-f177",
+   "idx": 177,
    "cIdx": "LFFTHRILL",
    "title": "Heysel 85",
    "director": null,
@@ -2892,6 +3128,7 @@
   },
   {
    "id": "bfi-2026-f146",
+   "idx": 146,
    "cIdx": "LFFTHRILL",
    "title": "Josephine",
    "director": null,
@@ -2903,6 +3140,7 @@
   },
   {
    "id": "bfi-2026-f174",
+   "idx": 174,
    "cIdx": "LFFTHRILL",
    "title": "Moonglow",
    "director": null,
@@ -2914,6 +3152,7 @@
   },
   {
    "id": "bfi-2026-f113",
+   "idx": 113,
    "cIdx": "LFFTHRILL",
    "title": "Primetime",
    "director": null,
@@ -2925,6 +3164,7 @@
   },
   {
    "id": "bfi-2026-f21",
+   "idx": 21,
    "cIdx": "LFFTHRILL",
    "title": "Prince",
    "director": null,
@@ -2936,6 +3176,7 @@
   },
   {
    "id": "bfi-2026-f78",
+   "idx": 78,
    "cIdx": "LFFTHRILL",
    "title": "The Dreamed Adventure",
    "director": null,
@@ -2947,6 +3188,7 @@
   },
   {
    "id": "bfi-2026-f84",
+   "idx": 84,
    "cIdx": "LFFTHRILL",
    "title": "The Liberation",
    "director": null,
@@ -2958,6 +3200,7 @@
   },
   {
    "id": "bfi-2026-f29",
+   "idx": 29,
    "cIdx": "LFFTHRILL",
    "title": "The Match",
    "director": null,
@@ -2969,6 +3212,7 @@
   },
   {
    "id": "bfi-2026-f147",
+   "idx": 147,
    "cIdx": "LFFTHRILL",
    "title": "The Meltdown",
    "director": null,
@@ -2980,6 +3224,7 @@
   },
   {
    "id": "bfi-2026-f190",
+   "idx": 190,
    "cIdx": null,
    "title": "Screen Talk: Danny Boyle",
    "director": null,
@@ -15503,6 +15748,7 @@
    }
   ]
  },
+ "warnings": [],
  "fetchedAt": "2026-10-31T13:34:42Z",
  "lastVerifiedAt": "2026-10-31T13:34:42Z",
  "dataSource": "official"
