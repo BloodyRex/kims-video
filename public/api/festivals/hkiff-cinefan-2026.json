@@ -27,16 +27,16 @@
   "id": "hkiff-cinefan-2026",
   "year": 2026,
   "startDate": "2026-09-12",
-  "endDate": "2026-10-31",
+  "endDate": "2026-12-27",
   "timezone": "Asia/Hong_Kong",
-  "dayCount": 50,
-  "officialUrl": "https://cinefan.hkiff.org.hk/",
-  "coverageMinDays": 10,
+  "dayCount": 107,
   "registryEndDate": "2026-10-31",
-  "endDateExtended": false,
-  "dataEndDate": "2026-10-31"
+  "endDateExtended": true,
+  "dataEndDate": "2026-12-27",
+  "officialUrl": "https://cinefan.hkiff.org.hk/",
+  "coverageMinDays": 10
  },
- "lifecycle": "ENDED",
+ "lifecycle": "LIVE",
  "status": "SCREENING_LIVE",
  "statusDetail": {
   "dates": "CONFIRMED",
@@ -54,7 +54,7 @@
    "url": "https://cinefan.hkiff.org.hk/schedule",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "PROGRAMME",
@@ -62,7 +62,31 @@
    "url": "https://cinefan.hkiff.org.hk/period/2026/sep-oct-2026",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — 12-08-east-of-bucharest-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/12-08-east-of-bucharest-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — 4-months-3-weeks-and-2-days-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/4-months-3-weeks-and-2-days-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — 71-fragments-of-a-chronology-of-chance-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/71-fragments-of-a-chronology-of-chance-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -70,7 +94,7 @@
    "url": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -78,7 +102,31 @@
    "url": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — aferim-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/aferim-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — amour-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/amour-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — bennys-video-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/bennys-video-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -86,7 +134,15 @@
    "url": "https://cinefan.hkiff.org.hk/movie/bird-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — california-dreamin-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/california-dreamin-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -94,7 +150,23 @@
    "url": "https://cinefan.hkiff.org.hk/movie/changeling-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — childs-pose-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/childs-pose-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — code-unknown-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/code-unknown-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -102,7 +174,7 @@
    "url": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -110,7 +182,23 @@
    "url": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — funny-games-1997-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/funny-games-1997-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — funny-games-2007-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/funny-games-2007-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -118,7 +206,15 @@
    "url": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — hidden-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/hidden-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -126,7 +222,15 @@
    "url": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — if-i-want-to-whistle-i-whistle-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/if-i-want-to-whistle-i-whistle-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -134,7 +238,15 @@
    "url": "https://cinefan.hkiff.org.hk/movie/juror2-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — lemmings-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/lemmings-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -142,7 +254,7 @@
    "url": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -150,7 +262,7 @@
    "url": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -158,7 +270,15 @@
    "url": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — occident-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/occident-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -166,7 +286,15 @@
    "url": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — stuff-and-dough-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/stuff-and-dough-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -174,7 +302,15 @@
    "url": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — the-autobiography-of-nicolae-ceausescu-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/the-autobiography-of-nicolae-ceausescu-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -182,7 +318,7 @@
    "url": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -190,7 +326,15 @@
    "url": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — the-death-of-mr-lazarescu-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/the-death-of-mr-lazarescu-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -198,7 +342,7 @@
    "url": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -206,7 +350,7 @@
    "url": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -214,7 +358,7 @@
    "url": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -222,7 +366,15 @@
    "url": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — the-piano-teacher-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/the-piano-teacher-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -230,7 +382,39 @@
    "url": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — the-seventh-continent-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/the-seventh-continent-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — the-vanishing-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/the-vanishing-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — the-white-ribbon-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/the-white-ribbon-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "kind": "FILM_DETAIL",
+   "label": "Film detail — thesis-26",
+   "url": "https://cinefan.hkiff.org.hk/movie/thesis-26",
+   "httpStatus": 200,
+   "ok": true,
+   "fetchedAt": "2026-11-04T18:39:12Z"
   },
   {
    "kind": "FILM_DETAIL",
@@ -238,7 +422,7 @@
    "url": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-20T06:30:44Z"
+   "fetchedAt": "2026-11-04T18:39:12Z"
   }
  ],
  "sections": [
@@ -288,8 +472,7 @@
  ],
  "films": [
   {
-   "id": "hkiff-cinefan-2026-f2",
-   "idx": 2,
+   "id": "hkiff-cinefan-2026-f5",
    "cIdx": 83003,
    "title": "A River Called Titas",
    "director": "Ritwik Ghatak",
@@ -300,8 +483,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f5",
-   "idx": 5,
+   "id": "hkiff-cinefan-2026-f14",
    "cIdx": 83003,
    "title": "E-Flat",
    "director": "Ritwik Ghatak",
@@ -312,8 +494,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f16",
-   "idx": 16,
+   "id": "hkiff-cinefan-2026-f33",
    "cIdx": 83003,
    "title": "The Cloud-Capped Star",
    "director": "Ritwik Ghatak",
@@ -324,8 +505,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f17",
-   "idx": 17,
+   "id": "hkiff-cinefan-2026-f35",
    "cIdx": 83003,
    "title": "The Golden Line",
    "director": "Ritwik Ghatak",
@@ -336,8 +516,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f21",
-   "idx": 21,
+   "id": "hkiff-cinefan-2026-f40",
    "cIdx": 83003,
    "title": "The Runaway",
    "director": "Ritwik Ghatak",
@@ -348,8 +527,128 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f1",
-   "idx": 1,
+   "id": "hkiff-cinefan-2026-f3",
+   "cIdx": null,
+   "title": "71 Fragments of a Chronology of Chance",
+   "director": "Michael Haneke",
+   "country": "Austria/Germany　",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/71-fragments-of-a-chronology-of-chance-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f7",
+   "cIdx": null,
+   "title": "Amour",
+   "director": "Michael Haneke",
+   "country": "France/Germany/Austria",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/amour-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f8",
+   "cIdx": null,
+   "title": "Benny’s Video",
+   "director": "Michael Haneke",
+   "country": " Austria/Switzerland",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/bennys-video-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f13",
+   "cIdx": null,
+   "title": "Code Unknown",
+   "director": "Michael Haneke",
+   "country": "France/Germany/Romania",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/code-unknown-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f16",
+   "cIdx": null,
+   "title": "Funny Games (1997)",
+   "director": "Michael Haneke",
+   "country": "Austria",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/funny-games-1997-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f19",
+   "cIdx": null,
+   "title": "Hidden",
+   "director": "Michael Haneke",
+   "country": "France/Austria/Germany/Italy",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/hidden-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f39",
+   "cIdx": null,
+   "title": "The Piano Teacher",
+   "director": "Michael Haneke",
+   "country": "France/Austria",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/the-piano-teacher-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f41",
+   "cIdx": null,
+   "title": "The Seventh Continent",
+   "director": "Michael Haneke",
+   "country": "Austria",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/the-seventh-continent-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f43",
+   "cIdx": null,
+   "title": "The White Ribbon",
+   "director": "Michael Haneke",
+   "country": "Germany",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/the-white-ribbon-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f42",
+   "cIdx": null,
+   "title": "The Vanishing",
+   "director": "George Sluizer",
+   "country": "Netherlands/France",
+   "sectionId": null,
+   "sectionName": "Back to the Screen",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/the-vanishing-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f44",
+   "cIdx": null,
+   "title": "Thesis",
+   "director": "Alejandro Amenábar",
+   "country": "Spain",
+   "sectionId": null,
+   "sectionName": "Back to the Screen",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/thesis-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f4",
    "cIdx": 83004,
    "title": "A Fistful of Dollars",
    "director": "Sergio Leone",
@@ -360,8 +659,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f6",
-   "idx": 6,
+   "id": "hkiff-cinefan-2026-f15",
    "cIdx": 83004,
    "title": "For a Few Dollars More",
    "director": "Sergio Leone",
@@ -372,8 +670,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f18",
-   "idx": 18,
+   "id": "hkiff-cinefan-2026-f36",
    "cIdx": 83004,
    "title": "The Good, the Bad and the Ugly",
    "director": "Sergio Leone",
@@ -384,8 +681,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f3",
-   "idx": 3,
+   "id": "hkiff-cinefan-2026-f9",
    "cIdx": 83005,
    "title": "Bird",
    "director": "Clint Eastwood",
@@ -396,8 +692,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f4",
-   "idx": 4,
+   "id": "hkiff-cinefan-2026-f11",
    "cIdx": 83005,
    "title": "Changeling",
    "director": "Clint Eastwood",
@@ -408,8 +703,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f7",
-   "idx": 7,
+   "id": "hkiff-cinefan-2026-f18",
    "cIdx": 83005,
    "title": "Gran Torino",
    "director": "Clint Eastwood",
@@ -420,8 +714,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f9",
-   "idx": 9,
+   "id": "hkiff-cinefan-2026-f22",
    "cIdx": 83005,
    "title": "Juror #2",
    "director": "Clint Eastwood",
@@ -432,8 +725,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f11",
-   "idx": 11,
+   "id": "hkiff-cinefan-2026-f25",
    "cIdx": 83005,
    "title": "Million Dollar Baby",
    "director": "Clint Eastwood",
@@ -444,8 +736,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f12",
-   "idx": 12,
+   "id": "hkiff-cinefan-2026-f26",
    "cIdx": 83005,
    "title": "Mystic River",
    "director": "Clint Eastwood",
@@ -456,8 +747,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f13",
-   "idx": 13,
+   "id": "hkiff-cinefan-2026-f28",
    "cIdx": 83005,
    "title": "Pale Rider",
    "director": "Clint Eastwood",
@@ -468,8 +758,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f15",
-   "idx": 15,
+   "id": "hkiff-cinefan-2026-f32",
    "cIdx": 83005,
    "title": "The Bridges of Madison County",
    "director": "Clint Eastwood",
@@ -480,8 +769,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f20",
-   "idx": 20,
+   "id": "hkiff-cinefan-2026-f38",
    "cIdx": 83005,
    "title": "The Outlaw Josey Wales",
    "director": "Clint Eastwood",
@@ -492,8 +780,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f22",
-   "idx": 22,
+   "id": "hkiff-cinefan-2026-f45",
    "cIdx": 83005,
    "title": "Unforgiven",
    "director": "Clint Eastwood",
@@ -504,8 +791,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f10",
-   "idx": 10,
+   "id": "hkiff-cinefan-2026-f24",
    "cIdx": 83002,
    "title": "Lost Paradise",
    "director": "Morita Yoshimitsu",
@@ -516,8 +802,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f14",
-   "idx": 14,
+   "id": "hkiff-cinefan-2026-f30",
    "cIdx": 83002,
    "title": "Swallowtail Butterfly",
    "director": "Iwai Shunji",
@@ -528,8 +813,139 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f8",
-   "idx": 8,
+   "id": "hkiff-cinefan-2026-f17",
+   "cIdx": null,
+   "title": "Funny Games (2007)",
+   "director": "Michael Haneke",
+   "country": "USA/UK/France/Germany/Austria/Italy",
+   "sectionId": null,
+   "sectionName": "Special Presentation",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/funny-games-2007-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f23",
+   "cIdx": null,
+   "title": "Lemmings",
+   "director": "Michael Haneke",
+   "country": "Austria/West Germany",
+   "sectionId": null,
+   "sectionName": "Special Presentation",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/lemmings-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f1",
+   "cIdx": null,
+   "title": "12:08 East of Bucharest",
+   "director": "Corneliu Porumboiu",
+   "country": "Romania",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/12-08-east-of-bucharest-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f2",
+   "cIdx": null,
+   "title": "4 Months, 3 Weeks and 2 Days",
+   "director": "Cristian Mungiu",
+   "country": "Romania",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/4-months-3-weeks-and-2-days-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f6",
+   "cIdx": null,
+   "title": "Aferim!",
+   "director": "Radu Jude",
+   "country": "Romania/Bulgaria/Czech Republic",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/aferim-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f10",
+   "cIdx": null,
+   "title": "California Dreamin'",
+   "director": "Cristian Nemescu",
+   "country": "Romania",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/california-dreamin-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f12",
+   "cIdx": null,
+   "title": "Child's Pose",
+   "director": "Călin Peter Netzer",
+   "country": "Romania",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/childs-pose-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f21",
+   "cIdx": null,
+   "title": "If I Want to Whistle, I Whistle",
+   "director": "Florin Șerban",
+   "country": "Romania/Sweden",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/if-i-want-to-whistle-i-whistle-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f27",
+   "cIdx": null,
+   "title": "Occident",
+   "director": "Cristian Mungiu",
+   "country": "Romania",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/occident-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f29",
+   "cIdx": null,
+   "title": "Stuff and Dough",
+   "director": "Cristi Puiu",
+   "country": "Romania",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/stuff-and-dough-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f31",
+   "cIdx": null,
+   "title": "The Autobiography of Nicolae Ceaușescu",
+   "director": "Andrei Ujică",
+   "country": "Romania/Germany",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/the-autobiography-of-nicolae-ceausescu-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f34",
+   "cIdx": null,
+   "title": "The Death of Mr. Lazarescu",
+   "director": "Cristi Puiu",
+   "country": "Romania",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "officialUrl": "https://cinefan.hkiff.org.hk/movie/the-death-of-mr-lazarescu-26",
+   "inProgramme": true
+  },
+  {
+   "id": "hkiff-cinefan-2026-f20",
    "cIdx": 83001,
    "title": "How Green Was My Valley",
    "director": "John Ford",
@@ -540,8 +956,7 @@
    "inProgramme": true
   },
   {
-   "id": "hkiff-cinefan-2026-f19",
-   "idx": 19,
+   "id": "hkiff-cinefan-2026-f37",
    "cIdx": 83001,
    "title": "The Man Who Shot Liberty Valance",
    "director": "John Ford",
@@ -556,7 +971,7 @@
   {
    "id": "hkiff-cinefan-2026-20260912-202609121400",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f20",
+   "filmId": "hkiff-cinefan-2026-f38",
    "title": "The Outlaw Josey Wales",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -573,12 +988,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15517/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260912-202609121715",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f13",
+   "filmId": "hkiff-cinefan-2026-f28",
    "title": "Pale Rider",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -595,12 +1010,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15517/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260912-202609121945",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f10",
+   "filmId": "hkiff-cinefan-2026-f24",
    "title": "Lost Paradise",
    "sectionId": "c83002",
    "sectionName": "RESTORED CLASSICS",
@@ -617,12 +1032,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260913-202609131300",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f3",
+   "filmId": "hkiff-cinefan-2026-f9",
    "title": "Bird",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -639,12 +1054,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15517/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/bird-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/bird-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260913-202609131615",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f22",
+   "filmId": "hkiff-cinefan-2026-f45",
    "title": "Unforgiven",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -661,12 +1076,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260913-202609131900",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f21",
+   "filmId": "hkiff-cinefan-2026-f40",
    "title": "The Runaway",
    "sectionId": "c83003",
    "sectionName": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
@@ -683,12 +1098,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15517/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260919-202609191400",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f15",
+   "filmId": "hkiff-cinefan-2026-f32",
    "title": "The Bridges of Madison County",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -705,12 +1120,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260919-202609191715",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f16",
+   "filmId": "hkiff-cinefan-2026-f33",
    "title": "The Cloud-Capped Star",
    "sectionId": "c83003",
    "sectionName": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
@@ -727,12 +1142,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15514/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260919-202609192000",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f5",
+   "filmId": "hkiff-cinefan-2026-f14",
    "title": "E-Flat",
    "sectionId": "c83003",
    "sectionName": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
@@ -749,12 +1164,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15514/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260920-202609201300",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f17",
+   "filmId": "hkiff-cinefan-2026-f35",
    "title": "The Golden Line",
    "sectionId": "c83003",
    "sectionName": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
@@ -771,12 +1186,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15514/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260920-202609201630",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f2",
+   "filmId": "hkiff-cinefan-2026-f5",
    "title": "A River Called Titas",
    "sectionId": "c83003",
    "sectionName": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
@@ -793,12 +1208,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15514/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260920-202609201945",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f12",
+   "filmId": "hkiff-cinefan-2026-f26",
    "title": "Mystic River",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -815,12 +1230,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15514/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260926-202609261400",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f1",
+   "filmId": "hkiff-cinefan-2026-f4",
    "title": "A Fistful of Dollars",
    "sectionId": "c83004",
    "sectionName": "BACK TO THE SCREEN",
@@ -837,12 +1252,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260926-202609261615",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f6",
+   "filmId": "hkiff-cinefan-2026-f15",
    "title": "For a Few Dollars More",
    "sectionId": "c83004",
    "sectionName": "BACK TO THE SCREEN",
@@ -859,12 +1274,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260926-202609261900",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f11",
+   "filmId": "hkiff-cinefan-2026-f25",
    "title": "Million Dollar Baby",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -881,12 +1296,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260927-202609271300",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f18",
+   "filmId": "hkiff-cinefan-2026-f36",
    "title": "The Good, the Bad and the Ugly",
    "sectionId": "c83004",
    "sectionName": "BACK TO THE SCREEN",
@@ -903,12 +1318,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260927-202609271630",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f4",
+   "filmId": "hkiff-cinefan-2026-f11",
    "title": "Changeling",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -925,12 +1340,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15517/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/changeling-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/changeling-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20260927-202609271930",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f7",
+   "filmId": "hkiff-cinefan-2026-f18",
    "title": "Gran Torino",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -947,12 +1362,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15517/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261003-202610031400",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f12",
+   "filmId": "hkiff-cinefan-2026-f26",
    "title": "Mystic River",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -969,12 +1384,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261003-202610031645",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f20",
+   "filmId": "hkiff-cinefan-2026-f38",
    "title": "The Outlaw Josey Wales",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -991,12 +1406,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261003-202610032000",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f8",
+   "filmId": "hkiff-cinefan-2026-f20",
    "title": "How Green Was My Valley",
    "sectionId": "c83001",
    "sectionName": "THE GOLDEN AGE",
@@ -1013,12 +1428,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261004-202610041300",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f9",
+   "filmId": "hkiff-cinefan-2026-f22",
    "title": "Juror #2",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -1035,12 +1450,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/juror2-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/juror2-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261004-202610041630",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f13",
+   "filmId": "hkiff-cinefan-2026-f28",
    "title": "Pale Rider",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -1057,12 +1472,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15514/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261004-202610041930",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f19",
+   "filmId": "hkiff-cinefan-2026-f37",
    "title": "The Man Who Shot Liberty Valance",
    "sectionId": "c83001",
    "sectionName": "THE GOLDEN AGE",
@@ -1079,12 +1494,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15514/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261010-202610101400",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f10",
+   "filmId": "hkiff-cinefan-2026-f24",
    "title": "Lost Paradise",
    "sectionId": "c83002",
    "sectionName": "RESTORED CLASSICS",
@@ -1101,12 +1516,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261010-202610101700",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f1",
+   "filmId": "hkiff-cinefan-2026-f4",
    "title": "A Fistful of Dollars",
    "sectionId": "c83004",
    "sectionName": "BACK TO THE SCREEN",
@@ -1123,12 +1538,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261010-202610101915",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f6",
+   "filmId": "hkiff-cinefan-2026-f15",
    "title": "For a Few Dollars More",
    "sectionId": "c83004",
    "sectionName": "BACK TO THE SCREEN",
@@ -1145,12 +1560,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261011-202610111300",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f21",
+   "filmId": "hkiff-cinefan-2026-f40",
    "title": "The Runaway",
    "sectionId": "c83003",
    "sectionName": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
@@ -1167,12 +1582,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15515/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261011-202610111530",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f16",
+   "filmId": "hkiff-cinefan-2026-f33",
    "title": "The Cloud-Capped Star",
    "sectionId": "c83003",
    "sectionName": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
@@ -1189,12 +1604,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15515/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261011-202610111800",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f18",
+   "filmId": "hkiff-cinefan-2026-f36",
    "title": "The Good, the Bad and the Ugly",
    "sectionId": "c83004",
    "sectionName": "BACK TO THE SCREEN",
@@ -1211,12 +1626,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261017-202610171400",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f17",
+   "filmId": "hkiff-cinefan-2026-f35",
    "title": "The Golden Line",
    "sectionId": "c83003",
    "sectionName": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
@@ -1233,12 +1648,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15517/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261017-202610171645",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f8",
+   "filmId": "hkiff-cinefan-2026-f20",
    "title": "How Green Was My Valley",
    "sectionId": "c83001",
    "sectionName": "THE GOLDEN AGE",
@@ -1255,12 +1670,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261017-202610171915",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f19",
+   "filmId": "hkiff-cinefan-2026-f37",
    "title": "The Man Who Shot Liberty Valance",
    "sectionId": "c83001",
    "sectionName": "THE GOLDEN AGE",
@@ -1277,12 +1692,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261018-202610181300",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f15",
+   "filmId": "hkiff-cinefan-2026-f32",
    "title": "The Bridges of Madison County",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -1299,12 +1714,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261018-202610181545",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f14",
+   "filmId": "hkiff-cinefan-2026-f30",
    "title": "Swallowtail Butterfly",
    "sectionId": "c83002",
    "sectionName": "RESTORED CLASSICS",
@@ -1321,12 +1736,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261024-202610241400",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f5",
+   "filmId": "hkiff-cinefan-2026-f14",
    "title": "E-Flat",
    "sectionId": "c83003",
    "sectionName": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
@@ -1343,12 +1758,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15516/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261024-202610241645",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f11",
+   "filmId": "hkiff-cinefan-2026-f25",
    "title": "Million Dollar Baby",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -1365,12 +1780,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261024-202610241930",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f22",
+   "filmId": "hkiff-cinefan-2026-f45",
    "title": "Unforgiven",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -1387,12 +1802,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261025-202610251300",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f2",
+   "filmId": "hkiff-cinefan-2026-f5",
    "title": "A River Called Titas",
    "sectionId": "c83003",
    "sectionName": "ACROSS THE RIVER OF SORROW: THE CINEMA OF RITWIK GHATAK",
@@ -1409,12 +1824,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15516/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261025-202610251645",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f7",
+   "filmId": "hkiff-cinefan-2026-f18",
    "title": "Gran Torino",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -1431,12 +1846,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15516/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261025-202610251915",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f4",
+   "filmId": "hkiff-cinefan-2026-f11",
    "title": "Changeling",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -1453,12 +1868,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15516/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/changeling-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/changeling-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261031-202610311300",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f14",
+   "filmId": "hkiff-cinefan-2026-f30",
    "title": "Swallowtail Butterfly",
    "sectionId": "c83002",
    "sectionName": "RESTORED CLASSICS",
@@ -1475,12 +1890,12 @@
    "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261031-202610311600",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f3",
+   "filmId": "hkiff-cinefan-2026-f9",
    "title": "Bird",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -1497,12 +1912,12 @@
    "ticketUrl": "https://www.urbtix.hk/event-detail/15516/",
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/bird-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/bird-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   },
   {
    "id": "hkiff-cinefan-2026-20261031-202610311915",
    "kind": "SCREENING",
-   "filmId": "hkiff-cinefan-2026-f9",
+   "filmId": "hkiff-cinefan-2026-f22",
    "title": "Juror #2",
    "sectionId": "c83005",
    "sectionName": "CLINT EASTWOOD, A HERO DECONSTRUCTED",
@@ -1515,24 +1930,992 @@
    "grade": null,
    "subtitle": null,
    "qa": false,
-   "ticketStatus": null,
-   "ticketUrl": "https://www.urbtix.hk/event-detail/15516/",
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
    "eventUrl": "https://cinefan.hkiff.org.hk/movie/juror2-26",
    "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/juror2-26",
-   "lastVerifiedAt": "2026-10-20T06:30:44Z"
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261107-202611071400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f29",
+   "title": "Stuff and Dough",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-07",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611071400",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/stuff-and-dough-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/stuff-and-dough-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261107-202611071615",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f27",
+   "title": "Occident",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-07",
+   "localTime": "16:15",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611071615",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/occident-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/occident-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261107-202611071830",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f41",
+   "title": "The Seventh Continent",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-11-07",
+   "localTime": "18:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611071830",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-seventh-continent-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-seventh-continent-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261108-202611081400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f34",
+   "title": "The Death of Mr. Lazarescu",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-08",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611081400",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-death-of-mr-lazarescu-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-death-of-mr-lazarescu-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261108-202611081700",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f1",
+   "title": "12:08 East of Bucharest",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-08",
+   "localTime": "17:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611081700",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/12-08-east-of-bucharest-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/12-08-east-of-bucharest-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261108-202611081900",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f3",
+   "title": "71 Fragments of a Chronology of Chance",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-11-08",
+   "localTime": "19:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611081900",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/71-fragments-of-a-chronology-of-chance-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/71-fragments-of-a-chronology-of-chance-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261114-202611141400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f10",
+   "title": "California Dreamin'",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-14",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611141400",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/california-dreamin-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/california-dreamin-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261114-202611141700",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f2",
+   "title": "4 Months, 3 Weeks and 2 Days",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-14",
+   "localTime": "17:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611141700",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/4-months-3-weeks-and-2-days-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/4-months-3-weeks-and-2-days-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261114-202611141930",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f8",
+   "title": "Benny’s Video",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-11-14",
+   "localTime": "19:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611141930",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/157764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/bennys-video-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/bennys-video-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261115-202611151400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f21",
+   "title": "If I Want to Whistle, I Whistle",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-15",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611151400",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/if-i-want-to-whistle-i-whistle-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/if-i-want-to-whistle-i-whistle-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261115-202611151600",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f31",
+   "title": "The Autobiography of Nicolae Ceaușescu",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-15",
+   "localTime": "16:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611151600",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-autobiography-of-nicolae-ceausescu-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-autobiography-of-nicolae-ceausescu-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261115-202611151945",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f16",
+   "title": "Funny Games (1997)",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-11-15",
+   "localTime": "19:45",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "premiere-elements",
+   "venueName": "PREMIERE Elements",
+   "code": "202611151945",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/funny-games-1997-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/funny-games-1997-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261121-202611211400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f3",
+   "title": "71 Fragments of a Chronology of Chance",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-11-21",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202611211400",
+   "grade": null,
+   "subtitle": null,
+   "qa": true,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/71-fragments-of-a-chronology-of-chance-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/71-fragments-of-a-chronology-of-chance-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261121-202611212000",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f12",
+   "title": "Child's Pose",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-21",
+   "localTime": "20:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202611212000",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/childs-pose-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/childs-pose-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261122-202611221330",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f8",
+   "title": "Benny’s Video",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-11-22",
+   "localTime": "13:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202611221330",
+   "grade": null,
+   "subtitle": null,
+   "qa": true,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/bennys-video-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/bennys-video-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261122-202611221930",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f6",
+   "title": "Aferim!",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-22",
+   "localTime": "19:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202611221930",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/aferim-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/aferim-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261128-202611281400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f13",
+   "title": "Code Unknown",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-11-28",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202611281400",
+   "grade": null,
+   "subtitle": null,
+   "qa": true,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/code-unknown-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/code-unknown-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261128-202611281730",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f17",
+   "title": "Funny Games (2007)",
+   "sectionId": null,
+   "sectionName": "Special Presentation",
+   "date": "2026-11-28",
+   "localTime": "17:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202611281730",
+   "grade": null,
+   "subtitle": null,
+   "qa": true,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/funny-games-2007-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/funny-games-2007-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261128-202611282030",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f1",
+   "title": "12:08 East of Bucharest",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-28",
+   "localTime": "20:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202611282030",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/12-08-east-of-bucharest-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/12-08-east-of-bucharest-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261129-202611291330",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f29",
+   "title": "Stuff and Dough",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-29",
+   "localTime": "13:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "emp-cinemas-isquare",
+   "venueName": "EMP Cinemas iSQUARE",
+   "code": "202611291330",
+   "grade": null,
+   "subtitle": null,
+   "qa": true,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15771/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/stuff-and-dough-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/stuff-and-dough-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261129-202611291645",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f34",
+   "title": "The Death of Mr. Lazarescu",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-11-29",
+   "localTime": "16:45",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "emp-cinemas-isquare",
+   "venueName": "EMP Cinemas iSQUARE",
+   "code": "202611291645",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15771/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-death-of-mr-lazarescu-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-death-of-mr-lazarescu-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261129-202611291945",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f42",
+   "title": "The Vanishing",
+   "sectionId": null,
+   "sectionName": "Back to the Screen",
+   "date": "2026-11-29",
+   "localTime": "19:45",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "emp-cinemas-isquare",
+   "venueName": "EMP Cinemas iSQUARE",
+   "code": "202611291945",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15771/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-vanishing-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-vanishing-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261205-202612051400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f39",
+   "title": "The Piano Teacher",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-12-05",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612051400",
+   "grade": null,
+   "subtitle": null,
+   "qa": true,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-piano-teacher-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-piano-teacher-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261205-202612051745",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f23",
+   "title": "Lemmings",
+   "sectionId": null,
+   "sectionName": "Special Presentation",
+   "date": "2026-12-05",
+   "localTime": "17:45",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612051745",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/lemmings-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/lemmings-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261206-202612061330",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f19",
+   "title": "Hidden",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-12-06",
+   "localTime": "13:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612061330",
+   "grade": null,
+   "subtitle": null,
+   "qa": true,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/hidden-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/hidden-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261206-202612061700",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f10",
+   "title": "California Dreamin'",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-12-06",
+   "localTime": "17:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612061700",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/california-dreamin-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/california-dreamin-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261206-202612062000",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f44",
+   "title": "Thesis",
+   "sectionId": null,
+   "sectionName": "Back to the Screen",
+   "date": "2026-12-06",
+   "localTime": "20:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612062000",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/thesis-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/thesis-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261212-202612121400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f43",
+   "title": "The White Ribbon",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-12-12",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612121400",
+   "grade": null,
+   "subtitle": null,
+   "qa": true,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-white-ribbon-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-white-ribbon-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261212-202612121745",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f27",
+   "title": "Occident",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-12-12",
+   "localTime": "17:45",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612121745",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/occident-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/occident-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261212-202612122000",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f2",
+   "title": "4 Months, 3 Weeks and 2 Days",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-12-12",
+   "localTime": "20:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612122000",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/4-months-3-weeks-and-2-days-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/4-months-3-weeks-and-2-days-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261213-202612131430",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f12",
+   "title": "Child's Pose",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-12-13",
+   "localTime": "14:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "emp-cinemas-isquare",
+   "venueName": "EMP Cinemas iSQUARE",
+   "code": "202612131430",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15771/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/childs-pose-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/childs-pose-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261213-202612131700",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f13",
+   "title": "Code Unknown",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-12-13",
+   "localTime": "17:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "emp-cinemas-isquare",
+   "venueName": "EMP Cinemas iSQUARE",
+   "code": "202612131700",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/code-unknown-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/code-unknown-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261213-202612131930",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f39",
+   "title": "The Piano Teacher",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-12-13",
+   "localTime": "19:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "emp-cinemas-isquare",
+   "venueName": "EMP Cinemas iSQUARE",
+   "code": "202612131930",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-piano-teacher-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-piano-teacher-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261219-202612191400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f7",
+   "title": "Amour",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-12-19",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612191400",
+   "grade": null,
+   "subtitle": null,
+   "qa": true,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/amour-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/amour-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261219-202612191745",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f6",
+   "title": "Aferim!",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-12-19",
+   "localTime": "17:45",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612191745",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/aferim-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/aferim-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261219-202612192000",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f21",
+   "title": "If I Want to Whistle, I Whistle",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-12-19",
+   "localTime": "20:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612192000",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/if-i-want-to-whistle-i-whistle-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/if-i-want-to-whistle-i-whistle-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261220-202612201330",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f42",
+   "title": "The Vanishing",
+   "sectionId": null,
+   "sectionName": "Back to the Screen",
+   "date": "2026-12-20",
+   "localTime": "13:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612201330",
+   "grade": null,
+   "subtitle": null,
+   "qa": true,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-vanishing-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-vanishing-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261220-202612201615",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f44",
+   "title": "Thesis",
+   "sectionId": null,
+   "sectionName": "Back to the Screen",
+   "date": "2026-12-20",
+   "localTime": "16:15",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612201615",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/thesis-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/thesis-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261220-202612201900",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f31",
+   "title": "The Autobiography of Nicolae Ceaușescu",
+   "sectionId": null,
+   "sectionName": "The Biting Ironies of the Romanian New Wave",
+   "date": "2026-12-20",
+   "localTime": "19:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612201900",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-autobiography-of-nicolae-ceausescu-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-autobiography-of-nicolae-ceausescu-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261226-202612261400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f23",
+   "title": "Lemmings",
+   "sectionId": null,
+   "sectionName": "Special Presentation",
+   "date": "2026-12-26",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612261400",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/lemmings-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/lemmings-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261226-202612261900",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f19",
+   "title": "Hidden",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-12-26",
+   "localTime": "19:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612261900",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/hidden-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/hidden-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261227-202612271400",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f17",
+   "title": "Funny Games (2007)",
+   "sectionId": null,
+   "sectionName": "Special Presentation",
+   "date": "2026-12-27",
+   "localTime": "14:00",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612271400",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": null,
+   "ticketUrl": "https://www.urbtix.hk/event-detail/15764/",
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/funny-games-2007-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/funny-games-2007-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261227-202612271630",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f43",
+   "title": "The White Ribbon",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-12-27",
+   "localTime": "16:30",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612271630",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-white-ribbon-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/the-white-ribbon-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
+  },
+  {
+   "id": "hkiff-cinefan-2026-20261227-202612271945",
+   "kind": "SCREENING",
+   "filmId": "hkiff-cinefan-2026-f7",
+   "title": "Amour",
+   "sectionId": null,
+   "sectionName": "Anatomy of Violence: Michael Haneke",
+   "date": "2026-12-27",
+   "localTime": "19:45",
+   "timezone": "Asia/Hong_Kong",
+   "venueId": "hong-kong-arts-centre-louis-koo-cinema",
+   "venueName": "Hong Kong Arts Centre Louis Koo Cinema",
+   "code": "202612271945",
+   "grade": null,
+   "subtitle": null,
+   "qa": false,
+   "ticketStatus": "Full House",
+   "ticketUrl": null,
+   "eventUrl": "https://cinefan.hkiff.org.hk/movie/amour-26",
+   "officialSourceUrl": "https://cinefan.hkiff.org.hk/movie/amour-26",
+   "lastVerifiedAt": "2026-11-04T18:39:12Z"
   }
  ],
  "stats": {
-  "films": 22,
-  "filmsTotal": 22,
-  "screenings": 44,
+  "films": 45,
+  "filmsTotal": 45,
+  "screenings": 88,
   "events": 0,
   "pending": 0,
-  "entries": 44,
+  "entries": 88,
   "venues": 4,
   "sections": 5,
-  "days": 15,
-  "guestVisits": 7
+  "days": 31,
+  "guestVisits": 17
  },
  "days": [
   {
@@ -1654,10 +3037,137 @@
    "heading": null,
    "venues": 0,
    "items": 3
+  },
+  {
+   "date": "2026-11-07",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-11-08",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-11-14",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-11-15",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-11-21",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-11-22",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-11-28",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-11-29",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-12-05",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 2
+  },
+  {
+   "date": "2026-12-06",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-12-12",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-12-13",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-12-19",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-12-20",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
+  },
+  {
+   "date": "2026-12-26",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 2
+  },
+  {
+   "date": "2026-12-27",
+   "tab": 0,
+   "sourceUrl": "https://cinefan.hkiff.org.hk/schedule",
+   "heading": null,
+   "venues": 0,
+   "items": 3
   }
  ],
- "warnings": [],
- "fetchedAt": "2026-10-20T06:30:44Z",
- "lastVerifiedAt": "2026-10-20T06:30:44Z",
+ "fetchedAt": "2026-11-04T18:39:12Z",
+ "lastVerifiedAt": "2026-11-04T18:39:12Z",
  "dataSource": "official"
 }
