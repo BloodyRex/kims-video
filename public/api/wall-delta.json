@@ -1,5 +1,79 @@
 {
-  "updated": "2026-11-05",
-  "count": 0,
-  "movies": []
+  "updated": "2026-11-06",
+  "count": 5,
+  "movies": [
+    {
+      "tmdbId": 1603262,
+      "mediaType": "movie",
+      "title": "珠穆朗玛：云中彼岸",
+      "titleEn": "Everest: The Other Side",
+      "year": "2026",
+      "releaseDate": "2026-11-06",
+      "poster": "https://image.tmdb.org/t/p/w500/cWbDLsCIChns73qh5Gd6u2e5zQ4.jpg",
+      "rating": 6.5,
+      "genre": [
+        "Documentary"
+      ],
+      "firstSeen": "2026-11-06"
+    },
+    {
+      "tmdbId": 1394721,
+      "mediaType": "movie",
+      "title": "麻将女王",
+      "titleEn": "Queen of Mahjong",
+      "year": "2026",
+      "releaseDate": "2026-11-06",
+      "poster": "https://image.tmdb.org/t/p/w500/vY6Nl8km2kxh3uop6o5dfUAwgQj.jpg",
+      "rating": 5.7,
+      "genre": [
+        "Comedy"
+      ],
+      "firstSeen": "2026-11-06"
+    },
+    {
+      "tmdbId": 1570488,
+      "mediaType": "movie",
+      "title": "狗狗的完美圣诞节",
+      "titleEn": "A Dog's Perfect Christmas",
+      "year": "2026",
+      "releaseDate": "2026-11-04",
+      "poster": "https://image.tmdb.org/t/p/w500/wCBlcfbVPiK0mc13mgJDEoxRBHB.jpg",
+      "rating": 8.5,
+      "genre": [
+        "Comedy",
+        "Drama"
+      ],
+      "firstSeen": "2026-11-06"
+    },
+    {
+      "tmdbId": 1807721,
+      "mediaType": "movie",
+      "title": "手捧繁星",
+      "titleEn": "手捧繁星",
+      "year": "2026",
+      "releaseDate": "2026-11-06",
+      "poster": "https://image.tmdb.org/t/p/w500/3hFpq6l1FTMo3OqyeE3W0aK6fHR.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama"
+      ],
+      "firstSeen": "2026-11-06"
+    },
+    {
+      "tmdbId": 1770304,
+      "mediaType": "movie",
+      "title": "一朵山花别样红",
+      "titleEn": "Shining in the Mountain",
+      "year": "2026",
+      "releaseDate": "2026-11-06",
+      "poster": "https://image.tmdb.org/t/p/w500/4tSElesuLrV2Yr8DyMiVMljhygi.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama",
+        "Mystery",
+        "Comedy"
+      ],
+      "firstSeen": "2026-11-06"
+    }
+  ]
 }
