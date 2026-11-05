@@ -1,54 +1,68 @@
 {
- "at": "2026-11-04T18:49:55Z",
+ "at": "2026-11-05T00:17:56Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": false,
-   "reason": "age 11min < 360min",
+   "reason": "age 339min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "idfa-2026",
    "due": false,
-   "reason": "age 11min < 360min",
+   "reason": "age 339min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "bfi-2026",
    "due": false,
-   "reason": "age 11min < 360min",
+   "reason": "age 339min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "hkiff-cinefan-2026",
    "due": false,
-   "reason": "age 11min < 360min",
+   "reason": "age 339min < 360min",
    "status": "SCREENING_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "venice-2026",
    "due": false,
-   "reason": "age 10min < 360min",
+   "reason": "age 338min < 360min",
    "status": "SCHEDULE_LIVE",
    "action": "skipped (throttled)"
   },
   {
    "slug": "cannes-2026",
-   "due": false,
-   "reason": "age 10min < 180min",
+   "due": true,
+   "reason": "age 338min ≥ 180min",
    "status": "PROGRAM_RELEASED",
-   "action": "skipped (throttled)"
+   "parsed": {
+    "films": 150,
+    "screenings": 0,
+    "venues": 0,
+    "days": 0,
+    "sourcesOk": 3,
+    "sourcesTotal": 3,
+    "status": "PROGRAM_RELEASED",
+    "lifecycle": "ENDED"
+   },
+   "warnings": [
+    "schedule covers 0/12 days"
+   ],
+   "action": "updated",
+   "changes": 0
   },
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 9385min ≥ 180min",
+   "reason": "age 9713min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "action": "fetch failed",
    "error": "iffr feed yielded 0 films (parse warnings: feed fetch failed: HTTP 403; feed parse failed: Unexpected end of JSON input)"
