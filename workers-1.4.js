@@ -2896,7 +2896,7 @@ function renderDigestHtml(d, now, locale) {
       seen.add(k); return true;
     });
   };
-  const toCalList = (arr, mediaType, limit, strict = false) => dedupeById(
+  const toCalList = (arr, mediaType, strict = false) => dedupeById(
     (arr || [])
       // Tier1 (coming.json) is STRICT: a mixed movie+TV list, so an entry without
       // mediaType must not appear in both tables. Tier2/3 lists are homogeneous
@@ -2905,17 +2905,30 @@ function renderDigestHtml(d, now, locale) {
       .map(x => ({ ...x, mediaType, _days: calcDays(x) }))
       .filter(x => x._days >= 0 && x._days <= 30)
       .sort((a, b) => a._days - b._days)
-  ).slice(0, limit);
+  );
 
-  // Tier 1: coming.json (single source of truth, weekly-accumulated)
-  let movieCalendar = toCalList(comingData?.next30Days, "movie", 6, true);
-  let tvCalendar = toCalList(comingData?.next30Days, "tv", 6, true);
+  // 2026-11-06：排片块改为「周累计集」展示。coming.json.next30Days 本身已是周锁合并后
+  // 的累计集（WEEKLY_SCOPE 生效，周内只增不减），但每表 limit 6 会把累计集截掉一半 ——
+  // 真实回放（9-21 起 6 个完整周）周并集峰值：**电影 12 部 / 剧集 10 部**。limit 6 下
+  // 「累计」在邮件里不可见，等于没做。上限放到 12（容纳实测峰值，不设无界值）。
+  const CAL_LIMIT = 12;
+  // Tier 1: coming.json（单一真源 + 周累计）
+  let movieAll = toCalList(comingData?.next30Days, "movie", true);
+  let tvAll = toCalList(comingData?.next30Days, "tv", true);
+  const movieFromLock = movieAll.length > 0;
+  const tvFromLock = tvAll.length > 0;
   // Tier 2: per-file upcoming (the old sources — still useful when coming.json is stale)
-  if (!movieCalendar.length) movieCalendar = toCalList(moviesData.upcoming, "movie", 6);
-  if (!tvCalendar.length) tvCalendar = toCalList(tvData.upcoming, "tv", 6);
+  if (!movieAll.length) movieAll = toCalList(moviesData.upcoming, "movie");
+  if (!tvAll.length) tvAll = toCalList(tvData.upcoming, "tv");
   // Tier 3: overview 的「即将上映」卡片池 —— 最后一次兜底，绝不再渲染「暂无」
-  if (!movieCalendar.length) movieCalendar = toCalList(overview.comingSoon, "movie", 6);
-  if (!tvCalendar.length) tvCalendar = toCalList(overview.comingSoonTv, "tv", 6);
+  if (!movieAll.length) movieAll = toCalList(overview.comingSoon, "movie");
+  if (!tvAll.length) tvAll = toCalList(overview.comingSoonTv, "tv");
+  const movieCalendar = movieAll.slice(0, CAL_LIMIT);
+  const tvCalendar = tvAll.slice(0, CAL_LIMIT);
+  // 「本周累计」标注只在 Tier1 出现：Tier2/3 是当日快照，不是累计集，标了就是撒谎。
+  const calHead = (emoji, label, total, isCumulative) => `<p style="font-size:11px;color:${emoji === "🎬" ? "#ff00ff" : "#00ffff"};font-weight:bold;text-transform:uppercase;margin:0 0 4px">${emoji} ${label}`
+    + (total ? ` <span style="color:#666;font-weight:normal;text-transform:none">· ${isCumulative ? L(`本周累计 ${total} 部`, `${total} THIS WEEK`) : `${total}`}</span>` : "")
+    + `</p>`;
   const calendarRow = (item) => {
     const d = item._days;
     const label = d === 0 ? L("今日", "TODAY") : d <= 3 ? (en ? `${d}D` : `${d}天后`) : (en ? `${d}D` : `${d}天`);
@@ -2924,10 +2937,10 @@ function renderDigestHtml(d, now, locale) {
   };
   const calendarHtml = (movieCalendar.length || tvCalendar.length)
     ? `<div style="background:#000;border:2px dashed #444;padding:8px;margin:6px 0">
-  <p style="font-size:11px;color:#ff00ff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 ${L("电影排片", "MOVIE CALENDAR")}</p>
+  ${calHead("🎬", L("电影排片", "MOVIE CALENDAR"), movieAll.length, movieFromLock)}
   <table style="width:100%;border-collapse:collapse">${movieCalendar.length ? movieCalendar.map(calendarRow).join("") : `<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">${L("暂无", "None")}</td></tr>`}</table>
   <div style="border-top:1px dashed #333;margin:8px 0"></div>
-  <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 ${L("剧集排片", "TV CALENDAR")}</p>
+  ${calHead("📺", L("剧集排片", "TV CALENDAR"), tvAll.length, tvFromLock)}
   <table style="width:100%;border-collapse:collapse">${tvCalendar.length ? tvCalendar.map(calendarRow).join("") : `<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">${L("暂无", "None")}</td></tr>`}</table>
 </div>
 <div style="text-align:right;margin:4px 0">

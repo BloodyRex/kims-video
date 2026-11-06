@@ -187,10 +187,10 @@ MusicBrainz 近 30 天新发行（3 页×100）→ Last.fm 歌手热度过滤（
 
 ### 6.7 每日邮件 digest（fetchDigestData + renderDigestHtml，零 TMDB 调用）
 
-`fetchDigestData` 读 8 个静态 JSON（digest/overview/tv/music/movies/hidden-gems/wall-delta/tvwall-delta），一次取数；`renderDigestHtml(data, now, locale)` 按语言渲染（zh/en 各一份，字段缺失时 zh↔en 回退）。2026-08-25 起为双语版：
+`fetchDigestData` 读 10 个静态 JSON（digest/overview/tv/music/movies/hidden-gems/wall-delta/tvwall-delta/coming/weekly-lock），一次取数；`renderDigestHtml(data, now, locale)` 按语言渲染（zh/en 各一份，字段缺失时 zh↔en 回退）。2026-08-25 起为双语版：
 
 1. **每日摘要**：headline(+En) + summary(+En) + industryHighlights 要点 bullet + topTrends 标签（AI 失败时程序化兜底）；
-2. **影视日历**：未来 30 天排片（电影 6 + 剧集 6，daysUntil 排序）；
+2. **影视日历**：未来 30 天排片（页首标注「本周累计 N 部」；电影/剧集各最多 12 条，按 daysUntil 排序）。条目源是 `coming.json.next30Days` —— pipeline 侧已纳入每周累计（周一起只增不减），所以周内不会因为当天抓取波动而整块消失；
 3. **今日电影推荐**：hidden-gems 中 mediaType≠tv 的前 5（92px 海报 + 评分 + whyWatch(+En) + tags(+En)，标题链 `/?from=digest&r={id}` 直达详情）；
 4. **今日剧集推荐**：mediaType=tv 的前 5（含 S/E，链接加 `&type=tv`）；
 5. **音乐精选**：4 分类各 2 首；
