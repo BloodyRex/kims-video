@@ -1,5 +1,51 @@
 {
-  "updated": "2026-11-06",
-  "count": 0,
-  "movies": []
+  "updated": "2026-11-07",
+  "count": 3,
+  "movies": [
+    {
+      "tmdbId": 1810158,
+      "mediaType": "movie",
+      "title": "心迷宫之三重罪",
+      "titleEn": "心迷宫之三重罪",
+      "year": "2026",
+      "releaseDate": "2026-11-07",
+      "poster": "https://image.tmdb.org/t/p/w500/vycINr2X4BCUwAiAA3DYot5LeK5.jpg",
+      "rating": 0,
+      "genre": [
+        "Crime"
+      ],
+      "firstSeen": "2026-11-07"
+    },
+    {
+      "tmdbId": 1409470,
+      "mediaType": "movie",
+      "title": "我们仅有一次的人生",
+      "titleEn": "Embers",
+      "year": "2026",
+      "releaseDate": "2026-11-07",
+      "poster": "https://image.tmdb.org/t/p/w500/x9qOS6bmqS0aeElkfH9qdO9NPVJ.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama",
+        "Crime"
+      ],
+      "firstSeen": "2026-11-07"
+    },
+    {
+      "tmdbId": 2742,
+      "mediaType": "movie",
+      "title": "裸体午餐",
+      "titleEn": "Naked Lunch",
+      "year": "1991",
+      "releaseDate": "1991-12-27",
+      "poster": "https://image.tmdb.org/t/p/w342/u01kh5jKUWjhom76mguRqUgdvja.jpg",
+      "rating": 6.984,
+      "genre": [
+        "犯罪",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-06"
+    }
+  ]
 }
