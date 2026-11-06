@@ -57,11 +57,11 @@
       "279246"
     ],
     "tv.json.ongoing": [
-      "108978",
-      "312359",
-      "1413",
-      "200875",
       "124364",
+      "200875",
+      "312359",
+      "108978",
+      "1413",
       "79744"
     ],
     "music.json.picks": [
@@ -85,7 +85,37 @@
       "aca30a57-12bb-4a41-af25-59457048a844",
       "50568f3c-616c-4d19-a8f1-8151ecb6eb72",
       "be8a32b8-e09c-45e5-9ce9-3382410ae371"
+    ],
+    "coming.json.next30Days": [
+      "movie:1300968",
+      "movie:1567605",
+      "movie:1538497",
+      "tv:171802"
     ]
   },
-  "failures": {}
+  "failures": {},
+  "delta": {
+    "date": "2026-11-06",
+    "bySection": {
+      "movies.json.releasedThisWeek": 0,
+      "movies.json.nowPlaying": 0,
+      "tv.json.premieresThisWeek": 0,
+      "tv.json.ongoing": 0,
+      "music.json.picks": 0,
+      "coming.json.next30Days": 0
+    },
+    "total": 0
+  },
+  "prevCounts": {
+    "weekStart": "2026-11-02",
+    "date": "2026-11-06",
+    "totals": {
+      "movies.json.releasedThisWeek": 23,
+      "movies.json.nowPlaying": 23,
+      "tv.json.premieresThisWeek": 1,
+      "tv.json.ongoing": 6,
+      "music.json.picks": 20,
+      "coming.json.next30Days": 4
+    }
+  }
 }

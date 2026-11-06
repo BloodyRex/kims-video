@@ -105,11 +105,11 @@
       "artistPlaycount": 348184,
       "albumListeners": 138,
       "albumPlaycount": 1314,
-      "score": 60.54655907140669,
+      "score": 59.54655907140669,
       "scoreBreakdown": {
         "artist": 27.84716363940051,
         "album": 10.699395432006181,
-        "freshness": 22
+        "freshness": 21
       }
     },
     {
@@ -185,7 +185,7 @@
         "dariacore",
         "jersey club"
       ],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e9/63/e4/e963e47d-f77e-a73c-6f03-2980801a3ee0/195542927325_cover.jpg/600x600bb.jpg",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/65/a1/d8/65a1d809-dede-adf4-d85e-964070e77f58/808391285897.jpg/600x600bb.jpg",
       "source": "musicbrainz",
       "artistListeners": 143807,
       "artistPlaycount": 3801056,
@@ -521,31 +521,6 @@
       }
     },
     {
-      "id": "mb-5f31e26b-8a88-47f6-97a4-37e14bb5cef6",
-      "mbid": "5f31e26b-8a88-47f6-97a4-37e14bb5cef6",
-      "title": "Oaths Unbent",
-      "artist": "Wuthering Waves",
-      "releaseDate": "2026-10-21",
-      "year": "2026",
-      "type": "EP",
-      "country": "CN",
-      "genres": [],
-      "genresEn": [],
-      "lfmTags": [],
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ef/85/2b/ef852bc4-1574-8bde-d544-65909365a4a2/4896010909619.jpg/600x600bb.jpg",
-      "source": "musicbrainz",
-      "artistListeners": 67911,
-      "artistPlaycount": 5386483,
-      "albumListeners": 0,
-      "albumPlaycount": 0,
-      "score": 47.21293417044922,
-      "scoreBreakdown": {
-        "artist": 32.21293417044922,
-        "album": 0,
-        "freshness": 15
-      }
-    },
-    {
       "id": "mb-af4ece5b-3174-426d-ad92-45090ab35b5e",
       "mbid": "af4ece5b-3174-426d-ad92-45090ab35b5e",
       "title": "Eingenordet",
@@ -593,6 +568,31 @@
         "artist": 32.535707996128245,
         "album": 14.197390236870993,
         "freshness": 0
+      }
+    },
+    {
+      "id": "mb-5f31e26b-8a88-47f6-97a4-37e14bb5cef6",
+      "mbid": "5f31e26b-8a88-47f6-97a4-37e14bb5cef6",
+      "title": "Oaths Unbent",
+      "artist": "Wuthering Waves",
+      "releaseDate": "2026-10-21",
+      "year": "2026",
+      "type": "EP",
+      "country": "CN",
+      "genres": [],
+      "genresEn": [],
+      "lfmTags": [],
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ef/85/2b/ef852bc4-1574-8bde-d544-65909365a4a2/4896010909619.jpg/600x600bb.jpg",
+      "source": "musicbrainz",
+      "artistListeners": 67911,
+      "artistPlaycount": 5386483,
+      "albumListeners": 0,
+      "albumPlaycount": 0,
+      "score": 46.21293417044922,
+      "scoreBreakdown": {
+        "artist": 32.21293417044922,
+        "album": 0,
+        "freshness": 14
       }
     }
   ]
