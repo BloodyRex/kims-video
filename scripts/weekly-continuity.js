@@ -9,9 +9,11 @@
  *   movies.json → releasedThisWeek, nowPlaying
  *   tv.json     → premieresThisWeek, ongoing
  *   music.json  → picks
+ *   coming.json → next30Days   (2026-11-06: 排片日历纳入锁，治「周三有、周四空」的锯齿。
+ *                next7Days 是 next30Days 的子集，同源派生，无需单独锁。)
  * Explicitly OUT of scope (Rex decisions 2026-09-30):
- *   即将上映 / 即将播出 / 总览即将上映 / 排片日历 coming.json / 编辑精选 / 发现页每日精选 /
- *   影视墙 / 剧集墙 / 每日邮件（邮件保持每日快照） /
+ *   即将上映 / 即将播出 / 总览即将上映 / 编辑精选 / 发现页每日精选 /
+ *   影视墙 / 剧集墙 / 每日邮件（邮件只「读」weekly-lock.json 展示累计数，不参与累计计算）/
  *   发现页社区发现、每日摘要（非作品列表）.
  *
  * Hard constraint this design respects: Cloudflare Workers Free = 50 subrequests per
@@ -31,6 +33,9 @@ export const WEEKLY_SCOPE = {
   "movies.json": ["releasedThisWeek", "nowPlaying"],
   "tv.json": ["premieresThisWeek", "ongoing"],
   "music.json": ["picks"],
+  // 排片日历（2026-11-06）：只锁 next30Days —— next7Days 由它派生。到期条目由
+  // fetch-intelligence-data.js 在合并后按 releaseDate 剔除（已上映的不该再倒计时）。
+  "coming.json": ["next30Days"],
 };
 
 export const WEEKLY_LOCK_FILE = "weekly-lock.json";
@@ -40,7 +45,12 @@ export function itemKey(item) {
   if (!item || typeof item !== "object") return null;
   const v = item.tmdbId ?? item.id ?? item.mbid ?? item.title;
   if (v == null || v === "") return null;
-  return String(v);
+  // coming.json mixes movies and TV in one list, and TMDB movie IDs and TV IDs
+  // are SEPARATE namespaces (same number can be two different works). Prefix by
+  // mediaType only when the item carries one — locked movie/tv/music sections
+  // have never stored prefixed keys, so their history stays valid.
+  const t = item.mediaType;
+  return t ? `${t}:${v}` : String(v);
 }
 
 /** Beijing-date string → ISO date of that week's Monday (TZ-safe: parse at UTC noon). */
@@ -66,7 +76,14 @@ export function loadWeeklyLock(dir) {
 
 export function saveWeeklyLock(dir, state) {
   const p = join(dir, WEEKLY_LOCK_FILE);
-  const canonical = (s) => JSON.stringify({ ...s, updated: null }, null, 2);
+  // `updated`/`delta.date`/`prevCounts.date` are stamps — exclude them so a run
+  // that changed nothing doesn't produce a commit-noise diff.
+  const canonical = (s) => JSON.stringify({
+    ...s,
+    updated: null,
+    delta: s?.delta ? { ...s.delta, date: null } : s?.delta,
+    prevCounts: s?.prevCounts ? { ...s.prevCounts, date: null } : s?.prevCounts,
+  }, null, 2);
   let prev = null;
   if (existsSync(p)) {
     try { prev = canonical(JSON.parse(readFileSync(p, "utf8"))); } catch {}

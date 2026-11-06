@@ -1815,10 +1815,30 @@ async function handleIntelTV(env) {
   // 2026-08-20 v2: no popularity dependency — unreleased shows have no pop.
   // Score = date proximity (30d peak) + zh info + TVMAZE rating. Floor: none
   // (no-rating is normal pre-air); zh-less shows are dropped later by enrich.
-  const upcomingFromDiscover = discoverRaw
+  // 2026-11-06 供给兜底: `intelRatingOk`(vote_average>=4) 是为已播剧设的可信门槛，
+  // 未播剧常常只有零星票甚至 3.x（预告片刷分），硬套会让 discover 池在淡季被砍空 →
+  // tv.json.upcoming=0 → 排片日历剧集整块「暂无」。改为「先严格、不够再放宽」：
+  // 严格池不足 UPCOMING_MIN 时，把被门槛砍掉但日期在 45 天内的条目补回候选，
+  // 让评分只影响排序权重（scoreUpcoming 里的 wRating），不再一票否决。
+  const UPCOMING_MIN = 12;
+  const UPCOMING_RELAX_DAYS = 45;
+  const upcomingBase = discoverRaw
     .filter(s => s.first_air_date && s.first_air_date > today)
-    .filter(s => !premiereIds.has(s.id))
-    .filter(intelRatingOk);
+    .filter(s => !premiereIds.has(s.id));
+  const upcomingStrict = upcomingBase.filter(intelRatingOk);
+  const upcomingPool = upcomingStrict.length >= UPCOMING_MIN ? upcomingStrict : [
+    ...upcomingStrict,
+    ...upcomingBase
+      .filter(s => !intelRatingOk(s))
+      .filter(s => {
+        const d = Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000);
+        return d >= 0 && d <= UPCOMING_RELAX_DAYS;
+      }),
+  ];
+  if (upcomingPool.length > upcomingStrict.length) {
+    console.log(`· tv.upcoming — 严格池仅 ${upcomingStrict.length}/${UPCOMING_MIN}，放宽评分门槛补入 ${upcomingPool.length - upcomingStrict.length} 条（≤${UPCOMING_RELAX_DAYS}天）`);
+  }
+  const upcomingFromDiscover = upcomingPool;
   const upcomingMerged = [...upcomingFromDiscover];
   const discIds = new Set(upcomingFromDiscover.map(s => s.id));
   for (const s of tvmazeUpcoming) {
@@ -2788,11 +2808,16 @@ async function fetchDigestData() {
     try { return await result.value.json(); } catch { return null; }
   };
 
-  const [digestR, overviewR, tvR, musicR, moviesR, gemsR, wallDeltaR, tvWallDeltaR] = await Promise.allSettled([
+  // coming.json / weekly-lock.json added 2026-11-06:
+  //   · coming.json 是排片日历的单一真源（pipeline 本地合并 movies+tv，周内只增不减）；
+  //     邮件以前只读 tvData.upcoming，一次抓空就整块空白。
+  //   · weekly-lock.json 提供本周累计（只读，不参与任何计算）。
+  const [digestR, overviewR, tvR, musicR, moviesR, gemsR, wallDeltaR, tvWallDeltaR, comingR, weeklyLockR] = await Promise.allSettled([
     fetch(`${BASE}/digest.json`), fetch(`${BASE}/overview.json`),
     fetch(`${BASE}/tv.json`), fetch(`${BASE}/music.json`),
     fetch(`${BASE}/movies.json`), fetch(`${BASE}/hidden-gems.json`),
     fetch(`${BASE}/wall-delta.json`), fetch(`${BASE}/tvwall-delta.json`),
+    fetch(`${BASE}/coming.json`), fetch(`${BASE}/weekly-lock.json`),
   ]);
 
   return {
@@ -2804,6 +2829,8 @@ async function fetchDigestData() {
     gemsData: (await safeJson(gemsR)) || {},
     wallDelta: (await safeJson(wallDeltaR)) || {},
     tvWallDelta: (await safeJson(tvWallDeltaR)) || {},
+    comingData: (await safeJson(comingR)) || {},
+    weeklyLock: (await safeJson(weeklyLockR)) || {},
   };
 }
 
@@ -2846,25 +2873,49 @@ function renderDigestHtml(d, now, locale) {
     ? `<ul style="margin:8px 0 0;padding-left:16px">${highlights.map(h => `<li style="font-size:11px;color:#aaa;line-height:1.6">${h}</li>`).join("")}</ul>`
     : "";
 
-  // ── Release Calendar — stacked, same sources as website, sorted, deduped ──
-  const today = new Date();
+  // ── Release Calendar — 单一真源 coming.json（2026-11-06 治本） ──
+  // 以前电影读 movies.json.upcoming、剧集读 tv.json.upcoming，两边各自日更：
+  // tv.json.upcoming 一次抓空（供给四因：discover 无热度下限 / daysUntil<=3 被
+  // imminent 抽进首播 / 日期口径不齐 / 无兜底）整块就变「暂无」。
+  // 现在：coming.json 是唯一真源（pipeline 本地合并 movies+tv，且已纳入每周累计，
+  // 周内只增不减）；两极兜底保证它今天没发布也不会空白。
+  const { comingData, weeklyLock } = d;
+  const todayBj = new Date(intelToday() + "T00:00:00+08:00");
   const calcDays = (item) => {
-    const d = item.releaseDate || item.release_date || item.first_air_date || "";
-    if (!d) return 999;
-    return Math.max(0, Math.ceil((new Date(d) - today) / 86400000));
+    const raw = item.releaseDate || item.release_date || item.first_air_date || "";
+    if (!raw) return item.daysUntil !== undefined ? item.daysUntil : 999;
+    const d = raw.slice(0, 10);
+    // 用北京日零点做差：服务器 UTC 的 new Date() 在 08:00 前会把"今天"算成明天。
+    return Math.round((new Date(`${d}T00:00:00+08:00`) - todayBj) / 86400000);
   };
-  // Movies: same source as website (movies.json.upcoming, has daysUntil)
-  const movieCalendar = (moviesData.upcoming || [])
-    .map(m => ({ ...m, _days: m.daysUntil !== undefined ? m.daysUntil : calcDays(m) }))
-    .filter(m => m._days <= 30)
-    .sort((a, b) => a._days - b._days)
-    .slice(0, 6);
-  // TV: same source as website (tv.json.upcoming), calculate daysUntil
-  const tvCalendar = (tvData.upcoming || [])
-    .map(s => ({ ...s, _days: calcDays(s) }))
-    .filter(s => s._days <= 30)
-    .sort((a, b) => a._days - b._days)
-    .slice(0, 6);
+  const dedupeById = (arr) => {
+    const seen = new Set();
+    return arr.filter(x => {
+      const k = `${x.mediaType || ""}:${x.tmdbId ?? x.id ?? x.title ?? ""}`;
+      if (seen.has(k)) return false;
+      seen.add(k); return true;
+    });
+  };
+  const toCalList = (arr, mediaType, limit, strict = false) => dedupeById(
+    (arr || [])
+      // Tier1 (coming.json) is STRICT: a mixed movie+TV list, so an entry without
+      // mediaType must not appear in both tables. Tier2/3 lists are homogeneous
+      // (movies.json.upcoming = films, tv.json.upcoming = shows) → permissive.
+      .filter(x => (strict ? x.mediaType === mediaType : (x.mediaType ? x.mediaType === mediaType : true)))
+      .map(x => ({ ...x, mediaType, _days: calcDays(x) }))
+      .filter(x => x._days >= 0 && x._days <= 30)
+      .sort((a, b) => a._days - b._days)
+  ).slice(0, limit);
+
+  // Tier 1: coming.json (single source of truth, weekly-accumulated)
+  let movieCalendar = toCalList(comingData?.next30Days, "movie", 6, true);
+  let tvCalendar = toCalList(comingData?.next30Days, "tv", 6, true);
+  // Tier 2: per-file upcoming (the old sources — still useful when coming.json is stale)
+  if (!movieCalendar.length) movieCalendar = toCalList(moviesData.upcoming, "movie", 6);
+  if (!tvCalendar.length) tvCalendar = toCalList(tvData.upcoming, "tv", 6);
+  // Tier 3: overview 的「即将上映」卡片池 —— 最后一次兜底，绝不再渲染「暂无」
+  if (!movieCalendar.length) movieCalendar = toCalList(overview.comingSoon, "movie", 6);
+  if (!tvCalendar.length) tvCalendar = toCalList(overview.comingSoonTv, "tv", 6);
   const calendarRow = (item) => {
     const d = item._days;
     const label = d === 0 ? L("今日", "TODAY") : d <= 3 ? (en ? `${d}D` : `${d}天后`) : (en ? `${d}D` : `${d}天`);
@@ -2882,6 +2933,48 @@ function renderDigestHtml(d, now, locale) {
 <div style="text-align:right;margin:4px 0">
   <a href="https://bloodyrex.xyz/intelligence/coming?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ff00ff">${L("查看全部排片 →", "Full calendar →")}</a>
 </div>`
+    : "";
+
+  // ── 本周累计（2026-11-06）：只读 weekly-lock.json，不参与任何计算 ──
+  // 这是「周一到周日只增不减」的可见证据：数字来自 pipeline 当次写盘的 sections 长度，
+  // 今日新增来自同一个文件里记录的 delta（pipeline 侧算好，Worker 零子请求）。
+  const weeklySections = weeklyLock?.sections && typeof weeklyLock.sections === "object" ? weeklyLock.sections : null;
+  const weeklyStart = weeklyLock?.weekStart || "";
+  const weekEndStr = (() => {
+    if (!weeklyStart) return "";
+    const d = new Date(`${weeklyStart}T12:00:00Z`);
+    d.setUTCDate(d.getUTCDate() + 6);
+    return d.toISOString().slice(0, 10);
+  })();
+  const wCount = (key) => (Array.isArray(weeklySections?.[key]) ? weeklySections[key].length : 0);
+  const wDelta = (key) => {
+    const v = weeklyLock?.delta?.bySection?.[key];
+    return typeof v === "number" ? v : 0;
+  };
+  const weeklyRows = weeklySections ? [
+    { key: "movies.json.releasedThisWeek", zh: "电影·本周上映", en: "MOVIES · NEW THIS WEEK", color: "#ff00ff" },
+    { key: "movies.json.nowPlaying", zh: "电影·热映中", en: "MOVIES · IN THEATERS", color: "#ff00ff" },
+    { key: "tv.json.premieresThisWeek", zh: "剧集·本周首播", en: "TV · PREMIERES", color: "#00ffff" },
+    { key: "tv.json.ongoing", zh: "剧集·热播中", en: "TV · ON AIR", color: "#00ffff" },
+    { key: "coming.json.next30Days", zh: "排片·30天内", en: "CALENDAR · 30 DAYS", color: "#ffff00" },
+    { key: "music.json.picks", zh: "音乐·本周精选", en: "MUSIC · WEEKLY PICKS", color: "#00ff00" },
+  ].map(r => ({ ...r, n: wCount(r.key), d: wDelta(r.key) })).filter(r => r.n > 0) : [];
+  const weeklyTotal = weeklyRows.reduce((a, r) => a + r.n, 0);
+  const weeklyDeltaTotal = weeklyRows.reduce((a, r) => a + r.d, 0);
+  const weeklyCumulativeHtml = weeklyRows.length
+    ? `<div style="background:#000;border:4px solid #00ff00;padding:12px;margin-bottom:16px">
+    ${title(`📈 ${L("本周累计", "THIS WEEK")}${weeklyStart ? ` · ${weeklyStart.slice(5)} ~ ${weekEndStr.slice(5)}` : ""}`)}
+    <table style="width:100%;border-collapse:collapse">
+      ${weeklyRows.map(r => `<tr>
+        <td style="padding:2px 6px;font-size:11px;color:${r.color};background:#111;white-space:nowrap">${en ? r.en : r.zh}</td>
+        <td style="padding:2px 6px;font-size:11px;color:#fff;text-align:right;background:#111;white-space:nowrap">${r.n}${r.d > 0 ? `<span style="color:#00ff00;font-size:10px"> +${r.d}</span>` : ""}</td>
+      </tr>`).join("")}
+    </table>
+    <p style="font-size:11px;color:#aaa;margin:8px 0 0">${L(
+      `本周已累计 ${weeklyTotal} 条${weeklyDeltaTotal > 0 ? ` · 较上次 +${weeklyDeltaTotal}` : ""}（周一选定即保留，周内只增不减）`,
+      `${weeklyTotal} items this week${weeklyDeltaTotal > 0 ? ` · +${weeklyDeltaTotal} since last run` : ""} (locked on Monday, only grows)`
+    )}</p>
+  </div>`
     : "";
 
   // ── Wall additions — today's new movies/TV on the wall (delta files; section
@@ -3005,6 +3098,9 @@ function renderDigestHtml(d, now, locale) {
     <h1 style="margin:0;font-size:18px;color:#000;text-transform:uppercase;letter-spacing:2px">KIM'S VIDEO · ${now}</h1>
     <p style="margin:4px 0 0;font-size:10px;color:#000;text-transform:uppercase;letter-spacing:1px">${L("每日影音情报摘要", "Daily Entertainment Digest")}${date && date !== now ? ` · ${L("数据截至", "data as of")} ${date}` : ""}</p>
   </div>
+
+  <!-- 本周累计（周内只增不减的可见证据；只读 weekly-lock.json） -->
+  ${weeklyCumulativeHtml}
 
   <!-- Daily Digest -->
   ${headline || summaryZh ? `

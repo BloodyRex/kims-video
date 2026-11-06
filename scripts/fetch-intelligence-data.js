@@ -14,6 +14,7 @@ import {
   loadWeeklyLock,
   saveWeeklyLock,
   WEEKLY_SCOPE,
+  itemKey,
 } from "./weekly-continuity.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -321,33 +322,104 @@ async function main() {
   // mediaType tags are REQUIRED: the wall builder below filters
   // coming.next7/next30 by `mediaType === "movie"`, and the Search view maps
   // `_type` off it too.
+  //
+  // 2026-11-06 治本：排片日历纳入每周累计（WEEKLY_SCOPE["coming.json"]）。
+  // 之前的锯齿（周三有、周四空）源于三条日更链路的供给波动：
+  //   ① tv.json.upcoming 依赖 discover 未来 90 天 + TVMAZE +7/+14 采样，无热度下限兜底；
+  //   ② daysUntil<=3 的剧被 imminent 规则挪进 premieresThisWeek，upcoming 被抽空；
+  //   ③ 每日邮件只读 tv.json.upcoming（单源），一次抓空就是整块空白。
+  // 现在 coming.json 本身周内只增不减，且邮件以它为主源。
+  // 到期处理：已上映/已开播（releaseDate < 今天）的条目当日剔除——倒计时到 0 就不该
+  // 再挂在排片表上，这是"锁定条目不淘汰"唯一允许的例外。
   try {
     const moviesData = JSON.parse(readFileSync(join(API_DIR, "movies.json"), "utf8"));
     const tvData = JSON.parse(readFileSync(join(API_DIR, "tv.json"), "utf8"));
+    const todayStr = beijingDate();
     const daysOf = (item) => {
-      if (typeof item.daysUntil === "number") return item.daysUntil;
+      // Recompute ALWAYS from releaseDate: a carried (locked) item still holds the
+      // daysUntil it had on the day it was locked — showing that stale number is
+      // exactly how the calendar used to drift. daysUntil is a display value, not
+      // an input.
       const d = item.releaseDate || "";
-      return d ? Math.max(0, Math.ceil((new Date(d) - new Date(beijingDate() + "T00:00:00+08:00")) / 86400000)) : 999;
+      if (!d) return typeof item.daysUntil === "number" ? item.daysUntil : 999;
+      return Math.ceil((new Date(`${d}T00:00:00+08:00`) - new Date(`${todayStr}T00:00:00+08:00`)) / 86400000);
     };
     const allItems = [
       ...(moviesData.upcoming || []).map(i => ({ ...i, mediaType: "movie", daysUntil: daysOf(i) })),
       // explicit mediaType: tv.json.upcoming only carries it on source=tvmaze
       // entries — TMDB-sourced shows would fall through the wall/search filters
       ...(tvData.upcoming || []).map(i => ({ ...i, mediaType: "tv", daysUntil: daysOf(i) })),
-    ].filter(i => i.daysUntil !== null && i.daysUntil <= 999);
-    const comingData = {
-      updated: beijingDate(),
+    ].filter(i => i.daysUntil !== null && i.daysUntil >= 0 && i.daysUntil <= 999);
+    let comingData = {
+      updated: todayStr,
       next7Days: allItems.filter(i => i.daysUntil <= 7),
       next30Days: allItems.filter(i => i.daysUntil <= 30),
     };
     const comingPath = join(API_DIR, "coming.json");
     let oldComing = null;
     if (existsSync(comingPath)) { try { oldComing = JSON.parse(readFileSync(comingPath, "utf8")); } catch {} }
+
+    // ── Weekly continuity for the release calendar (只锁 next30Days) ──
+    if (weeklyEnabled) {
+      try {
+        const res = await applyWeeklyContinuity({
+          file: "coming.json",
+          fresh: comingData,
+          previous: oldComing,
+          state: weeklyState,
+          today: todayStr,
+          cap: weeklyCap,
+          caps: weeklyCaps,
+          enabled: true,
+        });
+        weeklyState = res.state;
+        comingData = res.data;
+        if (res.changed) anyChange = true;
+        for (const r of res.report) {
+          if (r.emptyFallback) { console.log(`· weekly-lock — ${r.section}: 今日数据为空 → 沿用本周锁定 ${r.carried} 条`); continue; }
+          console.log(
+            `· weekly-lock — ${r.section}: 锁存 ${r.lockedBefore} + 锁定沿用 ${r.carried} + 今日新增 ${r.keptNew}/${r.newToday}`
+            + ` → ${r.total}/${r.cap}` + (r.dropped ? `（满额舍弃 ${r.dropped}）` : "") + (r.dead ? `（剔除失效 ${r.dead}）` : "")
+          );
+        }
+      } catch (e) {
+        console.warn(`⚠ weekly-lock (coming) failed: ${e.message}`);
+      }
+    }
+
+    // ── Post-merge housekeeping (weekly lock 之外的两步清洗) ──
+    // 1) 到期剔除：锁存条目一旦上映/开播就从排片表移除（倒计时归零），并把 id 同步
+    //    从锁里删掉，避免它明天又被"沿用"回来。这是锁定规则唯一的例外。
+    // 2) next7Days 直接由 next30Days 派生 —— 单一事实源，两个数组不可能互相矛盾。
+    const today0 = new Date(`${todayStr}T00:00:00+08:00`).getTime();
+    const stillUpcoming = (i) => {
+      const d = i.releaseDate || "";
+      if (!d) return true; // 没有日期就无从上映，保留
+      return new Date(`${d}T00:00:00+08:00`).getTime() > today0;
+    };
+    const lockedKey = "coming.json.next30Days";
+    const beforeLen = (comingData.next30Days || []).length;
+    comingData.next30Days = (comingData.next30Days || [])
+      .filter(stillUpcoming)
+      .map(i => ({ ...i, daysUntil: daysOf(i) }))
+      .filter(i => i.daysUntil >= 0)
+      .sort((a, b) => a.daysUntil - b.daysUntil);
+    comingData.next7Days = comingData.next30Days.filter(i => i.daysUntil <= 7);
+    const removedExpired = beforeLen - comingData.next30Days.length;
+    if (removedExpired > 0) {
+      console.log(`· coming.json — ${removedExpired} 条已上映/已开播，移出排片日历`);
+      if (Array.isArray(weeklyState?.sections?.[lockedKey])) {
+        const alive = new Set(comingData.next30Days.map(i => itemKey(i)).filter(Boolean));
+        weeklyState.sections[lockedKey] = weeklyState.sections[lockedKey].filter(k => alive.has(k));
+      }
+    }
+
     writeFileSync(comingPath, JSON.stringify(comingData, null, 2), "utf8");
     const comingChanged = !oldComing || JSON.stringify(oldComing.next7Days || []) !== JSON.stringify(comingData.next7Days)
       || JSON.stringify(oldComing.next30Days || []) !== JSON.stringify(comingData.next30Days);
     if (comingChanged) anyChange = true;
-    console.log(`OK coming.json — local merge: ${comingData.next7Days.length} in 7d / ${comingData.next30Days.length} in 30d (${comingChanged ? "NEW DATA" : "unchanged"})`);
+    const tvIn30 = comingData.next30Days.filter(i => i.mediaType === "tv").length;
+    console.log(`OK coming.json — local merge: ${comingData.next7Days.length} in 7d / ${comingData.next30Days.length} in 30d（剧集 ${tvIn30}）(${comingChanged ? "NEW DATA" : "unchanged"})`);
 
     // ── discover-daily.json: mirror of overview.editorsPicks for the Discover page ──
     // The Discover top row shows the same fixed-6 daily picks as Intelligence 总览.
@@ -828,7 +900,30 @@ async function main() {
   }
 
   // ── Persist the weekly lock (survives across runs; committed with public/api/) ──
+  // 每日「今日 +N」计数在这里一次算清：Worker 侧的邮件只读 weekly-lock.json，
+  // 拿不到昨天的文件，也不该为这件事多发子请求。delta = 本次各栏已锁条数 − 上次
+  // 同周写盘时留下的 prevCounts；同一周内两者的差就是「今天新增」。
   try {
+    if (!weeklyState || typeof weeklyState !== "object") throw new Error("weekly state unavailable");
+    const totals = {};
+    for (const [k, ids] of Object.entries(weeklyState?.sections || {})) {
+      totals[k] = Array.isArray(ids) ? ids.length : 0;
+    }
+    const prevSnap = weeklyState?.prevCounts && weeklyState.prevCounts.weekStart === weeklyState.weekStart
+      ? weeklyState.prevCounts : null;
+    const bySection = {};
+    for (const [k, n] of Object.entries(totals)) {
+      // 新的一周没有可比快照 —— 不编造「较上次 +N」，直接不出增量。
+      if (!prevSnap) { bySection[k] = 0; continue; }
+      const before = typeof prevSnap.totals?.[k] === "number" ? prevSnap.totals[k] : 0;
+      bySection[k] = Math.max(0, n - before);
+    }
+    weeklyState.delta = {
+      date: beijingDate(),
+      bySection,
+      total: Object.values(bySection).reduce((a, b) => a + b, 0),
+    };
+    weeklyState.prevCounts = { weekStart: weeklyState.weekStart, date: beijingDate(), totals };
     if (saveWeeklyLock(API_DIR, weeklyState)) anyChange = true;
   } catch (e) {
     console.error(`FAIL weekly-lock.json: ${e.message}`);

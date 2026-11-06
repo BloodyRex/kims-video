@@ -16,6 +16,9 @@ export const INTELLIGENCE_CONFIG = {
       "music.json.picks": 40,
       "movies.json.releasedThisWeek": 30,
       "movies.json.nowPlaying": 30,
+      // 排片日历（2026-11-06）：30 天窗口内电影+剧集合计，实测峰值 ~20；给 40 留足余量，
+      // 正常不会触顶，触顶时也只舍弃「当日新增」不淘汰已锁定条目。
+      "coming.json.next30Days": 40,
     },
   },
   mbPages: 3,
