@@ -2859,6 +2859,47 @@ function renderDigestHtml(d, now, locale) {
   const divider = `<div style="border-top:2px dashed #333;margin:16px 0"></div>`;
   const card = (inner, borderColor) => `<div style="background:#000;border:2px solid ${borderColor};padding:10px;margin:6px 0">${inner}</div>`;
 
+  // ── Weekly feature announcement (2026-11-06; shown in digest emails dated 2026-11-06--2026-11-13) ──
+  // This presentation is intentionally placed above the daily abstract/weekly cumulative block.
+  // It remains visible for exactly seven scheduled daily sends; after that date the block is omitted entirely.
+  const weeklyAnnouncement = ["2026-11-06", "2026-11-07", "2026-11-08", "2026-11-09", "2026-11-10", "2026-11-11", "2026-11-12", "2026-11-13"].includes(now);
+  const weeklyAnnouncementHtml = weeklyAnnouncement
+    ? `<div style="background:#000;border:4px solid #ffff00;padding:14px;margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="font-size:15px">★</span><span style="font-size:11px;font-weight:bold;color:#ffff00;letter-spacing:2px;text-transform:uppercase">${L("本周上线 · 7 天专题", "New this week · 7-day feature")}</span></div>
+        <span style="background:#ffff00;color:#000;padding:2px 7px;font-size:10px;font-weight:bold">${L("点击直达", "Tap to open")}</span>
+      </div>
+      <div style="font-size:20px;font-weight:bold;color:#fff;line-height:1.25;margin-bottom:4px">${L("网站本周三大上线", "Three new site features")}</div>
+      <div style="font-size:12px;color:#aaa;margin-bottom:3px">${L("一分钟先看完，其余内容照常送达。", "A one-minute look; today's content follows below.")}</div>
+      <table style="width:100%;border-collapse:collapse">
+        <tr>
+          <td style="width:38px;vertical-align:middle;padding:9px 8px 9px 0;border-top:1px dashed #444"><span style="display:inline-block;width:38px;height:38px;line-height:34px;text-align:center;background:#ff00ff;border:2px solid #000;font-size:20px">🎬</span></td>
+          <td style="vertical-align:middle;padding:9px 6px;border-top:1px dashed #444">
+            <div style="font-size:13px;font-weight:bold;color:#fff;line-height:1.35">${L("全球电影节排片日历", "Global Festival Calendar")}</div>
+            <div style="font-size:11px;color:#aaa;line-height:1.45;margin-top:3px">${L("可按今日、本周或月历查看已收录电影节的影片、场次与活动。", "Browse listed festival films, sessions, and events by day, week, or month.")}</div>
+          </td>
+          <td style="vertical-align:middle;text-align:right;padding:9px 0;border-top:1px dashed #444;white-space:nowrap"><a href="https://bloodyrex.xyz/festivals?utm_source=digest&amp;utm_medium=email&amp;utm_campaign=weekly-feature" style="display:inline-block;background:#ff00ff;color:#000;padding:7px 10px;font-size:11px;font-weight:bold;border:3px solid #000;text-decoration:none">${L("查看 →", "View →")}</a></td>
+        </tr>
+        <tr>
+          <td style="width:38px;vertical-align:middle;padding:9px 8px 9px 0;border-top:1px dashed #444"><span style="display:inline-block;width:38px;height:38px;line-height:34px;text-align:center;background:#00ffff;border:2px solid #000;font-size:20px">💾</span></td>
+          <td style="vertical-align:middle;padding:9px 6px;border-top:1px dashed #444">
+            <div style="font-size:13px;font-weight:bold;color:#fff;line-height:1.35">${L("本地数据迁移", "Move Your Data")}</div>
+            <div style="font-size:11px;color:#aaa;line-height:1.45;margin-top:3px">${L("用一次性短码把收藏及搜索记录带到新电脑或浏览器，并自动合并。", "Use a one-time code to bring favorites and search history to a new computer or browser, with records merged safely.")}</div>
+          </td>
+          <td style="vertical-align:middle;text-align:right;padding:9px 0;border-top:1px dashed #444;white-space:nowrap"><a href="https://bloodyrex.xyz/?utm_source=digest&amp;utm_medium=email&amp;utm_campaign=weekly-feature" style="display:inline-block;background:#00ffff;color:#000;padding:7px 10px;font-size:11px;font-weight:bold;border:3px solid #000;text-decoration:none">${L("打开 →", "Open →")}</a></td>
+        </tr>
+        <tr>
+          <td style="width:38px;vertical-align:middle;padding:9px 8px 9px 0;border-top:1px dashed #444"><span style="display:inline-block;width:38px;height:38px;line-height:34px;text-align:center;background:#00ff00;border:2px solid #000;font-size:20px">👾</span></td>
+          <td style="vertical-align:middle;padding:9px 6px;border-top:1px dashed #444">
+            <div style="font-size:13px;font-weight:bold;color:#fff;line-height:1.35">${L("像素游戏《生命进化史》", "Life Evolution")}</div>
+            <div style="font-size:11px;color:#aaa;line-height:1.45;margin-top:3px">${L("吃食物、避开强敌并逐级进化，从海洋一路生存到陆地。", "Eat, dodge stronger creatures, and evolve from the ocean to land.")}</div>
+          </td>
+          <td style="vertical-align:middle;text-align:right;padding:9px 0;border-top:1px dashed #444;white-space:nowrap"><a href="https://bloodyrex.xyz/pixel-avatar-v16.html?utm_source=digest&amp;utm_medium=email&amp;utm_campaign=weekly-feature" style="display:inline-block;background:#00ff00;color:#000;padding:7px 10px;font-size:11px;font-weight:bold;border:3px solid #000;text-decoration:none">${L("开玩 →", "Play →")}</a></td>
+        </tr>
+      </table>
+    </div>`
+    : "";
+
   // ── Daily Digest section ──
   const headline = en ? (dig.headlineEn || dig.headline || "") : (dig.headline || "");
   const summaryZh = en ? (dig.summaryEn || dig.summary || "") : (dig.summary || "");
@@ -3111,6 +3152,9 @@ function renderDigestHtml(d, now, locale) {
     <h1 style="margin:0;font-size:18px;color:#000;text-transform:uppercase;letter-spacing:2px">KIM'S VIDEO · ${now}</h1>
     <p style="margin:4px 0 0;font-size:10px;color:#000;text-transform:uppercase;letter-spacing:1px">${L("每日影音情报摘要", "Daily Entertainment Digest")}${date && date !== now ? ` · ${L("数据截至", "data as of")} ${date}` : ""}</p>
   </div>
+
+  <!-- Weekly feature announcement -->
+  ${weeklyAnnouncementHtml}
 
   <!-- 本周累计（周内只增不减的可见证据；只读 weekly-lock.json） -->
   ${weeklyCumulativeHtml}
