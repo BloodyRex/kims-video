@@ -2969,7 +2969,6 @@ function renderDigestHtml(d, now, locale) {
     ? `<div style="background:#000;border:4px solid #ffff00;padding:14px;margin-bottom:16px">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px">
         <div style="display:flex;align-items:center;gap:6px"><span style="font-size:15px">★</span><span style="font-size:11px;font-weight:bold;color:#ffff00;letter-spacing:2px;text-transform:uppercase">${L("本周上线 · 7 天专题", "New this week · 7-day feature")}</span></div>
-        <span style="background:#ffff00;color:#000;padding:2px 7px;font-size:10px;font-weight:bold">${L("点击直达", "Tap to open")}</span>
       </div>
       <div style="font-size:20px;font-weight:bold;color:#fff;line-height:1.25;margin-bottom:4px">${L("网站本周三大上线", "Three new site features")}</div>
       <div style="font-size:12px;color:#aaa;margin-bottom:3px">${L("一分钟先看完，其余内容照常送达。", "A one-minute look; today's content follows below.")}</div>
@@ -3085,7 +3084,7 @@ function renderDigestHtml(d, now, locale) {
   <table style="width:100%;border-collapse:collapse">${tvCalendar.length ? tvCalendar.map(calendarRow).join("") : `<tr><td style="padding:6px;font-size:11px;color:#666;background:#111">${L("暂无", "None")}</td></tr>`}</table>
 </div>
 <div style="text-align:right;margin:4px 0">
-  <a href="https://bloodyrex.xyz/intelligence/coming?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ff00ff">${L("查看全部排片 →", "Full calendar →")}</a>
+  <a href="https://bloodyrex.xyz/intelligence?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ff00ff">${L("查看全部排片 →", "Full calendar →")}</a>
 </div>`
     : "";
 
@@ -3365,8 +3364,10 @@ function renderDigestHtml(d, now, locale) {
       hl = a.highlight ? ` — ${a.highlight}` : "";
       hl = hl.replace(/\s*·\s*[\d.,]+k\s*听众/g, "");
     }
-    const l = a.listeners ? ` · ${(a.listeners/1000).toFixed(0)}k ${L("听众", "listeners")}` : "";
-    return `<div style="font-size:12px;color:#ccc;line-height:1.5;padding:2px 0"><strong style="color:#fff">${a.title || ""}</strong>${a.artist ? ` <span style="color:#999">${a.artist}</span>` : ""}${hl}${l}</div>`;
+    // Rex 2026-11-07: listener counts removed — the number says nothing about
+    // whether the album is worth hearing, and it read as filler next to the AI
+    // highlight. Highlight text also stops mentioning it (zh regex above).
+    return `<div style="font-size:12px;color:#ccc;line-height:1.5;padding:2px 0"><strong style="color:#fff">${a.title || ""}</strong>${a.artist ? ` <span style="color:#999">${a.artist}</span>` : ""}${hl}</div>`;
   }).join("")}
 </div>`;
     }).join("")
@@ -3377,12 +3378,12 @@ function renderDigestHtml(d, now, locale) {
   ${title(L("🧱 影视墙今日新增", "🧱 NEW ON THE WALL"))}
   <div style="background:#000;border:2px solid #00ff00;padding:10px;margin:6px 0">
     ${wallNewMovies.length ? `<p style="font-size:11px;color:#00ff00;font-weight:bold;text-transform:uppercase;margin:0 0 4px">🎬 ${L("电影", "MOVIES")}</p>
-    <table style="width:100%;border-collapse:collapse">${wallNewMovies.map(m => `<tr><td style="padding:2px 4px;font-size:12px;color:#fff;background:#111"><a href="https://bloodyrex.xyz/wall?utm_source=digest&utm_medium=email&utm_campaign=daily" style="color:#fff;text-decoration:none">${pickTitle(m)}</a></td><td style="padding:2px 6px;font-size:10px;color:#999;text-align:right;background:#111;white-space:nowrap">${m.releaseDate || m.year || ""}</td></tr>`).join("")}</table>` : ""}
+    <table style="width:100%;border-collapse:collapse">${wallNewMovies.map(m => `<tr><td style="padding:2px 4px;font-size:12px;color:#fff;background:#111">${pickTitle(m)}</td><td style="padding:2px 6px;font-size:10px;color:#999;text-align:right;background:#111;white-space:nowrap">${m.releaseDate || m.year || ""}</td></tr>`).join("")}</table>` : ""}
     ${wallNewShows.length ? `${wallNewMovies.length ? '<div style="border-top:1px dashed #333;margin:8px 0"></div>' : ""}
     <p style="font-size:11px;color:#00ffff;font-weight:bold;text-transform:uppercase;margin:0 0 4px">📺 ${L("剧集", "TV")}</p>
     <table style="width:100%;border-collapse:collapse">${wallNewShows.map(s => {
       const se = s.season ? ` S${s.season}` : "";
-      return `<tr><td style="padding:2px 4px;font-size:12px;color:#fff;background:#111"><a href="https://bloodyrex.xyz/wall?type=tv&utm_source=digest&utm_medium=email&utm_campaign=daily" style="color:#fff;text-decoration:none">${pickTitle(s)}${se}</a></td><td style="padding:2px 6px;font-size:10px;color:#999;text-align:right;background:#111;white-space:nowrap">${s.latestAirDate || s.year || ""}</td></tr>`;
+      return `<tr><td style="padding:2px 4px;font-size:12px;color:#fff;background:#111">${pickTitle(s)}${se}</td><td style="padding:2px 6px;font-size:10px;color:#999;text-align:right;background:#111;white-space:nowrap">${s.latestAirDate || s.year || ""}</td></tr>`;
     }).join("")}</table>` : ""}
   </div>
   <div style="text-align:right;margin:4px 0">

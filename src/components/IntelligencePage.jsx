@@ -469,7 +469,12 @@ function IntelligencePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const match = location.pathname.match(/^\/intelligence(?:\/(\w+))?/);
-  const activeNav = match?.[1] || "overview";
+  // Rex 2026-11-07: /intelligence/coming and /intelligence/weekly still resolve
+  // to this component but are NOT in NAV_ITEMS — they used to render an empty
+  // <main> (a dead page anyone with an old link landed on). Unknown section ids
+  // now fall back to overview instead of a blank screen.
+  const sectionId = match?.[1] || "overview";
+  const activeNav = NAV_ITEMS.some(n => n.id === sectionId) ? sectionId : "overview";
   const [detailItem, setDetailItem] = useState(null);
   const [detailType, setDetailType] = useState("movie");
 
