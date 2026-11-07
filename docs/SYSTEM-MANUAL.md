@@ -187,16 +187,17 @@ MusicBrainz 近 30 天新发行（3 页×100）→ Last.fm 歌手热度过滤（
 
 ### 6.7 每日邮件 digest（fetchDigestData + renderDigestHtml，零 TMDB 调用）
 
-`fetchDigestData` 读 10 个静态 JSON（digest/overview/tv/music/movies/hidden-gems/wall-delta/tvwall-delta/coming/weekly-lock），一次取数；`renderDigestHtml(data, now, locale)` 按语言渲染（zh/en 各一份，字段缺失时 zh↔en 回退）。2026-08-25 起为双语版：
+`fetchDigestData` 读 11 个静态 JSON（digest/overview/tv/music/movies/hidden-gems/wall-delta/tvwall-delta/coming/weekly-lock/festivals），一次取数；`renderDigestHtml(data, now, locale)` 按语言渲染（zh/en 各一份，字段缺失时 zh↔en 回退）。2026-08-25 起为双语版：
 
 0. **七天专题通告**（条件板块）：`weeklyAnnouncement` 用日期白名单 `2026-11-07`～`2026-11-14` 门控，命中时在「每日摘要」与「本周累计」之上插入黑底 + 4px 亮黄边框区块，三行分别介绍电影节日历、本地数据迁移、像素游戏《生命进化史》（各一句话 + 同色直达按钮，链接带 `utm_campaign=weekly-feature`）。窗口外整块不渲染。定时发送为 UTC 22:35（北京次日 06:35），故 11-07 22:35 那封恰为第 1 封，11-14 22:35 为第 7 封，11-15 起自动消失；延长或缩短窗口只需改这一处日期数组；
 
 1. **每日摘要**：headline(+En) + summary(+En) + industryHighlights 要点 bullet + topTrends 标签（AI 失败时程序化兜底）；
 2. **影视日历**：未来 30 天排片（页首标注「本周累计 N 部」；电影/剧集各最多 12 条，按 daysUntil 排序）。条目源是 `coming.json.next30Days` —— pipeline 侧已纳入每周累计（周一起只增不减），所以周内不会因为当天抓取波动而整块消失；
-3. **今日电影推荐**：hidden-gems 中 mediaType≠tv 的前 5（92px 海报 + 评分 + whyWatch(+En) + tags(+En)，标题链 `/?from=digest&r={id}` 直达详情）；
-4. **今日剧集推荐**：mediaType=tv 的前 5（含 S/E，链接加 `&type=tv`）；
-5. **音乐精选**：4 分类各 2 首；
-6. **🧱 影视墙今日新增**（条件板块）：wall-delta 电影 + tvwall-delta 剧集各前 4，**仅当天有增量才渲染**。
+3. **🎪 电影节动态**（条件板块，2026-11-07 起）：读同一份 `festivals.json`（与 /festivals 页同源的公开聚合，零新增抓取）。有正在举办的 → 列名字 + 起止日期 + 「第 N/M 天」+ 今日场次（最多 3 个，超出补一行「另有 N 个在展」）；一个都没在办 → 只报最近开幕的一场 + 开幕日期与倒计时。判定用 `startDate <= today <= endDate` 且 `lifecycle != ENDED`（日期与 lifecycle 双校验，防 publish 落后一天说错话）；场次只报 >0 的真实数据，抓取漏轮不会显示「今日 0 场」；`festivals.json` 抓空则整块不渲染；
+4. **今日电影推荐**：hidden-gems 中 mediaType≠tv 的前 5（92px 海报 + 评分 + whyWatch(+En) + tags(+En)，标题链 `/?from=digest&r={id}` 直达详情）；
+5. **今日剧集推荐**：mediaType=tv 的前 5（含 S/E，链接加 `&type=tv`）；
+6. **音乐精选**：4 分类各 2 首；
+7. **🧱 影视墙今日新增**（条件板块）：wall-delta 电影 + tvwall-delta 剧集各前 4，**仅当天有增量才渲染**。
 
 所有外链带 `utm_source=digest&utm_medium=email&utm_campaign=daily`；海报一律 poster-proxy（w185）；Header 显示发送日期（数据非当日时附"数据截至 X"）。**Subject = 当日头条**：`🎬 {headline} · Kim's Video {date}`。digest 端点 DeepSeek 调用含 1 次重试。
 

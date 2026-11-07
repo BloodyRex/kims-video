@@ -52,6 +52,11 @@ async function main() {
   // Pull trending stats from the freshly-fetched files.
   const movies = JSON.parse(readFileSync(join(API_DIR, "movies.json"), "utf8"));
   const tv = JSON.parse(readFileSync(join(API_DIR, "tv.json"), "utf8"));
+  // coming.json is the single source of truth for the release calendar the email
+  // renders. Without it the AI writes "近期暂无重点待映项目" above a calendar full
+  // of dated releases (shipped 2026-11-06/07).
+  let coming = { next30Days: [] };
+  try { coming = JSON.parse(readFileSync(join(API_DIR, "coming.json"), "utf8")); } catch {}
 
   const stats = [
     `${pick(movies.releasedThisWeek)}`.length ? `今日/本周电影热作: ${pick(movies.releasedThisWeek)}` : "",
@@ -59,12 +64,21 @@ async function main() {
     `${pick(tv.ongoing)}`.length ? `热播剧: ${pick(tv.ongoing)}` : "",
     `${pick(tv.upcoming)}`.length ? `待播剧: ${pick(tv.upcoming)}` : "",
     `${pick(movies.upcoming)}`.length ? `待映电影: ${pick(movies.upcoming)}` : "",
+    (coming.next30Days || []).length
+      ? `排片日历档期: ${(coming.next30Days || []).slice(0, 6).map(x => `${x.title || x.name}（${(x.releaseDate || "").slice(5)}）`).join(", ")}`
+      : "",
   ].filter(Boolean).join("; ");
 
   const prompt = `Today is ${today}. Summarize today's entertainment news in a digest covering BOTH movies and TV series.
 
 Data:
 ${stats || "(no stats available)"}
+
+Rules — hard constraints:
+1. Each highlight must add information the summary does NOT already state. Never repeat or paraphrase a summary sentence as a highlight.
+2. Do NOT claim there is nothing upcoming/待映 when 排片日历档期 above is non-empty.
+3. Only use titles and dates given above — never invent releases, dates, or numbers.
+4. 3-4 highlights, each ≤ 30 Chinese characters.
 
 Return JSON only:
 {
@@ -73,8 +87,7 @@ Return JSON only:
   "summary": "One paragraph summary in Chinese (max 150 chars), must mention both a movie and a TV highlight",
   "summaryEn": "Same summary in English",
   "industryHighlights": [{ "text": "short highlight in Chinese", "en": "same in English" }]
-}
-2-4 highlights.`;
+}`;
 
   let lastErr = "";
   for (let ai = 0; ai < 4; ai++) {

@@ -2296,6 +2296,17 @@ async function handleIntelDigest(env) {
     const dayTrendingTv = dayTrending.filter(m => m.media_type === "tv").slice(0, 5);
     const weekTrendingTv = weekTrending.filter(m => m.media_type === "tv").slice(0, 5);
 
+    // 2026-11-07: 排片要跟邮件里的排片日历同源。以前 Upcoming 只来自 TMDB
+    // /movie/upcoming（影评站的条状数据），coming.json 的档期完全不在 AI 的输入里，
+    // 于是它敢在 7 条档期上方写「近期暂无重点待映项目」。这里补一次 coming.json 读取。
+    let comingNext = [];
+    try {
+      const cResp = await fetch("https://bloodyrex.xyz/api/coming.json", { signal: AbortSignal.timeout(8000) });
+      const cJson = await cResp.json();
+      comingNext = (cJson?.next30Days || []).slice(0, 6).map(x => `${x.title || x.name}（${(x.releaseDate || "").slice(5)}）`);
+    } catch { /* 排片日历不可用时退回 TMDB 单一来源 */ }
+    const upcomingTitles = [...comingNext, ...weekUpcoming].slice(0, 6);
+
     const prompt = `Today is ${today}. Summarize today's entertainment news in a digest covering BOTH movies and TV series.
 
 Stats: ${todayMovies} movies released today, ${weekMovies} new movies this week.
@@ -2303,7 +2314,14 @@ Top trending movies today: ${dayTrending.slice(0, 5).map(m => m.title || m.name)
 Top trending TV today: ${dayTrendingTv.map(m => m.title || m.name).join(", ") || "none"}.
 Top trending movies this week: ${weekTrending.slice(0, 8).map(m => m.title || m.name).join(", ")}.
 Top trending TV this week: ${weekTrendingTv.map(m => m.title || m.name).join(", ") || "none"}.
-Upcoming: ${weekUpcoming.join(", ") || "none notable"}.
+Upcoming releases already in our calendar (title（MM-DD）): ${upcomingTitles.join(", ") || "none"}.
+
+Rules — these are hard constraints, violations get rejected:
+1. The summary must be ONE paragraph and must stand alone.
+2. Each highlight must add information the summary does NOT already state. Never repeat, restate, or paraphrase a summary sentence as a highlight.
+3. Do NOT claim there is nothing upcoming/待映 when the Upcoming list above is non-empty. If it is non-empty, either ignore upcoming or name the closest date.
+4. Only use titles and dates given above — never invent releases, dates, or numbers.
+5. 3-4 highlights, each ≤ 30 Chinese characters.
 
 Return JSON only:
 {
@@ -2315,7 +2333,7 @@ Return JSON only:
   "industryHighlights": [{ "text": "short highlight in Chinese", "en": "same in English" }]
 }
 
-Top 3-5 trends (mix movies and TV by heat). 3-5 highlights.`;
+Top 3-5 trends (mix movies and TV by heat).`;
 
     // Retry up to 4 attempts (DeepSeek occasionally returns empty/5xx — live
         // 2026-08-27: ~50% first-attempt success; 4 tries → ~94%). Music endpoint
@@ -2812,12 +2830,15 @@ async function fetchDigestData() {
   //   · coming.json 是排片日历的单一真源（pipeline 本地合并 movies+tv，周内只增不减）；
   //     邮件以前只读 tvData.upcoming，一次抓空就整块空白。
   //   · weekly-lock.json 提供本周累计（只读，不参与任何计算）。
-  const [digestR, overviewR, tvR, musicR, moviesR, gemsR, wallDeltaR, tvWallDeltaR, comingR, weeklyLockR] = await Promise.allSettled([
+  const [digestR, overviewR, tvR, musicR, moviesR, gemsR, wallDeltaR, tvWallDeltaR, comingR, weeklyLockR, festivalsR] = await Promise.allSettled([
     fetch(`${BASE}/digest.json`), fetch(`${BASE}/overview.json`),
     fetch(`${BASE}/tv.json`), fetch(`${BASE}/music.json`),
     fetch(`${BASE}/movies.json`), fetch(`${BASE}/hidden-gems.json`),
     fetch(`${BASE}/wall-delta.json`), fetch(`${BASE}/tvwall-delta.json`),
     fetch(`${BASE}/coming.json`), fetch(`${BASE}/weekly-lock.json`),
+    // festivals.json (2026-11-07): 新增「电影节动态」小板块的唯一真源。
+    // 它本来就是排片日历那块页面的公开聚合，一个静态 JSON，零额外计算。
+    fetch(`${BASE}/festivals.json`),
   ]);
 
   return {
@@ -2831,7 +2852,86 @@ async function fetchDigestData() {
     tvWallDelta: (await safeJson(tvWallDeltaR)) || {},
     comingData: (await safeJson(comingR)) || {},
     weeklyLock: (await safeJson(weeklyLockR)) || {},
+    festivalsData: (await safeJson(festivalsR)) || {},
   };
+}
+
+// ── Weekly work index ──
+// weekly-lock.json stores ids only (section key + tmdbId), so anything that wants
+// to *name* locked works (weekly board, weekly star pool) must map them back onto
+// the files the digest already fetched. Probe over 4 historical snapshots: 100%
+// resolvable. Items can nonetheless age out (nowPlaying rolls over, next30Days is
+// pruned on release), hence the extra fallback sources on the same section keys.
+// Zero extra subrequests — everything here is already in `data`.
+function buildWeeklyWorkIndex(data) {
+  const d = data || {};
+  const idx = new Map();
+  const add = (arr, sectionKey, forcedType) => (arr || []).forEach(x => {
+    if (!x) return;
+    const id = x.tmdbId ?? x.id;
+    if (id == null) return;
+    const key = `${sectionKey}:${id}`;
+    if (idx.has(key)) return;
+    const mediaType = forcedType || (x.mediaType === "tv" ? "tv" : x.mediaType === "movie" ? "movie" : null);
+    if (!mediaType) return; // music/unknown: not a film or show
+    idx.set(key, {
+      tmdbId: id,
+      mediaType,
+      title: x.title || x.name || "",
+      titleEn: x.titleEn || x.title || x.name || "",
+      poster: x.poster || "",
+      rating: x.rating || 0,
+      year: x.year || String(x.releaseDate || x.release_date || x.first_air_date || "").slice(0, 4),
+      genre: x.genre || [],
+      summary: x.summary || "",
+      summaryEn: x.summaryEn || x.summary || "",
+      releaseDate: x.releaseDate || x.release_date || x.first_air_date || "",
+    });
+  });
+  add(d.moviesData?.releasedThisWeek, "movies.json.releasedThisWeek", "movie");
+  add(d.moviesData?.nowPlaying, "movies.json.nowPlaying", "movie");
+  add(d.tvData?.premieresThisWeek, "tv.json.premieresThisWeek", "tv");
+  add(d.tvData?.ongoing, "tv.json.ongoing", "tv");
+  add(d.comingData?.next30Days, "coming.json.next30Days"); // carries its own mediaType
+  // Fallbacks (same lock section keys → still resolvable when the item rolled out)
+  add(d.moviesData?.upcoming, "movies.json.releasedThisWeek", "movie");
+  add(d.moviesData?.upcoming, "movies.json.nowPlaying", "movie");
+  add(d.tvData?.upcoming, "tv.json.premieresThisWeek", "tv");
+  add(d.tvData?.upcoming, "tv.json.ongoing", "tv");
+  add(d.overview?.comingSoon, "coming.json.next30Days", "movie");
+  add(d.overview?.comingSoonTv, "coming.json.next30Days", "tv");
+  return idx;
+}
+
+// Locked works of the current week, deduped by work (music excluded).
+function weeklyLockedWorks(lock, idx) {
+  const out = [];
+  const seen = new Set();
+  const sections = lock?.sections && typeof lock.sections === "object" ? lock.sections : null;
+  if (!sections) return out;
+  for (const [sectionKey, ids] of Object.entries(sections)) {
+    if (sectionKey === "music.json.picks" || !Array.isArray(ids)) continue;
+    for (const id of ids) {
+      const item = idx.get(`${sectionKey}:${id}`);
+      if (!item) continue;
+      const k = `${item.mediaType}:${item.tmdbId}`;
+      if (seen.has(k)) continue;
+      seen.add(k);
+      out.push(item);
+    }
+  }
+  return out;
+}
+
+// Monday (Asia/Shanghai) of the week containing `dateStr` — matches weekStart in
+// weekly-lock.json, but computed here so a stale lock can't break the key.
+function weekStartOf(dateStr) {
+  const base = new Date(`${dateStr}T00:00:00Z`);
+  if (isNaN(base)) return "";
+  const dow = base.getUTCDay(); // 0 = Sunday
+  const back = dow === 0 ? 6 : dow - 1;
+  base.setUTCDate(base.getUTCDate() - back);
+  return base.toISOString().slice(0, 10);
 }
 
 // Render the digest for one locale ("zh" | "en"). Every data field falls back
@@ -2841,7 +2941,7 @@ function renderDigestHtml(d, now, locale) {
   const en = locale === "en";
   const L = (zhStr, enStr) => (en ? enStr : zhStr);
   const pickTitle = (item) => (en ? (item.titleEn || item.title) : item.title);
-  const { dig, overview, tvData, musicData, moviesData, gemsData, wallDelta, tvWallDelta, todayStar } = d;
+  const { dig, overview, tvData, musicData, moviesData, gemsData, wallDelta, tvWallDelta, todayStar, festivalsData } = d;
 
   const stats = overview.stats || {};
   const date = d.dig.date || d.overview.updated || now;
@@ -2909,12 +3009,10 @@ function renderDigestHtml(d, now, locale) {
   const trendsHtml = trends.length
     ? `<div style="margin:8px 0">${trends.map(t => `<span style="display:inline-block;background:#ff00ff;color:#000;padding:2px 7px;font-size:10px;font-weight:bold;margin:2px;text-transform:uppercase">${pickTitle(t)}</span>`).join("")}</div>`
     : "";
-  // Industry highlights (from digest.json) — bullet list under the summary
-  const highlightsRaw = (dig.industryHighlights || []).slice(0, 4);
-  const highlights = highlightsRaw.map(h => (en ? (h.en || h.text) : h.text));
-  const highlightsHtml = highlights.length
-    ? `<ul style="margin:8px 0 0;padding-left:16px">${highlights.map(h => `<li style="font-size:11px;color:#aaa;line-height:1.6">${h}</li>`).join("")}</ul>`
-    : "";
+  // Industry highlights (from digest.json) — bullet list under the summary.
+  // Contradiction/dedupe filtering needs the calendar row counts, so the raw list
+  // is collected here and filtered after the calendar is built (below).
+  const highlightsSource = (dig.industryHighlights || []);
 
   // ── Release Calendar — 单一真源 coming.json（2026-11-06 治本） ──
   // 以前电影读 movies.json.upcoming、剧集读 tv.json.upcoming，两边各自日更：
@@ -2991,17 +3089,78 @@ function renderDigestHtml(d, now, locale) {
 </div>`
     : "";
 
+  // ── 电影节动态（Rex 2026-11-07）：有正在举办的就列出来（给起止日期）；一场都没有
+  // 时只报最近的一站（给开幕日期）。数据源是 festivals.json —— 它本来就是 /festivals
+  // 页面的公开聚合，邮件只是镜像，不新增任何抓取，也不扩大已公开的字段范围。
+  // lifecycle 是权威状态（LIVE / UPCOMING / ENDED），日期只做交叉校验：publish 偶尔
+  // 落后一天，靠日期兜住「已结束却仍显示进行中」这条错话。
+  const festAll = Array.isArray(festivalsData?.festivals) ? festivalsData.festivals : [];
+  const dOnly = (s) => String(s || "").slice(0, 10);
+  const dGap = (a, b) => {
+    const t1 = new Date(`${a}T00:00:00Z`), t2 = new Date(`${b}T00:00:00Z`);
+    if (isNaN(t1) || isNaN(t2)) return NaN;
+    return Math.round((t2 - t1) / 86400000);
+  };
+  const festName = (f) => (en ? (f.name?.en || f.name?.zh) : (f.name?.zh || f.name?.en)) || "";
+  const festLive = festAll
+    .filter(f => {
+      const s = dOnly(f.startDate), e = dOnly(f.endDate);
+      if (!s || !e || f.lifecycle === "ENDED") return false;
+      return s <= now && now <= e;
+    })
+    .sort((a, b) => a.endDate.localeCompare(b.endDate)); // 在办的按「快闭幕」优先，最急的排前面
+  const festNext = festLive.length ? [] : festAll
+    .filter(f => f.lifecycle !== "ENDED" && dOnly(f.startDate) && dOnly(f.startDate) > now)
+    .sort((a, b) => a.startDate.localeCompare(b.startDate))
+    .slice(0, 1);
+  const festRows = (festLive.length ? festLive.slice(0, 3) : festNext).map(f => {
+    const s = dOnly(f.startDate), e = dOnly(f.endDate);
+    let meta;
+    if (festLive.length) {
+      const dayNo = dGap(s, now) + 1, dayTotal = dGap(s, e) + 1;
+      // 场次只报「今天确实有」，绝不报 0：抓取若漏了一轮，0 会被读成「今天休展」。
+      const todayN = (f.today?.date === now) ? (f.today.screenings || 0) : 0;
+      const nextS = dOnly(f.nextScreeningDate);
+      const hint = todayN > 0
+        ? L(` · 今日 ${todayN} 场`, ` · ${todayN} screenings today`)
+        : (nextS && nextS > now) ? L(` · 下一场 ${nextS.slice(5)}`, ` · next ${nextS.slice(5)}`) : "";
+      meta = L(
+        `${s} ~ ${e} · 第 ${dayNo}/${dayTotal} 天${hint}`,
+        `${s} ~ ${e} · day ${dayNo} of ${dayTotal}${hint}`
+      );
+    } else {
+      const dd = dGap(now, s);
+      meta = L(
+        dd === 1 ? `${s} 开幕 · 明天` : `${s} 开幕 · 还有 ${dd} 天`,
+        dd === 1 ? `opens ${s} · tomorrow` : `opens ${s} · in ${dd} days`
+      );
+    }
+    return `<div style="padding:8px 0;border-top:1px dashed #444">
+      <div style="font-size:13px;color:#fff;font-weight:bold;line-height:1.4">${festName(f)}</div>
+      <div style="font-size:11px;color:#aaa;line-height:1.5;margin-top:5px">${meta}</div>
+    </div>`;
+  }).join("");
+  const festOverflow = festLive.length > 3
+    ? `<div style="font-size:11px;color:#888;padding-top:5px;border-top:1px dashed #444">${L(`另有 ${festLive.length - 3} 个在展`, `${festLive.length - 3} more running`)}</div>`
+    : "";
+  const festivalHtml = festRows
+    ? `<div style="background:#000;border:2px solid #ff00ff;padding:10px;margin:6px 0">
+    <div style="font-size:12px;color:#ff00ff;font-weight:bold;margin-bottom:6px">${festLive.length
+      ? L(`🟢 正在举办${festLive.length > 1 ? ` · ${festLive.length} 个` : ""}`, `🟢 ON NOW${festLive.length > 1 ? ` · ${festLive.length} running` : ""}`)
+      : L("🔜 下一站", "🔜 NEXT UP")}</div>
+    ${festRows}
+    ${festOverflow}
+  </div>
+  <div style="text-align:right;margin:4px 0">
+    <a href="https://bloodyrex.xyz/festivals?utm_source=digest&utm_medium=email&utm_campaign=daily" style="font-size:11px;color:#ff00ff">${L("查看电影节日历 →", "Festival calendar →")}</a>
+  </div>`
+    : "";
+
   // ── 本周累计（2026-11-06）：只读 weekly-lock.json，不参与任何计算 ──
   // 这是「周一到周日只增不减」的可见证据：数字来自 pipeline 当次写盘的 sections 长度，
   // 今日新增来自同一个文件里记录的 delta（pipeline 侧算好，Worker 零子请求）。
   const weeklySections = weeklyLock?.sections && typeof weeklyLock.sections === "object" ? weeklyLock.sections : null;
   const weeklyStart = weeklyLock?.weekStart || "";
-  const weekEndStr = (() => {
-    if (!weeklyStart) return "";
-    const d = new Date(`${weeklyStart}T12:00:00Z`);
-    d.setUTCDate(d.getUTCDate() + 6);
-    return d.toISOString().slice(0, 10);
-  })();
   const wCount = (key) => (Array.isArray(weeklySections?.[key]) ? weeklySections[key].length : 0);
   const wDelta = (key) => {
     const v = weeklyLock?.delta?.bySection?.[key];
@@ -3015,22 +3174,109 @@ function renderDigestHtml(d, now, locale) {
     { key: "coming.json.next30Days", zh: "排片·30天内", en: "CALENDAR · 30 DAYS", color: "#ffff00" },
     { key: "music.json.picks", zh: "音乐·本周精选", en: "MUSIC · WEEKLY PICKS", color: "#00ff00" },
   ].map(r => ({ ...r, n: wCount(r.key), d: wDelta(r.key) })).filter(r => r.n > 0) : [];
+  // Week range shown in the board header. The lock's own weekStart defines WHICH
+  // works are being ranked, so it is the truthful label even if the pipeline lagged
+  // a day; we only synthesize the computed Monday when the lock has no weekStart.
+  const boardWeekStart = weeklyStart || weekStartOf(now) || "";
+  const boardWeekEnd = (() => {
+    if (!boardWeekStart) return "";
+    const t = new Date(`${boardWeekStart}T12:00:00Z`);
+    t.setUTCDate(t.getUTCDate() + 6);
+    return t.toISOString().slice(0, 10);
+  })();
   const weeklyTotal = weeklyRows.reduce((a, r) => a + r.n, 0);
   const weeklyDeltaTotal = weeklyRows.reduce((a, r) => a + r.d, 0);
-  const weeklyCumulativeHtml = weeklyRows.length
+  // ── Placement rule (Rex 2026-11-07): the cumulative block only earns the top of
+  // the email twice a week. Friday = the first real board of the week, Sunday =
+  // the final one. Mon–Thu and Saturday collapse it to one footer line with no
+  // link — on those days the numbers have barely moved, and it was pushing the
+  // first piece of actual content down to ~29% of the message.
+  const dowNum = (() => {
+    const t = new Date(`${now}T00:00:00Z`);
+    if (isNaN(t)) return 1;
+    const v = t.getUTCDay(); // 0 = Sunday
+    return v === 0 ? 7 : v; // 1..7, Monday = 1
+  })();
+  const isBoardDay = dowNum === 5 || dowNum === 7; // Friday, Sunday
+  const boardIsFinal = dowNum === 7;
+  // Board = the week's locked works ranked by score, resolved from files the digest
+  // already fetched (no extra subrequests, no link supplementation).
+  const weeklyWorkIdx = buildWeeklyWorkIndex(d);
+  const boardItems = isBoardDay
+    ? weeklyLockedWorks(weeklyLock, weeklyWorkIdx)
+      .filter(w => w.rating > 0 && w.title)
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, 10)
+    : [];
+  const isNewThisWeek = (w) => weekStartOf(now) && w.releaseDate && w.releaseDate.slice(0, 10) >= weekStartOf(now) && w.releaseDate.slice(0, 10) <= now;
+  const weeklyCumulativeHtml = (isBoardDay && boardItems.length)
     ? `<div style="background:#000;border:4px solid #00ff00;padding:12px;margin-bottom:16px">
-    ${title(`📈 ${L("本周累计", "THIS WEEK")}${weeklyStart ? ` · ${weeklyStart.slice(5)} ~ ${weekEndStr.slice(5)}` : ""}`)}
+    ${title(`📈 ${boardIsFinal ? L("本周最终榜", "WEEKLY BOARD · FINAL") : L("本周 Top 10", "WEEKLY TOP 10")}${boardWeekStart ? ` · ${boardWeekStart.slice(5)} ~ ${boardWeekEnd.slice(5)}` : ""}`)}
+    <p style="font-size:11px;color:#aaa;margin:0 0 6px">${boardIsFinal
+      ? L("本周锁定作品按评分排序，周日定榜，下周一重新开榜。", "The week's locked works by score — final board, reopens Monday.")
+      : L("周四前锁定的作品按评分排序，周日还会更新一次。", "Locked works ranked by score; the board updates once more on Sunday.")}</p>
     <table style="width:100%;border-collapse:collapse">
-      ${weeklyRows.map(r => `<tr>
-        <td style="padding:2px 6px;font-size:11px;color:${r.color};background:#111;white-space:nowrap">${en ? r.en : r.zh}</td>
-        <td style="padding:2px 6px;font-size:11px;color:#fff;text-align:right;background:#111;white-space:nowrap">${r.n}${r.d > 0 ? `<span style="color:#00ff00;font-size:10px"> +${r.d}</span>` : ""}</td>
-      </tr>`).join("")}
+      ${boardItems.map((w, i) => `<tr><td style="padding:3px 4px;font-size:10px;color:#00ff00;background:#111;width:18px">${i + 1}</td><td style="padding:3px 4px;font-size:12px;color:#fff;background:#111">${w.mediaType === "tv" ? "📺 " : "🎬 "}${pickTitle(w)}${isNewThisWeek(w) ? `<span style="color:#00ff00;font-size:9px;font-weight:bold;margin-left:4px">${L("新", "NEW")}</span>` : ""}</td><td style="padding:3px 4px;font-size:11px;color:#ffff00;background:#111;text-align:right;white-space:nowrap;width:34px">${w.rating.toFixed(1)}</td></tr>`).join("")}
     </table>
     <p style="font-size:11px;color:#aaa;margin:8px 0 0">${L(
-      `本周已累计 ${weeklyTotal} 条${weeklyDeltaTotal > 0 ? ` · 较上次 +${weeklyDeltaTotal}` : ""}（周一选定即保留，周内只增不减）`,
-      `${weeklyTotal} items this week${weeklyDeltaTotal > 0 ? ` · +${weeklyDeltaTotal} since last run` : ""} (locked on Monday, only grows)`
+      `本周已累计 ${weeklyTotal} 条${weeklyDeltaTotal > 0 ? ` · 今日 +${weeklyDeltaTotal}` : ""}（周一选定即保留，周内只增不减）`,
+      `${weeklyTotal} items this week${weeklyDeltaTotal > 0 ? ` · +${weeklyDeltaTotal} today` : ""} (locked Monday, only grows)`
     )}</p>
   </div>`
+    : "";
+  // Collapsed variant for Mon–Thu + Sat (and any board day where the board rendered
+  // nothing): one footer line, no link. The nudge names the NEXT board, so Saturday
+  // does not advertise a Friday that already happened.
+  const boardNudge = dowNum >= 1 && dowNum <= 4 ? L("周五出榜", "board Friday")
+    : dowNum === 6 ? L("周日定榜", "final Sunday")
+    : "";
+  const weeklyFooterLine = (weeklyRows.length && !weeklyCumulativeHtml)
+    ? `<p style="font-size:10px;color:#666;margin:10px 0 0;line-height:1.6">📈 ${L(
+      `本周已收 ${weeklyTotal} 条${weeklyDeltaTotal > 0 ? ` · 今日 +${weeklyDeltaTotal}` : ""}${boardNudge ? ` · ${boardNudge}` : ""}`,
+      `${weeklyTotal} collected this week${weeklyDeltaTotal > 0 ? ` · +${weeklyDeltaTotal} today` : ""}${boardNudge ? ` · ${boardNudge}` : ""}`
+    )}</p>`
+    : "";
+
+  // ── Industry highlights: dedupe against the summary + contradiction guard ──
+  // (2026-11-07, Rex-approved.) Two concrete defects shipped in real sends:
+  //   ① bullet #1 restated the summary verbatim ("今日无新片上映，本周仅两部新片入市。")
+  //   ② bullet #4 claimed "近期暂无重点待映项目" while the calendar below it listed
+  //      7 dated releases. ② is unfixable at the data layer from here (the AI writes
+  //      from TMDB /movie/upcoming, which never sees coming.json), so filter it out
+  //      whenever the calendar actually has rows.
+  const normText = (s) => String(s || "").replace(/[\s，。；、,.;:：!?！？—…“”"'‘’()（）·﹒]/g, "").toLowerCase();
+  const citedTitles = (s) => (String(s || "").match(/《([^》]{1,40})》/g) || []).map(x => normText(x.slice(1, -1)));
+  // Character-bigram Dice — cheap and language-agnostic, so a Chinese paraphrase
+  // ("电影热度由《X》与《Y》领跑" vs summary "电影端《X》与《Y》领跑") is caught by
+  // overlap instead of by an LLM call. Thresholds tuned on real 2026-11-07 copy:
+  // verbatim restatement = 0.406 (also caught by the substring rule), paraphrase
+  // of the same titles = 0.468, unrelated bullet = 0.171 / 0.000.
+  const bigrams = (s) => { const b = new Set(); for (let i = 0; i < s.length - 1; i++) b.add(s.slice(i, i + 2)); return b; };
+  const dice = (a, b) => {
+    if (!a || !b) return 0;
+    const A = bigrams(a), B = bigrams(b);
+    let n = 0;
+    for (const x of A) if (B.has(x)) n++;
+    return (2 * n) / (A.size + B.size);
+  };
+  const NEG_ASSERTION = /暂无|尚无|没有(待映|待播|上映|新片|新剧|重点)|无(待映|待播|上映|新片|新剧)|nothing\s+(new|upcoming)|none\s+(notable|upcoming)|no\s+(upcoming|new)\s+(releases?|titles?)/i;
+  const calendarHasRows = (movieCalendar.length > 0 || tvCalendar.length > 0);
+  const summaryNorm = normText(summaryZh);
+  const summaryCited = citedTitles(summaryZh);
+  const highlightsRaw = highlightsSource.filter(h => {
+    const txt = ((en ? (h.en || h.text) : h.text) || "");
+    const nt = normText(txt);
+    if (!nt) return false;
+    if (NEG_ASSERTION.test(txt) && calendarHasRows) return false;
+    if (summaryNorm && summaryNorm.includes(nt)) return false;
+    if (dice(nt, summaryNorm) >= 0.35) return false;
+    const cited = citedTitles(txt);
+    if (cited.length && cited.every(t => summaryCited.some(s => s.includes(t) || t.includes(s)))) return false;
+    return true;
+  }).slice(0, 4);
+  const highlights = highlightsRaw.map(h => (en ? (h.en || h.text) : h.text));
+  const highlightsHtml = highlights.length
+    ? `<ul style="margin:8px 0 0;padding-left:16px">${highlights.map(h => `<li style="font-size:11px;color:#aaa;line-height:1.6">${h}</li>`).join("")}</ul>`
     : "";
 
   // ── Wall additions — today's new movies/TV on the wall (delta files; section
@@ -3093,7 +3339,11 @@ function renderDigestHtml(d, now, locale) {
   ];
   const musicHtml = musicPicks.length
     ? musicCategories.map(cat => {
-      const items = musicPicks.filter(p => p.recommendationTagId === cat.id).slice(0, 2);
+      // 2 → 3 per category (Rex 2026-11-07): with 22 locked picks and only 8 slots,
+      // eleven albums never appeared once. 12 slots covers half the pool for +~700
+      // bytes; it dilutes (not eliminates) the frozen-top-3 effect, which is an
+      // upstream `music-pipeline` ordering issue, tracked separately.
+      const items = musicPicks.filter(p => p.recommendationTagId === cat.id).slice(0, 3);
       if (!items.length) return "";
       return `<div style="margin:6px 0">
   <p style="font-size:11px;color:${cat.color};font-weight:bold;margin:0 0 4px;text-transform:uppercase">${cat.label}</p>
@@ -3158,7 +3408,7 @@ function renderDigestHtml(d, now, locale) {
   <!-- Weekly feature announcement -->
   ${weeklyAnnouncementHtml}
 
-  <!-- 本周累计（周内只增不减的可见证据；只读 weekly-lock.json） -->
+  <!-- 本周累计：周五/周日为榜单（置顶），其余日子折叠为页脚一行 -->
   ${weeklyCumulativeHtml}
 
   <!-- Daily Digest -->
@@ -3191,6 +3441,13 @@ function renderDigestHtml(d, now, locale) {
   ${calendarHtml}` : ""}
 
   ${calendarHtml ? divider : ""}
+
+  <!-- Festival calendar status (running now, or the next station) -->
+  ${festivalHtml ? `
+  ${title(L("🎪 电影节动态", "🎪 FESTIVAL WATCH"))}
+  ${festivalHtml}` : ""}
+
+  ${festivalHtml ? divider : ""}
 
   <!-- Movie Picks (daily AI-curated) -->
   ${moviePicksHtml ? `
@@ -3235,6 +3492,7 @@ function renderDigestHtml(d, now, locale) {
   </div>
 
   <!-- Footer -->
+  ${weeklyFooterLine}
   <div style="border-top:2px dashed #333;margin:16px 0;padding-top:12px;text-align:center">
     <p style="font-size:10px;color:#666;margin:0 0 4px">
       <a href="${unsubUrl}" style="color:#666;text-decoration:underline">${L("取消订阅", "Unsubscribe")}</a>
@@ -3251,35 +3509,87 @@ function renderDigestHtml(d, now, locale) {
 
 // ── Public builder: one data fetch, render both locales ──
 // Returns { zh: {...}, en: {...} } plus shared date/headline fields.
-// ── Today's Star: one standout pick per day (movie OR TV), never repeated across
-// days. Selection + reasons come from the day's existing AI-curated gems (whyWatch
-// is already AI-written), so this is ZERO extra LLM calls and can't fail on DeepSeek.
-// Dedup via KV `dailyStar:history` (cumulative set of `mediaType:tmdbId` keys, no TTL);
-// `dailyStar:${today}` caches the day's pick so a rebuild (retry / new-subscriber
-// path) reuses it instead of double-appending to history.
-async function pickTodayStar(env, gemsAll, today) {
-  if (!env?.SUBSCRIBE_KV || !Array.isArray(gemsAll) || !gemsAll.length) return null;
+// Candidates for Today's Star = the works the digest can *name* but is not
+// already showing. Two problems this fixes (Rex 2026-11-07):
+//   ① the star shared its pool with the pick cards (gems, 6–8/day, picks take the
+//      first 5), so on every one of 14 measured days the star was already on
+//      screen further down — no reason for a reader to care.
+//   ② `dailyStar:history` was a cumulative, TTL-less set drawn only from that day's
+//      gems; once the day's gems had all been used, `cands` emptied and the whole
+//      ⭐ section silently disappeared with no fallback.
+// New pool = today's gems ∪ this week's locked works (index-built from files the
+// digest already fetched), minus anything else the email shows today.
+function digestShownKeys(d) {
+  const shown = new Set();
+  const gemsAll = d?.gemsData?.gems || [];
+  const addKeys = (arr) => (arr || []).forEach(x => {
+    if (!x) return;
+    const id = x.tmdbId ?? x.id;
+    if (id == null) return;
+    shown.add(`${x.mediaType === "tv" ? "tv" : "movie"}:${id}`);
+  });
+  addKeys(gemsAll.filter(g => g.mediaType !== "tv").slice(0, 5)); // movie picks
+  addKeys(gemsAll.filter(g => g.mediaType === "tv").slice(0, 5)); // tv picks
+  addKeys((d?.wallDelta?.movies || []).slice(0, 4));
+  addKeys((d?.tvWallDelta?.shows || []).slice(0, 4));
+  addKeys((d?.comingData?.next30Days || []).slice(0, 24)); // calendar rows
+  return shown;
+}
+
+// ── Today's Star: one standout pick per day (movie OR TV). Selection + reasons
+// come from data already on hand (AI-written `whyWatch`, or the fetched summary),
+// so this costs ZERO extra LLM calls and can't fail on DeepSeek.
+// Dedup is WEEK-SCOPED (`dailyStar:history:<weekStart>`): no repeats within a week,
+// resettable each Monday instead of drying up permanently.
+async function pickTodayStar(env, data, today) {
+  if (!env?.SUBSCRIBE_KV) return null;
   const starKey = `dailyStar:${today}`;
   const existing = await env.SUBSCRIBE_KV.get(starKey).catch(() => null);
   if (existing) {
     try { return JSON.parse(existing); } catch { /* fall through to rebuild */ }
   }
-  const histRaw = await env.SUBSCRIBE_KV.get(`dailyStar:history`).catch(() => null);
-  const history = histRaw ? (JSON.parse(histRaw) || []) : [];
-  const usedKeys = new Set(history.map(h => `${h.mediaType}:${h.tmdbId}`));
-  // Candidate = any gem not already featured as a past star; keep ones with a
-  // usable reason/poster for a rich card. Score: rating + AI reason + poster.
-  const cands = gemsAll
-    .filter(g => g && g.tmdbId && !usedKeys.has(`${g.mediaType || "movie"}:${g.tmdbId}`))
-    .map(g => ({ g, score: (g.rating || 0) + (g.whyWatch ? 2 : g.summary ? 1 : 0) + (g.poster ? 1 : 0) }))
-    .sort((a, b) => b.score - a.score);
-  if (!cands.length) return null; // every gem has been a star already → show no section (hard no-repeat)
-  const picked = cands[0].g;
+  const gemsAll = data?.gemsData?.gems || [];
+  if (!Array.isArray(gemsAll) || !gemsAll.length) return null;
+
+  const weekKey = `dailyStar:history:${weekStartOf(today) || today}`;
+  const histRaw = await env.SUBSCRIBE_KV.get(weekKey).catch(() => null);
+  let history = [];
+  try { history = (JSON.parse(histRaw) || []); } catch { history = []; }
+  const usedThisWeek = new Set(history.map(h => `${h.mediaType}:${h.tmdbId}`));
+  const shownToday = digestShownKeys(data);
+
+  const idx = buildWeeklyWorkIndex(data);
+  const lockedWorks = weeklyLockedWorks(data?.weeklyLock, idx)
+    .filter(w => w.rating > 0 && w.title && w.poster);
+
+  const scoreOf = (x) => (x.rating || 0) + (x.whyWatch ? 2 : x.summary ? 1 : 0) + (x.poster ? 1 : 0);
+  const keyOf = (x) => `${x.mediaType === "tv" ? "tv" : "movie"}:${x.tmdbId}`;
+  const pickFrom = (pool, excludeShown) => pool
+    .filter(x => x && x.tmdbId && !usedThisWeek.has(keyOf(x)))
+    .filter(x => (excludeShown ? !shownToday.has(keyOf(x)) : true))
+    .map(x => ({ x, score: scoreOf(x) }))
+    .sort((a, b) => b.score - a.score)[0]?.x || null;
+
+  // Relaxation ladder — the section must never vanish:
+  //   ① fresh work, not shown anywhere else today (the intended case)
+  //   ② fresh for the week, even if it appears in the picks below
+  //   ③ best of today's gems regardless of history (only if the week truly ran dry)
+  const pool = [...gemsAll.filter(g => g && g.tmdbId), ...lockedWorks];
+  let picked = pickFrom(pool, true) || pickFrom(pool, false) || (() => {
+    const fallback = gemsAll
+      .filter(g => g && g.tmdbId)
+      .map(g => ({ x: g, score: scoreOf(g) }))
+      .sort((a, b) => b.score - a.score)[0];
+    return fallback ? fallback.x : null;
+  })();
+  if (!picked) return null;
+
   const type = picked.mediaType === "tv" ? "tv" : "movie";
   const star = {
     tmdbId: picked.tmdbId,
     mediaType: type,
     title: picked.title || "",
+    titleEn: picked.titleEn || picked.title || "",
     poster: picked.poster || "",
     rating: picked.rating || 0,
     year: picked.year || "",
@@ -3287,9 +3597,9 @@ async function pickTodayStar(env, gemsAll, today) {
     reasonEn: picked.whyWatchEn || picked.summaryEn || picked.whyWatch || picked.summary || `Rated ${picked.rating || 0}/10 — worth a look today`,
   };
   // Append then persist. Concurrency here is negligible (one cron build/day); the
-  // usedKeys Set makes a rare duplicate history row harmless.
-  history.push({ mediaType: type, tmdbId: picked.tmdbId });
-  await env.SUBSCRIBE_KV.put(`dailyStar:history`, JSON.stringify(history)).catch(() => {});
+  // usedThisWeek Set makes a rare duplicate history row harmless.
+  if (!usedThisWeek.has(`${type}:${picked.tmdbId}`)) history.push({ mediaType: type, tmdbId: picked.tmdbId });
+  await env.SUBSCRIBE_KV.put(weekKey, JSON.stringify(history)).catch(() => {});
   await env.SUBSCRIBE_KV.put(starKey, JSON.stringify(star), { expirationTtl: 172800 }).catch(() => {});
   return star;
 }
@@ -3298,7 +3608,7 @@ async function buildDigestHTML(env, now) {
   now = now || intelToday();
   const data = await withTimeout(fetchDigestData(), 45000, "fetchDigestData");
   // Today's Star: inject into render data so both zh+en share one pick (deduped once daily).
-  const star = await pickTodayStar(env, (data.gemsData?.gems || []), now).catch(() => null);
+  const star = await pickTodayStar(env, data, now).catch(() => null);
   if (star) data.todayStar = star;
   const zh = renderDigestHtml(data, now, "zh");
   const enResult = renderDigestHtml(data, now, "en");
