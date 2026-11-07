@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-07T15:53:01Z",
- "today": "2026-11-07",
+ "updated": "2026-11-07T20:08:44Z",
+ "today": "2026-11-08",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
   "en": "Only festivals with verified official sources. Unannounced schedules are labelled, never left blank."
@@ -170,7 +170,7 @@
    ],
    "fetchedAt": "2026-11-07T15:53:01Z",
    "lastVerifiedAt": "2026-11-07T15:53:01Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 259,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -256,7 +256,7 @@
    ],
    "fetchedAt": "2026-11-07T15:53:07Z",
    "lastVerifiedAt": "2026-11-07T15:53:07Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 259,
    "changes7d": 157,
    "dataSource": "official"
   },
@@ -459,7 +459,7 @@
    ],
    "fetchedAt": "2026-11-07T15:53:17Z",
    "lastVerifiedAt": "2026-11-07T15:53:17Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 259,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -519,7 +519,7 @@
     "guestVisits": 17
    },
    "today": {
-    "date": "2026-11-07",
+    "date": "2026-11-08",
     "screenings": 3,
     "events": 0,
     "entries": 3,
@@ -527,10 +527,10 @@
     "guestVisits": 0,
     "items": [
      {
-      "id": "hkiff-cinefan-2026-20261107-202611071400",
+      "id": "hkiff-cinefan-2026-20261108-202611081400",
       "kind": "SCREENING",
       "time": "14:00",
-      "title": "Stuff and Dough",
+      "title": "The Death of Mr. Lazarescu",
       "venueName": "PREMIERE Elements",
       "section": "The Biting Ironies of the Romanian New Wave",
       "grade": null,
@@ -538,14 +538,14 @@
       "qa": false,
       "ticketStatus": null,
       "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
-      "eventUrl": "https://cinefan.hkiff.org.hk/movie/stuff-and-dough-26",
-      "officialUrl": "https://cinefan.hkiff.org.hk/movie/stuff-and-dough-26"
+      "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-death-of-mr-lazarescu-26",
+      "officialUrl": "https://cinefan.hkiff.org.hk/movie/the-death-of-mr-lazarescu-26"
      },
      {
-      "id": "hkiff-cinefan-2026-20261107-202611071615",
+      "id": "hkiff-cinefan-2026-20261108-202611081700",
       "kind": "SCREENING",
-      "time": "16:15",
-      "title": "Occident",
+      "time": "17:00",
+      "title": "12:08 East of Bucharest",
       "venueName": "PREMIERE Elements",
       "section": "The Biting Ironies of the Romanian New Wave",
       "grade": null,
@@ -553,14 +553,14 @@
       "qa": false,
       "ticketStatus": null,
       "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
-      "eventUrl": "https://cinefan.hkiff.org.hk/movie/occident-26",
-      "officialUrl": "https://cinefan.hkiff.org.hk/movie/occident-26"
+      "eventUrl": "https://cinefan.hkiff.org.hk/movie/12-08-east-of-bucharest-26",
+      "officialUrl": "https://cinefan.hkiff.org.hk/movie/12-08-east-of-bucharest-26"
      },
      {
-      "id": "hkiff-cinefan-2026-20261107-202611071830",
+      "id": "hkiff-cinefan-2026-20261108-202611081900",
       "kind": "SCREENING",
-      "time": "18:30",
-      "title": "The Seventh Continent",
+      "time": "19:00",
+      "title": "71 Fragments of a Chronology of Chance",
       "venueName": "PREMIERE Elements",
       "section": "Anatomy of Violence: Michael Haneke",
       "grade": null,
@@ -568,12 +568,12 @@
       "qa": false,
       "ticketStatus": null,
       "ticketUrl": "https://www.urbtix.hk/event-detail/15774/",
-      "eventUrl": "https://cinefan.hkiff.org.hk/movie/the-seventh-continent-26",
-      "officialUrl": "https://cinefan.hkiff.org.hk/movie/the-seventh-continent-26"
+      "eventUrl": "https://cinefan.hkiff.org.hk/movie/71-fragments-of-a-chronology-of-chance-26",
+      "officialUrl": "https://cinefan.hkiff.org.hk/movie/71-fragments-of-a-chronology-of-chance-26"
      }
     ]
    },
-   "nextScreeningDate": "2026-11-08",
+   "nextScreeningDate": "2026-11-14",
    "sources": [
     {
      "kind": "SCHEDULE",
@@ -954,7 +954,7 @@
    ],
    "fetchedAt": "2026-11-07T15:53:17Z",
    "lastVerifiedAt": "2026-11-07T15:53:17Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 259,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -1124,7 +1124,7 @@
    ],
    "fetchedAt": "2026-11-07T15:53:55.128Z",
    "lastVerifiedAt": "2026-11-07T15:53:55.128Z",
-   "dataAgeMinutes": 3,
+   "dataAgeMinutes": 258,
    "changes7d": 843,
    "dataSource": "official"
   },
@@ -1201,7 +1201,7 @@
      "url": "https://www.festival-cannes.com/en/the-selection/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-07T15:53:55Z"
+     "fetchedAt": "2026-11-07T20:08:44Z"
     },
     {
      "kind": "PROGRAMME",
@@ -1209,7 +1209,7 @@
      "url": "https://www.festival-cannes.com/en/f/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-07T15:53:55Z"
+     "fetchedAt": "2026-11-07T20:08:44Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -1217,11 +1217,11 @@
      "url": "https://www.festival-cannes.com/en/",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-07T15:53:55Z"
+     "fetchedAt": "2026-11-07T20:08:44Z"
     }
    ],
-   "fetchedAt": "2026-11-07T15:53:55Z",
-   "lastVerifiedAt": "2026-11-07T15:53:55Z",
+   "fetchedAt": "2026-11-07T20:08:44Z",
+   "lastVerifiedAt": "2026-11-07T20:08:44Z",
    "dataAgeMinutes": 3,
    "changes7d": 0,
    "dataSource": "official"
@@ -1312,7 +1312,7 @@
    ],
    "fetchedAt": "2026-10-29T06:25:06Z",
    "lastVerifiedAt": "2026-10-29T06:25:06Z",
-   "dataAgeMinutes": 13532,
+   "dataAgeMinutes": 13787,
    "changes7d": 0,
    "dataSource": "official"
   }
