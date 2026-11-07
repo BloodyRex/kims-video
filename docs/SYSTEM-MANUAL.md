@@ -189,6 +189,8 @@ MusicBrainz 近 30 天新发行（3 页×100）→ Last.fm 歌手热度过滤（
 
 `fetchDigestData` 读 10 个静态 JSON（digest/overview/tv/music/movies/hidden-gems/wall-delta/tvwall-delta/coming/weekly-lock），一次取数；`renderDigestHtml(data, now, locale)` 按语言渲染（zh/en 各一份，字段缺失时 zh↔en 回退）。2026-08-25 起为双语版：
 
+0. **七天专题通告**（条件板块）：`weeklyAnnouncement` 用日期白名单 `2026-11-07`～`2026-11-14` 门控，命中时在「每日摘要」与「本周累计」之上插入黑底 + 4px 亮黄边框区块，三行分别介绍电影节日历、本地数据迁移、像素游戏《生命进化史》（各一句话 + 同色直达按钮，链接带 `utm_campaign=weekly-feature`）。窗口外整块不渲染。定时发送为 UTC 22:35（北京次日 06:35），故 11-07 22:35 那封恰为第 1 封，11-14 22:35 为第 7 封，11-15 起自动消失；延长或缩短窗口只需改这一处日期数组；
+
 1. **每日摘要**：headline(+En) + summary(+En) + industryHighlights 要点 bullet + topTrends 标签（AI 失败时程序化兜底）；
 2. **影视日历**：未来 30 天排片（页首标注「本周累计 N 部」；电影/剧集各最多 12 条，按 daysUntil 排序）。条目源是 `coming.json.next30Days` —— pipeline 侧已纳入每周累计（周一起只增不减），所以周内不会因为当天抓取波动而整块消失；
 3. **今日电影推荐**：hidden-gems 中 mediaType≠tv 的前 5（92px 海报 + 评分 + whyWatch(+En) + tags(+En)，标题链 `/?from=digest&r={id}` 直达详情）；

@@ -2859,10 +2859,12 @@ function renderDigestHtml(d, now, locale) {
   const divider = `<div style="border-top:2px dashed #333;margin:16px 0"></div>`;
   const card = (inner, borderColor) => `<div style="background:#000;border:2px solid ${borderColor};padding:10px;margin:6px 0">${inner}</div>`;
 
-  // ── Weekly feature announcement (2026-11-06; shown in digest emails dated 2026-11-06--2026-11-13) ──
+  // ── Weekly feature announcement (shown in digest emails dated 2026-11-07--2026-11-14 = 7 scheduled sends) ──
   // This presentation is intentionally placed above the daily abstract/weekly cumulative block.
-  // It remains visible for exactly seven scheduled daily sends; after that date the block is omitted entirely.
-  const weeklyAnnouncement = ["2026-11-06", "2026-11-07", "2026-11-08", "2026-11-09", "2026-11-10", "2026-11-11", "2026-11-12", "2026-11-13"].includes(now);
+  // It spans exactly seven scheduled daily sends (daily cron 22:35 UTC): 11-08..11-14 Beijing. The first
+  // scheduled send after this patch (11-07 22:35 UTC = 11-08 06:35 Beijing) is send #1; the block disappears
+  // on 11-15 Beijing with no follow-up code change.
+  const weeklyAnnouncement = ["2026-11-07", "2026-11-08", "2026-11-09", "2026-11-10", "2026-11-11", "2026-11-12", "2026-11-13", "2026-11-14"].includes(now);
   const weeklyAnnouncementHtml = weeklyAnnouncement
     ? `<div style="background:#000;border:4px solid #ffff00;padding:14px;margin-bottom:16px">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px">
