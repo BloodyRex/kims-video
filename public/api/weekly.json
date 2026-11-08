@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08",
+  "updated": "2026-11-09",
   "movies": [
     {
       "tmdbId": 1423191,
@@ -10,7 +10,7 @@
       "year": "2026",
       "releaseDate": "2026-09-16",
       "poster": "https://image.tmdb.org/t/p/w500/qMvRqzzDVfQpLi5ZoKwttTQdaJe.jpg",
-      "rating": 7.446,
+      "rating": 7.469,
       "genre": [
         "Horror",
         "Sci-Fi",
@@ -30,7 +30,7 @@
       "year": "2026",
       "releaseDate": "2026-07-15",
       "poster": "https://image.tmdb.org/t/p/w500/qUj1aMFRkS51qxtT2klYYoEhxbq.jpg",
-      "rating": 8.018,
+      "rating": 8,
       "genre": [
         "Adventure",
         "Action",
@@ -50,7 +50,7 @@
       "year": "2026",
       "releaseDate": "2026-09-19",
       "poster": "https://image.tmdb.org/t/p/w500/k1nznc9xTRkRq0BNu7qOXE3NSlU.jpg",
-      "rating": 7.321,
+      "rating": 7.3,
       "genre": [
         "Adventure",
         "Thriller"
@@ -61,21 +61,22 @@
       "trend": "new"
     },
     {
-      "tmdbId": 1375441,
-      "title": "黄金时段",
-      "titleEn": "Primetime",
+      "tmdbId": 1792170,
+      "title": "模范公民",
+      "titleEn": "Model Citizen",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-09-23",
-      "poster": "https://image.tmdb.org/t/p/w500/6rjSYr7NoSWKwzSZbuHogNXgF1O.jpg",
-      "rating": 6.799,
+      "releaseDate": "2026-11-03",
+      "poster": "https://image.tmdb.org/t/p/w500/vagcyob8HzG9VbWzhqdkXF1CGYN.jpg",
+      "rating": 6.711,
       "genre": [
-        "Thriller",
-        "Drama"
+        "Crime",
+        "Sci-Fi",
+        "Thriller"
       ],
-      "summary": "聚焦电视主持人克里斯·汉森与他推出的一档真人秀节目“猎捕恋童癖”，该节目利用人员在网络上伪装成未成年人，引诱恋童癖进入摄影棚，并将其逮捕。",
-      "summaryEn": "In 2006, To Catch a Predator host Chris Hansen sets out to make television history. When a high stakes operation goes fatally wrong, his veneered dream of fame curdles into a nightmare of performative",
+      "summary": "失去记忆、对过往一片模糊的前警探史蒂文·贝，在一座偏僻农场接受失忆治疗，却遭遇日益加剧的敌意、诡异的监视，以及难以控制的本能。随着压力不断升级，他开始追查破碎现实背后的真相。",
+      "summaryEn": "With his memories gone and his past a blur, ex-cop Steven Bay seeks treatment for his amnesia while working on an isolated farm. Instead, he's met with rising hostility, strange surveillance, and inst",
       "rank": 4,
       "trend": "new"
     },
@@ -88,7 +89,7 @@
       "year": "2026",
       "releaseDate": "2026-11-03",
       "poster": "https://image.tmdb.org/t/p/w500/51RBWzkFd4zEsOGg4ZIqYlNszHc.jpg",
-      "rating": 8.181,
+      "rating": 8.032,
       "genre": [
         "Sci-Fi",
         "Horror",
@@ -100,22 +101,21 @@
       "trend": "new"
     },
     {
-      "tmdbId": 1792170,
-      "title": "模范公民",
-      "titleEn": "Model Citizen",
+      "tmdbId": 1375441,
+      "title": "黄金时段",
+      "titleEn": "Primetime",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-11-03",
-      "poster": "https://image.tmdb.org/t/p/w500/vagcyob8HzG9VbWzhqdkXF1CGYN.jpg",
-      "rating": 6.781,
+      "releaseDate": "2026-09-23",
+      "poster": "https://image.tmdb.org/t/p/w500/6rjSYr7NoSWKwzSZbuHogNXgF1O.jpg",
+      "rating": 6.798,
       "genre": [
-        "Crime",
-        "Sci-Fi",
-        "Thriller"
+        "Thriller",
+        "Drama"
       ],
-      "summary": "失去记忆、对过往一片模糊的前警探史蒂文·贝，在一座偏僻农场接受失忆治疗，却遭遇日益加剧的敌意、诡异的监视，以及难以控制的本能。随着压力不断升级，他开始追查破碎现实背后的真相。",
-      "summaryEn": "With his memories gone and his past a blur, ex-cop Steven Bay seeks treatment for his amnesia while working on an isolated farm. Instead, he's met with rising hostility, strange surveillance, and inst",
+      "summary": "聚焦电视主持人克里斯·汉森与他推出的一档真人秀节目“猎捕恋童癖”，该节目利用人员在网络上伪装成未成年人，引诱恋童癖进入摄影棚，并将其逮捕。",
+      "summaryEn": "In 2006, To Catch a Predator host Chris Hansen sets out to make television history. When a high stakes operation goes fatally wrong, his veneered dream of fame curdles into a nightmare of performative",
       "rank": 6,
       "trend": "new"
     },
@@ -128,7 +128,7 @@
       "year": "2026",
       "releaseDate": "2026-10-29",
       "poster": "https://image.tmdb.org/t/p/w500/m1vBxr5hLklqgMZQogEEsexzyEQ.jpg",
-      "rating": 5.817,
+      "rating": 5.657,
       "genre": [
         "Action",
         "Thriller"
@@ -147,32 +147,14 @@
       "year": "2026",
       "releaseDate": "2026-09-23",
       "poster": "https://image.tmdb.org/t/p/w500/7hEGIiIRdtFYA11fKPY1Kz8CpyI.jpg",
-      "rating": 7.435,
+      "rating": 7.5,
       "genre": [
-        "Drama"
+        "Drama",
+        "Romance"
       ],
-      "summary": "故事讲述两对已婚夫妇——一名下岗工人及其配偶，和一位纪录片导演及其配偶——因拍摄一部纪录片而相遇，并面对各自不同的生活与隐藏的欲望。",
+      "summary": "一对失业夫妻遇上一对纪录片导演夫妇，并直面他们内心深处的渴望。",
       "summaryEn": "A laid-off worker and his wife cross paths with a documentary filmmaker and her spouse and confront their hidden desires.",
       "rank": 8,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1283515,
-      "title": "不存在的罪人",
-      "titleEn": "Verity",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-09-30",
-      "poster": "https://image.tmdb.org/t/p/w500/zzJaCowELQcslovzG4RF9QUplH6.jpg",
-      "rating": 6.961,
-      "genre": [
-        "Mystery",
-        "Thriller"
-      ],
-      "summary": "改编自科琳·胡佛的同名小说。知名作家维莉蒂·克劳福德因意外受伤后，洛温·阿什利受聘代笔完成她的系列小说，并搬进克劳福德家中。洛温意外发现维莉蒂令人不安的自传手稿，逐渐陷入真假难辨的秘密、操纵与执念之中。",
-      "summaryEn": "Lowen Ashleigh, hired to ghostwrite for best-selling author Verity Crawford, uncovers Verity's autobiographical notes, and becomes involved in what may prove to be a lethal conspiracy.",
-      "rank": 9,
       "trend": "new"
     },
     {
@@ -184,7 +166,7 @@
       "year": "2026",
       "releaseDate": "2026-11-05",
       "poster": "https://image.tmdb.org/t/p/w500/2B67vLTkLIACYeq0xfrIOpCAum1.jpg",
-      "rating": 7.842,
+      "rating": 7.857,
       "genre": [
         "Fantasy",
         "Action",
@@ -192,11 +174,55 @@
       ],
       "summary": "改编自印度古代史诗《罗摩衍那》。魔王罗波那作恶多端，欲用武力一统三界。毗湿奴神化身罗摩降临凡尘，担起守护众生的重任。十四年流放间罗摩降妖除魔，一步步激怒了罗波那。当妻子悉多被掳走，彻底点燃了罗摩心中的战意。",
       "summaryEn": "An ancient epic follows a young prince and princess whose marriage and subsequent exile mark the beginning of a legendary journey. Their story of love, duty and destiny sets the stage for greater chal",
+      "rank": 9,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 1400940,
+      "title": "泥面人",
+      "titleEn": "Clayface",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-10-19",
+      "poster": "https://image.tmdb.org/t/p/w500/8AKvV4bJsfUBUZ7cgW41iv3EYaG.jpg",
+      "rating": 7.4,
+      "genre": [
+        "Horror",
+        "Thriller",
+        "Sci-Fi"
+      ],
+      "summary": "好莱坞新星马特·哈根遭犯罪头目毁容后，为恢复容貌接受先进治疗，却意外陷入疯狂，走上复仇之路。",
+      "summaryEn": "Matt Hagen's meteoric rise from Gotham street kid to Hollywood leading man is tragically cut short when a local crime boss's actions leave him horribly disfigured. Abandoned by his team and with nothi",
       "rank": 10,
       "trend": "new"
     }
   ],
   "tv": [
+    {
+      "tmdbId": 213375,
+      "title": "幻视任务",
+      "titleEn": "VisionQuest",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-13",
+      "poster": "https://image.tmdb.org/t/p/w500/9rWX1tRNd1wIf0XnTjd8GOUoTlH.jpg",
+      "rating": 8.651,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "重启后的幻视隐居避世，试图摆脱将他武器化的人，并通过与体内的AI人格交流寻找存在意义，其中包括恶名昭彰的奥创。然而高额悬赏打破了平静，他被迫与神秘少年托马斯·谢泼德一同逃亡，后者或许是他重生后的儿子。",
+      "summaryEn": "With a bounty on his head, Vision must confront his nature and resist Ultron's influence to survive.",
+      "nextAirDate": "2026-11-10",
+      "season": 1,
+      "episode": 7,
+      "latestAirDate": "2026-11-03",
+      "rank": 1,
+      "trend": "new"
+    },
     {
       "tmdbId": 279246,
       "title": "再婚皇后",
@@ -208,7 +234,7 @@
       "year": "2026",
       "releaseDate": "2026-11-03",
       "poster": "https://image.tmdb.org/t/p/w500/nWuOUzOHrn4VB7zRrrcZQHcB5Vx.jpg",
-      "rating": 8.294,
+      "rating": 7.841,
       "genre": [
         "Drama"
       ],
@@ -218,32 +244,6 @@
       "season": 1,
       "episode": 4,
       "latestAirDate": "2026-11-03",
-      "rank": 1,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 259909,
-      "title": "嗜血法医：杀魔复生",
-      "titleEn": "Dexter: Resurrection",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2025",
-      "releaseDate": "2025-07-13",
-      "poster": "https://image.tmdb.org/t/p/w500/7VEnzLC07bIlOtSxnNKrXd5vMWO.jpg",
-      "rating": 8.6,
-      "genre": [
-        "Crime",
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "迈阿密血迹分析师德克斯特·摩根以连环杀手为目标，在隐藏真实身份的同时，继续遵循自己的杀戮准则，并面对儿子哈里森及过往带来的种种纠葛。",
-      "summaryEn": "Set 10 weeks after Dexter: New Blood, Dexter Morgan chases a missing Harrison to New York City, where Captain Angel Batista is hot on their trail from way down in Miami.",
-      "nextAirDate": "2026-11-08",
-      "season": 2,
-      "episode": 1,
-      "latestAirDate": "2026-11-01",
       "rank": 2,
       "trend": "new"
     },
@@ -258,7 +258,7 @@
       "year": "2024",
       "releaseDate": "2024-12-05",
       "poster": "https://image.tmdb.org/t/p/w500/g5gGRAxnBYMYaIqu2aBvIURoezg.jpg",
-      "rating": 7.1,
+      "rating": 7.045,
       "genre": [
         "Mystery",
         "Crime"
@@ -272,27 +272,29 @@
       "trend": "new"
     },
     {
-      "tmdbId": 213375,
-      "title": "幻视任务",
-      "titleEn": "VisionQuest",
+      "tmdbId": 259909,
+      "title": "嗜血法医：杀魔复生",
+      "titleEn": "Dexter: Resurrection",
       "originalLanguage": "en",
       "originCountry": [
         "US"
       ],
-      "year": "2026",
-      "releaseDate": "2026-10-13",
-      "poster": "https://image.tmdb.org/t/p/w500/9rWX1tRNd1wIf0XnTjd8GOUoTlH.jpg",
-      "rating": 8.6,
+      "year": "2025",
+      "releaseDate": "2025-07-13",
+      "poster": "https://image.tmdb.org/t/p/w500/7VEnzLC07bIlOtSxnNKrXd5vMWO.jpg",
+      "rating": 8.56,
       "genre": [
-        "Drama"
+        "Crime",
+        "Drama",
+        "Mystery"
       ],
-      "summary": "重启后的幻视隐居避世，试图摆脱将他武器化的人，并通过与体内的AI人格交流寻找存在意义，其中包括恶名昭彰的奥创。然而高额悬赏打破了平静，他被迫与神秘少年托马斯·谢泼德一同逃亡，后者或许是他重生后的儿子。",
-      "summaryEn": "With a bounty on his head, Vision must confront his nature and resist Ultron's influence to survive.",
-      "nextAirDate": "2026-11-10",
-      "season": 1,
-      "episode": 7,
-      "latestAirDate": "2026-11-03",
-      "rank": 4,
+      "summary": "迈阿密血迹分析师德克斯特·摩根以连环杀手为目标，在隐藏真实身份的同时，继续遵循自己的杀戮准则，并面对儿子哈里森及过往带来的种种纠葛。",
+      "summaryEn": "Set 10 weeks after Dexter: New Blood, Dexter Morgan chases a missing Harrison to New York City, where Captain Angel Batista is hot on their trail from way down in Miami.",
+      "nextAirDate": "2026-11-08",
+      "season": 2,
+      "episode": 1,
+      "latestAirDate": "2026-11-01",
+      "rank": 5,
       "trend": "new"
     },
     {
@@ -306,7 +308,7 @@
       "year": "2026",
       "releaseDate": "2026-10-30",
       "poster": "https://image.tmdb.org/t/p/w500/34Z1vlsow72njbGBNYCaxqFFGjP.jpg",
-      "rating": 7.627,
+      "rating": 7.641,
       "genre": [
         "Mystery",
         "Drama"
@@ -316,33 +318,53 @@
       "season": 1,
       "episode": 8,
       "latestAirDate": "2026-10-30",
-      "rank": 6,
+      "rank": 8,
       "trend": "new"
     },
     {
-      "tmdbId": 292741,
-      "title": "夜曲",
-      "titleEn": "Nocturne",
-      "originalLanguage": "en",
+      "tmdbId": 303044,
+      "title": "校园接送恋曲",
+      "titleEn": "Campus Drivers",
+      "originalLanguage": "fr",
       "originCountry": [
-        "US"
+        "FR"
       ],
       "year": "2026",
-      "releaseDate": "2026-10-29",
-      "poster": "https://image.tmdb.org/t/p/w500/mHlARApb69J39NfmqKHseOghFJO.jpg",
-      "rating": 7.7,
+      "releaseDate": "2026-11-06",
+      "poster": "https://image.tmdb.org/t/p/w500/iKvLvUrwLo34FeNVH72y6ONGChS.jpg",
+      "rating": 8,
       "genre": [
-        "Crime",
-        "Drama",
-        "Mystery"
+        "Drama"
       ],
-      "summary": "改编自拉尔斯·克卜勒的小说《拉撒路》和《睡魔》。恶名昭彰的连环杀手尤里克·沃尔特的一名受害者意外生还，警探乔纳·林分秒必争务求找出唯一仍然失踪的人，同时他的徒弟萨加·鲍尔则充当卧底，试图从杀手身上获得答案。",
-      "summaryEn": "When a victim of notorious serial killer Jurek Walter unexpectedly turns up alive, detective Jonah Lynn races against time to find the one person still missing, while his protégé Saga Bauer goes under",
-      "nextAirDate": "2026-11-12",
+      "summary": "改编自法国作家 C.S. Quill 创作的同名系列小说。露易丝和她一生的挚爱麦克斯来到了贝尔罗斯。莱恩是校园里最火的应用\"校园司机\"的创始人，以从不与人产生感情牵绊而闻名。他们的人生轨迹原本不该有交集，但有些相遇会改变一切，重新揭开旧日伤疤。而当爱情不期而至时，一切都变得不再确定。",
+      "summaryEn": "Lois arrives in Belrose with Max, the love of her life. Lane, the creator of Campus Drivers, the hottest app on campus, is known for never getting attached. Their paths were never meant to cross. But ",
       "season": 1,
-      "episode": 3,
-      "latestAirDate": "2026-11-05",
-      "rank": 8,
+      "episode": 6,
+      "latestAirDate": "2026-11-06",
+      "rank": 9,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 300146,
+      "title": "嫁金钗",
+      "titleEn": "Where the Mask Ends",
+      "originalLanguage": "zh",
+      "originCountry": [
+        "CN"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-10-16",
+      "poster": "https://image.tmdb.org/t/p/w500/nKhiK99WZohc3fJsTXJLf4SrSEY.jpg",
+      "rating": 7.553,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "改编自笑佳人的同名小说。阿丑因容貌酷似侯府千金，意外成为国公府世子陆濯的冲喜新娘。陆濯苏醒后对她百般提防，另一名与她容貌相同的女子也对她恨之入骨。身处危机四伏的国公府，阿丑步步谋划，逐渐改写命运，并揭开身世之谜。",
+      "summaryEn": "An ambitious street urchin seizes the chance to impersonate a noblewoman and becomes a warlord's bride, but when her comatose husband awakens, she must navigate deadly schemes, win his heart through c",
+      "season": 1,
+      "episode": 30,
+      "latestAirDate": "2026-11-03",
+      "rank": 10,
       "trend": "new"
     }
   ],

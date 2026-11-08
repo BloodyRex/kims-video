@@ -1,104 +1,188 @@
 {
-  "updated": "2026-11-08",
-  "count": 6,
+  "updated": "2026-11-09",
+  "count": 11,
   "movies": [
     {
-      "tmdbId": 1811193,
+      "tmdbId": 1792170,
       "mediaType": "movie",
-      "title": "清气满乾坤",
-      "titleEn": "清气满乾坤",
+      "title": "模范公民",
+      "titleEn": "Model Citizen",
       "year": "2026",
-      "releaseDate": "2026-11-08",
-      "poster": "https://image.tmdb.org/t/p/w500/ui6KVXPZ45rA1fkr9DycU4khQi6.jpg",
-      "rating": 0,
+      "releaseDate": "2026-11-03",
+      "poster": "https://image.tmdb.org/t/p/w500/vagcyob8HzG9VbWzhqdkXF1CGYN.jpg",
+      "rating": 6.711,
       "genre": [
-        "Drama"
+        "Crime",
+        "Sci-Fi",
+        "Thriller"
       ],
-      "firstSeen": "2026-11-08"
+      "firstSeen": "2026-11-09"
     },
     {
-      "tmdbId": 1654940,
+      "tmdbId": 20766,
       "mediaType": "movie",
-      "title": "余命一年买男人",
-      "titleEn": "One Year to Live, Buy a Man",
-      "year": "2026",
-      "releaseDate": "2026-11-05",
-      "poster": "https://image.tmdb.org/t/p/w500/iE3DULpUgBaRQtKMDlmZP7wQVRD.jpg",
-      "rating": 7.6,
+      "title": "末日危途",
+      "titleEn": "The Road",
+      "year": "2009",
+      "releaseDate": "2009-11-25",
+      "poster": "https://image.tmdb.org/t/p/w342/qLaXnLzqleBWQtjvZ6JGVSaKoC3.jpg",
+      "rating": 7.021,
       "genre": [
-        "Romance",
-        "Drama",
-        "Comedy"
-      ],
-      "firstSeen": "2026-11-08"
-    },
-    {
-      "tmdbId": 1630420,
-      "mediaType": "movie",
-      "title": "浮夸特攻队",
-      "titleEn": "Overacting",
-      "year": "2026",
-      "releaseDate": "2026-11-04",
-      "poster": "https://image.tmdb.org/t/p/w500/dUvyjVQa6HwejaT3apTA2Xmhn0H.jpg",
-      "rating": 6,
-      "genre": [
-        "Action",
-        "Adventure",
-        "Comedy"
-      ],
-      "firstSeen": "2026-11-08"
-    },
-    {
-      "tmdbId": 12159,
-      "mediaType": "movie",
-      "title": "美梦成真",
-      "titleEn": "What Dreams May Come",
-      "year": "1998",
-      "releaseDate": "1998-10-02",
-      "poster": "https://image.tmdb.org/t/p/w342/78wCdphUzeb528wLZw2W0fn7yGB.jpg",
-      "rating": 7.255,
-      "genre": [
-        "剧情",
-        "奇幻",
-        "爱情"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-07"
-    },
-    {
-      "tmdbId": 13198,
-      "mediaType": "movie",
-      "title": "割腕者的天堂",
-      "titleEn": "Wristcutters: A Love Story",
-      "year": "2007",
-      "releaseDate": "2007-10-19",
-      "poster": "https://image.tmdb.org/t/p/w342/qModiIR60IMLP28ruGZluQOtsOj.jpg",
-      "rating": 6.967,
-      "genre": [
-        "喜剧",
-        "剧情",
-        "奇幻",
-        "爱情"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-07"
-    },
-    {
-      "tmdbId": 337677,
-      "mediaType": "movie",
-      "title": "青春冒险王",
-      "titleEn": "Microbe et Gasoil",
-      "year": "2015",
-      "releaseDate": "2015-07-08",
-      "poster": "https://image.tmdb.org/t/p/w342/jIzSVykCYzAmaniiT5ihanpaxmw.jpg",
-      "rating": 6.1,
-      "genre": [
-        "喜剧",
         "冒险",
         "剧情"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-07"
+      "firstSeen": "2026-11-08"
+    },
+    {
+      "tmdbId": 33583,
+      "mediaType": "movie",
+      "title": "十日谈",
+      "titleEn": "Il Decameron",
+      "year": "1971",
+      "releaseDate": "1971-08-25",
+      "poster": "https://image.tmdb.org/t/p/w342/iL5mmuIL6fqFSWJeHE417WWrocz.jpg",
+      "rating": 6.851,
+      "genre": [
+        "历史",
+        "剧情",
+        "喜剧"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-09"
+    },
+    {
+      "tmdbId": 39538,
+      "mediaType": "movie",
+      "title": "传染病",
+      "titleEn": "Contagion",
+      "year": "2011",
+      "releaseDate": "2011-09-08",
+      "poster": "https://image.tmdb.org/t/p/w342/qL0IooP0bjXy0KXl9KEyPo22ll0.jpg",
+      "rating": 6.66,
+      "genre": [
+        "剧情",
+        "惊悚",
+        "科幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-08"
+    },
+    {
+      "tmdbId": 41225,
+      "mediaType": "movie",
+      "title": "勾魂慑魄",
+      "titleEn": "Histoires extraordinaires",
+      "year": "1968",
+      "releaseDate": "1968-05-16",
+      "poster": "https://image.tmdb.org/t/p/w342/4rskADMz6k5Z94riB8BDrgdYUfy.jpg",
+      "rating": 6.214,
+      "genre": [
+        "恐怖",
+        "悬疑",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-09"
+    },
+    {
+      "tmdbId": 5691,
+      "mediaType": "movie",
+      "title": "坎特伯雷故事集",
+      "titleEn": "I racconti di Canterbury",
+      "year": "1972",
+      "releaseDate": "1972-09-02",
+      "poster": "https://image.tmdb.org/t/p/w342/6mAUGtIc0PjvL1EhDwX6WMkUQpp.jpg",
+      "rating": 6.105,
+      "genre": [
+        "喜剧",
+        "历史",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-09"
+    },
+    {
+      "tmdbId": 583,
+      "mediaType": "movie",
+      "title": "万世魔星",
+      "titleEn": "Life of Brian",
+      "year": "1979",
+      "releaseDate": "1979-08-17",
+      "poster": "https://image.tmdb.org/t/p/w342/lSSA64WF0M0BXnjwr2quMh6shCl.jpg",
+      "rating": 7.763,
+      "genre": [
+        "喜剧"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-09"
+    },
+    {
+      "tmdbId": 762,
+      "mediaType": "movie",
+      "title": "巨蟒与圣杯",
+      "titleEn": "Monty Python and the Holy Grail",
+      "year": "1975",
+      "releaseDate": "1975-04-03",
+      "poster": "https://image.tmdb.org/t/p/w342/7nTkHjETdGMYK1phHwDbPsrzbYl.jpg",
+      "rating": 7.801,
+      "genre": [
+        "冒险",
+        "喜剧",
+        "奇幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-09"
+    },
+    {
+      "tmdbId": 793445,
+      "mediaType": "movie",
+      "title": "切尔诺贝利：禁区",
+      "titleEn": "Чернобыль. Зона отчуждения. Финал",
+      "year": "2019",
+      "releaseDate": "2019-09-19",
+      "poster": "https://image.tmdb.org/t/p/w342/hGC5xkkwYyof5nafqRClBPF2RSW.jpg",
+      "rating": 7.4,
+      "genre": [
+        "剧情",
+        "悬疑"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-08"
+    },
+    {
+      "tmdbId": 8338,
+      "mediaType": "movie",
+      "title": "盲流感",
+      "titleEn": "Blindness",
+      "year": "2008",
+      "releaseDate": "2008-05-14",
+      "poster": "https://image.tmdb.org/t/p/w342/deBsx5IxyqCC217j3VY24TkkE0Z.jpg",
+      "rating": 6.521,
+      "genre": [
+        "剧情",
+        "悬疑",
+        "科幻",
+        "惊悚"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-08"
+    },
+    {
+      "tmdbId": 8645,
+      "mediaType": "movie",
+      "title": "灭顶之灾",
+      "titleEn": "The Happening",
+      "year": "2008",
+      "releaseDate": "2008-06-11",
+      "poster": "https://image.tmdb.org/t/p/w342/fP4nBrtmc0teSDDHzYmDE7TLQBT.jpg",
+      "rating": 5.41,
+      "genre": [
+        "惊悚",
+        "科幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-08"
     }
   ]
 }
