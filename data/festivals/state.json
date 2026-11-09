@@ -115,15 +115,15 @@
     "films": 496,
     "screenings": 0
    },
-   "failCount": 29,
+   "failCount": 30,
    "lastError": "iffr feed yielded 0 films (parse warnings: feed fetch failed: HTTP 403; feed parse failed: Unexpected end of JSON input)",
    "changesLastRun": 0,
    "collapsed": 0,
-   "lastAttemptAt": "2026-11-08T22:25:21Z"
+   "lastAttemptAt": "2026-11-09T01:54:51Z"
   },
   "cannes-2026": {
-   "lastFetchedAt": "2026-11-08T22:26:15Z",
-   "lastVerifiedAt": "2026-11-08T22:26:15Z",
+   "lastFetchedAt": "2026-11-09T01:54:51Z",
+   "lastVerifiedAt": "2026-11-09T01:54:51Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -142,5 +142,5 @@
    "collapsed": 0
   }
  },
- "updated": "2026-11-08T22:25:21Z"
+ "updated": "2026-11-09T01:54:51Z"
 }
