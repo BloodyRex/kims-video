@@ -1,12 +1,12 @@
 {
- "at": "2026-11-09T20:38:26Z",
+ "at": "2026-11-10T03:25:35Z",
  "proxy": false,
  "force": false,
  "editions": [
   {
    "slug": "biff-2026",
    "due": true,
-   "reason": "age 661min ≥ 360min",
+   "reason": "age 407min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 255,
@@ -25,7 +25,7 @@
   {
    "slug": "idfa-2026",
    "due": true,
-   "reason": "age 661min ≥ 360min",
+   "reason": "age 407min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 260,
@@ -53,12 +53,12 @@
     "5 record(s) look like all-day programme blocks (linked film, > 240min) — kept as EVENT, not screenings"
    ],
    "action": "updated",
-   "changes": 120
+   "changes": 7
   },
   {
    "slug": "bfi-2026",
    "due": true,
-   "reason": "age 661min ≥ 360min",
+   "reason": "age 407min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 242,
@@ -77,7 +77,7 @@
   {
    "slug": "hkiff-cinefan-2026",
    "due": true,
-   "reason": "age 661min ≥ 360min",
+   "reason": "age 407min ≥ 360min",
    "status": "SCREENING_LIVE",
    "parsed": {
     "films": 45,
@@ -98,7 +98,7 @@
   {
    "slug": "venice-2026",
    "due": true,
-   "reason": "age 660min ≥ 360min",
+   "reason": "age 406min ≥ 360min",
    "status": "SCHEDULE_LIVE",
    "parsed": {
     "films": 347,
@@ -112,12 +112,12 @@
    },
    "warnings": [],
    "action": "updated",
-   "changes": 132
+   "changes": 113
   },
   {
    "slug": "cannes-2026",
    "due": true,
-   "reason": "age 660min ≥ 180min",
+   "reason": "age 406min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "parsed": {
     "films": 150,
@@ -138,7 +138,7 @@
   {
    "slug": "iffr-2026",
    "due": true,
-   "reason": "age 16693min ≥ 180min",
+   "reason": "age 17100min ≥ 180min",
    "status": "PROGRAM_RELEASED",
    "action": "fetch failed",
    "error": "iffr feed yielded 0 films (parse warnings: feed fetch failed: HTTP 403; feed parse failed: Unexpected end of JSON input)"
