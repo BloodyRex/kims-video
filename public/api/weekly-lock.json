@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09",
+  "updated": "2026-11-10",
   "weekStart": "2026-11-09",
   "cap": 25,
   "sections": {
@@ -13,24 +13,25 @@
       "1409470",
       "1654940",
       "1603262",
-      "1810158",
       "1394721",
+      "1810158",
       "1807721",
       "1792170"
     ],
     "movies.json.nowPlaying": [
       "1813355",
-      "1294189",
+      "1796001",
       "1423191",
-      "791523",
+      "1294189",
       "1657630",
       "1571955",
       "1596275",
       "245891",
+      "791523",
+      "1263337",
       "1507696",
       "1780005",
       "1400940",
-      "1263337",
       "1422041",
       "1483525",
       "1195803"
@@ -40,6 +41,9 @@
       "291507"
     ],
     "tv.json.ongoing": [
+      "84773",
+      "312359",
+      "303044",
       "108978",
       "124364",
       "60625"
@@ -50,7 +54,9 @@
       "movie:1538497",
       "tv:171802",
       "tv:291507",
-      "tv:288672"
+      "tv:288672",
+      "tv:301354",
+      "tv:254630"
     ],
     "music.json.picks": [
       "c6358baf-1e01-4991-ab6e-cb5d794e222a",
@@ -62,37 +68,38 @@
       "46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
       "4e05d16b-0198-4994-b1fe-78053c4c5055",
       "f4a9a05b-c146-410e-8161-4d10af2f6bfa",
-      "ee928bdc-8e78-4925-9563-b1cc9d193147",
       "c0d31807-a8ee-4127-847b-19f28630871c",
       "b577931e-be63-4e84-a7b2-e4c0764e9920",
       "af4ece5b-3174-426d-ad92-45090ab35b5e",
       "268d81bf-6af4-4bfd-b4ce-41a7e777c144",
-      "39b58fe5-9a4b-44b6-a42c-3791dc89115a"
+      "39b58fe5-9a4b-44b6-a42c-3791dc89115a",
+      "aca30a57-12bb-4a41-af25-59457048a844",
+      "ee928bdc-8e78-4925-9563-b1cc9d193147"
     ]
   },
   "failures": {},
   "delta": {
-    "date": "2026-11-09",
+    "date": "2026-11-10",
     "bySection": {
       "movies.json.releasedThisWeek": 0,
-      "movies.json.nowPlaying": 0,
+      "movies.json.nowPlaying": 1,
       "tv.json.premieresThisWeek": 0,
-      "tv.json.ongoing": 0,
-      "coming.json.next30Days": 0,
-      "music.json.picks": 0
+      "tv.json.ongoing": 3,
+      "coming.json.next30Days": 2,
+      "music.json.picks": 1
     },
-    "total": 0
+    "total": 7
   },
   "prevCounts": {
     "weekStart": "2026-11-09",
-    "date": "2026-11-09",
+    "date": "2026-11-10",
     "totals": {
       "movies.json.releasedThisWeek": 13,
-      "movies.json.nowPlaying": 15,
+      "movies.json.nowPlaying": 16,
       "tv.json.premieresThisWeek": 2,
-      "tv.json.ongoing": 3,
-      "coming.json.next30Days": 6,
-      "music.json.picks": 15
+      "tv.json.ongoing": 6,
+      "coming.json.next30Days": 8,
+      "music.json.picks": 16
     }
   }
 }
