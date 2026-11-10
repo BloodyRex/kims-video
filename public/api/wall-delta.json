@@ -1,92 +1,136 @@
 {
-  "updated": "2026-11-10",
-  "count": 5,
+  "updated": "2026-11-11",
+  "count": 8,
   "movies": [
     {
-      "tmdbId": 1548,
+      "tmdbId": 1327835,
       "mediaType": "movie",
-      "title": "幽灵世界",
-      "titleEn": "Ghost World",
-      "year": "2001",
-      "releaseDate": "2001-07-20",
-      "poster": "https://image.tmdb.org/t/p/w342/uwKqnUPE4dSM0kKuMW0vXpURh2T.jpg",
-      "rating": 7.081,
+      "title": "穆库蒂安曼2",
+      "titleEn": "Mookuthi Amman 2",
+      "year": "2026",
+      "releaseDate": "2026-11-06",
+      "poster": "https://image.tmdb.org/t/p/w500/dNNzsstJeQxnESyH0hZcLGblLMz.jpg",
+      "rating": 0,
       "genre": [
-        "喜剧",
+        "Fantasy",
+        "Drama",
+        "Comedy"
+      ],
+      "firstSeen": "2026-11-11"
+    },
+    {
+      "tmdbId": 120096,
+      "mediaType": "movie",
+      "title": "十三棵泡桐",
+      "titleEn": "十三棵泡桐",
+      "year": "2006",
+      "releaseDate": "2006-10-24",
+      "poster": "https://image.tmdb.org/t/p/w342/92tyhOi1uMVfqLAW9pwycdxty2D.jpg",
+      "rating": 6,
+      "genre": [
         "剧情"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-09"
+      "firstSeen": "2026-11-10"
     },
     {
-      "tmdbId": 503125,
+      "tmdbId": 14943,
       "mediaType": "movie",
-      "title": "小怪物",
-      "titleEn": "Little Monsters",
-      "year": "2019",
-      "releaseDate": "2019-08-29",
-      "poster": "https://image.tmdb.org/t/p/w342/oQvUq7UmumBTcAnvgFLFvegY47d.jpg",
-      "rating": 6.492,
-      "genre": [
-        "恐怖",
-        "喜剧"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-09"
-    },
-    {
-      "tmdbId": 528888,
-      "mediaType": "movie",
-      "title": "我叫多麦特",
-      "titleEn": "Dolemite Is My Name",
-      "year": "2019",
-      "releaseDate": "2019-10-04",
-      "poster": "https://image.tmdb.org/t/p/w342/uoAqJg7ZSmftnBGOkupU1ySZQU0.jpg",
-      "rating": 6.955,
-      "genre": [
-        "剧情",
-        "喜剧",
-        "历史"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-09"
-    },
-    {
-      "tmdbId": 7326,
-      "mediaType": "movie",
-      "title": "朱诺",
-      "titleEn": "Juno",
+      "title": "热血高校",
+      "titleEn": "クローズZERO",
       "year": "2007",
-      "releaseDate": "2007-12-05",
-      "poster": "https://image.tmdb.org/t/p/w342/jNIn2tVhpvFD6P9IojldI3mNYcn.jpg",
-      "rating": 7.061,
+      "releaseDate": "2007-10-26",
+      "poster": "https://image.tmdb.org/t/p/w342/so1E9wUAXJi9hqGRNPgoVQd7HaX.jpg",
+      "rating": 7.1,
       "genre": [
+        "动作",
         "喜剧",
+        "犯罪"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-10"
+    },
+    {
+      "tmdbId": 33333,
+      "mediaType": "movie",
+      "title": "蓝色青春",
+      "titleEn": "青い春",
+      "year": "2001",
+      "releaseDate": "2001-09-09",
+      "poster": "https://image.tmdb.org/t/p/w342/ywUB6mMJGJHEIIl1BVV2eBLMWif.jpg",
+      "rating": 7.1,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-10"
+    },
+    {
+      "tmdbId": 334973,
+      "mediaType": "movie",
+      "title": "左耳",
+      "titleEn": "左耳",
+      "year": "2015",
+      "releaseDate": "2015-04-24",
+      "poster": "https://image.tmdb.org/t/p/w342/mb5HkB37ux425QntqjeWBcdth2d.jpg",
+      "rating": 6.2,
+      "genre": [
         "剧情",
         "爱情"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-09"
+      "firstSeen": "2026-11-10"
     },
     {
-      "tmdbId": 961323,
+      "tmdbId": 365815,
       "mediaType": "movie",
-      "title": "怪物少女妮莫娜",
-      "titleEn": "Nimona",
-      "year": "2023",
-      "releaseDate": "2023-06-23",
-      "poster": "https://image.tmdb.org/t/p/w342/2NQljeavtfl22207D1kxLpa4LS3.jpg",
-      "rating": 7.845,
+      "title": "少年巴比伦",
+      "titleEn": "少年巴比伦",
+      "year": "2015",
+      "releaseDate": "2015-10-23",
+      "poster": "https://image.tmdb.org/t/p/w342/sH0X9eCt0sDyf47YHvsaM2nU0PI.jpg",
+      "rating": 6.2,
       "genre": [
-        "动画",
-        "家庭",
-        "奇幻",
-        "冒险",
-        "科幻",
-        "动作"
+        "剧情",
+        "喜剧",
+        "爱情"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-09"
+      "firstSeen": "2026-11-10"
+    },
+    {
+      "tmdbId": 42041,
+      "mediaType": "movie",
+      "title": "纪子的餐桌",
+      "titleEn": "紀子の食卓",
+      "year": "2005",
+      "releaseDate": "2005-09-23",
+      "poster": "https://image.tmdb.org/t/p/w342/mTusjr1v1IrzxR3krVxoWKQXmJk.jpg",
+      "rating": 7,
+      "genre": [
+        "剧情",
+        "惊悚",
+        "恐怖"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-10"
+    },
+    {
+      "tmdbId": 88527,
+      "mediaType": "movie",
+      "title": "青春残酷物语",
+      "titleEn": "青春残酷物語",
+      "year": "1960",
+      "releaseDate": "1960-06-03",
+      "poster": "https://image.tmdb.org/t/p/w342/4BcdlfGQB8DlNzzjyQsPlKBmZXe.jpg",
+      "rating": 6.6,
+      "genre": [
+        "爱情",
+        "剧情",
+        "犯罪"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-10"
     }
   ]
 }
