@@ -1,136 +1,68 @@
 {
-  "updated": "2026-11-11",
-  "count": 8,
+  "updated": "2026-11-12",
+  "count": 4,
   "movies": [
     {
-      "tmdbId": 1327835,
+      "tmdbId": 1823190,
       "mediaType": "movie",
-      "title": "穆库蒂安曼2",
-      "titleEn": "Mookuthi Amman 2",
+      "title": "无可替代的你",
+      "titleEn": "无可替代的你",
       "year": "2026",
-      "releaseDate": "2026-11-06",
-      "poster": "https://image.tmdb.org/t/p/w500/dNNzsstJeQxnESyH0hZcLGblLMz.jpg",
+      "releaseDate": "2026-11-11",
+      "poster": "https://image.tmdb.org/t/p/w500/oy9nw6dWTryfaBguBWfRa16Zetb.jpg",
       "rating": 0,
       "genre": [
-        "Fantasy",
-        "Drama",
-        "Comedy"
+        "Comedy",
+        "Romance"
       ],
+      "firstSeen": "2026-11-12"
+    },
+    {
+      "tmdbId": 1325871,
+      "mediaType": "movie",
+      "title": "爷爷奶奶那些事",
+      "titleEn": "Never Too Late",
+      "year": "2026",
+      "releaseDate": "2026-11-10",
+      "poster": "https://image.tmdb.org/t/p/w500/dMKb608XAUAo6xxej0Rf3ljEgTa.jpg",
+      "rating": 0,
+      "genre": [
+        "Documentary"
+      ],
+      "firstSeen": "2026-11-12"
+    },
+    {
+      "tmdbId": 335866,
+      "mediaType": "movie",
+      "title": "生存回圈",
+      "titleEn": "Circle",
+      "year": "2015",
+      "releaseDate": "2015-05-28",
+      "poster": "https://image.tmdb.org/t/p/w342/hbIL53MdZFJXsgxXaSOVuApWTs8.jpg",
+      "rating": 6.017,
+      "genre": [
+        "恐怖",
+        "科幻",
+        "悬疑",
+        "惊悚"
+      ],
+      "source": "rec",
       "firstSeen": "2026-11-11"
     },
     {
-      "tmdbId": 120096,
+      "tmdbId": 64566,
       "mediaType": "movie",
-      "title": "十三棵泡桐",
-      "titleEn": "十三棵泡桐",
-      "year": "2006",
-      "releaseDate": "2006-10-24",
-      "poster": "https://image.tmdb.org/t/p/w342/92tyhOi1uMVfqLAW9pwycdxty2D.jpg",
-      "rating": 6,
+      "title": "真实电影",
+      "titleEn": "Cinema Verite",
+      "year": "2011",
+      "releaseDate": "2011-04-23",
+      "poster": "https://image.tmdb.org/t/p/w342/yyXW04JEfVHBoK6ijeHiBle0odo.jpg",
+      "rating": 5.7,
       "genre": [
         "剧情"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-10"
-    },
-    {
-      "tmdbId": 14943,
-      "mediaType": "movie",
-      "title": "热血高校",
-      "titleEn": "クローズZERO",
-      "year": "2007",
-      "releaseDate": "2007-10-26",
-      "poster": "https://image.tmdb.org/t/p/w342/so1E9wUAXJi9hqGRNPgoVQd7HaX.jpg",
-      "rating": 7.1,
-      "genre": [
-        "动作",
-        "喜剧",
-        "犯罪"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-10"
-    },
-    {
-      "tmdbId": 33333,
-      "mediaType": "movie",
-      "title": "蓝色青春",
-      "titleEn": "青い春",
-      "year": "2001",
-      "releaseDate": "2001-09-09",
-      "poster": "https://image.tmdb.org/t/p/w342/ywUB6mMJGJHEIIl1BVV2eBLMWif.jpg",
-      "rating": 7.1,
-      "genre": [
-        "剧情"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-10"
-    },
-    {
-      "tmdbId": 334973,
-      "mediaType": "movie",
-      "title": "左耳",
-      "titleEn": "左耳",
-      "year": "2015",
-      "releaseDate": "2015-04-24",
-      "poster": "https://image.tmdb.org/t/p/w342/mb5HkB37ux425QntqjeWBcdth2d.jpg",
-      "rating": 6.2,
-      "genre": [
-        "剧情",
-        "爱情"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-10"
-    },
-    {
-      "tmdbId": 365815,
-      "mediaType": "movie",
-      "title": "少年巴比伦",
-      "titleEn": "少年巴比伦",
-      "year": "2015",
-      "releaseDate": "2015-10-23",
-      "poster": "https://image.tmdb.org/t/p/w342/sH0X9eCt0sDyf47YHvsaM2nU0PI.jpg",
-      "rating": 6.2,
-      "genre": [
-        "剧情",
-        "喜剧",
-        "爱情"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-10"
-    },
-    {
-      "tmdbId": 42041,
-      "mediaType": "movie",
-      "title": "纪子的餐桌",
-      "titleEn": "紀子の食卓",
-      "year": "2005",
-      "releaseDate": "2005-09-23",
-      "poster": "https://image.tmdb.org/t/p/w342/mTusjr1v1IrzxR3krVxoWKQXmJk.jpg",
-      "rating": 7,
-      "genre": [
-        "剧情",
-        "惊悚",
-        "恐怖"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-10"
-    },
-    {
-      "tmdbId": 88527,
-      "mediaType": "movie",
-      "title": "青春残酷物语",
-      "titleEn": "青春残酷物語",
-      "year": "1960",
-      "releaseDate": "1960-06-03",
-      "poster": "https://image.tmdb.org/t/p/w342/4BcdlfGQB8DlNzzjyQsPlKBmZXe.jpg",
-      "rating": 6.6,
-      "genre": [
-        "爱情",
-        "剧情",
-        "犯罪"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-10"
+      "firstSeen": "2026-11-11"
     }
   ]
 }
