@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T21:51:36Z",
+ "updated": "2026-11-12T02:51:02Z",
  "today": "2026-11-12",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
@@ -9,11 +9,11 @@
   "festivals": 7,
   "blocked": 0,
   "liveToday": 2,
-  "screeningsToday": 0,
-  "eventsToday": 0,
+  "screeningsToday": 6,
+  "eventsToday": 3,
   "upcoming": 0,
   "changes7d": 1000,
-  "venuesToday": 0
+  "venuesToday": 8
  },
  "festivals": [
   {
@@ -170,7 +170,7 @@
    ],
    "fetchedAt": "2026-11-11T21:51:36Z",
    "lastVerifiedAt": "2026-11-11T21:51:36Z",
-   "dataAgeMinutes": 4,
+   "dataAgeMinutes": 304,
    "changes7d": 1,
    "dataSource": "official"
   },
@@ -198,13 +198,13 @@
    "dayCount": 11,
    "timezone": "Europe/Amsterdam",
    "officialUrl": "https://festival.idfa.nl/en/",
-   "lifecycle": "UPCOMING",
+   "lifecycle": "LIVE",
    "archive": {
     "archived": false,
     "archivedAt": null,
     "dataEndDate": "2026-11-22"
    },
-   "status": "SCHEDULE_LIVE",
+   "status": "SCREENING_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
     "programme": "RELEASED",
@@ -227,15 +227,151 @@
     "guestVisits": 404
    },
    "today": {
-    "date": "2026-11-11",
-    "screenings": 0,
-    "events": 0,
-    "entries": 0,
-    "venues": 0,
+    "date": "2026-11-12",
+    "screenings": 6,
+    "events": 3,
+    "entries": 9,
+    "venues": 8,
     "guestVisits": 0,
-    "items": []
+    "items": [
+     {
+      "id": "idfa-2026-20261112-c7c33cac-31cd-414c-9d02-edb5fc050445-idfacademy-opening-talk-",
+      "kind": "EVENT",
+      "time": "10:00",
+      "title": "IDFAcademy Opening Talk: Mehran Tamadon",
+      "venueName": "De Balie: Grote Zaal",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "NO_SALE",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261112-60da1aac-639d-43ae-99ef-de7ba190dfa3-idfacademy-participants-",
+      "kind": "EVENT",
+      "time": "13:00",
+      "title": "IDFAcademy: Participants meet-up",
+      "venueName": "De Balie: Grote Zaal",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "NO_SALE",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261112-00f4d455-a7cd-4e39-8e82-836cfeb51c31-idfacademy-opening-drink",
+      "kind": "EVENT",
+      "time": "16:30",
+      "title": "IDFAcademy: Opening Drinks",
+      "venueName": "De Balie: Bovenfoyer",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "NO_SALE",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261112-9561b3da-11c8-4018-adc3-cf3e7fcd2ac6",
+      "kind": "SCREENING",
+      "time": "20:00",
+      "title": "The History of Concrete",
+      "venueName": "Tuschinski 1",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261112-b584a002-5c1e-469e-8ef0-af68c0cf759b",
+      "kind": "SCREENING",
+      "time": "20:00",
+      "title": "Whispers in May",
+      "venueName": "Tuschinski 6",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261112-f3cfc6d0-51d3-461b-a2e4-bdd840dba243",
+      "kind": "SCREENING",
+      "time": "20:30",
+      "title": "Time and Water",
+      "venueName": "Tuschinski 2",
+      "section": "Signed",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261112-f3d19501-a84a-4d65-8bca-4fd7e6e57ff3",
+      "kind": "SCREENING",
+      "time": "20:30",
+      "title": "Two Mountains Weighing Down My Chest",
+      "venueName": "Tuschinski 4",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261112-d01a81d2-c922-4e92-9d6d-d3a8d5714415",
+      "kind": "SCREENING",
+      "time": "21:00",
+      "title": "Tristan Forever",
+      "venueName": "Tuschinski 3",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "Fully English subtitled",
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261112-56d1d2fc-c32a-479c-aec8-4b55b7761d74",
+      "kind": "SCREENING",
+      "time": "21:00",
+      "title": "Gabin",
+      "venueName": "Tuschinski 5",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     }
+    ]
    },
-   "nextScreeningDate": "2026-11-12",
+   "nextScreeningDate": "2026-11-13",
    "sources": [
     {
      "kind": "SCHEDULE",
@@ -243,7 +379,7 @@
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-11T21:51:41Z"
+     "fetchedAt": "2026-11-12T02:51:02Z"
     },
     {
      "kind": "PROGRAMME",
@@ -251,13 +387,13 @@
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-11T21:51:41Z"
+     "fetchedAt": "2026-11-12T02:51:02Z"
     }
    ],
-   "fetchedAt": "2026-11-11T21:51:41Z",
-   "lastVerifiedAt": "2026-11-11T21:51:41Z",
-   "dataAgeMinutes": 4,
-   "changes7d": 292,
+   "fetchedAt": "2026-11-12T02:51:02Z",
+   "lastVerifiedAt": "2026-11-12T02:51:02Z",
+   "dataAgeMinutes": 5,
+   "changes7d": 306,
    "dataSource": "official"
   },
   {
@@ -342,7 +478,7 @@
     ]
    },
    "today": {
-    "date": "2026-11-11",
+    "date": "2026-11-12",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -459,7 +595,7 @@
    ],
    "fetchedAt": "2026-11-11T21:51:51Z",
    "lastVerifiedAt": "2026-11-11T21:51:51Z",
-   "dataAgeMinutes": 3,
+   "dataAgeMinutes": 304,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -908,7 +1044,7 @@
    ],
    "fetchedAt": "2026-11-11T21:51:51Z",
    "lastVerifiedAt": "2026-11-11T21:51:51Z",
-   "dataAgeMinutes": 3,
+   "dataAgeMinutes": 304,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -969,7 +1105,7 @@
     "guestVisits": 0
    },
    "today": {
-    "date": "2026-11-11",
+    "date": "2026-11-12",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -1078,8 +1214,8 @@
    ],
    "fetchedAt": "2026-11-11T21:52:24.815Z",
    "lastVerifiedAt": "2026-11-11T21:52:24.815Z",
-   "dataAgeMinutes": 3,
-   "changes7d": 707,
+   "dataAgeMinutes": 303,
+   "changes7d": 693,
    "dataSource": "official"
   },
   {
@@ -1139,7 +1275,7 @@
     "guestVisits": 0
    },
    "today": {
-    "date": "2026-11-11",
+    "date": "2026-11-12",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -1155,7 +1291,7 @@
      "url": "https://www.festival-cannes.com/en/the-selection/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-11T21:52:24Z"
+     "fetchedAt": "2026-11-12T02:51:15Z"
     },
     {
      "kind": "PROGRAMME",
@@ -1163,7 +1299,7 @@
      "url": "https://www.festival-cannes.com/en/f/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-11T21:52:24Z"
+     "fetchedAt": "2026-11-12T02:51:15Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -1171,12 +1307,12 @@
      "url": "https://www.festival-cannes.com/en/",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-11T21:52:24Z"
+     "fetchedAt": "2026-11-12T02:51:15Z"
     }
    ],
-   "fetchedAt": "2026-11-11T21:52:24Z",
-   "lastVerifiedAt": "2026-11-11T21:52:24Z",
-   "dataAgeMinutes": 3,
+   "fetchedAt": "2026-11-12T02:51:15Z",
+   "lastVerifiedAt": "2026-11-12T02:51:15Z",
+   "dataAgeMinutes": 4,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -1237,7 +1373,7 @@
     "guestVisits": 0
    },
    "today": {
-    "date": "2026-11-11",
+    "date": "2026-11-12",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -1266,7 +1402,7 @@
    ],
    "fetchedAt": "2026-10-29T06:25:06Z",
    "lastVerifiedAt": "2026-10-29T06:25:06Z",
-   "dataAgeMinutes": 19650,
+   "dataAgeMinutes": 19950,
    "changes7d": 0,
    "dataSource": "official"
   }
