@@ -1,15 +1,18 @@
 {
-  "updated": "2026-11-13",
+  "updated": "2026-11-14",
   "weekStart": "2026-11-09",
   "cap": 25,
   "sections": {
     "movies.json.releasedThisWeek": [
       "1567605",
-      "1437511",
       "1562642",
+      "1616687",
+      "1437511",
+      "1812386",
+      "1821748",
       "1529692",
-      "891621",
       "1325871",
+      "891621",
       "1117898",
       "1327835",
       "1409470",
@@ -26,16 +29,19 @@
       "1792170"
     ],
     "movies.json.nowPlaying": [
-      "1381071",
       "656908",
+      "891621",
       "1570488",
+      "1117898",
       "1654940",
-      "1813355",
+      "1327835",
+      "1381071",
       "1423191",
       "1263337",
+      "1813355",
       "1294189",
-      "1657630",
       "1596275",
+      "1657630",
       "1571955",
       "245891",
       "791523",
@@ -49,13 +55,14 @@
       "1195803"
     ],
     "tv.json.premieresThisWeek": [
+      "261315",
       "301354",
       "279246",
       "291507"
     ],
     "tv.json.ongoing": [
-      "213375",
       "1413",
+      "213375",
       "312359",
       "303044",
       "259909",
@@ -67,26 +74,30 @@
     "coming.json.next30Days": [
       "movie:1300968",
       "movie:1538497",
-      "tv:301354",
       "tv:171802",
-      "tv:288672"
+      "tv:261315",
+      "tv:288672",
+      "tv:256726"
     ],
     "music.json.picks": [
       "c6358baf-1e01-4991-ab6e-cb5d794e222a",
       "6f7853c8-e90a-4886-9535-0a14fa328903",
-      "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
-      "678bbf03-22b8-4342-bf02-7f0a0dcb353d",
-      "ccca0f73-1b3d-4264-9fd8-68ae932c3130",
+      "26a150b9-4141-4664-98fb-b3b75993588c",
       "8deaeb34-e6b2-4159-b1de-5896d3e8545a",
       "46f501b6-61d8-44da-9bfc-0b0a906fc1b6",
+      "0cace6d9-1497-42e7-a1fd-0d88c857fb89",
+      "ccca0f73-1b3d-4264-9fd8-68ae932c3130",
+      "2994470e-c8e3-4bd1-bde3-caf646cc6e2c",
+      "678bbf03-22b8-4342-bf02-7f0a0dcb353d",
+      "aca30a57-12bb-4a41-af25-59457048a844",
+      "268d81bf-6af4-4bfd-b4ce-41a7e777c144",
+      "c0d31807-a8ee-4127-847b-19f28630871c",
+      "50568f3c-616c-4d19-a8f1-8151ecb6eb72",
+      "39b58fe5-9a4b-44b6-a42c-3791dc89115a",
       "4e05d16b-0198-4994-b1fe-78053c4c5055",
       "f4a9a05b-c146-410e-8161-4d10af2f6bfa",
-      "c0d31807-a8ee-4127-847b-19f28630871c",
       "b577931e-be63-4e84-a7b2-e4c0764e9920",
       "af4ece5b-3174-426d-ad92-45090ab35b5e",
-      "268d81bf-6af4-4bfd-b4ce-41a7e777c144",
-      "39b58fe5-9a4b-44b6-a42c-3791dc89115a",
-      "aca30a57-12bb-4a41-af25-59457048a844",
       "3577cfd8-d54b-4648-aca9-02236b8bc923",
       "4e4ebe65-c385-42b5-836a-2234dc53dbcf",
       "232e13a5-026b-4057-bb58-baec7a3ab40b",
@@ -99,27 +110,27 @@
   },
   "failures": {},
   "delta": {
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "bySection": {
-      "movies.json.releasedThisWeek": 2,
-      "movies.json.nowPlaying": 2,
-      "tv.json.premieresThisWeek": 0,
-      "tv.json.ongoing": 1,
-      "coming.json.next30Days": 0,
-      "music.json.picks": 0
+      "movies.json.releasedThisWeek": 3,
+      "movies.json.nowPlaying": 3,
+      "tv.json.premieresThisWeek": 1,
+      "tv.json.ongoing": 0,
+      "coming.json.next30Days": 1,
+      "music.json.picks": 3
     },
-    "total": 5
+    "total": 11
   },
   "prevCounts": {
     "weekStart": "2026-11-09",
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "totals": {
-      "movies.json.releasedThisWeek": 20,
-      "movies.json.nowPlaying": 21,
-      "tv.json.premieresThisWeek": 3,
+      "movies.json.releasedThisWeek": 23,
+      "movies.json.nowPlaying": 24,
+      "tv.json.premieresThisWeek": 4,
       "tv.json.ongoing": 9,
-      "coming.json.next30Days": 5,
-      "music.json.picks": 23
+      "coming.json.next30Days": 6,
+      "music.json.picks": 26
     }
   }
 }
