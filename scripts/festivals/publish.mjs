@@ -148,6 +148,9 @@ function cardOf(store, { today, changes }) {
     eventUrl: s.eventUrl,
     officialUrl: s.officialSourceUrl,
   }));
+  // 统计口径与实际发布的 items 完全一致（items 可能被截断至 160 条，避免与 verify.mjs 的条目计数断言冲突）
+  const todayScreenings = items.filter((i) => i.kind === "SCREENING").length;
+  const todayEvents = items.filter((i) => i.kind !== "SCREENING").length;
   const upcoming = entries.find((s) => s.date > today);
   const changes7d = (changes || []).filter(
     (c) => c.slug === store.slug && Date.parse(c.at) > Date.now() - 7 * DAY
@@ -196,9 +199,9 @@ function cardOf(store, { today, changes }) {
     ...(pc ? { programmeChanges: pc } : {}),
     today: {
       date: today,
-      screenings: todayEntries.filter((s) => s.kind === "SCREENING").length,
-      events: todayEntries.filter((s) => s.kind !== "SCREENING").length,
-      entries: todayEntries.length,
+      screenings: todayScreenings,
+      events: todayEvents,
+      entries: items.length,
       venues: venuesToday.size,
       guestVisits: todayEntries.filter((s) => s.qa).length,
       items,
