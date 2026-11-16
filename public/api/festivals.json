@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-16T15:56:44Z",
- "today": "2026-11-16",
+ "updated": "2026-11-16T17:21:44Z",
+ "today": "2026-11-17",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
   "en": "Only festivals with verified official sources. Unannounced schedules are labelled, never left blank."
@@ -170,7 +170,7 @@
    ],
    "fetchedAt": "2026-11-16T15:56:44Z",
    "lastVerifiedAt": "2026-11-16T15:56:44Z",
-   "dataAgeMinutes": 2,
+   "dataAgeMinutes": 85,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -2239,7 +2239,7 @@
       "grade": null,
       "subtitle": null,
       "qa": true,
-      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketStatus": "SOLD_OUT",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
@@ -2374,7 +2374,7 @@
       "grade": null,
       "subtitle": "Fully English subtitled",
       "qa": false,
-      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketStatus": "SOLD_OUT",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
@@ -2419,7 +2419,7 @@
       "grade": null,
       "subtitle": null,
       "qa": false,
-      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketStatus": "SOLD_OUT",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
@@ -2644,7 +2644,7 @@
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-16T15:56:50Z"
+     "fetchedAt": "2026-11-16T17:21:44Z"
     },
     {
      "kind": "PROGRAMME",
@@ -2652,12 +2652,12 @@
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-16T15:56:50Z"
+     "fetchedAt": "2026-11-16T17:21:44Z"
     }
    ],
-   "fetchedAt": "2026-11-16T15:56:50Z",
-   "lastVerifiedAt": "2026-11-16T15:56:50Z",
-   "dataAgeMinutes": 2,
+   "fetchedAt": "2026-11-16T17:21:44Z",
+   "lastVerifiedAt": "2026-11-16T17:21:44Z",
+   "dataAgeMinutes": 0,
    "changes7d": 450,
    "dataSource": "official"
   },
@@ -2860,7 +2860,7 @@
    ],
    "fetchedAt": "2026-11-16T15:56:59Z",
    "lastVerifiedAt": "2026-11-16T15:56:59Z",
-   "dataAgeMinutes": 2,
+   "dataAgeMinutes": 85,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -2920,7 +2920,7 @@
     "guestVisits": 17
    },
    "today": {
-    "date": "2026-11-16",
+    "date": "2026-11-17",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -3309,7 +3309,7 @@
    ],
    "fetchedAt": "2026-11-16T15:56:59Z",
    "lastVerifiedAt": "2026-11-16T15:56:59Z",
-   "dataAgeMinutes": 2,
+   "dataAgeMinutes": 85,
    "changes7d": 2,
    "dataSource": "official"
   },
@@ -3479,7 +3479,7 @@
    ],
    "fetchedAt": "2026-11-16T15:57:25.071Z",
    "lastVerifiedAt": "2026-11-16T15:57:25.071Z",
-   "dataAgeMinutes": 1,
+   "dataAgeMinutes": 85,
    "changes7d": 548,
    "dataSource": "official"
   },
@@ -3577,7 +3577,7 @@
    ],
    "fetchedAt": "2026-11-16T15:57:25Z",
    "lastVerifiedAt": "2026-11-16T15:57:25Z",
-   "dataAgeMinutes": 1,
+   "dataAgeMinutes": 85,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -3667,7 +3667,7 @@
    ],
    "fetchedAt": "2026-10-29T06:25:06Z",
    "lastVerifiedAt": "2026-10-29T06:25:06Z",
-   "dataAgeMinutes": 26494,
+   "dataAgeMinutes": 26577,
    "changes7d": 0,
    "dataSource": "official"
   }

@@ -1,6 +1,626 @@
 {
  "changes": [
   {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261116-9eac638d-4488-44c7-b5d3-fa3485432961-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261116-9eac638d-4488-44c7-b5d3-fa3485432961",
+   "label": "Becoming Bird — 2026-11-16 18:00 · Ketelhuis: Zaal 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261116-6e64ae20-9521-43a6-aa55-6eb7ebdc616c-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261116-6e64ae20-9521-43a6-aa55-6eb7ebdc616c",
+   "label": "Everybody to Kenmure Street — 2026-11-16 18:30 · SILO (Rialto) Zaal 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261116-9316cbd9-71e5-444d-ad6d-2648454c38f4-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261116-9316cbd9-71e5-444d-ad6d-2648454c38f4",
+   "label": "Microbiome Restaurant: Plural Tastings — 2026-11-16 18:45 · @droog: Plural Tastings",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261116-34eb91f9-6050-476a-953b-c5ab8e639bd1-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261116-34eb91f9-6050-476a-953b-c5ab8e639bd1",
+   "label": "Escape the Internet — 2026-11-16 20:00 · de Brakke Grond: Rode Zaal",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261116-ca5b9da0-fdf3-40ae-8276-7334901bda46-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261116-ca5b9da0-fdf3-40ae-8276-7334901bda46",
+   "label": "If Pigeons Turned to Gold — 2026-11-16 20:15 · Pathé City 5",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261116-95f3b0ae-25bf-4764-acad-0a7c2cd213bd-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261116-95f3b0ae-25bf-4764-acad-0a7c2cd213bd",
+   "label": "Bahía Honda — 2026-11-16 20:45 · Eye: Cinema 2",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261116-1da03c2d-0b77-414c-95af-80860c2a2820-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261116-1da03c2d-0b77-414c-95af-80860c2a2820",
+   "label": "Morro Grande — 2026-11-16 21:00 · Tuschinski 6",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261116-52f2a4b1-4f28-4568-bf27-6538c3c48941-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261116-52f2a4b1-4f28-4568-bf27-6538c3c48941",
+   "label": "Bugboy — 2026-11-16 21:15 · Pathé City 4",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261117-b358b9d6-f1fc-45cf-9f1a-b14bbc00f97d-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261117-b358b9d6-f1fc-45cf-9f1a-b14bbc00f97d",
+   "label": "At Night — 2026-11-17 11:30 · Tuschinski 2",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261117-00e7491c-2af1-4d07-b5b4-356ddfc1371d-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261117-00e7491c-2af1-4d07-b5b4-356ddfc1371d",
+   "label": "You Don’t Die Two Times — 2026-11-17 12:15 · Tuschinski 4",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261117-1d283a98-f297-4022-8805-ed48125e9628-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261117-1d283a98-f297-4022-8805-ed48125e9628",
+   "label": "If Pigeons Turned to Gold — 2026-11-17 14:30 · Pathé City 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261117-a87e7c2f-dec2-4067-b252-be93b5460998-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261117-a87e7c2f-dec2-4067-b252-be93b5460998",
+   "label": "Another Sky — 2026-11-17 15:00 · Pathé City 6",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261117-c96fb5ee-113a-4a0a-a826-0d6c95924110-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261117-c96fb5ee-113a-4a0a-a826-0d6c95924110",
+   "label": "Djeliya, Memory of Mandingo — 2026-11-17 15:30 · Pathé City 5",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261117-439a166c-471e-4f7d-966d-45985142c033-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261117-439a166c-471e-4f7d-966d-45985142c033",
+   "label": "Edward Said: Between Worlds — 2026-11-17 17:30 · Tuschinski 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261117-ee8616c6-93b0-4e7d-b57d-bc15fba425ef-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261117-ee8616c6-93b0-4e7d-b57d-bc15fba425ef",
+   "label": "The History of Concrete — 2026-11-17 18:30 · SILO (Rialto) Zaal 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261117-be0c51cb-277a-4e61-99e1-bf946a7a7594-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261117-be0c51cb-277a-4e61-99e1-bf946a7a7594",
+   "label": "The Message — 2026-11-17 20:00 · Tuschinski 2",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261117-1e53dcf0-916d-41f6-a694-dc4accb049f6-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261117-1e53dcf0-916d-41f6-a694-dc4accb049f6",
+   "label": "Hope Is a Word — 2026-11-17 21:30 · Tuschinski 3",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261118-98393c2d-acec-4e1d-b324-53333603ada5-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261118-98393c2d-acec-4e1d-b324-53333603ada5",
+   "label": "Small Talk — 2026-11-18 18:00 · Cinema De Vlugt - Rode Zaal",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261119-d7a4335e-0e75-4ccb-aa54-3972ad6dc3fd-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261119-d7a4335e-0e75-4ccb-aa54-3972ad6dc3fd",
+   "label": "The Mayor: Halsema & Amsterdam — 2026-11-19 10:15 · Eye: Cinema 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261119-517359c1-97e9-492b-9fdd-a6af5dd56712-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261119-517359c1-97e9-492b-9fdd-a6af5dd56712",
+   "label": "Time and Water — 2026-11-19 14:45 · Tuschinski 2",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261119-6dff963b-a64b-4571-bfac-bab4b54c29a9-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261119-6dff963b-a64b-4571-bfac-bab4b54c29a9",
+   "label": "Bardi — 2026-11-19 20:45 · Ketelhuis: Zaal 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "SOLD_OUT",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261120-b9f991ec-34a6-4870-8499-1fc100f6f88e-best-of-idfa-audience-fa-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261120-b9f991ec-34a6-4870-8499-1fc100f6f88e-best-of-idfa-audience-fa",
+   "label": "Best of IDFA: Audience Favorites — 2026-11-20 10:45 · Pathé Noord 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261120-a73db1bd-8471-47b8-aeda-026302719937-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261120-a73db1bd-8471-47b8-aeda-026302719937",
+   "label": "If Luck Will Come — 2026-11-20 16:00 · De Balie: Grote Zaal",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261120-a06d872d-38fb-497b-8e89-e618584b64fa-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261120-a06d872d-38fb-497b-8e89-e618584b64fa",
+   "label": "Waves of Time — 2026-11-20 16:45 · Tuschinski 5",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "SOLD_OUT",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-56aded8a-5012-40c1-a17c-dcd0200fa2b1-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-56aded8a-5012-40c1-a17c-dcd0200fa2b1",
+   "label": "White Tiger Column  — 2026-11-21 11:00 · Kriterion 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-5807ddb4-8f0d-4dff-a265-4df09f836904-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-5807ddb4-8f0d-4dff-a265-4df09f836904",
+   "label": "The Illusion of a Quiet Night — 2026-11-21 12:45 · Tuschinski 5",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-5cdab416-404e-4718-adde-2848effa5841-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-5cdab416-404e-4718-adde-2848effa5841",
+   "label": "The Message — 2026-11-21 13:15 · Tuschinski 6",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-d09b6a45-806b-4cfd-9f48-2d8df1672bb1-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-d09b6a45-806b-4cfd-9f48-2d8df1672bb1",
+   "label": "She Was Not Alone — 2026-11-21 14:30 · Tuschinski 3",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-b2ec3b73-dc8e-4170-82ba-bf6d00fd94a9-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-b2ec3b73-dc8e-4170-82ba-bf6d00fd94a9",
+   "label": "The Bus of Broken Hearts — 2026-11-21 16:00 · Het Documentaire Paviljoen: De Spiegel",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-28e3ef83-b4be-4023-8a95-d2882a8efbdb-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-28e3ef83-b4be-4023-8a95-d2882a8efbdb",
+   "label": "Boatbuilders  — 2026-11-21 21:00 · Tuschinski 4",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-284a4296-6683-4c11-9ec2-7ac24b99ca67-2026-11-16T17:21:44Z",
+   "at": "2026-11-16T17:21:44Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-284a4296-6683-4c11-9ec2-7ac24b99ca67",
+   "label": "Wood Street — 2026-11-22 16:30 · Tuschinski 3",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
    "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260903-minnie-and-moskowitz-2026-09-03-11-00-2026-11-16T15:56:44Z",
    "at": "2026-11-16T15:56:44Z",
    "slug": "venice-2026",
@@ -19486,627 +20106,7 @@
    ],
    "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
    "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261120-44ea40f3-7e42-4f25-b3ff-7f016e001f41-2026-11-13T07:09:31Z",
-   "at": "2026-11-13T07:09:31Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261120-44ea40f3-7e42-4f25-b3ff-7f016e001f41",
-   "label": "Once Upon a Time in Harlem — 2026-11-20 20:45 · Eye: Cinema 1",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "SOLD_OUT",
-     "to": "LOW_AVAILABILITY",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-fd3198f4-f60d-40e2-8523-d1615acadb42-2026-11-13T07:09:31Z",
-   "at": "2026-11-13T07:09:31Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261122-fd3198f4-f60d-40e2-8523-d1615acadb42",
-   "label": "The Bus of Broken Hearts — 2026-11-22 15:30 · Rialto SILO Zaal 1",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "SOLD_OUT",
-     "to": "LOW_AVAILABILITY",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-42a2af1c-3eb0-43de-bc51-263fba5fcb8d-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-42a2af1c-3eb0-43de-bc51-263fba5fcb8d",
-   "label": "Small Talk — 2026-11-13 10:30 · Pathé City 2",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "SOLD_OUT",
-     "to": "LOW_AVAILABILITY",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-08a2176e-5bf7-4632-9fa4-e4a0d365f46d-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-08a2176e-5bf7-4632-9fa4-e4a0d365f46d",
-   "label": "Whispers in May — 2026-11-13 10:30 · Pathé City 6",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-70b36927-9ca0-4f56-a86c-e873543e0406-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-70b36927-9ca0-4f56-a86c-e873543e0406",
-   "label": "Être et avoir — 2026-11-13 11:00 · Tuschinski 3",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-2c1ca7e0-55fa-40f2-8bfc-be982e8dd4ca-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-2c1ca7e0-55fa-40f2-8bfc-be982e8dd4ca",
-   "label": "Orgasmagoria — 2026-11-13 11:30 · Casa Rosso: Orgasmagoria",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-d53dbea5-713c-493e-a6ba-f35604e5468b-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-d53dbea5-713c-493e-a6ba-f35604e5468b",
-   "label": ">1.5°C: Pyropolitics and the New World — 2026-11-13 12:00 · Pathé City 3",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-6cc59e4a-088a-49d0-aff6-42d1c8164ddf-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-6cc59e4a-088a-49d0-aff6-42d1c8164ddf",
-   "label": "Dao — 2026-11-13 12:15 · Tuschinski 5",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-81ae3aa7-9e69-4ff5-8c18-731ecf9fd328-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-81ae3aa7-9e69-4ff5-8c18-731ecf9fd328",
-   "label": "Central Park — 2026-11-13 13:45 · Pathé City 7",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-2c9b2a50-4047-465d-a8ae-6a60b222841f-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-2c9b2a50-4047-465d-a8ae-6a60b222841f",
-   "label": "Djeliya, Memory of Mandingo — 2026-11-13 15:00 · Rialto De Pijp: Bovenzaal",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-d0d29696-7719-4b02-bfd7-1fc7a0570572-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-d0d29696-7719-4b02-bfd7-1fc7a0570572",
-   "label": "Truck Driver — 2026-11-13 15:15 · Tuschinski 2",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-42d635bd-9f66-49a3-83e3-7276087e6680-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-42d635bd-9f66-49a3-83e3-7276087e6680",
-   "label": "American Dream — 2026-11-13 15:45 · Eye: Cinema 2",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-2f5d32bb-5ad8-4fed-a734-fe7a5ecca6ee-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-2f5d32bb-5ad8-4fed-a734-fe7a5ecca6ee",
-   "label": "Collapse — 2026-11-13 17:00 · Pathé City 3",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-eeb0491c-b542-45d2-9f21-6ab542420bc6-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-eeb0491c-b542-45d2-9f21-6ab542420bc6",
-   "label": "Az Zeeb — 2026-11-13 17:30 · Pathé City 7",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-d0aef575-9995-4833-b2a9-de06c82ff3e2-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-d0aef575-9995-4833-b2a9-de06c82ff3e2",
-   "label": "Escape the Internet — 2026-11-13 18:00 · de Brakke Grond: Rode Zaal",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-8a5b84f8-44bc-4435-a476-bdfb883a5535-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-8a5b84f8-44bc-4435-a476-bdfb883a5535",
-   "label": "The Middle Room — 2026-11-13 18:00 · Pathé City 6",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-a70a4715-40c9-4219-9299-fbb5d46b71e2-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-a70a4715-40c9-4219-9299-fbb5d46b71e2",
-   "label": "Xiangzidian Village: The Stage — 2026-11-13 19:30 · Het Documentaire Paviljoen: De Spiegel",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-32f7e335-72d0-4f1b-8471-0be56d0fd364-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-32f7e335-72d0-4f1b-8471-0be56d0fd364",
-   "label": "Bugboy — 2026-11-13 19:30 · Tuschinski 3",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-0fde6e9f-3a73-4565-917c-140a0f3f25d8-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-0fde6e9f-3a73-4565-917c-140a0f3f25d8",
-   "label": "Eternity — 2026-11-13 19:30 · Tuschinski 5",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-a83a99a6-f71b-45df-8e3e-429ad60b2db8-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-a83a99a6-f71b-45df-8e3e-429ad60b2db8",
-   "label": "To Hold a Mountain — 2026-11-13 20:30 · Ketelhuis: Zaal 1",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "HIGH_AVAILABILITY",
-     "to": "LOW_AVAILABILITY",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-3e4a6dc0-0dc8-4811-99ed-68a895b72b87-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-3e4a6dc0-0dc8-4811-99ed-68a895b72b87",
-   "label": "An Incomplete Day in the History of Georgia 10.06.93 — 2026-11-13 20:30 · Tuschinski 4",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-d42e643d-86d8-4579-861d-269fe2fbc239-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-d42e643d-86d8-4579-861d-269fe2fbc239",
-   "label": "Lyrical Vengeance — 2026-11-13 20:45 · Eye: Cinema 1",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-2d12d1ce-881d-4642-afa2-a3f150ac2a7d-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-2d12d1ce-881d-4642-afa2-a3f150ac2a7d",
-   "label": "Life — 2026-11-13 20:45 · Pathé City 2",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-8769927f-2c2d-4288-89b5-620e5498771a-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-8769927f-2c2d-4288-89b5-620e5498771a",
-   "label": "Tonight is Forever — 2026-11-13 20:45 · Tuschinski 2",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-926fb836-81bb-4026-9942-9f6bdee8d766-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-926fb836-81bb-4026-9942-9f6bdee8d766",
-   "label": "London — 2026-11-13 21:15 · Pathé City 1",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-f09dd2e5-d069-416b-a690-73dfb5c922b0-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-f09dd2e5-d069-416b-a690-73dfb5c922b0",
-   "label": "A Fire There — 2026-11-13 21:15 · Tuschinski 6",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261113-c8ce4ee7-c387-437a-9d96-192eef98ee48-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261113-c8ce4ee7-c387-437a-9d96-192eef98ee48",
-   "label": "La Ciénaga — 2026-11-13 21:45 · Pathé City 3",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261114-4ce43aa0-b275-4df5-8753-f060e14aac4c-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261114-4ce43aa0-b275-4df5-8753-f060e14aac4c",
-   "label": "Orgasmagoria — 2026-11-14 16:00 · Casa Rosso: Orgasmagoria",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261114-cc0bf85b-a748-4fec-8a47-4e9905d65c25-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261114-cc0bf85b-a748-4fec-8a47-4e9905d65c25",
-   "label": "We Had a Plan — 2026-11-14 17:15 · Tuschinski 1",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261114-695c24d8-9784-4c3f-9323-5bc1c5b82c12-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261114-695c24d8-9784-4c3f-9323-5bc1c5b82c12",
-   "label": "Memories — 2026-11-14 17:45 · Tuschinski 6",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
-  },
-  {
-   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261114-35a0dcdd-535c-4e76-9ecc-dc339a205c3b-2026-11-13T00:08:28Z",
-   "at": "2026-11-13T00:08:28Z",
-   "slug": "idfa-2026",
-   "festivalId": "idfa",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "idfa-2026-20261114-35a0dcdd-535c-4e76-9ecc-dc339a205c3b",
-   "label": "Forest Up in the Mountain — 2026-11-14 18:45 · Pathé City 7",
-   "fields": [
-    {
-     "field": "ticketStatus",
-     "from": "LOW_AVAILABILITY",
-     "to": "SOLD_OUT",
-     "fieldLabel": "售票状态"
-    }
-   ],
-   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
-   "sourceLabel": "International Documentary Film Festival Amsterdam"
   }
  ],
- "updated": "2026-11-16T15:56:44Z"
+ "updated": "2026-11-16T17:21:44Z"
 }
