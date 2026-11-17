@@ -1,5 +1,36 @@
 {
-  "updated": "2026-11-16",
-  "count": 0,
-  "movies": []
+  "updated": "2026-11-17",
+  "count": 2,
+  "movies": [
+    {
+      "tmdbId": 1757174,
+      "mediaType": "movie",
+      "title": "交换身份过圣诞",
+      "titleEn": "The Christmas Switch",
+      "year": "2026",
+      "releaseDate": "2026-11-12",
+      "poster": "https://image.tmdb.org/t/p/w500/nzXWHXj95OgD2RyZ15PvtLJHKTF.jpg",
+      "rating": 6.807,
+      "genre": [
+        "Romance",
+        "Comedy"
+      ],
+      "firstSeen": "2026-11-17"
+    },
+    {
+      "tmdbId": 1286656,
+      "mediaType": "movie",
+      "title": "我演洛奇",
+      "titleEn": "I Play Rocky",
+      "year": "2026",
+      "releaseDate": "2026-11-06",
+      "poster": "https://image.tmdb.org/t/p/w500/eJ8jflQBJsThPkrgOfIgenMKlkf.jpg",
+      "rating": 8.5,
+      "genre": [
+        "Drama",
+        "History"
+      ],
+      "firstSeen": "2026-11-17"
+    }
+  ]
 }
