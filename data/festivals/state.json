@@ -1,8 +1,8 @@
 {
  "editions": {
   "biff-2026": {
-   "lastFetchedAt": "2026-11-17T01:00:24Z",
-   "lastVerifiedAt": "2026-11-17T01:00:24Z",
+   "lastFetchedAt": "2026-11-17T09:02:34Z",
+   "lastVerifiedAt": "2026-11-17T09:02:34Z",
    "lastChangedAt": "2026-11-10T11:40:04Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
@@ -21,9 +21,9 @@
    "collapsed": 0
   },
   "idfa-2026": {
-   "lastFetchedAt": "2026-11-17T01:00:29Z",
-   "lastVerifiedAt": "2026-11-17T01:00:29Z",
-   "lastChangedAt": "2026-11-17T01:00:24Z",
+   "lastFetchedAt": "2026-11-17T09:02:39Z",
+   "lastVerifiedAt": "2026-11-17T09:02:39Z",
+   "lastChangedAt": "2026-11-17T09:02:34Z",
    "lastStatus": "SCREENING_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -37,12 +37,12 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 150,
+   "changesLastRun": 46,
    "collapsed": 0
   },
   "bfi-2026": {
-   "lastFetchedAt": "2026-11-17T01:00:38Z",
-   "lastVerifiedAt": "2026-11-17T01:00:38Z",
+   "lastFetchedAt": "2026-11-17T09:02:48Z",
+   "lastVerifiedAt": "2026-11-17T09:02:48Z",
    "lastChangedAt": "2026-10-19T00:07:40Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
@@ -61,8 +61,8 @@
    "collapsed": 0
   },
   "hkiff-cinefan-2026": {
-   "lastFetchedAt": "2026-11-17T01:00:38Z",
-   "lastVerifiedAt": "2026-11-17T01:00:38Z",
+   "lastFetchedAt": "2026-11-17T09:02:48Z",
+   "lastVerifiedAt": "2026-11-17T09:02:48Z",
    "lastChangedAt": "2026-11-16T15:56:44Z",
    "lastStatus": "SCREENING_LIVE",
    "statusDetail": {
@@ -81,9 +81,9 @@
    "collapsed": 0
   },
   "venice-2026": {
-   "lastFetchedAt": "2026-11-17T01:01:12.730Z",
-   "lastVerifiedAt": "2026-11-17T01:01:12.730Z",
-   "lastChangedAt": "2026-11-17T01:00:24Z",
+   "lastFetchedAt": "2026-11-17T09:03:22.830Z",
+   "lastVerifiedAt": "2026-11-17T09:03:22.830Z",
+   "lastChangedAt": "2026-11-17T09:02:34Z",
    "lastStatus": "SCHEDULE_LIVE",
    "statusDetail": {
     "dates": "CONFIRMED",
@@ -97,7 +97,7 @@
    },
    "failCount": 0,
    "lastError": null,
-   "changesLastRun": 154,
+   "changesLastRun": 123,
    "collapsed": 0
   },
   "iffr-2026": {
@@ -115,15 +115,15 @@
     "films": 496,
     "screenings": 0
    },
-   "failCount": 49,
+   "failCount": 50,
    "lastError": "iffr feed yielded 0 films (parse warnings: feed fetch failed: HTTP 403; feed parse failed: Unexpected end of JSON input)",
    "changesLastRun": 0,
    "collapsed": 0,
-   "lastAttemptAt": "2026-11-17T01:00:24Z"
+   "lastAttemptAt": "2026-11-17T09:02:34Z"
   },
   "cannes-2026": {
-   "lastFetchedAt": "2026-11-17T01:01:12Z",
-   "lastVerifiedAt": "2026-11-17T01:01:12Z",
+   "lastFetchedAt": "2026-11-17T09:03:22Z",
+   "lastVerifiedAt": "2026-11-17T09:03:22Z",
    "lastChangedAt": "2026-10-11T04:47:16Z",
    "lastStatus": "PROGRAM_RELEASED",
    "statusDetail": {
@@ -142,5 +142,5 @@
    "collapsed": 0
   }
  },
- "updated": "2026-11-17T01:00:24Z"
+ "updated": "2026-11-17T09:02:34Z"
 }
