@@ -1,21 +1,84 @@
 {
-  "updated": "2026-11-18",
-  "count": 1,
+  "updated": "2026-11-19",
+  "count": 5,
   "movies": [
     {
-      "tmdbId": 1559980,
+      "tmdbId": 1239037,
       "mediaType": "movie",
-      "title": "圣诞福音颂",
-      "titleEn": "The Gospel of Christmas",
+      "title": "深度安静",
+      "titleEn": "Deep Quiet Room",
       "year": "2026",
-      "releaseDate": "2026-11-11",
-      "poster": "https://image.tmdb.org/t/p/w500/fcLvpCv7CIBlyPJ8Sshryw3RxSI.jpg",
-      "rating": 7.262,
+      "releaseDate": "2026-11-19",
+      "poster": "https://image.tmdb.org/t/p/w500/rSi6JslKprYh6i0HSfwBMtXnyDd.jpg",
+      "rating": 6,
       "genre": [
-        "Music",
-        "Family",
+        "Drama",
+        "Mystery",
+        "Family"
+      ],
+      "firstSeen": "2026-11-19"
+    },
+    {
+      "tmdbId": 1824679,
+      "mediaType": "movie",
+      "title": "琴弓师",
+      "titleEn": "琴弓师",
+      "year": "2026",
+      "releaseDate": "2026-11-17",
+      "poster": "https://image.tmdb.org/t/p/w500/NsHFmkpPPyvOHm0w1q7qQiMf8.jpg",
+      "rating": 0,
+      "genre": [
         "Drama"
       ],
+      "firstSeen": "2026-11-19"
+    },
+    {
+      "tmdbId": 11906,
+      "mediaType": "movie",
+      "title": "阴风阵阵",
+      "titleEn": "Suspiria",
+      "year": "1977",
+      "releaseDate": "1977-02-01",
+      "poster": "https://image.tmdb.org/t/p/w342/f4EJQrq5bKCqJK6I5moST9kur2p.jpg",
+      "rating": 7.4,
+      "genre": [
+        "恐怖",
+        "悬疑"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-18"
+    },
+    {
+      "tmdbId": 490000,
+      "mediaType": "movie",
+      "title": "我们，动物",
+      "titleEn": "We the Animals",
+      "year": "2018",
+      "releaseDate": "2018-08-17",
+      "poster": "https://image.tmdb.org/t/p/w342/pSMcNOpihv6U4JlNAaxfbl2qUj7.jpg",
+      "rating": 6.469,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-18"
+    },
+    {
+      "tmdbId": 980477,
+      "mediaType": "movie",
+      "title": "哪吒之魔童闹海",
+      "titleEn": "哪吒之魔童闹海",
+      "year": "2025",
+      "releaseDate": "2025-01-29",
+      "poster": "https://image.tmdb.org/t/p/w342/fcs5AdCKliQaQgXsPS9kDejamIJ.jpg",
+      "rating": 8.2,
+      "genre": [
+        "动画",
+        "动作",
+        "奇幻",
+        "冒险"
+      ],
+      "source": "rec",
       "firstSeen": "2026-11-18"
     }
   ]
