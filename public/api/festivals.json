@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T18:26:54Z",
+ "updated": "2026-11-18T01:13:55Z",
  "today": "2026-11-18",
  "scopeNote": {
   "zh": "只收录已核实官方来源的电影节；尚未公布排片会明确标注状态，而不是留空。",
@@ -9,8 +9,8 @@
   "festivals": 7,
   "blocked": 0,
   "liveToday": 2,
-  "screeningsToday": 124,
-  "eventsToday": 36,
+  "screeningsToday": 126,
+  "eventsToday": 34,
   "upcoming": 0,
   "changes7d": 1000,
   "venuesToday": 44
@@ -85,7 +85,7 @@
      "url": "https://www.biff.kr/eng/html/program/prog_all_list.asp?allYear=2026",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     },
     {
      "kind": "SCHEDULE",
@@ -93,7 +93,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=6",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     },
     {
      "kind": "SCHEDULE",
@@ -101,7 +101,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=7",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     },
     {
      "kind": "SCHEDULE",
@@ -109,7 +109,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=8",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     },
     {
      "kind": "SCHEDULE",
@@ -117,7 +117,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=9",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     },
     {
      "kind": "SCHEDULE",
@@ -125,7 +125,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=10",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     },
     {
      "kind": "SCHEDULE",
@@ -133,7 +133,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=11",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     },
     {
      "kind": "SCHEDULE",
@@ -141,7 +141,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=12",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     },
     {
      "kind": "SCHEDULE",
@@ -149,7 +149,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=13",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     },
     {
      "kind": "SCHEDULE",
@@ -157,7 +157,7 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=14",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     },
     {
      "kind": "SCHEDULE",
@@ -165,12 +165,12 @@
      "url": "https://www.biff.kr/eng/html/schedule/date.asp?day1=15",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:54Z"
+     "fetchedAt": "2026-11-18T01:13:55Z"
     }
    ],
-   "fetchedAt": "2026-11-17T18:26:54Z",
-   "lastVerifiedAt": "2026-11-17T18:26:54Z",
-   "dataAgeMinutes": 6,
+   "fetchedAt": "2026-11-18T01:13:55Z",
+   "lastVerifiedAt": "2026-11-18T01:13:55Z",
+   "dataAgeMinutes": 5,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -216,30 +216,30 @@
    },
    "stats": {
     "films": 260,
-    "filmsTotal": 281,
-    "screenings": 832,
-    "events": 248,
+    "filmsTotal": 278,
+    "screenings": 699,
+    "events": 211,
     "pending": 0,
-    "entries": 1080,
-    "venues": 69,
+    "entries": 910,
+    "venues": 68,
     "sections": 15,
-    "days": 9,
-    "guestVisits": 193
+    "days": 8,
+    "guestVisits": 136
    },
    "today": {
-    "date": "2026-11-17",
-    "screenings": 124,
-    "events": 36,
+    "date": "2026-11-18",
+    "screenings": 126,
+    "events": 34,
     "entries": 160,
     "venues": 44,
-    "guestVisits": 57,
+    "guestVisits": 50,
     "items": [
      {
-      "id": "idfa-2026-20261117-22fbfaac-1f2c-4316-a819-13cd058415d1-idfa-forum-producers-bre",
+      "id": "idfa-2026-20261118-19ca2cc2-0035-4f8e-a22d-ef8f283dfbd0-idfa-forum-producers-bre",
       "kind": "EVENT",
       "time": "08:00",
-      "title": "IDFA Forum: Producers Breakfast – hosted by Chiledoc & Chilean Film Commission",
-      "venueName": "DeLaMar: Spieghel Foyer",
+      "title": "IDFA Forum: Producers Breakfast – hosted by Chiledoc & Film Commission Chile",
+      "venueName": "De Balie: Foyer",
       "section": null,
       "grade": null,
       "subtitle": null,
@@ -250,22 +250,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-f43d913d-ce3a-4570-9a32-2f8c7e6a7c9e-idfa-forum-pitches-prese",
-      "kind": "EVENT",
-      "time": "09:00",
-      "title": "IDFA Forum: Pitches Presentations - Day 2",
-      "venueName": "DeLaMar: Mary Dresselhuys Zaal",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "NO_SALE",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-189d6f15-b467-462e-b72a-a3f376524cdb-work-lounge",
+      "id": "idfa-2026-20261118-78faab4e-985b-45fa-a881-b2f411e15182-work-lounge",
       "kind": "EVENT",
       "time": "09:00",
       "title": "Work Lounge",
@@ -280,7 +265,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-f51ffab6-6c9c-4d0c-b5bd-8879b6ff25ae-docs-for-sale-viewing-bo",
+      "id": "idfa-2026-20261118-095eeb67-7518-4044-a653-5e838a5a9710-docs-for-sale-viewing-bo",
       "kind": "EVENT",
       "time": "09:00",
       "title": "Docs for Sale: Viewing Booths",
@@ -295,7 +280,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-94f6265d-f87a-4e7e-ac9f-06084f444351-docs-for-sale-meeting-sp",
+      "id": "idfa-2026-20261118-83be6b8f-d5ac-4189-8dd7-8bfe85800084-docs-for-sale-meeting-sp",
       "kind": "EVENT",
       "time": "09:00",
       "title": "Docs for Sale: Meeting Space",
@@ -310,27 +295,12 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-25fe294c-653c-42eb-a6b4-40a8ba18f68a",
+      "id": "idfa-2026-20261118-2471ad15-9a05-40b3-a6eb-c76c51cf06aa",
       "kind": "SCREENING",
       "time": "09:00",
-      "title": "Up in the Air",
-      "venueName": "Pathé City 1",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-f248e0a7-d3d4-47e1-9f26-68a9b415ba32",
-      "kind": "SCREENING",
-      "time": "09:00",
-      "title": "Down the River",
+      "title": "How Much Longer",
       "venueName": "Pathé City 4",
-      "section": "International Competition",
+      "section": "Luminous",
       "grade": null,
       "subtitle": "English",
       "qa": false,
@@ -340,7 +310,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-69dc3aae-309a-4872-b268-959ce5f0578e-networking-meeting-space",
+      "id": "idfa-2026-20261118-db0cbeee-8e22-4baf-bee1-9706735acf2f-networking-meeting-space",
       "kind": "EVENT",
       "time": "09:00",
       "title": "Networking & Meeting Space",
@@ -355,26 +325,11 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-fb3697fc-c793-44e0-aa38-0e882e95639a",
+      "id": "idfa-2026-20261118-ef0d68e6-7e2c-4f15-8381-712871d58084",
       "kind": "SCREENING",
       "time": "09:15",
-      "title": "Waves of Time",
-      "venueName": "Pathé City 3",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-5cce3aa0-0fd6-4f93-8a47-e061a7352ba3",
-      "kind": "SCREENING",
-      "time": "09:15",
-      "title": "Here Where the Fire Burns",
-      "venueName": "Pathé City 6",
+      "title": "Mangabangabaka",
+      "venueName": "Pathé City 5",
       "section": "International Competition",
       "grade": null,
       "subtitle": "English",
@@ -385,12 +340,27 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-b5af44d2-1edd-4ed7-867a-8b6b7efd9b26",
+      "id": "idfa-2026-20261118-468fd13d-123e-4683-88a1-3f4f560ae65e",
+      "kind": "SCREENING",
+      "time": "09:15",
+      "title": "Market Screening: Couture to the Max",
+      "venueName": "The Pulse 3",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-bb3e56b0-ac89-4926-aeff-73a3fbd4a67e",
       "kind": "SCREENING",
       "time": "09:30",
-      "title": "Between Revolutions",
-      "venueName": "Pathé City 7",
-      "section": "Envision Competition",
+      "title": "The Message",
+      "venueName": "Pathé City 1",
+      "section": "Frontlight",
       "grade": null,
       "subtitle": "English",
       "qa": false,
@@ -400,7 +370,37 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-056c9010-8562-4a39-9029-b5b0e833e61f-the-quiet-room",
+      "id": "idfa-2026-20261118-fc58a244-34fe-44b4-afa7-62752df5f7ca",
+      "kind": "SCREENING",
+      "time": "09:30",
+      "title": "The Black Box Is Orange",
+      "venueName": "Pathé City 7",
+      "section": "Envision Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-0b866ba3-b2f4-45b7-8e73-b96568e913b9",
+      "kind": "SCREENING",
+      "time": "09:45",
+      "title": "Bardi",
+      "venueName": "The Pulse 1",
+      "section": "International Competition",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-e5bf9a8d-68db-4901-9efe-47c10bd0d58b-the-quiet-room",
       "kind": "EVENT",
       "time": "10:00",
       "title": "The Quiet Room",
@@ -415,7 +415,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-5fa40d3d-093a-4a0f-97cc-03d3f3f6c85d-networking-caf",
+      "id": "idfa-2026-20261118-e10b36fb-9978-477e-8c2a-9de18b44855b-networking-caf",
       "kind": "EVENT",
       "time": "10:00",
       "title": "Networking Café",
@@ -430,12 +430,12 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-7049f60b-66cd-4bf5-96cd-b655294ea9cb",
+      "id": "idfa-2026-20261118-3b1580fd-4b77-4f6b-93e9-aa4dc526fbe2",
       "kind": "SCREENING",
       "time": "10:00",
-      "title": "Jenin & the Nakba Between Us",
+      "title": "Cuscú",
       "venueName": "Pathé City 2",
-      "section": "Frontlight",
+      "section": "Luminous",
       "grade": null,
       "subtitle": "English",
       "qa": false,
@@ -445,26 +445,11 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-7e5c55ab-ad58-44be-b15e-b35835deebd3",
-      "kind": "SCREENING",
-      "time": "10:00",
-      "title": "Radiant Mountain",
-      "venueName": "Pathé City 5",
-      "section": "Envision Competition",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-fe4f5b6c-6e2a-4542-9213-314623bec2cc-industry-session-films-w",
+      "id": "idfa-2026-20261118-f61d7127-040a-4e21-afda-200e8209589b-delegation-showcase-docs",
       "kind": "EVENT",
       "time": "10:00",
-      "title": "Industry Session: Films we make together – Co-creating with young protagonists",
-      "venueName": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+      "title": "Delegation Showcase: Docs from Spain",
+      "venueName": "Pathé City 6",
       "section": null,
       "grade": null,
       "subtitle": null,
@@ -475,10 +460,10 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-ac6ac05f-c8e4-476f-a853-315e16bd91ff-idfa-consultancy-swallow",
+      "id": "idfa-2026-20261118-cbc75afc-1864-483c-abbd-67983df4bdb0-idfa-consultancy-andana-",
       "kind": "EVENT",
       "time": "10:00",
-      "title": "IDFA Consultancy - Swallow Wings Films",
+      "title": "IDFA Consultancy - Andana Films",
       "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
       "section": null,
       "grade": null,
@@ -490,10 +475,10 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-f8c1adbd-d26d-4770-ab37-ee68d86865fd-idfa-consultancy-icarus-",
+      "id": "idfa-2026-20261118-0d00917a-85fe-4966-be87-67a7fba76467-idfa-consultancy-eurodoc",
       "kind": "EVENT",
       "time": "10:00",
-      "title": "IDFA Consultancy - Icarus Films",
+      "title": "IDFA Consultancy - EURODOC",
       "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
       "section": null,
       "grade": null,
@@ -505,22 +490,52 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-71ad4200-8e95-4eb1-9c0f-67d22baf834f",
+      "id": "idfa-2026-20261118-0a274c6e-1a6d-405d-a3d1-9e9b1c52ada7",
       "kind": "SCREENING",
-      "time": "10:45",
-      "title": "Tonight is Forever",
-      "venueName": "Tuschinski 1",
+      "time": "10:30",
+      "title": "Where the Sun is Born",
+      "venueName": "Pathé City 3",
       "section": "Luminous",
       "grade": null,
       "subtitle": "English",
-      "qa": true,
+      "qa": false,
       "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-d0a88aac-9f91-463e-aa6c-a283bbe504b4",
+      "id": "idfa-2026-20261118-0328886e-a643-427e-860a-9d36b25fbd4f",
+      "kind": "SCREENING",
+      "time": "10:30",
+      "title": "Tristan Forever",
+      "venueName": "The Pulse 2",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "Fully English subtitled",
+      "qa": false,
+      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-9e76521c-e3dc-494d-a1f9-506ea72ad97d",
+      "kind": "SCREENING",
+      "time": "10:45",
+      "title": "Birds of War",
+      "venueName": "Tuschinski 1",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English Subtitles for the Deaf and Hard of Hearing (SDH), English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-656a1d7b-df05-4ddc-971b-d5d707295734",
       "kind": "SCREENING",
       "time": "11:00",
       "title": "In Pursuit of Repetitive Beats",
@@ -535,57 +550,27 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-604a7da5-ea17-4288-9210-5504d41a289a",
+      "id": "idfa-2026-20261118-20af170d-9b81-4c33-b7fd-544bb79b0bad",
       "kind": "SCREENING",
       "time": "11:00",
-      "title": "The Big Boom!",
-      "venueName": "Pathé City 4",
-      "section": "Frontlight",
+      "title": "Market Screening: Ash and Crayons",
+      "venueName": "The Pulse 3",
+      "section": null,
       "grade": null,
-      "subtitle": "English",
-      "qa": false,
+      "subtitle": null,
+      "qa": true,
       "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-f1291086-28c5-4eb9-b7da-7e18aca3d4fb-idfa-consultancy-alphapa",
-      "kind": "EVENT",
-      "time": "11:15",
-      "title": "IDFA Consultancy - Alphapanda",
-      "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-2dd5943a-99ac-4d8c-b5d8-b2dc1272c1c9-idfa-consultancy-dogwoof",
-      "kind": "EVENT",
-      "time": "11:15",
-      "title": "IDFA Consultancy - Dogwoof",
-      "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-707e5ecd-31b0-4296-92be-6b5ef81b03dc",
+      "id": "idfa-2026-20261118-3888f821-da02-426d-83fa-54ec690ac25d",
       "kind": "SCREENING",
       "time": "11:15",
-      "title": "My Own Personal Gulag",
-      "venueName": "The Pulse 2",
-      "section": "Envision Competition",
+      "title": "Down the River",
+      "venueName": "Ketelhuis: Zaal 1",
+      "section": "International Competition",
       "grade": null,
       "subtitle": "English",
       "qa": true,
@@ -595,7 +580,67 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-20532965-bcfd-4897-bb51-6a374a97623c",
+      "id": "idfa-2026-20261118-49a8b9eb-72dc-4b24-bbe3-441574912386",
+      "kind": "SCREENING",
+      "time": "11:15",
+      "title": "The Blood of the Covenant",
+      "venueName": "Pathé City 4",
+      "section": "Luminous",
+      "grade": null,
+      "subtitle": "English Subtitles for the Deaf and Hard of Hearing (SDH)",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-6703b11a-193d-461d-a281-6924e737a393-idfa-consultancy-thessal",
+      "kind": "EVENT",
+      "time": "11:15",
+      "title": "IDFA Consultancy - Thessaloniki IFF Agora",
+      "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-310705aa-366b-4567-b35e-5073e8b95485-idfa-consultancy-arte",
+      "kind": "EVENT",
+      "time": "11:15",
+      "title": "IDFA Consultancy - ARTE",
+      "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-ea98bbb4-cb8a-4af2-93f4-1e8adb293fe3",
+      "kind": "SCREENING",
+      "time": "11:15",
+      "title": "Djeliya, Memory of Mandingo",
+      "venueName": "Tuschinski 2",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-5b61f307-c5fe-4f29-9195-b113bcfcc782",
       "kind": "SCREENING",
       "time": "11:30",
       "title": "Microbiome Restaurant: Plural Tastings",
@@ -610,7 +655,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-0b6cbf74-5f71-4dd6-bec7-d53d2c4cd43a",
+      "id": "idfa-2026-20261118-52b6be53-64e3-478a-b390-4c8687229bbe",
       "kind": "SCREENING",
       "time": "11:30",
       "title": "Orgasmagoria",
@@ -625,7 +670,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-fea19f49-0f7a-4dc4-9625-7be3851fedb0-doclab-exhibition",
+      "id": "idfa-2026-20261118-21db3cde-eabb-409b-9078-310705d921ea-doclab-exhibition",
       "kind": "EVENT",
       "time": "11:30",
       "title": "DocLab Exhibition",
@@ -640,12 +685,12 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-f73c5360-b1df-4471-95e2-f8ebe121436e-doclab-vr-gallery-free-w",
-      "kind": "EVENT",
+      "id": "idfa-2026-20261118-8a2bc564-4c4d-4809-b707-210b88a29b67",
+      "kind": "SCREENING",
       "time": "11:30",
-      "title": "DocLab: VR Gallery - Free Walk-In",
+      "title": "Shifting Connections",
       "venueName": "de Brakke Grond: VR Gallery",
-      "section": null,
+      "section": "IDFA DocLab Program & Competition",
       "grade": null,
       "subtitle": null,
       "qa": false,
@@ -655,112 +700,37 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-1178c733-0825-49fb-880e-6579e07961a8",
+      "id": "idfa-2026-20261118-766ae4ca-b51a-4e1b-bdf3-2598d9e39c60",
       "kind": "SCREENING",
-      "time": "11:30",
-      "title": "Regarding Memory and Neglect",
-      "venueName": "Ketelhuis: Zaal 1",
-      "section": "Frontlight",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-3ab3184b-58c0-44c5-b4dc-91ca2c00fbbb",
-      "kind": "SCREENING",
-      "time": "11:30",
-      "title": "Hold Your Breath",
-      "venueName": "Pathé City 3",
-      "section": "Frontlight",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": null,
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-a01d096e-fcd8-41fd-9278-09833a154b06",
-      "kind": "SCREENING",
-      "time": "11:30",
-      "title": "My Own Personal Gulag",
+      "time": "11:45",
+      "title": "Vertigo Garden",
       "venueName": "Pathé City 7",
       "section": "Envision Competition",
       "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-b358b9d6-f1fc-45cf-9f1a-b14bbc00f97d",
-      "kind": "SCREENING",
-      "time": "11:30",
-      "title": "At Night",
-      "venueName": "Tuschinski 2",
-      "section": "Paradocs",
-      "grade": null,
       "subtitle": null,
       "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-9853ec09-1e6f-458e-806a-a3d2ea557fb1",
-      "kind": "SCREENING",
-      "time": "11:45",
-      "title": "Work in Progress",
-      "venueName": "Pathé City 6",
-      "section": "Dead Angle: Common Ground",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
       "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-d4c5510e-b977-4aba-ab36-de5961157349",
+      "id": "idfa-2026-20261118-3106b37f-7b62-4070-a15b-f9c33a1d889e",
       "kind": "SCREENING",
       "time": "11:45",
-      "title": "Collapse",
-      "venueName": "The Pulse 1",
-      "section": "Best of Fests",
+      "title": "No Man's Air",
+      "venueName": "Tuschinski 4",
+      "section": "Frontlight",
       "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-3c326317-27ad-471b-ba4e-8e54151d89b7",
-      "kind": "SCREENING",
-      "time": "11:45",
-      "title": "A Modern Roma Fairytale",
-      "venueName": "Tuschinski 5",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": "English",
+      "subtitle": "Fully English subtitled",
       "qa": true,
-      "ticketStatus": "SOLD_OUT",
+      "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-1ad0674e-d260-4add-965b-5e43d1689458",
+      "id": "idfa-2026-20261118-49f8bd68-20e8-459f-af4a-54ebde09c669",
       "kind": "SCREENING",
       "time": "12:00",
       "title": "Microbiome Restaurant: Plural Tastings",
@@ -775,7 +745,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-43ebf7d7-37fd-46f8-8058-df8d4772154a",
+      "id": "idfa-2026-20261118-022a1ca3-7ea6-4677-a9a8-8751a2ccb0b0",
       "kind": "SCREENING",
       "time": "12:00",
       "title": "Orgasmagoria",
@@ -790,7 +760,22 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-3bfa424b-73f3-4b89-b7d3-a0a93c8d16e4",
+      "id": "idfa-2026-20261118-b7d3c9da-3de8-49a0-9286-ad80d12b7729",
+      "kind": "SCREENING",
+      "time": "12:00",
+      "title": "Shifting Connections",
+      "venueName": "de Brakke Grond: VR Gallery",
+      "section": "IDFA DocLab Program & Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-f1bd10b5-7c3a-432f-b2a9-2dc0a6ac1b5a",
       "kind": "SCREENING",
       "time": "12:00",
       "title": "In Pursuit of Repetitive Beats",
@@ -805,27 +790,42 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-cd008623-3bfe-4043-bf92-b57def0d4faa",
+      "id": "idfa-2026-20261118-2116cc87-9ed8-457c-8cf9-f4a938c3f3e9",
       "kind": "SCREENING",
       "time": "12:00",
-      "title": ">1.5°C: Pyropolitics and the New World",
-      "venueName": "Eye: Cinema 1",
-      "section": "Best of Fests",
+      "title": "No Man's Air",
+      "venueName": "Pathé City 1",
+      "section": "Frontlight",
       "grade": null,
-      "subtitle": null,
-      "qa": true,
+      "subtitle": "Fully English subtitled",
+      "qa": false,
       "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-7d360a7c-93ea-4916-a509-39840f2ccf11",
+      "id": "idfa-2026-20261118-077a4f7b-663d-471b-8552-77154faae418",
       "kind": "SCREENING",
       "time": "12:00",
-      "title": "An Incomplete Day in the History of Georgia 10.06.93",
-      "venueName": "Pathé City 1",
-      "section": "International Competition",
+      "title": "Ragazzi al fiume",
+      "venueName": "Pathé City 5",
+      "section": "Envision Competition",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-b35c2a96-759f-4a19-9c89-02f76f8bdaff",
+      "kind": "SCREENING",
+      "time": "12:00",
+      "title": "The Middle Room",
+      "venueName": "SILO (Rialto) Zaal 1",
+      "section": "Luminous",
       "grade": null,
       "subtitle": "English",
       "qa": false,
@@ -835,67 +835,112 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-f6683a3b-393f-455c-9413-51fbf626c266",
+      "id": "idfa-2026-20261118-13fe4314-d1da-4f8e-ba4f-655c0d8a4cd4",
       "kind": "SCREENING",
-      "time": "12:15",
-      "title": "A Stolen Movie",
-      "venueName": "Kriterion 1",
-      "section": "Signed",
-      "grade": null,
-      "subtitle": null,
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-7c2c88e5-dade-4e5c-bfb7-c1dad7cd35b5",
-      "kind": "SCREENING",
-      "time": "12:15",
-      "title": "Tempestad",
-      "venueName": "Pathé City 5",
-      "section": "Retrospective: Tatiana Huezo",
-      "grade": null,
-      "subtitle": null,
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-d94f832d-c98e-418a-8506-52143886a251",
-      "kind": "SCREENING",
-      "time": "12:15",
-      "title": "How Much Longer",
+      "time": "12:00",
+      "title": "Xiangzidian Village: The Stage",
       "venueName": "Tuschinski 3",
-      "section": "Luminous",
+      "section": "Best of Fests",
       "grade": null,
       "subtitle": "English",
-      "qa": true,
+      "qa": false,
       "ticketStatus": "SOLD_OUT",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-00e7491c-2af1-4d07-b5b4-356ddfc1371d",
+      "id": "idfa-2026-20261118-7e8fd552-3d8b-4246-87df-6d22269c7b4f",
       "kind": "SCREENING",
       "time": "12:15",
-      "title": "You Don’t Die Two Times",
-      "venueName": "Tuschinski 4",
+      "title": "Just Look Up",
+      "venueName": "Cinema De Vlugt - Theaterzaal",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-c3b39a37-d153-43f1-b884-0e38a217b07d",
+      "kind": "SCREENING",
+      "time": "12:15",
+      "title": "A Fire There",
+      "venueName": "Eye: Cinema 1",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-a95e0f8f-30ea-4b73-82f2-312a26c49713",
+      "kind": "SCREENING",
+      "time": "12:15",
+      "title": "The Year of the Ghost",
+      "venueName": "Kriterion 1",
+      "section": "International Competition",
+      "grade": null,
+      "subtitle": "Dutch Subtitles for the Deaf and Hard of Hearing (SDH), English",
+      "qa": true,
+      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-69b16bc9-3681-4992-a970-8619659baa04",
+      "kind": "SCREENING",
+      "time": "12:15",
+      "title": "Rivers of Memory",
+      "venueName": "Pathé City 2",
       "section": "Envision Competition",
       "grade": null,
       "subtitle": "English",
       "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-c52b9e4b-0470-4a38-887e-ad701642a70b",
+      "kind": "SCREENING",
+      "time": "12:15",
+      "title": "The Black Box Is Orange",
+      "venueName": "Podium Mozaïek",
+      "section": "Envision Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-cca4d246-a91b-4f87-a280-10f0b1e6dd6e",
+      "kind": "SCREENING",
+      "time": "12:15",
+      "title": "Transition",
+      "venueName": "Tuschinski 5",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
       "ticketStatus": "SOLD_OUT",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-17cdbed0-552f-4a17-a8e7-a949cb063be4",
+      "id": "idfa-2026-20261118-ddf9f658-e58a-4ae4-9791-ac892cd3ca94",
       "kind": "SCREENING",
       "time": "12:30",
       "title": "Microbiome Restaurant: Plural Tastings",
@@ -910,7 +955,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-4ebfde34-a630-414d-ae0d-ab69c17ae731",
+      "id": "idfa-2026-20261118-204a7f71-14bb-487f-946b-85504d55dabe",
       "kind": "SCREENING",
       "time": "12:30",
       "title": "Orgasmagoria",
@@ -925,12 +970,12 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-5a39d338-ddeb-40bf-bd47-2412d617887d-doclab-vr-gallery",
-      "kind": "EVENT",
+      "id": "idfa-2026-20261118-facb8dfa-26a6-40c8-aedb-002d2f045ba1",
+      "kind": "SCREENING",
       "time": "12:30",
-      "title": "DocLab: VR Gallery",
+      "title": "Shifting Connections",
       "venueName": "de Brakke Grond: VR Gallery",
-      "section": null,
+      "section": "IDFA DocLab Program & Competition",
       "grade": null,
       "subtitle": null,
       "qa": false,
@@ -940,29 +985,14 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-e52fdbc7-54e3-4d3b-a519-ce449a5d021b-idfa-forum-lunch-hosted-",
-      "kind": "EVENT",
-      "time": "12:30",
-      "title": "IDFA Forum: Lunch - hosted by DocOrg , CMPA-BC & HotDocs",
-      "venueName": "DeLaMar: Spieghel Foyer",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "NO_SALE",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-f61770da-e620-4297-bf69-94c865db9c07",
+      "id": "idfa-2026-20261118-b7c6cb5b-943b-4780-a301-80a8d62461da",
       "kind": "SCREENING",
       "time": "12:30",
-      "title": "White Tiger Column ",
-      "venueName": "Pathé City 2",
-      "section": "International Competition",
+      "title": "Small Expectations",
+      "venueName": "Pathé City 3",
+      "section": "Frontlight",
       "grade": null,
-      "subtitle": "English",
+      "subtitle": "Fully English subtitled",
       "qa": false,
       "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
@@ -970,119 +1000,29 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-3aa08c58-9185-4191-8661-f440fe915f51-industry-talk-the-next-c",
+      "id": "idfa-2026-20261118-68bfefaf-9af6-47bc-a9ae-d007daeed76f",
+      "kind": "SCREENING",
+      "time": "12:30",
+      "title": "Che Guevara: The Last Companions",
+      "venueName": "Pathé City 6",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-22c641a2-1946-40c8-9914-3e6ddb138ae1-industry-talk-end-times-",
       "kind": "EVENT",
       "time": "12:30",
-      "title": "Industry Talk: The next chapter of impact – What have we built and what comes next?",
+      "title": "Industry Talk: End times – AI and documentary",
       "venueName": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
       "section": null,
       "grade": null,
       "subtitle": null,
-      "qa": true,
-      "ticketStatus": "NO_SALE",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-2d768a36-26ce-4ba4-a943-95a991236e93-idfa-consultancy-rough-c",
-      "kind": "EVENT",
-      "time": "12:30",
-      "title": "IDFA Consultancy -  Rough Cut Service",
-      "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-385a85ba-6873-41fa-a370-1bd02195bfce-idfa-consultancy-hubert-",
-      "kind": "EVENT",
-      "time": "12:30",
-      "title": "IDFA Consultancy - Hubert Bals Fund",
-      "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-1713cc13-6500-4054-9587-fe1261d77cb3",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "Orgasmagoria",
-      "venueName": "Casa Rosso: Orgasmagoria",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-a431a54f-9931-4c9d-ac27-febdae491bc3",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "In Pursuit of Repetitive Beats",
-      "venueName": "ENTR VR Museum",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-0a916a02-127d-4e83-9b42-cd6ff4dad84f",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "Dreams of the Wild Oaks",
-      "venueName": "Rialto De Pijp: Bovenzaal",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-8aa5e7e8-ed27-48c8-ba58-a877e996d094",
-      "kind": "SCREENING",
-      "time": "13:00",
-      "title": "Lyrical Vengeance",
-      "venueName": "SILO (Rialto) Zaal 1",
-      "section": "Envision Competition",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-e813b206-a29c-4120-9f80-727a2f4d9045-delegation-showcase-five",
-      "kind": "EVENT",
-      "time": "13:00",
-      "title": "Delegation Showcase: Five Colombian documentaries, five ways of holding on to memory",
-      "venueName": "Stadsschouwburg Amsterdam: Nieuwe Foyer",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
       "qa": false,
       "ticketStatus": "NO_SALE",
       "ticketUrl": null,
@@ -1090,115 +1030,10 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-ca89f114-060d-410f-9b00-24fee0a43e9e",
-      "kind": "SCREENING",
-      "time": "13:15",
-      "title": "Bahía Honda",
-      "venueName": "Pathé City 4",
-      "section": "Envision Competition",
-      "grade": null,
-      "subtitle": "English Subtitles for the Deaf and Hard of Hearing (SDH), English",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-8d63450a-c823-4cff-bfa5-13523faf06ab",
-      "kind": "SCREENING",
-      "time": "13:15",
-      "title": "Az Zeeb",
-      "venueName": "Tuschinski 6",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-0da44365-6e02-428b-97ec-bb43e14d65da",
-      "kind": "SCREENING",
-      "time": "13:30",
-      "title": "Orgasmagoria",
-      "venueName": "Casa Rosso: Orgasmagoria",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "LOW_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-9bb8d88a-bb9a-4761-b80d-f247a535d3c7-doclab-vr-gallery",
+      "id": "idfa-2026-20261118-5c7b8b68-559e-4103-a53e-682698a2f646-idfa-consultancy-hasse-v",
       "kind": "EVENT",
-      "time": "13:30",
-      "title": "DocLab: VR Gallery",
-      "venueName": "de Brakke Grond: VR Gallery",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-91530533-7027-4399-a702-ae654be33355",
-      "kind": "SCREENING",
-      "time": "13:30",
-      "title": "Alter Ego",
-      "venueName": "Pathé City 3",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": null,
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-0fce0a7b-772b-4750-b564-47064b84fc30",
-      "kind": "SCREENING",
-      "time": "13:45",
-      "title": "A Fire There",
-      "venueName": "Ketelhuis: Zaal 1",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-878a8f76-5a75-4222-b87b-722f487b35f5",
-      "kind": "SCREENING",
-      "time": "13:45",
-      "title": "She Was Not Alone",
-      "venueName": "Pathé City 7",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-491bb520-fceb-4669-a815-76598cce94f1-idfa-consultancy-idfa-be",
-      "kind": "EVENT",
-      "time": "13:45",
-      "title": "IDFA Consultancy - IDFA Bertha Fund",
+      "time": "12:30",
+      "title": "IDFA Consultancy - Hasse van Nunen",
       "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
       "section": null,
       "grade": null,
@@ -1210,85 +1045,40 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-72e39f1f-bea9-4f29-bb7a-a910fd82510f-idfa-consultancy-the-ara",
-      "kind": "EVENT",
-      "time": "13:45",
-      "title": "IDFA Consultancy - The Arab Fund for Arts and Culture",
-      "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "LOW_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-d7899c8a-b4cd-4529-ab8b-2987c439648a",
+      "id": "idfa-2026-20261118-eca64540-6d83-45c4-b3e6-9272a9acc6f5",
       "kind": "SCREENING",
-      "time": "13:45",
-      "title": "Alea Jacarandas",
-      "venueName": "The Pulse 2",
+      "time": "12:30",
+      "title": "For the Moon",
+      "venueName": "The Pulse 1",
       "section": "Signed",
       "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-fa476742-06d4-4440-a987-e66fcd9d4d82",
-      "kind": "SCREENING",
-      "time": "13:45",
-      "title": "To Hold a Mountain",
-      "venueName": "Tuschinski 1",
-      "section": "Best of Fests",
-      "grade": null,
       "subtitle": "English",
-      "qa": true,
+      "qa": false,
       "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-d5caab7f-798e-49a8-a6e2-530e4f19ba5c",
+      "id": "idfa-2026-20261118-570d3e76-7716-4804-9024-da6c2e9dc67e",
       "kind": "SCREENING",
-      "time": "14:00",
-      "title": "Microbiome Restaurant: Plural Tastings",
-      "venueName": "@droog: Plural Tastings",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-b7d0ac31-b5ab-412e-aae3-351efd59d9de",
-      "kind": "SCREENING",
-      "time": "14:00",
+      "time": "13:00",
       "title": "Orgasmagoria",
       "venueName": "Casa Rosso: Orgasmagoria",
       "section": "IDFA DocLab Program & Competition",
       "grade": null,
       "subtitle": null,
       "qa": false,
-      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-37300847-5336-4188-ad64-10bab3456850-idfa-forum-roundtable-pr",
+      "id": "idfa-2026-20261118-c8edadeb-3a56-4c53-a98c-22beaf8b3dba-idfa-forum-awards-ceremo",
       "kind": "EVENT",
-      "time": "14:00",
-      "title": "IDFA Forum: Roundtable Presentations - Day 2",
+      "time": "13:00",
+      "title": "IDFA Forum: Awards Ceremony & Lunch – hosted by FeverFilm & PostaVermaas",
       "venueName": "De Balie: Grote Zaal",
       "section": null,
       "grade": null,
@@ -1300,9 +1090,9 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-078945bc-cea3-4808-8f12-5355e6f5bd00",
+      "id": "idfa-2026-20261118-570d0ea4-60ae-44b0-96ab-f9e873b155a0",
       "kind": "SCREENING",
-      "time": "14:00",
+      "time": "13:00",
       "title": "In Pursuit of Repetitive Beats",
       "venueName": "ENTR VR Museum",
       "section": "IDFA DocLab Program & Competition",
@@ -1315,11 +1105,146 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-57631f12-96e3-45f0-b25c-4b8786069d7d",
+      "id": "idfa-2026-20261118-a4fc0f45-c4a7-4581-95af-7234097d489b",
       "kind": "SCREENING",
-      "time": "14:00",
-      "title": "Morro Grande",
+      "time": "13:00",
+      "title": "Waves of Time",
+      "venueName": "The Pulse 2",
+      "section": "Luminous",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-8ddad8e6-ec42-4f03-8bb7-9b8f9f975033",
+      "kind": "SCREENING",
+      "time": "13:15",
+      "title": "Alter Ego",
+      "venueName": "Pathé City 4",
+      "section": "Luminous",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-95f2de53-dcb2-44ee-891c-89c24cb4947d",
+      "kind": "SCREENING",
+      "time": "13:15",
+      "title": "Hazara Town",
+      "venueName": "Rialto De Pijp: Bovenzaal",
+      "section": "International Competition",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-1d73caf3-6564-46b5-8cde-b176c95aaef8",
+      "kind": "SCREENING",
+      "time": "13:15",
+      "title": "In Search of the Grey Bird with Green Stripes",
+      "venueName": "Tuschinski 6",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-785650f6-9e41-4cb0-a598-aafab450da47",
+      "kind": "SCREENING",
+      "time": "13:30",
+      "title": "Orgasmagoria",
+      "venueName": "Casa Rosso: Orgasmagoria",
+      "section": "IDFA DocLab Program & Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-7dccb4c1-65f8-43ed-b3c0-e4d99acddf2c-doclab-vr-gallery",
+      "kind": "EVENT",
+      "time": "13:30",
+      "title": "DocLab: VR Gallery",
+      "venueName": "de Brakke Grond: VR Gallery",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-ee3ba175-84cf-41bc-9ea6-07fff9dd62d0",
+      "kind": "SCREENING",
+      "time": "13:30",
+      "title": "Central Park",
       "venueName": "Eye: Cinema 2",
+      "section": "Dead Angle: Common Ground",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-65c0b4e8-7524-4309-8cd3-1be9a723a11f",
+      "kind": "SCREENING",
+      "time": "13:30",
+      "title": "You Don’t Die Two Times",
+      "venueName": "Pathé City 1",
+      "section": "Envision Competition",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-884f0672-545d-44f9-82aa-2f3e3fc533e9",
+      "kind": "SCREENING",
+      "time": "13:30",
+      "title": "Union Town",
+      "venueName": "Tuschinski 1",
+      "section": "Signed",
+      "grade": null,
+      "subtitle": null,
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-aefc977b-f9cf-42b5-9440-64ea0701fa35",
+      "kind": "SCREENING",
+      "time": "13:45",
+      "title": "Morro Grande",
+      "venueName": "Pathé City 7",
       "section": "International Competition",
       "grade": null,
       "subtitle": "English",
@@ -1330,14 +1255,14 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-e38e73a5-8121-4e54-b441-741c9c1386d0",
-      "kind": "SCREENING",
-      "time": "14:00",
-      "title": "Flamenco Sketches",
-      "venueName": "Het Documentaire Paviljoen: De Spiegel",
-      "section": "Signed",
+      "id": "idfa-2026-20261118-f5eeb8e5-50c9-4029-ad14-578185c6b566-idfa-consultancy-kinema",
+      "kind": "EVENT",
+      "time": "13:45",
+      "title": "IDFA Consultancy - Kinema",
+      "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
+      "section": null,
       "grade": null,
-      "subtitle": "English",
+      "subtitle": null,
       "qa": false,
       "ticketStatus": "SOLD_OUT",
       "ticketUrl": null,
@@ -1345,27 +1270,27 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-11954442-4795-420d-bb74-c4fdc83838d7",
+      "id": "idfa-2026-20261118-86861c4d-af05-45a9-9bac-d76c4eb86059",
       "kind": "SCREENING",
-      "time": "14:15",
-      "title": "Bára - Diary of a Rockstar",
-      "venueName": "The Pulse 1",
-      "section": "Signed",
+      "time": "14:00",
+      "title": "Microbiome Restaurant: Plural Tastings",
+      "venueName": "@droog: Plural Tastings",
+      "section": "IDFA DocLab Program & Competition",
       "grade": null,
-      "subtitle": "English",
+      "subtitle": null,
       "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketStatus": "SOLD_OUT",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-cc896170-fbad-4bbf-b59c-36aed85f9be5",
+      "id": "idfa-2026-20261118-e4e07564-f455-409b-a063-079796c597d5",
       "kind": "SCREENING",
-      "time": "14:15",
-      "title": "Sixteen Moments of My Life",
-      "venueName": "Tuschinski 2",
-      "section": "Signed",
+      "time": "14:00",
+      "title": "Orgasmagoria",
+      "venueName": "Casa Rosso: Orgasmagoria",
+      "section": "IDFA DocLab Program & Competition",
       "grade": null,
       "subtitle": null,
       "qa": false,
@@ -1375,7 +1300,112 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-a5dff048-3c43-4d9a-be8b-bfea2453bd30",
+      "id": "idfa-2026-20261118-97dceed8-76ef-4625-a043-1e21d0b6323c",
+      "kind": "SCREENING",
+      "time": "14:00",
+      "title": "In Pursuit of Repetitive Beats",
+      "venueName": "ENTR VR Museum",
+      "section": "IDFA DocLab Program & Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-b0f7f32c-4663-4266-916a-3e7170098f71",
+      "kind": "SCREENING",
+      "time": "14:00",
+      "title": "Vertigo Garden",
+      "venueName": "Het Documentaire Paviljoen: De Spiegel",
+      "section": "Envision Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-5e4976e5-08b5-490d-a662-31299234f43d",
+      "kind": "SCREENING",
+      "time": "14:00",
+      "title": "Market Screening: The Righteous Road Trip",
+      "venueName": "The Pulse 3",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-7de237f3-b90e-41e3-aee1-c47108cf5efa",
+      "kind": "SCREENING",
+      "time": "14:15",
+      "title": "The Blood of the Covenant",
+      "venueName": "Pathé City 2",
+      "section": "Luminous",
+      "grade": null,
+      "subtitle": "English Subtitles for the Deaf and Hard of Hearing (SDH)",
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-bf8445a9-2e63-4249-a624-7fd258adf99e",
+      "kind": "SCREENING",
+      "time": "14:15",
+      "title": "A Modern Roma Fairytale",
+      "venueName": "Pathé City 5",
+      "section": "Luminous",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-4122f40f-b40e-4469-8071-982209b58a72",
+      "kind": "SCREENING",
+      "time": "14:15",
+      "title": "We Had a Plan",
+      "venueName": "SILO (Rialto) Zaal 1",
+      "section": "Luminous",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-6de8cfa9-f094-4982-9a3e-149c36e5dfab",
+      "kind": "SCREENING",
+      "time": "14:15",
+      "title": "Tutu",
+      "venueName": "Tuschinski 2",
+      "section": "Signed",
+      "grade": null,
+      "subtitle": null,
+      "qa": true,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-97004cc7-d5ea-43e2-86a6-79c9b836125a",
       "kind": "SCREENING",
       "time": "14:30",
       "title": "Microbiome Restaurant: Plural Tastings",
@@ -1390,7 +1420,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-af85c335-fc7b-44e3-bb91-d782bd7aee7b",
+      "id": "idfa-2026-20261118-ba6c6156-1504-496f-918f-6480a0ec7cda",
       "kind": "SCREENING",
       "time": "14:30",
       "title": "Orgasmagoria",
@@ -1405,7 +1435,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-468576e6-d322-4242-8f7f-e95169c56bc7-doclab-vr-gallery",
+      "id": "idfa-2026-20261118-547ca25b-7ebe-4f1d-9455-37190209cd19-doclab-vr-gallery",
       "kind": "EVENT",
       "time": "14:30",
       "title": "DocLab: VR Gallery",
@@ -1420,52 +1450,67 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-1d283a98-f297-4022-8805-ed48125e9628",
-      "kind": "SCREENING",
+      "id": "idfa-2026-20261118-c4be393a-b829-43e8-b1c2-18a115c82f23-idfa-junior",
+      "kind": "EVENT",
       "time": "14:30",
-      "title": "If Pigeons Turned to Gold",
-      "venueName": "Pathé City 1",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-7c9df1f0-6cb1-4971-8a4e-9c3b1c05fa03",
-      "kind": "SCREENING",
-      "time": "14:30",
-      "title": "The Recce",
-      "venueName": "Tuschinski 5",
-      "section": "Paradocs",
+      "title": "IDFA Junior",
+      "venueName": "Ketelhuis: Zaal 1",
+      "section": null,
       "grade": null,
       "subtitle": null,
       "qa": true,
-      "ticketStatus": "SOLD_OUT",
+      "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-b1c6f73b-da00-4d26-bb5b-673d427322f0",
+      "id": "idfa-2026-20261118-bf9ded30-82ba-4d6b-941b-90586a0b7546-audience-strategy-lab-ne",
+      "kind": "EVENT",
+      "time": "14:30",
+      "title": "Audience Strategy Lab: New perspectives",
+      "venueName": "Stadsschouwburg Amsterdam: Studio 1",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "NO_SALE",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-6c2a9acf-8842-4af3-b341-cc237477d6e4",
       "kind": "SCREENING",
-      "time": "14:45",
-      "title": "Small Talk",
-      "venueName": "Eye: Cinema 1",
-      "section": "Best of Fests",
+      "time": "14:30",
+      "title": "Here Where the Fire Burns",
+      "venueName": "Tuschinski 4",
+      "section": "International Competition",
       "grade": null,
       "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-44665397-b374-436e-912e-1cd6417862b4",
+      "id": "idfa-2026-20261118-c31a546d-0b46-41a8-9847-c0da2244741e",
+      "kind": "SCREENING",
+      "time": "14:45",
+      "title": "Hope Is a Word",
+      "venueName": "Cinema De Vlugt - Theaterzaal",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "Fully English subtitled",
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-03310895-10ce-4195-b990-17007032e3dc",
       "kind": "SCREENING",
       "time": "15:00",
       "title": "Orgasmagoria",
@@ -1480,22 +1525,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-f7c7450e-b611-4d9e-b3c6-7fc8bf3011ed-doclab-playroom-the-meta",
-      "kind": "EVENT",
-      "time": "15:00",
-      "title": "DocLab Playroom: The Metabolic Sublime",
-      "venueName": "de Brakke Grond: Rode Zaal",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "NO_SALE",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-67018877-f468-4836-9138-9e8098915540",
+      "id": "idfa-2026-20261118-40fac9cb-3d9b-479d-b6aa-529ca6889d57",
       "kind": "SCREENING",
       "time": "15:00",
       "title": "In Pursuit of Repetitive Beats",
@@ -1510,12 +1540,12 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-41c9545a-7d2d-4d2c-9c54-76ca8cb2d5bc",
+      "id": "idfa-2026-20261118-902b5da3-915a-4098-a6bf-95489d3f5d67",
       "kind": "SCREENING",
       "time": "15:00",
-      "title": "Jenin & the Nakba Between Us",
-      "venueName": "Kriterion 1",
-      "section": "Frontlight",
+      "title": "A Secret Heart",
+      "venueName": "Eye: Cinema 1",
+      "section": "Best of Fests",
       "grade": null,
       "subtitle": "English",
       "qa": true,
@@ -1525,14 +1555,14 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-c84dfeea-4e27-4a2e-95f3-f1affb4ff26f",
+      "id": "idfa-2026-20261118-bba59479-f713-4da1-bf53-510011218265",
       "kind": "SCREENING",
       "time": "15:00",
-      "title": "Forest Up in the Mountain",
-      "venueName": "Pathé City 2",
-      "section": "Best of Fests",
+      "title": "From a Vertebral Collapse Mountains Arose",
+      "venueName": "Kriterion 1",
+      "section": "IDFA Competition for Short Documentary",
       "grade": null,
-      "subtitle": null,
+      "subtitle": "English",
       "qa": false,
       "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
@@ -1540,14 +1570,14 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-a87e7c2f-dec2-4067-b252-be93b5460998",
+      "id": "idfa-2026-20261118-8062834a-11c9-4012-83d5-6d898e7af282",
       "kind": "SCREENING",
       "time": "15:00",
-      "title": "Another Sky",
-      "venueName": "Pathé City 6",
-      "section": "IDFA Competition for Short Documentary",
+      "title": "Edward Said: Between Worlds",
+      "venueName": "Podium Mozaïek",
+      "section": "Best of Fests",
       "grade": null,
-      "subtitle": null,
+      "subtitle": "English",
       "qa": true,
       "ticketStatus": "SOLD_OUT",
       "ticketUrl": null,
@@ -1555,12 +1585,12 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-61e5a60e-1df0-48b4-948d-f71c7d855bfa",
-      "kind": "SCREENING",
+      "id": "idfa-2026-20261118-656e1ce9-5adf-462b-bb7e-3429e82e40f0-idfa-consultancy-efm-doc",
+      "kind": "EVENT",
       "time": "15:00",
-      "title": "Tutu",
-      "venueName": "Tuschinski 3",
-      "section": "Signed",
+      "title": "IDFA Consultancy - EFM DocSalon & Archive Market",
+      "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
+      "section": null,
       "grade": null,
       "subtitle": null,
       "qa": false,
@@ -1570,7 +1600,67 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-2d01dba6-6f4b-4291-9739-ac90865ccd46",
+      "id": "idfa-2026-20261118-9edf7e1c-e054-4f44-a735-436857083c20-idfa-consultancy-dimitra",
+      "kind": "EVENT",
+      "time": "15:00",
+      "title": "IDFA Consultancy - Dimitra Kouzi",
+      "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-6d641813-9bdd-40ef-917e-855a9d4ff593",
+      "kind": "SCREENING",
+      "time": "15:00",
+      "title": "Agaar",
+      "venueName": "The Pulse 1",
+      "section": "Luminous",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-8dbf5798-51fb-4e30-bee3-bbf676ff1ec5",
+      "kind": "SCREENING",
+      "time": "15:15",
+      "title": "Two Mountains Weighing Down My Chest",
+      "venueName": "Pathé City 3",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-ca98582e-f8c7-4d8b-9c78-6c1140b5f867",
+      "kind": "SCREENING",
+      "time": "15:15",
+      "title": "Tehran, Under the Skin",
+      "venueName": "Pathé City 4",
+      "section": "Frontlight",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-33a38490-e710-4e50-badf-51e8b60d4b51",
       "kind": "SCREENING",
       "time": "15:30",
       "title": "Microbiome Restaurant: Plural Tastings",
@@ -1585,7 +1675,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-d5976e4e-984b-4103-a131-a117e4d19fd2",
+      "id": "idfa-2026-20261118-9dbe3922-0f17-4011-ab13-3eebba66b488",
       "kind": "SCREENING",
       "time": "15:30",
       "title": "Orgasmagoria",
@@ -1600,7 +1690,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-f8dfec20-720b-4810-a6d9-e17a0615058d-doclab-vr-gallery",
+      "id": "idfa-2026-20261118-427a9dd0-f586-462a-aa3f-722edf80d727-doclab-vr-gallery",
       "kind": "EVENT",
       "time": "15:30",
       "title": "DocLab: VR Gallery",
@@ -1615,70 +1705,40 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-332d2206-ea9a-447f-b658-80665d6d14d7",
+      "id": "idfa-2026-20261118-54517592-f137-4358-9b5c-3f631a798a29",
       "kind": "SCREENING",
       "time": "15:30",
-      "title": "Drop! Cover! Hold On!",
-      "venueName": "Pathé City 4",
+      "title": "Bahía Honda",
+      "venueName": "Pathé City 6",
       "section": "Envision Competition",
       "grade": null,
-      "subtitle": "Fully English subtitled",
-      "qa": false,
+      "subtitle": "English Subtitles for the Deaf and Hard of Hearing (SDH), English",
+      "qa": true,
       "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-c96fb5ee-113a-4a0a-a826-0d6c95924110",
+      "id": "idfa-2026-20261118-c84624fc-1790-4baf-971a-6843e9c702ec",
       "kind": "SCREENING",
       "time": "15:30",
-      "title": "Djeliya, Memory of Mandingo",
-      "venueName": "Pathé City 5",
+      "title": "Forest Up in the Mountain",
+      "venueName": "Tuschinski 5",
       "section": "Best of Fests",
       "grade": null,
-      "subtitle": "English",
-      "qa": true,
+      "subtitle": null,
+      "qa": false,
       "ticketStatus": "SOLD_OUT",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-d4c54de4-244b-49ac-9c53-c084e7a345d8",
-      "kind": "SCREENING",
-      "time": "15:30",
-      "title": "Where the Sun is Born",
-      "venueName": "Rialto De Pijp: Bovenzaal",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-2cf8dfbb-a66d-441b-978a-8e13e280d500",
-      "kind": "SCREENING",
-      "time": "15:30",
-      "title": "Small Expectations",
-      "venueName": "Tuschinski 4",
-      "section": "Frontlight",
-      "grade": null,
-      "subtitle": "Fully English subtitled",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-f01507c5-9c6d-40f7-ab46-3d033f2b2bfb-industry-talk-mental-res",
+      "id": "idfa-2026-20261118-a4fcd66d-fb36-4c12-b6d7-cff12e23e54e-industry-talk-ownership-",
       "kind": "EVENT",
       "time": "15:45",
-      "title": "Industry Talk: Mental resilience – Real stories for youth in a complex world",
+      "title": "Industry Talk: Ownership of the archive – Exposing erasure, reclaiming histories",
       "venueName": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
       "section": null,
       "grade": null,
@@ -1690,9 +1750,189 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-e4a87c6a-a84d-441b-bbc0-68c7fbb38f01",
+      "id": "idfa-2026-20261118-f8586d39-3f34-489f-a666-ca460c359ede",
+      "kind": "SCREENING",
+      "time": "15:45",
+      "title": "Whispers in May",
+      "venueName": "The Pulse 2",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-d544630c-61c0-4297-9161-d362db4ca7dc",
       "kind": "SCREENING",
       "time": "16:00",
+      "title": "Microbiome Restaurant: Plural Tastings",
+      "venueName": "@droog: Plural Tastings",
+      "section": "IDFA DocLab Program & Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-d787f4ab-9834-44e3-adbc-59062884ff10",
+      "kind": "SCREENING",
+      "time": "16:00",
+      "title": "Orgasmagoria",
+      "venueName": "Casa Rosso: Orgasmagoria",
+      "section": "IDFA DocLab Program & Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-3121e24c-7f42-4cf2-85be-ca8208cc4ff0",
+      "kind": "SCREENING",
+      "time": "16:00",
+      "title": "An Incomplete Day in the History of Georgia 10.06.93",
+      "venueName": "De Balie: Grote Zaal",
+      "section": "International Competition",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-524b9133-8921-4c61-9841-724e9a19113c",
+      "kind": "SCREENING",
+      "time": "16:00",
+      "title": "In Pursuit of Repetitive Beats",
+      "venueName": "ENTR VR Museum",
+      "section": "IDFA DocLab Program & Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-b97248cc-fb3b-4967-9492-8a05e5221911-filmmaker-talk-lei-lei",
+      "kind": "EVENT",
+      "time": "16:00",
+      "title": "Filmmaker Talk: Lei Lei",
+      "venueName": "Het Documentaire Paviljoen: De Spiegel",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-2e71d976-bcd2-4fe7-855b-bff018e0a889",
+      "kind": "SCREENING",
+      "time": "16:00",
+      "title": "The Brush in Your Hand",
+      "venueName": "Pathé City 1",
+      "section": "Luminous",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-01f129b8-7b5f-41ea-981d-c5688ffb5d5b",
+      "kind": "SCREENING",
+      "time": "16:00",
+      "title": "Father's House",
+      "venueName": "Tuschinski 3",
+      "section": "Signed",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-2591a90e-98b5-45b0-a883-42a6b3a9153b",
+      "kind": "SCREENING",
+      "time": "16:15",
+      "title": "A Minute of Silence",
+      "venueName": "Pathé City 7",
+      "section": "Frontlight",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-170dd196-6465-41bd-a256-8416f24b772e",
+      "kind": "SCREENING",
+      "time": "16:15",
+      "title": "Rivers of Memory",
+      "venueName": "Rialto De Pijp: Bovenzaal",
+      "section": "Envision Competition",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-6dafd69b-5a03-4e59-853b-87c36abbca9d",
+      "kind": "SCREENING",
+      "time": "16:15",
+      "title": "Market Screening: One Last Order",
+      "venueName": "The Pulse 3",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-98dfdf70-dc78-4949-b115-e80734a7601a",
+      "kind": "SCREENING",
+      "time": "16:15",
+      "title": "Bugboy",
+      "venueName": "Tuschinski 6",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English, Dutch",
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-e51a3bd0-6aaa-4a21-9628-75ecd4bf95ef",
+      "kind": "SCREENING",
+      "time": "16:30",
       "title": "Microbiome Restaurant: Plural Tastings",
       "venueName": "@droog: Plural Tastings",
       "section": "IDFA DocLab Program & Competition",
@@ -1705,142 +1945,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-27b61507-78d8-435f-971d-c6739eb9b873",
-      "kind": "SCREENING",
-      "time": "16:00",
-      "title": "Orgasmagoria",
-      "venueName": "Casa Rosso: Orgasmagoria",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-ce98ad50-610d-450f-8d71-cf0fdbe5f963",
-      "kind": "SCREENING",
-      "time": "16:00",
-      "title": "In Pursuit of Repetitive Beats",
-      "venueName": "ENTR VR Museum",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-d9b2f02f-9170-49d0-aec8-9920873e4a12",
-      "kind": "SCREENING",
-      "time": "16:00",
-      "title": "Women and War",
-      "venueName": "Pathé City 3",
-      "section": "International Competition",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-b4a4ba0e-b679-4ed0-83b1-2883668ec5aa",
-      "kind": "SCREENING",
-      "time": "16:00",
-      "title": "The Calf Doll",
-      "venueName": "Pathé City 7",
-      "section": "Paradocs",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-40288358-2051-448c-9017-f1661e1a0fc1",
-      "kind": "SCREENING",
-      "time": "16:00",
-      "title": "The Sacred Circle",
-      "venueName": "SILO (Rialto) Zaal 1",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-04579abe-2787-4ab1-80ac-c6ecc3ba045d",
-      "kind": "SCREENING",
-      "time": "16:00",
-      "title": "The Middle Room",
-      "venueName": "The Pulse 2",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-a07577ec-af91-48ac-9956-0217c41e2c61",
-      "kind": "SCREENING",
-      "time": "16:00",
-      "title": "Truck Driver",
-      "venueName": "Tuschinski 6",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-2dbca5fd-c5ac-4ab8-9c91-8628eedd6550",
-      "kind": "SCREENING",
-      "time": "16:15",
-      "title": "Memories",
-      "venueName": "Ketelhuis: Zaal 1",
-      "section": "Envision Competition",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-57eec679-8489-43f9-9d1e-5f247487898d",
-      "kind": "SCREENING",
-      "time": "16:30",
-      "title": "Microbiome Restaurant: Plural Tastings",
-      "venueName": "@droog: Plural Tastings",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-8141037f-f97b-40eb-a24a-f77892ac0d24",
+      "id": "idfa-2026-20261118-620dc900-e9ef-4a2e-827d-c728ce1ed2e4",
       "kind": "SCREENING",
       "time": "16:30",
       "title": "Orgasmagoria",
@@ -1855,7 +1960,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-b1547fb2-8eb3-4048-96d2-3e2e02af0e81-doclab-vr-gallery",
+      "id": "idfa-2026-20261118-7c2826d4-cc78-466a-820b-0c55983931a0-doclab-vr-gallery",
       "kind": "EVENT",
       "time": "16:30",
       "title": "DocLab: VR Gallery",
@@ -1870,10 +1975,25 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-0cc12cf5-1348-4c58-b93c-957648c14afd-bonfire-circles-collabor",
+      "id": "idfa-2026-20261118-9ece61c2-7c74-43aa-8373-68ca9604f7dc",
+      "kind": "SCREENING",
+      "time": "16:30",
+      "title": "Hold Your Breath",
+      "venueName": "Pathé City 2",
+      "section": "Frontlight",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-1756222b-945f-420e-a96e-ef9297833be1-bonfire-circles-collabor",
       "kind": "EVENT",
       "time": "16:30",
-      "title": "Bonfire Circles: Collaborating with Canada",
+      "title": "Bonfire Circles: Collaborating Across East Africa",
       "venueName": "Stadsschouwburg Amsterdam: Pleinfoyer",
       "section": null,
       "grade": null,
@@ -1885,12 +2005,12 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-a03ac0e0-5641-4e18-8b00-0882b407d1fe",
+      "id": "idfa-2026-20261118-3f0e764c-670d-4fdd-a092-487176b89cdc",
       "kind": "SCREENING",
       "time": "16:45",
-      "title": "The Mayor: Halsema & Amsterdam",
-      "venueName": "The Pulse 1",
-      "section": "Signed",
+      "title": "Crack in the Head, Crack in the Sky",
+      "venueName": "Pathé City 5",
+      "section": "International Competition",
       "grade": null,
       "subtitle": "English",
       "qa": true,
@@ -1900,7 +2020,22 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-78503e94-9640-4f7f-9687-0ade01f9235e",
+      "id": "idfa-2026-20261118-c7d234cb-9607-44f3-9e51-fdb58011c475",
+      "kind": "SCREENING",
+      "time": "16:45",
+      "title": "The History of Concrete",
+      "venueName": "Tuschinski 1",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-eb323440-366a-45ca-ac42-eb9f32aa36f7",
       "kind": "SCREENING",
       "time": "17:00",
       "title": "Microbiome Restaurant: Plural Tastings",
@@ -1915,7 +2050,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-2eb1239f-d955-4ed6-84af-0659efe0f688",
+      "id": "idfa-2026-20261118-6dc784f6-e44c-48d3-bab3-82cd7b5b79ec",
       "kind": "SCREENING",
       "time": "17:00",
       "title": "In Pursuit of Repetitive Beats",
@@ -1930,22 +2065,7 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-5c91268a-9262-4add-9f3c-d0e5a7d7f097",
-      "kind": "SCREENING",
-      "time": "17:00",
-      "title": "A Secret Heart",
-      "venueName": "Eye: Cinema 2",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-9195047b-836f-4642-a578-cf7d14265ad5-docs-for-sale-happy-hour",
+      "id": "idfa-2026-20261118-0c741f5c-e9a7-4ae8-aa0c-04cdfd420271-docs-for-sale-happy-hour",
       "kind": "EVENT",
       "time": "17:00",
       "title": "Docs for Sale: Happy Hour",
@@ -1960,29 +2080,14 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-0a402c49-e77e-41a9-93b3-a778bccb9781",
+      "id": "idfa-2026-20261118-89108d78-c4ca-4bdf-b1a4-f56f687308c1",
       "kind": "SCREENING",
       "time": "17:00",
-      "title": "Who Moves America",
-      "venueName": "Tuschinski 2",
-      "section": "Best of Fests",
+      "title": "She Was Not Alone",
+      "venueName": "Kriterion 1",
+      "section": "Luminous",
       "grade": null,
-      "subtitle": "English Subtitles for the Deaf and Hard of Hearing (SDH)",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-924b1b6e-d6c8-47ad-9564-24cc039fa727",
-      "kind": "SCREENING",
-      "time": "17:15",
-      "title": "Market Screening: I Got My Brother",
-      "venueName": "Het Documentaire Paviljoen: De Spiegel",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
+      "subtitle": "English",
       "qa": false,
       "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
@@ -1990,7 +2095,37 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-24ccfa0f-4a63-4c69-a68c-e01caa6d1354-doclab-vr-gallery",
+      "id": "idfa-2026-20261118-99cb3d54-be20-496a-a0f3-ec3820b8c165",
+      "kind": "SCREENING",
+      "time": "17:00",
+      "title": "Becoming Bird",
+      "venueName": "SILO (Rialto) Zaal 1",
+      "section": "Signed",
+      "grade": null,
+      "subtitle": null,
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-63b1b1b5-a77b-4fee-a77e-8babf05c98ce",
+      "kind": "SCREENING",
+      "time": "17:15",
+      "title": "To Hold a Mountain",
+      "venueName": "Cinema De Vlugt - Theaterzaal",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-513065f1-5c9b-4834-a50f-6e9262b5ef98-doclab-vr-gallery",
       "kind": "EVENT",
       "time": "17:30",
       "title": "DocLab: VR Gallery",
@@ -2005,26 +2140,86 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-bb63557b-304b-4a91-b0c7-6db9380d7824",
+      "id": "idfa-2026-20261118-0dcb44bc-97d9-4ff1-8176-48f3b0c33288",
       "kind": "SCREENING",
       "time": "17:30",
-      "title": "The Tiniest Place",
-      "venueName": "Pathé City 1",
-      "section": "Retrospective: Tatiana Huezo",
+      "title": "Cuscú",
+      "venueName": "Eye: Cinema 2",
+      "section": "Luminous",
       "grade": null,
       "subtitle": "English",
       "qa": true,
-      "ticketStatus": "SOLD_OUT",
+      "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-439a166c-471e-4f7d-966d-45985142c033",
+      "id": "idfa-2026-20261118-5276c048-2c1c-4df6-9fda-d001d8bfe4eb",
       "kind": "SCREENING",
       "time": "17:30",
-      "title": "Edward Said: Between Worlds",
-      "venueName": "Tuschinski 1",
+      "title": "Market Screening: American Pachuco: The Legend of Luis Valdez",
+      "venueName": "The Pulse 3",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-b49e1eb4-ab22-4e35-b08e-a95b355fab50",
+      "kind": "SCREENING",
+      "time": "17:45",
+      "title": "Detention",
+      "venueName": "Ketelhuis: Zaal 1",
+      "section": "Signed",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-f879ba16-8bf7-4590-a0a3-50f0362f533c",
+      "kind": "SCREENING",
+      "time": "17:45",
+      "title": "Drop! Cover! Hold On!",
+      "venueName": "Pathé City 1",
+      "section": "Envision Competition",
+      "grade": null,
+      "subtitle": "Fully English subtitled",
+      "qa": false,
+      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-a1a2ec42-83ab-444b-a1d2-4dcd14dfaede",
+      "kind": "SCREENING",
+      "time": "17:45",
+      "title": "An Incomplete Calendar",
+      "venueName": "Tuschinski 4",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "Fully English subtitled",
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-98393c2d-acec-4e1d-b324-53333603ada5",
+      "kind": "SCREENING",
+      "time": "18:00",
+      "title": "Small Talk",
+      "venueName": "Cinema De Vlugt - Rode Zaal",
       "section": "Best of Fests",
       "grade": null,
       "subtitle": "English",
@@ -2035,27 +2230,87 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-79c14165-d00e-4e3e-9b20-46b6730370c2",
+      "id": "idfa-2026-20261118-da94c8da-6e01-4abc-8955-0e40869e3ea5",
       "kind": "SCREENING",
-      "time": "17:30",
-      "title": "Every Death Diminishes Me",
-      "venueName": "Tuschinski 5",
-      "section": "Luminous",
+      "time": "18:00",
+      "title": "30 mei, 1969 (gritu di un pueblo)",
+      "venueName": "Eye: Cinema 1",
+      "section": "Special Screenings",
       "grade": null,
-      "subtitle": "Fully English subtitled",
+      "subtitle": null,
       "qa": true,
-      "ticketStatus": "SOLD_OUT",
+      "ticketStatus": "HIGH_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-eee59c27-58d9-4e89-b29d-688dd11d5d5d",
+      "id": "idfa-2026-20261118-9212b7c0-e5ab-461a-b2dc-baf86440fb70",
       "kind": "SCREENING",
       "time": "18:00",
-      "title": "Waves of Time",
-      "venueName": "Pathé City 2",
-      "section": "Luminous",
+      "title": "Revolutionaries Never Die",
+      "venueName": "Pathé City 4",
+      "section": "Signed",
+      "grade": null,
+      "subtitle": "Fully English subtitled",
+      "qa": false,
+      "ticketStatus": "LOW_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-f7565c28-7353-46d2-a445-0496be5d9ce0",
+      "kind": "SCREENING",
+      "time": "18:00",
+      "title": "Notes From a Besieged City",
+      "venueName": "Pathé City 6",
+      "section": "Frontlight",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-b26b664b-1236-4d09-a39e-df2ae2ba7696",
+      "kind": "SCREENING",
+      "time": "18:00",
+      "title": "Collapse",
+      "venueName": "Podium Mozaïek",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-b4bca1b0-1e84-4a6f-a7ae-8060afdb2343",
+      "kind": "SCREENING",
+      "time": "18:00",
+      "title": "The Big Boom!",
+      "venueName": "The Pulse 1",
+      "section": "Frontlight",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-5bd8af82-b221-4ec3-96de-53484efff6b6",
+      "kind": "SCREENING",
+      "time": "18:15",
+      "title": "Az Zeeb",
+      "venueName": "Pathé City 3",
+      "section": "Best of Fests",
       "grade": null,
       "subtitle": "English",
       "qa": true,
@@ -2065,12 +2320,12 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-48f6b0e7-49d3-4185-8f4d-84d7cdc3830d",
+      "id": "idfa-2026-20261118-ac3ec671-9dc9-4812-adc1-7fa13b51ca2e",
       "kind": "SCREENING",
-      "time": "18:00",
-      "title": "Wood Street",
-      "venueName": "Pathé City 6",
-      "section": "Frontlight",
+      "time": "18:15",
+      "title": "American Dream",
+      "venueName": "Tuschinski 5",
+      "section": "Dead Angle: Common Ground",
       "grade": null,
       "subtitle": null,
       "qa": true,
@@ -2080,14 +2335,284 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-39195c87-a9fd-44af-85de-73e3f2b89b1c",
+      "id": "idfa-2026-20261118-0a6b4127-b760-4282-9e25-a038f78dcff6",
       "kind": "SCREENING",
-      "time": "18:00",
-      "title": "The Illusion of an Everlasting Summer",
+      "time": "18:30",
+      "title": "Microbiome Restaurant: Haute Cuisine for the Rectum",
+      "venueName": "@droog: Haute Cuisine for the Rectum",
+      "section": "IDFA DocLab Program & Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-ea577e20-5993-455c-82df-4068ec3f2a22-doclab-vr-gallery",
+      "kind": "EVENT",
+      "time": "18:30",
+      "title": "DocLab: VR Gallery",
+      "venueName": "de Brakke Grond: VR Gallery",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-d1c5710e-5263-41ae-b236-ebf3fa220735-guests-meet-guests-wedne",
+      "kind": "EVENT",
+      "time": "18:30",
+      "title": "Guests Meet Guests - Wednesday",
+      "venueName": "Het Documentaire Paviljoen: Het Podium",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "NO_SALE",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-cab1020d-3bd4-4e80-9bdb-a588bfd2aa4d",
+      "kind": "SCREENING",
+      "time": "18:30",
+      "title": "Radiant Mountain",
+      "venueName": "Pathé City 7",
+      "section": "Envision Competition",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-0240775e-e0b5-42dd-b7a8-dd223b32cf58",
+      "kind": "SCREENING",
+      "time": "18:30",
+      "title": "Last Movies",
       "venueName": "Rialto De Pijp: Bovenzaal",
+      "section": "Paradocs",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-c44ed593-5a0c-4b81-83ed-5bcd0b3c4cea",
+      "kind": "SCREENING",
+      "time": "18:30",
+      "title": "Memories of Lightning",
+      "venueName": "The Pulse 2",
+      "section": "Envision Competition",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-c1ec5be9-2872-4fd9-b4d9-e943122fdfa0",
+      "kind": "SCREENING",
+      "time": "18:45",
+      "title": "Microbiome Restaurant: Plural Tastings",
+      "venueName": "@droog: Plural Tastings",
+      "section": "IDFA DocLab Program & Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-37d331a4-f4d9-485e-af69-3c777f396136",
+      "kind": "SCREENING",
+      "time": "18:45",
+      "title": "My Own Personal Gulag",
+      "venueName": "Pathé City 2",
+      "section": "Envision Competition",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-208a5a75-ed65-4ecd-bac5-78ad4ed21e09",
+      "kind": "SCREENING",
+      "time": "18:45",
+      "title": "decay",
+      "venueName": "Tuschinski 3",
       "section": "Best of Fests",
       "grade": null,
       "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-5a6f32d3-7b02-431d-b6d2-dbc411404ac7",
+      "kind": "SCREENING",
+      "time": "19:00",
+      "title": "Still Night, Burning House",
+      "venueName": "Tuschinski 6",
+      "section": "International Competition",
+      "grade": null,
+      "subtitle": "English Subtitles for the Deaf and Hard of Hearing (SDH), English",
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-0d0458fa-965b-48d6-9fef-8fe0897576c9",
+      "kind": "SCREENING",
+      "time": "19:15",
+      "title": "Microbiome Restaurant: Plural Tastings",
+      "venueName": "@droog: Plural Tastings",
+      "section": "IDFA DocLab Program & Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-385faf48-282b-433a-a03f-37ec7bbc2cf2",
+      "kind": "SCREENING",
+      "time": "19:15",
+      "title": "The Dome Sessions",
+      "venueName": "Kriterion 1",
+      "section": "Frontlight",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-4ac8fcb7-87fa-4c56-a871-0560182a2cc6",
+      "kind": "SCREENING",
+      "time": "19:30",
+      "title": "Microbiome Restaurant: Haute Cuisine for the Rectum",
+      "venueName": "@droog: Haute Cuisine for the Rectum",
+      "section": "IDFA DocLab Program & Competition",
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-d8b426b0-3a0e-4713-824b-ae5804ce4101",
+      "kind": "SCREENING",
+      "time": "19:30",
+      "title": "Letters From the Silenced Country",
+      "venueName": "De Balie: Grote Zaal",
+      "section": "Signed",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-4d0ed2fc-6751-432d-a5db-133284f370ba-doclab-vr-gallery-free-w",
+      "kind": "EVENT",
+      "time": "19:30",
+      "title": "DocLab: VR Gallery - Free Walk-In",
+      "venueName": "de Brakke Grond: VR Gallery",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "NO_SALE",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-c096d869-69ec-4373-89db-1ca619f8abb0",
+      "kind": "SCREENING",
+      "time": "20:00",
+      "title": "The Bus of Broken Hearts",
+      "venueName": "Eye: Cinema 2",
+      "section": "IDFA Competition for Short Documentary",
+      "grade": null,
+      "subtitle": "English",
+      "qa": false,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-0b984a6d-da84-4481-96e4-0cd38c4f1669-lounge-drinks",
+      "kind": "EVENT",
+      "time": "20:00",
+      "title": "Lounge & Drinks",
+      "venueName": "Het Documentaire Paviljoen: Foyer",
+      "section": null,
+      "grade": null,
+      "subtitle": null,
+      "qa": false,
+      "ticketStatus": "NO_SALE",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-d06f8566-07c2-487c-a57f-f5fa7c2736e4",
+      "kind": "SCREENING",
+      "time": "20:00",
+      "title": "The Message",
+      "venueName": "Pathé City 1",
+      "section": "Frontlight",
+      "grade": null,
+      "subtitle": "English",
+      "qa": true,
+      "ticketStatus": "SOLD_OUT",
+      "ticketUrl": null,
+      "eventUrl": null,
+      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
+     },
+     {
+      "id": "idfa-2026-20261118-e54339dc-8190-4459-94c9-6f1499562f03",
+      "kind": "SCREENING",
+      "time": "20:00",
+      "title": "Punkie",
+      "venueName": "Pathé City 5",
+      "section": "Best of Fests",
+      "grade": null,
+      "subtitle": null,
       "qa": true,
       "ticketStatus": "LOW_AVAILABILITY",
       "ticketUrl": null,
@@ -2095,556 +2620,31 @@
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      },
      {
-      "id": "idfa-2026-20261117-8e79e993-bbcc-479f-bb78-09988e441c26",
+      "id": "idfa-2026-20261118-4e86eaca-2a05-4ac8-a35e-de9060bc4c43",
       "kind": "SCREENING",
-      "time": "18:00",
-      "title": "Everybody to Kenmure Street",
-      "venueName": "Rialto VU Griffioen: Zaal 4",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "Fully English subtitled",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-530428bb-5db5-418b-a889-deb20270cd8a",
-      "kind": "SCREENING",
-      "time": "18:15",
-      "title": "The Case Against Space",
-      "venueName": "Pathé City 4",
-      "section": "Paradocs",
-      "grade": null,
-      "subtitle": null,
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-96d4c22f-25bf-4799-8e08-ee085a640b9d",
-      "kind": "SCREENING",
-      "time": "18:15",
-      "title": "Still Night, Burning House",
-      "venueName": "The Pulse 2",
-      "section": "International Competition",
-      "grade": null,
-      "subtitle": "English Subtitles for the Deaf and Hard of Hearing (SDH), English",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-2fc77cde-69b6-4cb1-bca2-58ff6916abdc",
-      "kind": "SCREENING",
-      "time": "18:30",
-      "title": "Microbiome Restaurant: Haute Cuisine for the Rectum",
-      "venueName": "@droog: Haute Cuisine for the Rectum",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-01044953-2d78-48e4-9e9b-bc6d673f5635-guests-meet-guests-hoste",
-      "kind": "EVENT",
-      "time": "18:30",
-      "title": "Guests Meet Guests - hosted by Catalan Films and Docs Barcelona",
-      "venueName": "De Duif",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "NO_SALE",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-699be57b-b1ca-4c10-bf5c-f2b610c85456-in-person-ulrich-seidl",
-      "kind": "EVENT",
-      "time": "18:30",
-      "title": "In Person: Ulrich Seidl",
-      "venueName": "Eye: Cinema 1",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-a33fc0c2-1bdc-4b1a-a992-2f8c4f0ce043",
-      "kind": "SCREENING",
-      "time": "18:30",
-      "title": "Market Screening: Everest: The Other Side",
-      "venueName": "Het Documentaire Paviljoen: De Spiegel",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-ee8616c6-93b0-4e7d-b57d-bc15fba425ef",
-      "kind": "SCREENING",
-      "time": "18:30",
-      "title": "The History of Concrete",
+      "time": "20:00",
+      "title": "Once Upon a Time in Harlem",
       "venueName": "SILO (Rialto) Zaal 1",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-e408e126-c260-4d56-a675-a6bb4de66916",
-      "kind": "SCREENING",
-      "time": "18:45",
-      "title": "Microbiome Restaurant: Plural Tastings",
-      "venueName": "@droog: Plural Tastings",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-6617e387-1df9-4368-bce9-99ee13b47215",
-      "kind": "SCREENING",
-      "time": "18:45",
-      "title": "Up in the Air",
-      "venueName": "Ketelhuis: Zaal 1",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": null,
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-a7645624-1cb6-4e0f-a5c6-1a899d611ff6",
-      "kind": "SCREENING",
-      "time": "18:45",
-      "title": "An Incomplete Calendar",
-      "venueName": "Pathé City 7",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "Fully English subtitled",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-85ded328-f895-4756-8cf5-ae7c77e7484b",
-      "kind": "SCREENING",
-      "time": "18:45",
-      "title": "Rivers of Memory",
-      "venueName": "Tuschinski 6",
-      "section": "Envision Competition",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-4531088d-aa60-47ba-9c82-861c745ddd53",
-      "kind": "SCREENING",
-      "time": "19:00",
-      "title": "Shifting Connections",
-      "venueName": "de Brakke Grond: VR Gallery",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-8509e96f-ff54-4c19-8bc1-85c473afed47",
-      "kind": "SCREENING",
-      "time": "19:00",
-      "title": "The Blood of the Covenant",
-      "venueName": "Pathé City 3",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": "English Subtitles for the Deaf and Hard of Hearing (SDH)",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-db9fd575-6b6e-41c8-9200-951057124520",
-      "kind": "SCREENING",
-      "time": "19:15",
-      "title": "Microbiome Restaurant: Plural Tastings",
-      "venueName": "@droog: Plural Tastings",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-32ac0371-cd43-4358-8747-ee0fc527df12",
-      "kind": "SCREENING",
-      "time": "19:15",
-      "title": "Cuscú",
-      "venueName": "Pathé City 5",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-5f4f9a28-8ca8-4477-b676-8051bbd40e33",
-      "kind": "SCREENING",
-      "time": "19:15",
-      "title": "Union Town",
-      "venueName": "The Pulse 1",
       "section": "Signed",
       "grade": null,
-      "subtitle": null,
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-8094939e-029a-4246-bdde-7d2a6f31a764",
-      "kind": "SCREENING",
-      "time": "19:15",
-      "title": "Vertigo Garden",
-      "venueName": "Tuschinski 4",
-      "section": "Envision Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-6b39164d-a57f-465b-9b5b-ef2ade92d2e2",
-      "kind": "SCREENING",
-      "time": "19:30",
-      "title": "Microbiome Restaurant: Haute Cuisine for the Rectum",
-      "venueName": "@droog: Haute Cuisine for the Rectum",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-23710fd2-13bf-4a55-b2d4-4bcdf36f3c18",
-      "kind": "SCREENING",
-      "time": "19:30",
-      "title": "A Song Without Home",
-      "venueName": "De Balie: Grote Zaal",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-1793663b-dc8d-4808-9318-26214c3ce744",
-      "kind": "SCREENING",
-      "time": "19:30",
-      "title": "Shifting Connections",
-      "venueName": "de Brakke Grond: VR Gallery",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "NO_SALE",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-93b6389d-30fe-41b9-8f40-66329535ca27",
-      "kind": "SCREENING",
-      "time": "20:00",
-      "title": "Shifting Connections",
-      "venueName": "de Brakke Grond: VR Gallery",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-54426742-795b-458c-ada1-3a344d03cdb0-vpro-extra-de-documentai",
-      "kind": "EVENT",
-      "time": "20:00",
-      "title": "VPRO Extra: De documentaire van de toekomst",
-      "venueName": "Kriterion 1",
-      "section": null,
-      "grade": null,
-      "subtitle": null,
-      "qa": false,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-be0c51cb-277a-4e61-99e1-bf946a7a7594",
-      "kind": "SCREENING",
-      "time": "20:00",
-      "title": "The Message",
-      "venueName": "Tuschinski 2",
-      "section": "Frontlight",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-fe1d6a5c-49ed-43ce-8e49-9d0ac5fc63ca",
-      "kind": "SCREENING",
-      "time": "20:15",
-      "title": "Crack in the Head, Crack in the Sky",
-      "venueName": "Eye: Cinema 2",
-      "section": "International Competition",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-6c711e57-e796-47d6-89e1-bd1a98724b75",
-      "kind": "SCREENING",
-      "time": "20:30",
-      "title": "Punkie",
-      "venueName": "Pathé City 1",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": null,
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-00654587-8f90-42a8-bf26-e2d6e6d4e003",
-      "kind": "SCREENING",
-      "time": "20:30",
-      "title": "Scenes from Departure",
-      "venueName": "Tuschinski 5",
-      "section": "Luminous",
-      "grade": null,
-      "subtitle": null,
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-edc7812d-926e-4ae6-a454-c3210e790cc8",
-      "kind": "SCREENING",
-      "time": "20:45",
-      "title": "Xiangzidian Village: The Stage",
-      "venueName": "Pathé City 4",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-b9cf95e6-d797-4e48-a7f5-07f17a1f032b",
-      "kind": "SCREENING",
-      "time": "20:45",
-      "title": "The Moths & the Flame",
-      "venueName": "Pathé City 6",
-      "section": "Best of Fests",
-      "grade": null,
       "subtitle": "Fully English subtitled",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-100e2222-07f5-4075-b854-5b6a6e126c65",
-      "kind": "SCREENING",
-      "time": "20:45",
-      "title": "The Year of the Ghost",
-      "venueName": "Rialto De Pijp: Bovenzaal",
-      "section": "International Competition",
-      "grade": null,
-      "subtitle": "Dutch Subtitles for the Deaf and Hard of Hearing (SDH), English",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-2270d8bd-cdc1-41e0-951a-0e10e9ec1a96",
-      "kind": "SCREENING",
-      "time": "20:45",
-      "title": "Baby Jackfruit Baby Guava",
-      "venueName": "Rialto VU Griffioen: Zaal 4",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-71533445-8f21-4def-812c-dd533496e87f",
-      "kind": "SCREENING",
-      "time": "20:45",
-      "title": "Nuisance Bear",
-      "venueName": "The Pulse 2",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-b64fc4eb-81f9-4d06-9934-49e461238048",
-      "kind": "SCREENING",
-      "time": "21:00",
-      "title": "BENCHES",
-      "venueName": "ARTIS-Planetarium",
-      "section": "IDFA DocLab Program & Competition",
-      "grade": null,
-      "subtitle": null,
       "qa": false,
-      "ticketStatus": "SOLD_OUT",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-5e33eaec-cf4b-48d3-850d-c6d3300697e9",
-      "kind": "SCREENING",
-      "time": "21:00",
-      "title": "Douglas Gordon by Douglas Gordon",
-      "venueName": "Eye: Cinema 1",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "Fully English subtitled, English Subtitles for the Deaf and Hard of Hearing (SDH)",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-06d83805-2fc9-4bc6-9d81-38ad054176cf",
-      "kind": "SCREENING",
-      "time": "21:00",
-      "title": "Transition",
-      "venueName": "Pathé City 2",
-      "section": "Best of Fests",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
-      "ticketUrl": null,
-      "eventUrl": null,
-      "officialUrl": "https://my.idfa.nl/api/graphql/festival"
-     },
-     {
-      "id": "idfa-2026-20261117-5dd1c703-2d28-43ac-9242-46a2c01cd7e2",
-      "kind": "SCREENING",
-      "time": "21:00",
-      "title": "White Tiger Column ",
-      "venueName": "Tuschinski 1",
-      "section": "International Competition",
-      "grade": null,
-      "subtitle": "English",
-      "qa": true,
-      "ticketStatus": "HIGH_AVAILABILITY",
+      "ticketStatus": "LOW_AVAILABILITY",
       "ticketUrl": null,
       "eventUrl": null,
       "officialUrl": "https://my.idfa.nl/api/graphql/festival"
      }
     ]
    },
-   "nextScreeningDate": "2026-11-18",
+   "nextScreeningDate": "2026-11-19",
    "sources": [
     {
      "kind": "SCHEDULE",
-     "label": "Official schedule (GraphQL, DAY × 9)",
+     "label": "Official schedule (GraphQL, DAY × 8)",
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:59Z"
+     "fetchedAt": "2026-11-18T01:14:01Z"
     },
     {
      "kind": "PROGRAMME",
@@ -2652,13 +2652,13 @@
      "url": "https://my.idfa.nl/api/graphql/festival",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:26:59Z"
+     "fetchedAt": "2026-11-18T01:14:01Z"
     }
    ],
-   "fetchedAt": "2026-11-17T18:26:59Z",
-   "lastVerifiedAt": "2026-11-17T18:26:59Z",
-   "dataAgeMinutes": 6,
-   "changes7d": 461,
+   "fetchedAt": "2026-11-18T01:14:01Z",
+   "lastVerifiedAt": "2026-11-18T01:14:01Z",
+   "dataAgeMinutes": 5,
+   "changes7d": 474,
    "dataSource": "official"
   },
   {
@@ -2743,7 +2743,7 @@
     ]
    },
    "today": {
-    "date": "2026-11-17",
+    "date": "2026-11-18",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -2759,7 +2759,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261007",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2767,7 +2767,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261008",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2775,7 +2775,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261009",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2783,7 +2783,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261010",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2791,7 +2791,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261011",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2799,7 +2799,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261012",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2807,7 +2807,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261013",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2815,7 +2815,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261014",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2823,7 +2823,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261015",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2831,7 +2831,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261016",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2839,7 +2839,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261017",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "SCHEDULE",
@@ -2847,7 +2847,7 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=20261018",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "PROGRAMME_CHANGES",
@@ -2855,11 +2855,11 @@
      "url": "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=programme-changes-lff",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     }
    ],
-   "fetchedAt": "2026-11-17T18:27:09Z",
-   "lastVerifiedAt": "2026-11-17T18:27:09Z",
+   "fetchedAt": "2026-11-18T01:14:08Z",
+   "lastVerifiedAt": "2026-11-18T01:14:08Z",
    "dataAgeMinutes": 5,
    "changes7d": 0,
    "dataSource": "official"
@@ -2936,7 +2936,7 @@
      "url": "https://cinefan.hkiff.org.hk/schedule",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "PROGRAMME",
@@ -2944,7 +2944,7 @@
      "url": "https://cinefan.hkiff.org.hk/period/2026/sep-oct-2026",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2952,7 +2952,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/12-08-east-of-bucharest-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2960,7 +2960,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/4-months-3-weeks-and-2-days-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2968,7 +2968,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/71-fragments-of-a-chronology-of-chance-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2976,7 +2976,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/a-fistful-of-dollars-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2984,7 +2984,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/a-river-called-titas-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -2992,7 +2992,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/aferim-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3000,7 +3000,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/amour-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3008,7 +3008,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/bennys-video-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3016,7 +3016,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/bird-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3024,7 +3024,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/california-dreamin-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3032,7 +3032,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/changeling-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3040,7 +3040,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/childs-pose-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3048,7 +3048,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/code-unknown-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3056,7 +3056,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/e-flat-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3064,7 +3064,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/for-a-few-dollars-more-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3072,7 +3072,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/funny-games-1997-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3080,7 +3080,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/funny-games-2007-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3088,7 +3088,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/gran-torino-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3096,7 +3096,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/hidden-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3104,7 +3104,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/how-green-was-my-valley-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3112,7 +3112,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/if-i-want-to-whistle-i-whistle-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3120,7 +3120,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/juror2-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3128,7 +3128,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/lemmings-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3136,7 +3136,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/lost-paradise-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3144,7 +3144,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/million-dollar-baby-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3152,7 +3152,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/mystic-river-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3160,7 +3160,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/occident-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3168,7 +3168,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/pale-rider-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3176,7 +3176,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/stuff-and-dough-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3184,7 +3184,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/swallowtail-butterfly-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3192,7 +3192,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-autobiography-of-nicolae-ceausescu-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3200,7 +3200,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-bridges-of-madison-county-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3208,7 +3208,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-cloud-capped-star-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3216,7 +3216,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-death-of-mr-lazarescu-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3224,7 +3224,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-golden-line-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3232,7 +3232,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-good-the-bad-and-the-ugly-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3240,7 +3240,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-man-who-shot-liberty-valance-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3248,7 +3248,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-outlaw-josey-wales-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3256,7 +3256,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-piano-teacher-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3264,7 +3264,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-runaway-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3272,7 +3272,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-seventh-continent-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3280,7 +3280,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-vanishing-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3288,7 +3288,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/the-white-ribbon-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3296,7 +3296,7 @@
      "url": "https://cinefan.hkiff.org.hk/movie/thesis-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     },
     {
      "kind": "FILM_DETAIL",
@@ -3304,13 +3304,13 @@
      "url": "https://cinefan.hkiff.org.hk/movie/unforgiven-26",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:09Z"
+     "fetchedAt": "2026-11-18T01:14:08Z"
     }
    ],
-   "fetchedAt": "2026-11-17T18:27:09Z",
-   "lastVerifiedAt": "2026-11-17T18:27:09Z",
+   "fetchedAt": "2026-11-18T01:14:08Z",
+   "lastVerifiedAt": "2026-11-18T01:14:08Z",
    "dataAgeMinutes": 5,
-   "changes7d": 2,
+   "changes7d": 0,
    "dataSource": "official"
   },
   {
@@ -3370,7 +3370,7 @@
     "guestVisits": 0
    },
    "today": {
-    "date": "2026-11-17",
+    "date": "2026-11-18",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -3386,7 +3386,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/lineup",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:29.482Z"
+     "fetchedAt": "2026-11-18T01:14:28.860Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3394,7 +3394,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-01",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:30.751Z"
+     "fetchedAt": "2026-11-18T01:14:29.822Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3402,7 +3402,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-02",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:31.339Z"
+     "fetchedAt": "2026-11-18T01:14:30.836Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3410,7 +3410,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-03",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:32.976Z"
+     "fetchedAt": "2026-11-18T01:14:32.248Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3418,7 +3418,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-04",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:33.716Z"
+     "fetchedAt": "2026-11-18T01:14:33.635Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3426,7 +3426,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-05",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:35.523Z"
+     "fetchedAt": "2026-11-18T01:14:34.992Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3434,7 +3434,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-06",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:37.268Z"
+     "fetchedAt": "2026-11-18T01:14:36.280Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3442,7 +3442,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-07",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:39.160Z"
+     "fetchedAt": "2026-11-18T01:14:37.593Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3450,7 +3450,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-08",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:39.856Z"
+     "fetchedAt": "2026-11-18T01:14:38.950Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3458,7 +3458,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-09",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:41.382Z"
+     "fetchedAt": "2026-11-18T01:14:40.346Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3466,7 +3466,7 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-10",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:42.109Z"
+     "fetchedAt": "2026-11-18T01:14:41.738Z"
     },
     {
      "kind": "SCHEDULE",
@@ -3474,13 +3474,13 @@
      "url": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public?date=2026-09-11",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:42.739Z"
+     "fetchedAt": "2026-11-18T01:14:43.306Z"
     }
    ],
-   "fetchedAt": "2026-11-17T18:27:42.741Z",
-   "lastVerifiedAt": "2026-11-17T18:27:42.741Z",
-   "dataAgeMinutes": 5,
-   "changes7d": 537,
+   "fetchedAt": "2026-11-18T01:14:43.308Z",
+   "lastVerifiedAt": "2026-11-18T01:14:43.308Z",
+   "dataAgeMinutes": 4,
+   "changes7d": 526,
    "dataSource": "official"
   },
   {
@@ -3540,7 +3540,7 @@
     "guestVisits": 0
    },
    "today": {
-    "date": "2026-11-17",
+    "date": "2026-11-18",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -3556,7 +3556,7 @@
      "url": "https://www.festival-cannes.com/en/the-selection/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:42Z"
+     "fetchedAt": "2026-11-18T01:14:43Z"
     },
     {
      "kind": "PROGRAMME",
@@ -3564,7 +3564,7 @@
      "url": "https://www.festival-cannes.com/en/f/",
      "ok": true,
      "httpStatus": 200,
-     "fetchedAt": "2026-11-17T18:27:42Z"
+     "fetchedAt": "2026-11-18T01:14:43Z"
     },
     {
      "kind": "OFFICIAL_SITE",
@@ -3572,12 +3572,12 @@
      "url": "https://www.festival-cannes.com/en/",
      "ok": true,
      "httpStatus": null,
-     "fetchedAt": "2026-11-17T18:27:42Z"
+     "fetchedAt": "2026-11-18T01:14:43Z"
     }
    ],
-   "fetchedAt": "2026-11-17T18:27:42Z",
-   "lastVerifiedAt": "2026-11-17T18:27:42Z",
-   "dataAgeMinutes": 5,
+   "fetchedAt": "2026-11-18T01:14:43Z",
+   "lastVerifiedAt": "2026-11-18T01:14:43Z",
+   "dataAgeMinutes": 4,
    "changes7d": 0,
    "dataSource": "official"
   },
@@ -3638,7 +3638,7 @@
     "guestVisits": 0
    },
    "today": {
-    "date": "2026-11-17",
+    "date": "2026-11-18",
     "screenings": 0,
     "events": 0,
     "entries": 0,
@@ -3667,7 +3667,7 @@
    ],
    "fetchedAt": "2026-10-29T06:25:06Z",
    "lastVerifiedAt": "2026-10-29T06:25:06Z",
-   "dataAgeMinutes": 28088,
+   "dataAgeMinutes": 28494,
    "changes7d": 0,
    "dataSource": "official"
   }
@@ -3803,8 +3803,8 @@
    ]
   },
   "2026-11-17": {
-   "screenings": 133,
-   "events": 37,
+   "screenings": 0,
+   "events": 0,
    "festivals": [
     "hkiff-cinefan-2026",
     "idfa-2026"
