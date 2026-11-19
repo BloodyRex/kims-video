@@ -2,6 +2,7 @@
 name = "kims-video-digest"
 main = "workers/digest.js"
 compatibility_date = "2024-12-01"
+workers_dev = false
 
 # Backup digest sender: 06:35 Beijing = 22:35 UTC (GH Actions 06:28 is primary;
 # KV "digestStatus:YYYY-MM-DD" guard makes this idempotent — skips if already sent)

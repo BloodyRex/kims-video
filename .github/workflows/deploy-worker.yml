@@ -5,6 +5,7 @@ on:
     paths:
       - "workers/**"
       - "wrangler*.toml"
+      - ".github/workflows/deploy-worker.yml"
       # 壁纸主题/尺寸由构建期 JSON 导入进 bundle，配置变更必须触发重新部署
       - "config/wallpaper-themes.json"
       - "config/wallpaper-sizes.json"

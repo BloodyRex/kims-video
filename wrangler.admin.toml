@@ -4,6 +4,7 @@
 name = "kims-video-admin"
 main = "workers/admin.js"
 compatibility_date = "2024-12-01"
+workers_dev = false
 
 [[kv_namespaces]]
 binding = "DISCOVER_KV"

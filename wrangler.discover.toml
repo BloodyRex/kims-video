@@ -2,6 +2,7 @@
 name = "kims-video-discover"
 main = "workers/discover.js"
 compatibility_date = "2024-12-01"
+workers_dev = false
 
 # Nightly: purge expired personal-data migration blobs (06:45 Beijing = 22:45 UTC)
 [triggers]
