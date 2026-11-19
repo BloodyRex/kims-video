@@ -164,26 +164,26 @@ const MovieDetail = ({
       </div>
 
       {/* 底部操作栏 */}
-      <div className="flex justify-center gap-4 pt-4 flex-wrap">
-        <button
-          onClick={onBackToResults}
-          className="flex items-center text-white bg-black border-4 border-[#00ffff] px-6 py-3 uppercase font-bold hover:bg-[#00ffff] hover:text-black transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
-        >
-          {t('detail.back')}
-        </button>
-        <button
-          onClick={onShare}
-          className="flex items-center text-white bg-[#ff00ff] border-4 border-black px-6 py-3 uppercase font-bold hover:bg-[#ff40ff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
-        >
-          {t('detail.share')}
-        </button>
-        <button
-          onClick={onReset}
-          className="flex items-center text-white bg-black border-4 border-[#ff00ff] px-6 py-3 uppercase font-bold hover:bg-[#ff00ff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
-        >
-          <Icons.RefreshCw className="mr-2" /> {t('detail.reboot')}
-        </button>
-      </div>
+            <div className="flex justify-center gap-4 pt-4 pb-safe flex-wrap">
+              <button
+                onClick={onBackToResults}
+                className="flex items-center text-white bg-black border-4 border-[#00ffff] px-6 py-3 uppercase font-bold hover:bg-[#00ffff] hover:text-black transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+              >
+                {t('detail.back')}
+              </button>
+              <button
+                onClick={onShare}
+                className="flex items-center text-white bg-[#ff00ff] border-4 border-black px-6 py-3 uppercase font-bold hover:bg-[#ff40ff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+              >
+                {t('detail.share')}
+              </button>
+              <button
+                onClick={onReset}
+                className="flex items-center text-white bg-black border-4 border-[#ff00ff] px-6 py-3 uppercase font-bold hover:bg-[#ff00ff] transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none"
+              >
+                <Icons.RefreshCw className="mr-2" /> {t('detail.reboot')}
+              </button>
+            </div>
     </div>
   );
 };

@@ -420,15 +420,20 @@ function SearchView({ locale, onViewDetail }) {
       ) : (
         <>
       <div className="relative">
-        <input
-          type="text"
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-          placeholder={locale === "zh" ? "搜索电影、剧集、专辑..." : "Search movies, TV, albums..."}
-          className="w-full px-4 py-3 border-4 border-black text-sm font-bold bg-white focus:outline-none focus:border-[#00ffff] shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
-        />
-        {searching && <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">...</span>}
-      </div>
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => {
+                  if (e.target.composing) return;
+                  setQuery(e.target.value);
+                }}
+                onCompositionStart={(e) => { e.target.composing = true; }}
+                onCompositionEnd={(e) => { e.target.composing = false; }}
+                placeholder={locale === "zh" ? "搜索电影、剧集、专辑..." : "Search movies, TV, albums..."}
+                className="w-full px-4 py-3 border-4 border-black text-sm font-bold bg-white focus:outline-none focus:border-[#00ffff] shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
+              />
+              {searching && <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">...</span>}
+            </div>
       {query.trim() && (
         <p className="text-[10px] text-gray-500 pixel-font">
           {locale === "zh" ? "共找到 " : "Found "}{totalCount}{locale === "zh" ? " 个结果" : " results"}

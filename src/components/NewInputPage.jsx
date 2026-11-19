@@ -99,25 +99,28 @@ const NewInputPage = ({
           </label>
           <div className="flex flex-col sm:flex-row gap-4 relative">
             <div className="flex-1 relative">
-              <input
-                type="text"
-                placeholder={t("input.primary_placeholder")}
-                value={primaryMovie.title}
-                onChange={(e) => {
-                  setPrimaryMovie({
-                    ...primaryMovie,
-                    title: e.target.value,
-                  });
-                  setShowPrimaryDropdown(true);
-                }}
-                onFocus={() =>
-                  primaryMovie.title && setShowPrimaryDropdown(true)
-                }
-                onBlur={() =>
-                  setTimeout(() => setShowPrimaryDropdown(false), 200)
-                }
-                className="w-full bg-white border-4 border-black px-4 py-3 text-sm max-sm:text-xs text-black font-bold focus:outline-none focus:bg-[#ffff00] transition-colors"
-              />
+                          <input
+                            type="text"
+                            placeholder={t("input.primary_placeholder")}
+                            value={primaryMovie.title}
+                            onChange={(e) => {
+                              if (e.target.composing) return;
+                              setPrimaryMovie({
+                                ...primaryMovie,
+                                title: e.target.value,
+                              });
+                              setShowPrimaryDropdown(true);
+                            }}
+                            onCompositionStart={(e) => { e.target.composing = true; }}
+                            onCompositionEnd={(e) => { e.target.composing = false; }}
+                            onFocus={() =>
+                              primaryMovie.title && setShowPrimaryDropdown(true)
+                            }
+                            onBlur={() =>
+                              setTimeout(() => setShowPrimaryDropdown(false), 200)
+                            }
+                            className="w-full bg-white border-4 border-black px-4 py-3 text-sm max-sm:text-xs text-black font-bold focus:outline-none focus:bg-[#ffff00] transition-colors"
+                          />
               {showPrimaryDropdown && primaryMovie.title && (
                 <div className="absolute top-full left-0 w-full z-50 bg-white border-4 border-black shadow-[8px_8px_0_0_#000] mt-1 max-h-60 overflow-y-auto">
                   {isSearchingPrimary ? (
@@ -179,25 +182,28 @@ const NewInputPage = ({
           </label>
           <div className="flex flex-col sm:flex-row gap-4 relative">
             <div className="flex-1 relative">
-              <input
-                type="text"
-                placeholder={t("input.secondary_placeholder")}
-                value={secondaryMovie.title}
-                onChange={(e) => {
-                  setSecondaryMovie({
-                    ...secondaryMovie,
-                    title: e.target.value,
-                  });
-                  setShowSecondaryDropdown(true);
-                }}
-                onFocus={() =>
-                  secondaryMovie.title && setShowSecondaryDropdown(true)
-                }
-                onBlur={() =>
-                  setTimeout(() => setShowSecondaryDropdown(false), 200)
-                }
-                className="w-full bg-white border-4 border-black px-4 py-3 text-sm max-sm:text-xs text-black font-bold focus:outline-none focus:bg-[#ffff00] transition-colors"
-              />
+                          <input
+                            type="text"
+                            placeholder={t("input.secondary_placeholder")}
+                            value={secondaryMovie.title}
+                            onChange={(e) => {
+                              if (e.target.composing) return;
+                              setSecondaryMovie({
+                                ...secondaryMovie,
+                                title: e.target.value,
+                              });
+                              setShowSecondaryDropdown(true);
+                            }}
+                            onCompositionStart={(e) => { e.target.composing = true; }}
+                            onCompositionEnd={(e) => { e.target.composing = false; }}
+                            onFocus={() =>
+                              secondaryMovie.title && setShowSecondaryDropdown(true)
+                            }
+                            onBlur={() =>
+                              setTimeout(() => setShowSecondaryDropdown(false), 200)
+                            }
+                            className="w-full bg-white border-4 border-black px-4 py-3 text-sm max-sm:text-xs text-black font-bold focus:outline-none focus:bg-[#ffff00] transition-colors"
+                          />
               {showSecondaryDropdown && secondaryMovie.title && (
                 <div className="absolute top-full left-0 w-full z-50 bg-white border-4 border-black shadow-[8px_8px_0_0_#000] mt-1 max-h-60 overflow-y-auto">
                   {isSearchingSecondary ? (

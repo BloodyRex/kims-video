@@ -261,6 +261,13 @@ function intelMapGenres(ids) { return (ids || []).map(id => INTEL_GENRE_IDS[id])
 
 function intelToday() { return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }); }
 function intelDaysAgo(n) { return new Date(Date.now() - n * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }); }
+// ── Consistent daysUntil using Beijing timezone (matches Pipeline daysOf) ──
+// releaseDateStr: "YYYY-MM-DD" from TMDB. Returns integer days (>=0 future, <0 past).
+function intelDaysUntil(releaseDateStr, todayStr) {
+  if (!releaseDateStr) return typeof releaseDateStr === "number" ? releaseDateStr : 999;
+  const today = todayStr || intelToday();
+  return Math.ceil((Date.parse(`${releaseDateStr}T00:00:00+08:00`) - Date.parse(`${today}T00:00:00+08:00`)) / 86400000);
+}
 function intelRatingOk(m) { return !m.vote_average || m.vote_average >= 4; }
 
 // ── 评分可信度：IMDb 贝叶斯加权 (2026-09-03) ──
@@ -1152,9 +1159,9 @@ async function handleIntelOverview(env) {
     .filter(intelRatingOk);
   const upcomingSelected = intelSelectScored(upcomingCandidates, 15);
   const comingSoon = upcomingSelected.map(m => ({
-    ...intelNormalizeMovie(m),
-    daysUntil: Math.max(0, Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000)),
-  }));
+      ...intelNormalizeMovie(m),
+      daysUntil: Math.max(0, intelDaysUntil(m.release_date, today)),
+    }));
 
   // ── Editor's Picks v2 (2026-08-23): fixed 6 cards, daily rotation ──
   // Rex: 总览的编辑精选 = 合并原「隐藏宝藏」「热榜趋势」，固定 6 张，每天有变化。
@@ -1416,9 +1423,9 @@ async function handleIntelMovies(env) {
     .filter(intelRatingOk);
   const upcomingSelected = intelSelectScored(upcomingCandidates, 15);
   const upcoming = upcomingSelected.map(m => {
-    const days = Math.ceil((new Date(m.release_date) - new Date(today)) / 86400000);
-    return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
-  });
+      const days = intelDaysUntil(m.release_date, today);
+      return { ...intelNormalizeMovie(m), daysUntil: Math.max(0, days) };
+    });
 
   // ── Now playing quality gate (2026-08-27, Rex): composite popularity+rating ──
   // 原纯 popularity>=25 门槛忽略口碑，把高评分小众佳作（如 Hadestown:
@@ -1831,9 +1838,9 @@ async function handleIntelTV(env) {
     ...upcomingBase
       .filter(s => !intelRatingOk(s))
       .filter(s => {
-        const d = Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000);
-        return d >= 0 && d <= UPCOMING_RELAX_DAYS;
-      }),
+              const d = intelDaysUntil(s.first_air_date, today);
+              return d >= 0 && d <= UPCOMING_RELAX_DAYS;
+            }),
   ];
   if (upcomingPool.length > upcomingStrict.length) {
     console.log(`· tv.upcoming — 严格池仅 ${upcomingStrict.length}/${UPCOMING_MIN}，放宽评分门槛补入 ${upcomingPool.length - upcomingStrict.length} 条（≤${UPCOMING_RELAX_DAYS}天）`);
@@ -1849,7 +1856,7 @@ async function handleIntelTV(env) {
   const popMin = realPops.length ? Math.min(...realPops) : 0;
   const popMax = realPops.length ? Math.max(...realPops) : 1;
   const scoreUpcoming = (s) => {
-    const daysUntil = Math.max(0, Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000));
+      const daysUntil = Math.max(0, intelDaysUntil(s.first_air_date, today));
     const dateScore = daysUntil <= 30 ? 1 : Math.max(0, 1 - (daysUntil - 30) / 60); // 30d peak, decays to 0 by 90d
     const zhScore = (titleCn(s) ? 0.5 : 0) + (hasChinese(s.overview) ? 0.5 : 0);
     const ratingScore = s.vote_average ? Math.min(1, s.vote_average / 10) : 0.5; // neutral when no rating
@@ -1866,11 +1873,11 @@ async function handleIntelTV(env) {
   const tvmazeUpcomingPicked = upcomingSelected.filter(s => s.source === "tvmaze");
   const tvmazeUpcomingEnriched = await intelEnrichTVMazeBatch(tvmazeUpcomingPicked, token, 1);
   // daysUntil added 2026-08-23: movies.upcoming carries it; TV side was missing it
-  // so coming.json/email had to recompute and CountdownCard showed no countdown.
-  const tvDays = (s) => {
-    const d = s.first_air_date || "";
-    return d ? Math.max(0, Math.ceil((new Date(d) - new Date(today)) / 86400000)) : null;
-  };
+    // so coming.json/email had to recompute and CountdownCard showed no countdown.
+    const tvDays = (s) => {
+      const d = s.first_air_date || "";
+      return d ? Math.max(0, intelDaysUntil(d, today)) : null;
+    };
   const upcomingTV = [
     ...upcomingSelected.filter(s => s.source !== "tvmaze").map(s => defaultSE({ ...intelNormalizeMovie(s, "tv") , daysUntil: tvDays(s) })),
     ...tvmazeUpcomingEnriched.map(s => defaultSE({ ...intelTVMazeToOutput(s), daysUntil: tvDays(s) })),
@@ -2203,9 +2210,9 @@ async function handleIntelComing(env) {
     const tvResults = await intelFetchPages(token, "/discover/tv", { "first_air_date.gte": today, "first_air_date.lte": new Date(Date.now() + 90 * 86400000).toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" }), "sort_by": "popularity.desc" }, 1);
     intelSelectScored(tvResults.filter(s => s.first_air_date && s.first_air_date >= today).filter(intelRatingOk), 8)
       .forEach(s => {
-        const days = s.first_air_date ? Math.ceil((new Date(s.first_air_date) - new Date(today)) / 86400000) : 999;
-        allItems.push({ ...intelNormalizeMovie(s, "tv"), mediaType: "tv", daysUntil: Math.max(0, days) });
-      });
+              const days = s.first_air_date ? intelDaysUntil(s.first_air_date, today) : 999;
+              allItems.push({ ...intelNormalizeMovie(s, "tv"), mediaType: "tv", daysUntil: Math.max(0, days) });
+            });
   } catch (e) { console.warn("TV upcoming failed:", e.message); }
 
   // Primary sort by daysUntil, secondary by composite score tiebreak

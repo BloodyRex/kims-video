@@ -448,21 +448,26 @@ const WallPage = () => {
                 🔮 {zh ? "即将上映" : "UPCOMING"}
               </button>
               <div className="relative">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={zh ? "搜索剧集…" : "SEARCH…"}
-                  className="w-40 sm:w-56 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#00ffff] outline-none pixel-font placeholder:text-gray-400"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    aria-label={zh ? "清除搜索" : "Clear search"}
-                    className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[11px] font-black text-gray-500 hover:text-black leading-none"
-                  >×</button>
-                )}
-              </div>
+                              <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => {
+                                  if (e.target.composing) return;
+                                  setSearchQuery(e.target.value);
+                                }}
+                                onCompositionStart={(e) => { e.target.composing = true; }}
+                                onCompositionEnd={(e) => { e.target.composing = false; }}
+                                placeholder={zh ? "搜索剧集…" : "SEARCH…"}
+                                className="w-40 sm:w-56 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#00ffff] outline-none pixel-font placeholder:text-gray-400"
+                              />
+                              {searchQuery && (
+                                <button
+                                  onClick={() => setSearchQuery("")}
+                                  aria-label={zh ? "清除搜索" : "Clear search"}
+                                  className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[11px] font-black text-gray-500 hover:text-black leading-none"
+                                >×</button>
+                              )}
+                            </div>
               <span className="ml-auto text-[10px] sm:text-xs text-gray-400 font-bold pixel-font">
                 {zh ? `共 ${tvFiltered.length} 季` : `${tvFiltered.length} SEASONS`}
               </span>
@@ -498,22 +503,27 @@ const WallPage = () => {
               {statusBtn("released", zh ? "已上线" : "OUT NOW")}
               {statusBtn("upcoming", zh ? "未上线" : "UPCOMING")}
               {/* Title search (zh + en), IME-safe */}
-              <div className="relative">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={zh ? "搜索影片…" : "SEARCH…"}
-                  className="w-40 sm:w-56 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#ff00ff] outline-none pixel-font placeholder:text-gray-400"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    aria-label={zh ? "清除搜索" : "Clear search"}
-                    className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[11px] font-black text-gray-500 hover:text-black leading-none"
-                  >×</button>
-                )}
-              </div>
+                            <div className="relative">
+                              <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => {
+                                  if (e.target.composing) return;
+                                  setSearchQuery(e.target.value);
+                                }}
+                                onCompositionStart={(e) => { e.target.composing = true; }}
+                                onCompositionEnd={(e) => { e.target.composing = false; }}
+                                placeholder={zh ? "搜索影片…" : "SEARCH…"}
+                                className="w-40 sm:w-56 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#ff00ff] outline-none pixel-font placeholder:text-gray-400"
+                              />
+                              {searchQuery && (
+                                <button
+                                  onClick={() => setSearchQuery("")}
+                                  aria-label={zh ? "清除搜索" : "Clear search"}
+                                  className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[11px] font-black text-gray-500 hover:text-black leading-none"
+                                >×</button>
+                              )}
+                            </div>
               <span className="ml-auto text-[10px] sm:text-xs text-gray-400 font-bold pixel-font">
                 {zh ? `共 ${filtered.length} 部` : `${filtered.length} FILMS`}
               </span>

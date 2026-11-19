@@ -3,15 +3,7 @@ import { Icons } from "./Icons";
 import { fetchMovieByTmdbId } from "../services/api";
 import { useLocale } from "../i18n";
 import { toggleFavorite, listFavorites } from "../utils/personalStore";
-
-// ── Image proxy helper ──
-function posterUrl(path) {
-  if (!path) return "";
-  if (path.startsWith("https://image.tmdb.org/") || path.startsWith("https://coverartarchive.org/")) {
-    return "https://api.bloodyrex.xyz/poster-proxy?url=" + encodeURIComponent(path);
-  }
-  return path;
-}
+import { posterUrl } from "../utils/poster";
 // ── Shared helpers ──
 
 export const GENRE_ZH = {
@@ -1054,12 +1046,12 @@ export function IntelDetailModal({ item, type, locale, onClose }) {
       </div>
 
       {/* Back button — 返回情报 kept per Rex */}
-      <div className="flex justify-center gap-4 pt-6 pb-8">
-        <button onClick={onClose}
-          className="flex items-center text-white bg-black border-4 border-[#00ffff] px-6 py-3 uppercase font-bold hover:bg-[#00ffff] hover:text-black transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
-          {locale === "en" ? "← Back" : "← 返回情报"}
-        </button>
-      </div>
+            <div className="flex justify-center gap-4 pt-6 pb-8 pb-safe">
+              <button onClick={onClose}
+                className="flex items-center text-white bg-black border-4 border-[#00ffff] px-6 py-3 uppercase font-bold hover:bg-[#00ffff] hover:text-black transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
+                {locale === "en" ? "← Back" : "← 返回情报"}
+              </button>
+            </div>
     </div>
   );
 }
