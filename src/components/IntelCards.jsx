@@ -85,11 +85,11 @@ export function StarRating({ score, max = 10 }) {
   );
 }
 
-function AIScoreBadge() {
+export function AIScoreBadge() {
   return null;
 }
 
-function Tags({ tags, tagsEn, color = "#ff00ff", locale = "zh" }) {
+export function Tags({ tags, tagsEn, color = "#ff00ff", locale = "zh" }) {
   const t = (!tags || !tags.length) ? [] : tags;
   const te = (!tagsEn || !tagsEn.length) ? [] : tagsEn;
   const display = locale === "en" && te.length ? te : t;
@@ -143,7 +143,7 @@ export function TrailerButtons({ item, locale, size = "sm", forceType }) {
   );
 }
 
-function CardShell({ children, className = "" }) {
+export function CardShell({ children, className = "" }) {
   return (
     <div className={`bg-white border-4 border-black overflow-hidden shadow-[6px_6px_0_0_rgba(0,0,0,1)] transition-all hover:-translate-y-0.5 ${className}`}>
       {children}

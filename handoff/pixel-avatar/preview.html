@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PixelAvatar — 独立预览</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    background: #0b0b10; color: #fff;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 32px 16px 64px;
+  }
+  h1 { font-size: 14px; letter-spacing: .2em; color: #00ffff; margin: 0 0 4px; }
+  .sub { font-size: 11px; color: #888; margin-bottom: 24px; }
+  .stage {
+    position: relative; width: 320px; height: 320px;
+    border: 4px solid #000; overflow: hidden;
+    box-shadow: 6px 6px 0 0 var(--accent);
+    transition: background-color .3s;
+  }
+  .stage svg.bg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .6; }
+  .stage svg.avatar { position: relative; width: 100%; height: 100%; shape-rendering: crispEdges; }
+  .badges {
+    position: absolute; bottom: 8px; left: 8px; right: 8px;
+    display: flex; justify-content: space-between; padding: 0 8px;
+    pointer-events: none;
+  }
+  .badge {
+    font-size: 11px; font-weight: 900; padding: 2px 8px;
+    background: #000c; border: 1px solid;
+  }
+  .b-style { color: #00ffff; border-color: #00ffff; }
+  .b-app   { color: #ffff00; border-color: #ffff00; }
+  .controls {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 24px; flex-wrap: wrap; justify-content: center;
+  }
+  button {
+    font-family: inherit; cursor: pointer;
+    border: 2px solid #fff3; background: #000a; color: #fff;
+    padding: 8px 12px; font-size: 12px; font-weight: 900;
+    letter-spacing: .1em; transition: all .12s;
+  }
+  button:hover { border-color: #ffff00; }
+  button.active { background: #ffff00; color: #000; border-color: #ffff00; }
+  #reroll {
+    background: #00ffff; color: #000; border: 4px solid #000;
+    box-shadow: 4px 4px 0 0 #ff00ff; padding: 10px 16px;
+  }
+  #reroll:active { transform: translate(4px,4px); box-shadow: none; }
+  .meta { margin-top: 20px; font-size: 11px; color: #666; text-align: center; line-height: 1.8; }
+  .meta code { color: #00ff88; }
+  .export { margin-top: 20px; display: flex; gap: 8px; }
+  .export button { font-size: 10px; padding: 6px 10px; }
+  textarea {
+    margin-top: 12px; width: 320px; height: 120px; resize: vertical;
+    background: #000; color: #00ff88; border: 1px solid #333;
+    font-family: inherit; font-size: 10px; padding: 8px; display: none;
+  }
+</style>
+</head>
+<body>
+<h1>PIXEL AVATAR</h1>
+<div class="sub">独立预览 · 原生 JS + SVG 复刻 · 可直接精修</div>
+
+<div class="stage" id="stage">
+  <svg class="bg" id="bgSvg" viewBox="0 0 120 120" preserveAspectRatio="none"></svg>
+  <svg class="avatar" id="avatarSvg" viewBox="0 0 120 120"></svg>
+  <div class="badges">
+    <span class="badge b-style" id="styleBadge">—</span>
+    <span class="badge b-app" id="appBadge">—</span>
+  </div>
+</div>
+
+<div class="controls">
+  <button data-app="male">M</button>
+  <button data-app="female">F</button>
+  <button data-app="neutral">N</button>
+  <button id="reroll">换一换</button>
+</div>
+
+<div class="export">
+  <button id="copySvg">复制 SVG</button>
+  <button id="showSvg">查看 SVG 源码</button>
+</div>
+<textarea id="svgOut" readonly></textarea>
+
+<div class="meta">
+  viewBox <code>0 0 120 120</code> · 网格 <code>2px</code> · 图层 9 层<br />
+  颜色变量：<code>--skin --hair --primary --secondary --outline</code>
+</div>
+
+<script>
+/* ===================== seeded random（与组件一致） ===================== */
+function fmix32(h) {
+  h ^= h >>> 16; h = Math.imul(h, 0x85ebca6b);
+  h ^= h >>> 13; h = Math.imul(h, 0xc2b2ae35);
+  h ^= h >>> 16; return h >>> 0;
+}
+function createSeededRandom(seed) {
+  let s = fmix32((seed >>> 0) || 1);
+  return () => {
+    s = (s + 0x6d2b79f5) >>> 0;
+    let t = s;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const pickFrom = (rng, arr) => arr[Math.floor(rng() * arr.length)];
+
+/* ===================== 主题 ===================== */
+const APPEARANCE_THEMES = {
+  male:   { skin: "#e8c39e", hair: "#2b2233", outline: "#000000" },
+  female: { skin: "#f0c49a", hair: "#4a2c4a", outline: "#000000" },
+  neutral:{ skin: "#d8c3a5", hair: "#5a4a42", outline: "#000000" },
+};
+const STYLE_THEMES = {
+  "sci-fi":  { primary: "#00ffff", secondary: "#ff00ff", bg: "#06060f", accent: "#00ffff" },
+  mystery:   { primary: "#a020f0", secondary: "#ffffff", bg: "#120a1e", accent: "#ff0055" },
+  horror:    { primary: "#ff0000", secondary: "#220000", bg: "#170404", accent: "#ff0055" },
+  animation: { primary: "#00ff00", secondary: "#ffff00", bg: "#0a0a12", accent: "#00ff00" },
+  war:       { primary: "#4a5a3a", secondary: "#8a9a7a", bg: "#14180f", accent: "#ff0055" },
+  crime:     { primary: "#ffffff", secondary: "#000000", bg: "#0a0a0a", accent: "#ffff00" },
+  drama:     { primary: "#8b4a3a", secondary: "#d2a679", bg: "#1c1410", accent: "#ff0055" },
+  fantasy:   { primary: "#00ff88", secondary: "#ffd700", bg: "#0a1a12", accent: "#00ff88" },
+};
+const STYLE_NAMES = Object.keys(STYLE_THEMES);
+const STYLE_LABEL = {
+  "sci-fi": "科幻", mystery: "悬疑", horror: "恐怖", animation: "动画",
+  war: "战争", crime: "犯罪", drama: "剧情", fantasy: "奇幻",
+};
+const APP_LABEL = { male: "男性", female: "女性", neutral: "中性" };
+
+/* ===================== 骨架 ===================== */
+const BODY = {
+  neck:  `<rect x="56" y="52" width="8" height="6" fill="var(--skin)" stroke="var(--outline)" stroke-width="2"/>`,
+  torso: `<rect x="42" y="56" width="36" height="30" fill="var(--skin)" stroke="var(--outline)" stroke-width="2"/>`,
+  arms:  `<rect x="32" y="58" width="10" height="26" fill="var(--skin)" stroke="var(--outline)" stroke-width="2"/><rect x="78" y="58" width="10" height="26" fill="var(--skin)" stroke="var(--outline)" stroke-width="2"/>`,
+  legs:  `<rect x="46" y="86" width="10" height="14" fill="#2a2a35" stroke="var(--outline)" stroke-width="2"/><rect x="64" y="86" width="10" height="14" fill="#2a2a35" stroke="var(--outline)" stroke-width="2"/><rect x="42" y="100" width="16" height="8" fill="#16161e" stroke="var(--outline)" stroke-width="2"/><rect x="62" y="100" width="16" height="8" fill="#16161e" stroke="var(--outline)" stroke-width="2"/><rect x="46" y="102" width="8" height="2" fill="var(--secondary)" stroke="none"/><rect x="66" y="102" width="8" height="2" fill="var(--secondary)" stroke="none"/>`,
+  face:  `<rect x="42" y="26" width="36" height="30" fill="var(--skin)" stroke="var(--outline)" stroke-width="2"/>`,
+  eyes:  `<rect x="48" y="38" width="6" height="6" fill="var(--outline)" stroke="none"/><rect x="50" y="38" width="2" height="2" fill="#ffffff" stroke="none"/><rect x="66" y="38" width="6" height="6" fill="var(--outline)" stroke="none"/><rect x="68" y="38" width="2" height="2" fill="#ffffff" stroke="none"/><rect x="48" y="34" width="6" height="2" fill="var(--outline)" stroke="none"/><rect x="66" y="34" width="6" height="2" fill="var(--outline)" stroke="none"/><rect x="46" y="44" width="4" height="2" fill="#ff5577" opacity="0.55" stroke="none"/><rect x="70" y="44" width="4" height="2" fill="#ff5577" opacity="0.55" stroke="none"/>`,
+  mouth: `<rect x="56" y="48" width="8" height="2" fill="var(--outline)" stroke="none"/><rect x="58" y="50" width="4" height="2" fill="var(--outline)" stroke="none"/>`,
+};
+
+/* ===================== 资产（像素网格） ===================== */
+const ASSETS = {
+  hair: {
+    short: {
+      male:    `<rect x="42" y="20" width="36" height="10" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="40" y="28" width="6" height="8" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="74" y="28" width="6" height="8" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="48" y="30" width="4" height="2" fill="var(--hair)" stroke="none"/><rect x="58" y="30" width="6" height="2" fill="var(--hair)" stroke="none"/><rect x="68" y="30" width="4" height="2" fill="var(--hair)" stroke="none"/>`,
+      female:  `<rect x="42" y="20" width="36" height="10" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="40" y="28" width="6" height="10" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="74" y="28" width="6" height="10" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="46" y="30" width="6" height="2" fill="var(--hair)" stroke="none"/><rect x="56" y="30" width="8" height="2" fill="var(--hair)" stroke="none"/><rect x="68" y="30" width="6" height="2" fill="var(--hair)" stroke="none"/>`,
+      neutral: `<rect x="42" y="20" width="36" height="10" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="40" y="28" width="6" height="8" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="74" y="28" width="6" height="8" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="50" y="30" width="6" height="2" fill="var(--hair)" stroke="none"/><rect x="64" y="30" width="6" height="2" fill="var(--hair)" stroke="none"/>`,
+    },
+    long: {
+      male:    `<rect x="42" y="20" width="36" height="10" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="38" y="28" width="8" height="34" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="74" y="28" width="8" height="34" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="48" y="30" width="4" height="2" fill="var(--hair)" stroke="none"/><rect x="58" y="30" width="6" height="2" fill="var(--hair)" stroke="none"/>`,
+      female:  `<rect x="42" y="20" width="36" height="10" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="38" y="28" width="8" height="38" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="74" y="28" width="8" height="38" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="46" y="30" width="6" height="2" fill="var(--hair)" stroke="none"/><rect x="56" y="30" width="8" height="2" fill="var(--hair)" stroke="none"/><rect x="68" y="30" width="6" height="2" fill="var(--hair)" stroke="none"/>`,
+      neutral: `<rect x="42" y="20" width="36" height="10" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="38" y="28" width="8" height="36" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="74" y="28" width="8" height="36" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="50" y="30" width="6" height="2" fill="var(--hair)" stroke="none"/><rect x="64" y="30" width="6" height="2" fill="var(--hair)" stroke="none"/>`,
+    },
+    pixie: {
+      male:    `<rect x="42" y="18" width="36" height="8" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="42" y="26" width="6" height="4" fill="var(--hair)" stroke="none"/><rect x="52" y="26" width="4" height="6" fill="var(--hair)" stroke="none"/><rect x="62" y="26" width="4" height="4" fill="var(--hair)" stroke="none"/><rect x="72" y="26" width="6" height="6" fill="var(--hair)" stroke="none"/><rect x="40" y="26" width="4" height="6" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="76" y="26" width="4" height="6" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/>`,
+      female:  `<rect x="42" y="18" width="36" height="8" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="42" y="26" width="6" height="6" fill="var(--hair)" stroke="none"/><rect x="52" y="26" width="4" height="4" fill="var(--hair)" stroke="none"/><rect x="62" y="26" width="4" height="6" fill="var(--hair)" stroke="none"/><rect x="72" y="26" width="6" height="4" fill="var(--hair)" stroke="none"/><rect x="40" y="26" width="4" height="8" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="76" y="26" width="4" height="8" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/>`,
+      neutral: `<rect x="42" y="18" width="36" height="8" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="42" y="26" width="6" height="4" fill="var(--hair)" stroke="none"/><rect x="54" y="26" width="4" height="6" fill="var(--hair)" stroke="none"/><rect x="64" y="26" width="4" height="4" fill="var(--hair)" stroke="none"/><rect x="72" y="26" width="6" height="6" fill="var(--hair)" stroke="none"/><rect x="40" y="26" width="4" height="6" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/><rect x="76" y="26" width="4" height="6" fill="var(--hair)" stroke="var(--outline)" stroke-width="2"/>`,
+    },
+  },
+  outfit: {
+    casual: {
+      male:    `<rect x="40" y="56" width="40" height="30" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><rect x="56" y="56" width="8" height="6" fill="var(--skin)" stroke="none"/><rect x="44" y="56" width="4" height="8" fill="var(--secondary)" stroke="none"/><rect x="46" y="70" width="28" height="2" fill="var(--secondary)" stroke="none"/>`,
+      female:  `<rect x="40" y="56" width="40" height="30" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><rect x="54" y="56" width="12" height="8" fill="var(--skin)" stroke="none"/><rect x="44" y="66" width="32" height="2" fill="var(--secondary)" stroke="none"/><rect x="44" y="72" width="32" height="2" fill="var(--secondary)" stroke="none"/>`,
+      neutral: `<rect x="40" y="56" width="40" height="30" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><rect x="56" y="56" width="8" height="4" fill="var(--skin)" stroke="none"/><rect x="46" y="74" width="28" height="2" fill="var(--secondary)" stroke="none"/>`,
+    },
+    formal: {
+      male:    `<rect x="40" y="56" width="40" height="30" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><polygon points="54,56 66,56 60,70" fill="#ffffff" stroke="var(--outline)" stroke-width="1.5"/><rect x="58" y="66" width="4" height="16" fill="var(--secondary)" stroke="none"/><rect x="40" y="84" width="40" height="2" fill="var(--secondary)" stroke="none"/>`,
+      female:  `<rect x="40" y="56" width="40" height="30" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><polygon points="52,56 68,56 60,72" fill="var(--skin)" stroke="var(--outline)" stroke-width="1.5"/><rect x="40" y="84" width="40" height="2" fill="var(--secondary)" stroke="none"/>`,
+      neutral: `<rect x="40" y="56" width="40" height="30" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><rect x="56" y="56" width="8" height="10" fill="#ffffff" stroke="var(--outline)" stroke-width="1.5"/><rect x="40" y="84" width="40" height="2" fill="var(--secondary)" stroke="none"/>`,
+    },
+    cyber: {
+      male:    `<rect x="40" y="56" width="40" height="30" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><rect x="40" y="56" width="12" height="8" fill="var(--secondary)" stroke="var(--outline)" stroke-width="2"/><rect x="68" y="56" width="12" height="8" fill="var(--secondary)" stroke="var(--outline)" stroke-width="2"/><rect x="46" y="72" width="28" height="2" fill="var(--secondary)" stroke="none"/><rect x="46" y="78" width="16" height="2" fill="var(--secondary)" stroke="none"/>`,
+      female:  `<rect x="40" y="56" width="40" height="30" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><rect x="40" y="56" width="10" height="6" fill="var(--secondary)" stroke="var(--outline)" stroke-width="2"/><rect x="70" y="56" width="10" height="6" fill="var(--secondary)" stroke="var(--outline)" stroke-width="2"/><rect x="46" y="70" width="28" height="2" fill="var(--secondary)" stroke="none"/><rect x="46" y="76" width="20" height="2" fill="var(--secondary)" stroke="none"/>`,
+      neutral: `<rect x="40" y="56" width="40" height="30" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><rect x="44" y="60" width="32" height="2" fill="var(--secondary)" stroke="none"/><rect x="46" y="74" width="24" height="2" fill="var(--secondary)" stroke="none"/>`,
+    },
+  },
+  accessory: {
+    glasses: {
+      male:    `<rect x="44" y="36" width="14" height="8" fill="#111111" stroke="var(--outline)" stroke-width="2"/><rect x="62" y="36" width="14" height="8" fill="#111111" stroke="var(--outline)" stroke-width="2"/><rect x="58" y="38" width="4" height="3" fill="var(--outline)" stroke="none"/><rect x="46" y="38" width="4" height="2" fill="var(--secondary)" stroke="none"/><rect x="64" y="38" width="4" height="2" fill="var(--secondary)" stroke="none"/>`,
+      female:  `<rect x="44" y="36" width="14" height="8" fill="#1a0d1a" stroke="var(--outline)" stroke-width="2"/><rect x="62" y="36" width="14" height="8" fill="#1a0d1a" stroke="var(--outline)" stroke-width="2"/><rect x="58" y="38" width="4" height="3" fill="var(--outline)" stroke="none"/><rect x="46" y="38" width="5" height="2" fill="var(--primary)" stroke="none"/><rect x="64" y="38" width="5" height="2" fill="var(--primary)" stroke="none"/>`,
+      neutral: `<rect x="46" y="36" width="12" height="8" fill="#111111" stroke="var(--outline)" stroke-width="2"/><rect x="62" y="36" width="12" height="8" fill="#111111" stroke="var(--outline)" stroke-width="2"/><rect x="58" y="38" width="4" height="3" fill="var(--outline)" stroke="none"/>`,
+    },
+    hat: {
+      male:    `<rect x="40" y="12" width="40" height="12" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><rect x="34" y="24" width="52" height="5" fill="var(--secondary)" stroke="var(--outline)" stroke-width="2"/><rect x="56" y="12" width="8" height="12" fill="var(--secondary)" stroke="none"/>`,
+      female:  `<polygon points="60,8 84,22 36,22" fill="var(--secondary)" stroke="var(--outline)" stroke-width="2"/><rect x="34" y="22" width="52" height="6" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/>`,
+      neutral: `<rect x="42" y="14" width="36" height="10" fill="var(--primary)" stroke="var(--outline)" stroke-width="2"/><rect x="38" y="24" width="44" height="4" fill="var(--secondary)" stroke="var(--outline)" stroke-width="2"/>`,
+    },
+    none: { male: `<g/>`, female: `<g/>`, neutral: `<g/>` },
+  },
+};
+
+/* ===================== 背景 ===================== */
+const BG_STYLES = {
+  "sci-fi": {
+    gradient: "repeating-linear-gradient(0deg, #06060f 0px, #06060f 4px, #0b0b1e 4px, #0b0b1e 8px)",
+    decor: `<rect x="8" y="8" width="8" height="2" fill="#00ffff" opacity="0.35"/><rect x="8" y="12" width="4" height="2" fill="#00ffff" opacity="0.2"/><rect x="104" y="8" width="8" height="2" fill="#00ffff" opacity="0.35"/><rect x="108" y="12" width="4" height="2" fill="#00ffff" opacity="0.2"/><rect x="12" y="110" width="96" height="2" fill="#00ffff" opacity="0.18"/><rect x="20" y="16" width="2" height="2" fill="#ffffff" opacity="0.3"/><rect x="96" y="26" width="2" height="2" fill="#ffffff" opacity="0.25"/>`,
+  },
+  mystery: {
+    gradient: "repeating-linear-gradient(45deg, #120a1e 0px, #120a1e 4px, #180d28 4px, #180d28 8px)",
+    decor: `<rect x="14" y="18" width="6" height="6" fill="#a020f0" opacity="0.28"/><rect x="20" y="24" width="2" height="2" fill="#a020f0" opacity="0.18"/><rect x="98" y="30" width="4" height="4" fill="#ffffff" opacity="0.16"/><rect x="16" y="96" width="8" height="2" fill="#ffffff" opacity="0.14"/>`,
+  },
+  horror: {
+    gradient: "repeating-linear-gradient(0deg, #170404 0px, #170404 4px, #240808 4px, #240808 8px)",
+    decor: `<rect x="10" y="52" width="2" height="34" fill="#ff0055" opacity="0.35"/><rect x="108" y="44" width="2" height="26" fill="#ff0055" opacity="0.25"/><rect x="20" y="14" width="4" height="2" fill="#ff0055" opacity="0.4"/><rect x="94" y="16" width="2" height="2" fill="#ffffff" opacity="0.3"/>`,
+  },
+  animation: {
+    gradient: "repeating-linear-gradient(135deg, #0a0a12 0px, #0a0a12 4px, #16162a 4px, #16162a 8px)",
+    decor: `<rect x="12" y="20" width="4" height="4" fill="#00ff00" opacity="0.3"/><rect x="100" y="34" width="4" height="4" fill="#ffff00" opacity="0.35"/><rect x="30" y="104" width="2" height="2" fill="#00ff00" opacity="0.25"/><rect x="60" y="14" width="2" height="2" fill="#ffff00" opacity="0.3"/>`,
+  },
+  war: {
+    gradient: "repeating-linear-gradient(45deg, #14180f 0px, #14180f 4px, #212c1c 4px, #212c1c 8px)",
+    decor: `<rect x="8" y="106" width="104" height="2" fill="#4a5a3a" opacity="0.4"/><rect x="16" y="110" width="40" height="2" fill="#8a9a7a" opacity="0.25"/><rect x="96" y="18" width="6" height="2" fill="#8a9a7a" opacity="0.3"/>`,
+  },
+  crime: {
+    gradient: "repeating-linear-gradient(0deg, #0a0a0a 0px, #0a0a0a 4px, #161616 4px, #161616 8px)",
+    decor: `<rect x="0" y="20" width="120" height="1" fill="#ffffff" opacity="0.12"/><rect x="0" y="44" width="120" height="1" fill="#ffffff" opacity="0.1"/><rect x="10" y="10" width="4" height="4" fill="#ffff00" opacity="0.6"/>`,
+  },
+  drama: {
+    gradient: "repeating-linear-gradient(135deg, #1c1410 0px, #1c1410 4px, #33251d 4px, #33251d 8px)",
+    decor: `<rect x="10" y="104" width="100" height="2" fill="#8b4a3a" opacity="0.35"/><rect x="94" y="18" width="4" height="4" fill="#d2a679" opacity="0.28"/><rect x="18" y="26" width="2" height="2" fill="#d2a679" opacity="0.2"/>`,
+  },
+  fantasy: {
+    gradient: "repeating-linear-gradient(45deg, #0a1a12 0px, #0a1a12 4px, #153022 4px, #153022 8px)",
+    decor: `<rect x="12" y="18" width="4" height="4" fill="#00ff88" opacity="0.28"/><rect x="98" y="24" width="2" height="2" fill="#ffd700" opacity="0.7"/><rect x="94" y="100" width="4" height="2" fill="#00ff88" opacity="0.25"/>`,
+  },
+};
+
+/* ===================== 状态与渲染 ===================== */
+let appearance = "neutral";
+let rerollCount = 0;
+const lockedTags = new Set();
+
+const stageEl = document.getElementById("stage");
+const bgSvgEl = document.getElementById("bgSvg");
+const avatarSvgEl = document.getElementById("avatarSvg");
+const styleBadge = document.getElementById("styleBadge");
+const appBadge = document.getElementById("appBadge");
+
+function computeSeed() {
+  let h = 0;
+  const str = appearance + "|" + Array.from(lockedTags).sort().join(",") + "|" + rerollCount;
+  for (let i = 0; i < str.length; i++) h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+  return h >>> 0;
+}
+
+function buildAvatarSvg(style, hairStyle, outfitStyle, accessoryStyle) {
+  return [
+    `<g>${BODY.legs}</g>`,
+    `<g>${BODY.torso}</g>`,
+    `<g>${BODY.neck}</g>`,
+    `<g>${BODY.face}</g>`,
+    `<g>${BODY.arms}</g>`,
+    `<g>${ASSETS.outfit[outfitStyle][appearance]}</g>`,
+    `<g>${ASSETS.hair[hairStyle][appearance]}</g>`,
+    `<g>${BODY.eyes}</g>`,
+    `<g>${BODY.mouth}</g>`,
+    `<g>${ASSETS.accessory[accessoryStyle][appearance]}</g>`,
+  ].join("");
+}
+
+function render() {
+  const seed = computeSeed();
+  const r = createSeededRandom(seed);
+  const style = pickFrom(r, STYLE_NAMES);
+  const hairStyle = pickFrom(r, ["short", "long", "pixie"]);
+  const outfitStyle = pickFrom(r, ["casual", "formal", "cyber"]);
+  const accessoryStyle = pickFrom(r, ["glasses", "hat", "none"]);
+
+  const base = APPEARANCE_THEMES[appearance];
+  const st = STYLE_THEMES[style];
+
+  stageEl.style.setProperty("--skin", base.skin);
+  stageEl.style.setProperty("--hair", base.hair);
+  stageEl.style.setProperty("--primary", st.primary);
+  stageEl.style.setProperty("--secondary", st.secondary);
+  stageEl.style.setProperty("--outline", base.outline);
+  stageEl.style.setProperty("--accent", st.accent);
+  stageEl.style.background = st.bg;
+  stageEl.style.boxShadow = `6px 6px 0 0 ${st.accent}`;
+
+  bgSvgEl.style.background = BG_STYLES[style].gradient;
+  bgSvgEl.innerHTML = BG_STYLES[style].decor;
+  avatarSvgEl.innerHTML = buildAvatarSvg(style, hairStyle, outfitStyle, accessoryStyle);
+
+  styleBadge.textContent = `${STYLE_LABEL[style]} · ${hairStyle}/${outfitStyle}/${accessoryStyle}`;
+  appBadge.textContent = APP_LABEL[appearance];
+}
+
+document.querySelectorAll("[data-app]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    appearance = btn.dataset.app;
+    document.querySelectorAll("[data-app]").forEach((b) => b.classList.toggle("active", b === btn));
+    render();
+  });
+});
+document.getElementById("reroll").addEventListener("click", () => { rerollCount++; render(); });
+
+const svgOut = document.getElementById("svgOut");
+document.getElementById("showSvg").addEventListener("click", () => {
+  svgOut.style.display = svgOut.style.display === "block" ? "none" : "block";
+  svgOut.value = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" shape-rendering="crispEdges">\n${avatarSvgEl.innerHTML}\n</svg>`;
+});
+document.getElementById("copySvg").addEventListener("click", async () => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" shape-rendering="crispEdges">${avatarSvgEl.innerHTML}</svg>`;
+  try { await navigator.clipboard.writeText(svg); alert("SVG 已复制到剪贴板"); }
+  catch { alert("复制失败，请用「查看 SVG 源码」手动复制"); }
+});
+
+document.querySelector('[data-app="neutral"]').classList.add("active");
+render();
+</script>
+</body>
+</html>
