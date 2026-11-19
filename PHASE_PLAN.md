@@ -136,8 +136,25 @@ withCache / intelToday / intelDaysAgo / intelParseJSON / intelFetchTMDB（handle
 | — | wall.js | ✅ 88 行 |
 | — | digest.js | ✅ 1458 行 |
 
-### 4.3 剩余任务（接线，尚未做）
+### 4.3 剩余任务（接线，已完成）✅
 | # | 任务 |
 |---|------|
-| 4 | wrangler 接线：6 worker 配置 + [[services]] 绑定 + KV/R2/Secrets 分配 + Cron |
-| 5 | CI 部署脚本 + 验证 + 回滚 |
+| 4 | wrangler 接线：6 worker 配置 + [[services]] 绑定 + KV/R2/Secrets 分配 + Cron ✅ |
+| 5 | CI 部署脚本 + 验证 + 部署上线 ✅ |
+
+### 4.4 部署上线结果 ✅
+- 6 worker 全部部署成功（router + discover/intel/digest/admin/wall）
+- 线上端点实测通过：router health / discover results / intel ai-config / wall config / digest unsubscribe / admin 401
+- KV 前缀修复已确认（discover 正常返回 `result:*` 数据）
+- 部署踩坑记录：
+  - wrangler 4 要求 Node ≥22 → CI 改 node-version: 24
+  - 新 worker 首部署需 `workers_dev = false`（service-binding-only，跳过 workers.dev 子域名注册的最终一致性竞态）
+  - git 凭证缺 workflow scope → 去掉 remote URL 内嵌 token，走 gh credential helper
+
+### 4.5 遗留事项（需手动处理）
+| 事项 | 说明 |
+|------|------|
+| admin ADMIN_PASSWORD / GITHUB_TOKEN | 非 GitHub secret，需在 Cloudflare 后台对 kims-video-admin 手动 `wrangler secret put`；未设置时 admin 登录返回"Admin not configured"（优雅降级）|
+| wall ARK_API_KEY | 需手动设置；未设置时 /api/wall/gen 返回 501（与拆分前一致）|
+| src/shared/ 目录 | 死代码（已全部自包含），未提交，可删除 |
+| workers-1.4.js | 保留未改，作为回滚（重新部署即回退 monolith）|
