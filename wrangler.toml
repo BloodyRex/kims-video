@@ -1,26 +1,25 @@
+# Router Worker — 沿用 name="kims-video" 保住 api.bloodyrex.xyz 自定义域名
+# 按路径经 Service Bindings 分发到 5 个子 worker；内置 poster-proxy。
 name = "kims-video"
-main = "workers-1.4.js"
+main = "workers/router.js"
 compatibility_date = "2024-12-01"
 
-# Backup digest sender: 06:35 Beijing = 22:35 UTC (GH Actions 06:28 is primary;
-# KV "digestStatus:YYYY-MM-DD" guard makes this idempotent — skips if already sent)
-[triggers]
-crons = ["35 22 * * *"]
+[[services]]
+binding = "DISCOVER_WORKER"
+service = "kims-video-discover"
 
-# KV Namespace for Discover community features
-# ID: from Cloudflare Dashboard → Workers & Pages → KV
-[[kv_namespaces]]
-binding = "DISCOVER_KV"
-id = "76a4dab6048441cea229055a262bff8f"
+[[services]]
+binding = "INTEL_WORKER"
+service = "kims-video-intel"
 
-# KV Namespace for email subscriptions
-# 1. Create a new KV namespace in Cloudflare Dashboard → Workers & Pages → KV
-# 2. Replace the ID below with your namespace ID
-[[kv_namespaces]]
-binding = "SUBSCRIBE_KV"
-id = "27b767e03348423dbcd9382a925446b2"
+[[services]]
+binding = "DIGEST_WORKER"
+service = "kims-video-digest"
 
-# R2 Bucket for Discover community thumbnails (uploaded share screenshots)
-[[r2_buckets]]
-binding = "DISCOVER_R2"
-bucket_name = "kims-discover-thumbnails"
+[[services]]
+binding = "ADMIN_WORKER"
+service = "kims-video-admin"
+
+[[services]]
+binding = "WALL_WORKER"
+service = "kims-video-wall"

@@ -1,0 +1,8 @@
+# Intel Worker — /intelligence/* 数据端点 + 通用 AI 代理 + ai-config + translate + music/v2
+name = "kims-video-intel"
+main = "workers/intel.js"
+compatibility_date = "2024-12-01"
+
+[[kv_namespaces]]
+binding = "DISCOVER_KV"
+id = "76a4dab6048441cea229055a262bff8f"

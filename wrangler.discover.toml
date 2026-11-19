@@ -1,0 +1,16 @@
+# Discover Worker — /discover/*, /wall/*, /migrate/* + scheduled(migrate purge)
+name = "kims-video-discover"
+main = "workers/discover.js"
+compatibility_date = "2024-12-01"
+
+# Nightly: purge expired personal-data migration blobs (06:45 Beijing = 22:45 UTC)
+[triggers]
+crons = ["45 22 * * *"]
+
+[[kv_namespaces]]
+binding = "DISCOVER_KV"
+id = "76a4dab6048441cea229055a262bff8f"
+
+[[r2_buckets]]
+binding = "DISCOVER_R2"
+bucket_name = "kims-discover-thumbnails"

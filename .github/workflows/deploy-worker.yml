@@ -1,22 +1,20 @@
-name: Deploy Worker
+name: Deploy Workers
 
 on:
   push:
     paths:
-      - "workers-1.4.js"
-      - "wrangler.toml"
+      - "workers/**"
+      - "wrangler*.toml"
       # 壁纸主题/尺寸由构建期 JSON 导入进 bundle，配置变更必须触发重新部署
       - "config/wallpaper-themes.json"
       - "config/wallpaper-sizes.json"
-      # 生图客户端与壁纸辅助函数会被打包进 Worker bundle，其变更必须触发重新部署
-      - "scripts/seedream-client.mjs"
-      # Worker 直接 import 的壁纸辅助函数（规格/校验/交付决策/套装结构）
+      # Worker 直接 import 的壁纸辅助函数会被打包进 wall-worker bundle
       - "scripts/wall-worker-helpers.mjs"
     branches: [main]
   workflow_dispatch:
 
 concurrency:
-  group: cloudflare-worker
+  group: cloudflare-workers
   cancel-in-progress: true
 
 jobs:
@@ -27,30 +25,63 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy Worker to Cloudflare
-        uses: cloudflare/wrangler-action@v3
+      - uses: actions/setup-node@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
-          wranglerVersion: "4"
+          node-version: 20
 
-      - name: Set TMDB secret
-        run: echo "${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}" | npx wrangler@3.90.0 secret put TMDB_API_READ_ACCESS_TOKEN --name kims-video
-        shell: bash
+      - run: npm ci
+
+      # ── 先部署 5 个子 worker（无公网路由，零线上影响）──
+      - name: Deploy discover worker
+        run: npx wrangler deploy --config wrangler.discover.toml
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      - name: Set Resend API key
-        run: echo "${{ secrets.RESEND_API_KEY }}" | npx wrangler@3.90.0 secret put RESEND_API_KEY --name kims-video
-        shell: bash
+      - name: Deploy intel worker
+        run: npx wrangler deploy --config wrangler.intel.toml
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      - name: Set Digest secret
-        run: echo "${{ secrets.DIGEST_SECRET }}" | npx wrangler@3.90.0 secret put DIGEST_SECRET --name kims-video
+      - name: Deploy digest worker
+        run: npx wrangler deploy --config wrangler.digest.toml
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Deploy admin worker
+        run: npx wrangler deploy --config wrangler.admin.toml
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Deploy wall worker
+        run: npx wrangler deploy --config wrangler.wall.toml
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # ── 最后部署 router（公网入口，依赖上面的 [[services]] 绑定）──
+      - name: Deploy router worker
+        run: npx wrangler deploy --config wrangler.toml
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # ── 设置子 worker secrets ──
+      # 注：ADMIN_PASSWORD / GITHUB_TOKEN / ARK_API_KEY 非 GitHub secret，
+      # 需手动在 Cloudflare 后台对对应 worker 设置（未设置时优雅降级）。
+      - name: Set worker secrets
+        run: |
+          echo "${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}" | npx wrangler secret put TMDB_API_READ_ACCESS_TOKEN --name kims-video-discover
+          echo "${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}" | npx wrangler secret put TMDB_API_READ_ACCESS_TOKEN --name kims-video-intel
+          echo "${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}" | npx wrangler secret put TMDB_API_READ_ACCESS_TOKEN --name kims-video-digest
+          echo "${{ secrets.DEEPSEEK_API_KEY }}" | npx wrangler secret put DEEPSEEK_API_KEY --name kims-video-intel
+          echo "${{ secrets.DEEPSEEK_API_KEY }}" | npx wrangler secret put DEEPSEEK_API_KEY --name kims-video-digest
+          echo "${{ secrets.LASTFM_API_KEY }}" | npx wrangler secret put LASTFM_API_KEY --name kims-video-intel
+          echo "${{ secrets.RESEND_API_KEY }}" | npx wrangler secret put RESEND_API_KEY --name kims-video-digest
+          echo "${{ secrets.DIGEST_SECRET }}" | npx wrangler secret put DIGEST_SECRET --name kims-video-digest
         shell: bash
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

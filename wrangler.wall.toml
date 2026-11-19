@@ -1,0 +1,6 @@
+# Wall Worker — /api/wall/*
+# 注：ARK_API_KEY 需手动在 Cloudflare 后台对 kims-video-wall 设置
+#（未配置时 /api/wall/gen 返回 501，与现状一致）
+name = "kims-video-wall"
+main = "workers/wall.js"
+compatibility_date = "2024-12-01"

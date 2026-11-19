@@ -1,0 +1,10 @@
+# Admin Worker — /admin/*
+# 注：ADMIN_PASSWORD / GITHUB_TOKEN 需手动在 Cloudflare 后台对 kims-video-admin 设置
+#（非 GitHub secret，CI 无法自动写入；未设置时 admin 登录返回"Admin not configured"，优雅降级）
+name = "kims-video-admin"
+main = "workers/admin.js"
+compatibility_date = "2024-12-01"
+
+[[kv_namespaces]]
+binding = "DISCOVER_KV"
+id = "76a4dab6048441cea229055a262bff8f"
