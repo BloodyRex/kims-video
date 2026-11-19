@@ -4,6 +4,7 @@ import { fetchMovieByTmdbId } from "../services/api";
 import { useLocale } from "../i18n";
 import { toggleFavorite, listFavorites } from "../utils/personalStore";
 import { posterUrl } from "../utils/poster";
+import { useMovieDetail } from "../hooks/useMovieDetail";
 // ── Shared helpers ──
 
 export const GENRE_ZH = {
@@ -831,32 +832,17 @@ export function matchesDetailType(type, dataType) {
 // ── Intelligence Detail Modal ──
 
 export function IntelDetailModal({ item, type, locale, onClose }) {
-  // ⚠️ Hooks first, then early returns — and `enriched` must be declared before
-  // imdbUrl uses it. Violating either crashed the intelligence page (black
-  // screen) the moment a detail view opened (2026-08-24).
-  const [detailData, setDetailData] = useState(null);
-  useEffect(() => {
-    if (!item?.tmdbId) return;
-    const music = type === "music" || type === "album";
-    if (music) return;
-    let cancelled = false;
-    fetchMovieByTmdbId(item.tmdbId, locale).then(data => {
-      if (!cancelled && data && matchesDetailType(type, data.type)) {
-        setDetailData({ id: item.tmdbId, type, locale, data });
-      }
-    });
-    return () => { cancelled = true; };
-  }, [item?.tmdbId, type, locale]);
+  const zh = locale === "zh";
+  const { data: detailData, loading: detailLoading } = useMovieDetail(item?.tmdbId, locale, type === "tv" ? "tv" : "movie");
 
   if (!item) return null;
-  const zh = locale === "zh";
   const title = getTitle(item, locale);
   const isMusic = type === "music" || type === "album";
   const isTV = type === "tv";
   // Type chip in the title bar + TrailerButtons lookup — declaration was lost in
   // the earlier restore and crashed every detail view (ReferenceError → black screen)
   const typeLabel = isMusic ? (zh ? "专辑" : "ALBUM") : isTV ? (zh ? "剧集" : "TV") : (zh ? "电影" : "MOVIE");
-  const enriched = detailData?.id === item.tmdbId && detailData?.type === type && detailData?.locale === locale ? detailData.data : {};
+  const enriched = detailData || {};
   // ponytail: legacy music favourites have no verifiable description source (no mbid/lastfm endpoint),
   // so they show the explicit "暂无介绍" text; new ones keep the summary saved at save time.
   const summary = pickSummary(item, locale, enriched);

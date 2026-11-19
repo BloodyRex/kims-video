@@ -2,47 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { StarRating, TrailerButtons, GENRE_ZH } from "./Cards";
-import { fetchMovieByTmdbId } from "../services/api";
-
-// Same poster proxy as Cards.jsx (TMDB image CDN may be blocked in some regions)
-function posterUrl(path) {
-  if (!path) return "";
-  if (path.startsWith("https://image.tmdb.org/") || path.startsWith("https://coverartarchive.org/")) {
-    return "https://api.bloodyrex.xyz/poster-proxy?url=" + encodeURIComponent(path);
-  }
-  return path;
-}
+import { posterUrl } from "../utils/poster";
+import { useMovieDetail } from "../hooks/useMovieDetail";
 
 /**
  * Wall detail view — mirrors IntelDetailModal layout (intelligence page).
  * Base data comes from the wall.json item (zero requests); enriched fields
- * (director/runtime/cast/overview/imdb_id) lazy-load via fetchMovieByTmdbId
+ * (director/runtime/cast/overview/imdb_id) lazy-load via useMovieDetail
  * (Worker → TMDB, KV-cached, NO DeepSeek → zero LLM tokens).
  */
 export default function WallDetailView({ item, locale, onClose }) {
   const zh = locale === "zh";
-  const [detailData, setDetailData] = useState(null);
-  // TV wall items carry `season` — the detail view adapts (TMDB /tv/ link,
-  // S/E line, creator instead of director) without a separate component.
+  const { data: detailData, loading: detailLoading } = useMovieDetail(item.tmdbId, locale, "movie");
+
   const isTV = item.season != null;
 
-  useEffect(() => {
-    if (!item.tmdbId) return;
-    let cancelled = false;
-    fetchMovieByTmdbId(item.tmdbId, locale).then((data) => {
-      if (!cancelled && data) setDetailData(data);
-    });
-    return () => { cancelled = true; };
-  }, [item.tmdbId, locale]);
-  const enriched = detailData || {};
-
   const title = zh ? item.title : item.titleEn || item.title;
-  const genres = Array.isArray(item.genre) ? item.genre : [];
-  const tmdbUrl = `https://www.themoviedb.org/${isTV ? "tv" : "movie"}/${item.tmdbId}`;
-  // Exact IMDb page when imdb_id is available (new Worker field), else fallback search
-  const imdbUrl = enriched.imdb_id
-    ? `https://www.imdb.com/title/${enriched.imdb_id}`
-    : `https://www.imdb.com/find?q=${encodeURIComponent(((item.titleEn || item.title) + " " + (item.year || "")).trim())}`;
+    const genres = Array.isArray(item.genre) ? item.genre : [];
+    const tmdbUrl = `https://www.themoviedb.org/${isTV ? "tv" : "movie"}/${item.tmdbId}`;
+    // Exact IMDb page when imdb_id is available (new Worker field), else fallback search
+    const imdbUrl = (detailData || {}).imdb_id
+      ? `https://www.imdb.com/title/${(detailData || {}).imdb_id}`
+      : `https://www.imdb.com/find?q=${encodeURIComponent(((item.titleEn || item.title) + " " + (item.year || "")).trim())}`;
 
   // Status (released / countdown) — Beijing timezone, same logic as wall cards
   const todayStr = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Shanghai" });
@@ -109,16 +90,16 @@ export default function WallDetailView({ item, locale, onClose }) {
                 </span>
               )}
               <StarRating score={item.rating} max={10} />
-              {!isTV && enriched.director && (
-                <span className="bg-white text-black px-2 py-1 font-black text-xs border-2 border-black uppercase leading-none">
-                  🎬 {zh ? (enriched.directorEn || enriched.director) : enriched.director}
-                </span>
-              )}
-              {enriched.runtime && (
-                <span className="bg-black text-white px-2 py-1 font-black text-xs border-2 border-[#00ffff] pixel-font leading-none">
-                  ⏱ {zh ? `${enriched.runtime}分钟` : `${enriched.runtime} min`}
-                </span>
-              )}
+              {!isTV && (detailData || {}).director && (
+                              <span className="bg-white text-black px-2 py-1 font-black text-xs border-2 border-black uppercase leading-none">
+                                🎬 {zh ? ((detailData || {}).directorEn || (detailData || {}).director) : (detailData || {}).director}
+                              </span>
+                            )}
+                            {(detailData || {}).runtime && (
+                              <span className="bg-black text-white px-2 py-1 font-black text-xs border-2 border-[#00ffff] pixel-font leading-none">
+                                ⏱ {zh ? `${(detailData || {}).runtime}分钟` : `${(detailData || {}).runtime} min`}
+                              </span>
+                            )}
             </div>
 
             {/* Genre badges — complete list from wall.json */}
@@ -133,13 +114,13 @@ export default function WallDetailView({ item, locale, onClose }) {
             )}
 
             {/* Cast — lazy-loaded, first 5 (same as intelligence page) */}
-            {enriched.cast && enriched.cast.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-4">
-                {enriched.cast.slice(0, 5).map((actor, i) => (
-                  <span key={i} className="bg-black text-white px-2 py-1 text-xs font-bold border border-gray-600 leading-none">🎭 {actor}</span>
-                ))}
-              </div>
-            )}
+                        {(detailData || {}).cast && (detailData || {}).cast.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {(detailData || {}).cast.slice(0, 5).map((actor, i) => (
+                              <span key={i} className="bg-black text-white px-2 py-1 text-xs font-bold border border-gray-600 leading-none">🎭 {actor}</span>
+                            ))}
+                          </div>
+                        )}
 
             {/* Release date + first-seen meta */}
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-gray-500 font-bold">
@@ -154,11 +135,11 @@ export default function WallDetailView({ item, locale, onClose }) {
         </div>
 
         {/* Summary — pre-translated zh summary from wall.json (instant), else lazy overview */}
-        {(item.summary || enriched.overview) && (
-          <div className="bg-[#f0f0f0] border-4 border-black p-4 mb-4">
-            <p className="text-black font-bold leading-relaxed text-sm sm:text-base">{item.summary || enriched.overview}</p>
-          </div>
-        )}
+                {(item.summary || (detailData || {}).overview) && (
+                  <div className="bg-[#f0f0f0] border-4 border-black p-4 mb-4">
+                    <p className="text-black font-bold leading-relaxed text-sm sm:text-base">{item.summary || (detailData || {}).overview}</p>
+                  </div>
+                )}
 
         {/* Action buttons: TMDB + IMDb + YouTube + Bilibili (same styles as intelligence cards) */}
         <div className="flex flex-wrap items-center gap-2">
@@ -178,12 +159,12 @@ export default function WallDetailView({ item, locale, onClose }) {
       </div>
 
       {/* Back button */}
-      <div className="flex justify-center gap-4 pt-6 pb-8">
-        <button onClick={onClose}
-          className="flex items-center text-white bg-black border-4 border-[#00ffff] px-6 py-3 uppercase font-bold hover:bg-[#00ffff] hover:text-black transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
-          {zh ? "← 返回影视墙" : "← BACK TO WALL"}
-        </button>
-      </div>
+            <div className="flex justify-center gap-4 pt-6 pb-8 pb-safe">
+              <button onClick={onClose}
+                className="flex items-center text-white bg-black border-4 border-[#00ffff] px-6 py-3 uppercase font-bold hover:bg-[#00ffff] hover:text-black transition-colors pixel-font text-sm shadow-[4px_4px_0_0_#000] active:translate-y-1 active:shadow-none">
+                {zh ? "← 返回影视墙" : "← BACK TO WALL"}
+              </button>
+            </div>
     </div>
   );
 }
