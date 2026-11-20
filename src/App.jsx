@@ -40,6 +40,15 @@ const DebugRoute = ({ name, component: Component }) => {
   return <Component />;
 };
 
+const NotFoundPage = () => {
+  console.log('[NotFoundPage] matched', { location: window.location.pathname });
+  const debugDiv = document.createElement('div');
+  debugDiv.style.cssText = 'position:fixed;top:10px;right:10px;background:orange;color:white;padding:10px;z-index:9999;font-size:12px;font-family:monospace';
+  debugDiv.textContent = `404: ${window.location.pathname}`;
+  document.body.appendChild(debugDiv);
+  return <div style={{padding: '20px', color: 'white'}}>404: {window.location.pathname}</div>;
+};
+
 function ScrollManager() {
   // #2/#3/#5: PUSH/REPLACE(链接、标签切换)滚回顶部; POP(浏览器返回)按 pathname
   // 从 sessionStorage 恢复原位。scrollRestoration=manual 避免浏览器默认恢复与 React
@@ -162,8 +171,10 @@ function App() {
           {/* Legacy engine home (pre-new-home design) — kept at /recommend */}
           <Route path="/recommend" element={<AppContent />} />
           {/* Hidden test page: new 4-card entry portal */}
-          <Route path="/entry" element={<EntryPage />} />
-        </Routes>
+                    <Route path="/entry" element={<EntryPage />} />
+                    {/* Catch-all for debugging */}
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Routes>
         <ShareButtonWrapper />
       </LocaleProvider>
     </BrowserRouter>
