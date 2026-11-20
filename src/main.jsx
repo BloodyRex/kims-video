@@ -8,6 +8,8 @@ import personalStore from "./utils/personalStore";
 // 浏览器可能拒绝（未满足参与度启发式），失败静默降级，数据仍照常写入 IndexedDB。
 import { requestPersistence } from "./utils/personalStore";
 
+console.log('[main.jsx] module loaded, root element:', document.getElementById("root"));
+
 if ("storage" in navigator && navigator.storage && navigator.storage.persist) {
   try {
     navigator.storage.persisted().then((already) => {
@@ -19,6 +21,7 @@ if ("storage" in navigator && navigator.storage && navigator.storage.persist) {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 function render() {
+  console.log('[main.jsx] render() called');
   root.render(
     <React.StrictMode>
       <App />
