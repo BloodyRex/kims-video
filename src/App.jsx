@@ -32,6 +32,11 @@ const ENTRY_ROUTE = "/recommend";
 // Debug route wrapper to log which route is matched
 const DebugRoute = ({ name, component: Component }) => {
   console.log('[DebugRoute] matched', name, { location: window.location.pathname });
+  // Also write to document for persistent debugging
+  const debugDiv = document.createElement('div');
+  debugDiv.style.cssText = 'position:fixed;top:10px;right:10px;background:red;color:white;padding:10px;z-index:9999;font-size:12px;font-family:monospace';
+  debugDiv.textContent = `DebugRoute matched: ${name} @ ${window.location.pathname}`;
+  document.body.appendChild(debugDiv);
   return <Component />;
 };
 
