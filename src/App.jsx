@@ -15,6 +15,16 @@ import NewHomePage from "./components/NewHomePage";
 import AdminPage from "./components/AdminPage";
 import MyDataPage from "./components/MyDataPage";
 import FestivalCalendarPage from "./components/FestivalCalendarPage";
+
+// Force import DiscoverComponents to prevent tree-shaking
+import {
+  DailyPickCard,
+  PairCard,
+  PairDetailOverlay,
+  DailyPickDetailOverlay,
+  UserResultCard,
+  PosterModal,
+} from "./components/DiscoverComponents";
 import domtoimage from "dom-to-image-more";
 import { fetchMovieByTmdbId } from "./services/api";
 import { loadResultsFromCache } from "./utils/cache";
