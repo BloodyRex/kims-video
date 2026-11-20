@@ -66,7 +66,7 @@ const DiscoverPage = () => {
     scrollRef,
     buildPages: buildPagesFn,
     handleLike,
-  } = useDiscoverData(discoverData, { locale, fetchMovieByTmdbId, fetchDiscoverResults, likeDiscoverResult });
+  } = useDiscoverData(discoverData, { locale, fetchDiscoverResults, likeDiscoverResult });
 
     const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
 
