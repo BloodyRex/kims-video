@@ -297,7 +297,7 @@ const DiscoverPage = () => {
       {modalThumbnail && <PosterModal thumbnail={modalThumbnail} onClose={() => setModalThumbnail(null)} />}
 
       {/* Lang floating button — adaptive: sits above SubscribeSection on mobile, above footer on desktop */}
-            <div className="fixed bottom-0 right-0 z-40 p-4 pointer-events-none sm:static sm:pointer-events-auto sm:p-0">
+                  <div className="fixed bottom-0 right-0 z-40 p-4 pointer-events-none sm:pointer-events-auto sm:p-0">
               <div className="flex justify-end">
                 <button onClick={toggleLocale}
                   className="w-7 h-7 sm:w-8 sm:h-8 bg-[#ff00ff] border-2 border-black text-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors font-black text-[10px] sm:text-xs shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none pointer-events-auto"
