@@ -140,10 +140,6 @@ function ScrollManager() {
   return null;
   }
 
-  const DiscoverTest = () => (
-    <div style={{padding: 20, color: 'white'}}>DISCOVER ROUTE MATCHED</div>
-  );
-
   function App() {
   console.log('[App] render', { location: window.location.pathname });
   const debugDiv = document.createElement('div');
@@ -155,12 +151,12 @@ function ScrollManager() {
       <ScrollManager />
       <LocaleProvider>
         <Routes>
-                                                  <Route path="/search" element={<NewHomePage />} />
-                                                  <Route path="/" element={<NewHomePage />} />
-                                                  <Route path="/discover" element={<DebugRoute name="discover" component={DiscoverTest} />} />
-                                                  <Route path="/discover/" element={<DebugRoute name="discover/" component={DiscoverTest} />} />
-                                                  <Route path="/discover/*" element={<DebugRoute name="discover/*" component={DiscoverPage} />} />
-                                                  <Route path="/admin" element={<AdminPage />} />
+                                                          <Route path="/search" element={<NewHomePage />} />
+                                                          <Route path="/" element={<NewHomePage />} />
+                                                          <Route path="/discover" element={<DebugRoute name="discover" component={DiscoverPage} />} />
+                                                          <Route path="/discover/" element={<DebugRoute name="discover/" component={DiscoverPage} />} />
+                                                          <Route path="/discover/*" element={<DebugRoute name="discover/*" component={DiscoverPage} />} />
+                                                          <Route path="/admin" element={<AdminPage />} />
           <Route path="/intelligence" element={<IntelligencePage />} />
           <Route path="/intelligence/movies" element={<IntelligencePage />} />
           <Route path="/intelligence/tv" element={<IntelligencePage />} />
