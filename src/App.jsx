@@ -138,9 +138,13 @@ function ScrollManager() {
   }, [loc.key]);
 
   return null;
-}
+  }
 
-function App() {
+  const DiscoverTest = () => (
+    <div style={{padding: 20, color: 'white'}}>DISCOVER ROUTE MATCHED</div>
+  );
+
+  function App() {
   console.log('[App] render', { location: window.location.pathname });
   const debugDiv = document.createElement('div');
   debugDiv.style.cssText = 'position:fixed;top:40px;right:10px;background:blue;color:white;padding:10px;z-index:9999;font-size:12px;font-family:monospace';
@@ -151,12 +155,12 @@ function App() {
       <ScrollManager />
       <LocaleProvider>
         <Routes>
-                                          <Route path="/search" element={<NewHomePage />} />
-                                          <Route path="/" element={<NewHomePage />} />
-                                          <Route path="/discover" element={<DebugRoute name="discover" component={() => <div style={{padding:20,color:'white'}}>DISCOVER ROUTE MATCHED</div>}} />} />
-                                          <Route path="/discover/" element={<DebugRoute name="discover/" component={() => <div style={{padding:20,color:'white'}}>DISCOVER/ ROUTE MATCHED</div>}} />} />
-                                          <Route path="/discover/*" element={<DebugRoute name="discover/*" component={DiscoverPage} />} />
-                                          <Route path="/admin" element={<AdminPage />} />
+                                                  <Route path="/search" element={<NewHomePage />} />
+                                                  <Route path="/" element={<NewHomePage />} />
+                                                  <Route path="/discover" element={<DebugRoute name="discover" component={DiscoverTest} />} />
+                                                  <Route path="/discover/" element={<DebugRoute name="discover/" component={DiscoverTest} />} />
+                                                  <Route path="/discover/*" element={<DebugRoute name="discover/*" component={DiscoverPage} />} />
+                                                  <Route path="/admin" element={<AdminPage />} />
           <Route path="/intelligence" element={<IntelligencePage />} />
           <Route path="/intelligence/movies" element={<IntelligencePage />} />
           <Route path="/intelligence/tv" element={<IntelligencePage />} />
