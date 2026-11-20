@@ -8,7 +8,7 @@ import personalStore from "./utils/personalStore";
 // 浏览器可能拒绝（未满足参与度启发式），失败静默降级，数据仍照常写入 IndexedDB。
 import { requestPersistence } from "./utils/personalStore";
 
-console.log('[main.jsx] module loaded, root element:', document.getElementById("root"));
+console.log('[main.jsx] module loaded, root element:', document.getElementById("root"), 'initial path:', window.__INITIAL_PATH__);
 
 if ("storage" in navigator && navigator.storage && navigator.storage.persist) {
   try {
