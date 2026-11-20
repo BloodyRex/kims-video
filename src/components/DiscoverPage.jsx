@@ -16,6 +16,8 @@ import {
 } from "./DiscoverComponents";
 import { useDiscoverData } from "../hooks/useDiscoverData";
 
+console.log('[DiscoverPage] DiscoverComponents loaded:', { DailyPickCard, PairCard, PairDetailOverlay, DailyPickDetailOverlay, UserResultCard, PosterModal });
+
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
 };
