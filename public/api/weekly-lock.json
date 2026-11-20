@@ -1,13 +1,15 @@
 {
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "weekStart": "2026-11-16",
   "cap": 25,
   "sections": {
     "movies.json.releasedThisWeek": [
       "1300968",
-      "925725",
       "1551025",
+      "1567259",
       "1131943",
+      "925725",
+      "1822400",
       "1239037",
       "1567605",
       "1543469",
@@ -27,16 +29,21 @@
     ],
     "movies.json.nowPlaying": [
       "1616687",
+      "1567605",
       "1562642",
+      "1543469",
+      "1437511",
+      "1379486",
       "1518204",
-      "1757174",
+      "1529692",
       "1263337",
       "1423191",
       "656908",
-      "891621",
       "1400837",
+      "891621",
       "1381071",
       "1286656",
+      "1757174",
       "1813355",
       "1117898",
       "1570488",
@@ -52,10 +59,11 @@
       "245891"
     ],
     "tv.json.ongoing": [
-      "1413",
-      "312359",
       "213375",
       "291507",
+      "58841",
+      "1413",
+      "312359",
       "108978",
       "259909",
       "303044",
@@ -64,13 +72,15 @@
     "coming.json.next30Days": [
       "movie:1003596",
       "movie:1538497",
-      "movie:1400336",
       "movie:1170608",
+      "movie:1720486",
+      "movie:1457866",
       "movie:1461490",
       "tv:171802",
-      "tv:312580",
-      "tv:256726",
       "tv:288672",
+      "tv:256726",
+      "tv:312580",
+      "tv:310209",
       "tv:326247"
     ],
     "music.json.picks": [
@@ -110,25 +120,25 @@
   },
   "failures": {},
   "delta": {
-    "date": "2026-11-20",
+    "date": "2026-11-21",
     "bySection": {
-      "movies.json.releasedThisWeek": 3,
-      "movies.json.nowPlaying": 2,
-      "tv.json.ongoing": 0,
+      "movies.json.releasedThisWeek": 2,
+      "movies.json.nowPlaying": 5,
+      "tv.json.ongoing": 1,
       "coming.json.next30Days": 2,
       "music.json.picks": 0,
       "tv.json.premieresThisWeek": 0
     },
-    "total": 7
+    "total": 10
   },
   "prevCounts": {
     "weekStart": "2026-11-16",
-    "date": "2026-11-20",
+    "date": "2026-11-21",
     "totals": {
-      "movies.json.releasedThisWeek": 20,
-      "movies.json.nowPlaying": 24,
-      "tv.json.ongoing": 8,
-      "coming.json.next30Days": 10,
+      "movies.json.releasedThisWeek": 22,
+      "movies.json.nowPlaying": 29,
+      "tv.json.ongoing": 9,
+      "coming.json.next30Days": 12,
       "music.json.picks": 29,
       "tv.json.premieresThisWeek": 1
     }
