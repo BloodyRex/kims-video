@@ -67,7 +67,7 @@ const DiscoverPage = () => {
     scrollRef,
     buildPages: buildPagesFn,
     handleLike,
-  } = useDiscoverData(discoverData, { locale, fetchDiscoverResults, likeDiscoverResult });
+  } = useDiscoverData(discoverData, { locale });
   console.log('[DiscoverPage] hook returned', { sourceMode, genreFilter, itemCount, loadingResults });
 
     const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;

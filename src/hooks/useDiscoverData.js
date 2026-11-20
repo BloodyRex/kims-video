@@ -10,7 +10,7 @@ const COMMON_GENRES = [
 
 const PAGE_SIZE = 24;
 
-export function useDiscoverData(discoverData, { locale, fetchDiscoverResults, likeDiscoverResult }) {
+export function useDiscoverData(discoverData, { locale }) {
   const zh = locale === "zh";
 
   // Pre-compute normalized genre map once — avoids repeated GENRE_ZH lookups in filters
