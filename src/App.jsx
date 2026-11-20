@@ -141,6 +141,11 @@ function ScrollManager() {
 }
 
 function App() {
+  console.log('[App] render', { location: window.location.pathname });
+  const debugDiv = document.createElement('div');
+  debugDiv.style.cssText = 'position:fixed;top:40px;right:10px;background:blue;color:white;padding:10px;z-index:9999;font-size:12px;font-family:monospace';
+  debugDiv.textContent = `App render: ${window.location.pathname}`;
+  document.body.appendChild(debugDiv);
   return (
     <BrowserRouter>
       <ScrollManager />
