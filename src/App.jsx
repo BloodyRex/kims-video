@@ -29,6 +29,12 @@ import SiteFooter from "./components/SiteFooter";
 // Entry portal route — the classic engine home lives here now (new home owns "/")
 const ENTRY_ROUTE = "/recommend";
 
+// Debug route wrapper to log which route is matched
+const DebugRoute = ({ name, component: Component }) => {
+  console.log('[DebugRoute] matched', name, { location: window.location.pathname });
+  return <Component />;
+};
+
 function ScrollManager() {
   // #2/#3/#5: PUSH/REPLACE(链接、标签切换)滚回顶部; POP(浏览器返回)按 pathname
   // 从 sessionStorage 恢复原位。scrollRestoration=manual 避免浏览器默认恢复与 React
@@ -128,9 +134,9 @@ function App() {
         <Routes>
                   <Route path="/search" element={<NewHomePage />} />
                   <Route path="/" element={<NewHomePage />} />
-                  <Route path="/discover" element={<DiscoverPage />} />
-                  <Route path="/discover/" element={<DiscoverPage />} />
-                  <Route path="/discover/genre/:slug" element={<DiscoverPage />} />
+                  <Route path="/discover" element={<DebugRoute name="discover" component={DiscoverPage} />} />
+                  <Route path="/discover/" element={<DebugRoute name="discover/" component={DiscoverPage} />} />
+                  <Route path="/discover/genre/:slug" element={<DebugRoute name="discover/genre" component={DiscoverPage} />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/intelligence" element={<IntelligencePage />} />
           <Route path="/intelligence/movies" element={<IntelligencePage />} />
