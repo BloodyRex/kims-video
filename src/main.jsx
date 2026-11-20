@@ -46,3 +46,4 @@ if ("serviceWorker" in navigator && import.meta.env.PROD) {
 }
 // cache bust 1795158146
 export const CACHE_BUST_VERSION = '1795158272';
+console.log('CACHE_BUST_1795158424');
