@@ -126,10 +126,11 @@ function App() {
       <ScrollManager />
       <LocaleProvider>
         <Routes>
-          <Route path="/search" element={<NewHomePage />} />
-          <Route path="/" element={<NewHomePage />} />
-          <Route path="/discover" element={<DiscoverPage />} />
-          <Route path="/discover/genre/:slug" element={<DiscoverPage />} />
+                  <Route path="/search" element={<NewHomePage />} />
+                  <Route path="/" element={<NewHomePage />} />
+                  <Route path="/discover" element={<DiscoverPage />} />
+                  <Route path="/discover/" element={<DiscoverPage />} />
+                  <Route path="/discover/genre/:slug" element={<DiscoverPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/intelligence" element={<IntelligencePage />} />
           <Route path="/intelligence/movies" element={<IntelligencePage />} />
