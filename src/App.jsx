@@ -29,26 +29,6 @@ import SiteFooter from "./components/SiteFooter";
 // Entry portal route — the classic engine home lives here now (new home owns "/")
 const ENTRY_ROUTE = "/recommend";
 
-// Debug route wrapper to log which route is matched
-const DebugRoute = ({ name, component: Component }) => {
-  console.log('[DebugRoute] matched', name, { location: window.location.pathname });
-  // Also write to document for persistent debugging
-  const debugDiv = document.createElement('div');
-  debugDiv.style.cssText = 'position:fixed;top:10px;right:10px;background:red;color:white;padding:10px;z-index:9999;font-size:12px;font-family:monospace';
-  debugDiv.textContent = `DebugRoute matched: ${name} @ ${window.location.pathname}`;
-  document.body.appendChild(debugDiv);
-  return <Component />;
-};
-
-const NotFoundPage = () => {
-  console.log('[NotFoundPage] matched', { location: window.location.pathname });
-  const debugDiv = document.createElement('div');
-  debugDiv.style.cssText = 'position:fixed;top:10px;right:10px;background:orange;color:white;padding:10px;z-index:9999;font-size:12px;font-family:monospace';
-  debugDiv.textContent = `404: ${window.location.pathname}`;
-  document.body.appendChild(debugDiv);
-  return <div style={{padding: '20px', color: 'white'}}>404: {window.location.pathname}</div>;
-};
-
 function ScrollManager() {
   // #2/#3/#5: PUSH/REPLACE(链接、标签切换)滚回顶部; POP(浏览器返回)按 pathname
   // 从 sessionStorage 恢复原位。scrollRestoration=manual 避免浏览器默认恢复与 React
@@ -141,45 +121,40 @@ function ScrollManager() {
   }
 
   function App() {
-  console.log('[App] render', { location: window.location.pathname });
-  const debugDiv = document.createElement('div');
-  debugDiv.style.cssText = 'position:fixed;top:40px;right:10px;background:blue;color:white;padding:10px;z-index:9999;font-size:12px;font-family:monospace';
-  debugDiv.textContent = `App render: ${window.location.pathname}`;
-  document.body.appendChild(debugDiv);
-  return (
+    return (
     <BrowserRouter>
       <ScrollManager />
       <LocaleProvider>
         <Routes>
-                                                          <Route path="/search" element={<NewHomePage />} />
-                                                          <Route path="/" element={<NewHomePage />} />
-                                                          <Route path="/discover" element={<DebugRoute name="discover" component={DiscoverPage} />} />
-                                                          <Route path="/discover/" element={<DebugRoute name="discover/" component={DiscoverPage} />} />
-                                                          <Route path="/discover/*" element={<DebugRoute name="discover/*" component={DiscoverPage} />} />
-                                                          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/intelligence" element={<IntelligencePage />} />
-          <Route path="/intelligence/movies" element={<IntelligencePage />} />
-          <Route path="/intelligence/tv" element={<IntelligencePage />} />
-          <Route path="/intelligence/music" element={<IntelligencePage />} />
-          <Route path="/intelligence/coming" element={<IntelligencePage />} />
-          <Route path="/intelligence/weekly" element={<IntelligencePage />} />
-          <Route path="/intelligence/search" element={<IntelligencePage />} />
-          <Route path="/wall" element={<WallPage />} />
-          <Route path="/my-data" element={<MyDataPage />} />
-          {/* Festival Calendar — TODAY/WEEK/MONTH/FESTIVALS/CHANGES + /festivals/:slug detail */}
-          <Route path="/festivals" element={<FestivalCalendarPage />} />
-          <Route path="/festivals/week" element={<FestivalCalendarPage />} />
-          <Route path="/festivals/month" element={<FestivalCalendarPage />} />
-          <Route path="/festivals/all" element={<FestivalCalendarPage />} />
-          <Route path="/festivals/changes" element={<FestivalCalendarPage />} />
-          <Route path="/festivals/:slug" element={<FestivalCalendarPage />} />
-          {/* Legacy engine home (pre-new-home design) — kept at /recommend */}
-          <Route path="/recommend" element={<AppContent />} />
-          {/* Hidden test page: new 4-card entry portal */}
-                    <Route path="/entry" element={<EntryPage />} />
-                    {/* Catch-all for debugging */}
-                    <Route path="*" element={<NotFoundPage />} />
-                  </Routes>
+                          <Route path="/search" element={<NewHomePage />} />
+                          <Route path="/" element={<NewHomePage />} />
+                          <Route path="/discover" element={<DiscoverPage />} />
+                          <Route path="/discover/" element={<DiscoverPage />} />
+                          <Route path="/discover/*" element={<DiscoverPage />} />
+                          <Route path="/admin" element={<AdminPage />} />
+                          <Route path="/intelligence" element={<IntelligencePage />} />
+                          <Route path="/intelligence/movies" element={<IntelligencePage />} />
+                          <Route path="/intelligence/tv" element={<IntelligencePage />} />
+                          <Route path="/intelligence/music" element={<IntelligencePage />} />
+                          <Route path="/intelligence/coming" element={<IntelligencePage />} />
+                          <Route path="/intelligence/weekly" element={<IntelligencePage />} />
+                          <Route path="/intelligence/search" element={<IntelligencePage />} />
+                          <Route path="/wall" element={<WallPage />} />
+                          <Route path="/my-data" element={<MyDataPage />} />
+                          {/* Festival Calendar — TODAY/WEEK/MONTH/FESTIVALS/CHANGES + /festivals/:slug detail */}
+                          <Route path="/festivals" element={<FestivalCalendarPage />} />
+                          <Route path="/festivals/week" element={<FestivalCalendarPage />} />
+                          <Route path="/festivals/month" element={<FestivalCalendarPage />} />
+                          <Route path="/festivals/all" element={<FestivalCalendarPage />} />
+                          <Route path="/festivals/changes" element={<FestivalCalendarPage />} />
+                          <Route path="/festivals/:slug" element={<FestivalCalendarPage />} />
+                          {/* Legacy engine home (pre-new-home design) — kept at /recommend */}
+                          <Route path="/recommend" element={<AppContent />} />
+                          {/* Hidden test page: new 4-card entry portal */}
+                          <Route path="/entry" element={<EntryPage />} />
+                          {/* Catch-all 404 */}
+                          <Route path="*" element={<div style={{padding: '20px', color: 'white'}}>404: Not Found</div>} />
+        </Routes>
         <ShareButtonWrapper />
       </LocaleProvider>
     </BrowserRouter>
