@@ -2,6 +2,38 @@
   Cache-Control: public, max-age=0, must-revalidate
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+/discover/
+  Cache-Control: public, max-age=0, must-revalidate
+/discover/*
+  Cache-Control: public, max-age=0, must-revalidate
+/intelligence/
+  Cache-Control: public, max-age=0, must-revalidate
+/intelligence/*
+  Cache-Control: public, max-age=0, must-revalidate
+/wall/
+  Cache-Control: public, max-age=0, must-revalidate
+/wall/*
+  Cache-Control: public, max-age=0, must-revalidate
+/festivals/
+  Cache-Control: public, max-age=0, must-revalidate
+/festivals/*
+  Cache-Control: public, max-age=0, must-revalidate
+/admin/
+  Cache-Control: public, max-age=0, must-revalidate
+/admin/*
+  Cache-Control: public, max-age=0, must-revalidate
+/my-data/
+  Cache-Control: public, max-age=0, must-revalidate
+/my-data/*
+  Cache-Control: public, max-age=0, must-revalidate
+/entry/
+  Cache-Control: public, max-age=0, must-revalidate
+/entry/*
+  Cache-Control: public, max-age=0, must-revalidate
+/recommend/
+  Cache-Control: public, max-age=0, must-revalidate
+/recommend/*
+  Cache-Control: public, max-age=0, must-revalidate
 /*.js
   Cache-Control: public, max-age=31536000, immutable
 /*.css
