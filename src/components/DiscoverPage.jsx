@@ -34,6 +34,7 @@ function buildPages(current, total) {
 }
 
 const DiscoverPage = () => {
+  console.log('[DiscoverPage] render start', { location: window.location.pathname });
   const { t, locale, toggleLocale } = useLocale();
   const zh = locale === "zh";
 
@@ -67,6 +68,7 @@ const DiscoverPage = () => {
     buildPages: buildPagesFn,
     handleLike,
   } = useDiscoverData(discoverData, { locale, fetchDiscoverResults, likeDiscoverResult });
+  console.log('[DiscoverPage] hook returned', { sourceMode, genreFilter, itemCount, loadingResults });
 
     const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
 
@@ -84,7 +86,8 @@ const DiscoverPage = () => {
       </button>
     );
 
-  return (
+      console.log('[DiscoverPage] render complete, returning JSX');
+      return (
     <div className={`min-h-screen graffiti-bg text-black pb-32 discover-page locale-${locale}`}>
       {/* Comet border for the 来自社区 toggle — identical treatment to the wall */}
       <style>{`
