@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icons } from "../Icons";
+import { posterUrl } from "../../utils/poster";
 
 export function UserResultCard({ result, posterMap, locale, onLike, onOpenPoster }) {
   const zh = locale === "zh";
@@ -41,7 +42,7 @@ export function UserResultCard({ result, posterMap, locale, onLike, onOpenPoster
           const bc = i < 2 ? "bg-[#ff00ff]" : i < 4 ? "bg-[#00ffff]" : "bg-[#ffff00]";
           return (
             <Link key={i} to={detailUrl} onClick={e => e.stopPropagation()} className="flex-shrink-0 w-16 group">
-              {poster ? <img src={poster} alt={rec.title} className="w-16 h-24 object-cover border-2 border-black group-hover:border-[#ff00ff] transition-colors" loading="lazy" /> : <div className="w-16 h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold">?</div>}
+              {poster ? <img src={posterUrl(poster)} alt={rec.title} className="w-16 h-24 object-cover border-2 border-black group-hover:border-[#ff00ff] transition-colors" loading="lazy" /> : <div className="w-16 h-24 bg-gray-800 border-2 border-black flex items-center justify-center text-[8px] text-gray-500 font-bold">?</div>}
               <span className={`block text-[8px] font-black text-center mt-0.5 px-0.5 ${bc} text-black`}>{badge}</span>
             </Link>
           );

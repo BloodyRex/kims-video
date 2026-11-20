@@ -17,7 +17,7 @@ export function PairCard({ pair, posterMap, metaMap, locale, onOpen }) {
       className="group bg-white border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#00ffff] transition-all cursor-pointer">
       <div className="relative overflow-hidden border-b-2 border-black">
         {recPoster ? (
-          <img src={recPoster} alt={recTitle} className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+          <img src={posterUrl(recPoster)} alt={recTitle} className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
         ) : (
           <div className="w-full aspect-[2/3] bg-gray-800 flex items-center justify-center text-gray-500"><Icons.Film className="w-8 h-8" /></div>
         )}

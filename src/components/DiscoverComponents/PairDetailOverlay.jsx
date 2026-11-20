@@ -1,6 +1,7 @@
 import React from "react";
 import { Icons } from "../Icons";
 import { StarRating, TrailerButtons } from "../Cards";
+import { posterUrl } from "../../utils/poster";
 import { useOverlayLock } from "../../hooks/useOverlayLock";
 
 export function PairDetailOverlay({ pair, posterMap, metaMap, locale, onClose }) {
@@ -23,7 +24,7 @@ export function PairDetailOverlay({ pair, posterMap, metaMap, locale, onClose })
         </div>
         <div className="flex gap-3 p-4 max-sm:p-3">
           {recPoster ? (
-            <img src={recPoster} alt={recTitle} className="w-24 h-36 object-cover border-2 border-black flex-shrink-0" />
+            <img src={posterUrl(recPoster)} alt={recTitle} className="w-24 h-36 object-cover border-2 border-black flex-shrink-0" />
           ) : (
             <div className="w-24 h-36 bg-gray-800 border-2 border-black flex items-center justify-center text-gray-500"><Icons.Film /></div>
           )}
