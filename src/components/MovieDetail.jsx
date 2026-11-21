@@ -3,6 +3,7 @@ import { Icons } from "./Icons";
 import Loading from "./Loading";
 import { useLocale } from "../i18n";
 import { posterAlt } from "../utils/posterAlt";
+import { posterUrl } from "../utils/poster";
 import { useMovieDetail } from "../hooks/useMovieDetail";
 
 const MovieDetail = ({
@@ -66,7 +67,7 @@ const MovieDetail = ({
                   {data.poster ? (
                     <div className="border-4 border-black overflow-hidden shadow-[4px_4px_0_0_#000]">
                       <img
-                        src={data.poster}
+                        src={posterUrl(data.poster)}
                         alt={posterAlt(data.title, data.year, data.originalTitle, locale)}
                         className="w-full h-auto object-cover"
                       />

@@ -4,6 +4,7 @@ import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { adminLogin, adminFetchResults, adminDeleteResult, adminPatchResult, adminSetAuthorization } from "../services/adminApi";
 import { fetchMovieByTmdbId } from "../services/api";
+import { posterUrl } from "../utils/poster";
 import IntelConfigPanel from "./IntelConfigPanel";
 
 const CATEGORIES = ["科幻", "悬疑", "恐怖", "动画", "战争", "犯罪", "剧情", "奇幻"];
@@ -302,7 +303,7 @@ const AdminPage = () => {
                     const src = r.sourceMovies?.[0];
                     const poster = r.thumbnail || (src?.tmdbId ? posterMap[src.tmdbId] : null);
                     return poster ? (
-                      <img src={poster} alt="Poster" className="w-24 h-auto border-2 border-black object-cover" loading="lazy" />
+                      <img src={posterUrl(poster)} alt="Poster" className="w-24 h-auto border-2 border-black object-cover" loading="lazy" />
                     ) : (
                       <div className="w-24 h-36 bg-gray-300 border-2 border-black flex items-center justify-center text-xs font-bold text-gray-500">{locale === "en" ? "NO IMG" : "无图"}</div>
                     );

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Icons } from "./Icons";
 import { useLocale } from "../i18n";
 import { posterAlt } from "../utils/posterAlt";
+import { posterUrl } from "../utils/poster";
 import { publishToDiscover, uploadDiscoverThumbnail } from "../services/discoverApi";
 import { fetchMovieByTmdbId } from "../services/api";
 import SaveContent from "./SaveContent";
@@ -399,7 +400,7 @@ const ResultsPage = ({
                 {rec.poster ? (
                   <div className="relative border-4 border-black overflow-hidden shadow-[4px_4px_0_0_#000]">
                     <img
-                      src={rec.poster}
+                      src={posterUrl(rec.poster)}
                       alt={posterAlt(rec.title, rec.year, rec.originalTitle, locale)}
                       className="w-full h-auto object-cover"
                     />

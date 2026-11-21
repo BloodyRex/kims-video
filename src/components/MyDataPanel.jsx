@@ -89,7 +89,7 @@ export function FavoriteCard({ fav, removeLabel, onOpen, onRemove }) {
       >
         <div className="relative h-28 sm:h-36 w-full overflow-hidden bg-[#1a1a1a]">
           {poster ? (
-            <img src={poster} alt={fav.title || ""} loading="lazy" className="w-full h-full object-cover" />
+            <img src={posterProxy(poster)} alt={fav.title || ""} loading="lazy" className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-[#ffff00]">
               <Icons.Film className="w-6 h-6" />
