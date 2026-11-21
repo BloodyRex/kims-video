@@ -26,7 +26,7 @@ const COMMON_GENRES = [
   "Action", "Sci-Fi", "Comedy", "Romance",
   "Horror", "Drama", "Animation", "Thriller", "Documentary",
 ];
-const normGenre = (g) => g;
+const normGenre = (g) => GENRE_ZH[g] || g;
 const COMMON_ZH = COMMON_GENRES.map(normGenre);
 
 function buildPages(current, total) {
@@ -209,7 +209,7 @@ const DiscoverPage = () => {
               className={`px-2.5 py-1 text-[10px] sm:text-xs font-black pixel-font uppercase border-2 border-black shadow-[2px_2px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all ${
                 genreFilter === g ? "bg-[#00ffff] text-white" : "bg-white text-black hover:bg-gray-100"
               }`}>
-              {g}
+              {zh ? normGenre(g) : g}
             </button>
           ))}
           <button onClick={() => setGenreFilter("other")}
