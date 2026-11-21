@@ -1,7 +1,267 @@
 {
- "updated": "2026-11-21T19:05:05Z",
+ "updated": "2026-11-21T23:46:00Z",
  "count7d": 1000,
  "changes": [
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-45e78d31-c660-41fb-876f-cc70ec4dd3ee-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-45e78d31-c660-41fb-876f-cc70ec4dd3ee",
+   "label": "Closure — 2026-11-21 20:30 · Pathé Noord 9",
+   "fields": [
+    {
+     "field": "subtitle",
+     "from": null,
+     "to": "English",
+     "fieldLabel": "字幕"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-02edcae7-9954-44ff-9b23-db192e7a47ca-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-02edcae7-9954-44ff-9b23-db192e7a47ca",
+   "label": "Small Expectations — 2026-11-22 09:30 · Tuschinski 3",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-c42a3fc9-3514-4c1d-a6b5-972c11153df8-idfa-junior-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-c42a3fc9-3514-4c1d-a6b5-972c11153df8-idfa-junior",
+   "label": "IDFA Junior — 2026-11-22 10:00 · Eye: Cinema 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-bfb16511-f5da-4eec-a5b9-155433abb42d-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-bfb16511-f5da-4eec-a5b9-155433abb42d",
+   "label": "From Dawn to Dawn — 2026-11-22 10:00 · Het Documentaire Paviljoen: De Spiegel",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "SOLD_OUT",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-a856db1c-5052-45c8-b946-d336219ecced-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-a856db1c-5052-45c8-b946-d336219ecced",
+   "label": "The Message — 2026-11-22 10:30 · SILO (Rialto) Zaal 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "SOLD_OUT",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-056628cb-bcdf-4831-bd11-15133112293c-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-056628cb-bcdf-4831-bd11-15133112293c",
+   "label": "Microbiome Restaurant: Plural Tastings — 2026-11-22 11:30 · @droog: Plural Tastings",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "SOLD_OUT",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-3cf4c51a-e8e6-4e31-a058-c1d672920fc0-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-3cf4c51a-e8e6-4e31-a058-c1d672920fc0",
+   "label": "Orgasmagoria — 2026-11-22 11:30 · Casa Rosso: Orgasmagoria",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-e4ef07f6-1c02-4451-9c68-1bfc9f36c08f-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-e4ef07f6-1c02-4451-9c68-1bfc9f36c08f",
+   "label": "Orgasmagoria — 2026-11-22 12:30 · Casa Rosso: Orgasmagoria",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-1382d3e2-d9d8-4c8c-bb64-a481ce840f81-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-1382d3e2-d9d8-4c8c-bb64-a481ce840f81",
+   "label": "Orgasmagoria — 2026-11-22 13:00 · Casa Rosso: Orgasmagoria",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-a173205c-f3fc-4e9c-8e3d-1f065bfb0aa8-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-a173205c-f3fc-4e9c-8e3d-1f065bfb0aa8",
+   "label": "Rivers of Memory — 2026-11-22 13:00 · Tuschinski 4",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "SOLD_OUT",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-54338911-e89b-4987-9194-d52f99e86a86-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-54338911-e89b-4987-9194-d52f99e86a86",
+   "label": "Bardi — 2026-11-22 15:30 · Cinema De Vlugt - Theaterzaal",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-3b711ed3-6943-4ef8-8e19-a90eebcd79dc-doclab-vr-gallery-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-3b711ed3-6943-4ef8-8e19-a90eebcd79dc-doclab-vr-gallery",
+   "label": "DocLab: VR Gallery — 2026-11-22 15:30 · de Brakke Grond: VR Gallery",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "SOLD_OUT",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-42a9d754-a1ab-4535-8f6f-dfbf52398b7b-2026-11-21T23:46:00Z",
+   "at": "2026-11-21T23:46:00Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-42a9d754-a1ab-4535-8f6f-dfbf52398b7b",
+   "label": "Father's House — 2026-11-22 16:30 · Eye: Cinema 2",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
   {
    "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260903-les-m%C3%A9tamorphoses-au-f%C3%A9minin-2026-09-03-13-30-2026-11-21T19:05:05Z",
    "at": "2026-11-21T19:05:05Z",
@@ -3740,266 +4000,6 @@
     }
    ],
    "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/shumei-living-legacy-kabuki-2026-09-05-14-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-viaggio-italia-journey-italy-2026-09-05-14-00-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-viaggio-italia-journey-italy-2026-09-05-14-00",
-   "label": "Viaggio in Italia (Journey to Italy) — 2026-09-05 14:00 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Viaggio in Italia (Journey to Italy)",
-     "to": "Eklipse",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/viaggio-italia-journey-italy-2026-09-05-14-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-eklipse-2026-09-05-14-15-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-eklipse-2026-09-05-14-15",
-   "label": "Eklipse — 2026-09-05 14:00 · Sala Darsena",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Eklipse",
-     "to": "Viaggio in Italia (Journey to Italy)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/eklipse-2026-09-05-14-15",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-la-maison-du-vent-2026-09-05-16-30-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-la-maison-du-vent-2026-09-05-16-30",
-   "label": "La maison du vent — 2026-09-05 16:30 · Astra 2",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "La maison du vent",
-     "to": "Un détour par Diane",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/la-maison-du-vent-2026-09-05-16-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-un-d%C3%A9tour-par-diane-2026-09-05-16-45-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-un-d%C3%A9tour-par-diane-2026-09-05-16-45",
-   "label": "Un détour par Diane — 2026-09-05 16:30 · Sala Darsena",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Un détour par Diane",
-     "to": "Les Indes",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/un-d%C3%A9tour-par-diane-2026-09-05-16-45",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-les-indes-2026-09-05-16-30-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-les-indes-2026-09-05-16-30",
-   "label": "Les Indes — 2026-09-05 16:30 · Sala Perla",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Les Indes",
-     "to": "#31 Discipline",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/les-indes-2026-09-05-16-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-31-discipline-2026-09-05-16-30-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-31-discipline-2026-09-05-16-30",
-   "label": "#31 Discipline — 2026-09-05 16:30 · Sala Perla",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "#31 Discipline",
-     "to": "La maison du vent",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/31-discipline-2026-09-05-16-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-basics-philosophy-2026-09-05-17-00-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-basics-philosophy-2026-09-05-17-00",
-   "label": "The Basics of Philosophy — 2026-09-05 17:00 · PalaBiennale",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "The Basics of Philosophy",
-     "to": "Queer Edward II",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/basics-philosophy-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-al-mowaten-osama-citizen-osama-2026-09-05-17-00-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-al-mowaten-osama-citizen-osama-2026-09-05-17-00",
-   "label": "Al mowaten Osama (Citizen Osama) — 2026-09-05 17:00 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Al mowaten Osama (Citizen Osama)",
-     "to": "Primetime",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/al-mowaten-osama-citizen-osama-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-primetime-2026-09-05-17-00-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-primetime-2026-09-05-17-00",
-   "label": "Primetime — 2026-09-05 17:00 · Sala Grande",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Primetime",
-     "to": "Al mowaten Osama (Citizen Osama)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/primetime-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-queer-edward-ii-2026-09-05-17-00-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-queer-edward-ii-2026-09-05-17-00",
-   "label": "Queer Edward II — 2026-09-05 17:00 · Sala Volpi",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Queer Edward II",
-     "to": "The Basics of Philosophy",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/queer-edward-ii-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-my-undesirable-friends-part-ii-%E2%80%93-exile-ch-1-2-3-2026-09-05-21-00-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-my-undesirable-friends-part-ii-%E2%80%93-exile-ch-1-2-3-2026-09-05-21-00",
-   "label": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3) — 2026-09-05 21:00 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3)",
-     "to": "Serpenti",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/my-undesirable-friends-part-ii-%E2%80%93-exile-ch-1-2-3-2026-09-05-21-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-serpenti-2026-09-05-21-00-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-serpenti-2026-09-05-21-00",
-   "label": "Serpenti — 2026-09-05 21:00 · Sala Giardino",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Serpenti",
-     "to": "My Undesirable Friends: Part II – Exile (Ch. 1-2-3)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/serpenti-2026-09-05-21-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-tijuana-todav%C3%ADa-2026-09-06-09-00-2026-11-21T11:40:16Z",
-   "at": "2026-11-21T11:40:16Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-tijuana-todav%C3%ADa-2026-09-06-09-00",
-   "label": "Tijuana, todavía — 2026-09-06 09:00 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Tijuana, todavía",
-     "to": "Serpenti",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/tijuana-todav%C3%ADa-2026-09-06-09-00",
    "sourceLabel": "Venice International Film Festival"
   }
  ]
