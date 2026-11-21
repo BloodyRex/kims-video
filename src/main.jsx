@@ -22,11 +22,16 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 function render() {
   console.log('[main.jsx] render() called');
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
+  try {
+    root.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    );
+    console.log('[main.jsx] render() completed');
+  } catch (e) {
+    console.error('[main.jsx] render() error:', e);
+  }
 }
 
 // 启动时把 IndexedDB 里的推荐读进内存镜像，使 loadResultsFromCache
