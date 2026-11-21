@@ -1,6 +1,126 @@
 {
  "changes": [
   {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-dd53ffb2-195c-4f4c-973e-1585e1ca0620-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-dd53ffb2-195c-4f4c-973e-1585e1ca0620",
+   "label": "Microbiome Restaurant: Plural Tastings — 2026-11-21 12:30 · @droog: Plural Tastings",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-6180705c-b141-4cbc-b6f5-86990a76800c-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-6180705c-b141-4cbc-b6f5-86990a76800c",
+   "label": "Gabin — 2026-11-21 12:30 · Eye: Cinema 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "SOLD_OUT",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-9ef01d27-b220-422c-9196-c8aca9c2db12-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-9ef01d27-b220-422c-9196-c8aca9c2db12",
+   "label": "Wood Street — 2026-11-21 15:30 · Ketelhuis: Zaal 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-db628433-a184-4929-bc82-c22d6de40605-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-db628433-a184-4929-bc82-c22d6de40605",
+   "label": "Morro Grande — 2026-11-21 17:30 · Tuschinski 2",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-3cf4c51a-e8e6-4e31-a058-c1d672920fc0-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-3cf4c51a-e8e6-4e31-a058-c1d672920fc0",
+   "label": "Orgasmagoria — 2026-11-22 11:30 · Casa Rosso: Orgasmagoria",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-a173205c-f3fc-4e9c-8e3d-1f065bfb0aa8-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-a173205c-f3fc-4e9c-8e3d-1f065bfb0aa8",
+   "label": "Rivers of Memory — 2026-11-22 13:00 · Tuschinski 4",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
    "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260903-una-fortaleza-2026-09-03-14-30-2026-11-20T22:37:00Z",
    "at": "2026-11-20T22:37:00Z",
    "slug": "venice-2026",
@@ -19879,127 +19999,7 @@
    ],
    "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/huangyan-shenghuo-big-little-things-2026-09-11-14-30",
    "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-do-kraja-dana-until-day-ends-2026-09-11-17-00-2026-11-19T00:13:49Z",
-   "at": "2026-11-19T00:13:49Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260911-do-kraja-dana-until-day-ends-2026-09-11-17-00",
-   "label": "Do kraja dana (Until the day ends) — 2026-09-11 17:00 · Astra 1",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Do kraja dana (Until the day ends)",
-     "to": "Los poderes",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/do-kraja-dana-until-day-ends-2026-09-11-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-naza-2026-09-11-17-00-2026-11-19T00:13:49Z",
-   "at": "2026-11-19T00:13:49Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260911-naza-2026-09-11-17-00",
-   "label": "NAZA — 2026-09-11 17:00 · PalaBiennale",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "NAZA",
-     "to": "Sounds from home",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/naza-2026-09-11-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-dai-nostri-inviati-la-rai-racconta-la-mostra-del-cinema-di-venezia-2001-2012-2026-09-11-17-00-2026-11-19T00:13:49Z",
-   "at": "2026-11-19T00:13:49Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260911-dai-nostri-inviati-la-rai-racconta-la-mostra-del-cinema-di-venezia-2001-2012-2026-09-11-17-00",
-   "label": "Dai nostri inviati. La Rai racconta la Mostra del Cinema di Venezia 2001-2012 — 2026-09-11 17:00 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Dai nostri inviati. La Rai racconta la Mostra del Cinema di Venezia 2001-2012",
-     "to": "Be Brave",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/dai-nostri-inviati-la-rai-racconta-la-mostra-del-cinema-di-venezia-2001-2012-2026-09-11-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-sounds-home-2026-09-11-17-00-2026-11-19T00:13:49Z",
-   "at": "2026-11-19T00:13:49Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260911-sounds-home-2026-09-11-17-00",
-   "label": "Sounds from home — 2026-09-11 17:00 · Sala Giardino",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Sounds from home",
-     "to": "Quelques instants de bonheur",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/sounds-home-2026-09-11-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-tesztp%C3%A1lya-test-track-2026-09-11-17-00-2026-11-19T00:13:49Z",
-   "at": "2026-11-19T00:13:49Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260911-tesztp%C3%A1lya-test-track-2026-09-11-17-00",
-   "label": "Tesztpálya (Test Track) — 2026-09-11 17:00 · Sala Giardino",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Tesztpálya (Test Track)",
-     "to": "Silence",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/tesztp%C3%A1lya-test-track-2026-09-11-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260911-los-poderes-2026-09-11-17-00-2026-11-19T00:13:49Z",
-   "at": "2026-11-19T00:13:49Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260911-los-poderes-2026-09-11-17-00",
-   "label": "Los poderes — 2026-09-11 17:00 · Sala Giardino",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Los poderes",
-     "to": "Dai nostri inviati. La Rai racconta la Mostra del Cinema di Venezia 2001-2012",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/los-poderes-2026-09-11-17-00",
-   "sourceLabel": "Venice International Film Festival"
   }
  ],
- "updated": "2026-11-20T22:37:00Z"
+ "updated": "2026-11-21T03:27:05Z"
 }

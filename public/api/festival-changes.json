@@ -1,7 +1,127 @@
 {
- "updated": "2026-11-20T22:37:00Z",
+ "updated": "2026-11-21T03:27:05Z",
  "count7d": 1000,
  "changes": [
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-dd53ffb2-195c-4f4c-973e-1585e1ca0620-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-dd53ffb2-195c-4f4c-973e-1585e1ca0620",
+   "label": "Microbiome Restaurant: Plural Tastings — 2026-11-21 12:30 · @droog: Plural Tastings",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-6180705c-b141-4cbc-b6f5-86990a76800c-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-6180705c-b141-4cbc-b6f5-86990a76800c",
+   "label": "Gabin — 2026-11-21 12:30 · Eye: Cinema 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "SOLD_OUT",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-9ef01d27-b220-422c-9196-c8aca9c2db12-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-9ef01d27-b220-422c-9196-c8aca9c2db12",
+   "label": "Wood Street — 2026-11-21 15:30 · Ketelhuis: Zaal 1",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261121-db628433-a184-4929-bc82-c22d6de40605-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261121-db628433-a184-4929-bc82-c22d6de40605",
+   "label": "Morro Grande — 2026-11-21 17:30 · Tuschinski 2",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "LOW_AVAILABILITY",
+     "to": "SOLD_OUT",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-3cf4c51a-e8e6-4e31-a058-c1d672920fc0-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-3cf4c51a-e8e6-4e31-a058-c1d672920fc0",
+   "label": "Orgasmagoria — 2026-11-22 11:30 · Casa Rosso: Orgasmagoria",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
+  {
+   "id": "idfa-2026-CHANGED-SCREENING-idfa-2026-20261122-a173205c-f3fc-4e9c-8e3d-1f065bfb0aa8-2026-11-21T03:27:05Z",
+   "at": "2026-11-21T03:27:05Z",
+   "slug": "idfa-2026",
+   "festivalId": "idfa",
+   "kind": "CHANGED",
+   "entity": "SCREENING",
+   "ref": "idfa-2026-20261122-a173205c-f3fc-4e9c-8e3d-1f065bfb0aa8",
+   "label": "Rivers of Memory — 2026-11-22 13:00 · Tuschinski 4",
+   "fields": [
+    {
+     "field": "ticketStatus",
+     "from": "HIGH_AVAILABILITY",
+     "to": "LOW_AVAILABILITY",
+     "fieldLabel": "售票状态"
+    }
+   ],
+   "sourceUrl": "https://my.idfa.nl/api/graphql/festival",
+   "sourceLabel": "International Documentary Film Festival Amsterdam"
+  },
   {
    "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260903-una-fortaleza-2026-09-03-14-30-2026-11-20T22:37:00Z",
    "at": "2026-11-20T22:37:00Z",
@@ -3880,126 +4000,6 @@
     }
    ],
    "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/al-mowaten-osama-citizen-osama-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-primetime-2026-09-05-17-00-2026-11-20T16:02:07Z",
-   "at": "2026-11-20T16:02:07Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-primetime-2026-09-05-17-00",
-   "label": "Primetime — 2026-09-05 17:00 · Sala Grande",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Primetime",
-     "to": "The Basics of Philosophy",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/primetime-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-queer-edward-ii-2026-09-05-17-00-2026-11-20T16:02:07Z",
-   "at": "2026-11-20T16:02:07Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-queer-edward-ii-2026-09-05-17-00",
-   "label": "Queer Edward II — 2026-09-05 17:00 · Sala Volpi",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Queer Edward II",
-     "to": "Primetime",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/queer-edward-ii-2026-09-05-17-00",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-e-i-e-i-o-2026-09-05-19-30-2026-11-20T16:02:07Z",
-   "at": "2026-11-20T16:02:07Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-e-i-e-i-o-2026-09-05-19-30",
-   "label": "E-I-E-I-O — 2026-09-05 19:30 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "E-I-E-I-O",
-     "to": "Fa xian zhi lü (Zoom In, Zoom Out)",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/e-i-e-i-o-2026-09-05-19-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260905-fa-xian-zhi-l%C3%BC-zoom-zoom-out-2026-09-05-19-30-2026-11-20T16:02:07Z",
-   "at": "2026-11-20T16:02:07Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260905-fa-xian-zhi-l%C3%BC-zoom-zoom-out-2026-09-05-19-30",
-   "label": "Fa xian zhi lü (Zoom In, Zoom Out) — 2026-09-05 19:30 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Fa xian zhi lü (Zoom In, Zoom Out)",
-     "to": "E-I-E-I-O",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/fa-xian-zhi-l%C3%BC-zoom-zoom-out-2026-09-05-19-30",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-cul-de-sac-2026-09-06-14-15-2026-11-20T16:02:07Z",
-   "at": "2026-11-20T16:02:07Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-cul-de-sac-2026-09-06-14-15",
-   "label": "Cul-de-sac — 2026-09-06 14:15 · Sala Corinto",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "Cul-de-sac",
-     "to": "The Difficult Bride",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/cul-de-sac-2026-09-06-14-15",
-   "sourceLabel": "Venice International Film Festival"
-  },
-  {
-   "id": "venice-2026-CHANGED-SCREENING-venice-2026-20260906-difficult-bride-2026-09-06-14-15-2026-11-20T16:02:07Z",
-   "at": "2026-11-20T16:02:07Z",
-   "slug": "venice-2026",
-   "festivalId": "venice",
-   "kind": "CHANGED",
-   "entity": "SCREENING",
-   "ref": "venice-2026-20260906-difficult-bride-2026-09-06-14-15",
-   "label": "The Difficult Bride — 2026-09-06 14:15 · Sala Darsena",
-   "fields": [
-    {
-     "field": "filmId",
-     "from": "The Difficult Bride",
-     "to": "Cul-de-sac",
-     "fieldLabel": "影片"
-    }
-   ],
-   "sourceUrl": "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/difficult-bride-2026-09-06-14-15",
    "sourceLabel": "Venice International Film Festival"
   }
  ]
