@@ -1,70 +1,122 @@
 {
-  "updated": "2026-11-21",
-  "count": 4,
+  "updated": "2026-11-22",
+  "count": 7,
   "movies": [
     {
-      "tmdbId": 1567259,
+      "tmdbId": 1568060,
       "mediaType": "movie",
-      "title": "试探",
-      "titleEn": "Love Test",
-      "year": "2026",
-      "releaseDate": "2026-11-21",
-      "poster": "https://image.tmdb.org/t/p/w500/pz0aI3dgcfsJLxJFzt4Dh5sp2Mb.jpg",
-      "rating": 0,
-      "genre": [
-        "Drama",
-        "Mystery",
-        "Thriller"
-      ],
-      "firstSeen": "2026-11-21"
-    },
-    {
-      "tmdbId": 1822400,
-      "mediaType": "movie",
-      "title": "金哲",
-      "titleEn": "金哲",
+      "title": "完美骗子",
+      "titleEn": "Perfect Liars",
       "year": "2026",
       "releaseDate": "2026-11-20",
-      "poster": "https://image.tmdb.org/t/p/w500/FBcloDR9qkTyxHOjmwAinYhPMr.jpg",
-      "rating": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/pRw4on3P500cEG3n5t8hllHq1kJ.jpg",
+      "rating": 7.118,
       "genre": [
         "Drama",
-        "Comedy",
-        "Family"
-      ],
-      "firstSeen": "2026-11-21"
-    },
-    {
-      "tmdbId": 1720486,
-      "mediaType": "movie",
-      "title": "史迪奇抓喵喵",
-      "titleEn": "Lilo & Scratch",
-      "year": "2026",
-      "releaseDate": "2026-11-25",
-      "poster": "https://image.tmdb.org/t/p/w500/1XaadQbZVQ27Kk2aekVYC1nUlLX.jpg",
-      "rating": 0,
-      "genre": [
-        "Animation",
-        "Comedy",
-        "Family",
-        "Sci-Fi"
-      ],
-      "firstSeen": "2026-11-21"
-    },
-    {
-      "tmdbId": 1457866,
-      "mediaType": "movie",
-      "title": "克里夫·布斯的惊险再冒险",
-      "titleEn": "THE FURTHER MIS-ADVENTURES OF CLIFF BOOTH",
-      "year": "2026",
-      "releaseDate": "2026-11-24",
-      "poster": "https://image.tmdb.org/t/p/w500/qoTSavcI299AeQVZm2Q9k21jd1Q.jpg",
-      "rating": 0,
-      "genre": [
-        "Comedy",
-        "Drama",
+        "Romance",
         "Thriller"
       ],
+      "firstSeen": "2026-11-22"
+    },
+    {
+      "tmdbId": 1595124,
+      "mediaType": "movie",
+      "title": "童话继姊妹",
+      "titleEn": "Steps",
+      "year": "2026",
+      "releaseDate": "2026-11-20",
+      "poster": "https://image.tmdb.org/t/p/w500/1cjypoWJTQSjgxL1v8RdSQ4Y6rc.jpg",
+      "rating": 6.232,
+      "genre": [
+        "Animation",
+        "Family",
+        "Comedy",
+        "Adventure",
+        "Fantasy"
+      ],
+      "firstSeen": "2026-11-22"
+    },
+    {
+      "tmdbId": 1384758,
+      "mediaType": "movie",
+      "title": "冰川时代6：熔岩危机",
+      "titleEn": "Ice Age: Boiling Point",
+      "year": "2027",
+      "releaseDate": "2027-01-28",
+      "poster": "https://image.tmdb.org/t/p/w500/x3GwnyDnB4J44GDUtLZa45pBTpV.jpg",
+      "rating": 0,
+      "genre": [
+        "Adventure",
+        "Animation",
+        "Family",
+        "Comedy"
+      ],
+      "firstSeen": "2026-11-22"
+    },
+    {
+      "tmdbId": 343668,
+      "mediaType": "movie",
+      "title": "王牌特工2：黄金圈",
+      "titleEn": "Kingsman: The Golden Circle",
+      "year": "2017",
+      "releaseDate": "2017-09-20",
+      "poster": "https://image.tmdb.org/t/p/w342/34xBL6BXNYFqtHO9zhcgoakS4aP.jpg",
+      "rating": 6.936,
+      "genre": [
+        "犯罪",
+        "喜剧",
+        "动作"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "tmdbId": 408539,
+      "mediaType": "movie",
+      "title": "战争天堂",
+      "titleEn": "Рай",
+      "year": "2016",
+      "releaseDate": "2016-09-01",
+      "poster": "https://image.tmdb.org/t/p/w342/kI3BSS2pzKimLa8uHk6ap8Ole3o.jpg",
+      "rating": 7.034,
+      "genre": [
+        "剧情",
+        "战争"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "tmdbId": 637,
+      "mediaType": "movie",
+      "title": "美丽人生",
+      "titleEn": "La vita è bella",
+      "year": "1997",
+      "releaseDate": "1997-12-20",
+      "poster": "https://image.tmdb.org/t/p/w342/74hLDKjD5aGYOotO6esUVaeISa2.jpg",
+      "rating": 8.434,
+      "genre": [
+        "喜剧",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "tmdbId": 718930,
+      "mediaType": "movie",
+      "title": "杀手疾风号",
+      "titleEn": "Bullet Train",
+      "year": "2022",
+      "releaseDate": "2022-08-03",
+      "poster": "https://image.tmdb.org/t/p/w342/j8szC8OgrejDQjjMKSVXyaAjw3V.jpg",
+      "rating": 7.402,
+      "genre": [
+        "动作",
+        "喜剧",
+        "惊悚"
+      ],
+      "source": "rec",
       "firstSeen": "2026-11-21"
     }
   ]

@@ -1,7 +1,24 @@
 {
-  "updated": "2026-11-21",
-  "count": 1718,
+  "updated": "2026-11-22",
+  "count": 1725,
   "movies": [
+    {
+      "tmdbId": 1384758,
+      "mediaType": "movie",
+      "title": "冰川时代6：熔岩危机",
+      "titleEn": "Ice Age: Boiling Point",
+      "year": "2027",
+      "releaseDate": "2027-01-28",
+      "poster": "https://image.tmdb.org/t/p/w500/x3GwnyDnB4J44GDUtLZa45pBTpV.jpg",
+      "rating": 0,
+      "genre": [
+        "Adventure",
+        "Animation",
+        "Family",
+        "Comedy"
+      ],
+      "firstSeen": "2026-11-22"
+    },
     {
       "tmdbId": 1260649,
       "mediaType": "movie",
@@ -212,6 +229,40 @@
         "Family"
       ],
       "firstSeen": "2026-11-21"
+    },
+    {
+      "tmdbId": 1568060,
+      "mediaType": "movie",
+      "title": "完美骗子",
+      "titleEn": "Perfect Liars",
+      "year": "2026",
+      "releaseDate": "2026-11-20",
+      "poster": "https://image.tmdb.org/t/p/w500/pRw4on3P500cEG3n5t8hllHq1kJ.jpg",
+      "rating": 7.118,
+      "genre": [
+        "Drama",
+        "Romance",
+        "Thriller"
+      ],
+      "firstSeen": "2026-11-22"
+    },
+    {
+      "tmdbId": 1595124,
+      "mediaType": "movie",
+      "title": "童话继姊妹",
+      "titleEn": "Steps",
+      "year": "2026",
+      "releaseDate": "2026-11-20",
+      "poster": "https://image.tmdb.org/t/p/w500/1cjypoWJTQSjgxL1v8RdSQ4Y6rc.jpg",
+      "rating": 6.232,
+      "genre": [
+        "Animation",
+        "Family",
+        "Comedy",
+        "Adventure",
+        "Fantasy"
+      ],
+      "firstSeen": "2026-11-22"
     },
     {
       "tmdbId": 1239037,
@@ -5575,6 +5626,23 @@
       "summary": "山村少年王兴福天生一副唱山歌的好嗓子，立志走出大山闯荡世界，梦想凭借自己高亢的歌声将山歌带到北京这样的大城市。然而，离开大山后的种种经历却出乎他的意料……"
     },
     {
+      "tmdbId": 718930,
+      "mediaType": "movie",
+      "title": "杀手疾风号",
+      "titleEn": "Bullet Train",
+      "year": "2022",
+      "releaseDate": "2022-08-03",
+      "poster": "https://image.tmdb.org/t/p/w342/j8szC8OgrejDQjjMKSVXyaAjw3V.jpg",
+      "rating": 7.402,
+      "genre": [
+        "动作",
+        "喜剧",
+        "惊悚"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-21"
+    },
+    {
       "tmdbId": 945664,
       "mediaType": "movie",
       "title": "人生大事",
@@ -9338,6 +9406,23 @@
       "summary": "这部动画短片围绕美国西海岸发生的电力系统故障事件展开。根据《银翼杀手 2049》的官方时间线，此次故障导致城市停摆，金融与贸易市场陷入混乱，食物供应日益枯竭。尽管尚无任何确凿证据证明停电的原因，但人们将矛头指向了复制人——即原版《银翼杀手》中出现的生物工程机器人。"
     },
     {
+      "tmdbId": 343668,
+      "mediaType": "movie",
+      "title": "王牌特工2：黄金圈",
+      "titleEn": "Kingsman: The Golden Circle",
+      "year": "2017",
+      "releaseDate": "2017-09-20",
+      "poster": "https://image.tmdb.org/t/p/w342/34xBL6BXNYFqtHO9zhcgoakS4aP.jpg",
+      "rating": 6.936,
+      "genre": [
+        "犯罪",
+        "喜剧",
+        "动作"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-21"
+    },
+    {
       "tmdbId": 518449,
       "title": "盛夏",
       "titleEn": "Été",
@@ -10526,6 +10611,22 @@
       ],
       "source": "rec",
       "firstSeen": "2026-09-26"
+    },
+    {
+      "tmdbId": 408539,
+      "mediaType": "movie",
+      "title": "战争天堂",
+      "titleEn": "Рай",
+      "year": "2016",
+      "releaseDate": "2016-09-01",
+      "poster": "https://image.tmdb.org/t/p/w342/kI3BSS2pzKimLa8uHk6ap8Ole3o.jpg",
+      "rating": 7.034,
+      "genre": [
+        "剧情",
+        "战争"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-21"
     },
     {
       "tmdbId": 313297,
@@ -23441,6 +23542,22 @@
       "source": "rec",
       "firstSeen": "2026-08-18",
       "summary": "腐败警察山姆负责谈判两个计划结盟的三合会头目，却意外遇到一名可疑的光头托尼，此人不断尾随他并干扰他的私人事务。"
+    },
+    {
+      "tmdbId": 637,
+      "mediaType": "movie",
+      "title": "美丽人生",
+      "titleEn": "La vita è bella",
+      "year": "1997",
+      "releaseDate": "1997-12-20",
+      "poster": "https://image.tmdb.org/t/p/w342/74hLDKjD5aGYOotO6esUVaeISa2.jpg",
+      "rating": 8.434,
+      "genre": [
+        "喜剧",
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-21"
     },
     {
       "tmdbId": 1902,
