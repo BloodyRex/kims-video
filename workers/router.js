@@ -15,6 +15,21 @@ export default {
     const path = url.pathname;
     const method = request.method;
 
+    // ── CORS preflight（浏览器跨域 OPTIONS）──
+    // 前端 POST 带 Content-Type: application/json 会触发预检；子 worker
+    // 各自处理 OPTIONS，但路由层必须先放行，否则预检在 catch-all 被吞。
+    if (method === "OPTIONS") {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Access-Control-Max-Age": "86400",
+        },
+      });
+    }
+
     // ── poster-proxy（内置，逐字节来自 workers-1.4.js 3938 行）──
     if (path === "/poster-proxy") { const iu = url.searchParams.get("url"); if (!iu) return new Response("Missing url", { status: 400, headers: { "Access-Control-Allow-Origin": "*" } }); if (!iu.startsWith("https://image.tmdb.org/") && !iu.startsWith("https://coverartarchive.org/")) return new Response("Forbidden", { status: 403, headers: { "Access-Control-Allow-Origin": "*" } }); try { const cacheKey = new Request(`https://poster-cache/${encodeURIComponent(iu)}`); const cached = await caches.default.match(cacheKey); if (cached) return cached; const ir = await fetch(iu); const nh = new Headers(ir.headers); nh.set("Access-Control-Allow-Origin", "*"); nh.set("Cache-Control", "public, max-age=86400"); const resp = new Response(ir.body, { status: ir.status, headers: nh }); if (ir.ok) caches.default.put(cacheKey, resp.clone()); return resp; } catch (e) { return new Response("Proxy error", { status: 502, headers: { "Access-Control-Allow-Origin": "*" } }); } }
 

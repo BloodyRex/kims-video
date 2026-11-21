@@ -1,5 +1,5 @@
 import React from "react";
-import * as ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./App.css";
 import personalStore from "./utils/personalStore";
@@ -7,8 +7,6 @@ import personalStore from "./utils/personalStore";
 // 持久化存储默认对所有用户开启：启动时静默请求一次，页面上不再出现开关。
 // 浏览器可能拒绝（未满足参与度启发式），失败静默降级，数据仍照常写入 IndexedDB。
 import { requestPersistence } from "./utils/personalStore";
-
-console.log('[main.jsx] module loaded, root element:', document.getElementById("root"), 'initial path:', window.__INITIAL_PATH__);
 
 if ("storage" in navigator && navigator.storage && navigator.storage.persist) {
   try {
@@ -21,28 +19,19 @@ if ("storage" in navigator && navigator.storage && navigator.storage.persist) {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 function render() {
-  console.log('[main.jsx] render() called');
-  try {
-    root.render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    );
-    console.log('[main.jsx] render() completed');
-  } catch (e) {
-    console.error('[main.jsx] render() error:', e);
-  }
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
 }
 
 // 启动时把 IndexedDB 里的推荐读进内存镜像，使 loadResultsFromCache
 // 在浏览器重启 / 新标签页后也能同步命中。1.5s 兜底，绝不卡住首屏。
-// 修复：保证 render 一定执行，不依赖 Promise.race 结果
-personalStore.warmUp().catch(() => {}).finally(() => {
-  setTimeout(render, 0);
-});
-
-// 兜底：1.5s 后强制渲染（防止 warmUp 卡死）
-setTimeout(render, 1500);
+Promise.race([
+  personalStore.warmUp().catch(() => null),
+  new Promise((resolve) => setTimeout(resolve, 1500)),
+]).finally(render);
 
 // Service Worker：让站点可安装（桌面/手机主屏、独立窗口）并缓存应用外壳。
 // 仅在生产且浏览器支持 SW 时注册；失败静默降级，不影响页面。
@@ -52,6 +41,3 @@ if ("serviceWorker" in navigator && import.meta.env.PROD) {
     navigator.serviceWorker.register(`${base}sw.js`).catch(() => {});
   });
 }
-// cache bust 1795158146
-export const CACHE_BUST_VERSION = '1795158272';
-console.log('CACHE_BUST_1795158424');

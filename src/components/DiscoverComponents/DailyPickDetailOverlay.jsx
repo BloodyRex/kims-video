@@ -1,6 +1,7 @@
 import React from "react";
 import { Icons } from "../Icons";
 import { StarRating, TrailerButtons } from "../Cards";
+import { posterUrl } from "../../utils/poster";
 import { useOverlayLock } from "../../hooks/useOverlayLock";
 
 export function DailyPickDetailOverlay({ pick, locale, onClose }) {
@@ -14,7 +15,7 @@ export function DailyPickDetailOverlay({ pick, locale, onClose }) {
           className="absolute -top-3 -right-3 w-8 h-8 bg-[#ff00ff] border-2 border-black text-white font-black flex items-center justify-center hover:bg-black hover:text-[#ff00ff] transition-colors z-10">×</button>
         <div className="flex gap-3 p-4 max-sm:p-3">
           {pick.poster ? (
-            <img src={pick.poster} alt={title} className="w-24 h-36 object-cover border-2 border-black flex-shrink-0" />
+            <img src={posterUrl(pick.poster)} alt={title} className="w-24 h-36 object-cover border-2 border-black flex-shrink-0" />
           ) : (
             <div className="w-24 h-36 bg-gray-800 border-2 border-black flex items-center justify-center text-gray-500"><Icons.Film /></div>
           )}

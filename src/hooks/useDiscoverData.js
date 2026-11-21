@@ -227,6 +227,7 @@ export function useDiscoverData(discoverData, { locale }) {
     metaMap,
     dailyPicks,
     userResults,
+    userPosterMap,
     loadingResults,
     sourceMode,
     setSourceMode,

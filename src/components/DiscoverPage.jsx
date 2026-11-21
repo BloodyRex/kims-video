@@ -14,9 +14,8 @@ import {
   UserResultCard,
   PosterModal,
 } from "./DiscoverComponents";
+import { GENRE_ZH } from "../components/Cards";
 import { useDiscoverData } from "../hooks/useDiscoverData";
-
-console.log('[DiscoverPage] DiscoverComponents loaded:', { DailyPickCard, PairCard, PairDetailOverlay, DailyPickDetailOverlay, UserResultCard, PosterModal });
 
 const LANG_BUTTON_STYLE = {
   fontFamily: "'Press Start 2P', 'Courier New', Courier, monospace",
@@ -27,7 +26,6 @@ const COMMON_GENRES = [
   "Horror", "Drama", "Animation", "Thriller", "Documentary",
 ];
 const normGenre = (g) => GENRE_ZH[g] || g;
-const COMMON_ZH = COMMON_GENRES.map(normGenre);
 
 function buildPages(current, total) {
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
@@ -36,7 +34,6 @@ function buildPages(current, total) {
 }
 
 const DiscoverPage = () => {
-  console.log('[DiscoverPage] render start', { location: window.location.pathname });
   const { t, locale, toggleLocale } = useLocale();
   const zh = locale === "zh";
 
@@ -45,6 +42,7 @@ const DiscoverPage = () => {
     metaMap,
     dailyPicks,
     userResults,
+    userPosterMap,
     loadingResults,
     sourceMode,
     setSourceMode,
@@ -70,9 +68,8 @@ const DiscoverPage = () => {
     buildPages: buildPagesFn,
     handleLike,
   } = useDiscoverData(discoverData, { locale });
-  console.log('[DiscoverPage] hook returned', { sourceMode, genreFilter, itemCount, loadingResults });
 
-    const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
+  const getTitle = (movie) => locale === "en" ? (movie.titleEn || movie.title) : movie.title;
 
     useEffect(() => {
       document.title = zh ? "发现 | AI 电影推荐社区 | Kim's Video" : "Discover | AI Movie Recommendations | Kim's Video";
@@ -88,8 +85,7 @@ const DiscoverPage = () => {
       </button>
     );
 
-      console.log('[DiscoverPage] render complete, returning JSX');
-      return (
+  return (
     <div className={`min-h-screen graffiti-bg text-black pb-32 discover-page locale-${locale}`}>
       {/* Comet border for the 来自社区 toggle — identical treatment to the wall */}
       <style>{`
@@ -251,7 +247,7 @@ const DiscoverPage = () => {
             {!loadingResults && itemCount > 0 && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-sm:gap-2">
                 {pageItems.map(r => (
-                  <UserResultCard key={r.id} result={r} posterMap={modalThumbnail ? {} : {}} locale={locale}
+                  <UserResultCard key={r.id} result={r} posterMap={userPosterMap} locale={locale}
                     onLike={handleLike}
                     onOpenPoster={(url) => setModalThumbnail(url)} />
                 ))}

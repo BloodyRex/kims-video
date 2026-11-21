@@ -10,21 +10,16 @@
     gtag('config', 'G-P7PY236BK9');
   </script>
   <!-- SPA routing fix: restore path from 404 redirect -->
-    <script>
-      (function() {
-        var redirect = sessionStorage.redirect;
-        delete sessionStorage.redirect;
-        if (redirect && redirect !== location.href) {
-          history.replaceState(null, null, redirect);
-        }
-      })();
-    </script>
-    <script>
-      // Debug: capture initial location before React loads
-      window.__INITIAL_PATH__ = window.location.pathname + window.location.search;
-      console.log('[index.html] Initial path:', window.__INITIAL_PATH__);
-    </script>
-    <meta charset="UTF-8" />
+  <script>
+    (function() {
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect);
+      }
+    })();
+  </script>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kim's Video — AI Movie Recommender / 智能影视推荐</title>
   <meta name="description" content="输入你喜欢的电影，AI 帮你发现冷门佳作、口碑争议片。基于 DeepSeek 与 TMDB 的智能影视推荐引擎。" />

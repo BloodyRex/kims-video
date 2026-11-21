@@ -18,8 +18,7 @@ export function UserResultCard({ result, posterMap, locale, onLike, onOpenPoster
     setLiked(true);
     setLikesLocal(l => l + 1);
     try {
-      const r = await likeDiscoverResult(result.id);
-      if (onLike) onLike(result.id, r.likes);
+      if (onLike) await onLike(result.id);
       try {
         const likedArr = JSON.parse(localStorage.getItem("kims_liked") || "[]");
         if (!likedArr.includes(result.id)) { likedArr.push(result.id); localStorage.setItem("kims_liked", JSON.stringify(likedArr)); }
@@ -54,9 +53,4 @@ export function UserResultCard({ result, posterMap, locale, onLike, onOpenPoster
       </div>
     </div>
   );
-}
-
-export async function likeDiscoverResult(id) {
-  const res = await fetch(`/api/discover/like?id=${id}`, { method: "POST" });
-  return res.json();
 }
