@@ -31,10 +31,13 @@ function render() {
 
 // 启动时把 IndexedDB 里的推荐读进内存镜像，使 loadResultsFromCache
 // 在浏览器重启 / 新标签页后也能同步命中。1.5s 兜底，绝不卡住首屏。
-Promise.race([
-  personalStore.warmUp().catch(() => null),
-  new Promise((resolve) => setTimeout(resolve, 1500)),
-]).finally(render);
+// 修复：保证 render 一定执行，不依赖 Promise.race 结果
+personalStore.warmUp().catch(() => {}).finally(() => {
+  setTimeout(render, 0);
+});
+
+// 兜底：1.5s 后强制渲染（防止 warmUp 卡死）
+setTimeout(render, 1500);
 
 // Service Worker：让站点可安装（桌面/手机主屏、独立窗口）并缓存应用外壳。
 // 仅在生产且浏览器支持 SW 时注册；失败静默降级，不影响页面。
