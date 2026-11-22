@@ -1,123 +1,70 @@
 {
-  "updated": "2026-11-22",
-  "count": 7,
+  "updated": "2026-11-23",
+  "count": 4,
   "movies": [
     {
-      "tmdbId": 1568060,
+      "tmdbId": 1561834,
       "mediaType": "movie",
-      "title": "完美骗子",
-      "titleEn": "Perfect Liars",
+      "title": "最后的晚餐",
+      "titleEn": "Last Meal",
       "year": "2026",
-      "releaseDate": "2026-11-20",
-      "poster": "https://image.tmdb.org/t/p/w500/pRw4on3P500cEG3n5t8hllHq1kJ.jpg",
-      "rating": 7.118,
+      "releaseDate": "2026-11-18",
+      "poster": "https://image.tmdb.org/t/p/w500/3nCXBykzfMDdgjChxRyzsd5HD3F.jpg",
+      "rating": 7.9,
       "genre": [
-        "Drama",
         "Romance",
-        "Thriller"
+        "Drama"
       ],
-      "firstSeen": "2026-11-22"
+      "firstSeen": "2026-11-23"
     },
     {
-      "tmdbId": 1595124,
+      "tmdbId": 1492198,
       "mediaType": "movie",
-      "title": "童话继姊妹",
-      "titleEn": "Steps",
+      "title": "人造",
+      "titleEn": "Artificial",
       "year": "2026",
-      "releaseDate": "2026-11-20",
-      "poster": "https://image.tmdb.org/t/p/w500/1cjypoWJTQSjgxL1v8RdSQ4Y6rc.jpg",
-      "rating": 6.232,
-      "genre": [
-        "Animation",
-        "Family",
-        "Comedy",
-        "Adventure",
-        "Fantasy"
-      ],
-      "firstSeen": "2026-11-22"
-    },
-    {
-      "tmdbId": 1384758,
-      "mediaType": "movie",
-      "title": "冰川时代6：熔岩危机",
-      "titleEn": "Ice Age: Boiling Point",
-      "year": "2027",
-      "releaseDate": "2027-01-28",
-      "poster": "https://image.tmdb.org/t/p/w500/x3GwnyDnB4J44GDUtLZa45pBTpV.jpg",
+      "releaseDate": "2026-12-25",
+      "poster": "https://image.tmdb.org/t/p/w500/tD4JOGcI5SSBKSFo4coObYwRlxE.jpg",
       "rating": 0,
       "genre": [
-        "Adventure",
-        "Animation",
-        "Family",
+        "History",
+        "Drama",
         "Comedy"
       ],
-      "firstSeen": "2026-11-22"
+      "firstSeen": "2026-11-23"
     },
     {
-      "tmdbId": 343668,
+      "tmdbId": 434221,
       "mediaType": "movie",
-      "title": "王牌特工2：黄金圈",
-      "titleEn": "Kingsman: The Golden Circle",
+      "title": "妖猫传",
+      "titleEn": "妖猫传",
       "year": "2017",
-      "releaseDate": "2017-09-20",
-      "poster": "https://image.tmdb.org/t/p/w342/34xBL6BXNYFqtHO9zhcgoakS4aP.jpg",
-      "rating": 6.936,
+      "releaseDate": "2017-12-22",
+      "poster": "https://image.tmdb.org/t/p/w342/9X3XeDLblva1fAnCX1VYd72d5wc.jpg",
+      "rating": 6.223,
       "genre": [
-        "犯罪",
-        "喜剧",
-        "动作"
+        "奇幻",
+        "冒险",
+        "家庭"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-21"
+      "firstSeen": "2026-11-23"
     },
     {
-      "tmdbId": 408539,
+      "tmdbId": 84174,
       "mediaType": "movie",
-      "title": "战争天堂",
-      "titleEn": "Рай",
-      "year": "2016",
-      "releaseDate": "2016-09-01",
-      "poster": "https://image.tmdb.org/t/p/w342/kI3BSS2pzKimLa8uHk6ap8Ole3o.jpg",
-      "rating": 7.034,
-      "genre": [
-        "剧情",
-        "战争"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-21"
-    },
-    {
-      "tmdbId": 637,
-      "mediaType": "movie",
-      "title": "美丽人生",
-      "titleEn": "La vita è bella",
-      "year": "1997",
-      "releaseDate": "1997-12-20",
-      "poster": "https://image.tmdb.org/t/p/w342/74hLDKjD5aGYOotO6esUVaeISa2.jpg",
-      "rating": 8.434,
+      "title": "未婚女子",
+      "titleEn": "Bachelorette",
+      "year": "2012",
+      "releaseDate": "2012-08-06",
+      "poster": "https://image.tmdb.org/t/p/w342/yAr4LLjZnoIvrfb1VrV3mh38rTK.jpg",
+      "rating": 5.379,
       "genre": [
         "喜剧",
-        "剧情"
+        "爱情"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-21"
-    },
-    {
-      "tmdbId": 718930,
-      "mediaType": "movie",
-      "title": "杀手疾风号",
-      "titleEn": "Bullet Train",
-      "year": "2022",
-      "releaseDate": "2022-08-03",
-      "poster": "https://image.tmdb.org/t/p/w342/j8szC8OgrejDQjjMKSVXyaAjw3V.jpg",
-      "rating": 7.402,
-      "genre": [
-        "动作",
-        "喜剧",
-        "惊悚"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-21"
+      "firstSeen": "2026-11-23"
     }
   ]
 }
