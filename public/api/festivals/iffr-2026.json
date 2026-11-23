@@ -31,11 +31,11 @@
   "endDate": "2026-02-08",
   "timezone": "Europe/Amsterdam",
   "dayCount": 11,
-  "officialUrl": "https://iffr.com/en/iffr/2026/films",
-  "coverageMinDays": 0,
   "registryEndDate": "2026-02-08",
   "endDateExtended": false,
-  "dataEndDate": "2026-02-08"
+  "dataEndDate": "2026-02-08",
+  "officialUrl": "https://iffr.com/en/iffr/2026/films",
+  "coverageMinDays": 0
  },
  "lifecycle": "ENDED",
  "status": "PROGRAM_RELEASED",
@@ -55,7 +55,7 @@
    "url": "https://iffr.com/en/wp-content/uploads/sites/2/static-files/iffr-2026.json",
    "httpStatus": 200,
    "ok": true,
-   "fetchedAt": "2026-10-29T06:25:06Z"
+   "fetchedAt": "2026-11-23T01:36:43Z"
   },
   {
    "kind": "OFFICIAL_SITE",
@@ -63,7 +63,7 @@
    "url": "https://iffr.com/en/iffr/2026",
    "httpStatus": null,
    "ok": true,
-   "fetchedAt": "2026-10-29T06:25:06Z"
+   "fetchedAt": "2026-11-23T01:36:43Z"
   }
  ],
  "sections": [
@@ -4313,7 +4313,7 @@
    "id": "iffr-2026-f450",
    "cIdx": 1248,
    "title": "Two Prosecutors",
-   "director": "Sergei Loznitsa",
+   "director": null,
    "country": "France, Germany, Latvia, Lithuania, Netherlands, Romania",
    "sectionId": "c1248",
    "sectionName": "Limelight",
@@ -6638,7 +6638,7 @@
   "guestVisits": 0
  },
  "days": [],
- "fetchedAt": "2026-10-29T06:25:06Z",
- "lastVerifiedAt": "2026-10-29T06:25:06Z",
+ "fetchedAt": "2026-11-23T01:36:43Z",
+ "lastVerifiedAt": "2026-11-23T01:36:43Z",
  "dataSource": "official"
 }
