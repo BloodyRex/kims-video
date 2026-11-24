@@ -451,12 +451,8 @@ const WallPage = () => {
                               <input
                                 type="text"
                                 value={searchQuery}
-                                onChange={(e) => {
-                                  if (e.target.composing) return;
-                                  setSearchQuery(e.target.value);
-                                }}
-                                onCompositionStart={(e) => { e.target.composing = true; }}
-                                onCompositionEnd={(e) => { e.target.composing = false; }}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onCompositionEnd={(e) => setSearchQuery(e.target.value)}
                                 placeholder={zh ? "搜索剧集…" : "SEARCH…"}
                                 className="w-40 sm:w-56 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#00ffff] outline-none pixel-font placeholder:text-gray-400"
                               />
@@ -507,12 +503,8 @@ const WallPage = () => {
                               <input
                                 type="text"
                                 value={searchQuery}
-                                onChange={(e) => {
-                                  if (e.target.composing) return;
-                                  setSearchQuery(e.target.value);
-                                }}
-                                onCompositionStart={(e) => { e.target.composing = true; }}
-                                onCompositionEnd={(e) => { e.target.composing = false; }}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onCompositionEnd={(e) => setSearchQuery(e.target.value)}
                                 placeholder={zh ? "搜索影片…" : "SEARCH…"}
                                 className="w-40 sm:w-56 px-2.5 py-1 text-xs font-bold bg-white text-black border-2 border-black shadow-[2px_2px_0_0_#000] focus:border-[#ff00ff] outline-none pixel-font placeholder:text-gray-400"
                               />

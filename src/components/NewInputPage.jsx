@@ -104,15 +104,19 @@ const NewInputPage = ({
                             placeholder={t("input.primary_placeholder")}
                             value={primaryMovie.title}
                             onChange={(e) => {
-                              if (e.target.composing) return;
                               setPrimaryMovie({
                                 ...primaryMovie,
                                 title: e.target.value,
                               });
                               setShowPrimaryDropdown(true);
                             }}
-                            onCompositionStart={(e) => { e.target.composing = true; }}
-                            onCompositionEnd={(e) => { e.target.composing = false; }}
+                            onCompositionEnd={(e) => {
+                              setPrimaryMovie({
+                                ...primaryMovie,
+                                title: e.target.value,
+                              });
+                              setShowPrimaryDropdown(true);
+                            }}
                             onFocus={() =>
                               primaryMovie.title && setShowPrimaryDropdown(true)
                             }
@@ -187,15 +191,19 @@ const NewInputPage = ({
                             placeholder={t("input.secondary_placeholder")}
                             value={secondaryMovie.title}
                             onChange={(e) => {
-                              if (e.target.composing) return;
                               setSecondaryMovie({
                                 ...secondaryMovie,
                                 title: e.target.value,
                               });
                               setShowSecondaryDropdown(true);
                             }}
-                            onCompositionStart={(e) => { e.target.composing = true; }}
-                            onCompositionEnd={(e) => { e.target.composing = false; }}
+                            onCompositionEnd={(e) => {
+                              setSecondaryMovie({
+                                ...secondaryMovie,
+                                title: e.target.value,
+                              });
+                              setShowSecondaryDropdown(true);
+                            }}
                             onFocus={() =>
                               secondaryMovie.title && setShowSecondaryDropdown(true)
                             }
