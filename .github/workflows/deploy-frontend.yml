@@ -60,6 +60,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        # 旁路：GitHub Pages 仅供备份/预览。其部署依赖 GitHub 侧 artifact API，
+        # 历史上多次因 API 抖动或重跑产生同名 artifact 而失败。设为 best-effort，
+        # 绝不让它阻断下面真正的线上部署（Cloudflare Pages / bloodyrex.xyz）。
+        continue-on-error: true
 
       # 线上真身是 Cloudflare Pages 项目 kims-video（bloodyrex.xyz 由它提供），
       # GitHub Pages 只是旁路。缺这一步会导致产物只进 GH Pages、线上一直是旧版本。
