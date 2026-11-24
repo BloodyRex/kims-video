@@ -1,70 +1,52 @@
 {
-  "updated": "2026-11-23",
-  "count": 4,
+  "updated": "2026-11-24",
+  "count": 3,
   "movies": [
     {
-      "tmdbId": 1561834,
+      "tmdbId": 1599184,
       "mediaType": "movie",
-      "title": "最后的晚餐",
-      "titleEn": "Last Meal",
+      "title": "斗破苍穹剧场版：双帝之战",
+      "titleEn": "Battle Through the Heavens: The Battle of Two Emperors",
       "year": "2026",
-      "releaseDate": "2026-11-18",
-      "poster": "https://image.tmdb.org/t/p/w500/3nCXBykzfMDdgjChxRyzsd5HD3F.jpg",
-      "rating": 7.9,
+      "releaseDate": "2026-11-22",
+      "poster": "https://image.tmdb.org/t/p/w500/kQA44KCjcI284f3uxCRAdiS9blt.jpg",
+      "rating": 9.167,
+      "genre": [
+        "Animation",
+        "Adventure"
+      ],
+      "firstSeen": "2026-11-24"
+    },
+    {
+      "tmdbId": 1611767,
+      "mediaType": "movie",
+      "title": "风雪同舟",
+      "titleEn": "Clashing Through the Snow",
+      "year": "2026",
+      "releaseDate": "2026-11-23",
+      "poster": "https://image.tmdb.org/t/p/w500/7axyq9JPp5bOYQV78YKBCgLEjkC.jpg",
+      "rating": 6.5,
       "genre": [
         "Romance",
-        "Drama"
-      ],
-      "firstSeen": "2026-11-23"
-    },
-    {
-      "tmdbId": 1492198,
-      "mediaType": "movie",
-      "title": "人造",
-      "titleEn": "Artificial",
-      "year": "2026",
-      "releaseDate": "2026-12-25",
-      "poster": "https://image.tmdb.org/t/p/w500/tD4JOGcI5SSBKSFo4coObYwRlxE.jpg",
-      "rating": 0,
-      "genre": [
-        "History",
-        "Drama",
         "Comedy"
       ],
-      "firstSeen": "2026-11-23"
+      "firstSeen": "2026-11-24"
     },
     {
-      "tmdbId": 434221,
+      "tmdbId": 1615596,
       "mediaType": "movie",
-      "title": "妖猫传",
-      "titleEn": "妖猫传",
-      "year": "2017",
-      "releaseDate": "2017-12-22",
-      "poster": "https://image.tmdb.org/t/p/w342/9X3XeDLblva1fAnCX1VYd72d5wc.jpg",
-      "rating": 6.223,
+      "title": "全县最棒的煎饼",
+      "titleEn": "Best Pancakes in the County",
+      "year": "2026",
+      "releaseDate": "2026-11-12",
+      "poster": "https://image.tmdb.org/t/p/w500/wXVYDQl2ENk3NhT1ETS4C8cAEOC.jpg",
+      "rating": 6.6,
       "genre": [
-        "奇幻",
-        "冒险",
-        "家庭"
+        "Action",
+        "Thriller",
+        "Crime"
       ],
-      "source": "rec",
-      "firstSeen": "2026-11-23"
-    },
-    {
-      "tmdbId": 84174,
-      "mediaType": "movie",
-      "title": "未婚女子",
-      "titleEn": "Bachelorette",
-      "year": "2012",
-      "releaseDate": "2012-08-06",
-      "poster": "https://image.tmdb.org/t/p/w342/yAr4LLjZnoIvrfb1VrV3mh38rTK.jpg",
-      "rating": 5.379,
-      "genre": [
-        "喜剧",
-        "爱情"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-23"
+      "firstSeen": "2026-11-24"
     }
   ]
 }
