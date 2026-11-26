@@ -1,55 +1,66 @@
 {
-  "updated": "2026-11-25",
-  "count": 3,
+  "updated": "2026-11-26",
+  "count": 4,
   "movies": [
     {
-      "tmdbId": 27374,
+      "tmdbId": 1811142,
       "mediaType": "movie",
-      "title": "蒙哥湖",
-      "titleEn": "Lake Mungo",
-      "year": "2009",
-      "releaseDate": "2009-07-30",
-      "poster": "https://image.tmdb.org/t/p/w342/5IaGu8r0t6bBaydkR6z9l9tJsCg.jpg",
-      "rating": 6.144,
+      "title": "马兰花开的声音",
+      "titleEn": "The Sound of Malan Flowers Blooming",
+      "year": "2026",
+      "releaseDate": "2026-11-25",
+      "poster": "https://image.tmdb.org/t/p/w500/pjVPqOjUzweRtPTA1Jroi2iFjLq.jpg",
+      "rating": 0,
       "genre": [
-        "恐怖",
-        "惊悚"
+        "Drama"
       ],
-      "source": "rec",
-      "firstSeen": "2026-11-24"
+      "firstSeen": "2026-11-26"
     },
     {
-      "tmdbId": 4961,
+      "tmdbId": 1299329,
       "mediaType": "movie",
-      "title": "变种DNA",
-      "titleEn": "Mimic",
-      "year": "1997",
-      "releaseDate": "1997-08-22",
-      "poster": "https://image.tmdb.org/t/p/w342/ieRRo78f8JzEKxfiCKqJyFg6l8o.jpg",
-      "rating": 6.092,
+      "title": "目击者约瑟芬",
+      "titleEn": "Josephine",
+      "year": "2026",
+      "releaseDate": "2026-11-20",
+      "poster": "https://image.tmdb.org/t/p/w500/3Of5Qe3PtNjHxePiy1sKCuCAoJ6.jpg",
+      "rating": 9.143,
+      "genre": [
+        "Drama",
+        "Crime"
+      ],
+      "firstSeen": "2026-11-26"
+    },
+    {
+      "tmdbId": 15776,
+      "mediaType": "movie",
+      "title": "哭泣的艺术",
+      "titleEn": "Kunsten at græde i kor",
+      "year": "2007",
+      "releaseDate": "2007-03-17",
+      "poster": "https://image.tmdb.org/t/p/w342/krtnNxK8bl3o8VjkXOVvxs5gAeo.jpg",
+      "rating": 6.8,
+      "genre": [
+        "剧情"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "tmdbId": 23410,
+      "mediaType": "movie",
+      "title": "解冻",
+      "titleEn": "The Thaw",
+      "year": "2009",
+      "releaseDate": "2009-08-30",
+      "poster": "https://image.tmdb.org/t/p/w342/6oxJ75L6rB88TeSspcnPA7JqjWw.jpg",
+      "rating": 5.7,
       "genre": [
         "恐怖",
         "科幻"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-24"
-    },
-    {
-      "tmdbId": 60935,
-      "mediaType": "movie",
-      "title": "怪形前传",
-      "titleEn": "The Thing",
-      "year": "2011",
-      "releaseDate": "2011-10-12",
-      "poster": "https://image.tmdb.org/t/p/w342/dmn2nVo8h7LMnk694JxCRIwK06p.jpg",
-      "rating": 6.266,
-      "genre": [
-        "恐怖",
-        "科幻",
-        "悬疑"
-      ],
-      "source": "rec",
-      "firstSeen": "2026-11-24"
+      "firstSeen": "2026-11-25"
     }
   ]
 }
