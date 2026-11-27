@@ -1,66 +1,117 @@
 {
-  "updated": "2026-11-26",
-  "count": 4,
+  "updated": "2026-11-27",
+  "count": 7,
   "movies": [
     {
-      "tmdbId": 1811142,
+      "tmdbId": 1502116,
       "mediaType": "movie",
-      "title": "马兰花开的声音",
-      "titleEn": "The Sound of Malan Flowers Blooming",
+      "title": "二十四味",
+      "titleEn": "24 Flavors",
       "year": "2026",
-      "releaseDate": "2026-11-25",
-      "poster": "https://image.tmdb.org/t/p/w500/pjVPqOjUzweRtPTA1Jroi2iFjLq.jpg",
+      "releaseDate": "2026-11-27",
+      "poster": "https://image.tmdb.org/t/p/w500/3BDxKSy6UFx7DZf8HVzVlKR5Xah.jpg",
       "rating": 0,
+      "genre": [
+        "Drama",
+        "Family"
+      ],
+      "firstSeen": "2026-11-27"
+    },
+    {
+      "tmdbId": 1828882,
+      "mediaType": "movie",
+      "title": "循环街区",
+      "titleEn": "循环街区",
+      "year": "2026",
+      "releaseDate": "2026-11-27",
+      "poster": "https://image.tmdb.org/t/p/w500/7qk6rcPp0bzKPnepIaV93id3NHV.jpg",
+      "rating": 0,
+      "genre": [
+        "Romance",
+        "Sci-Fi",
+        "Mystery"
+      ],
+      "firstSeen": "2026-11-27"
+    },
+    {
+      "tmdbId": 1280115,
+      "mediaType": "movie",
+      "title": "海豹小子",
+      "titleEn": "Way of the Warrior Kid",
+      "year": "2026",
+      "releaseDate": "2026-11-24",
+      "poster": "https://image.tmdb.org/t/p/w500/iy5lFaWU4IPpMDQ0RXi1Ala1oXK.jpg",
+      "rating": 7.605,
       "genre": [
         "Drama"
       ],
-      "firstSeen": "2026-11-26"
+      "firstSeen": "2026-11-27"
     },
     {
-      "tmdbId": 1299329,
+      "tmdbId": 1496696,
       "mediaType": "movie",
-      "title": "目击者约瑟芬",
-      "titleEn": "Josephine",
+      "title": "育种师",
+      "titleEn": "Breeder",
       "year": "2026",
-      "releaseDate": "2026-11-20",
-      "poster": "https://image.tmdb.org/t/p/w500/3Of5Qe3PtNjHxePiy1sKCuCAoJ6.jpg",
-      "rating": 9.143,
+      "releaseDate": "2026-10-28",
+      "poster": "https://image.tmdb.org/t/p/w500/emAwdJMs7OQ2rMk6m30lnoCCzgR.jpg",
+      "rating": 7.457,
       "genre": [
-        "Drama",
-        "Crime"
+        "Horror",
+        "Thriller"
       ],
-      "firstSeen": "2026-11-26"
+      "firstSeen": "2026-11-27"
     },
     {
-      "tmdbId": 15776,
+      "tmdbId": 1181623,
       "mediaType": "movie",
-      "title": "哭泣的艺术",
-      "titleEn": "Kunsten at græde i kor",
-      "year": "2007",
-      "releaseDate": "2007-03-17",
-      "poster": "https://image.tmdb.org/t/p/w342/krtnNxK8bl3o8VjkXOVvxs5gAeo.jpg",
-      "rating": 6.8,
+      "title": "正牌星光大盗：洗劫好莱坞",
+      "titleEn": "The Ringleader: The Case of the Bling Ring",
+      "year": "2023",
+      "releaseDate": "2023-10-01",
+      "poster": "https://image.tmdb.org/t/p/w342/hbIGYhxoFqsUFCPaAYbhqTQX4HL.jpg",
+      "rating": 4.8,
       "genre": [
-        "剧情"
+        "纪录",
+        "犯罪"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-25"
+      "firstSeen": "2026-11-27"
     },
     {
-      "tmdbId": 23410,
+      "tmdbId": 341689,
       "mediaType": "movie",
-      "title": "解冻",
-      "titleEn": "The Thaw",
-      "year": "2009",
-      "releaseDate": "2009-08-30",
-      "poster": "https://image.tmdb.org/t/p/w342/6oxJ75L6rB88TeSspcnPA7JqjWw.jpg",
-      "rating": 5.7,
+      "title": "派对搭讪秘诀",
+      "titleEn": "How to Talk to Girls at Parties",
+      "year": "2017",
+      "releaseDate": "2017-10-06",
+      "poster": "https://image.tmdb.org/t/p/w342/v6mPfyGshwXd1R6kQlMEyZ8Zu2s.jpg",
+      "rating": 6,
       "genre": [
-        "恐怖",
+        "喜剧",
+        "音乐",
+        "爱情",
         "科幻"
       ],
       "source": "rec",
-      "firstSeen": "2026-11-25"
+      "firstSeen": "2026-11-27"
+    },
+    {
+      "tmdbId": 387426,
+      "mediaType": "movie",
+      "title": "玉子",
+      "titleEn": "Okja",
+      "year": "2017",
+      "releaseDate": "2017-06-28",
+      "poster": "https://image.tmdb.org/t/p/w342/pHlRr2MfjK77VIIAO7p0R4jhsJI.jpg",
+      "rating": 7.316,
+      "genre": [
+        "冒险",
+        "剧情",
+        "科幻"
+      ],
+      "source": "rec",
+      "firstSeen": "2026-11-27"
     }
   ]
 }
