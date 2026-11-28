@@ -1,33 +1,13 @@
 {
-  "updated": "2026-11-27",
+  "updated": "2026-11-28",
   "degraded": [],
   "stats": {
-    "moviesReleased": 12,
+    "moviesReleased": 7,
     "tvAiringThisWeek": 20,
-    "albumsReleased": 0,
+    "albumsReleased": 25,
     "trending": 20
   },
   "editorsPicks": [
-    {
-      "tmdbId": 1720486,
-      "title": "史迪奇抓喵喵",
-      "titleEn": "Lilo & Scratch",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-11-27",
-      "poster": "https://image.tmdb.org/t/p/w500/1XaadQbZVQ27Kk2aekVYC1nUlLX.jpg",
-      "rating": 9,
-      "genre": [
-        "Animation",
-        "Comedy",
-        "Family",
-        "Sci-Fi"
-      ],
-      "summary": "故事设定在2002年原作之后：史迪奇终于在新家庭中过上了幸福安稳的日子，直到莉萝带回家一位新成员——一只粉色的外星小猫喵喵琦。这位新成员捣乱成性、光芒四射，无孔不入地渗透进史迪奇的生活，把他的整个世界搅了个天翻地覆。",
-      "summaryEn": "Stitch is tasked with looking after Scratch, a cat Lilo has found, but Scratch has more similarities with Stitch than meets the eye.",
-      "pickCategory": "editors"
-    },
     {
       "tmdbId": 1400336,
       "title": "拜见岳父大人4",
@@ -37,7 +17,7 @@
       "year": "2026",
       "releaseDate": "2026-11-25",
       "poster": "https://image.tmdb.org/t/p/w500/1hUfXjYYhJE0WOoj9weOUEcr2il.jpg",
-      "rating": 7.1,
+      "rating": 7.3,
       "genre": [
         "Comedy",
         "Romance"
@@ -47,102 +27,98 @@
       "pickCategory": "editors"
     },
     {
-      "tmdbId": 1515139,
-      "title": "重返起点：奥兹的最终谢幕",
-      "titleEn": "Back to the Beginning: Ozzy's Final Bow",
+      "tmdbId": 1457866,
+      "title": "克里夫·布斯的惊险再冒险",
+      "titleEn": "THE FURTHER MIS-ADVENTURES OF CLIFF BOOTH",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-10-28",
-      "poster": "https://image.tmdb.org/t/p/w500/iO8vwdtmOivoyUguheJtDLXp2Gq.jpg",
+      "releaseDate": "2026-11-25",
+      "poster": "https://image.tmdb.org/t/p/w500/qoTSavcI299AeQVZm2Q9k21jd1Q.jpg",
+      "rating": 8.2,
+      "genre": [
+        "Thriller",
+        "Crime"
+      ],
+      "summary": "　　在《好莱坞往事》事件发生八年后，克里夫·布斯回到日新月异的洛杉矶。他在好莱坞制片厂体系的阴影下以一名片场问题处理人的身份谋生，却发现自己卷入了一张由秘密、罪行与背叛交织而成的危险罗网——这一切将彻底考验他对忠诚与生存的全部认知。",
+      "summaryEn": "Eight years after the events of Once Upon a Time in... Hollywood, Cliff Booth returns to a changing Los Angeles. Now working as a fixer in the shadows of the Hollywood studio system, Cliff finds himse",
+      "pickCategory": "editors"
+    },
+    {
+      "tmdbId": 453,
+      "title": "美丽心灵",
+      "titleEn": "A Beautiful Mind",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2001",
+      "releaseDate": "2001-12-21",
+      "poster": "https://image.tmdb.org/t/p/w500/fCKdh2Y5uYHlshpdkdIE7WxgZ5R.jpg",
+      "rating": 7.854,
+      "genre": [
+        "Drama",
+        "Romance"
+      ],
+      "summary": "这是一部关于一个真实天才的极富人性的剧情片。英俊而又十分古怪的数学家小约翰纳什念研究生时便发明了他著名的博弈理论，短短26页的论文在经济、军事等领域产生深远的影响，他开始享有国际声誉。但纳什出众的直觉受到了精神分裂症的困扰，使他向学术上最高层次进军的辉煌历程发生了巨大改变。面对这个曾经击毁了许多人的挑战，纳什在深爱着他的妻子艾丽西亚的相助下，与被认为是只能好转、无法治愈的疾病作斗争。经过十几年的不",
+      "summaryEn": "From the heights of notoriety to the depths of depravity, John Forbes Nash Jr. experiences it all. As a brilliant but socially awkward mathematician, he made a groundbreaking discovery early in his ca",
+      "pickCategory": "gem"
+    },
+    {
+      "tmdbId": 1599230,
+      "title": "埃尔西诺",
+      "titleEn": "Elsinore",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-11-20",
+      "poster": "https://image.tmdb.org/t/p/w500/kohUtEueIVyDXC30MaOdi36aAwn.jpg",
       "rating": 10,
       "genre": [
-        "Music",
-        "Documentary"
-      ],
-      "summary": "2025年7月在重金属摇滚发源地英国伯明翰维拉公园球场举行的史诗级现场音乐会实录，重金属教父奥兹·奥斯本（Ozzy Osbourne）与黑色安息日（Black Sabbath）原始四大成员在离世前实现历史性最终合体登台，金属乐队（Metallica）、枪炮与玫瑰、杀手乐队等摇滚巨匠同台致敬，定格重金属音乐史上最震撼的谢幕之夜。",
-      "summaryEn": "A powerful return to roots, this concert captures Black Sabbath in peak form - reuniting to deliver classic hits with raw energy and legendary precision.",
-      "pickCategory": "gem"
-    },
-    {
-      "tmdbId": 1585239,
-      "title": "夜店小子",
-      "titleEn": "Club Kid",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-11-06",
-      "poster": "https://image.tmdb.org/t/p/w500/wmUzlsNNWOCwdkDtZz64DMy5gz8.jpg",
-      "rating": 7.9,
-      "genre": [
-        "Comedy",
         "Drama"
       ],
-      "summary": "一个事业失败的派对发起人被迫照顾一个他此前根本不知道自己有的儿子，人生面临大转折。",
-      "summaryEn": "A hard-partying New York City club promoter sees his whirlwind lifestyle upended by the arrival of the 10-year-old son he never knew he had.",
+      "summary": "影片根据真实故事改编。天赋异禀的苏格兰男演员伊恩·查尔森在面对生命中巨大逆境的同时，倾尽全力在伦敦皇家国家剧院筹备并奉献出他人生中最巅峰、最具感染力的《哈姆雷特》舞台表演。",
+      "summaryEn": "The deeply emotional and inspirational true story of Ian Charleson, a gifted actor whose greatest challenge becomes his greatest triumph. Facing his own mortality with unflinching honesty, wit, and gr",
       "pickCategory": "gem"
     },
     {
-      "tmdbId": 1368337,
-      "title": "奥德赛",
-      "titleEn": "The Odyssey",
+      "tmdbId": 1003596,
+      "title": "复仇者联盟5",
+      "titleEn": "Avengers: Doomsday",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-08-01",
-      "poster": "https://image.tmdb.org/t/p/w500/Aj0Uykxj0vhwVsyrRJka0aM3SP1.jpg",
-      "rating": 8,
+      "releaseDate": "2026-12-16",
+      "poster": "https://image.tmdb.org/t/p/w500/1CXOvSlK8R0dqc4u1QqDDZkH3ql.jpg",
+      "rating": 0,
       "genre": [
-        "Adventure",
+        "Sci-Fi",
         "Action",
-        "Fantasy"
+        "Adventure"
       ],
-      "summary": "克里斯托弗·诺兰将荷马笔下的怪物搬上银幕，打造了一部在全球多地取景拍摄的神话动作史诗。这是一场无与伦比的电影盛事。[环球影业]",
-      "summaryEn": "Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, ",
+      "summary": "来自三个截然不同宇宙的传奇英雄们，将被推向一场生死对决，并最终直面一股前所未见、足以撼动万物存亡的终极威胁。",
+      "summaryEn": "Beloved heroes from three distinct universes are set on a deadly collision course and face an existential threat unlike anything they've ever encountered.",
       "pickCategory": "trending"
     },
     {
-      "tmdbId": 1281331,
-      "title": "社交清算",
-      "titleEn": "The Social Reckoning",
+      "tmdbId": 1300968,
+      "title": "饥饿游戏：收获日出",
+      "titleEn": "The Hunger Games: Sunrise on the Reaping",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-10-09",
-      "poster": "https://image.tmdb.org/t/p/w500/on14cDF7G7lHYiLzxH4yHMKGPsO.jpg",
-      "rating": 6.989,
+      "releaseDate": "2026-11-20",
+      "poster": "https://image.tmdb.org/t/p/w500/r47dh8cGfgJ7yCq07oBY7bS1sKs.jpg",
+      "rating": 7.8,
       "genre": [
-        "Drama",
-        "Thriller"
+        "Sci-Fi",
+        "Action",
+        "Adventure"
       ],
-      "summary": "《社交网络》的延续作品，受真实事件启发。年轻的Facebook工程师弗朗西斯·豪根在《华尔街日报》记者杰夫·霍维茨的协助下，踏上一段危险的旅程，揭露这个社交网络最隐秘的内幕。",
-      "summaryEn": "Frances Haugen, a young Facebook engineer, enlists the help of Jeff Horwitz, a Wall Street Journal reporter, to go on a dangerous journey that ends up blowing the whistle on the social network's most ",
+      "summary": "改编自苏珊·柯林斯的同名小说。故事发生在《饥饿游戏》事件发生前24年，讲述第50届饥饿游戏（第二次四分区叛乱纪念赛）抽签日当天，年轻的黑密斯·阿伯纳西被选中参赛的故事。",
+      "summaryEn": "Return to the world of Panem 24 years before Katniss Everdeen volunteers in her sister's place, commencing on the morning of the reaping of the 50th Hunger Games, also known as the Second Quarter Quel",
       "pickCategory": "trending"
     }
   ],
   "weeklyHotTv": [
-    {
-      "tmdbId": 326247,
-      "title": "愚者之夜",
-      "titleEn": "フールナイト",
-      "originalLanguage": "ja",
-      "originCountry": [
-        "JP",
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-11-26",
-      "poster": "https://image.tmdb.org/t/p/w500/id15rr4VKQOrxBBBgMe7MfITzTT.jpg",
-      "rating": 10,
-      "genre": [
-        "Animation",
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "为了变成一朵花，你愿意付出多大代价？\n\nSUNRISE 与 SHAFT 首度携手合作，\n\n呈现一部以反乌托邦未来为背景、映照当下现实的人性剧情作品。",
-      "summaryEn": "为了变成一朵花，你愿意付出多大代价？\n\nSUNRISE 与 SHAFT 首度携手合作，\n\n呈现一部以反乌托邦未来为背景、映照当下现实的人性剧情作品。",
-      "pickCategory": "tvhot"
-    },
     {
       "tmdbId": 291507,
       "title": "青春共体",
@@ -154,13 +130,75 @@
       "year": "2026",
       "releaseDate": "2026-11-11",
       "poster": "https://image.tmdb.org/t/p/w500/nJ88PfR5ah5PAbybxMfeCvxJ5Yy.jpg",
-      "rating": 8.007,
+      "rating": 8.055,
       "genre": [
         "Mystery",
         "Drama"
       ],
       "summary": "万圣夜当晚，一场入队仪式沦为人间炼狱，天主教女子舞团因而陷入叛教的罪咎、不洁的欲望与鬼魅的幻影之中。",
       "summaryEn": "On Halloween night, an all-girls dance squad tumbles into Catholic guilt, unholy desires and ghostly visions when an initiation goes to hell.",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 220542,
+      "title": "药屋少女的呢喃",
+      "titleEn": "The Apothecary Diaries",
+      "originalLanguage": "ja",
+      "originCountry": [
+        "JP"
+      ],
+      "year": "2023",
+      "releaseDate": "2023-10-22",
+      "poster": "https://image.tmdb.org/t/p/w500/nUFTbH417TqmCbw2b2mPSAESoTb.jpg",
+      "rating": 8.667,
+      "genre": [
+        "Animation",
+        "Mystery",
+        "Drama"
+      ],
+      "summary": "花街出身的药师少女猫猫被拐入后宫做下人，凭借对毒药与药物的丰富知识和敏锐的洞察力，卷入宫中接连发生的疑难事件，并与神秘宦官壬氏一同揭开重重谜团。",
+      "summaryEn": "Maomao lived a peaceful life with her apothecary father. Until one day, she's sold as a lowly servant to the emperor's palace. But she wasn't meant for a compliant life among royalty. So when imperial",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 456,
+      "title": "辛普森一家",
+      "titleEn": "The Simpsons",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "1989",
+      "releaseDate": "1989-12-17",
+      "poster": "https://image.tmdb.org/t/p/w500/muSolUGIvAjrH7VynyJwOyMAtsY.jpg",
+      "rating": 8.03,
+      "genre": [
+        "Animation",
+        "Comedy"
+      ],
+      "summary": "辛普森一家是来自美国普通的五口之家，荷马是春田镇核能工厂的安全检查员，母亲马芝曾经是一个很有思想的女性，自从嫁给荷马后渐渐地适应了主妇生活的定式。巴特是家中的长子，天性顽皮的巴特经常爱玩一些恶作剧，以至于经常惹麻烦。妹妹丽莎是一个很聪明的孩子，同时还是素食主义者，佛教徒，爵士乐。小女马姬是一个永远长不大的孩子。故事设定于虚构小镇春田镇，从许多角度对美国的文化与社会、人的条件和电视本身进行了幽默的嘲",
+      "summaryEn": "辛普森一家是来自美国普通的五口之家，荷马是春田镇核能工厂的安全检查员，母亲马芝曾经是一个很有思想的女性，自从嫁给荷马后渐渐地适应了主妇生活的定式。巴特是家中的长子，天性顽皮的巴特经常爱玩一些恶作剧，以至于经常惹麻烦。妹妹丽莎是一个很聪明的孩子，同时还是素食主义者，佛教徒，爵士乐。小女马姬是一个永远长不大的孩子。故事设定于虚构小镇春田镇，从许多角度对美国的文化与社会、人的条件和电视本身进行了幽默的嘲",
+      "pickCategory": "tvhot"
+    },
+    {
+      "tmdbId": 153312,
+      "title": "塔尔萨之王",
+      "titleEn": "Tulsa King",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2022",
+      "releaseDate": "2022-11-13",
+      "poster": "https://image.tmdb.org/t/p/w500/7kIKWlPZraQNQTHrUZWKEZft9hp.jpg",
+      "rating": 8.3,
+      "genre": [
+        "Crime",
+        "Drama",
+        "Comedy"
+      ],
+      "summary": "纽约黑手党头目德怀特·曼弗雷迪服刑25年后获释，却被组织放逐至俄克拉何马州塔尔萨。他逐步招募一群意想不到的伙伴，在这座陌生城市建立自己的犯罪帝国。",
+      "summaryEn": "New York mafia capo Dwight \"The General\" Manfredi is released from prison after 25 years and exiled by his boss to set up shop in Tulsa, Oklahoma. Realizing that his mob family may not have his best i",
       "pickCategory": "tvhot"
     },
     {
@@ -174,74 +212,32 @@
       "year": "2025",
       "releaseDate": "2025-07-21",
       "poster": "https://image.tmdb.org/t/p/w500/u5KHK1hYAUCONTlqerhBy1JaDjn.jpg",
-      "rating": 7,
+      "rating": 6.9,
       "genre": [
         "Drama",
         "Mystery"
       ],
       "summary": "　　苏菲离开新英格兰，来到德克萨斯州东部腹地，认识了一位魅力十足的富有名媛并加入了对方的社交圈，而圈内一群主妇们都藏着危险的秘密。很快，她的生活被痴迷、诱惑与谋杀所吞噬。",
-      "summaryEn": "　　苏菲离开新英格兰，来到德克萨斯州东部腹地，认识了一位魅力十足的富有名媛并加入了对方的社交圈，而圈内一群主妇们都藏着危险的秘密。很快，她的生活被痴迷、诱惑与谋杀所吞噬。",
+      "summaryEn": "Sophie trades New England for East Texas and falls into a wealthy socialite's magnetic orbit — where a clique of housewives hide deadly secrets.",
       "pickCategory": "tvhot"
     },
     {
-      "tmdbId": 37854,
-      "title": "航海王",
-      "titleEn": "One Piece",
-      "originalLanguage": "ja",
+      "tmdbId": 279246,
+      "title": "再婚皇后",
+      "titleEn": "The Remarried Empress",
+      "originalLanguage": "ko",
       "originCountry": [
-        "JP"
-      ],
-      "year": "1999",
-      "releaseDate": "1999-10-20",
-      "poster": "https://image.tmdb.org/t/p/w500/f9AFdxegmmWOghgw9E6ebICkstl.jpg",
-      "rating": 8.8,
-      "genre": [
-        "Comedy",
-        "Animation"
-      ],
-      "summary": "拥有财富、名声、势力，拥有整个世界的海贼王 – 哥尔·D·罗杰，他在临刑前的一句话，让人们趋之若鹜奔向大海。“想要我的财宝吗？想要的话可以全部给你，去找吧！我把所有财宝都放在那里。”于是所有男子汉航向伟大的航路追逐梦想，世界开始迎接“大海贼时代”。",
-      "summaryEn": "Years ago, the fearsome Pirate King, Gol D. Roger was executed leaving a huge pile of treasure and the famous \"One Piece\" behind. Whoever claims the \"One Piece\" will be named the new King of the Pirat",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 292741,
-      "title": "夜曲",
-      "titleEn": "Nocturne",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
+        "KR"
       ],
       "year": "2026",
-      "releaseDate": "2026-10-29",
-      "poster": "https://image.tmdb.org/t/p/w500/mHlARApb69J39NfmqKHseOghFJO.jpg",
-      "rating": 7.639,
+      "releaseDate": "2026-11-03",
+      "poster": "https://image.tmdb.org/t/p/w500/nWuOUzOHrn4VB7zRrrcZQHcB5Vx.jpg",
+      "rating": 8.739,
       "genre": [
-        "Crime",
-        "Drama",
-        "Mystery"
+        "Drama"
       ],
-      "summary": "改编自拉尔斯·克卜勒的小说《拉撒路》和《睡魔》。恶名昭彰的连环杀手尤里克·沃尔特的一名受害者意外生还，警探乔纳·林分秒必争务求找出唯一仍然失踪的人，同时他的徒弟萨加·鲍尔则充当卧底，试图从杀手身上获得答案。",
-      "summaryEn": "When a victim of notorious serial killer Jurek Walter unexpectedly turns up alive, detective Jonah Lynn races against time to find the one person still missing, while his protégé Saga Bauer goes under",
-      "pickCategory": "tvhot"
-    },
-    {
-      "tmdbId": 2190,
-      "title": "南方公园",
-      "titleEn": "South Park",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "1997",
-      "releaseDate": "1997-08-13",
-      "poster": "https://image.tmdb.org/t/p/w500/aqroh5nCMtxWFKjXEhrqXpe1HPO.jpg",
-      "rating": 8.333,
-      "genre": [
-        "Comedy",
-        "Animation"
-      ],
-      "summary": "讲述科罗拉多州南方公园小镇上，斯坦、凯尔、卡特曼和肯尼四个孩子的生活。他们不断卷入超自然事件、社会冲突和各种荒诞危机，并以孩子的视角面对成年人世界中的政治、宗教、文化和社会问题。",
-      "summaryEn": "Follow the misadventures of four irreverent grade-schoolers in the quiet, dysfunctional town of South Park, Colorado.",
+      "summary": "深受爱戴的皇后娜菲尔，与皇帝索本修一同治理着东大帝国。当索本修爱上逃亡奴隶菈丝塔，并要求与娜菲尔离婚时，娜菲尔答应了，但提出一个条件，她必须获得再婚许可，嫁给西王国王子海因里。",
+      "summaryEn": "Beloved Empress Navier rules the Eastern Empire alongside Emperor Sovieshu. But when Sovieshu falls for a runaway slave and demands a divorce, Navier will agree on one condition: that she's given appr",
       "pickCategory": "tvhot"
     }
   ],
@@ -262,7 +258,7 @@
       ],
       "summary": "改编自弗兰克·赫伯特的科幻小说《沙丘2：沙丘救世主》。保罗·厄崔迪夺取帝国统治权近二十年后，成为冷酷的皇帝。面对旧盟友回归、新威胁浮现与暗中背叛，保罗深陷一场阴谋，并必须直面权力的代价与所爱之人的命运。",
       "summaryEn": "Nearly two decades after he seized control of the Imperium, Paul Atreides is now a ruthless Emperor, and must face the consequences of his reign as old allies return, terrifying new threats emerge, an",
-      "daysUntil": 18
+      "daysUntil": 17
     },
     {
       "tmdbId": 1003596,
@@ -281,26 +277,7 @@
       ],
       "summary": "来自三个截然不同宇宙的传奇英雄们，将被推向一场生死对决，并最终直面一股前所未见、足以撼动万物存亡的终极威胁。",
       "summaryEn": "Beloved heroes from three distinct universes are set on a deadly collision course and face an existential threat unlike anything they've ever encountered.",
-      "daysUntil": 19
-    },
-    {
-      "tmdbId": 1492198,
-      "title": "人造",
-      "titleEn": "Artificial",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-12-25",
-      "poster": "https://image.tmdb.org/t/p/w500/tD4JOGcI5SSBKSFo4coObYwRlxE.jpg",
-      "rating": 0,
-      "genre": [
-        "History",
-        "Drama",
-        "Comedy"
-      ],
-      "summary": "随着人工智能迅速发展，萨姆·奥特曼、伊利亚·苏茨克维尔等人创立的OpenAI逐渐改变了世界。但当技术理想与权力、利益发生冲突，一场围绕人工智能未来的危机悄然展开。",
-      "summaryEn": "In November 2023, amidst the height of a global AI boom, OpenAI co-founder Ilya Sutskever teamed with the company board to make one of the defining decisions that has drastically reshaped the company ",
-      "daysUntil": 28
+      "daysUntil": 18
     },
     {
       "tmdbId": 1384758,
@@ -320,29 +297,10 @@
       ],
       "summary": "",
       "summaryEn": "A dinosaur-and-lava-filled madcap adventure takes Manny, Sid, Diego, Ellie, Buck, acorn-obsessed Scrat – this time joined by Baby Scrat and the enormous Jurassic Scrat – and the rest of the herd to vi",
-      "daysUntil": 62
+      "daysUntil": 61
     }
   ],
   "comingSoonTv": [
-    {
-      "tmdbId": 312580,
-      "title": "死神恋人",
-      "titleEn": "รัก ลืม ตาย",
-      "originalLanguage": "th",
-      "originCountry": [
-        "TH"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-11-28",
-      "poster": "https://image.tmdb.org/t/p/w500/gRgazIll6vcrnCCVR3AyiJYO47w.jpg",
-      "rating": 0,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "伴侣不幸离世后，一名男子遭诬陷为杀人凶手。他意外与死神结盟，而这位死神竟与他失去的挚爱长得离奇神似。",
-      "summaryEn": "伴侣不幸离世后，一名男子遭诬陷为杀人凶手。他意外与死神结盟，而这位死神竟与他失去的挚爱长得离奇神似。",
-      "daysUntil": 1
-    },
     {
       "tmdbId": 274660,
       "title": "古乐风华录",
@@ -360,7 +318,7 @@
       ],
       "summary": "讲述了隐姓埋名的最强乐师越央央与卧底乐灵少熠这对宿敌机智互斗，共同踏上收集圣乐灵的热血之旅，开启神力曲谱《古乐风华录》的传说。",
       "summaryEn": "讲述了隐姓埋名的最强乐师越央央与卧底乐灵少熠这对宿敌机智互斗，共同踏上收集圣乐灵的热血之旅，开启神力曲谱《古乐风华录》的传说。",
-      "daysUntil": 2
+      "daysUntil": 1
     },
     {
       "tmdbId": 288672,
@@ -379,7 +337,7 @@
       ],
       "summary": "改编自简·奥斯汀的同名小说。富有的宾格利来到乡间，班纳特家的五姐妹必须在爱情与世俗期待中抉择。简与宾格利渐生好感，伊丽莎白则和傲慢的达西冲突不断。接连的变故，让伊丽莎白重新认清心意，读懂爱情。",
       "summaryEn": "改编自简·奥斯汀的同名小说。富有的宾格利来到乡间，班纳特家的五姐妹必须在爱情与世俗期待中抉择。简与宾格利渐生好感，伊丽莎白则和傲慢的达西冲突不断。接连的变故，让伊丽莎白重新认清心意，读懂爱情。",
-      "daysUntil": 6
+      "daysUntil": 5
     },
     {
       "tmdbId": 233732,
@@ -398,7 +356,7 @@
       ],
       "summary": "三代人的爱情故事交织展开。情侣们追寻真爱，努力化解婚姻危机，也不得不面对家庭期望，而过去的选择也影响着他们能否收获幸福。",
       "summaryEn": "三代人的爱情故事交织展开。情侣们追寻真爱，努力化解婚姻危机，也不得不面对家庭期望，而过去的选择也影响着他们能否收获幸福。",
-      "daysUntil": 7
+      "daysUntil": 6
     },
     {
       "tmdbId": 258862,
@@ -410,14 +368,14 @@
       ],
       "year": "2026",
       "releaseDate": "2026-12-05",
-      "poster": "https://image.tmdb.org/t/p/w500/cWXBisC8gIrGB8UfxKXaoHLxBH2.jpg",
+      "poster": "https://image.tmdb.org/t/p/w500/tBuaSpNvlRcHXbL5GonERovEFxR.jpg",
       "rating": 0,
       "genre": [
         "Drama"
       ],
       "summary": "本剧以1258年的高丽王朝为背景，在与蒙古长达30年的惨烈战争中，高丽气数将尽，国家命运危在旦夕。故事围绕着传说中的护国圣物——“神之珠”观音宝珠展开。为了寻找并守护这颗关乎国家存亡的宝珠，一支护送队毅然踏入硝烟弥漫的战场；与此同时，一位高丽皇女也挺身而出，踏上了营救护送队的艰难险阻之路。在战火纷飞的绝境中，两股力量交织，谱写出一场关乎信仰与拯救的史诗壮举。",
       "summaryEn": "本剧以1258年的高丽王朝为背景，在与蒙古长达30年的惨烈战争中，高丽气数将尽，国家命运危在旦夕。故事围绕着传说中的护国圣物——“神之珠”观音宝珠展开。为了寻找并守护这颗关乎国家存亡的宝珠，一支护送队毅然踏入硝烟弥漫的战场；与此同时，一位高丽皇女也挺身而出，踏上了营救护送队的艰难险阻之路。在战火纷飞的绝境中，两股力量交织，谱写出一场关乎信仰与拯救的史诗壮举。",
-      "daysUntil": 8
+      "daysUntil": 7
     },
     {
       "tmdbId": 302987,
@@ -436,8 +394,27 @@
       ],
       "summary": "陷入低潮的教练意外获得特殊能力，能够精准预测棒球天赋，于是他接下重任，要率领一支战绩惨淡的高中球队逆袭夺胜。",
       "summaryEn": "陷入低潮的教练意外获得特殊能力，能够精准预测棒球天赋，于是他接下重任，要率领一支战绩惨淡的高中球队逆袭夺胜。",
-      "daysUntil": 8
+      "daysUntil": 7
+    },
+    {
+      "tmdbId": 256726,
+      "title": "梦响年代",
+      "titleEn": "천천히 강렬하게",
+      "originalLanguage": "ko",
+      "originCountry": [
+        "KR"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-12-11",
+      "poster": "https://image.tmdb.org/t/p/w500/733Vm8e0bzUbjbDuATgR4Ol7vqd.jpg",
+      "rating": 0,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "《梦响年代》以 20 世纪 60 至 80 年代那个肆无忌惮又冷酷无情的韩国娱乐圈为背景，刻画了一群几乎一无所有的人如何孤注一掷，为实现功成名就的梦想而不懈追逐。",
+      "summaryEn": "《梦响年代》以 20 世纪 60 至 80 年代那个肆无忌惮又冷酷无情的韩国娱乐圈为背景，刻画了一群几乎一无所有的人如何孤注一掷，为实现功成名就的梦想而不懈追逐。",
+      "daysUntil": 13
     }
   ],
-  "brief": "Today: 12 movie(s) released, 20 TV show(s) airing, 0 new album(s)."
+  "brief": "Today: 7 movie(s) released, 20 TV show(s) airing, 25 new album(s)."
 }

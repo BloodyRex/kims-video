@@ -1,6 +1,25 @@
 {
-  "updated": "2026-11-27",
+  "updated": "2026-11-28",
   "movies": [
+    {
+      "tmdbId": 1153576,
+      "title": "街头霸王",
+      "titleEn": "Street Fighter",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-10-13",
+      "poster": "https://image.tmdb.org/t/p/w500/B7id5YjOBmyvlzIRrlhqA051EW.jpg",
+      "rating": 6.1,
+      "genre": [
+        "Action",
+        "Fantasy"
+      ],
+      "summary": "改编自卡普空同名系列格斗游戏。1993年，昔日形同兄弟的街头格斗家隆与肯因春丽的邀请重返赛场，参加世界格斗王大赛。然而，一场致命阴谋潜伏其中，迫使两人再次面对彼此与各自的过去。",
+      "summaryEn": "In 1993, estranged Street Fighters Ryu and Ken Masters are thrown back into combat when the mysterious Chun-Li recruits them for the next World Warrior Tournament: a brutal clash of fists, fate, and f",
+      "rank": 1,
+      "trend": "new"
+    },
     {
       "tmdbId": 1003596,
       "title": "复仇者联盟5",
@@ -18,7 +37,7 @@
       ],
       "summary": "来自三个截然不同宇宙的传奇英雄们，将被推向一场生死对决，并最终直面一股前所未见、足以撼动万物存亡的终极威胁。",
       "summaryEn": "Beloved heroes from three distinct universes are set on a deadly collision course and face an existential threat unlike anything they've ever encountered.",
-      "rank": 1,
+      "rank": 2,
       "trend": "new"
     },
     {
@@ -30,7 +49,7 @@
       "year": "2026",
       "releaseDate": "2026-11-18",
       "poster": "https://image.tmdb.org/t/p/w500/r47dh8cGfgJ7yCq07oBY7bS1sKs.jpg",
-      "rating": 7.795,
+      "rating": 7.8,
       "genre": [
         "Sci-Fi",
         "Action",
@@ -38,7 +57,7 @@
       ],
       "summary": "改编自苏珊·柯林斯的同名小说。故事发生在《饥饿游戏》事件发生前24年，讲述第50届饥饿游戏（第二次四分区叛乱纪念赛）抽签日当天，年轻的黑密斯·阿伯纳西被选中参赛的故事。",
       "summaryEn": "Return to the world of Panem 24 years before Katniss Everdeen volunteers in her sister's place, commencing on the morning of the reaping of the 50th Hunger Games, also known as the Second Quarter Quel",
-      "rank": 2,
+      "rank": 3,
       "trend": "new"
     },
     {
@@ -50,33 +69,14 @@
       "year": "2026",
       "releaseDate": "2026-07-15",
       "poster": "https://image.tmdb.org/t/p/w500/Aj0Uykxj0vhwVsyrRJka0aM3SP1.jpg",
-      "rating": 8,
+      "rating": 8.028,
       "genre": [
         "Adventure",
         "Action",
         "Fantasy"
       ],
-      "summary": "克里斯托弗·诺兰将荷马笔下的怪物搬上银幕，打造了一部在全球多地取景拍摄的神话动作史诗。这是一场无与伦比的电影盛事。[环球影业]",
+      "summary": "特洛伊战争结束后，伊萨卡国王奥德修斯踏上归途，却因触怒神明而漂泊十年。与此同时，他的妻子珀涅罗珀与儿子忒勒玛科斯在家乡被一群狂妄的求婚者围困，苦苦支撑着一个摇摇欲坠的王国......",
       "summaryEn": "Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, ",
-      "rank": 3,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1281331,
-      "title": "社交清算",
-      "titleEn": "The Social Reckoning",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-10-07",
-      "poster": "https://image.tmdb.org/t/p/w500/on14cDF7G7lHYiLzxH4yHMKGPsO.jpg",
-      "rating": 6.989,
-      "genre": [
-        "Drama",
-        "Thriller"
-      ],
-      "summary": "《社交网络》的延续作品，受真实事件启发。年轻的Facebook工程师弗朗西斯·豪根在《华尔街日报》记者杰夫·霍维茨的协助下，踏上一段危险的旅程，揭露这个社交网络最隐秘的内幕。",
-      "summaryEn": "Frances Haugen, a young Facebook engineer, enlists the help of Jeff Horwitz, a Wall Street Journal reporter, to go on a dangerous journey that ends up blowing the whistle on the social network's most ",
       "rank": 4,
       "trend": "new"
     },
@@ -89,7 +89,7 @@
       "year": "2026",
       "releaseDate": "2026-11-25",
       "poster": "https://image.tmdb.org/t/p/w500/jsAhBolI6Rn9Iva635bNf27rJc2.jpg",
-      "rating": 5.761,
+      "rating": 5.9,
       "genre": [
         "Animation",
         "Fantasy",
@@ -101,25 +101,78 @@
       "trend": "new"
     },
     {
-      "tmdbId": 1595124,
-      "title": "童话继姐妹",
-      "titleEn": "Steps",
+      "tmdbId": 1458300,
+      "title": "蚊子杯：最后一役",
+      "titleEn": "The Mosquito Bowl",
       "originalLanguage": "en",
       "originCountry": [],
       "year": "2026",
-      "releaseDate": "2026-11-20",
-      "poster": "https://image.tmdb.org/t/p/w500/1cjypoWJTQSjgxL1v8RdSQ4Y6rc.jpg",
-      "rating": 7.1,
+      "releaseDate": "2026-10-29",
+      "poster": "https://image.tmdb.org/t/p/w500/4FHPhPmtaYNoaUZ10kbrUuZzwzV.jpg",
+      "rating": 7.667,
       "genre": [
-        "Animation",
-        "Family",
-        "Comedy",
-        "Adventure",
-        "Fantasy"
+        "War",
+        "Drama"
       ],
-      "summary": "在这部别具一格、妙趣横生的动作喜剧中，灰姑娘的“邪恶”继姐利莉思偷走了仙女教母昀魔杖，彻底颠覆了我们熟知的童话故事。",
-      "summaryEn": "After being blamed for disrupting the Royal Ball with a stolen magic wand, a misunderstood stepsister accidentally turns her sister into a frog and must team up with Cinderella and an unlikely ally to",
+      "summary": "根据巴兹·贝辛格的同名非虚构作品改编。珍珠港事件后，四位大学生橄榄球明星加入了海军陆战队，体会到了兄弟情谊的力量和战争的代价。",
+      "summaryEn": "In the aftermath of Pearl Harbor, four college football stars enlist in the US Marines, discovering the strength of brotherhood and the cost of war.",
       "rank": 6,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 1480665,
+      "title": "卡西莫多：巴黎灵魂",
+      "titleEn": "Quasimodo, l'âme de Paris",
+      "originalLanguage": "fr",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-11-27",
+      "poster": "https://image.tmdb.org/t/p/w500/necpLRF5VF381uNR5PWkz7klQlG.jpg",
+      "rating": 8.1,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "1830 年，霍乱肆虐巴黎。一名因医学实验而遭追捕的驼背人，被裹挟在政治动荡与无望的爱恋之间。",
+      "summaryEn": "1830 年，霍乱肆虐巴黎。一名因医学实验而遭追捕的驼背人，被裹挟在政治动荡与无望的爱恋之间。",
+      "rank": 7,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 1280115,
+      "title": "海豹小子",
+      "titleEn": "Way of the Warrior Kid",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-11-24",
+      "poster": "https://image.tmdb.org/t/p/w500/iy5lFaWU4IPpMDQ0RXi1Ala1oXK.jpg",
+      "rating": 7.4,
+      "genre": [
+        "Drama"
+      ],
+      "summary": "杰克是一名受伤的海军海豹突击队员，他成为了自己害羞且处境艰难的侄子马克的导师。利用军事训练的原则，杰克在马克进入高中时教导他如何成为名“战士少年”。",
+      "summaryEn": "Jake is an injured Navy SEAL who becomes a mentor for his shy, struggling nephew Marc. Using the principles of his military training, Jake teaches Marc how to be a Warrior Kid as he enters high school",
+      "rank": 8,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 969681,
+      "title": "蜘蛛侠：崭新之日",
+      "titleEn": "Spider-Man: Brand New Day",
+      "originalLanguage": "en",
+      "originCountry": [],
+      "year": "2026",
+      "releaseDate": "2026-07-29",
+      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
+      "rating": 8.454,
+      "genre": [
+        "Sci-Fi",
+        "Action",
+        "Adventure"
+      ],
+      "summary": "《蜘蛛侠：英雄无归》事件四年后，世界已经忘记了彼得·帕克的存在。他独自生活在纽约，将全部精力投入打击犯罪，成为一名全职蜘蛛侠。然而，看着昔日好友各自开启新的生活，长期的孤独与日益沉重的责任让彼得承受着巨大的压力，他的身体也开始发生难以控制的异常变化。与此同时，一名行踪难以察觉的强大敌人正悄然威胁着纽约及他所珍视的人。面对身体的异变与不断逼近的危机，彼得不得不独自迎接新的挑战……",
+      "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
+      "rank": 9,
       "trend": "new"
     },
     {
@@ -138,63 +191,6 @@
       ],
       "summary": "改编自弗兰克·赫伯特的科幻小说《沙丘2：沙丘救世主》。保罗·厄崔迪夺取帝国统治权近二十年后，成为冷酷的皇帝。面对旧盟友回归、新威胁浮现与暗中背叛，保罗深陷一场阴谋，并必须直面权力的代价与所爱之人的命运。",
       "summaryEn": "Nearly two decades after he seized control of the Imperium, Paul Atreides is now a ruthless Emperor, and must face the consequences of his reign as old allies return, terrifying new threats emerge, an",
-      "rank": 7,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 969681,
-      "title": "蜘蛛侠：崭新之日",
-      "titleEn": "Spider-Man: Brand New Day",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-07-29",
-      "poster": "https://image.tmdb.org/t/p/w500/9zFVOpQ0QSg0pOHQdFtNj7NDamp.jpg",
-      "rating": 8.455,
-      "genre": [
-        "Sci-Fi",
-        "Action",
-        "Adventure"
-      ],
-      "summary": "《蜘蛛侠：英雄无归》事件四年后，世界已经忘记了彼得·帕克的存在。他独自生活在纽约，将全部精力投入打击犯罪，成为一名全职蜘蛛侠。然而，看着昔日好友各自开启新的生活，长期的孤独与日益沉重的责任让彼得承受着巨大的压力，他的身体也开始发生难以控制的异常变化。与此同时，一名行踪难以察觉的强大敌人正悄然威胁着纽约及他所珍视的人。面对身体的异变与不断逼近的危机，彼得不得不独自迎接新的挑战……",
-      "summaryEn": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to ",
-      "rank": 8,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1765072,
-      "title": "一切如你所见",
-      "titleEn": "You Can See Everything",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-10-16",
-      "poster": "https://image.tmdb.org/t/p/w500/rqYy3OvpmJL7ENAld0QCZJmhmPY.jpg",
-      "rating": 8.6,
-      "genre": [
-        "Documentary"
-      ],
-      "summary": "在被判入狱前的34天，臭名昭著的硅谷创始人伊丽莎白·霍姆斯邀请了一支持怀疑态度的摄制组记录她的一举一动。起初这是一部关于神秘罪犯的私密肖像，却演变成一场持续3年、坠入深渊的迷幻之旅。",
-      "summaryEn": "Thirty-four days before she's sent to prison, notorious Silicon Valley founder Elizabeth Holmes invites a skeptical film crew to document her every move. What begins as an intimate portrait of an enig",
-      "rank": 9,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 1458300,
-      "title": "蚊子杯：最后一役",
-      "titleEn": "The Mosquito Bowl",
-      "originalLanguage": "en",
-      "originCountry": [],
-      "year": "2026",
-      "releaseDate": "2026-10-29",
-      "poster": "https://image.tmdb.org/t/p/w500/4FHPhPmtaYNoaUZ10kbrUuZzwzV.jpg",
-      "rating": 7.3,
-      "genre": [
-        "War",
-        "Drama"
-      ],
-      "summary": "根据巴兹·贝辛格的同名非虚构作品改编。珍珠港事件后，四位大学生橄榄球明星加入了海军陆战队，体会到了兄弟情谊的力量和战争的代价。",
-      "summaryEn": "In the aftermath of Pearl Harbor, four college football stars enlist in the US Marines, discovering the strength of brotherhood and the cost of war.",
       "rank": 10,
       "trend": "new"
     }
@@ -218,58 +214,7 @@
       "season": 3,
       "episode": 8,
       "latestAirDate": "2026-11-24",
-      "rank": 1,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 326247,
-      "title": "愚者之夜",
-      "titleEn": "フールナイト",
-      "originalLanguage": "ja",
-      "originCountry": [
-        "JP",
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-11-26",
-      "poster": "https://image.tmdb.org/t/p/w500/id15rr4VKQOrxBBBgMe7MfITzTT.jpg",
-      "rating": 10,
-      "genre": [
-        "Animation",
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "为了变成一朵花，你愿意付出多大代价？\n\nSUNRISE 与 SHAFT 首度携手合作，\n\n呈现一部以反乌托邦未来为背景、映照当下现实的人性剧情作品。",
-      "summaryEn": "为了变成一朵花，你愿意付出多大代价？\n\nSUNRISE 与 SHAFT 首度携手合作，\n\n呈现一部以反乌托邦未来为背景、映照当下现实的人性剧情作品。",
-      "nextAirDate": "2026-11-26",
-      "season": 1,
-      "episode": 1,
-      "latestAirDate": "2026-11-26",
-      "rank": 3,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 291507,
-      "title": "青春共体",
-      "titleEn": "The Body",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-11-11",
-      "poster": "https://image.tmdb.org/t/p/w500/nJ88PfR5ah5PAbybxMfeCvxJ5Yy.jpg",
-      "rating": 8.007,
-      "genre": [
-        "Mystery",
-        "Drama"
-      ],
-      "summary": "万圣夜当晚，一场入队仪式沦为人间炼狱，天主教女子舞团因而陷入叛教的罪咎、不洁的欲望与鬼魅的幻影之中。",
-      "summaryEn": "On Halloween night, an all-girls dance squad tumbles into Catholic guilt, unholy desires and ghostly visions when an initiation goes to hell.",
-      "season": 1,
-      "episode": 8,
-      "latestAirDate": "2026-11-11",
-      "rank": 5,
+      "rank": 2,
       "trend": "new"
     },
     {
@@ -283,18 +228,92 @@
       "year": "2025",
       "releaseDate": "2025-07-21",
       "poster": "https://image.tmdb.org/t/p/w500/u5KHK1hYAUCONTlqerhBy1JaDjn.jpg",
-      "rating": 7,
+      "rating": 6.9,
       "genre": [
         "Drama",
         "Mystery"
       ],
       "summary": "　　苏菲离开新英格兰，来到德克萨斯州东部腹地，认识了一位魅力十足的富有名媛并加入了对方的社交圈，而圈内一群主妇们都藏着危险的秘密。很快，她的生活被痴迷、诱惑与谋杀所吞噬。",
-      "summaryEn": "　　苏菲离开新英格兰，来到德克萨斯州东部腹地，认识了一位魅力十足的富有名媛并加入了对方的社交圈，而圈内一群主妇们都藏着危险的秘密。很快，她的生活被痴迷、诱惑与谋杀所吞噬。",
-      "nextAirDate": "2026-11-26",
+      "summaryEn": "Sophie trades New England for East Texas and falls into a wealthy socialite's magnetic orbit — where a clique of housewives hide deadly secrets.",
+      "season": 2,
+      "episode": 8,
+      "latestAirDate": "2026-11-26",
+      "rank": 3,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 326247,
+      "title": "愚者之夜",
+      "titleEn": "Fool Night",
+      "originalLanguage": "ja",
+      "originCountry": [
+        "JP",
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-11-26",
+      "poster": "https://image.tmdb.org/t/p/w500/id15rr4VKQOrxBBBgMe7MfITzTT.jpg",
+      "rating": 8.7,
+      "genre": [
+        "Animation",
+        "Drama",
+        "Mystery"
+      ],
+      "summary": "为了变成一朵花，你愿意付出多大代价？\n\nSUNRISE 与 SHAFT 首度携手合作，\n\n呈现一部以反乌托邦未来为背景、映照当下现实的人性剧情作品。",
+      "summaryEn": "In a sunless future where humans become plants to make oxygen, a desperate young man begins the transformation — and unearths a deep-rooted conspiracy.",
+      "season": 1,
+      "episode": 12,
+      "latestAirDate": "2026-11-26",
+      "rank": 5,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 117488,
+      "title": "黄蜂",
+      "titleEn": "Yellowjackets",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2021",
+      "releaseDate": "2021-11-14",
+      "poster": "https://image.tmdb.org/t/p/w500/sCxnWfzQvJDzrkfopQfa66jW8gw.jpg",
+      "rating": 7.4,
+      "genre": [
+        "Drama",
+        "Mystery"
+      ],
+      "summary": "一支实力出众的高中女子足球队遭遇空难，坠落在偏远荒野。幸存者逐渐陷入野蛮部落的生存状态。近25年后，少数幸存者努力重建生活，却始终无法摆脱那段黑暗往事。",
+      "summaryEn": "This equal parts survival epic, psychological horror story and coming-of-age drama tells the saga of a team of wildly talented high school girls soccer players who become the (un)lucky survivors of a ",
+      "nextAirDate": "2026-11-29",
+      "season": 4,
+      "episode": 1,
+      "latestAirDate": "2026-11-22",
+      "rank": 7,
+      "trend": "new"
+    },
+    {
+      "tmdbId": 291507,
+      "title": "青春共体",
+      "titleEn": "The Body",
+      "originalLanguage": "en",
+      "originCountry": [
+        "US"
+      ],
+      "year": "2026",
+      "releaseDate": "2026-11-11",
+      "poster": "https://image.tmdb.org/t/p/w500/nJ88PfR5ah5PAbybxMfeCvxJ5Yy.jpg",
+      "rating": 8.055,
+      "genre": [
+        "Mystery",
+        "Drama"
+      ],
+      "summary": "万圣夜当晚，一场入队仪式沦为人间炼狱，天主教女子舞团因而陷入叛教的罪咎、不洁的欲望与鬼魅的幻影之中。",
+      "summaryEn": "On Halloween night, an all-girls dance squad tumbles into Catholic guilt, unholy desires and ghostly visions when an initiation goes to hell.",
       "season": 1,
       "episode": 8,
-      "latestAirDate": "2025-07-21",
-      "rank": 6,
+      "latestAirDate": "2026-11-11",
+      "rank": 8,
       "trend": "new"
     },
     {
@@ -308,7 +327,7 @@
       "year": "2026",
       "releaseDate": "2026-11-20",
       "poster": "https://image.tmdb.org/t/p/w500/cQ8pU9IimyWiLqP0e0qZqtktbma.jpg",
-      "rating": 7.9,
+      "rating": 7.96,
       "genre": [
         "Crime",
         "Mystery"
@@ -318,78 +337,32 @@
       "season": 1,
       "episode": 8,
       "latestAirDate": "2026-11-20",
-      "rank": 7,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 279246,
-      "title": "再婚皇后",
-      "titleEn": "The Remarried Empress",
-      "originalLanguage": "ko",
-      "originCountry": [
-        "KR"
-      ],
-      "year": "2026",
-      "releaseDate": "2026-11-03",
-      "poster": "https://image.tmdb.org/t/p/w500/nWuOUzOHrn4VB7zRrrcZQHcB5Vx.jpg",
-      "rating": 8.719,
-      "genre": [
-        "Drama"
-      ],
-      "summary": "深受爱戴的皇后娜菲尔，与皇帝索本修一同治理着东大帝国。当索本修爱上逃亡奴隶菈丝塔，并要求与娜菲尔离婚时，娜菲尔答应了，但提出一个条件，她必须获得再婚许可，嫁给西王国王子海因里。",
-      "summaryEn": "Beloved Empress Navier rules the Eastern Empire alongside Emperor Sovieshu. But when Sovieshu falls for a runaway slave and demands a divorce, Navier will agree on one condition: that she's given appr",
-      "season": 1,
-      "episode": 10,
-      "latestAirDate": "2026-11-25",
-      "rank": 8,
-      "trend": "new"
-    },
-    {
-      "tmdbId": 259909,
-      "title": "嗜血法医：杀魔复生",
-      "titleEn": "Dexter: Resurrection",
-      "originalLanguage": "en",
-      "originCountry": [
-        "US"
-      ],
-      "year": "2025",
-      "releaseDate": "2025-07-13",
-      "poster": "https://image.tmdb.org/t/p/w500/7VEnzLC07bIlOtSxnNKrXd5vMWO.jpg",
-      "rating": 8.527,
-      "genre": [
-        "Crime",
-        "Drama",
-        "Mystery"
-      ],
-      "summary": "迈阿密血迹分析师德克斯特·摩根以连环杀手为目标，在隐藏真实身份的同时，继续遵循自己的杀戮准则，并面对儿子哈里森及过往带来的种种纠葛。",
-      "summaryEn": "Set 10 weeks after Dexter: New Blood, Dexter Morgan chases a missing Harrison to New York City, where Captain Angel Batista is hot on their trail from way down in Miami.",
-      "nextAirDate": "2026-11-29",
-      "season": 2,
-      "episode": 4,
-      "latestAirDate": "2026-11-22",
       "rank": 9,
       "trend": "new"
     },
     {
-      "tmdbId": 213375,
-      "title": "幻视任务",
-      "titleEn": "VisionQuest",
+      "tmdbId": 153312,
+      "title": "塔尔萨之王",
+      "titleEn": "Tulsa King",
       "originalLanguage": "en",
       "originCountry": [
         "US"
       ],
-      "year": "2026",
-      "releaseDate": "2026-10-13",
-      "poster": "https://image.tmdb.org/t/p/w500/9rWX1tRNd1wIf0XnTjd8GOUoTlH.jpg",
-      "rating": 8.2,
+      "year": "2022",
+      "releaseDate": "2022-11-13",
+      "poster": "https://image.tmdb.org/t/p/w500/7kIKWlPZraQNQTHrUZWKEZft9hp.jpg",
+      "rating": 8.3,
       "genre": [
-        "Drama"
+        "Crime",
+        "Drama",
+        "Comedy"
       ],
-      "summary": "重启后的幻视隐居避世，试图摆脱将他武器化的人，并通过与体内的AI人格交流寻找存在意义，其中包括恶名昭彰的奥创。然而高额悬赏打破了平静，他被迫与神秘少年托马斯·谢泼德一同逃亡，后者或许是他重生后的儿子。",
-      "summaryEn": "With a bounty on his head, Vision must confront his nature and resist Ultron's influence to survive.",
-      "season": 1,
-      "episode": 8,
-      "latestAirDate": "2026-11-10",
+      "summary": "纽约黑手党头目德怀特·曼弗雷迪服刑25年后获释，却被组织放逐至俄克拉何马州塔尔萨。他逐步招募一群意想不到的伙伴，在这座陌生城市建立自己的犯罪帝国。",
+      "summaryEn": "New York mafia capo Dwight \"The General\" Manfredi is released from prison after 25 years and exiled by his boss to set up shop in Tulsa, Oklahoma. Realizing that his mob family may not have his best i",
+      "nextAirDate": "2026-11-27",
+      "season": 4,
+      "episode": 6,
+      "latestAirDate": "2026-11-20",
       "rank": 10,
       "trend": "new"
     }
