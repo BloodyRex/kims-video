@@ -9,7 +9,7 @@ globalThis.fetch = async (url, opts) => {
   return origFetch(url, opts);
 };
 globalThis.caches = { default: { match: async () => null, put: async () => {}, delete: async () => {} } };
-const src = readFileSync(new URL("../workers-1.4.js", import.meta.url), "utf8");
+const src = readFileSync(new URL("../workers/intel.js", import.meta.url), "utf8");
 const src2 = src + "\n;globalThis.__intelTV = handleIntelTV;";
 const env = { TMDB_API_READ_ACCESS_TOKEN: process.env.TMDB, DISCOVER_KV: null, SUBSCRIBE_KV: null };
 await import("data:text/javascript," + encodeURIComponent(src2));

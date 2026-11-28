@@ -1,4 +1,4 @@
-# Kim's Video — 系统使用手册（v1.3.0）
+# Kim's Video — 系统使用手册（v1.5.0）
 
 > 本文档面向任何 AI 工具或开发者：读完即可完整理解本网站的架构、页面功能、推荐算法、隐藏设计、数据流水线与运维方式。配套的面向用户的 README.md 更侧重功能介绍，本文档侧重**运行逻辑**。
 
@@ -6,11 +6,11 @@
 
 ## 1. 项目概览与网址
 
-一句话：**AI 影视推荐 + 每日影音情报 + 影视墙 + 社区精选** 的娱乐平台，数据由 Cloudflare Worker 聚合、DeepSeek AI 增强、GitHub Actions 每日快照、GitHub Pages 托管。
+一句话：**AI 影视推荐 + 每日影音情报 + 影视墙 + 全球电影节排片 + 社区精选 + 个人数据** 的娱乐平台，数据由 Cloudflare Workers 聚合、DeepSeek AI 增强、GitHub Actions 每日快照、Cloudflare Pages 托管（GitHub Pages 仅旁路备份）。
 
 | 资源 | 地址 |
 |---|---|
-| 网站（GitHub Pages + CNAME） | https://bloodyrex.xyz |
+| 网站（Cloudflare Pages 项目 `kims-video` + CNAME） | https://bloodyrex.xyz |
 | API（Cloudflare Worker） | https://api.bloodyrex.xyz |
 | 情报数据静态快照 | https://bloodyrex.xyz/api/*.json |
 | 仓库 | https://github.com/BloodyRex/kims-video |
@@ -23,10 +23,16 @@
 ## 2. 架构与数据流
 
 ```
-用户 → GitHub Pages SPA (React 18 + Vite 6 + Tailwind 4)
+用户 → Cloudflare Pages SPA (React 18 + Vite 6 + Tailwind 4)
           │ fetch（同域 /api 由 vite proxy 转发，生产直连 api.bloodyrex.xyz）
           ▼
-    Cloudflare Worker（单文件 workers-1.4.js，全部后端逻辑）
+    Router Worker「kims-video」(workers/router.js，含内置 poster-proxy)
+          │ Service Bindings 按路径分发
+          ├─ kims-video-discover：/discover/* /wall/* /migrate/* + 定时 purge
+          ├─ kims-video-intel：/intelligence/*（数据端点 + 通用 AI 代理）
+          ├─ kims-video-digest：/intelligence/{digest,subscribe,send-digest,send-test,unsubscribe}
+          ├─ kims-video-admin：/admin/*
+          └─ kims-video-wall：/api/wall/*（主题壁纸生图）
           │
           ├─ TMDB API（电影/剧集数据，zh-CN + en-US 双语）
           ├─ MusicBrainz + CoverArtArchive（音乐新发行）
@@ -37,7 +43,7 @@
           └─ R2（社区精选缩略图）
           │
           ▼
-   GitHub Actions 每日流水线 → 提交 public/api/*.json → 触发 Pages 部署
+   GitHub Actions 流水线 → 提交 public/api/*.json、data/festivals/ → 触发 Pages 部署
 ```
 
 **每日周期（UTC = 北京时间 - 8h）**
@@ -45,16 +51,16 @@
 | 时间（北京时间） | 事件 |
 |---|---|
 | 01:28 | `intelligence-daily.yml` 流水线：拉取全部情报数据 → 写静态 JSON → 提交 → 部署 Pages |
-| 06:28 | `digest-backup.yml` 调用 Worker `/intelligence/send-digest` → Resend 向全部订阅者发当日邮件 |
-| 全天 | 用户使用 AI 推荐 / 浏览情报 / 影视墙 / 社区精选 |
-
-邮件无 Worker Cron Trigger（wrangler.toml 无 triggers），唯一触发源是 GitHub Actions。
+| 06:28 | `digest-backup.yml` 调用 Worker `/intelligence/send-digest` → Resend 向全部订阅者发当日邮件（主力） |
+| 06:35 | digest worker Cron `35 22 * * *` 兜底再发一次，KV `digestStatus` 幂等，已发则跳过 |
+| 每 30 分钟（:07/:37） | `festival-daily.yml` 抓电影节排片，脚本按站点状态节流，无变化不 commit |
+| 全天 | 用户使用 AI 推荐 / 浏览情报 / 影视墙 / 电影节日历 / 社区精选 / 我的数据 |
 
 ---
 
 ## 3. 技术栈
 
-React 18 + react-router-dom 7 + Vite 6 + Tailwind CSS 4（前端）；Cloudflare Worker（ESM 单文件）；DeepSeek（deepseek-v4-flash）；TMDB / MusicBrainz / Last.fm；Resend；Cloudflare KV + R2；GitHub Actions（4 个 workflow）；Wrangler 部署。
+React 18 + react-router-dom 7 + Vite 6 + Tailwind CSS 4（前端）；Cloudflare Workers ×6（router + discover/intel/digest/admin/wall，均为自包含机械切片，ESM）；DeepSeek（deepseek-v4-flash）；TMDB / MusicBrainz / Last.fm；Resend；Cloudflare KV + R2；GitHub Actions（6 个 workflow：deploy-frontend / deploy-worker / intelligence-daily / festival-daily / digest-backup / set-authorization）；Wrangler 4 部署。
 
 ---
 
@@ -64,11 +70,14 @@ React 18 + react-router-dom 7 + Vite 6 + Tailwind CSS 4（前端）；Cloudflare
 
 | 路径 | 组件 | 说明 |
 |---|---|---|
-| `/`（= `/discover`） | EntryPage | AI 推荐引擎入口（输入 1-2 部参考片） |
-| `/discover/genre/:slug` | DiscoverPage | 社区精选分类页（15+ 分类，可分享 URL） |
-| `/recommend` | EntryPage | 推荐入口别名 |
+| `/` `/search` | NewHomePage | AI 推荐引擎首页（输入 1-2 部参考片，含首页内嵌面板） |
+| `/discover` `/discover/*` | DiscoverPage | 社区精选 / 精选辑（15+ 分类，可分享 URL） |
+| `/recommend` | EntryPage 外壳 | 推荐流程旧入口别名 |
+| `/entry` | EntryPage | 开屏四图入口页 |
 | `/intelligence(/movies\|tv\|music\|coming\|weekly\|search)` | IntelligencePage | 情报中心，tab 切换 |
 | `/wall` | WallPage | 影视墙 |
+| `/festivals(/week\|month\|all\|changes\|:slug)` | FestivalCalendarPage | 全球电影节排片日历（5 个 tab + 电影节详情页） |
+| `/my-data` | MyDataPage | 个人数据：导出/导入、口令加密、跨设备迁移码 |
 | `/admin` | AdminPage | 后台管理（**隐藏入口，见 4.4**） |
 
 SPA 路由修复：`public/_redirects` = `/* /index.html 200` + index.html 内 sessionStorage 恢复路径脚本。
@@ -86,6 +95,10 @@ SPA 路由修复：`public/_redirects` = `/* /index.html 200` + index.html 内 s
 
 **④ 社区精选（Curated Picks）**：预配置推荐对画廊（`src/data/discover.json`），按类型/主题分类；用户可上传缩略图、点赞（存 KV）；推荐对一键跳转首页自动载入两部电影。
 
+**⑤ 电影节日历（Festivals）**：5 个 tab——今天 / 本周 / 月历 / 电影节库 / 变更记录，另有 `/:slug` 电影节详情页。数据来自 `public/api/festivals.json` + `public/api/festivals/<slug>.json` + `festival-changes.json`，由 `scripts/festivals/*` 抓取 7 个官方来源（BIFF 釜山、BFI 伦敦、Cannes、HKIFF、IDFA、IFFR、Venice）后生成；状态机（SCREENING_LIVE / SCHEDULE_LIVE / PROGRAM_RELEASED / CONFIRMED / SCHEDULE_PENDING / CHANGED / CANCELLED）+ 授权门禁（`FESTIVALS_AUTHORIZATION_GATE`，CI 强开）控制详情文件能否上线。
+
+**⑥ 我的数据（My Data）**：收藏、AI 搜索历史、推荐记录全部存浏览器本地（`src/utils/personalStore.js`）；支持口令加密导出 JSON / 导入合并、生成跨设备迁移码（走 discover worker 的 `/migrate/*`，R2 `migrate/` 前缀，定时 purge）。首页内嵌 `MyDataPanel` 与独立页 `MyDataPage` 共享同一套逻辑，改一处必须同步另一处。
+
 ### 4.3 设计风格
 
 黑底霓虹（Vaporwave/retro-futurist）：`#111` 背景 + 动态渐变光斑 + SVG 噪点纹理（App.css）；主色粉 `#ff00ff`、青 `#00ffff`、黄 `#ffff00`、绿 `#00ff00`；**像素字体 "Press Start 2P"**（内联 @font-face 保证 dom-to-image 截图可用）+ Noto Sans SC；卡片粗黑边框 + 硬阴影（`shadow-[2px_2px_0_0_#000]`）+ 按下位移效果；全站中英双语（i18n，`?lang=` 参数 + hreflang）。
@@ -101,7 +114,18 @@ JSON-LD（WebSite + SearchAction + 详情页）、OG 标签、hreflang（zh/en/x
 
 ---
 
-## 5. 后端（Cloudflare Worker，workers-1.4.js）
+## 5. 后端（Cloudflare Workers ×6，`workers/` 目录）
+
+> 旧版单文件 `workers-1.4.js` 已归档删除（git 历史仍可找回）。现为 router + 5 个自包含子 worker 的机械切片，逻辑逐字节保留；KV key 前缀（`result:` / `wallRec:` 等）不得改动，否则数据丢失。
+
+| Worker | 文件 | 部署配置 | 职责 |
+|---|---|---|---|
+| `kims-video`（router） | `workers/router.js` | `wrangler.toml` | 路由分发 + poster-proxy + CORS 预检 |
+| `kims-video-discover` | `workers/discover.js` | `wrangler.discover.toml` | `/discover/*`、`/wall/collect` · `/wall/recs`、`/migrate/*` |
+| `kims-video-intel` | `workers/intel.js` | `wrangler.intel.toml` | `/intelligence/*` 数据端点 + POST `/` AI 代理 |
+| `kims-video-digest` | `workers/digest.js` | `wrangler.digest.toml` | 邮件渲染与发送 + Cron `35 22 * * *` |
+| `kims-video-admin` | `workers/admin.js` | `wrangler.admin.toml` | `/admin/*` |
+| `kims-video-wall` | `workers/wall.js` | `wrangler.wall.toml` | `/api/wall/*` 主题壁纸生图 |
 
 ### 5.1 端点清单
 
@@ -113,6 +137,8 @@ JSON-LD（WebSite + SearchAction + 详情页）、OG 标签、hreflang（zh/en/x
 | `/intelligence/music/v2` | POST | 音乐 AI 精选（流水线传候选） |
 | `/intelligence/trailer` | GET | TMDB 预告片 key 查询 |
 | `/intelligence/translate-overview` | POST | wall 英文简介批量中译（DeepSeek） |
+| `/migrate/create`、`/migrate/{code}` | POST / GET | 跨设备数据迁移码（R2 `migrate/` 前缀，scheduled purge 过期码） |
+| `/api/wall/config`、`/api/wall/gen` | GET / POST | 主题壁纸配置 / 生图（Seedream，未配置 Key 返回 501） |
 | `/intelligence/subscribe` | POST | 订阅邮件（KV `sub:{email}`） |
 | `/intelligence/unsubscribe` | GET/POST | 退订（Worker 渲染 HTML 页面） |
 | `/intelligence/send-digest` | POST | 发当日邮件给全部订阅者（Bearer DIGEST_SECRET，KV 去重） |
@@ -216,13 +242,15 @@ MusicBrainz 近 30 天新发行（3 页×100）→ Last.fm 歌手热度过滤（
 
 tasks 顺序（刻意设计）：**movies → tv → coming → weekly → hidden-gems → digest → overview**，随后 buildWall + wall 翻译 + 音乐 pipeline。overview 放最后是因为它复用 movies/tv 的 withCache 1h 缓存（全冷 ~55 子请求会超 50，命中缓存后 ~14）。hidden-gems 用 POST 传当日数据。非关键端点失败不阻断提交（failCount 全败才 exit 1）。
 
-**deploy-worker.yml**：push workers-1.4.js/wrangler.toml 触发 → wrangler deploy → **重新 put 4 个 secret**（TMDB/RESEND/DIGEST + 无 DEEPSEEK/ADMIN——这两个必须手动 `wrangler secret put`）。concurrency group 防并发。
+**deploy-worker.yml**：push `workers/**` 或 `wrangler*.toml`（含壁纸配置、`scripts/wall-worker-helpers.mjs`）触发，Node 24 → `npm ci` → 依次 `wrangler deploy`：discover → intel → digest → admin → wall → router（router 最后，保住 `api.bloodyrex.xyz` 自定义域名）。子 worker `workers_dev=false` 无公网路由，部署零线上影响。concurrency group `cloudflare-workers` 防并发。
 
-**deploy-frontend.yml**：push src/** 或 public/api/** 或 pipeline 完成后触发 → build（sitemap/discover/genre/detail 生成）→ Pages 部署。
+**deploy-frontend.yml**：push `src/**` / `public/**` / `index.html` / `vite.config.*` / `package.json`，或 Intelligence Daily 完成后触发 → `npm ci` → **`node scripts/festivals/verify.mjs` 阻断门禁**（未授权详情文件不得上线，CI 强制 `FESTIVALS_AUTHORIZATION_GATE=on`）→ `npm run build` → GitHub Pages（`continue-on-error`，仅旁路）→ **Cloudflare Pages `wrangler pages deploy dist --project-name kims-video`**（线上真身）。
 
-**digest-backup.yml**（22:28 UTC）：curl 调 `/intelligence/send-digest`（Bearer DIGEST_SECRET），非 200 报警。
+**digest-backup.yml**（22:28 UTC）：curl 调 `/intelligence/send-digest`（Bearer DIGEST_SECRET），非 200 报警。digest worker 自身 Cron（22:35 UTC）再兜底一次，KV 幂等。
 
-**send-test-digest.yml**：手动触发，单封测试邮件（默认 rexhr@yahoo.com）。
+**festival-daily.yml**：每 30 分钟（:07/:37）+ 手动触发 → `scripts/festivals/run.mjs` 按站点状态节流抓取 → 写 `data/festivals/` + `public/api/festivals*.json` → 有变化才 commit/push。
+
+**set-authorization.yml**：手动触发，改电影节详情文件的授权状态（granted / testing / takedown），配合 `scripts/festivals/set-authorization.mjs`。
 
 ---
 
@@ -246,16 +274,17 @@ tasks 顺序（刻意设计）：**movies → tv → coming → weekly → hidde
 
 **Secrets（Cloudflare，全部手动或 workflow）**：`TMDB_API_READ_ACCESS_TOKEN`、`RESEND_API_KEY`、`DIGEST_SECRET`、`DEEPSEEK_API_KEY`（手动）、`ADMIN_PASSWORD`（手动）、`LASTFM_API_KEY`（手动）。GitHub Secrets：上述 + `CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`。
 
-**本地开发**：`npm run dev`（vite proxy 转发 /api 到 api.bloodyrex.xyz，*.json 直读本地）。**构建**：`npm run build`（prebuild 生成 sitemap，postbuild 生成类型页/详情页）。**验证套路**：`node --check workers-1.4.js && node --check scripts/fetch-intelligence-data.js && npx vite build && git checkout -- public/sitemap.xml package-lock.json && hermes verify --skip-start --json`（Windows 下 hermes verify 需 --skip-start，start 阶段会挂起）。
+**本地开发**：`npm run dev`（vite proxy 转发 /api 到 api.bloodyrex.xyz，*.json 直读本地）。**构建**：`npm run build`（prebuild 生成 sitemap，postbuild 生成类型页/详情页）。**验证套路**：`for f in workers/*.js; do node --check "$f" || exit 1; done && node --check scripts/fetch-intelligence-data.js && npx vite build`（Windows 下 `hermes verify` 需 `--skip-start`，start 阶段会挂起）。
 
-**修改后验证**：push → 等 Deploy Worker success → 手动跑 Intelligence Daily Pipeline → 检查各端点 OK + 无 500 → 用 send-test-digest 发测试邮件（默认 rexhr@yahoo.com）→ 提醒查垃圾/推广文件夹。
+**修改后验证**：push → 等 Deploy Workers success → 手动跑 Intelligence Daily Pipeline → 检查各端点 OK + 无 500 → `curl -X POST https://api.bloodyrex.xyz/intelligence/send-test -H "Authorization: Bearer $DIGEST_SECRET" -H "Content-Type: application/json" -d '{"email":"rexhr@yahoo.com"}'` 发测试邮件 → **提醒查垃圾/推广文件夹**。
 
 ---
 
-## 11. 未来规划
+## 11. 现状与待办
 
-- **剧集墙**：当前 wall.json 只收录电影；规划增加按剧集（首播日期排序、S/E 追踪）的累积墙，复用 buildWall 的 delta/去重机制。
+- **剧集墙**：`public/api/tvwall.json` / `tvwall-delta.json` 已随流水线生成（按首播日期累积，S/E 追踪），前端入口尚在 Wall 页内按需扩展。
 - 影视墙卡片复用首页 TMDB 详情视图（README 已标注）。
+- 电影节日历已接入 7 站（BIFF / BFI / Cannes / HKIFF / IDFA / IFFR / Venice），新增站点需在 `data/festivals/registry.json` 登记并在 `scripts/festivals/adapters/` 补 adapter。
 
 ---
 
